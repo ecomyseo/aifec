@@ -1,0 +1,17 @@
+{
+    "carriers": [
+        {
+            "code": "demo-estandar",
+            "name": "Envío estándar",
+            "delay": "3-5 días laborables",
+            "handler": "rates",
+            "free_from": 20000,
+            "min_days": 3,
+            "max_days": 5,
+            "rates": [
+                {"zone": "*", "basis": "weight", "min": 0, "max": 5000, "price": 495},
+                {"zone": "*", "basis": "weight", "min": 5001, "max": 0, "price": 1295}
+            ]
+        }
+    ]
+}

@@ -1,0 +1,37 @@
+[
+    {
+        "code": "cafe",
+        "name": "Todo el café",
+        "position": 0,
+        "description": "Cápsulas compatibles con siete sistemas de casa y café en grano y molido, tostado cada semana. Elige tu cafetera y la tienda te enseña solo lo que te vale, con su intensidad, su taza y el precio de cada cápsula o de cada kilo.",
+        "meta_title": "Todo el café | Café Tizón",
+        "meta_description": "Cápsulas compatibles y café en grano y molido, con la cafetera para la que vale cada uno y el precio por cápsula o por kilo."
+    },
+    {
+        "code": "capsulas",
+        "name": "Cápsulas compatibles",
+        "parent": "cafe",
+        "position": 0,
+        "description": "Cápsulas y monodosis para siete sistemas de casa: cono clásico, cúpula, vaso ancho, disco, monodosis blanda, cilindro y papel de 44 mm. Cada caja dice para qué cafetera sirve y cuánto sale cada cápsula.",
+        "meta_title": "Cápsulas compatibles | Café Tizón",
+        "meta_description": "Cápsulas y monodosis para siete sistemas de casa, con su intensidad y el precio de cada cápsula."
+    },
+    {
+        "code": "cafe-en-grano",
+        "name": "Café en grano",
+        "parent": "cafe",
+        "position": 1,
+        "description": "Café en grano para superautomáticas y para moler en casa, en bolsas con válvula y la fecha de tueste. Del más claro, para filtro, al más oscuro, para espresso con leche.",
+        "meta_title": "Café en grano | Café Tizón",
+        "meta_description": "Café en grano para superautomáticas y para moler en casa, con la fecha de tueste y el precio por kilo."
+    },
+    {
+        "code": "cafe-molido",
+        "name": "Café molido",
+        "parent": "cafe",
+        "position": 2,
+        "description": "Café molido al momento de envasarlo, en la molienda de tu cafetera: espresso, italiana, filtro o prensa francesa. Elige la tuya en la ficha.",
+        "meta_title": "Café molido | Café Tizón",
+        "meta_description": "Café molido en la molienda de tu cafetera: espresso, italiana, filtro o prensa francesa."
+    }
+]

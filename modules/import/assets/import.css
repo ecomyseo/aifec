@@ -1,0 +1,42 @@
+/*
+ * AIFEC — AI-First E-Commerce.
+ * Migración: barra de pasos, tarjetas de origen, barras de progreso y página imprimible.
+ * Los colores salen de las variables del panel (claro y oscuro).
+ *
+ * @author    Ecom Experts <ecomyseo@gmail.com>
+ * @copyright 2026 Ecom Experts
+ * @license   Ver LICENSE.md
+ */
+
+.af-imp-steps { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s4); list-style: none; margin: 0 0 var(--s4); padding: 0; }
+.af-imp-step { display: inline-flex; align-items: center; gap: var(--s2); color: var(--muted); font-size: var(--f1); }
+.af-imp-step a { color: inherit; }
+.af-imp-step-n { display: inline-grid; place-items: center; width: 1.5rem; height: 1.5rem; border-radius: 50%; border: 1px solid var(--muted); background: var(--surface); font-size: var(--f1); }
+.af-imp-step-done { color: var(--ink); }
+.af-imp-step-done .af-imp-step-n { background: var(--bg); border-color: var(--ink); }
+.af-imp-step-current { color: var(--ink); font-weight: 600; }
+.af-imp-step-current .af-imp-step-n { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+
+.af-imp-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--s4); margin-bottom: var(--s4); }
+.af-imp-cards .af-card + .af-card { margin-top: 0; }
+.af-imp-card { cursor: pointer; }
+.af-imp-card .af-card-body { display: grid; gap: var(--s2); }
+.af-imp-card input { width: 17px; height: 17px; accent-color: var(--accent); }
+
+.af-imp-total { display: flex; align-items: center; gap: var(--s3); margin-bottom: var(--s4); }
+.af-imp-progress { width: 100%; height: .8rem; accent-color: var(--accent); }
+.af-imp-total .af-imp-progress { flex: 1; }
+.af-imp-row { margin: var(--s3) 0; }
+.af-imp-label { font-weight: 600; margin-bottom: var(--s1); }
+.af-imp-nums { margin-top: var(--s0); overflow-wrap: anywhere; }
+.af-imp-notices { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s2); }
+.af-imp-notices li { overflow-wrap: anywhere; }
+
+@media (max-width: 640px) {
+    .af-imp-cards { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media print {
+    .af-imp-print .af-toolbar button, .af-imp-print [data-af-import-print] { display: none; }
+    .af-imp-print .af-card { box-shadow: none; break-inside: avoid; }
+}

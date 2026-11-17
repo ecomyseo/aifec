@@ -1,0 +1,16 @@
+[
+    {
+        "code": "METRICA10",
+        "kind": "percent",
+        "percent": 1000,
+        "note": "10 % de descuento en el primer pedido (cupón de ejemplo)"
+    },
+    {
+        "code": "TALLER5",
+        "kind": "fixed",
+        "amount": 500,
+        "min_subtotal": 6000,
+        "exclude_sale": true,
+        "note": "5 € de descuento en compras desde 60 €, sin contar las ofertas (cupón de ejemplo)"
+    }
+]

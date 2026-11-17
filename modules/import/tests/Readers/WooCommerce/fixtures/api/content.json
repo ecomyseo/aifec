@@ -1,0 +1,55 @@
+{
+  "/wp-json/wp/v2/media": [
+    {"id": 310, "date_gmt": "2026-03-01T10:00:00", "slug": "taller", "status": "inherit", "title": {"rendered": "taller"}, "alt_text": "El taller", "mime_type": "image/jpeg", "source_url": "https://tienda.test/wp-content/uploads/2026/03/taller.jpg"},
+    {"id": 401, "date_gmt": "2025-02-12T10:00:00", "slug": "mesa-1", "status": "inherit", "title": {"rendered": "mesa-1"}, "alt_text": "Mesa auxiliar de roble", "mime_type": "image/jpeg", "source_url": "https://tienda.test/wp-content/uploads/2025/02/mesa-1.jpg"}
+  ],
+  "/wp-json/wp/v2/pages": [
+    {
+      "id": 7, "date": "2024-01-10T10:00:00", "date_gmt": "2024-01-10T09:00:00", "modified": "2024-01-10T10:00:00", "modified_gmt": "2024-01-10T09:00:00", "slug": "politica-de-privacidad",
+      "status": "publish", "link": "https://tienda.test/politica-de-privacidad/", "title": {"rendered": "Política de privacidad"},
+      "content": {"rendered": "<h2>Quién trata tus datos</h2><p>Ñandú Muebles S.L.</p>", "protected": false}, "excerpt": {"rendered": ""}, "parent": 0, "menu_order": 0
+    },
+    {
+      "id": 8, "date": "2024-01-10T10:00:00", "date_gmt": "2024-01-10T09:00:00", "modified": "2024-01-10T10:00:00", "modified_gmt": "2024-01-10T09:00:00", "slug": "condiciones-de-venta",
+      "status": "publish", "link": "https://tienda.test/condiciones-de-venta/", "title": {"rendered": "Condiciones de venta"},
+      "content": {"rendered": "<p>Condiciones.</p>", "protected": false}, "excerpt": {"rendered": ""}, "parent": 0, "menu_order": 0
+    },
+    {
+      "id": 9, "date": "2024-01-10T10:00:00", "date_gmt": "2024-01-10T09:00:00", "modified": "2024-01-10T10:00:00", "modified_gmt": "2024-01-10T09:00:00", "slug": "quienes-somos",
+      "status": "publish", "link": "https://tienda.test/quienes-somos/", "title": {"rendered": "Quiénes somos"},
+      "content": {"rendered": "<p>Un taller de Sevilla.</p>", "protected": false}, "excerpt": {"rendered": ""}, "parent": 0, "menu_order": 0,
+      "yoast_head_json": {"title": "Quiénes somos en Ñandú", "description": "Conoce el taller."}
+    }
+  ],
+  "/wp-json/wp/v2/categories": [
+    {"id": 4, "name": "Cuidados", "slug": "cuidados", "parent": 0, "description": "", "link": "https://tienda.test/category/cuidados/"},
+    {"id": 5, "name": "Novedades", "slug": "novedades", "parent": 4, "description": "", "link": "https://tienda.test/category/cuidados/novedades/"}
+  ],
+  "/wp-json/wp/v2/posts": [
+    {
+      "id": 230, "date": "2026-03-04T08:30:00", "date_gmt": "2026-03-04T07:30:00", "modified": "2026-03-04T08:30:00", "modified_gmt": "2026-03-04T07:30:00", "slug": "como-cuidar-una-mesa-de-roble",
+      "status": "publish", "link": "https://tienda.test/como-cuidar-una-mesa-de-roble/", "title": {"rendered": "Cómo cuidar una mesa de roble"},
+      "content": {"rendered": "<p>Un paño húmedo y nada de sol directo.</p>", "protected": false}, "excerpt": {"rendered": "<p>Tres cosas que alargan su vida.</p>"}, "categories": [4], "tags": [32],
+      "_embedded": {
+        "author": [{"name": "Gestor de tienda"}],
+        "wp:featuredmedia": [{"source_url": "https://tienda.test/wp-content/uploads/2026/03/taller.jpg"}],
+        "wp:term": [[{"id": 4, "taxonomy": "category", "name": "Cuidados"}], [{"id": 32, "taxonomy": "post_tag", "name": "roble"}]]
+      }
+    },
+    {
+      "id": 231, "date": "2026-04-01T10:30:00", "date_gmt": "2026-04-01T08:30:00", "modified": "2026-04-01T10:30:00", "modified_gmt": "2026-04-01T08:30:00", "slug": "novedades-del-taller",
+      "status": "publish", "link": "https://tienda.test/novedades-del-taller/", "title": {"rendered": "Novedades del taller"},
+      "content": {"rendered": "<p>Nuevas sillas.</p>", "protected": false}, "excerpt": {"rendered": ""}, "categories": [5], "tags": [],
+      "_embedded": {"author": [{"name": "Administrador"}], "wp:term": [[{"id": 5, "taxonomy": "category", "name": "Novedades"}], []]}
+    }
+  ],
+  "/wp-json/wp/v2/menus": [
+    {"id": 50, "name": "Principal", "slug": "principal", "locations": ["primary"]}
+  ],
+  "/wp-json/wp/v2/menu-items": [
+    {"id": 601, "title": {"rendered": "Política de privacidad"}, "url": "https://tienda.test/politica-de-privacidad/", "type": "post_type", "object": "page", "object_id": 7, "parent": 0, "menu_order": 1},
+    {"id": 602, "title": {"rendered": "Tienda"}, "url": "https://tienda.test/tienda/", "type": "custom", "object": "custom", "object_id": 602, "parent": 0, "menu_order": 0},
+    {"id": 603, "title": {"rendered": "Mesas"}, "url": "https://tienda.test/categoria/muebles/mesas/", "type": "taxonomy", "object": "product_cat", "object_id": 12, "parent": 602, "menu_order": 0},
+    {"id": 604, "title": {"rendered": "Inicio"}, "url": "https://tienda.test/", "type": "custom", "object": "custom", "object_id": 604, "parent": 0, "menu_order": 2}
+  ]
+}

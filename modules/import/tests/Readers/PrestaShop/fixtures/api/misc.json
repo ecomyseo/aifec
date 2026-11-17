@@ -1,0 +1,394 @@
+{
+    "carts": [
+        {
+            "id": "1",
+            "id_cart": "1",
+            "id_shop_group": "",
+            "id_shop": "1",
+            "id_carrier": "",
+            "delivery_option": "",
+            "id_lang": "1",
+            "id_address_delivery": "",
+            "id_address_invoice": "",
+            "id_currency": "1",
+            "id_customer": "1",
+            "id_guest": "",
+            "secure_key": "",
+            "recyclable": "",
+            "gift": "",
+            "gift_message": "",
+            "mobile_theme": "",
+            "allow_seperated_package": "",
+            "date_add": "",
+            "date_upd": "",
+            "checkout_session_data": ""
+        },
+        {
+            "id": "2",
+            "id_cart": "2",
+            "id_shop_group": "",
+            "id_shop": "1",
+            "id_carrier": "",
+            "delivery_option": "",
+            "id_lang": "1",
+            "id_address_delivery": "",
+            "id_address_invoice": "",
+            "id_currency": "1",
+            "id_customer": "2",
+            "id_guest": "",
+            "secure_key": "",
+            "recyclable": "",
+            "gift": "",
+            "gift_message": "",
+            "mobile_theme": "",
+            "allow_seperated_package": "",
+            "date_add": "",
+            "date_upd": "",
+            "checkout_session_data": ""
+        },
+        {
+            "id": "3",
+            "id_cart": "3",
+            "id_shop_group": "",
+            "id_shop": "1",
+            "id_carrier": "",
+            "delivery_option": "",
+            "id_lang": "1",
+            "id_address_delivery": "",
+            "id_address_invoice": "",
+            "id_currency": "1",
+            "id_customer": "1",
+            "id_guest": "",
+            "secure_key": "",
+            "recyclable": "",
+            "gift": "",
+            "gift_message": "",
+            "mobile_theme": "",
+            "allow_seperated_package": "",
+            "date_add": "",
+            "date_upd": "",
+            "checkout_session_data": ""
+        },
+        {
+            "id": "10",
+            "id_cart": "10",
+            "id_shop_group": "",
+            "id_shop": "1",
+            "id_carrier": "",
+            "delivery_option": "",
+            "id_lang": "1",
+            "id_address_delivery": "",
+            "id_address_invoice": "",
+            "id_currency": "1",
+            "id_customer": "1",
+            "id_guest": "",
+            "secure_key": "",
+            "recyclable": "",
+            "gift": "",
+            "gift_message": "",
+            "mobile_theme": "",
+            "allow_seperated_package": "",
+            "date_add": "",
+            "date_upd": "",
+            "checkout_session_data": ""
+        },
+        {
+            "id": "11",
+            "id_cart": "11",
+            "id_shop_group": "",
+            "id_shop": "1",
+            "id_carrier": "",
+            "delivery_option": "",
+            "id_lang": "1",
+            "id_address_delivery": "",
+            "id_address_invoice": "",
+            "id_currency": "1",
+            "id_customer": "2",
+            "id_guest": "",
+            "secure_key": "",
+            "recyclable": "",
+            "gift": "",
+            "gift_message": "",
+            "mobile_theme": "",
+            "allow_seperated_package": "",
+            "date_add": "",
+            "date_upd": "",
+            "checkout_session_data": ""
+        }
+    ],
+    "content_management_system": [
+        {
+            "id": "1",
+            "id_cms": "1",
+            "id_cms_category": "1",
+            "position": "0",
+            "active": "1",
+            "indexation": "1",
+            "meta_title": [
+                {
+                    "id": "1",
+                    "value": "Entrega y envíos"
+                },
+                {
+                    "id": "2",
+                    "value": "Delivery and shipping"
+                }
+            ],
+            "head_seo_title": [
+                {
+                    "id": "1",
+                    "value": "Envíos | Ñandú"
+                },
+                {
+                    "id": "2",
+                    "value": ""
+                }
+            ],
+            "meta_description": [
+                {
+                    "id": "1",
+                    "value": "Texto de Entrega y envíos"
+                },
+                {
+                    "id": "2",
+                    "value": "Text of Delivery and shipping"
+                }
+            ],
+            "meta_keywords": [
+                {
+                    "id": "1",
+                    "value": ""
+                },
+                {
+                    "id": "2",
+                    "value": ""
+                }
+            ],
+            "content": [
+                {
+                    "id": "1",
+                    "value": "<h2>Entrega y envíos</h2><p>Ñandú Muebles S.L.</p>"
+                },
+                {
+                    "id": "2",
+                    "value": "<h2>Delivery and shipping</h2><p>Nandu</p>"
+                }
+            ],
+            "link_rewrite": [
+                {
+                    "id": "1",
+                    "value": "entrega-y-envios"
+                },
+                {
+                    "id": "2",
+                    "value": "delivery-and-shipping"
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "id_cms": "2",
+            "id_cms_category": "1",
+            "position": "1",
+            "active": "1",
+            "indexation": "0",
+            "meta_title": [
+                {
+                    "id": "1",
+                    "value": "Aviso legal"
+                },
+                {
+                    "id": "2",
+                    "value": "Legal notice"
+                }
+            ],
+            "head_seo_title": [
+                {
+                    "id": "1",
+                    "value": ""
+                },
+                {
+                    "id": "2",
+                    "value": ""
+                }
+            ],
+            "meta_description": [
+                {
+                    "id": "1",
+                    "value": "Texto de Aviso legal"
+                },
+                {
+                    "id": "2",
+                    "value": "Text of Legal notice"
+                }
+            ],
+            "meta_keywords": [
+                {
+                    "id": "1",
+                    "value": ""
+                },
+                {
+                    "id": "2",
+                    "value": ""
+                }
+            ],
+            "content": [
+                {
+                    "id": "1",
+                    "value": "<h2>Aviso legal</h2><p>Ñandú Muebles S.L.</p>"
+                },
+                {
+                    "id": "2",
+                    "value": "<h2>Legal notice</h2><p>Nandu</p>"
+                }
+            ],
+            "link_rewrite": [
+                {
+                    "id": "1",
+                    "value": "aviso-legal"
+                },
+                {
+                    "id": "2",
+                    "value": "legal-notice"
+                }
+            ]
+        },
+        {
+            "id": "3",
+            "id_cms": "3",
+            "id_cms_category": "2",
+            "position": "2",
+            "active": "1",
+            "indexation": "1",
+            "meta_title": [
+                {
+                    "id": "1",
+                    "value": "Términos y condiciones"
+                },
+                {
+                    "id": "2",
+                    "value": "Terms and conditions"
+                }
+            ],
+            "head_seo_title": [
+                {
+                    "id": "1",
+                    "value": ""
+                },
+                {
+                    "id": "2",
+                    "value": ""
+                }
+            ],
+            "meta_description": [
+                {
+                    "id": "1",
+                    "value": "Texto de Términos y condiciones"
+                },
+                {
+                    "id": "2",
+                    "value": "Text of Terms and conditions"
+                }
+            ],
+            "meta_keywords": [
+                {
+                    "id": "1",
+                    "value": ""
+                },
+                {
+                    "id": "2",
+                    "value": ""
+                }
+            ],
+            "content": [
+                {
+                    "id": "1",
+                    "value": "<h2>Términos y condiciones</h2><p>Ñandú Muebles S.L.</p>"
+                },
+                {
+                    "id": "2",
+                    "value": "<h2>Terms and conditions</h2><p>Nandu</p>"
+                }
+            ],
+            "link_rewrite": [
+                {
+                    "id": "1",
+                    "value": "terminos-y-condiciones"
+                },
+                {
+                    "id": "2",
+                    "value": "terms-and-conditions"
+                }
+            ]
+        }
+    ],
+    "customer_messages": [
+        {
+            "id": "1",
+            "id_customer_message": "1",
+            "id_customer_thread": "1",
+            "id_employee": "",
+            "message": "Hola",
+            "file_name": "",
+            "ip_address": "",
+            "user_agent": "",
+            "date_add": "2026-10-01 10:00:00",
+            "date_upd": "",
+            "private": ""
+        },
+        {
+            "id": "2",
+            "id_customer_message": "2",
+            "id_customer_thread": "1",
+            "id_employee": "",
+            "message": "Adiós",
+            "file_name": "",
+            "ip_address": "",
+            "user_agent": "",
+            "date_add": "2026-10-02 10:00:00",
+            "date_upd": "",
+            "private": ""
+        }
+    ],
+    "stores": [
+        {
+            "id": "1",
+            "id_store": "1",
+            "id_country": "1",
+            "id_state": "",
+            "city": "Sevilla",
+            "postcode": "41001",
+            "latitude": "",
+            "longitude": "",
+            "phone": "",
+            "fax": "",
+            "email": "",
+            "active": "1",
+            "date_add": "",
+            "date_upd": ""
+        }
+    ],
+    "suppliers": [
+        {
+            "id": "1",
+            "id_supplier": "1",
+            "name": "Nordika Proveedor",
+            "date_add": "",
+            "date_upd": "",
+            "active": "1"
+        }
+    ],
+    "warehouses": [
+        {
+            "id": "1",
+            "id_warehouse": "1",
+            "id_currency": "1",
+            "id_address": "",
+            "id_employee": "",
+            "reference": "ALM1",
+            "name": "Almacén",
+            "management_type": "WA",
+            "deleted": "0"
+        }
+    ]
+}

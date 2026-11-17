@@ -1,0 +1,162 @@
+[
+    {
+        "code": "que-molienda-pide-cada-cafetera",
+        "title": "Qué molienda pide cada cafetera",
+        "date": "2026-11-03",
+        "image": "cuaderno-molienda.svg",
+        "excerpt": "Fina para el espresso, gruesa para la prensa: la tabla para acertar a la primera.",
+        "meta_title": "Qué molienda pide cada cafetera | Café Tizón",
+        "meta_description": "Espresso, italiana, filtro o prensa francesa: qué molienda pedir según la cafetera que tienes en casa.",
+        "blocks": [
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "La molienda decide cuánto tarda el agua en atravesar el café. Demasiado fina y la taza amarga; demasiado gruesa y sale aguada. Cada cafetera tiene la suya."
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "La tabla"
+                }
+            },
+            {
+                "type": "table",
+                "attrs": {
+                    "head": [
+                        "Cafetera",
+                        "Molienda",
+                        "Se parece a",
+                        "Tiempo de contacto"
+                    ],
+                    "rows": [
+                        [
+                            "Espresso de brazo",
+                            "Espresso",
+                            "Sal fina",
+                            "25 a 30 segundos"
+                        ],
+                        [
+                            "Italiana",
+                            "Italiana",
+                            "Arena fina",
+                            "4 a 5 minutos al fuego"
+                        ],
+                        [
+                            "Goteo y filtro",
+                            "Filtro",
+                            "Azúcar",
+                            "3 a 4 minutos"
+                        ],
+                        [
+                            "Prensa francesa",
+                            "Prensa francesa",
+                            "Sal gorda",
+                            "4 minutos"
+                        ],
+                        [
+                            "Superautomática",
+                            "En grano",
+                            "Muele ella",
+                            "Lo que marque la máquina"
+                        ]
+                    ]
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Si dudas entre dos"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Quédate con la más gruesa de las dos y, si la taza sale floja, baja un punto la próxima vez. <em>Texto de ejemplo de una tienda de demostración.</em>"
+                }
+            }
+        ]
+    },
+    {
+        "code": "como-leer-la-intensidad",
+        "title": "Cómo leer la intensidad de un café",
+        "date": "2026-10-20",
+        "image": "cuaderno-intensidad.svg",
+        "excerpt": "La intensidad no mide la cafeína: mide el cuerpo y el tueste. Así se lee la escala del 1 al 13.",
+        "meta_title": "Cómo leer la intensidad de un café | Café Tizón",
+        "meta_description": "Qué significa la intensidad de un café, del 1 al 13, y cómo elegirla según la taza que tomas.",
+        "blocks": [
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "La cifra de intensidad resume dos cosas: cuánto cuerpo tiene la taza y cuánto se nota el tueste. No dice cuánta cafeína lleva."
+                }
+            },
+            {
+                "type": "list",
+                "attrs": {
+                    "ordered": false,
+                    "items": [
+                        {
+                            "html": "<strong>Del 1 al 5:</strong> tuestes claros, tazas largas y ligeras, con acidez de fruta."
+                        },
+                        {
+                            "html": "<strong>Del 6 al 8:</strong> el término medio; van bien solos y con un poco de leche."
+                        },
+                        {
+                            "html": "<strong>Del 9 al 13:</strong> tuestes oscuros, cuerpo espeso y amargor de cacao: ristretto y café con leche."
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "<em>Texto de ejemplo de una tienda de demostración.</em>"
+                }
+            }
+        ]
+    },
+    {
+        "code": "como-conservar-el-cafe",
+        "title": "Cómo conservar el café en casa",
+        "date": "2026-10-06",
+        "image": "cuaderno-conservar.svg",
+        "excerpt": "Cerrado, a oscuras y lejos del calor: tres reglas para que el café llegue entero al último día.",
+        "meta_title": "Cómo conservar el café en casa | Café Tizón",
+        "meta_description": "Dónde guardar el café en grano, el molido y las cápsulas para que no pierdan aroma.",
+        "blocks": [
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "El café tiene tres enemigos: el aire, la luz y el calor. El grano aguanta más que el molido, y las cápsulas, selladas una a una, más que los dos."
+                }
+            },
+            {
+                "type": "list",
+                "attrs": {
+                    "ordered": true,
+                    "items": [
+                        {
+                            "html": "Deja el café en su bolsa con válvula y ciérrala bien después de cada uso."
+                        },
+                        {
+                            "html": "Guárdalo en un armario fresco, no junto a los fogones ni en la nevera."
+                        },
+                        {
+                            "html": "Compra lo que vayas a gastar en un mes: mejor poco y reciente."
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "<em>Texto de ejemplo de una tienda de demostración.</em>"
+                }
+            }
+        ]
+    }
+]

@@ -1,0 +1,72 @@
+{
+    "name": "Café Tizón (demostración de café y cápsulas)",
+    "description": "Tienda de cápsulas compatibles y café en grano y molido con 16 productos inventados: cada uno dice para qué cafetera vale, su intensidad, su tueste y el precio por cápsula o por kilo. Tres guías de cuaderno, envíos por peso y cupones de ejemplo. Usa el tema «cafe».",
+    "sector": "cafe",
+    "locale": "es",
+    "theme": "cafe",
+    "theme_options": {
+        "strip_show": 1,
+        "strip_text": "Cápsulas para siete sistemas de casa | Café en grano y molido para tu cafetera | Envío gratis desde 39 € | Tostado cada semana",
+        "rail_show": 1,
+        "home_makers": 1,
+        "listing_cols": "4",
+        "card_scale": 1,
+        "unit_price_show": 1,
+        "card_add": 1,
+        "scale_max": 13,
+        "system_attr": "cafetera",
+        "home_kicker": "Cápsulas, grano y molido",
+        "home_title": "Café para la cafetera que ya tienes",
+        "home_text": "Dinos qué cápsulas usa tu cafetera, o cómo preparas el café en casa, y toda la tienda te enseña solo lo que te vale.",
+        "footer_text": "Tostamos en tandas pequeñas cada semana y envasamos con la fecha de tueste a la vista. Tienda de demostración: nada de lo que ves se vende."
+    },
+    "store": {
+        "name": "Café Tizón",
+        "email": "tienda@ejemplo.test",
+        "address": "Calle del Tostadero 1 (dirección de ejemplo)",
+        "legal_name": "Café Tizón, S. L. (ejemplo)",
+        "currency": "EUR",
+        "currency_symbol": "€",
+        "country": "ES",
+        "prices_include_tax": true,
+        "display_with_tax": true
+    },
+    "settings": {
+        "catalog.per_page": 12,
+        "cms.demo_legal_pages": true
+    },
+    "modules": [
+        "catalog",
+        "cms",
+        "media",
+        "orders",
+        "search",
+        "seo",
+        "shipping",
+        "tax",
+        "themes",
+        "coupons",
+        "customers",
+        "reviews",
+        "ai",
+        "assistant",
+        "copilot",
+        "semantic",
+        "api",
+        "mcp",
+        "webmcp",
+        "consent",
+        "returns"
+    ],
+    "files": [
+        "categories.json",
+        "attributes.json",
+        "products.json",
+        "pages.json",
+        "posts.json",
+        "menus.json",
+        "carriers.json",
+        "coupons.json",
+        "reviews.json"
+    ]
+}

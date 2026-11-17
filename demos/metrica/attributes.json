@@ -1,0 +1,237 @@
+[
+    {
+        "code": "metrica",
+        "name": "Métrica",
+        "type": "select",
+        "filterable": true,
+        "visible": true,
+        "values": [
+            {
+                "code": "m4",
+                "label": "M4"
+            },
+            {
+                "code": "m5",
+                "label": "M5"
+            },
+            {
+                "code": "m6",
+                "label": "M6"
+            },
+            {
+                "code": "m8",
+                "label": "M8"
+            },
+            {
+                "code": "m10",
+                "label": "M10"
+            }
+        ],
+        "variant": true
+    },
+    {
+        "code": "largo",
+        "name": "Largo",
+        "type": "select",
+        "filterable": true,
+        "visible": true,
+        "values": [
+            {
+                "code": "16",
+                "label": "16 mm"
+            },
+            {
+                "code": "20",
+                "label": "20 mm"
+            },
+            {
+                "code": "30",
+                "label": "30 mm"
+            },
+            {
+                "code": "40",
+                "label": "40 mm"
+            },
+            {
+                "code": "60",
+                "label": "60 mm"
+            }
+        ],
+        "variant": true
+    },
+    {
+        "code": "material",
+        "name": "Material",
+        "type": "select",
+        "filterable": true,
+        "visible": true,
+        "values": [
+            {
+                "code": "acero-zincado",
+                "label": "Acero zincado"
+            },
+            {
+                "code": "acero-pavonado",
+                "label": "Acero pavonado"
+            },
+            {
+                "code": "acero-bicromatado",
+                "label": "Acero bicromatado"
+            },
+            {
+                "code": "acero-lacado",
+                "label": "Acero lacado"
+            },
+            {
+                "code": "nailon",
+                "label": "Nailon y acero bicromatado"
+            },
+            {
+                "code": "cromo-vanadio",
+                "label": "Acero al cromo vanadio"
+            },
+            {
+                "code": "acero-forjado",
+                "label": "Acero forjado y fresno"
+            },
+            {
+                "code": "aluminio",
+                "label": "Aluminio"
+            }
+        ]
+    },
+    {
+        "code": "norma",
+        "name": "Norma",
+        "type": "select",
+        "filterable": true,
+        "visible": true,
+        "values": [
+            {
+                "code": "din-933",
+                "label": "DIN 933"
+            },
+            {
+                "code": "din-912",
+                "label": "DIN 912"
+            },
+            {
+                "code": "din-934",
+                "label": "DIN 934"
+            },
+            {
+                "code": "din-125",
+                "label": "DIN 125"
+            }
+        ]
+    },
+    {
+        "code": "cabeza",
+        "name": "Cabeza",
+        "type": "select",
+        "filterable": true,
+        "visible": true,
+        "values": [
+            {
+                "code": "hexagonal",
+                "label": "Hexagonal"
+            },
+            {
+                "code": "cilindrica-allen",
+                "label": "Cilíndrica Allen"
+            },
+            {
+                "code": "avellanada",
+                "label": "Avellanada"
+            }
+        ]
+    },
+    {
+        "code": "diametro",
+        "name": "Diámetro",
+        "type": "number",
+        "unit": "mm",
+        "filterable": false,
+        "visible": true
+    },
+    {
+        "code": "longitud",
+        "name": "Longitud",
+        "type": "number",
+        "unit": "mm",
+        "filterable": false,
+        "visible": true
+    },
+    {
+        "code": "largo-de-cinta",
+        "name": "Largo de cinta",
+        "type": "number",
+        "unit": "m",
+        "filterable": false,
+        "visible": true
+    },
+    {
+        "code": "ancho",
+        "name": "Ancho",
+        "type": "number",
+        "unit": "mm",
+        "filterable": false,
+        "visible": true
+    },
+    {
+        "code": "peso",
+        "name": "Peso",
+        "type": "number",
+        "unit": "g",
+        "filterable": false,
+        "visible": true
+    },
+    {
+        "code": "carga",
+        "name": "Carga por pareja",
+        "type": "number",
+        "unit": "kg",
+        "filterable": false,
+        "visible": true
+    },
+    {
+        "code": "tension",
+        "name": "Tensión",
+        "type": "number",
+        "unit": "V",
+        "filterable": false,
+        "visible": true
+    },
+    {
+        "code": "portabrocas",
+        "name": "Portabrocas",
+        "type": "number",
+        "unit": "mm",
+        "filterable": false,
+        "visible": true
+    },
+    {
+        "code": "potencia",
+        "name": "Potencia",
+        "type": "number",
+        "unit": "W",
+        "filterable": false,
+        "visible": true
+    },
+    {
+        "code": "corte-en-madera",
+        "name": "Corte en madera",
+        "type": "number",
+        "unit": "mm",
+        "filterable": false,
+        "visible": true
+    },
+    {
+        "code": "contenido",
+        "name": "Contenido",
+        "type": "number",
+        "unit": "piezas",
+        "filterable": false,
+        "visible": true
+    }
+]

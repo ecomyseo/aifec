@@ -1,0 +1,1 @@
+{"name":"Coupons","version":"1.0.0","description":"Discount codes","essential":false,"default":true,"requires":{"modules":[]},"contract":{"hosts":[],"personal_data":["email"],"tables":["coupons","coupon_uses"],"capabilities":["pricing"]}}

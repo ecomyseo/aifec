@@ -1,0 +1,1 @@
+{"name":"Reviews","version":"1.0.0","description":"Product reviews with moderation and verified purchases","essential":false,"default":true,"requires":{"modules":["catalog"]},"contract":{"hosts":[],"personal_data":["email","name"],"tables":["reviews","review_requests"],"capabilities":[]}}

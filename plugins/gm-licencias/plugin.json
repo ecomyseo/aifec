@@ -1,0 +1,19 @@
+{
+    "name": "GM licences",
+    "version": "1.0.0",
+    "description": "Licences for the software the shop sells: one key per unit bought, a verification API for the installed modules, offline signed keys tied to a tax ID, and the panel to manage them",
+    "namespace": "Gm\\Licencias",
+    "essential": false,
+    "default": false,
+    "requires": {
+        "php": ">=7.4",
+        "aifec": ">=1.0.0",
+        "modules": ["catalog", "orders", "customers"]
+    },
+    "contract": {
+        "hosts": [],
+        "personal_data": ["email", "name", "vat_id"],
+        "tables": ["gm_license_products", "gm_licenses", "gm_license_domains", "gm_license_checks"],
+        "capabilities": []
+    }
+}

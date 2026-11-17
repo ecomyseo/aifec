@@ -1,0 +1,65 @@
+{
+  "/wp-json/wc/store/v1/products": [
+    {
+      "id": 101, "name": "Mesa auxiliar de roble", "slug": "mesa-auxiliar-roble", "parent": 0, "type": "simple", "permalink": "https://tienda.test/producto/mesa-auxiliar-roble/", "sku": "MESA-ROBLE",
+      "short_description": "<p>Redonda, de una pata.</p>", "description": "<p>Roble macizo con acabado al agua.</p>", "on_sale": true,
+      "prices": {"price": "8900", "regular_price": "10661", "sale_price": "8900", "price_range": null, "currency_code": "EUR", "currency_minor_unit": 2},
+      "images": [{"id": 401, "src": "https://tienda.test/wp-content/uploads/2025/02/mesa-1.jpg", "name": "mesa-1", "alt": "Mesa auxiliar de roble"}],
+      "categories": [{"id": 12, "name": "Mesas", "slug": "mesas", "link": "https://tienda.test/categoria/muebles/mesas/"}],
+      "tags": [{"id": 30, "name": "roble", "slug": "roble", "link": "https://tienda.test/etiqueta/roble/"}],
+      "brands": [{"id": 9, "name": "Nordika", "slug": "nordika", "link": "https://tienda.test/marca/nordika/"}],
+      "attributes": [], "variations": [], "is_purchasable": true, "is_in_stock": true, "is_on_backorder": false, "sold_individually": false
+    },
+    {
+      "id": 102, "name": "Silla de nogal", "slug": "silla-de-nogal", "parent": 0, "type": "variable", "permalink": "https://tienda.test/producto/silla-de-nogal/", "sku": "SILLA-NOGAL",
+      "short_description": "", "description": "<p>Silla de nogal en tres tamaños.</p>", "on_sale": false,
+      "prices": {"price": "5000", "regular_price": "5000", "sale_price": "5000", "price_range": {"min_amount": "5000", "max_amount": "7000"}, "currency_code": "EUR", "currency_minor_unit": 2},
+      "images": [{"id": 404, "src": "https://tienda.test/wp-content/uploads/2025/03/silla-1.jpg", "name": "silla-1", "alt": "Silla de nogal"}],
+      "categories": [{"id": 13, "name": "Sillas", "slug": "sillas", "link": "https://tienda.test/categoria/muebles/sillas/"}], "tags": [], "brands": [],
+      "attributes": [
+        {"id": 1, "name": "Tamaño", "taxonomy": "pa_tamano", "has_variations": true, "terms": [{"id": 21, "name": "Pequeña", "slug": "pequena"}, {"id": 22, "name": "Mediana", "slug": "mediana"}, {"id": 23, "name": "Grande", "slug": "grande"}]},
+        {"id": 2, "name": "Acabado", "taxonomy": "pa_acabado", "has_variations": false, "terms": [{"id": 25, "name": "Natural", "slug": "natural"}]}
+      ],
+      "variations": [{"id": 201, "attributes": [{"name": "Tamaño", "value": "pequena"}]}, {"id": 202, "attributes": [{"name": "Tamaño", "value": "mediana"}]}, {"id": 203, "attributes": [{"name": "Tamaño", "value": "grande"}]}],
+      "is_purchasable": true, "is_in_stock": true, "is_on_backorder": false, "sold_individually": false
+    },
+    {
+      "id": 105, "name": "Banco sin existencias", "slug": "banco-sin-existencias", "parent": 0, "type": "simple", "permalink": "https://tienda.test/producto/banco-sin-existencias/", "sku": "BANCO-S",
+      "short_description": "", "description": "", "on_sale": false,
+      "prices": {"price": "15000", "regular_price": "15000", "sale_price": "15000", "price_range": null, "currency_code": "EUR", "currency_minor_unit": 2},
+      "images": [], "categories": [{"id": 13, "name": "Sillas", "slug": "sillas", "link": ""}], "tags": [], "brands": [], "attributes": [], "variations": [],
+      "is_purchasable": false, "is_in_stock": false, "is_on_backorder": false, "sold_individually": false
+    }
+  ],
+  "/wp-json/wc/store/v1/products?parent=102": [
+    {
+      "id": 201, "name": "Silla de nogal - Pequeña", "parent": 102, "type": "variation", "sku": "SILLA-NOGAL-P", "on_sale": false,
+      "prices": {"price": "5000", "regular_price": "5000", "sale_price": "5000", "currency_code": "EUR", "currency_minor_unit": 2},
+      "images": [{"id": 403, "src": "https://tienda.test/wp-content/uploads/2025/03/silla-p.jpg", "name": "silla-p", "alt": ""}],
+      "attributes": [{"name": "Tamaño", "value": "pequena"}]
+    },
+    {
+      "id": 202, "name": "Silla de nogal - Mediana", "parent": 102, "type": "variation", "sku": "SILLA-NOGAL-M", "on_sale": false,
+      "prices": {"price": "6000", "regular_price": "6000", "sale_price": "6000", "currency_code": "EUR", "currency_minor_unit": 2}, "images": [],
+      "attributes": [{"name": "Tamaño", "value": "mediana"}]
+    },
+    {
+      "id": 203, "name": "Silla de nogal - Grande", "parent": 102, "type": "variation", "sku": "SILLA-NOGAL-G", "on_sale": true,
+      "prices": {"price": "6300", "regular_price": "7000", "sale_price": "6300", "currency_code": "EUR", "currency_minor_unit": 2}, "images": [],
+      "attributes": [{"name": "Tamaño", "value": "grande"}]
+    }
+  ],
+  "/wp-json/wc/store/v1/products/attributes": [
+    {"id": 1, "name": "Tamaño", "taxonomy": "pa_tamano", "type": "select", "order": "menu_order", "has_archives": false},
+    {"id": 2, "name": "Acabado", "taxonomy": "pa_acabado", "type": "select", "order": "menu_order", "has_archives": false}
+  ],
+  "/wp-json/wc/store/v1/products/attributes/1/terms": [
+    {"id": 21, "name": "Pequeña", "slug": "pequena", "count": 1}, {"id": 22, "name": "Mediana", "slug": "mediana", "count": 1}, {"id": 23, "name": "Grande", "slug": "grande", "count": 1}
+  ],
+  "/wp-json/wc/store/v1/products/attributes/2/terms": [
+    {"id": 25, "name": "Natural", "slug": "natural", "count": 1}
+  ],
+  "/wp-json/wc/store/v1/products/brands": [
+    {"id": 9, "name": "Nordika", "slug": "nordika", "description": "<p>Madera con certificado.</p>", "parent": 0, "count": 1, "image": null}
+  ]
+}

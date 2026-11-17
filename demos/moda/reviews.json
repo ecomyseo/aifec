@@ -1,0 +1,130 @@
+[
+    {
+        "sku": "DEMO-MODA-001",
+        "name": "Irene",
+        "rating": 5,
+        "title": "Fresco y favorecedor",
+        "text": "Opinión inventada para la demostración: el lino es suave y el vestido cae muy bien. Lo he llevado todo el verano.",
+        "date": "2026-09-14"
+    },
+    {
+        "sku": "DEMO-MODA-001",
+        "name": "Teresa",
+        "rating": 4,
+        "title": "Muy bonito, arruga",
+        "text": "Opinión inventada para la demostración: me encanta el corte, aunque arruga bastante. Lo he planchado húmedo y queda perfecto.",
+        "date": "2026-09-30"
+    },
+    {
+        "sku": "DEMO-MODA-002",
+        "name": "Lucía",
+        "rating": 5,
+        "title": "Perfecto para viajar",
+        "text": "Opinión inventada para la demostración: no hay que plancharlo y el plisado aguanta. Lo llevé a una boda y fui cómoda todo el día.",
+        "date": "2026-10-02"
+    },
+    {
+        "sku": "DEMO-MODA-006",
+        "name": "Pablo",
+        "rating": 5,
+        "title": "La camisa de siempre",
+        "text": "Opinión inventada para la demostración: buen tejido, cuello firme y cortes que no marcan. Ya he pedido otra.",
+        "date": "2026-10-05"
+    },
+    {
+        "sku": "DEMO-MODA-009",
+        "name": "Marcos",
+        "rating": 4,
+        "title": "Buena camiseta básica",
+        "text": "Opinión inventada para la demostración: el tejido es denso y no transparenta. Tras tres lavados sigue igual.",
+        "date": "2026-10-08"
+    },
+    {
+        "sku": "DEMO-MODA-012",
+        "name": "Carmen",
+        "rating": 5,
+        "title": "Calentito sin picar",
+        "text": "Opinión inventada para la demostración: ligero, cálido y no pica. Lo uso casi cada día.",
+        "date": "2026-10-12"
+    },
+    {
+        "sku": "DEMO-MODA-012",
+        "name": "Álvaro",
+        "rating": 3,
+        "title": "Suelta bolitas al principio",
+        "text": "Opinión inventada para la demostración: el tacto es muy bueno, aunque soltó algo de pelusa los primeros días. Después se estabilizó.",
+        "date": "2026-10-15"
+    },
+    {
+        "sku": "DEMO-MODA-016",
+        "name": "Noa",
+        "rating": 4,
+        "title": "Un vaquero de los buenos",
+        "text": "Opinión inventada para la demostración: buen denim y buen corte. Cede un poco en la cintura, como avisan en la ficha.",
+        "date": "2026-10-17"
+    },
+    {
+        "sku": "DEMO-MODA-021",
+        "name": "Daniel",
+        "rating": 5,
+        "title": "Una gabardina para años",
+        "text": "Opinión inventada para la demostración: el color es precioso y repele la lluvia ligera. El forro es una delicia.",
+        "date": "2026-10-19"
+    },
+    {
+        "sku": "DEMO-MODA-021",
+        "name": "Elena",
+        "rating": 5,
+        "title": "Elegante y práctica",
+        "text": "Opinión inventada para la demostración: se ve cara y es cómoda. La llevo con vaqueros y con vestidos.",
+        "date": "2026-10-21"
+    },
+    {
+        "sku": "DEMO-MODA-024",
+        "name": "Sergio",
+        "rating": 4,
+        "title": "Ligera y bien cortada",
+        "text": "Opinión inventada para la demostración: la lana fría respira bien. Me hubiera gustado más variedad de tallas.",
+        "date": "2026-10-23"
+    },
+    {
+        "sku": "DEMO-MODA-026",
+        "name": "Marta",
+        "rating": 5,
+        "title": "Cómodos desde el primer día",
+        "text": "Opinión inventada para la demostración: el botín no rozó nada y el tacón es perfecto para andar todo el día.",
+        "date": "2026-10-25"
+    },
+    {
+        "sku": "DEMO-MODA-027",
+        "name": "Iván",
+        "rating": 5,
+        "title": "Las blancas ideales",
+        "text": "Opinión inventada para la demostración: se limpian fácil y combinan con todo. La piel es suave.",
+        "date": "2026-10-27"
+    },
+    {
+        "sku": "DEMO-MODA-027",
+        "name": "Paula",
+        "rating": 3,
+        "title": "Calzan algo grandes",
+        "text": "Opinión inventada para la demostración: son bonitas, pero me quedaron algo grandes. Las cambié por una talla menos sin problema.",
+        "date": "2026-10-29"
+    },
+    {
+        "sku": "DEMO-MODA-030",
+        "name": "Rubén",
+        "rating": 4,
+        "title": "Cabe de todo",
+        "text": "Opinión inventada para la demostración: grande, resistente y con un bolsillo interior útil. La lona es gruesa.",
+        "date": "2026-11-01"
+    },
+    {
+        "sku": "DEMO-MODA-032",
+        "name": "Olga",
+        "rating": 5,
+        "title": "Calentita y suave",
+        "text": "Opinión inventada para la demostración: no pica nada y los flecos están muy bien rematados. Un regalo acertado.",
+        "date": "2026-11-03"
+    }
+]

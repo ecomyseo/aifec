@@ -1,0 +1,19 @@
+{
+    "name": "GM AI notice",
+    "version": "1.0.0",
+    "description": "Tells visitors that the texts of products and pages were written with the help of AI, and where to read how",
+    "namespace": "Gm\\AvisoIa",
+    "essential": false,
+    "default": false,
+    "requires": {
+        "php": ">=7.4",
+        "aifec": ">=1.0.0",
+        "modules": ["catalog"]
+    },
+    "contract": {
+        "hosts": [],
+        "personal_data": [],
+        "tables": [],
+        "capabilities": []
+    }
+}

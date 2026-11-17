@@ -1,0 +1,98 @@
+[
+    {
+        "sku": "DEMO-CAFE-001",
+        "name": "Marta",
+        "rating": 5,
+        "title": "Corto y con carácter",
+        "text": "Opinión inventada para la demostración: tiene mucho cuerpo y la crema aguanta. Para el primer café del día.",
+        "date": "2026-10-12"
+    },
+    {
+        "sku": "DEMO-CAFE-001",
+        "name": "Julián",
+        "rating": 4,
+        "title": "Muy intenso",
+        "text": "Opinión inventada para la demostración: es fuerte de verdad; con un chorrito de leche queda perfecto.",
+        "date": "2026-10-25"
+    },
+    {
+        "sku": "DEMO-CAFE-002",
+        "name": "Nuria",
+        "rating": 5,
+        "title": "Suave para taza larga",
+        "text": "Opinión inventada para la demostración: no amarga nada y huele a cereal tostado.",
+        "date": "2026-09-30"
+    },
+    {
+        "sku": "DEMO-CAFE-003",
+        "name": "Pablo",
+        "rating": 4,
+        "title": "Taza grande y redonda",
+        "text": "Opinión inventada para la demostración: sale una taza enorme con mucha crema. Con leche está muy bien.",
+        "date": "2026-10-08"
+    },
+    {
+        "sku": "DEMO-CAFE-004",
+        "name": "Elena",
+        "rating": 5,
+        "title": "El cortado de casa",
+        "text": "Opinión inventada para la demostración: la canela se nota al final, sin empalagar.",
+        "date": "2026-10-18"
+    },
+    {
+        "sku": "DEMO-CAFE-006",
+        "name": "Andrés",
+        "rating": 4,
+        "title": "Ligero",
+        "text": "Opinión inventada para la demostración: para tomar varios al día sin cansarse.",
+        "date": "2026-09-22"
+    },
+    {
+        "sku": "DEMO-CAFE-007",
+        "name": "Sofía",
+        "rating": 5,
+        "title": "Como en la barra",
+        "text": "Opinión inventada para la demostración: espresso corto con una crema espesa. Repetiré.",
+        "date": "2026-10-29"
+    },
+    {
+        "sku": "DEMO-CAFE-009",
+        "name": "Diego",
+        "rating": 5,
+        "title": "Dulce y limpio",
+        "text": "Opinión inventada para la demostración: lo uso en la superautomática y sale un espresso muy dulce.",
+        "date": "2026-10-15"
+    },
+    {
+        "sku": "DEMO-CAFE-009",
+        "name": "Carmen",
+        "rating": 4,
+        "title": "Buen todoterreno",
+        "text": "Opinión inventada para la demostración: en la italiana también funciona. La bolsa trae la fecha de tueste.",
+        "date": "2026-11-01"
+    },
+    {
+        "sku": "DEMO-CAFE-010",
+        "name": "Raúl",
+        "rating": 5,
+        "title": "Aguanta la leche",
+        "text": "Opinión inventada para la demostración: mucho cuerpo y poca acidez, justo lo que buscaba para el café con leche.",
+        "date": "2026-10-05"
+    },
+    {
+        "sku": "DEMO-CAFE-013",
+        "name": "Lucía",
+        "rating": 4,
+        "title": "La mezcla de siempre",
+        "text": "Opinión inventada para la demostración: pedí la molienda italiana y vino en su punto.",
+        "date": "2026-10-21"
+    },
+    {
+        "sku": "DEMO-CAFE-016",
+        "name": "Óscar",
+        "rating": 5,
+        "title": "Afrutado",
+        "text": "Opinión inventada para la demostración: en la prensa francesa huele a arándano. Distinto a todo lo que había probado.",
+        "date": "2026-10-27"
+    }
+]

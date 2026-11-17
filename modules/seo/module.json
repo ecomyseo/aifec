@@ -1,0 +1,1 @@
+{"name":"SEO","version":"1.0.0","description":"Titles, sitemaps, robots and SEO audit","essential":false,"default":true,"requires":{"modules":[]},"contract":{"hosts":[],"personal_data":[],"tables":[],"capabilities":[]}}

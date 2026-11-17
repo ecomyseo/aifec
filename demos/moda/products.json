@@ -1,0 +1,4232 @@
+[
+    {
+        "sku": "DEMO-MODA-001",
+        "name": "Vestido camisero de lino Marisma",
+        "summary": "<p>Vestido midi de lino lavado con botones al frente y cinturón de tela, pensado para los días de calor.</p>",
+        "description": "<p>Marisma es el vestido que se pone sin pensar en cuanto sube la temperatura. Tiene el corte camisero de siempre, con cuello clásico, botonadura completa hasta el bajo y manga corta algo caída, y una falda con vuelo que se mueve al caminar sin pegarse a las piernas.</p><p>Está confeccionado en lino lavado de trama ligeramente irregular, que se arruga con elegancia y se vuelve más suave con cada lavado. El cinturón de la misma tela se ata o se deja suelto, y los dos bolsillos laterales llevan un refuerzo cosido para que aguanten el uso diario.</p><p>Mide 112 cm de largo en la talla M, así que queda por debajo de la rodilla. Combina con sandalias planas de día o con un botín y una chaqueta vaquera cuando refresca por la noche. Si dudas entre dos tallas, elige la menor: el lino cede un poco con el uso.</p>",
+        "price": 8900,
+        "sale_price": 6990,
+        "manage_stock": true,
+        "mpn": "AT-001",
+        "weight": 420,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": true,
+        "categories": [
+            "vestidos",
+            "vestidos-y-faldas"
+        ],
+        "brand": "hilo-claro",
+        "attributes": {
+            "material": "lino",
+            "temporada": "primavera-verano",
+            "genero": "mujer"
+        },
+        "facts": [
+            {
+                "label": "Composición",
+                "value": "100 % lino"
+            },
+            {
+                "label": "Largo (talla M)",
+                "value": "112 cm"
+            },
+            {
+                "label": "Cierre",
+                "value": "Botones de resina al frente"
+            },
+            {
+                "label": "Cinturón",
+                "value": "De la misma tela, desmontable"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Lavar a 30 °C y planchar húmedo"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Encoge el lino al lavarlo?",
+                "answer": "Sale prelavado, así que el encogimiento es mínimo. Lávalo a 30 °C y sécalo al aire para conservar la talla."
+            },
+            {
+                "question": "¿Es transparente?",
+                "answer": "No. La trama es densa y el color arena es opaco; el tono cielo se aclara un poco a contraluz."
+            },
+            {
+                "question": "¿Se puede llevar sin cinturón?",
+                "answer": "Sí. Cae recto desde el pecho y queda bien abierto o cerrado."
+            }
+        ],
+        "tags": [
+            "lino",
+            "verano",
+            "vestido camisero"
+        ],
+        "related": [
+            "DEMO-MODA-033",
+            "DEMO-MODA-029",
+            "DEMO-MODA-030"
+        ],
+        "meta_title": "Vestido camisero de lino Marisma | Atelier Brezal",
+        "meta_description": "Vestido midi de lino lavado con botones al frente y cinturón de tela, pensado para los días de calor.",
+        "images": [
+            {
+                "file": "vestido-camisero-de-lino-marisma-frente.svg",
+                "alt": "Vestido camisero de lino Marisma, vista frontal"
+            },
+            {
+                "file": "vestido-camisero-de-lino-marisma-detalle.svg",
+                "alt": "Vestido camisero de lino Marisma, detalle del tejido y los acabados"
+            },
+            {
+                "file": "vestido-camisero-de-lino-marisma-medidas.svg",
+                "alt": "Vestido camisero de lino Marisma, medidas y colores"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-001-XS-ARE",
+                "gtin": "2990000000019",
+                "stock": 9,
+                "values": {
+                    "talla": "xs",
+                    "color": "arena"
+                },
+                "image": "vestido-camisero-de-lino-marisma-frente.svg"
+            },
+            {
+                "sku": "DEMO-MODA-001-S-ARE",
+                "gtin": "2990000000026",
+                "stock": 7,
+                "values": {
+                    "talla": "s",
+                    "color": "arena"
+                },
+                "image": "vestido-camisero-de-lino-marisma-frente.svg"
+            },
+            {
+                "sku": "DEMO-MODA-001-M-ARE",
+                "gtin": "2990000000033",
+                "stock": 1,
+                "values": {
+                    "talla": "m",
+                    "color": "arena"
+                },
+                "image": "vestido-camisero-de-lino-marisma-frente.svg"
+            },
+            {
+                "sku": "DEMO-MODA-001-L-ARE",
+                "gtin": "2990000000040",
+                "stock": 11,
+                "values": {
+                    "talla": "l",
+                    "color": "arena"
+                },
+                "image": "vestido-camisero-de-lino-marisma-frente.svg"
+            },
+            {
+                "sku": "DEMO-MODA-001-XL-ARE",
+                "gtin": "2990000000057",
+                "stock": 2,
+                "values": {
+                    "talla": "xl",
+                    "color": "arena"
+                },
+                "image": "vestido-camisero-de-lino-marisma-frente.svg"
+            },
+            {
+                "sku": "DEMO-MODA-001-XS-CIE",
+                "gtin": "2990000000064",
+                "stock": 4,
+                "values": {
+                    "talla": "xs",
+                    "color": "cielo"
+                },
+                "image": "vestido-camisero-de-lino-marisma-cielo.svg"
+            },
+            {
+                "sku": "DEMO-MODA-001-S-CIE",
+                "gtin": "2990000000071",
+                "stock": 5,
+                "values": {
+                    "talla": "s",
+                    "color": "cielo"
+                },
+                "image": "vestido-camisero-de-lino-marisma-cielo.svg"
+            },
+            {
+                "sku": "DEMO-MODA-001-M-CIE",
+                "gtin": "2990000000088",
+                "stock": 6,
+                "values": {
+                    "talla": "m",
+                    "color": "cielo"
+                },
+                "image": "vestido-camisero-de-lino-marisma-cielo.svg"
+            },
+            {
+                "sku": "DEMO-MODA-001-L-CIE",
+                "gtin": "2990000000095",
+                "stock": 3,
+                "values": {
+                    "talla": "l",
+                    "color": "cielo"
+                },
+                "image": "vestido-camisero-de-lino-marisma-cielo.svg"
+            },
+            {
+                "sku": "DEMO-MODA-001-XL-CIE",
+                "gtin": "2990000000101",
+                "stock": 10,
+                "values": {
+                    "talla": "xl",
+                    "color": "cielo"
+                },
+                "image": "vestido-camisero-de-lino-marisma-cielo.svg"
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-002",
+        "name": "Vestido midi plisado Ondina",
+        "summary": "<p>Vestido sin mangas con plisado fino permanente, escote redondo y falda de caída ligera.</p>",
+        "description": "<p>Ondina juega con el movimiento. El plisado fino recorre toda la falda y se abre al andar, mientras que el cuerpo, liso y ajustado, estiliza sin apretar. El escote es redondo y las tiras, anchas, tapan los tirantes del sujetador sin esfuerzo.</p><p>El tejido es un poliéster reciclado con tacto de crepé, ligero y con buena caída. No necesita plancha: el plisado está fijado con calor y vuelve a su sitio después de cada lavado. Lleva forro interior hasta la rodilla y una cremallera invisible en el costado.</p><p>Con su largo midi funciona igual en una boda de día que en la oficina con una chaqueta por encima. Se dobla en un bulto pequeño, ideal para viajar, y sale de la maleta sin una sola arruga. Elige tu talla habitual: el pecho es ajustado y la cintura marca sin comprimir.</p>",
+        "price": 9500,
+        "manage_stock": true,
+        "mpn": "AT-002",
+        "weight": 380,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "vestidos",
+            "vestidos-y-faldas"
+        ],
+        "brand": "hilo-claro",
+        "attributes": {
+            "material": "poliester-reciclado",
+            "temporada": "todo-el-ano",
+            "genero": "mujer",
+            "color": "terracota"
+        },
+        "facts": [
+            {
+                "label": "Composición",
+                "value": "100 % poliéster reciclado"
+            },
+            {
+                "label": "Largo (talla M)",
+                "value": "118 cm"
+            },
+            {
+                "label": "Plisado",
+                "value": "Permanente, fijado con calor"
+            },
+            {
+                "label": "Cierre",
+                "value": "Cremallera invisible lateral"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Lavar a 30 °C, sin secadora"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Se pierde el plisado al lavarlo?",
+                "answer": "No. Está fijado con calor; solo evita la secadora y déjalo secar colgado."
+            },
+            {
+                "question": "¿Lleva forro?",
+                "answer": "Sí, un forro interior que llega hasta la rodilla."
+            }
+        ],
+        "tags": [
+            "plisado",
+            "fiesta",
+            "viaje"
+        ],
+        "related": [
+            "DEMO-MODA-029",
+            "DEMO-MODA-031"
+        ],
+        "meta_title": "Vestido midi plisado Ondina | Atelier Brezal",
+        "meta_description": "Vestido sin mangas con plisado fino permanente, escote redondo y falda de caída ligera.",
+        "images": [
+            {
+                "file": "vestido-midi-plisado-ondina-frente.svg",
+                "alt": "Vestido midi plisado Ondina, vista frontal"
+            },
+            {
+                "file": "vestido-midi-plisado-ondina-detalle.svg",
+                "alt": "Vestido midi plisado Ondina, detalle del tejido y los acabados"
+            },
+            {
+                "file": "vestido-midi-plisado-ondina-medidas.svg",
+                "alt": "Vestido midi plisado Ondina, medidas"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-002-XS",
+                "gtin": "2990000000118",
+                "stock": 4,
+                "values": {
+                    "talla": "xs"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-002-S",
+                "gtin": "2990000000125",
+                "stock": 5,
+                "values": {
+                    "talla": "s"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-002-M",
+                "gtin": "2990000000132",
+                "stock": 6,
+                "values": {
+                    "talla": "m"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-002-L",
+                "gtin": "2990000000149",
+                "stock": 3,
+                "values": {
+                    "talla": "l"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-002-XL",
+                "gtin": "2990000000156",
+                "stock": 10,
+                "values": {
+                    "talla": "xl"
+                }
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-003",
+        "name": "Vestido de punto acanalado Brisa",
+        "summary": "<p>Vestido midi de punto de canalé con cuello alto y sin mangas, elástico y cómodo.</p>",
+        "description": "<p>Brisa es el vestido de entretiempo que sirve solo o sobre una camisa. El punto de canalé se ajusta al cuerpo y recupera la forma, con cuello alto sin mangas y un largo que llega justo debajo de la rodilla.</p><p>Está tejido con una mezcla de algodón y poliamida que da elasticidad sin brillo y evita que se deforme en las caderas al sentarte. El canalé es fino, no marca la ropa interior y el bajo termina en un dobladillo plano que no abulta.</p><p>Para el día a día, combínalo con zapatillas blancas; para la noche, con botines y un abrigo largo. En invierno queda muy bien con una camisa blanca debajo, y en verano, con sandalias y poco más. Se lava en casa y se seca extendido, sin colgarlo, para que conserve la caída.</p>",
+        "price": 7900,
+        "manage_stock": true,
+        "mpn": "AT-003",
+        "weight": 360,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "vestidos",
+            "vestidos-y-faldas"
+        ],
+        "brand": "brezo-estudio",
+        "attributes": {
+            "material": "algodon",
+            "temporada": "todo-el-ano",
+            "genero": "mujer",
+            "color": "negro"
+        },
+        "facts": [
+            {
+                "label": "Composición",
+                "value": "80 % algodón, 16 % poliamida, 4 % elastano"
+            },
+            {
+                "label": "Largo (talla M)",
+                "value": "104 cm"
+            },
+            {
+                "label": "Cuello",
+                "value": "Alto, sin mangas"
+            },
+            {
+                "label": "Tejido",
+                "value": "Canalé fino"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Lavar a 30 °C del revés"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Es muy ajustado?",
+                "answer": "Se ajusta al cuerpo gracias al elastano, pero no aprieta. Si prefieres holgura, pide una talla más."
+            },
+            {
+                "question": "¿Puedo secarlo en secadora?",
+                "answer": "Mejor no: extiéndelo en horizontal para que no pierda la forma."
+            }
+        ],
+        "tags": [
+            "punto",
+            "canalé",
+            "básico"
+        ],
+        "related": [
+            "DEMO-MODA-027",
+            "DEMO-MODA-026"
+        ],
+        "meta_title": "Vestido de punto acanalado Brisa | Atelier Brezal",
+        "meta_description": "Vestido midi de punto de canalé con cuello alto y sin mangas, elástico y cómodo.",
+        "images": [
+            {
+                "file": "vestido-de-punto-acanalado-brisa-frente.svg",
+                "alt": "Vestido de punto acanalado Brisa, vista frontal"
+            },
+            {
+                "file": "vestido-de-punto-acanalado-brisa-detalle.svg",
+                "alt": "Vestido de punto acanalado Brisa, detalle del tejido y los acabados"
+            },
+            {
+                "file": "vestido-de-punto-acanalado-brisa-medidas.svg",
+                "alt": "Vestido de punto acanalado Brisa, medidas"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-003-XS",
+                "gtin": "2990000000163",
+                "stock": 0,
+                "values": {
+                    "talla": "xs"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-003-S",
+                "gtin": "2990000000170",
+                "stock": 8,
+                "values": {
+                    "talla": "s"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-003-M",
+                "gtin": "2990000000187",
+                "stock": 9,
+                "values": {
+                    "talla": "m"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-003-L",
+                "gtin": "2990000000194",
+                "stock": 7,
+                "values": {
+                    "talla": "l"
+                }
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-004",
+        "name": "Falda midi de algodón Aurora",
+        "summary": "<p>Falda midi en línea A de popelín de algodón, con cintura alta y cremallera lateral.</p>",
+        "description": "<p>Aurora es una falda sencilla con un corte muy favorecedor: cintura alta, caída en línea A y un largo midi que se ve igual de bien con botas que con sandalias. No lleva adornos, y por eso combina con casi todo lo que ya tienes.</p><p>El popelín de algodón es fresco y firme, con un ligero tacto crujiente que mantiene la forma sin necesidad de forro. La cinturilla está reforzada, el cierre es una cremallera invisible en el costado y lleva dos bolsillos ocultos en las costuras donde caben el móvil y las llaves.</p><p>Mide 76 cm de largo en la talla M. Con una camiseta blanca y zapatillas queda informal; con una blusa de seda y un zapato plano, pasa a la oficina. Se plancha con facilidad y no pierde color en los primeros lavados.</p>",
+        "price": 5900,
+        "sale_price": 4490,
+        "manage_stock": true,
+        "mpn": "AT-004",
+        "weight": 340,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "faldas",
+            "vestidos-y-faldas"
+        ],
+        "brand": "hilo-claro",
+        "attributes": {
+            "material": "algodon",
+            "temporada": "primavera-verano",
+            "genero": "mujer",
+            "color": "camel"
+        },
+        "facts": [
+            {
+                "label": "Composición",
+                "value": "100 % algodón"
+            },
+            {
+                "label": "Largo (talla M)",
+                "value": "76 cm"
+            },
+            {
+                "label": "Corte",
+                "value": "Línea A, cintura alta"
+            },
+            {
+                "label": "Bolsillos",
+                "value": "Dos, ocultos en las costuras"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Lavar a 40 °C y planchar a temperatura media"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Lleva forro?",
+                "answer": "No, el popelín es opaco y no lo necesita."
+            },
+            {
+                "question": "¿Cómo debo elegir la talla?",
+                "answer": "Guíate por la cintura. Si estás entre dos tallas, elige la mayor: la cinturilla no es elástica."
+            }
+        ],
+        "tags": [
+            "falda",
+            "popelín",
+            "oficina"
+        ],
+        "related": [
+            "DEMO-MODA-008",
+            "DEMO-MODA-029"
+        ],
+        "meta_title": "Falda midi de algodón Aurora | Atelier Brezal",
+        "meta_description": "Falda midi en línea A de popelín de algodón, con cintura alta y cremallera lateral.",
+        "images": [
+            {
+                "file": "falda-midi-de-algodon-aurora-frente.svg",
+                "alt": "Falda midi de algodón Aurora, vista frontal"
+            },
+            {
+                "file": "falda-midi-de-algodon-aurora-detalle.svg",
+                "alt": "Falda midi de algodón Aurora, detalle del tejido y los acabados"
+            },
+            {
+                "file": "falda-midi-de-algodon-aurora-medidas.svg",
+                "alt": "Falda midi de algodón Aurora, medidas"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-004-XS",
+                "gtin": "2990000000200",
+                "stock": 11,
+                "values": {
+                    "talla": "xs"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-004-S",
+                "gtin": "2990000000217",
+                "stock": 2,
+                "values": {
+                    "talla": "s"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-004-M",
+                "gtin": "2990000000224",
+                "stock": 4,
+                "values": {
+                    "talla": "m"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-004-L",
+                "gtin": "2990000000231",
+                "stock": 5,
+                "values": {
+                    "talla": "l"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-004-XL",
+                "gtin": "2990000000248",
+                "stock": 6,
+                "values": {
+                    "talla": "xl"
+                }
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-005",
+        "name": "Falda plisada de crepé Cuarzo",
+        "summary": "<p>Falda larga plisada de crepé ligero, con cintura elástica y mucho movimiento.</p>",
+        "description": "<p>Cuarzo es la falda de las ocasiones en las que quieres ir cómoda sin renunciar a la elegancia. Es larga, de plisado ancho y caída muy suelta, y el color rosa empolvado se parece al de la piedra que le da nombre.</p><p>El crepé es ligero, algo opaco y no se arruga al sacarlo de la maleta. La cintura es elástica con una cinta plana por delante, de modo que no marca ni aprieta tras una comida larga, y el bajo lleva un pequeño peso interior que ayuda a que el plisado caiga recto.</p><p>Con un jersey fino y botines funciona en invierno; con una camiseta lisa y sandalias, en verano. Está agotada en este momento: la reposición está prevista para dentro de unas semanas y puedes avisarnos para que te escribamos cuando vuelva.</p>",
+        "price": 6500,
+        "manage_stock": true,
+        "stock": 0,
+        "gtin": "2990000000255",
+        "mpn": "AT-005",
+        "weight": 310,
+        "delivery_min_days": 7,
+        "delivery_max_days": 10,
+        "featured": false,
+        "categories": [
+            "faldas",
+            "vestidos-y-faldas"
+        ],
+        "brand": "brezo-estudio",
+        "attributes": {
+            "material": "viscosa",
+            "temporada": "todo-el-ano",
+            "genero": "mujer",
+            "color": "rosa"
+        },
+        "facts": [
+            {
+                "label": "Composición",
+                "value": "100 % viscosa de crepé"
+            },
+            {
+                "label": "Largo",
+                "value": "88 cm, talla única ajustable"
+            },
+            {
+                "label": "Cintura",
+                "value": "Elástica, con cinta plana"
+            },
+            {
+                "label": "Plisado",
+                "value": "Ancho y permanente"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Lavar a 30 °C, no usar secadora"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Qué talla es?",
+                "answer": "Es de talla única: la cintura elástica admite del 36 al 44."
+            },
+            {
+                "question": "¿Cuándo vuelve a estar disponible?",
+                "answer": "Esperamos reponerla en unas semanas. Es una tienda de demostración, así que la disponibilidad es de ejemplo."
+            }
+        ],
+        "tags": [
+            "plisado",
+            "falda larga",
+            "agotado"
+        ],
+        "related": [
+            "DEMO-MODA-002",
+            "DEMO-MODA-008"
+        ],
+        "meta_title": "Falda plisada de crepé Cuarzo | Atelier Brezal",
+        "meta_description": "Falda larga plisada de crepé ligero, con cintura elástica y mucho movimiento.",
+        "images": [
+            {
+                "file": "falda-plisada-de-crepe-cuarzo-frente.svg",
+                "alt": "Falda plisada de crepé Cuarzo, vista frontal"
+            },
+            {
+                "file": "falda-plisada-de-crepe-cuarzo-detalle.svg",
+                "alt": "Falda plisada de crepé Cuarzo, detalle del tejido y los acabados"
+            },
+            {
+                "file": "falda-plisada-de-crepe-cuarzo-medidas.svg",
+                "alt": "Falda plisada de crepé Cuarzo, medidas"
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-006",
+        "name": "Camisa de popelín Clásica",
+        "summary": "<p>Camisa de popelín de algodón con cuello clásico y corte regular, la que se lleva con todo.</p>",
+        "description": "<p>La Clásica es la camisa que no pasa de moda: cuello de pico medio, puños con un botón, bolsillo en el pecho y un corte regular que no ciñe ni sobra. Un básico para el armario del que se tira cada semana.</p><p>El popelín de algodón de hilo largo tiene un tacto liso y firme, cae bien y respira, y se plancha en pocos minutos. Los botones son de resina con cuatro agujeros, cosidos con refuerzo, y la espalda lleva un canesú para dar más libertad de movimiento en los hombros.</p><p>Con vaqueros y mocasines queda informal; con pantalón de pinzas y americana, perfecta para la oficina. Se puede llevar por dentro o por fuera, porque el bajo es recto y no llega a la cadera. El color blanco no transparenta gracias a la densidad del tejido.</p>",
+        "price": 6900,
+        "manage_stock": true,
+        "mpn": "AT-006",
+        "weight": 320,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "camisas",
+            "camisas-y-tops"
+        ],
+        "brand": "hilo-claro",
+        "attributes": {
+            "material": "algodon",
+            "temporada": "todo-el-ano",
+            "genero": "hombre"
+        },
+        "facts": [
+            {
+                "label": "Composición",
+                "value": "100 % algodón"
+            },
+            {
+                "label": "Corte",
+                "value": "Regular"
+            },
+            {
+                "label": "Cuello",
+                "value": "Pico medio"
+            },
+            {
+                "label": "Puños",
+                "value": "Con un botón"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Lavar a 40 °C y planchar a alta temperatura"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Se arruga mucho?",
+                "answer": "El popelín se arruga poco; con una plancha de vapor queda listo en pocos minutos."
+            },
+            {
+                "question": "¿Es adecuada para llevar corbata?",
+                "answer": "Sí, el cuello tiene la estructura y la altura necesarias."
+            }
+        ],
+        "tags": [
+            "camisa",
+            "oficina",
+            "básico"
+        ],
+        "related": [
+            "DEMO-MODA-018",
+            "DEMO-MODA-024",
+            "DEMO-MODA-028"
+        ],
+        "meta_title": "Camisa de popelín Clásica | Atelier Brezal",
+        "meta_description": "Camisa de popelín de algodón con cuello clásico y corte regular, la que se lleva con todo.",
+        "images": [
+            {
+                "file": "camisa-de-popelin-clasica-frente.svg",
+                "alt": "Camisa de popelín Clásica, vista frontal"
+            },
+            {
+                "file": "camisa-de-popelin-clasica-detalle.svg",
+                "alt": "Camisa de popelín Clásica, detalle del tejido y los acabados"
+            },
+            {
+                "file": "camisa-de-popelin-clasica-medidas.svg",
+                "alt": "Camisa de popelín Clásica, medidas y colores"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-006-S-BLA",
+                "gtin": "2990000000262",
+                "stock": 7,
+                "values": {
+                    "talla": "s",
+                    "color": "blanco"
+                },
+                "image": "camisa-de-popelin-clasica-frente.svg"
+            },
+            {
+                "sku": "DEMO-MODA-006-M-BLA",
+                "gtin": "2990000000279",
+                "stock": 1,
+                "values": {
+                    "talla": "m",
+                    "color": "blanco"
+                },
+                "image": "camisa-de-popelin-clasica-frente.svg"
+            },
+            {
+                "sku": "DEMO-MODA-006-L-BLA",
+                "gtin": "2990000000286",
+                "stock": 11,
+                "values": {
+                    "talla": "l",
+                    "color": "blanco"
+                },
+                "image": "camisa-de-popelin-clasica-frente.svg"
+            },
+            {
+                "sku": "DEMO-MODA-006-XL-BLA",
+                "gtin": "2990000000293",
+                "stock": 2,
+                "values": {
+                    "talla": "xl",
+                    "color": "blanco"
+                },
+                "image": "camisa-de-popelin-clasica-frente.svg"
+            },
+            {
+                "sku": "DEMO-MODA-006-S-CIE",
+                "gtin": "2990000000309",
+                "stock": 4,
+                "values": {
+                    "talla": "s",
+                    "color": "cielo"
+                },
+                "image": "camisa-de-popelin-clasica-cielo.svg"
+            },
+            {
+                "sku": "DEMO-MODA-006-M-CIE",
+                "gtin": "2990000000316",
+                "stock": 5,
+                "values": {
+                    "talla": "m",
+                    "color": "cielo"
+                },
+                "image": "camisa-de-popelin-clasica-cielo.svg"
+            },
+            {
+                "sku": "DEMO-MODA-006-L-CIE",
+                "gtin": "2990000000323",
+                "stock": 6,
+                "values": {
+                    "talla": "l",
+                    "color": "cielo"
+                },
+                "image": "camisa-de-popelin-clasica-cielo.svg"
+            },
+            {
+                "sku": "DEMO-MODA-006-XL-CIE",
+                "gtin": "2990000000330",
+                "stock": 3,
+                "values": {
+                    "talla": "xl",
+                    "color": "cielo"
+                },
+                "image": "camisa-de-popelin-clasica-cielo.svg"
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-007",
+        "name": "Camisa de lino a rayas Ribera",
+        "summary": "<p>Camisa de lino con rayas verticales finas, ligera y de corte holgado para el verano.</p>",
+        "description": "<p>Ribera está pensada para los días en los que sudar es inevitable. El lino, ligero y con una trama abierta, deja pasar el aire, y las rayas verticales finas dan un aire marinero que no cansa. El corte es holgado, con la manga un poco más ancha de lo habitual.</p><p>El tejido es un lino europeo hilado y teñido en hilo, no estampado, así que las rayas se ven por los dos lados y no se desgastan con los lavados. Los botones son de coco, con un tono natural distinto en cada uno, y el cuello se puede llevar abierto sin que se doble.</p><p>Se lleva abierta sobre una camiseta, o bien abrochada con bermudas y alpargatas. Se arruga: es parte de su carácter. Si prefieres un aspecto más liso, plánchala todavía húmeda. Tras dos o tres lavados, el lino se vuelve más blando y fresco.</p>",
+        "price": 7500,
+        "manage_stock": true,
+        "mpn": "AT-007",
+        "weight": 290,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "camisas",
+            "camisas-y-tops"
+        ],
+        "brand": "lino-y-sal",
+        "attributes": {
+            "material": "lino",
+            "temporada": "primavera-verano",
+            "genero": "hombre",
+            "color": "crudo"
+        },
+        "facts": [
+            {
+                "label": "Composición",
+                "value": "100 % lino"
+            },
+            {
+                "label": "Dibujo",
+                "value": "Rayas verticales, teñidas en hilo"
+            },
+            {
+                "label": "Corte",
+                "value": "Holgado"
+            },
+            {
+                "label": "Botones",
+                "value": "De coco natural"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Lavar a 30 °C y planchar húmedo"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Qué pasa con las arrugas?",
+                "answer": "El lino se arruga y es normal. Plánchala húmeda si prefieres un acabado liso."
+            },
+            {
+                "question": "¿Destiñe en el primer lavado?",
+                "answer": "Las rayas están teñidas en hilo y no destiñen; aun así, lávala la primera vez con colores similares."
+            }
+        ],
+        "tags": [
+            "lino",
+            "rayas",
+            "verano"
+        ],
+        "related": [
+            "DEMO-MODA-020",
+            "DEMO-MODA-019"
+        ],
+        "meta_title": "Camisa de lino a rayas Ribera | Atelier Brezal",
+        "meta_description": "Camisa de lino con rayas verticales finas, ligera y de corte holgado para el verano.",
+        "images": [
+            {
+                "file": "camisa-de-lino-a-rayas-ribera-frente.svg",
+                "alt": "Camisa de lino a rayas Ribera, vista frontal"
+            },
+            {
+                "file": "camisa-de-lino-a-rayas-ribera-detalle.svg",
+                "alt": "Camisa de lino a rayas Ribera, detalle del tejido y los acabados"
+            },
+            {
+                "file": "camisa-de-lino-a-rayas-ribera-medidas.svg",
+                "alt": "Camisa de lino a rayas Ribera, medidas"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-007-S",
+                "gtin": "2990000000347",
+                "stock": 5,
+                "values": {
+                    "talla": "s"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-007-M",
+                "gtin": "2990000000354",
+                "stock": 6,
+                "values": {
+                    "talla": "m"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-007-L",
+                "gtin": "2990000000361",
+                "stock": 3,
+                "values": {
+                    "talla": "l"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-007-XL",
+                "gtin": "2990000000378",
+                "stock": 10,
+                "values": {
+                    "talla": "xl"
+                }
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-008",
+        "name": "Blusa de seda lavada Neblina",
+        "summary": "<p>Blusa de seda lavada con lazada al cuello y mangas amplias de puño fruncido.</p>",
+        "description": "<p>Neblina es una blusa de aire romántico, pero con la sobriedad justa para llevarla a diario. El cuello termina en una lazada que se anuda a gusto, las mangas amplias se recogen en un puño fruncido y el cuerpo cae suelto, sin marcar la cintura.</p><p>La seda está lavada a la piedra, lo que le da un tacto mate y suave, sin el brillo rígido de la seda nueva, y una caída muy ligera. Lleva botones forrados de la misma tela y las costuras interiores van rematadas para que no piquen en la piel.</p><p>Combínala con vaqueros de talle alto para un look relajado o con una falda midi y un zapato plano para la oficina. La lazada puede dejarse suelta, anudarse o esconderse. Se lava a mano o en programa delicado y se plancha por el revés con la plancha templada.</p>",
+        "price": 7900,
+        "sale_price": 5900,
+        "manage_stock": true,
+        "mpn": "AT-008",
+        "weight": 210,
+        "delivery_min_days": 2,
+        "delivery_max_days": 4,
+        "featured": true,
+        "categories": [
+            "blusas",
+            "camisas-y-tops"
+        ],
+        "brand": "brezo-estudio",
+        "attributes": {
+            "material": "seda",
+            "temporada": "primavera-verano",
+            "genero": "mujer",
+            "color": "rosa"
+        },
+        "facts": [
+            {
+                "label": "Composición",
+                "value": "100 % seda lavada"
+            },
+            {
+                "label": "Largo (talla M)",
+                "value": "68 cm"
+            },
+            {
+                "label": "Cuello",
+                "value": "Con lazada anudable"
+            },
+            {
+                "label": "Puños",
+                "value": "Fruncidos, con un botón"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Lavado a mano o programa delicado"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿La seda es apta para el uso diario?",
+                "answer": "Sí, la seda lavada es más resistente que la brillante y soporta el uso habitual con un lavado cuidadoso."
+            },
+            {
+                "question": "¿Se transparenta?",
+                "answer": "Un poco con la luz fuerte; en tonos claros, conviene llevar una camiseta de tirantes en color carne debajo."
+            }
+        ],
+        "tags": [
+            "seda",
+            "lazada",
+            "oficina"
+        ],
+        "related": [
+            "DEMO-MODA-004",
+            "DEMO-MODA-017"
+        ],
+        "meta_title": "Blusa de seda lavada Neblina | Atelier Brezal",
+        "meta_description": "Blusa de seda lavada con lazada al cuello y mangas amplias de puño fruncido.",
+        "images": [
+            {
+                "file": "blusa-de-seda-lavada-neblina-frente.svg",
+                "alt": "Blusa de seda lavada Neblina, vista frontal"
+            },
+            {
+                "file": "blusa-de-seda-lavada-neblina-detalle.svg",
+                "alt": "Blusa de seda lavada Neblina, detalle del tejido y los acabados"
+            },
+            {
+                "file": "blusa-de-seda-lavada-neblina-medidas.svg",
+                "alt": "Blusa de seda lavada Neblina, medidas"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-008-XS",
+                "gtin": "2990000000385",
+                "stock": 8,
+                "values": {
+                    "talla": "xs"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-008-S",
+                "gtin": "2990000000392",
+                "stock": 9,
+                "values": {
+                    "talla": "s"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-008-M",
+                "gtin": "2990000000408",
+                "stock": 7,
+                "values": {
+                    "talla": "m"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-008-L",
+                "gtin": "2990000000415",
+                "stock": 1,
+                "values": {
+                    "talla": "l"
+                }
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-009",
+        "name": "Camiseta de algodón orgánico Esencial",
+        "summary": "<p>Camiseta básica de cuello redondo en algodón orgánico, con un tejido denso que no se deforma.</p>",
+        "description": "<p>La camiseta Esencial hace bien lo único que tiene que hacer: sentar bien, durar y no dar que hablar. El cuello redondo es plano y recupera la forma después de lavarla, las mangas caen a media altura del brazo y el largo cubre la cintura sin llegar a la cadera.</p><p>Está hecha con algodón orgánico de fibra larga, de 180 gramos por metro cuadrado, lo suficiente para que no se transparente ni se pegue al cuerpo. Las costuras de los hombros llevan una cinta que evita que se desplacen con el uso, y la etiqueta va impresa para que no moleste en la nuca.</p><p>Se vende en tres colores lisos pensados para mezclarse entre sí: blanco, negro y marino. Es unisex y de corte recto; si prefieres un ajuste más cómodo, pide una talla más. Se lava a 40 °C, y el color negro conserva el tono durante muchos lavados.</p>",
+        "price": 2900,
+        "manage_stock": true,
+        "mpn": "AT-009",
+        "weight": 180,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "camisetas",
+            "camisas-y-tops"
+        ],
+        "brand": "hilo-claro",
+        "attributes": {
+            "material": "algodon",
+            "temporada": "todo-el-ano",
+            "genero": "unisex"
+        },
+        "facts": [
+            {
+                "label": "Composición",
+                "value": "100 % algodón orgánico"
+            },
+            {
+                "label": "Gramaje",
+                "value": "180 g/m²"
+            },
+            {
+                "label": "Corte",
+                "value": "Recto, unisex"
+            },
+            {
+                "label": "Cuello",
+                "value": "Redondo, plano"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Lavar a 40 °C"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Encoge?",
+                "answer": "Está prelavada y encoge menos de un 2 %."
+            },
+            {
+                "question": "¿Es de corte ajustado?",
+                "answer": "No, es recto y cómodo. Si quieres un ajuste más cercano, elige una talla menos."
+            }
+        ],
+        "tags": [
+            "básico",
+            "orgánico",
+            "unisex"
+        ],
+        "related": [
+            "DEMO-MODA-016",
+            "DEMO-MODA-017",
+            "DEMO-MODA-012"
+        ],
+        "meta_title": "Camiseta de algodón orgánico Esencial | Atelier Brezal",
+        "meta_description": "Camiseta básica de cuello redondo en algodón orgánico, con un tejido denso que no se deforma.",
+        "images": [
+            {
+                "file": "camiseta-de-algodon-organico-esencial-frente.svg",
+                "alt": "Camiseta de algodón orgánico Esencial, vista frontal"
+            },
+            {
+                "file": "camiseta-de-algodon-organico-esencial-detalle.svg",
+                "alt": "Camiseta de algodón orgánico Esencial, detalle del tejido y los acabados"
+            },
+            {
+                "file": "camiseta-de-algodon-organico-esencial-medidas.svg",
+                "alt": "Camiseta de algodón orgánico Esencial, medidas y colores"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-009-S-BLA",
+                "gtin": "2990000000422",
+                "stock": 2,
+                "values": {
+                    "talla": "s",
+                    "color": "blanco"
+                },
+                "image": "camiseta-de-algodon-organico-esencial-frente.svg"
+            },
+            {
+                "sku": "DEMO-MODA-009-M-BLA",
+                "gtin": "2990000000439",
+                "stock": 4,
+                "values": {
+                    "talla": "m",
+                    "color": "blanco"
+                },
+                "image": "camiseta-de-algodon-organico-esencial-frente.svg"
+            },
+            {
+                "sku": "DEMO-MODA-009-L-BLA",
+                "gtin": "2990000000446",
+                "stock": 5,
+                "values": {
+                    "talla": "l",
+                    "color": "blanco"
+                },
+                "image": "camiseta-de-algodon-organico-esencial-frente.svg"
+            },
+            {
+                "sku": "DEMO-MODA-009-XL-BLA",
+                "gtin": "2990000000453",
+                "stock": 6,
+                "values": {
+                    "talla": "xl",
+                    "color": "blanco"
+                },
+                "image": "camiseta-de-algodon-organico-esencial-frente.svg"
+            },
+            {
+                "sku": "DEMO-MODA-009-S-NEG",
+                "gtin": "2990000000460",
+                "stock": 3,
+                "values": {
+                    "talla": "s",
+                    "color": "negro"
+                },
+                "image": "camiseta-de-algodon-organico-esencial-negro.svg"
+            },
+            {
+                "sku": "DEMO-MODA-009-M-NEG",
+                "gtin": "2990000000477",
+                "stock": 10,
+                "values": {
+                    "talla": "m",
+                    "color": "negro"
+                },
+                "image": "camiseta-de-algodon-organico-esencial-negro.svg"
+            },
+            {
+                "sku": "DEMO-MODA-009-L-NEG",
+                "gtin": "2990000000484",
+                "stock": 0,
+                "values": {
+                    "talla": "l",
+                    "color": "negro"
+                },
+                "image": "camiseta-de-algodon-organico-esencial-negro.svg"
+            },
+            {
+                "sku": "DEMO-MODA-009-XL-NEG",
+                "gtin": "2990000000491",
+                "stock": 8,
+                "values": {
+                    "talla": "xl",
+                    "color": "negro"
+                },
+                "image": "camiseta-de-algodon-organico-esencial-negro.svg"
+            },
+            {
+                "sku": "DEMO-MODA-009-S-MAR",
+                "gtin": "2990000000507",
+                "stock": 9,
+                "values": {
+                    "talla": "s",
+                    "color": "marino"
+                },
+                "image": "camiseta-de-algodon-organico-esencial-marino.svg"
+            },
+            {
+                "sku": "DEMO-MODA-009-M-MAR",
+                "gtin": "2990000000514",
+                "stock": 7,
+                "values": {
+                    "talla": "m",
+                    "color": "marino"
+                },
+                "image": "camiseta-de-algodon-organico-esencial-marino.svg"
+            },
+            {
+                "sku": "DEMO-MODA-009-L-MAR",
+                "gtin": "2990000000521",
+                "stock": 1,
+                "values": {
+                    "talla": "l",
+                    "color": "marino"
+                },
+                "image": "camiseta-de-algodon-organico-esencial-marino.svg"
+            },
+            {
+                "sku": "DEMO-MODA-009-XL-MAR",
+                "gtin": "2990000000538",
+                "stock": 11,
+                "values": {
+                    "talla": "xl",
+                    "color": "marino"
+                },
+                "image": "camiseta-de-algodon-organico-esencial-marino.svg"
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-010",
+        "name": "Camiseta de rayas marineras Bretaña",
+        "summary": "<p>Camiseta de manga corta con rayas marineras en azul marino sobre fondo blanco.</p>",
+        "description": "<p>Bretaña es la camiseta de rayas de toda la vida: fondo blanco, rayas marino de un dedo de ancho, cuello barco y un tejido grueso que mantiene la forma. Se lleva con casi todo y sienta bien a casi todo el mundo.</p><p>El jersey de algodón peinado tiene un peso medio, con rayas tejidas y no estampadas, de modo que se ven iguales por dentro y por fuera. Las rayas coinciden en las costuras laterales y en las mangas, un detalle de confección que cuesta más tiempo y se nota en la prenda puesta.</p><p>Funciona con una falda midi, con vaqueros y mocasines, o bajo una gabardina cuando el tiempo no acompaña. El cuello barco es amplio y deja asomar los hombros sin deslizarse. Se lava a 40 °C con colores similares la primera vez para evitar que el marino manche el blanco.</p>",
+        "price": 3500,
+        "sale_price": 2800,
+        "manage_stock": true,
+        "mpn": "AT-010",
+        "weight": 190,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "camisetas",
+            "camisas-y-tops"
+        ],
+        "brand": "marea-alta",
+        "attributes": {
+            "material": "algodon",
+            "temporada": "primavera-verano",
+            "genero": "unisex",
+            "color": "blanco"
+        },
+        "facts": [
+            {
+                "label": "Composición",
+                "value": "100 % algodón peinado"
+            },
+            {
+                "label": "Dibujo",
+                "value": "Rayas de 1,2 cm tejidas"
+            },
+            {
+                "label": "Cuello",
+                "value": "Barco"
+            },
+            {
+                "label": "Manga",
+                "value": "Corta"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Lavar a 40 °C, la primera vez por separado"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Las rayas coinciden en las costuras?",
+                "answer": "Sí, se ajustan en los laterales y en las mangas."
+            },
+            {
+                "question": "¿El marino destiñe?",
+                "answer": "Muy poco, pero lávala la primera vez con colores parecidos."
+            }
+        ],
+        "tags": [
+            "rayas",
+            "marinero",
+            "verano"
+        ],
+        "related": [
+            "DEMO-MODA-021",
+            "DEMO-MODA-033"
+        ],
+        "meta_title": "Camiseta de rayas marineras Bretaña | Atelier Brezal",
+        "meta_description": "Camiseta de manga corta con rayas marineras en azul marino sobre fondo blanco.",
+        "images": [
+            {
+                "file": "camiseta-de-rayas-marineras-bretana-frente.svg",
+                "alt": "Camiseta de rayas marineras Bretaña, vista frontal"
+            },
+            {
+                "file": "camiseta-de-rayas-marineras-bretana-detalle.svg",
+                "alt": "Camiseta de rayas marineras Bretaña, detalle del tejido y los acabados"
+            },
+            {
+                "file": "camiseta-de-rayas-marineras-bretana-medidas.svg",
+                "alt": "Camiseta de rayas marineras Bretaña, medidas"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-010-XS",
+                "gtin": "2990000000545",
+                "stock": 10,
+                "values": {
+                    "talla": "xs"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-010-S",
+                "gtin": "2990000000552",
+                "stock": 0,
+                "values": {
+                    "talla": "s"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-010-M",
+                "gtin": "2990000000569",
+                "stock": 8,
+                "values": {
+                    "talla": "m"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-010-L",
+                "gtin": "2990000000576",
+                "stock": 9,
+                "values": {
+                    "talla": "l"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-010-XL",
+                "gtin": "2990000000583",
+                "stock": 7,
+                "values": {
+                    "talla": "xl"
+                }
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-011",
+        "name": "Top de canalé Pétalo",
+        "summary": "<p>Top de tirantes anchos en canalé de algodón con elastano, corto y muy cómodo.</p>",
+        "description": "<p>Pétalo es el top de verano que sirve como base de cualquier combinación: tirantes anchos que no se clavan, escote cuadrado a la altura justa y un largo que termina en la cintura. Es elástico y recupera la forma, sin marcar ni apretar.</p><p>El canalé de algodón con un 5 % de elastano tiene un tacto suave y una recuperación excelente. Es opaco en todos los colores, sin etiquetas que rocen y con un dobladillo simple que no abulta bajo una camisa abierta. Se puede llevar solo, sobre una camisa o debajo de una chaqueta.</p><p>Es un básico agradecido: va bien con pantalones de talle alto, con faldas midi y con bermudas. Elige tu talla habitual; el tejido se adapta bien y tolera la talla de arriba o de abajo según prefieras un ajuste más suelto o más ceñido.</p>",
+        "price": 2400,
+        "manage_stock": true,
+        "mpn": "AT-011",
+        "weight": 110,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "camisetas",
+            "camisas-y-tops"
+        ],
+        "brand": "brezo-estudio",
+        "attributes": {
+            "material": "algodon",
+            "temporada": "primavera-verano",
+            "genero": "mujer",
+            "color": "arena"
+        },
+        "facts": [
+            {
+                "label": "Composición",
+                "value": "95 % algodón, 5 % elastano"
+            },
+            {
+                "label": "Tejido",
+                "value": "Canalé de peso medio"
+            },
+            {
+                "label": "Largo (talla M)",
+                "value": "48 cm"
+            },
+            {
+                "label": "Tirantes",
+                "value": "Anchos, de 3 cm"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Lavar a 30 °C"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Es opaco?",
+                "answer": "Sí, el canalé es lo bastante denso como para no transparentar."
+            },
+            {
+                "question": "¿Puedo llevarlo con sujetador?",
+                "answer": "Sí, los tirantes son anchos y lo cubren."
+            }
+        ],
+        "tags": [
+            "top",
+            "canalé",
+            "verano"
+        ],
+        "related": [
+            "DEMO-MODA-019",
+            "DEMO-MODA-004"
+        ],
+        "meta_title": "Top de canalé Pétalo | Atelier Brezal",
+        "meta_description": "Top de tirantes anchos en canalé de algodón con elastano, corto y muy cómodo.",
+        "images": [
+            {
+                "file": "top-de-canale-petalo-frente.svg",
+                "alt": "Top de canalé Pétalo, vista frontal"
+            },
+            {
+                "file": "top-de-canale-petalo-detalle.svg",
+                "alt": "Top de canalé Pétalo, detalle del tejido y los acabados"
+            },
+            {
+                "file": "top-de-canale-petalo-medidas.svg",
+                "alt": "Top de canalé Pétalo, medidas"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-011-XS",
+                "gtin": "2990000000590",
+                "stock": 1,
+                "values": {
+                    "talla": "xs"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-011-S",
+                "gtin": "2990000000606",
+                "stock": 11,
+                "values": {
+                    "talla": "s"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-011-M",
+                "gtin": "2990000000613",
+                "stock": 2,
+                "values": {
+                    "talla": "m"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-011-L",
+                "gtin": "2990000000620",
+                "stock": 4,
+                "values": {
+                    "talla": "l"
+                }
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-012",
+        "name": "Jersey de lana merino Cumbre",
+        "summary": "<p>Jersey de cuello redondo en lana merino extrafina, ligero, cálido y que no pica.</p>",
+        "description": "<p>Cumbre es el jersey que abriga sin abultar. El cuello es redondo y de canalé fino, el punto es liso por delante y por detrás, y las mangas terminan en puños ajustados que mantienen el calor en las muñecas. Un jersey para el trabajo, el fin de semana o la montaña.</p><p>La lana merino de 19,5 micras es extrafina y no pica, ni siquiera sobre la piel desnuda. Regula la temperatura, de modo que no da calor dentro de un espacio cerrado, y se puede lavar en la lavadora con un programa específico para lana, algo poco habitual en una prenda de este tipo.</p><p>Se vende en oliva y marino, dos colores que combinan con tejanos, pantalones de pinzas o faldas. El corte es regular, con el largo justo para llevarlo por fuera sin que parezca corto. Plegado, ocupa poco espacio en la maleta y no se arruga al sacarlo.</p>",
+        "price": 9900,
+        "sale_price": 7900,
+        "manage_stock": true,
+        "mpn": "AT-012",
+        "weight": 520,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": true,
+        "categories": [
+            "jerseis",
+            "punto"
+        ],
+        "brand": "brezo-estudio",
+        "attributes": {
+            "material": "lana-merino",
+            "temporada": "otono-invierno",
+            "genero": "unisex"
+        },
+        "facts": [
+            {
+                "label": "Composición",
+                "value": "100 % lana merino extrafina"
+            },
+            {
+                "label": "Micras",
+                "value": "19,5"
+            },
+            {
+                "label": "Corte",
+                "value": "Regular"
+            },
+            {
+                "label": "Cuello",
+                "value": "Redondo, canalé fino"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Lavadora, programa lana a 30 °C"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Pica?",
+                "answer": "No. La fibra extrafina de 19,5 micras se tolera bien incluso sobre la piel."
+            },
+            {
+                "question": "¿Hace bolitas?",
+                "answer": "Puede soltar alguna al principio en zonas de roce; se retiran con un cepillo de ropa y después se estabiliza."
+            },
+            {
+                "question": "¿Se puede lavar en lavadora?",
+                "answer": "Sí, con programa de lana a 30 °C y centrifugado suave."
+            }
+        ],
+        "tags": [
+            "merino",
+            "lana",
+            "invierno"
+        ],
+        "related": [
+            "DEMO-MODA-016",
+            "DEMO-MODA-021",
+            "DEMO-MODA-033"
+        ],
+        "meta_title": "Jersey de lana merino Cumbre | Atelier Brezal",
+        "meta_description": "Jersey de cuello redondo en lana merino extrafina, ligero, cálido y que no pica.",
+        "images": [
+            {
+                "file": "jersey-de-lana-merino-cumbre-frente.svg",
+                "alt": "Jersey de lana merino Cumbre, vista frontal"
+            },
+            {
+                "file": "jersey-de-lana-merino-cumbre-detalle.svg",
+                "alt": "Jersey de lana merino Cumbre, detalle del tejido y los acabados"
+            },
+            {
+                "file": "jersey-de-lana-merino-cumbre-medidas.svg",
+                "alt": "Jersey de lana merino Cumbre, medidas y colores"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-012-S-OLI",
+                "gtin": "2990000000637",
+                "stock": 6,
+                "values": {
+                    "talla": "s",
+                    "color": "oliva"
+                },
+                "image": "jersey-de-lana-merino-cumbre-frente.svg"
+            },
+            {
+                "sku": "DEMO-MODA-012-M-OLI",
+                "gtin": "2990000000644",
+                "stock": 3,
+                "values": {
+                    "talla": "m",
+                    "color": "oliva"
+                },
+                "image": "jersey-de-lana-merino-cumbre-frente.svg"
+            },
+            {
+                "sku": "DEMO-MODA-012-L-OLI",
+                "gtin": "2990000000651",
+                "stock": 10,
+                "values": {
+                    "talla": "l",
+                    "color": "oliva"
+                },
+                "image": "jersey-de-lana-merino-cumbre-frente.svg"
+            },
+            {
+                "sku": "DEMO-MODA-012-XL-OLI",
+                "gtin": "2990000000668",
+                "stock": 0,
+                "values": {
+                    "talla": "xl",
+                    "color": "oliva"
+                },
+                "image": "jersey-de-lana-merino-cumbre-frente.svg"
+            },
+            {
+                "sku": "DEMO-MODA-012-S-MAR",
+                "gtin": "2990000000675",
+                "stock": 8,
+                "values": {
+                    "talla": "s",
+                    "color": "marino"
+                },
+                "image": "jersey-de-lana-merino-cumbre-marino.svg"
+            },
+            {
+                "sku": "DEMO-MODA-012-M-MAR",
+                "gtin": "2990000000682",
+                "stock": 9,
+                "values": {
+                    "talla": "m",
+                    "color": "marino"
+                },
+                "image": "jersey-de-lana-merino-cumbre-marino.svg"
+            },
+            {
+                "sku": "DEMO-MODA-012-L-MAR",
+                "gtin": "2990000000699",
+                "stock": 7,
+                "values": {
+                    "talla": "l",
+                    "color": "marino"
+                },
+                "image": "jersey-de-lana-merino-cumbre-marino.svg"
+            },
+            {
+                "sku": "DEMO-MODA-012-XL-MAR",
+                "gtin": "2990000000705",
+                "stock": 1,
+                "values": {
+                    "talla": "xl",
+                    "color": "marino"
+                },
+                "image": "jersey-de-lana-merino-cumbre-marino.svg"
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-013",
+        "name": "Jersey de cuello alto de cachemir Nácar",
+        "summary": "<p>Jersey de cachemir con cuello alto doblado, muy ligero y de tacto suave como pocos.</p>",
+        "description": "<p>Nácar es el jersey que uno se queda para siempre. El cuello alto se dobla sobre sí mismo y abriga sin ahogar, la silueta es recta y el punto, fino y regular, se ve elegante tanto solo como bajo una americana. El color crudo se parece al de la perla que le da nombre.</p><p>El cachemir procede de cabras criadas en la meseta de Mongolia Interior, y la fibra es larga, lo que reduce el pilling y permite un hilo muy fino. El resultado es una prenda de unos 380 gramos que calienta como un jersey de lana mucho más grueso y se puede guardar en un cajón sin que ocupe sitio.</p><p>Pide tu talla habitual. Se lava a mano en agua fría con un champú suave, se seca en plano y se guarda doblado, nunca colgado. Con un cuidado sencillo mantiene el aspecto durante años, y cada vez que se lava, el tejido se vuelve más suave.</p>",
+        "price": 18900,
+        "manage_stock": true,
+        "mpn": "AT-013",
+        "weight": 380,
+        "delivery_min_days": 2,
+        "delivery_max_days": 4,
+        "featured": false,
+        "categories": [
+            "jerseis",
+            "punto"
+        ],
+        "brand": "brezo-estudio",
+        "attributes": {
+            "material": "cachemir",
+            "temporada": "otono-invierno",
+            "genero": "mujer",
+            "color": "crudo"
+        },
+        "facts": [
+            {
+                "label": "Composición",
+                "value": "100 % cachemir"
+            },
+            {
+                "label": "Peso de la prenda",
+                "value": "380 g (talla M)"
+            },
+            {
+                "label": "Cuello",
+                "value": "Alto, doblado"
+            },
+            {
+                "label": "Corte",
+                "value": "Recto"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Lavar a mano en frío y secar en plano"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Hace bolitas?",
+                "answer": "Algo de pilling al principio es normal en cualquier cachemir; se retira con un peine especial y desaparece con el tiempo."
+            },
+            {
+                "question": "¿Es adecuado para pieles sensibles?",
+                "answer": "Sí, la fibra larga y fina es suave y no pica."
+            }
+        ],
+        "tags": [
+            "cachemir",
+            "cuello alto",
+            "invierno"
+        ],
+        "related": [
+            "DEMO-MODA-022",
+            "DEMO-MODA-004"
+        ],
+        "meta_title": "Jersey de cuello alto de cachemir Nácar | Atelier Brezal",
+        "meta_description": "Jersey de cachemir con cuello alto doblado, muy ligero y de tacto suave como pocos.",
+        "images": [
+            {
+                "file": "jersey-de-cuello-alto-de-cachemir-nacar-frente.svg",
+                "alt": "Jersey de cuello alto de cachemir Nácar, vista frontal"
+            },
+            {
+                "file": "jersey-de-cuello-alto-de-cachemir-nacar-detalle.svg",
+                "alt": "Jersey de cuello alto de cachemir Nácar, detalle del tejido y los acabados"
+            },
+            {
+                "file": "jersey-de-cuello-alto-de-cachemir-nacar-medidas.svg",
+                "alt": "Jersey de cuello alto de cachemir Nácar, medidas"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-013-XS",
+                "gtin": "2990000000712",
+                "stock": 9,
+                "values": {
+                    "talla": "xs"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-013-S",
+                "gtin": "2990000000729",
+                "stock": 7,
+                "values": {
+                    "talla": "s"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-013-M",
+                "gtin": "2990000000736",
+                "stock": 1,
+                "values": {
+                    "talla": "m"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-013-L",
+                "gtin": "2990000000743",
+                "stock": 11,
+                "values": {
+                    "talla": "l"
+                }
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-014",
+        "name": "Cárdigan de punto grueso Bosque",
+        "summary": "<p>Cárdigan de punto grueso con botones grandes, cuello en V y bajo de canalé.</p>",
+        "description": "<p>Bosque es el cárdigan para los domingos y para los lunes. Tiene el cuello en V profundo, la botonadura completa con botones grandes de madera y el punto trenzado de siempre, grueso pero no pesado. Se lleva abierto sobre una camiseta o cerrado como si fuera un jersey.</p><p>Está tejido con una mezcla de lana y alpaca que mantiene el calor sin la rigidez de la lana pura. Los puños y el bajo son de canalé, y los dos bolsillos delanteros tienen fondo suficiente para llevar las manos, el móvil o un pañuelo. El punto es lo bastante denso como para sustituir a una chaqueta fina.</p><p>El verde bosque combina con tonos neutros, con el denim y con el marrón. Hay tres tallas con un corte generoso, pensado para llevarlo sobre otra prenda: si prefieres un ajuste más ceñido, pide una talla menos. Se lava a mano o en el programa para lana, y se seca en plano.</p>",
+        "price": 12900,
+        "manage_stock": true,
+        "mpn": "AT-014",
+        "weight": 760,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "cardigans",
+            "punto"
+        ],
+        "brand": "brezo-estudio",
+        "attributes": {
+            "material": "lana-merino",
+            "temporada": "otono-invierno",
+            "genero": "unisex",
+            "color": "bosque"
+        },
+        "facts": [
+            {
+                "label": "Composición",
+                "value": "70 % lana, 30 % alpaca"
+            },
+            {
+                "label": "Cuello",
+                "value": "En V"
+            },
+            {
+                "label": "Cierre",
+                "value": "Seis botones de madera"
+            },
+            {
+                "label": "Bolsillos",
+                "value": "Dos delanteros"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Lana a 30 °C o a mano, secar en plano"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Es holgado?",
+                "answer": "Sí, el corte es generoso, pensado para llevarlo sobre otra prenda."
+            },
+            {
+                "question": "¿Los botones son de madera de verdad?",
+                "answer": "Sí, de madera de haya con un acabado mate."
+            }
+        ],
+        "tags": [
+            "cárdigan",
+            "alpaca",
+            "invierno"
+        ],
+        "related": [
+            "DEMO-MODA-016",
+            "DEMO-MODA-018"
+        ],
+        "meta_title": "Cárdigan de punto grueso Bosque | Atelier Brezal",
+        "meta_description": "Cárdigan de punto grueso con botones grandes, cuello en V y bajo de canalé.",
+        "images": [
+            {
+                "file": "cardigan-de-punto-grueso-bosque-frente.svg",
+                "alt": "Cárdigan de punto grueso Bosque, vista frontal"
+            },
+            {
+                "file": "cardigan-de-punto-grueso-bosque-detalle.svg",
+                "alt": "Cárdigan de punto grueso Bosque, detalle del tejido y los acabados"
+            },
+            {
+                "file": "cardigan-de-punto-grueso-bosque-medidas.svg",
+                "alt": "Cárdigan de punto grueso Bosque, medidas"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-014-S",
+                "gtin": "2990000000750",
+                "stock": 4,
+                "values": {
+                    "talla": "s"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-014-M",
+                "gtin": "2990000000767",
+                "stock": 5,
+                "values": {
+                    "talla": "m"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-014-L",
+                "gtin": "2990000000774",
+                "stock": 6,
+                "values": {
+                    "talla": "l"
+                }
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-015",
+        "name": "Chaleco de lana Alcor",
+        "summary": "<p>Chaleco de punto con cuello en V, de lana merino, para llevar sobre una camisa.</p>",
+        "description": "<p>Alcor es un chaleco clásico con un toque actual: cuello en V profundo, sisas ajustadas y un largo que cubre el cinturón. Se lleva sobre una camisa de popelín, bajo una americana o solo con una camiseta blanca, y ahorra un jersey entero sin perder el calor del tronco.</p><p>El punto es de lana merino, ligero y suave, con un ribete de canalé en las sisas, el cuello y el bajo que aguanta el uso diario y no se abre. Tiene una caída limpia y no abulta bajo la ropa de abrigo, así que sirve también en capas, en los días más fríos del año.</p><p>Es el tipo de prenda que recupera el armario completo: unas camisas que se llevaban por separado se ven distintas con un chaleco encima. Hay pocas unidades de esta tirada, y por eso la disponibilidad es baja. Se lava en programa de lana a 30 °C y se seca extendido sobre una toalla.</p>",
+        "price": 6900,
+        "manage_stock": true,
+        "stock": 4,
+        "gtin": "2990000000781",
+        "mpn": "AT-015",
+        "weight": 330,
+        "delivery_min_days": 2,
+        "delivery_max_days": 4,
+        "featured": false,
+        "categories": [
+            "jerseis",
+            "punto"
+        ],
+        "brand": "marea-alta",
+        "attributes": {
+            "material": "lana-merino",
+            "temporada": "otono-invierno",
+            "genero": "hombre",
+            "color": "gris"
+        },
+        "facts": [
+            {
+                "label": "Composición",
+                "value": "100 % lana merino"
+            },
+            {
+                "label": "Cuello",
+                "value": "En V profundo"
+            },
+            {
+                "label": "Largo (talla M)",
+                "value": "63 cm"
+            },
+            {
+                "label": "Ribetes",
+                "value": "Canalé en sisas, cuello y bajo"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Programa lana a 30 °C"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Qué talla es?",
+                "answer": "Es de talla M, con corte regular y ajuste cómodo."
+            },
+            {
+                "question": "¿Se puede llevar bajo una americana?",
+                "answer": "Sí, es lo bastante fino como para no abultar."
+            }
+        ],
+        "tags": [
+            "chaleco",
+            "merino",
+            "capas"
+        ],
+        "related": [
+            "DEMO-MODA-006",
+            "DEMO-MODA-024"
+        ],
+        "meta_title": "Chaleco de lana Alcor | Atelier Brezal",
+        "meta_description": "Chaleco de punto con cuello en V, de lana merino, para llevar sobre una camisa.",
+        "images": [
+            {
+                "file": "chaleco-de-lana-alcor-frente.svg",
+                "alt": "Chaleco de lana Alcor, vista frontal"
+            },
+            {
+                "file": "chaleco-de-lana-alcor-detalle.svg",
+                "alt": "Chaleco de lana Alcor, detalle del tejido y los acabados"
+            },
+            {
+                "file": "chaleco-de-lana-alcor-medidas.svg",
+                "alt": "Chaleco de lana Alcor, medidas"
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-016",
+        "name": "Vaquero recto Tejano",
+        "summary": "<p>Vaquero de corte recto en denim de 12 onzas, cinco bolsillos y cierre de botón metálico.</p>",
+        "description": "<p>El Tejano es el vaquero que uno pone sin pensar. Corte recto, tiro medio, bolsillos de cinco piezas y un color azul medio que ni pretende ser vintage ni parece recién sacado de la tienda. Con el uso se ajusta al cuerpo y se vuelve más suave, pero no pierde la forma.</p><p>El denim es de 12 onzas, con una pequeña proporción de elastano que da libertad de movimiento sin los bolsillos abultados de los modelos más elásticos. El botón de la cintura es metálico y los remaches están reforzados en los puntos de tensión, donde suelen romperse primero los vaqueros.</p><p>Se vende en cuatro tallas de cintura, con una pierna de 32 pulgadas pensada para llevarla con zapatillas o con botas. Para que dure, lávalo del revés a 30 °C y no uses secadora. Con una camiseta blanca, una camisa o un jersey, es una de esas prendas que sirve todo el año.</p>",
+        "price": 7900,
+        "sale_price": 5900,
+        "manage_stock": true,
+        "mpn": "AT-016",
+        "weight": 720,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": true,
+        "categories": [
+            "vaqueros",
+            "pantalones"
+        ],
+        "brand": "marea-alta",
+        "attributes": {
+            "material": "denim",
+            "temporada": "todo-el-ano",
+            "genero": "hombre",
+            "color": "vaquero"
+        },
+        "facts": [
+            {
+                "label": "Composición",
+                "value": "98 % algodón, 2 % elastano"
+            },
+            {
+                "label": "Denim",
+                "value": "12 onzas"
+            },
+            {
+                "label": "Corte",
+                "value": "Recto, tiro medio"
+            },
+            {
+                "label": "Largo de pierna",
+                "value": "81 cm"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Lavar del revés a 30 °C"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Cuánto cede con el uso?",
+                "answer": "Cede aproximadamente una talla en la cintura durante las primeras semanas, y después estabiliza."
+            },
+            {
+                "question": "¿Está prelavado?",
+                "answer": "Sí, lleva un lavado ligero para que sea suave desde el primer uso."
+            }
+        ],
+        "tags": [
+            "vaquero",
+            "denim",
+            "básico"
+        ],
+        "related": [
+            "DEMO-MODA-009",
+            "DEMO-MODA-023",
+            "DEMO-MODA-027"
+        ],
+        "meta_title": "Vaquero recto Tejano | Atelier Brezal",
+        "meta_description": "Vaquero de corte recto en denim de 12 onzas, cinco bolsillos y cierre de botón metálico.",
+        "images": [
+            {
+                "file": "vaquero-recto-tejano-frente.svg",
+                "alt": "Vaquero recto Tejano, vista frontal"
+            },
+            {
+                "file": "vaquero-recto-tejano-detalle.svg",
+                "alt": "Vaquero recto Tejano, detalle del tejido y los acabados"
+            },
+            {
+                "file": "vaquero-recto-tejano-medidas.svg",
+                "alt": "Vaquero recto Tejano, medidas"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-016-W30",
+                "gtin": "2990000000798",
+                "stock": 11,
+                "values": {
+                    "talla": "w30"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-016-W32",
+                "gtin": "2990000000804",
+                "stock": 2,
+                "values": {
+                    "talla": "w32"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-016-W34",
+                "gtin": "2990000000811",
+                "stock": 4,
+                "values": {
+                    "talla": "w34"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-016-W36",
+                "gtin": "2990000000828",
+                "stock": 5,
+                "values": {
+                    "talla": "w36"
+                }
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-017",
+        "name": "Vaquero de talle alto Orilla",
+        "summary": "<p>Vaquero de talle alto y pierna recta ajustada al tobillo, en un denim claro y suave.</p>",
+        "description": "<p>Orilla es un vaquero de talle alto con una pierna recta que se estrecha ligeramente hacia el tobillo. Estiliza la silueta sin apretar, se lleva con la camiseta por dentro o con una blusa suelta y tiene un color azul claro que se ve fresco todo el año.</p><p>El denim es de 10 onzas, algo más ligero que el de un vaquero de hombre, con un 1 % de elastano que mantiene la forma sin marcar en las rodillas. Los bolsillos traseros están colocados a la altura justa, el botón es de metal y la cremallera, de gran resistencia.</p><p>Las tallas son numéricas, del 36 al 42, y el largo de pierna llega al tobillo para enseñar el calzado. Si estás entre dos tallas, elige la mayor: el denim cede una talla con el uso. Combina con la blusa Neblina, un jersey fino o la chaqueta vaquera Cobre.</p>",
+        "price": 8500,
+        "manage_stock": true,
+        "mpn": "AT-017",
+        "weight": 640,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "vaqueros",
+            "pantalones"
+        ],
+        "brand": "marea-alta",
+        "attributes": {
+            "material": "denim",
+            "temporada": "todo-el-ano",
+            "genero": "mujer",
+            "color": "vaquero-claro"
+        },
+        "facts": [
+            {
+                "label": "Composición",
+                "value": "99 % algodón, 1 % elastano"
+            },
+            {
+                "label": "Denim",
+                "value": "10 onzas"
+            },
+            {
+                "label": "Corte",
+                "value": "Talle alto, pierna recta"
+            },
+            {
+                "label": "Largo de pierna",
+                "value": "71 cm, hasta el tobillo"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Lavar del revés a 30 °C"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Cómo elijo la talla?",
+                "answer": "Mide el contorno de la cintura y elige la talla que más se acerque. Si dudas, la mayor."
+            },
+            {
+                "question": "¿Cede con el uso?",
+                "answer": "Un poco, sobre todo en la cintura durante los primeros usos."
+            }
+        ],
+        "tags": [
+            "vaquero",
+            "talle alto"
+        ],
+        "related": [
+            "DEMO-MODA-008",
+            "DEMO-MODA-009",
+            "DEMO-MODA-023"
+        ],
+        "meta_title": "Vaquero de talle alto Orilla | Atelier Brezal",
+        "meta_description": "Vaquero de talle alto y pierna recta ajustada al tobillo, en un denim claro y suave.",
+        "images": [
+            {
+                "file": "vaquero-de-talle-alto-orilla-frente.svg",
+                "alt": "Vaquero de talle alto Orilla, vista frontal"
+            },
+            {
+                "file": "vaquero-de-talle-alto-orilla-detalle.svg",
+                "alt": "Vaquero de talle alto Orilla, detalle del tejido y los acabados"
+            },
+            {
+                "file": "vaquero-de-talle-alto-orilla-medidas.svg",
+                "alt": "Vaquero de talle alto Orilla, medidas"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-017-36",
+                "gtin": "2990000000835",
+                "stock": 3,
+                "values": {
+                    "talla": "36"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-017-38",
+                "gtin": "2990000000842",
+                "stock": 10,
+                "values": {
+                    "talla": "38"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-017-40",
+                "gtin": "2990000000859",
+                "stock": 0,
+                "values": {
+                    "talla": "40"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-017-42",
+                "gtin": "2990000000866",
+                "stock": 8,
+                "values": {
+                    "talla": "42"
+                }
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-018",
+        "name": "Pantalón de pinzas Sastre",
+        "summary": "<p>Pantalón de vestir con pinzas, pierna recta y raya marcada, en lana fría en tono piedra.</p>",
+        "description": "<p>El Sastre es un pantalón de vestir con la forma de los de antes: dos pinzas por delante, cintura alta cómoda, pierna recta y raya marcada. Es el tipo de prenda que mejora una camisa sencilla y sienta bien con casi cualquier calzado, desde unos mocasines hasta unas zapatillas blancas.</p><p>La lana fría de 260 gramos es ligera, no brilla y respira bien, así que se puede llevar todo el año salvo en pleno agosto. Lleva un forro parcial en la parte delantera para que no se pegue a la pierna, un botón interior de seguridad y un gancho metálico que sustituye al botón superficial.</p><p>Tiene un corte relajado, sin llegar a ser holgado, y el largo se puede ajustar sin problemas gracias al dobladillo de 4 centímetros. Combínalo con la camisa Clásica y la americana Ateneo para un traje por piezas. Se lava en seco o con cuidado a mano y se plancha con un paño.</p>",
+        "price": 8900,
+        "manage_stock": true,
+        "mpn": "AT-018",
+        "weight": 580,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "pantalones-de-vestir",
+            "pantalones"
+        ],
+        "brand": "hilo-claro",
+        "attributes": {
+            "material": "lana",
+            "temporada": "todo-el-ano",
+            "genero": "hombre",
+            "color": "piedra"
+        },
+        "facts": [
+            {
+                "label": "Composición",
+                "value": "100 % lana fría"
+            },
+            {
+                "label": "Gramaje",
+                "value": "260 g/m²"
+            },
+            {
+                "label": "Corte",
+                "value": "Recto, con dos pinzas"
+            },
+            {
+                "label": "Dobladillo",
+                "value": "De 4 cm, ajustable"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Limpieza en seco recomendada"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Se puede lavar en casa?",
+                "answer": "Se recomienda la limpieza en seco; si lo lavas, que sea a mano en frío y sin escurrir."
+            },
+            {
+                "question": "¿Cómo es el largo?",
+                "answer": "Viene con un largo estándar y un dobladillo ancho para ajustarlo con facilidad."
+            }
+        ],
+        "tags": [
+            "pinzas",
+            "vestir",
+            "lana fría"
+        ],
+        "related": [
+            "DEMO-MODA-006",
+            "DEMO-MODA-024",
+            "DEMO-MODA-028"
+        ],
+        "meta_title": "Pantalón de pinzas Sastre | Atelier Brezal",
+        "meta_description": "Pantalón de vestir con pinzas, pierna recta y raya marcada, en lana fría en tono piedra.",
+        "images": [
+            {
+                "file": "pantalon-de-pinzas-sastre-frente.svg",
+                "alt": "Pantalón de pinzas Sastre, vista frontal"
+            },
+            {
+                "file": "pantalon-de-pinzas-sastre-detalle.svg",
+                "alt": "Pantalón de pinzas Sastre, detalle del tejido y los acabados"
+            },
+            {
+                "file": "pantalon-de-pinzas-sastre-medidas.svg",
+                "alt": "Pantalón de pinzas Sastre, medidas"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-018-38",
+                "gtin": "2990000000873",
+                "stock": 7,
+                "values": {
+                    "talla": "38"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-018-40",
+                "gtin": "2990000000880",
+                "stock": 1,
+                "values": {
+                    "talla": "40"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-018-42",
+                "gtin": "2990000000897",
+                "stock": 11,
+                "values": {
+                    "talla": "42"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-018-44",
+                "gtin": "2990000000903",
+                "stock": 2,
+                "values": {
+                    "talla": "44"
+                }
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-019",
+        "name": "Pantalón fluido de lino Duna",
+        "summary": "<p>Pantalón ancho de lino con cintura elástica y pierna fluida, ideal para el calor.</p>",
+        "description": "<p>Duna es el pantalón de verano que se pone con camiseta y sandalias y vale para casi todo: tiene la cintura elástica con una cinta decorativa, la pierna ancha y un largo que roza el empeine. Se mueve con el aire y no se pega ni siquiera en los días más calurosos.</p><p>El lino lavado es suave desde el primer día, ligeramente arrugado de forma natural, con un tono crudo que se combina con prácticamente cualquier color. Lleva dos bolsillos laterales profundos y la cintura tiene un elástico cubierto que no marca bajo una camiseta ni se desliza al sentarte.</p><p>Se lleva con una camiseta de canalé o con una camisa de lino abierta, y funciona igual con alpargatas, sandalias o zapatillas. Es una prenda que mejora con el uso: tras unos lavados, el lino se vuelve más blando y el color, más homogéneo. Plánchalo húmedo si prefieres un acabado liso.</p>",
+        "price": 7900,
+        "manage_stock": true,
+        "mpn": "AT-019",
+        "weight": 400,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "pantalones-de-vestir",
+            "pantalones"
+        ],
+        "brand": "lino-y-sal",
+        "attributes": {
+            "material": "lino",
+            "temporada": "primavera-verano",
+            "genero": "mujer",
+            "color": "crudo"
+        },
+        "facts": [
+            {
+                "label": "Composición",
+                "value": "100 % lino lavado"
+            },
+            {
+                "label": "Cintura",
+                "value": "Elástica cubierta"
+            },
+            {
+                "label": "Corte",
+                "value": "Pierna ancha, talle alto"
+            },
+            {
+                "label": "Bolsillos",
+                "value": "Dos laterales"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Lavar a 30 °C"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Es transparente?",
+                "answer": "En color crudo, con luz muy fuerte, puede transparentar ligeramente; conviene una ropa interior en tono carne."
+            },
+            {
+                "question": "¿Qué largo tiene?",
+                "answer": "Mide 102 cm en la talla M, para llevarlo con sandalias o con zapatillas."
+            }
+        ],
+        "tags": [
+            "lino",
+            "pantalón ancho",
+            "verano"
+        ],
+        "related": [
+            "DEMO-MODA-011",
+            "DEMO-MODA-007"
+        ],
+        "meta_title": "Pantalón fluido de lino Duna | Atelier Brezal",
+        "meta_description": "Pantalón ancho de lino con cintura elástica y pierna fluida, ideal para el calor.",
+        "images": [
+            {
+                "file": "pantalon-fluido-de-lino-duna-frente.svg",
+                "alt": "Pantalón fluido de lino Duna, vista frontal"
+            },
+            {
+                "file": "pantalon-fluido-de-lino-duna-detalle.svg",
+                "alt": "Pantalón fluido de lino Duna, detalle del tejido y los acabados"
+            },
+            {
+                "file": "pantalon-fluido-de-lino-duna-medidas.svg",
+                "alt": "Pantalón fluido de lino Duna, medidas"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-019-S",
+                "gtin": "2990000000910",
+                "stock": 5,
+                "values": {
+                    "talla": "s"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-019-M",
+                "gtin": "2990000000927",
+                "stock": 6,
+                "values": {
+                    "talla": "m"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-019-L",
+                "gtin": "2990000000934",
+                "stock": 3,
+                "values": {
+                    "talla": "l"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-019-XL",
+                "gtin": "2990000000941",
+                "stock": 10,
+                "values": {
+                    "talla": "xl"
+                }
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-020",
+        "name": "Bermuda de algodón Costa",
+        "summary": "<p>Bermuda de algodón con dobladillo vuelto, cinturilla lisa y cuatro bolsillos.</p>",
+        "description": "<p>La Costa es la bermuda de todos los días de verano: corte recto, largo justo por encima de la rodilla, dobladillo vuelto y un color verde oliva apagado que combina con camisas blancas, camisetas marineras y casi cualquier calzado. Una prenda sin ostentación.</p><p>El algodón es de gramaje medio, con un tacto firme y algo seco que se suaviza con los lavados. Lleva cuatro bolsillos (dos delanteros y dos traseros, uno con botón), la cinturilla es lisa y el cierre, de botón metálico, con cremallera de buena calidad. Las costuras están rematadas en el interior.</p><p>Se puede llevar con una camisa de lino abierta, con una camiseta lisa o con un polo, y funciona igual en la ciudad que en la playa. El largo es de 46 centímetros en la talla M, sobre la rodilla. Se lava a 40 °C y no necesita plancha si se tiende bien estirada.</p>",
+        "price": 4900,
+        "manage_stock": true,
+        "mpn": "AT-020",
+        "weight": 330,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "pantalones-de-vestir",
+            "pantalones"
+        ],
+        "brand": "marea-alta",
+        "attributes": {
+            "material": "algodon",
+            "temporada": "primavera-verano",
+            "genero": "hombre",
+            "color": "oliva"
+        },
+        "facts": [
+            {
+                "label": "Composición",
+                "value": "100 % algodón"
+            },
+            {
+                "label": "Largo (talla M)",
+                "value": "46 cm"
+            },
+            {
+                "label": "Bolsillos",
+                "value": "Cuatro"
+            },
+            {
+                "label": "Dobladillo",
+                "value": "Vuelto, de 3 cm"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Lavar a 40 °C"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Se puede llevar con cinturón?",
+                "answer": "Sí, tiene trabillas para un cinturón de hasta 3,5 cm."
+            },
+            {
+                "question": "¿Es de tiro alto?",
+                "answer": "No, es de tiro medio, para llevar a la altura de la cadera."
+            }
+        ],
+        "tags": [
+            "bermuda",
+            "verano",
+            "algodón"
+        ],
+        "related": [
+            "DEMO-MODA-007",
+            "DEMO-MODA-010",
+            "DEMO-MODA-033"
+        ],
+        "meta_title": "Bermuda de algodón Costa | Atelier Brezal",
+        "meta_description": "Bermuda de algodón con dobladillo vuelto, cinturilla lisa y cuatro bolsillos.",
+        "images": [
+            {
+                "file": "bermuda-de-algodon-costa-frente.svg",
+                "alt": "Bermuda de algodón Costa, vista frontal"
+            },
+            {
+                "file": "bermuda-de-algodon-costa-detalle.svg",
+                "alt": "Bermuda de algodón Costa, detalle del tejido y los acabados"
+            },
+            {
+                "file": "bermuda-de-algodon-costa-medidas.svg",
+                "alt": "Bermuda de algodón Costa, medidas"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-020-S",
+                "gtin": "2990000000958",
+                "stock": 8,
+                "values": {
+                    "talla": "s"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-020-M",
+                "gtin": "2990000000965",
+                "stock": 9,
+                "values": {
+                    "talla": "m"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-020-L",
+                "gtin": "2990000000972",
+                "stock": 7,
+                "values": {
+                    "talla": "l"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-020-XL",
+                "gtin": "2990000000989",
+                "stock": 1,
+                "values": {
+                    "talla": "xl"
+                }
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-021",
+        "name": "Gabardina clásica Niebla",
+        "summary": "<p>Gabardina de algodón impermeable con doble botonadura, cinturón y aberturas laterales.</p>",
+        "description": "<p>Niebla es una gabardina de línea clásica: doble botonadura, solapas anchas, canesú en la espalda, trabillas en los hombros y un cinturón que se ata o se deja suelto. Es larga, hasta la rodilla, y su color camel se ve igual de bien sobre una camiseta que sobre un traje.</p><p>El tejido es una gabardina de algodón tratada con un acabado repelente al agua, de modo que aguanta la llovizna sin añadir peso. El forro interior es de rayas finas y deja la manga lisa para quitarse y ponerse el abrigo sin esfuerzo. Los botones son de corozo, un material natural con un veteado que no se repite.</p><p>Es unisex: el corte sigue la silueta recta, con espacio de sobra para un jersey grueso debajo. Para un look más ajustado, pide una talla menos. Se limpia en seco; las pequeñas manchas se retiran con un paño húmedo. Con los años, la prenda se suaviza y gana personalidad.</p>",
+        "price": 18900,
+        "sale_price": 14900,
+        "manage_stock": true,
+        "mpn": "AT-021",
+        "weight": 1250,
+        "delivery_min_days": 2,
+        "delivery_max_days": 4,
+        "featured": true,
+        "categories": [
+            "gabardinas",
+            "abrigos"
+        ],
+        "brand": "marea-alta",
+        "attributes": {
+            "material": "algodon",
+            "temporada": "otono-invierno",
+            "genero": "unisex"
+        },
+        "facts": [
+            {
+                "label": "Composición",
+                "value": "100 % algodón con acabado repelente"
+            },
+            {
+                "label": "Largo (talla M)",
+                "value": "104 cm"
+            },
+            {
+                "label": "Cierre",
+                "value": "Doble botonadura de corozo"
+            },
+            {
+                "label": "Forro",
+                "value": "Rayas finas de viscosa"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Limpieza en seco"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Es totalmente impermeable?",
+                "answer": "Es repelente al agua, adecuada para lluvia ligera. No sustituye a un chubasquero en un aguacero."
+            },
+            {
+                "question": "¿Se puede llevar con cinturón?",
+                "answer": "Sí: se ata, se deja suelto o se quita."
+            }
+        ],
+        "tags": [
+            "gabardina",
+            "lluvia",
+            "clásico"
+        ],
+        "related": [
+            "DEMO-MODA-012",
+            "DEMO-MODA-006",
+            "DEMO-MODA-033"
+        ],
+        "meta_title": "Gabardina clásica Niebla | Atelier Brezal",
+        "meta_description": "Gabardina de algodón impermeable con doble botonadura, cinturón y aberturas laterales.",
+        "images": [
+            {
+                "file": "gabardina-clasica-niebla-frente.svg",
+                "alt": "Gabardina clásica Niebla, vista frontal"
+            },
+            {
+                "file": "gabardina-clasica-niebla-detalle.svg",
+                "alt": "Gabardina clásica Niebla, detalle del tejido y los acabados"
+            },
+            {
+                "file": "gabardina-clasica-niebla-medidas.svg",
+                "alt": "Gabardina clásica Niebla, medidas"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-021-S",
+                "gtin": "2990000000996",
+                "stock": 2,
+                "values": {
+                    "talla": "s"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-021-M",
+                "gtin": "2990000001009",
+                "stock": 4,
+                "values": {
+                    "talla": "m"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-021-L",
+                "gtin": "2990000001016",
+                "stock": 5,
+                "values": {
+                    "talla": "l"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-021-XL",
+                "gtin": "2990000001023",
+                "stock": 6,
+                "values": {
+                    "talla": "xl"
+                }
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-022",
+        "name": "Abrigo de paño Nordeste",
+        "summary": "<p>Abrigo largo de paño de lana en color chocolate, con solapas anchas y tres botones.</p>",
+        "description": "<p>Nordeste es un abrigo largo de paño con una silueta limpia: solapas anchas, tres botones grandes y bolsillos con solapa. Llega por debajo de la rodilla, abriga hasta los tobillos y su color chocolate se lleva con tonos neutros, denim y también con colores vivos.</p><p>El paño es de lana con una pequeña proporción de poliamida para darle resistencia, de peso medio y acabado cepillado, que retiene el calor sin acumular peso. El forro interior de viscosa permite quitarse y ponerse el abrigo sin que se enganche, y lleva un bolsillo interior con cierre de botón.</p><p>El corte es recto y generoso, previsto para llevar un jersey grueso debajo. Si prefieres un aspecto más ajustado, elige una talla menos. Se limpia en seco, se cuelga en una percha ancha y se cepilla con un cepillo de cerdas para retirar el polvo. Un abrigo que puede durar diez inviernos.</p>",
+        "price": 24900,
+        "manage_stock": true,
+        "mpn": "AT-022",
+        "weight": 1580,
+        "delivery_min_days": 2,
+        "delivery_max_days": 4,
+        "featured": false,
+        "categories": [
+            "gabardinas",
+            "abrigos"
+        ],
+        "brand": "hilo-claro",
+        "attributes": {
+            "material": "lana",
+            "temporada": "otono-invierno",
+            "genero": "mujer",
+            "color": "chocolate"
+        },
+        "facts": [
+            {
+                "label": "Composición",
+                "value": "85 % lana, 15 % poliamida"
+            },
+            {
+                "label": "Largo (talla M)",
+                "value": "112 cm"
+            },
+            {
+                "label": "Cierre",
+                "value": "Tres botones"
+            },
+            {
+                "label": "Forro",
+                "value": "Viscosa"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Limpieza en seco"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Es muy pesado?",
+                "answer": "Pesa poco más de un kilo y medio: abriga sin cargar los hombros."
+            },
+            {
+                "question": "¿Cabe un jersey grueso debajo?",
+                "answer": "Sí, el corte es amplio."
+            }
+        ],
+        "tags": [
+            "paño",
+            "abrigo",
+            "invierno"
+        ],
+        "related": [
+            "DEMO-MODA-013",
+            "DEMO-MODA-026",
+            "DEMO-MODA-032"
+        ],
+        "meta_title": "Abrigo de paño Nordeste | Atelier Brezal",
+        "meta_description": "Abrigo largo de paño de lana en color chocolate, con solapas anchas y tres botones.",
+        "images": [
+            {
+                "file": "abrigo-de-pano-nordeste-frente.svg",
+                "alt": "Abrigo de paño Nordeste, vista frontal"
+            },
+            {
+                "file": "abrigo-de-pano-nordeste-detalle.svg",
+                "alt": "Abrigo de paño Nordeste, detalle del tejido y los acabados"
+            },
+            {
+                "file": "abrigo-de-pano-nordeste-medidas.svg",
+                "alt": "Abrigo de paño Nordeste, medidas"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-022-S",
+                "gtin": "2990000001030",
+                "stock": 10,
+                "values": {
+                    "talla": "s"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-022-M",
+                "gtin": "2990000001047",
+                "stock": 0,
+                "values": {
+                    "talla": "m"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-022-L",
+                "gtin": "2990000001054",
+                "stock": 8,
+                "values": {
+                    "talla": "l"
+                }
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-023",
+        "name": "Chaqueta vaquera Cobre",
+        "summary": "<p>Chaqueta vaquera de corte corto con bolsillos en el pecho y botones metálicos.</p>",
+        "description": "<p>La Cobre es la chaqueta vaquera de siempre, con el corte justo: cuello camisero, dos bolsillos en el pecho con solapa, botones metálicos color cobre y un bajo con cinturilla ajustable. Un clásico que cae bien tanto con vestidos y faldas como con pantalones.</p><p>El denim es de 11 onzas, con una pequeña proporción de elastano que da libertad de movimiento sin perder la firmeza. Está lavado para que sea suave y flexible desde el primer día, con un azul medio que no se aclara en exceso. Las costuras están reforzadas con un doble pespunte, y los botones son metálicos y resistentes.</p><p>Es unisex y de corte regular, con el largo justo para quedar sobre la cintura. Para un ajuste más cómodo, pide una talla más. Se lava del revés a 30 °C y se deja secar al aire; el color suaviza con cada lavado, de modo que la prenda va tomando carácter propio con el uso.</p>",
+        "price": 8900,
+        "manage_stock": true,
+        "mpn": "AT-023",
+        "weight": 860,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "chaquetas",
+            "abrigos"
+        ],
+        "brand": "marea-alta",
+        "attributes": {
+            "material": "denim",
+            "temporada": "todo-el-ano",
+            "genero": "unisex",
+            "color": "vaquero"
+        },
+        "facts": [
+            {
+                "label": "Composición",
+                "value": "98 % algodón, 2 % elastano"
+            },
+            {
+                "label": "Denim",
+                "value": "11 onzas"
+            },
+            {
+                "label": "Largo (talla M)",
+                "value": "56 cm"
+            },
+            {
+                "label": "Botones",
+                "value": "Metálicos, color cobre"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Lavar del revés a 30 °C"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Es de corte corto?",
+                "answer": "Sí, llega justo a la cintura. Si la quieres más larga, elige una talla más."
+            },
+            {
+                "question": "¿Se aclara con los lavados?",
+                "answer": "Poco: el color suaviza, pero no se vuelve desvaído."
+            }
+        ],
+        "tags": [
+            "vaquera",
+            "chaqueta",
+            "entretiempo"
+        ],
+        "related": [
+            "DEMO-MODA-017",
+            "DEMO-MODA-009",
+            "DEMO-MODA-003"
+        ],
+        "meta_title": "Chaqueta vaquera Cobre | Atelier Brezal",
+        "meta_description": "Chaqueta vaquera de corte corto con bolsillos en el pecho y botones metálicos.",
+        "images": [
+            {
+                "file": "chaqueta-vaquera-cobre-frente.svg",
+                "alt": "Chaqueta vaquera Cobre, vista frontal"
+            },
+            {
+                "file": "chaqueta-vaquera-cobre-detalle.svg",
+                "alt": "Chaqueta vaquera Cobre, detalle del tejido y los acabados"
+            },
+            {
+                "file": "chaqueta-vaquera-cobre-medidas.svg",
+                "alt": "Chaqueta vaquera Cobre, medidas"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-023-S",
+                "gtin": "2990000001061",
+                "stock": 1,
+                "values": {
+                    "talla": "s"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-023-M",
+                "gtin": "2990000001078",
+                "stock": 11,
+                "values": {
+                    "talla": "m"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-023-L",
+                "gtin": "2990000001085",
+                "stock": 2,
+                "values": {
+                    "talla": "l"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-023-XL",
+                "gtin": "2990000001092",
+                "stock": 4,
+                "values": {
+                    "talla": "xl"
+                }
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-024",
+        "name": "Americana de lana Ateneo",
+        "summary": "<p>Americana de lana fría con solapa de muesca, dos botones y bolsillos con tapeta.</p>",
+        "description": "<p>La Ateneo es una americana sin estructura rígida: hombros naturales, solapa de muesca, dos botones y bolsillos con tapeta. Lleva poca entretela y se ve elegante sin parecer de oficina, de modo que sirve igual con una camisa de vestir que con una camiseta lisa.</p><p>La lana fría es de 280 gramos, transpirable y con una caída buena que no marca los codos. Está forrada en el interior con un forro de viscosa en la espalda y sin forro en la parte delantera, lo que la hace más ligera y fresca. Tiene tres bolsillos interiores, entre ellos uno con botón.</p><p>El color marino es versátil: se lleva con pantalón gris, con vaqueros y con chinos. Las tallas son numéricas, del 48 al 52, y quedan pocas unidades de cada una: la talla 52 está agotada. Se limpia en seco, se cuelga en una percha de hombros anchos y se cepilla de vez en cuando.</p>",
+        "price": 17900,
+        "manage_stock": true,
+        "mpn": "AT-024",
+        "weight": 820,
+        "delivery_min_days": 2,
+        "delivery_max_days": 4,
+        "featured": true,
+        "categories": [
+            "chaquetas",
+            "abrigos"
+        ],
+        "brand": "hilo-claro",
+        "attributes": {
+            "material": "lana",
+            "temporada": "todo-el-ano",
+            "genero": "hombre",
+            "color": "marino"
+        },
+        "facts": [
+            {
+                "label": "Composición",
+                "value": "100 % lana fría"
+            },
+            {
+                "label": "Gramaje",
+                "value": "280 g/m²"
+            },
+            {
+                "label": "Cierre",
+                "value": "Dos botones"
+            },
+            {
+                "label": "Forro",
+                "value": "Parcial, de viscosa"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Limpieza en seco"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Qué talla debo elegir?",
+                "answer": "Elige tu talla habitual de americana. Los hombros son naturales, sin hombreras rígidas."
+            },
+            {
+                "question": "¿Es adecuada para el verano?",
+                "answer": "La lana fría es ligera y transpirable; sirve para primavera y principios de verano."
+            }
+        ],
+        "tags": [
+            "americana",
+            "lana fría",
+            "oficina"
+        ],
+        "related": [
+            "DEMO-MODA-006",
+            "DEMO-MODA-018",
+            "DEMO-MODA-028"
+        ],
+        "meta_title": "Americana de lana Ateneo | Atelier Brezal",
+        "meta_description": "Americana de lana fría con solapa de muesca, dos botones y bolsillos con tapeta.",
+        "images": [
+            {
+                "file": "americana-de-lana-ateneo-frente.svg",
+                "alt": "Americana de lana Ateneo, vista frontal"
+            },
+            {
+                "file": "americana-de-lana-ateneo-detalle.svg",
+                "alt": "Americana de lana Ateneo, detalle del tejido y los acabados"
+            },
+            {
+                "file": "americana-de-lana-ateneo-medidas.svg",
+                "alt": "Americana de lana Ateneo, medidas"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-024-48",
+                "gtin": "2990000001108",
+                "stock": 3,
+                "values": {
+                    "talla": "48"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-024-50",
+                "gtin": "2990000001115",
+                "stock": 1,
+                "values": {
+                    "talla": "50"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-024-52",
+                "gtin": "2990000001122",
+                "stock": 0,
+                "values": {
+                    "talla": "52"
+                }
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-025",
+        "name": "Plumas ligero Cima",
+        "summary": "<p>Chaqueta acolchada ligera con relleno reciclado y cuello alto, que se guarda en su propio bolsillo.</p>",
+        "description": "<p>Cima es la capa de abrigo que cabe en una mochila. Tiene el acolchado horizontal clásico, un cuello alto que protege la garganta, cremallera central con tapeta y dos bolsillos laterales con cierre. Es ligera, no abulta y abriga lo justo para las mañanas frías de entretiempo.</p><p>El exterior es de poliéster reciclado con un acabado repelente al agua, y el relleno, también reciclado, mantiene el calor aunque se moje. Los puños son elásticos y cubren la muñeca sin apretar; el bajo se ajusta con un cordón interior. Pesa poco más de 400 gramos y se pliega en el bolsillo interior hasta un bulto del tamaño de un pomelo.</p><p>Es unisex y de corte regular. En los días más fríos, se lleva sobre un jersey; en los más suaves, sobre una camiseta. El color burdeos aporta un toque de color a un armario de tonos neutros. Se lava en lavadora a 30 °C con un detergente suave y se seca con facilidad: no necesita secadora.</p>",
+        "price": 12900,
+        "manage_stock": true,
+        "mpn": "AT-025",
+        "weight": 420,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "chaquetas",
+            "abrigos"
+        ],
+        "brand": "marea-alta",
+        "attributes": {
+            "material": "poliester-reciclado",
+            "temporada": "otono-invierno",
+            "genero": "unisex",
+            "color": "burdeos"
+        },
+        "facts": [
+            {
+                "label": "Exterior",
+                "value": "100 % poliéster reciclado"
+            },
+            {
+                "label": "Relleno",
+                "value": "100 % poliéster reciclado, 80 g"
+            },
+            {
+                "label": "Peso",
+                "value": "420 g (talla M)"
+            },
+            {
+                "label": "Cierre",
+                "value": "Cremallera central con tapeta"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Lavar a 30 °C, sin suavizante"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Se guarda en un bolsillo?",
+                "answer": "Sí, se pliega dentro de su bolsillo interior y ocupa muy poco espacio."
+            },
+            {
+                "question": "¿Abriga lo suficiente para el invierno?",
+                "answer": "Es una capa ligera: en invierno se lleva sobre un jersey, y en pleno frío, bajo un abrigo."
+            }
+        ],
+        "tags": [
+            "plumas",
+            "ligero",
+            "viaje"
+        ],
+        "related": [
+            "DEMO-MODA-012",
+            "DEMO-MODA-034",
+            "DEMO-MODA-032"
+        ],
+        "meta_title": "Plumas ligero Cima | Atelier Brezal",
+        "meta_description": "Chaqueta acolchada ligera con relleno reciclado y cuello alto, que se guarda en su propio bolsillo.",
+        "images": [
+            {
+                "file": "plumas-ligero-cima-frente.svg",
+                "alt": "Plumas ligero Cima, vista frontal"
+            },
+            {
+                "file": "plumas-ligero-cima-detalle.svg",
+                "alt": "Plumas ligero Cima, detalle del tejido y los acabados"
+            },
+            {
+                "file": "plumas-ligero-cima-medidas.svg",
+                "alt": "Plumas ligero Cima, medidas"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-025-S",
+                "gtin": "2990000001139",
+                "stock": 9,
+                "values": {
+                    "talla": "s"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-025-M",
+                "gtin": "2990000001146",
+                "stock": 7,
+                "values": {
+                    "talla": "m"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-025-L",
+                "gtin": "2990000001153",
+                "stock": 1,
+                "values": {
+                    "talla": "l"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-025-XL",
+                "gtin": "2990000001160",
+                "stock": 11,
+                "values": {
+                    "talla": "xl"
+                }
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-026",
+        "name": "Botín de piel Sendero",
+        "summary": "<p>Botín de piel con elásticos laterales, suela de goma y tacón de 3,5 cm.</p>",
+        "description": "<p>El Sendero es el botín que se lleva a diario sin pensar. Tiene un perfil limpio, elásticos laterales para calzarlo sin esfuerzo, una pestaña trasera para tirar de él y un tacón bajo, de 3,5 centímetros, que se aguanta de pie durante todo el día. El color cuero envejece bien y se oscurece con el uso.</p><p>La piel es de curtición vegetal, con una flor natural que muestra las marcas del animal, algo que no es un defecto. Por dentro está forrado de piel, y la plantilla extraíble tiene una pequeña almohadilla en el talón. La suela de goma, con un dibujo discreto, agarra bien en superficies mojadas y se puede cambiar en un zapatero.</p><p>Se lleva con vaqueros, con faldas midi y con vestidos. Calza con normalidad: si tienes el pie ancho, elige media talla más. Para conservarlo, límpialo con un paño húmedo, aplica crema nutritiva cada pocos meses y no lo dejes secar cerca de un radiador. Con cuidados básicos, dura muchos años.</p>",
+        "price": 14900,
+        "manage_stock": true,
+        "mpn": "AT-026",
+        "weight": 1100,
+        "delivery_min_days": 2,
+        "delivery_max_days": 4,
+        "featured": false,
+        "categories": [
+            "botines",
+            "calzado"
+        ],
+        "brand": "zarza",
+        "attributes": {
+            "material": "piel",
+            "temporada": "otono-invierno",
+            "genero": "mujer",
+            "color": "cuero"
+        },
+        "facts": [
+            {
+                "label": "Material exterior",
+                "value": "Piel de curtición vegetal"
+            },
+            {
+                "label": "Forro",
+                "value": "Piel"
+            },
+            {
+                "label": "Tacón",
+                "value": "3,5 cm"
+            },
+            {
+                "label": "Suela",
+                "value": "Goma, cambiable"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Paño húmedo y crema nutritiva"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Calza con normalidad?",
+                "answer": "Sí. Con el pie ancho, elige media talla más."
+            },
+            {
+                "question": "¿Es impermeable?",
+                "answer": "No. La piel resiste una llovizna, pero conviene aplicar un protector si vas a usarlos con lluvia."
+            }
+        ],
+        "tags": [
+            "botín",
+            "piel",
+            "otoño"
+        ],
+        "related": [
+            "DEMO-MODA-017",
+            "DEMO-MODA-003",
+            "DEMO-MODA-013"
+        ],
+        "meta_title": "Botín de piel Sendero | Atelier Brezal",
+        "meta_description": "Botín de piel con elásticos laterales, suela de goma y tacón de 3,5 cm.",
+        "images": [
+            {
+                "file": "botin-de-piel-sendero-frente.svg",
+                "alt": "Botín de piel Sendero, vista frontal"
+            },
+            {
+                "file": "botin-de-piel-sendero-detalle.svg",
+                "alt": "Botín de piel Sendero, detalle del tejido y los acabados"
+            },
+            {
+                "file": "botin-de-piel-sendero-medidas.svg",
+                "alt": "Botín de piel Sendero, medidas"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-026-36",
+                "gtin": "2990000001177",
+                "stock": 4,
+                "values": {
+                    "talla": "36"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-026-37",
+                "gtin": "2990000001184",
+                "stock": 5,
+                "values": {
+                    "talla": "37"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-026-38",
+                "gtin": "2990000001191",
+                "stock": 6,
+                "values": {
+                    "talla": "38"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-026-39",
+                "gtin": "2990000001207",
+                "stock": 3,
+                "values": {
+                    "talla": "39"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-026-40",
+                "gtin": "2990000001214",
+                "stock": 10,
+                "values": {
+                    "talla": "40"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-026-41",
+                "gtin": "2990000001221",
+                "stock": 0,
+                "values": {
+                    "talla": "41"
+                }
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-027",
+        "name": "Zapatillas de piel Blanca",
+        "summary": "<p>Zapatillas blancas de piel lisa con suela de goma y cordones planos, unisex.</p>",
+        "description": "<p>La Blanca es la zapatilla que se lleva todo el año con todo: línea limpia, cordones planos, un detalle en color camel en el lateral y una suela de goma blanca de casi tres centímetros. Se ven bien con vaqueros, con faldas, con vestidos camiseros y hasta con un traje.</p><p>La piel es lisa, de grano fino, tratada para que resista las manchas y se limpie con un paño húmedo. El forro es de tejido transpirable y la plantilla, de cuero, se puede extraer. La suela está cosida a la parte superior, y no solo pegada, por lo que dura más y se puede reparar en un zapatero.</p><p>Son unisex y las tallas van del 37 al 44. Calzan de forma regular: si tienes dudas entre dos tallas, elige la mayor. Con el uso, la piel se ablanda y se adapta al pie. Para mantener el blanco, limpia la suela con un cepillo y agua con jabón, y trata la piel cada pocos meses con una crema incolora.</p>",
+        "price": 11900,
+        "sale_price": 8900,
+        "manage_stock": true,
+        "mpn": "AT-027",
+        "weight": 900,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": true,
+        "categories": [
+            "zapatillas",
+            "calzado"
+        ],
+        "brand": "zarza",
+        "attributes": {
+            "material": "piel",
+            "temporada": "todo-el-ano",
+            "genero": "unisex",
+            "color": "blanco"
+        },
+        "facts": [
+            {
+                "label": "Material exterior",
+                "value": "Piel lisa de grano fino"
+            },
+            {
+                "label": "Forro",
+                "value": "Textil transpirable"
+            },
+            {
+                "label": "Suela",
+                "value": "Goma blanca, cosida"
+            },
+            {
+                "label": "Plantilla",
+                "value": "Cuero, extraíble"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Paño húmedo, crema incolora"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Se ensucian con facilidad?",
+                "answer": "La piel está tratada y se limpia con un paño húmedo; la suela, con cepillo y agua con jabón."
+            },
+            {
+                "question": "¿Cómo calzan?",
+                "answer": "De forma regular. Entre dos tallas, elige la mayor."
+            }
+        ],
+        "tags": [
+            "zapatillas",
+            "blancas",
+            "piel"
+        ],
+        "related": [
+            "DEMO-MODA-016",
+            "DEMO-MODA-003",
+            "DEMO-MODA-009"
+        ],
+        "meta_title": "Zapatillas de piel Blanca | Atelier Brezal",
+        "meta_description": "Zapatillas blancas de piel lisa con suela de goma y cordones planos, unisex.",
+        "images": [
+            {
+                "file": "zapatillas-de-piel-blanca-frente.svg",
+                "alt": "Zapatillas de piel Blanca, vista frontal"
+            },
+            {
+                "file": "zapatillas-de-piel-blanca-detalle.svg",
+                "alt": "Zapatillas de piel Blanca, detalle del tejido y los acabados"
+            },
+            {
+                "file": "zapatillas-de-piel-blanca-medidas.svg",
+                "alt": "Zapatillas de piel Blanca, medidas"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-027-37",
+                "gtin": "2990000001238",
+                "stock": 0,
+                "values": {
+                    "talla": "37"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-027-38",
+                "gtin": "2990000001245",
+                "stock": 8,
+                "values": {
+                    "talla": "38"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-027-39",
+                "gtin": "2990000001252",
+                "stock": 9,
+                "values": {
+                    "talla": "39"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-027-40",
+                "gtin": "2990000001269",
+                "stock": 7,
+                "values": {
+                    "talla": "40"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-027-41",
+                "gtin": "2990000001276",
+                "stock": 1,
+                "values": {
+                    "talla": "41"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-027-42",
+                "gtin": "2990000001283",
+                "stock": 11,
+                "values": {
+                    "talla": "42"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-027-43",
+                "gtin": "2990000001290",
+                "stock": 2,
+                "values": {
+                    "talla": "43"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-027-44",
+                "gtin": "2990000001306",
+                "stock": 4,
+                "values": {
+                    "talla": "44"
+                }
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-028",
+        "name": "Mocasines de ante Paseo",
+        "summary": "<p>Mocasines de ante con antifaz cosido a mano, suela de cuero y tacón bajo.</p>",
+        "description": "<p>Los Paseo son unos mocasines de línea clásica: puntera redondeada, antifaz cosido a mano, tacón bajo y una silueta que se ve bien con pantalones de pinzas, vaqueros o bermudas. Son cómodos desde el primer día y pesan muy poco.</p><p>El ante es de primera selección, con un pelo corto y homogéneo, y el color chocolate esconde las marcas del uso. Por dentro, la piel de cabra deja el pie en contacto con un material suave y transpirable. La suela es de cuero con refuerzos de goma en la zona del talón y de la puntera, que alargan la vida del calzado.</p><p>Se calzan sin calcetines en verano y con calcetines finos el resto del año. Evita mojarlos: el ante no se lleva bien con la lluvia, y si ocurre, déjalos secar a temperatura ambiente y cepíllalos después con un cepillo de crepé. Quedan pocas unidades: la talla 42 está agotada y de las demás hay solo una o dos parejas.</p>",
+        "price": 11500,
+        "manage_stock": true,
+        "mpn": "AT-028",
+        "weight": 780,
+        "delivery_min_days": 2,
+        "delivery_max_days": 4,
+        "featured": false,
+        "categories": [
+            "mocasines",
+            "calzado"
+        ],
+        "brand": "zarza",
+        "attributes": {
+            "material": "ante",
+            "temporada": "primavera-verano",
+            "genero": "hombre",
+            "color": "chocolate"
+        },
+        "facts": [
+            {
+                "label": "Material exterior",
+                "value": "Ante de primera selección"
+            },
+            {
+                "label": "Forro",
+                "value": "Piel de cabra"
+            },
+            {
+                "label": "Suela",
+                "value": "Cuero con refuerzos de goma"
+            },
+            {
+                "label": "Tacón",
+                "value": "2,5 cm"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Cepillo de crepé, protector para ante"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Se pueden mojar?",
+                "answer": "Mejor no. Si ocurre, déjalos secar al aire y cepíllalos con un cepillo de crepé."
+            },
+            {
+                "question": "¿Cómo calzan?",
+                "answer": "Un poco justos al principio: el ante cede con el uso. Si dudas, elige la mayor."
+            }
+        ],
+        "tags": [
+            "mocasines",
+            "ante",
+            "verano"
+        ],
+        "related": [
+            "DEMO-MODA-006",
+            "DEMO-MODA-020",
+            "DEMO-MODA-018"
+        ],
+        "meta_title": "Mocasines de ante Paseo | Atelier Brezal",
+        "meta_description": "Mocasines de ante con antifaz cosido a mano, suela de cuero y tacón bajo.",
+        "images": [
+            {
+                "file": "mocasines-de-ante-paseo-frente.svg",
+                "alt": "Mocasines de ante Paseo, vista frontal"
+            },
+            {
+                "file": "mocasines-de-ante-paseo-detalle.svg",
+                "alt": "Mocasines de ante Paseo, detalle del tejido y los acabados"
+            },
+            {
+                "file": "mocasines-de-ante-paseo-medidas.svg",
+                "alt": "Mocasines de ante Paseo, medidas"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-028-41",
+                "gtin": "2990000001313",
+                "stock": 2,
+                "values": {
+                    "talla": "41"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-028-42",
+                "gtin": "2990000001320",
+                "stock": 0,
+                "values": {
+                    "talla": "42"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-028-43",
+                "gtin": "2990000001337",
+                "stock": 1,
+                "values": {
+                    "talla": "43"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-028-44",
+                "gtin": "2990000001344",
+                "stock": 3,
+                "values": {
+                    "talla": "44"
+                }
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-029",
+        "name": "Sandalia de cuero Mediterránea",
+        "summary": "<p>Sandalia plana de cuero con tres tiras y hebilla lateral, de plantilla acolchada.</p>",
+        "description": "<p>La Mediterránea es la sandalia para pasar el verano de pie: tres tiras anchas de cuero, hebilla lateral que se ajusta al empeine y una suela plana con un pequeño soporte para el arco. El color camel combina con los tonos arena, el blanco y el denim.</p><p>El cuero es de curtición vegetal, flexible desde el primer día, y las tiras están cosidas, no pegadas. La plantilla es de piel, acolchada en la zona del talón, y absorbe el sudor sin resbalar. La suela de goma, con un dibujo fino, agarra bien en suelos lisos y mojados, algo que se agradece en una sandalia plana.</p><p>Se lleva con vestidos camiseros, con pantalones anchos de lino y con faldas midi. Las primeras veces, el cuero puede rozar en las zonas de contacto: se recomienda ponerlas un rato en casa con calcetines finos. Para limpiarlas, un paño húmedo basta; después, extiende una crema de cuero para mantener la flexibilidad.</p>",
+        "price": 7900,
+        "manage_stock": true,
+        "mpn": "AT-029",
+        "weight": 420,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "calzado"
+        ],
+        "brand": "zarza",
+        "attributes": {
+            "material": "piel",
+            "temporada": "primavera-verano",
+            "genero": "mujer",
+            "color": "camel"
+        },
+        "facts": [
+            {
+                "label": "Material",
+                "value": "Cuero de curtición vegetal"
+            },
+            {
+                "label": "Plantilla",
+                "value": "Piel acolchada en el talón"
+            },
+            {
+                "label": "Suela",
+                "value": "Goma antideslizante"
+            },
+            {
+                "label": "Cierre",
+                "value": "Hebilla lateral ajustable"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Paño húmedo y crema de cuero"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Rozan al principio?",
+                "answer": "Un poco, como casi todo el cuero nuevo. Úsalas un rato en casa antes del primer paseo largo."
+            },
+            {
+                "question": "¿Cómo calzan?",
+                "answer": "Con normalidad. La hebilla ajusta el empeine."
+            }
+        ],
+        "tags": [
+            "sandalia",
+            "cuero",
+            "verano"
+        ],
+        "related": [
+            "DEMO-MODA-001",
+            "DEMO-MODA-019",
+            "DEMO-MODA-011"
+        ],
+        "meta_title": "Sandalia de cuero Mediterránea | Atelier Brezal",
+        "meta_description": "Sandalia plana de cuero con tres tiras y hebilla lateral, de plantilla acolchada.",
+        "images": [
+            {
+                "file": "sandalia-de-cuero-mediterranea-frente.svg",
+                "alt": "Sandalia de cuero Mediterránea, vista frontal"
+            },
+            {
+                "file": "sandalia-de-cuero-mediterranea-detalle.svg",
+                "alt": "Sandalia de cuero Mediterránea, detalle del tejido y los acabados"
+            },
+            {
+                "file": "sandalia-de-cuero-mediterranea-medidas.svg",
+                "alt": "Sandalia de cuero Mediterránea, medidas"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-029-36",
+                "gtin": "2990000001351",
+                "stock": 3,
+                "values": {
+                    "talla": "36"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-029-37",
+                "gtin": "2990000001368",
+                "stock": 10,
+                "values": {
+                    "talla": "37"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-029-38",
+                "gtin": "2990000001375",
+                "stock": 0,
+                "values": {
+                    "talla": "38"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-029-39",
+                "gtin": "2990000001382",
+                "stock": 8,
+                "values": {
+                    "talla": "39"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-029-40",
+                "gtin": "2990000001399",
+                "stock": 9,
+                "values": {
+                    "talla": "40"
+                }
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-030",
+        "name": "Bolso tote de lona Mercado",
+        "summary": "<p>Bolso grande de lona gruesa con asas largas, bolsillo exterior y cierre con botón.</p>",
+        "description": "<p>Mercado es el bolso grande para lo de cada día: la compra, el portátil, la ropa de gimnasio o lo que haga falta. Tiene dos asas largas que permiten llevarlo al hombro, un bolsillo exterior en la parte delantera y un cierre con botón magnético que mantiene todo en su sitio.</p><p>La lona es de algodón de 450 gramos, lo bastante gruesa para soportar peso y mantener la forma, y está tratada con un acabado que repele las manchas ligeras. Por dentro lleva un bolsillo con cremallera para las llaves y el monedero, y el fondo está reforzado con una base plana que evita que se deforme al dejarlo en el suelo.</p><p>Mide 38 por 42 centímetros y cabe un portátil de 15 pulgadas con una carpeta. Se vende en un color crudo que combina con todo y se ensucia poco. Con el tiempo, la lona se suaviza y va tomando un aspecto de uso muy agradable. Se lava a mano con agua fría y se seca al aire.</p>",
+        "price": 5900,
+        "sale_price": 4500,
+        "manage_stock": true,
+        "stock": 15,
+        "gtin": "2990000001405",
+        "mpn": "AT-030",
+        "weight": 520,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": true,
+        "categories": [
+            "bolsos",
+            "complementos"
+        ],
+        "brand": "lino-y-sal",
+        "attributes": {
+            "material": "lona",
+            "temporada": "todo-el-ano",
+            "genero": "unisex",
+            "color": "crudo"
+        },
+        "facts": [
+            {
+                "label": "Material",
+                "value": "Lona de algodón de 450 g"
+            },
+            {
+                "label": "Medidas",
+                "value": "38 × 42 cm"
+            },
+            {
+                "label": "Asas",
+                "value": "Dos, de 62 cm"
+            },
+            {
+                "label": "Interior",
+                "value": "Un bolsillo con cremallera"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Lavar a mano en frío"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Cabe un portátil?",
+                "answer": "Sí, de hasta 15 pulgadas, con una funda fina."
+            },
+            {
+                "question": "¿Se puede lavar?",
+                "answer": "A mano en agua fría con jabón suave; no la metas en la lavadora."
+            }
+        ],
+        "tags": [
+            "tote",
+            "lona",
+            "diario"
+        ],
+        "related": [
+            "DEMO-MODA-001",
+            "DEMO-MODA-009",
+            "DEMO-MODA-011"
+        ],
+        "meta_title": "Bolso tote de lona Mercado | Atelier Brezal",
+        "meta_description": "Bolso grande de lona gruesa con asas largas, bolsillo exterior y cierre con botón.",
+        "images": [
+            {
+                "file": "bolso-tote-de-lona-mercado-frente.svg",
+                "alt": "Bolso tote de lona Mercado, vista frontal"
+            },
+            {
+                "file": "bolso-tote-de-lona-mercado-detalle.svg",
+                "alt": "Bolso tote de lona Mercado, detalle del tejido y los acabados"
+            },
+            {
+                "file": "bolso-tote-de-lona-mercado-medidas.svg",
+                "alt": "Bolso tote de lona Mercado, medidas"
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-031",
+        "name": "Bolso bandolera de piel Estudio",
+        "summary": "<p>Bolso bandolera pequeño de piel, con solapa, cierre metálico y correa ajustable.</p>",
+        "description": "<p>El Estudio es un bolso pequeño y bien resuelto: solapa redondeada, cierre metálico dorado, correa de hombro ajustable y un cuerpo rectangular que se ve igual de bien con vaqueros que con un vestido. Cabe lo esencial: móvil, cartera, llaves, un pintalabios y un pañuelo.</p><p>La piel es de grano fino, de curtición vegetal, con un acabado ligeramente satinado. El forro es de algodón y lleva un bolsillo interior con cremallera y otro abierto para el móvil. Las costuras están rematadas con un hilo encerado del mismo tono, y los herrajes son de latón macizo, que no se pela.</p><p>Mide 22 por 17 centímetros y 7 de fondo, con una correa regulable entre 90 y 120 centímetros. El color burdeos aporta un toque de color a un armario de tonos neutros. Para cuidarlo, evita la lluvia intensa y aplica una crema de cuero una o dos veces al año. Quedan pocas unidades en stock.</p>",
+        "price": 12900,
+        "manage_stock": true,
+        "stock": 6,
+        "gtin": "2990000001412",
+        "mpn": "AT-031",
+        "weight": 480,
+        "delivery_min_days": 2,
+        "delivery_max_days": 4,
+        "featured": false,
+        "categories": [
+            "bolsos",
+            "complementos"
+        ],
+        "brand": "zarza",
+        "attributes": {
+            "material": "piel",
+            "temporada": "todo-el-ano",
+            "genero": "mujer",
+            "color": "burdeos"
+        },
+        "facts": [
+            {
+                "label": "Material",
+                "value": "Piel de curtición vegetal"
+            },
+            {
+                "label": "Medidas",
+                "value": "22 × 17 × 7 cm"
+            },
+            {
+                "label": "Correa",
+                "value": "Ajustable de 90 a 120 cm"
+            },
+            {
+                "label": "Herrajes",
+                "value": "Latón macizo"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Crema de cuero una o dos veces al año"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Cabe un móvil grande?",
+                "answer": "Sí, hasta 6,7 pulgadas con su funda."
+            },
+            {
+                "question": "¿La correa es desmontable?",
+                "answer": "Sí, con dos mosquetones de latón."
+            }
+        ],
+        "tags": [
+            "bandolera",
+            "piel",
+            "pequeño"
+        ],
+        "related": [
+            "DEMO-MODA-002",
+            "DEMO-MODA-026"
+        ],
+        "meta_title": "Bolso bandolera de piel Estudio | Atelier Brezal",
+        "meta_description": "Bolso bandolera pequeño de piel, con solapa, cierre metálico y correa ajustable.",
+        "images": [
+            {
+                "file": "bolso-bandolera-de-piel-estudio-frente.svg",
+                "alt": "Bolso bandolera de piel Estudio, vista frontal"
+            },
+            {
+                "file": "bolso-bandolera-de-piel-estudio-detalle.svg",
+                "alt": "Bolso bandolera de piel Estudio, detalle del tejido y los acabados"
+            },
+            {
+                "file": "bolso-bandolera-de-piel-estudio-medidas.svg",
+                "alt": "Bolso bandolera de piel Estudio, medidas"
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-032",
+        "name": "Bufanda de lana Escarcha",
+        "summary": "<p>Bufanda grande de lana con dibujo de cuadros y flecos en los extremos.</p>",
+        "description": "<p>La Escarcha es una bufanda de las que se envuelven dos veces al cuello. Mide 180 por 40 centímetros, tiene un dibujo de cuadros camel y marino, flecos en los extremos y un tacto suave y esponjoso que no pica. Sirve de abrigo en las mañanas frías y de manta en el tren.</p><p>La lana es de oveja merina, cardada y cepillada para que el tejido sea mullido y regular, con un gramaje medio que la hace ligera y cálida. El tejido es una sarga de dos colores, con el mismo dibujo por ambos lados, y los flecos están anudados a mano de uno en uno. No se desfilacha ni se deshilacha.</p><p>Combina con abrigos lisos, gabardinas y chaquetas vaqueras. Para limpiarla, lávala a mano en agua fría con un champú suave y extiéndela en plano; no la retuerzas. Con el uso, el tejido se asienta y se vuelve más suave. Se vende en una caja de cartón reciclado, lista para regalar.</p>",
+        "price": 5500,
+        "sale_price": 3900,
+        "manage_stock": true,
+        "stock": 9,
+        "gtin": "2990000001429",
+        "mpn": "AT-032",
+        "weight": 320,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "bufandas",
+            "complementos"
+        ],
+        "brand": "lino-y-sal",
+        "attributes": {
+            "material": "lana",
+            "temporada": "otono-invierno",
+            "genero": "unisex",
+            "color": "camel"
+        },
+        "facts": [
+            {
+                "label": "Composición",
+                "value": "100 % lana merina"
+            },
+            {
+                "label": "Medidas",
+                "value": "180 × 40 cm"
+            },
+            {
+                "label": "Dibujo",
+                "value": "Cuadros, igual por ambos lados"
+            },
+            {
+                "label": "Flecos",
+                "value": "Anudados a mano"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Lavar a mano en frío y secar en plano"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Pica?",
+                "answer": "No, es de lana merina, suave y de fibra fina."
+            },
+            {
+                "question": "¿Cuánto mide?",
+                "answer": "180 cm de largo por 40 cm de ancho, sin contar los flecos."
+            }
+        ],
+        "tags": [
+            "bufanda",
+            "lana",
+            "regalo"
+        ],
+        "related": [
+            "DEMO-MODA-021",
+            "DEMO-MODA-022",
+            "DEMO-MODA-025"
+        ],
+        "meta_title": "Bufanda de lana Escarcha | Atelier Brezal",
+        "meta_description": "Bufanda grande de lana con dibujo de cuadros y flecos en los extremos.",
+        "images": [
+            {
+                "file": "bufanda-de-lana-escarcha-frente.svg",
+                "alt": "Bufanda de lana Escarcha, vista frontal"
+            },
+            {
+                "file": "bufanda-de-lana-escarcha-detalle.svg",
+                "alt": "Bufanda de lana Escarcha, detalle del tejido y los acabados"
+            },
+            {
+                "file": "bufanda-de-lana-escarcha-medidas.svg",
+                "alt": "Bufanda de lana Escarcha, medidas"
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-033",
+        "name": "Cinturón de cuero Hebilla",
+        "summary": "<p>Cinturón de cuero de 3 cm con hebilla de latón y cinco agujeros.</p>",
+        "description": "<p>El cinturón Hebilla es una pieza que se usa todos los días y se nota poco, pero cuando falta o es malo, se echa mucho de menos. Mide 3 centímetros de ancho, tiene una hebilla rectangular de latón y cinco agujeros que permiten ajustarlo con precisión. Sirve igual con vaqueros que con un pantalón de pinzas.</p><p>El cuero es de una sola pieza, de curtición vegetal, de 4 milímetros de grosor, con los cantos pulidos y teñidos para evitar que se deshilache. La hebilla es de latón macizo con un acabado satinado, atornillada y no remachada, de modo que se puede cambiar. El color chocolate se oscurece con el uso y desarrolla una pátina muy agradable.</p><p>Elige la talla según el contorno de tu cintura: el cinturón está pensado para ajustarse en el agujero central. Por ejemplo, la talla 95 es ideal para una cintura de 85 a 90 centímetros. Si te encuentras entre dos tallas, elige la mayor. Para cuidarlo, basta con una crema de cuero una vez al año.</p>",
+        "price": 4500,
+        "manage_stock": true,
+        "mpn": "AT-033",
+        "weight": 130,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "cinturones",
+            "complementos"
+        ],
+        "brand": "zarza",
+        "attributes": {
+            "material": "piel",
+            "temporada": "todo-el-ano",
+            "genero": "unisex",
+            "color": "chocolate"
+        },
+        "facts": [
+            {
+                "label": "Material",
+                "value": "Cuero de una pieza, 4 mm"
+            },
+            {
+                "label": "Ancho",
+                "value": "3 cm"
+            },
+            {
+                "label": "Hebilla",
+                "value": "Latón macizo, atornillada"
+            },
+            {
+                "label": "Agujeros",
+                "value": "Cinco"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Crema de cuero una vez al año"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Cómo elijo la talla?",
+                "answer": "La talla es la longitud total en centímetros. Elige la que deje el agujero central al abrocharlo en tu cintura."
+            },
+            {
+                "question": "¿Se puede cambiar la hebilla?",
+                "answer": "Sí, está atornillada y admite hebillas de 3 cm."
+            }
+        ],
+        "tags": [
+            "cinturón",
+            "cuero",
+            "básico"
+        ],
+        "related": [
+            "DEMO-MODA-016",
+            "DEMO-MODA-018",
+            "DEMO-MODA-006"
+        ],
+        "meta_title": "Cinturón de cuero Hebilla | Atelier Brezal",
+        "meta_description": "Cinturón de cuero de 3 cm con hebilla de latón y cinco agujeros.",
+        "images": [
+            {
+                "file": "cinturon-de-cuero-hebilla-frente.svg",
+                "alt": "Cinturón de cuero Hebilla, vista frontal"
+            },
+            {
+                "file": "cinturon-de-cuero-hebilla-detalle.svg",
+                "alt": "Cinturón de cuero Hebilla, detalle del tejido y los acabados"
+            },
+            {
+                "file": "cinturon-de-cuero-hebilla-medidas.svg",
+                "alt": "Cinturón de cuero Hebilla, medidas"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-033-85",
+                "gtin": "2990000001436",
+                "stock": 2,
+                "values": {
+                    "talla": "85"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-033-95",
+                "gtin": "2990000001443",
+                "stock": 4,
+                "values": {
+                    "talla": "95"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-033-105",
+                "gtin": "2990000001450",
+                "stock": 5,
+                "values": {
+                    "talla": "105"
+                }
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-034",
+        "name": "Gorro de punto Copo",
+        "summary": "<p>Gorro de punto de canalé con borla y doblez ancho, en lana y alpaca.</p>",
+        "description": "<p>El gorro Copo es la prenda de invierno que hace sonreír: punto de canalé, un doblez ancho que cubre las orejas y una borla en lo alto. Se ajusta a todas las cabezas, no pica y se lleva bien tanto con abrigos largos como con plumas ligeras.</p><p>La mezcla de lana y alpaca es suave y cálida, con una fibra larga que reduce el pilling. El canalé elástico recupera la forma después de cada uso, y el doblez ancho se puede subir o bajar según el frío. La borla está cosida con un hilo reforzado y se puede desmontar si prefieres un aspecto más sobrio.</p><p>Se vende en un color mostaza apagado, muy fácil de combinar con prendas azul marino, grises y marrones. La talla es única, para un contorno de cabeza de 54 a 60 centímetros. Se lava a mano en agua fría y se seca en plano. Es un buen regalo y se envuelve sin esfuerzo: cabe en un sobre acolchado.</p>",
+        "price": 2900,
+        "manage_stock": true,
+        "stock": 12,
+        "gtin": "2990000001467",
+        "mpn": "AT-034",
+        "weight": 95,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "bufandas",
+            "complementos"
+        ],
+        "brand": "lino-y-sal",
+        "attributes": {
+            "material": "lana",
+            "temporada": "otono-invierno",
+            "genero": "unisex",
+            "color": "mostaza"
+        },
+        "facts": [
+            {
+                "label": "Composición",
+                "value": "70 % lana, 30 % alpaca"
+            },
+            {
+                "label": "Talla",
+                "value": "Única, de 54 a 60 cm"
+            },
+            {
+                "label": "Punto",
+                "value": "Canalé elástico"
+            },
+            {
+                "label": "Borla",
+                "value": "Cosida, desmontable"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Lavar a mano en frío"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Pica?",
+                "answer": "No, la alpaca es suave y no irrita."
+            },
+            {
+                "question": "¿Sirve para cabezas grandes?",
+                "answer": "El canalé es muy elástico y se adapta de 54 a 60 cm."
+            }
+        ],
+        "tags": [
+            "gorro",
+            "invierno",
+            "regalo"
+        ],
+        "related": [
+            "DEMO-MODA-032",
+            "DEMO-MODA-025"
+        ],
+        "meta_title": "Gorro de punto Copo | Atelier Brezal",
+        "meta_description": "Gorro de punto de canalé con borla y doblez ancho, en lana y alpaca.",
+        "images": [
+            {
+                "file": "gorro-de-punto-copo-frente.svg",
+                "alt": "Gorro de punto Copo, vista frontal"
+            },
+            {
+                "file": "gorro-de-punto-copo-detalle.svg",
+                "alt": "Gorro de punto Copo, detalle del tejido y los acabados"
+            },
+            {
+                "file": "gorro-de-punto-copo-medidas.svg",
+                "alt": "Gorro de punto Copo, medidas"
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-035",
+        "name": "Gafas de sol Mirador",
+        "summary": "<p>Gafas de sol con montura de acetato color carey y lentes con protección UV400.</p>",
+        "description": "<p>Las Mirador son unas gafas de sol de montura gruesa con una forma rectangular suavizada, que favorece a casi todo tipo de cara. El acetato color carey oscuro se ve elegante, se combina con casi todo y resiste el uso diario sin deformarse ni perder el color.</p><p>La montura es de acetato de celulosa, un material de origen vegetal que se pule a mano y se tiñe en la masa, de modo que no se pela. Las lentes son de policarbonato, con filtro UV400 y categoría 3, y las bisagras llevan un refuerzo metálico de cinco pivotes que aguanta miles de aperturas. Incluyen un estuche rígido y un paño de microfibra.</p><p>Pesan 28 gramos y tienen una anchura de 143 milímetros, con un puente de 21. Si te quedan pequeñas o grandes, no tienen ajuste posible: están pensadas para un tamaño medio, adecuado para la mayoría. Para limpiarlas, usa agua con jabón y el paño que las acompaña, y evita dejarlas al sol sobre el salpicadero del coche.</p>",
+        "price": 6900,
+        "manage_stock": true,
+        "stock": 7,
+        "gtin": "2990000001474",
+        "mpn": "AT-035",
+        "weight": 28,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "complementos"
+        ],
+        "brand": "lino-y-sal",
+        "attributes": {
+            "material": "acetato",
+            "temporada": "primavera-verano",
+            "genero": "unisex",
+            "color": "chocolate"
+        },
+        "facts": [
+            {
+                "label": "Montura",
+                "value": "Acetato de celulosa"
+            },
+            {
+                "label": "Lentes",
+                "value": "Policarbonato, UV400, categoría 3"
+            },
+            {
+                "label": "Ancho total",
+                "value": "143 mm"
+            },
+            {
+                "label": "Puente",
+                "value": "21 mm"
+            },
+            {
+                "label": "Incluye",
+                "value": "Estuche rígido y paño"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Protegen de los rayos UV?",
+                "answer": "Sí, las lentes tienen filtro UV400 y son de categoría 3."
+            },
+            {
+                "question": "¿Qué tamaño tienen?",
+                "answer": "143 mm de ancho con un puente de 21 mm: un tamaño medio."
+            }
+        ],
+        "tags": [
+            "gafas",
+            "sol",
+            "verano"
+        ],
+        "related": [
+            "DEMO-MODA-001",
+            "DEMO-MODA-010",
+            "DEMO-MODA-007"
+        ],
+        "meta_title": "Gafas de sol Mirador | Atelier Brezal",
+        "meta_description": "Gafas de sol con montura de acetato color carey y lentes con protección UV400.",
+        "images": [
+            {
+                "file": "gafas-de-sol-mirador-frente.svg",
+                "alt": "Gafas de sol Mirador, vista frontal"
+            },
+            {
+                "file": "gafas-de-sol-mirador-detalle.svg",
+                "alt": "Gafas de sol Mirador, detalle del tejido y los acabados"
+            },
+            {
+                "file": "gafas-de-sol-mirador-medidas.svg",
+                "alt": "Gafas de sol Mirador, medidas"
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-MODA-036",
+        "name": "Pack de tres pares de calcetines Hilo",
+        "summary": "<p>Pack de tres pares de calcetines de algodón peinado, caña media y refuerzos en talón y puntera.</p>",
+        "description": "<p>Los calcetines Hilo son los básicos que uno cambia sin darse cuenta de que los necesita. Caña media, canalé fino en el puño que no aprieta y tres tonos neutros en el mismo pack: crudo, gris y arena. Se llevan con zapatillas, mocasines o botines.</p><p>El algodón peinado es de fibra larga, suave y resistente, con un 2 % de elastano que mantiene la forma. El talón y la puntera llevan un refuerzo de hilo más grueso, que alarga la vida del calcetín justo donde se desgasta primero, y la costura de la puntera es plana para que no roce en el zapato.</p><p>Hay dos tallas: la 35-38 y la 39-42. Se lavan a 40 °C y se pueden secar en secadora a temperatura baja. Un truco que evita perder pares: lavarlos dentro de una bolsa de malla. Conviene renovarlos cada año si se llevan a diario, y con el pack de tres, la rotación resulta cómoda.</p>",
+        "price": 1900,
+        "manage_stock": true,
+        "mpn": "AT-036",
+        "weight": 150,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "complementos"
+        ],
+        "brand": "hilo-claro",
+        "attributes": {
+            "material": "algodon",
+            "temporada": "todo-el-ano",
+            "genero": "unisex",
+            "color": "crudo"
+        },
+        "facts": [
+            {
+                "label": "Composición",
+                "value": "96 % algodón peinado, 2 % poliamida, 2 % elastano"
+            },
+            {
+                "label": "Contenido",
+                "value": "Tres pares: crudo, gris y arena"
+            },
+            {
+                "label": "Caña",
+                "value": "Media"
+            },
+            {
+                "label": "Refuerzos",
+                "value": "Talón y puntera"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Lavar a 40 °C"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Los tres pares son del mismo color?",
+                "answer": "No, el pack trae un par crudo, uno gris y uno arena."
+            },
+            {
+                "question": "¿Qué talla me conviene?",
+                "answer": "La 35-38 para un pie de hasta el 38 y la 39-42 para un pie de hasta el 42."
+            }
+        ],
+        "tags": [
+            "calcetines",
+            "pack",
+            "básico"
+        ],
+        "related": [
+            "DEMO-MODA-027",
+            "DEMO-MODA-028"
+        ],
+        "meta_title": "Pack de tres pares de calcetines Hilo | Atelier Brezal",
+        "meta_description": "Pack de tres pares de calcetines de algodón peinado, caña media y refuerzos en talón y puntera.",
+        "images": [
+            {
+                "file": "pack-de-tres-pares-de-calcetines-hilo-frente.svg",
+                "alt": "Pack de tres pares de calcetines Hilo, vista frontal"
+            },
+            {
+                "file": "pack-de-tres-pares-de-calcetines-hilo-detalle.svg",
+                "alt": "Pack de tres pares de calcetines Hilo, detalle del tejido y los acabados"
+            },
+            {
+                "file": "pack-de-tres-pares-de-calcetines-hilo-medidas.svg",
+                "alt": "Pack de tres pares de calcetines Hilo, medidas"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-MODA-036-35-38",
+                "gtin": "2990000001481",
+                "stock": 6,
+                "values": {
+                    "talla": "35-38"
+                }
+            },
+            {
+                "sku": "DEMO-MODA-036-39-42",
+                "gtin": "2990000001498",
+                "stock": 3,
+                "values": {
+                    "talla": "39-42"
+                }
+            }
+        ]
+    }
+]

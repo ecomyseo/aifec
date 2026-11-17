@@ -1,0 +1,126 @@
+{
+  "/wp-json/wc/v3/products": [
+    {
+      "id": 101, "name": "Mesa auxiliar de roble", "slug": "mesa-auxiliar-roble", "permalink": "https://tienda.test/producto/mesa-auxiliar-roble/",
+      "date_created": "2025-02-12T11:00:00", "date_created_gmt": "2025-02-12T10:00:00", "date_modified": "2026-10-01T10:00:00", "date_modified_gmt": "2026-10-01T08:00:00",
+      "type": "simple", "status": "publish", "featured": true, "catalog_visibility": "visible",
+      "description": "<p>Roble macizo con acabado al agua.</p>", "short_description": "<p>Redonda, de una pata.</p>", "sku": "MESA-ROBLE", "global_unique_id": "8400000000017",
+      "price": "89.00", "regular_price": "106.61", "sale_price": "89.00", "date_on_sale_from": "2026-11-01T00:00:00", "date_on_sale_from_gmt": "2026-10-31T23:00:00",
+      "date_on_sale_to": null, "date_on_sale_to_gmt": null, "on_sale": true, "purchasable": true, "virtual": false, "downloadable": false, "downloads": [],
+      "download_limit": -1, "download_expiry": -1, "external_url": "", "button_text": "", "tax_status": "taxable", "tax_class": "", "manage_stock": true, "stock_quantity": 14,
+      "backorders": "no", "stock_status": "instock", "sold_individually": false, "weight": "6.5", "dimensions": {"length": "40", "width": "40", "height": "48"},
+      "shipping_class": "", "reviews_allowed": true, "upsell_ids": [], "cross_sell_ids": [], "parent_id": 0, "purchase_note": "",
+      "categories": [{"id": 12, "name": "Mesas", "slug": "mesas"}],
+      "tags": [{"id": 30, "name": "roble", "slug": "roble"}, {"id": 31, "name": "auxiliar", "slug": "auxiliar"}],
+      "brands": [{"id": 9, "name": "Nordika", "slug": "nordika"}],
+      "images": [
+        {"id": 401, "src": "https://tienda.test/wp-content/uploads/2025/02/mesa-1.jpg", "name": "mesa-1", "alt": "Mesa auxiliar de roble"},
+        {"id": 402, "src": "https://tienda.test/wp-content/uploads/2025/02/mesa-2.jpg", "name": "mesa-2", "alt": ""}
+      ],
+      "attributes": [], "variations": [], "menu_order": 0, "related_ids": [], "meta_data": []
+    },
+    {
+      "id": 102, "name": "Silla de nogal", "slug": "silla-de-nogal", "permalink": "https://tienda.test/producto/silla-de-nogal/",
+      "date_created": "2025-02-12T11:00:00", "date_created_gmt": "2025-02-12T10:00:00", "date_modified": "2026-10-01T10:00:00", "date_modified_gmt": "2026-10-01T08:00:00",
+      "type": "variable", "status": "publish", "featured": false, "catalog_visibility": "visible",
+      "description": "<p>Silla de nogal en tres tamaños.</p>", "short_description": "", "sku": "SILLA-NOGAL", "global_unique_id": "",
+      "price": "50.00", "regular_price": "", "sale_price": "", "date_on_sale_from": null, "date_on_sale_from_gmt": null, "date_on_sale_to": null, "date_on_sale_to_gmt": null,
+      "on_sale": true, "purchasable": true, "virtual": false, "downloadable": false, "downloads": [], "download_limit": -1, "download_expiry": -1, "external_url": "", "button_text": "",
+      "tax_status": "taxable", "tax_class": "", "manage_stock": false, "stock_quantity": null, "backorders": "no", "stock_status": "instock", "sold_individually": false,
+      "weight": "5.2", "dimensions": {"length": "45", "width": "45", "height": "90"}, "shipping_class": "", "reviews_allowed": true, "upsell_ids": [], "cross_sell_ids": [],
+      "parent_id": 0, "purchase_note": "", "categories": [{"id": 13, "name": "Sillas", "slug": "sillas"}], "tags": [], "brands": [],
+      "images": [{"id": 404, "src": "https://tienda.test/wp-content/uploads/2025/03/silla-1.jpg", "name": "silla-1", "alt": "Silla de nogal"}],
+      "attributes": [
+        {"id": 1, "name": "Tamaño", "slug": "pa_tamano", "position": 0, "visible": true, "variation": true, "options": ["Pequeña", "Mediana", "Grande"]},
+        {"id": 2, "name": "Acabado", "slug": "pa_acabado", "position": 1, "visible": true, "variation": false, "options": ["Natural"]}
+      ],
+      "variations": [201, 202, 203], "menu_order": 0, "related_ids": [], "meta_data": []
+    },
+    {
+      "id": 103, "name": "Manual de cuidados", "slug": "manual-de-cuidados", "permalink": "https://tienda.test/producto/manual-de-cuidados/",
+      "date_created": "2025-02-12T11:00:00", "date_created_gmt": "2025-02-12T10:00:00", "date_modified": "2026-10-01T10:00:00", "date_modified_gmt": "2026-10-01T08:00:00",
+      "type": "simple", "status": "publish", "featured": false, "catalog_visibility": "visible", "description": "", "short_description": "", "sku": "MANUAL-PDF",
+      "price": "9.99", "regular_price": "9.99", "sale_price": "", "on_sale": false, "virtual": true, "downloadable": true,
+      "downloads": [{"id": "d1", "name": "Manual PDF", "file": "https://tienda.test/wp-content/uploads/woocommerce_uploads/manual.pdf"}],
+      "download_limit": -1, "download_expiry": -1, "tax_status": "taxable", "tax_class": "", "manage_stock": false, "stock_quantity": null, "backorders": "no", "stock_status": "instock",
+      "weight": "", "dimensions": {"length": "", "width": "", "height": ""}, "reviews_allowed": false, "upsell_ids": [], "cross_sell_ids": [],
+      "categories": [{"id": 13, "name": "Sillas", "slug": "sillas"}], "tags": [], "brands": [], "images": [], "attributes": [], "variations": [], "menu_order": 0, "related_ids": [], "meta_data": []
+    },
+    {
+      "id": 104, "name": "Estantería en oferta", "slug": "estanteria-en-oferta", "permalink": "https://tienda.test/producto/estanteria-en-oferta/",
+      "date_created": "2025-02-12T11:00:00", "date_created_gmt": "2025-02-12T10:00:00", "date_modified": "2026-10-01T10:00:00", "date_modified_gmt": "2026-10-01T08:00:00",
+      "type": "simple", "status": "publish", "featured": false, "catalog_visibility": "visible", "description": "", "short_description": "", "sku": "ESTANTE-OF",
+      "price": "79.00", "regular_price": "99.00", "sale_price": "79.00", "date_on_sale_from": null, "date_on_sale_from_gmt": null, "date_on_sale_to": null, "date_on_sale_to_gmt": null,
+      "on_sale": true, "virtual": false, "downloadable": false, "downloads": [], "download_limit": -1, "download_expiry": -1, "tax_status": "taxable", "tax_class": "",
+      "manage_stock": true, "stock_quantity": 3, "backorders": "no", "stock_status": "instock", "weight": "12", "dimensions": {"length": "", "width": "", "height": ""},
+      "reviews_allowed": false, "upsell_ids": [101], "cross_sell_ids": [], "categories": [{"id": 13, "name": "Sillas", "slug": "sillas"}], "tags": [], "brands": [], "images": [],
+      "attributes": [], "variations": [], "menu_order": 0, "related_ids": [102], "meta_data": []
+    },
+    {
+      "id": 105, "name": "Banco sin existencias", "slug": "banco-sin-existencias", "permalink": "https://tienda.test/producto/banco-sin-existencias/",
+      "date_created": "2025-02-12T11:00:00", "date_created_gmt": "2025-02-12T10:00:00", "date_modified": "2026-10-01T10:00:00", "date_modified_gmt": "2026-10-01T08:00:00",
+      "type": "simple", "status": "publish", "featured": false, "catalog_visibility": "visible", "description": "", "short_description": "", "sku": "BANCO-S",
+      "price": "150.00", "regular_price": "150.00", "sale_price": "", "on_sale": false, "virtual": false, "downloadable": false, "downloads": [], "tax_status": "taxable", "tax_class": "",
+      "manage_stock": true, "stock_quantity": 0, "backorders": "no", "stock_status": "outofstock", "weight": "", "dimensions": {"length": "", "width": "", "height": ""},
+      "reviews_allowed": false, "upsell_ids": [], "cross_sell_ids": [], "categories": [{"id": 13, "name": "Sillas", "slug": "sillas"}], "tags": [], "brands": [], "images": [],
+      "attributes": [], "variations": [], "menu_order": 0, "related_ids": [], "meta_data": []
+    },
+    {
+      "id": 106, "name": "Lámpara (borrador)", "slug": "lampara-borrador", "permalink": "https://tienda.test/?post_type=product&p=106",
+      "date_created": "2025-02-12T11:00:00", "date_created_gmt": "2025-02-12T10:00:00", "date_modified": "2026-10-01T10:00:00", "date_modified_gmt": "2026-10-01T08:00:00",
+      "type": "simple", "status": "draft", "featured": false, "catalog_visibility": "visible", "description": "", "short_description": "", "sku": "LAMP-B",
+      "price": "45.00", "regular_price": "45.00", "sale_price": "", "on_sale": false, "virtual": false, "downloadable": false, "downloads": [], "tax_status": "taxable", "tax_class": "",
+      "manage_stock": false, "stock_quantity": null, "backorders": "no", "stock_status": "instock", "weight": "", "dimensions": {"length": "", "width": "", "height": ""},
+      "reviews_allowed": false, "upsell_ids": [], "cross_sell_ids": [], "categories": [{"id": 14, "name": "Iluminación", "slug": "iluminacion"}], "tags": [], "brands": [], "images": [],
+      "attributes": [], "variations": [], "menu_order": 0, "related_ids": [], "meta_data": []
+    }
+  ],
+  "/wp-json/wc/v3/products/102/variations": [
+    {
+      "id": 201, "status": "publish", "sku": "SILLA-NOGAL-P", "global_unique_id": "", "price": "50.00", "regular_price": "50.00", "sale_price": "",
+      "date_on_sale_from": null, "date_on_sale_from_gmt": null, "date_on_sale_to": null, "date_on_sale_to_gmt": null, "manage_stock": true, "stock_quantity": 9, "weight": "",
+      "image": {"id": 403, "src": "https://tienda.test/wp-content/uploads/2025/03/silla-p.jpg", "name": "silla-p", "alt": ""},
+      "attributes": [{"id": 1, "name": "Tamaño", "option": "Pequeña"}], "menu_order": 0
+    },
+    {
+      "id": 202, "status": "publish", "sku": "SILLA-NOGAL-M", "global_unique_id": "", "price": "60.00", "regular_price": "60.00", "sale_price": "",
+      "date_on_sale_from": null, "date_on_sale_from_gmt": null, "date_on_sale_to": null, "date_on_sale_to_gmt": null, "manage_stock": true, "stock_quantity": 5, "weight": "",
+      "image": {"id": 0, "src": "https://tienda.test/wp-content/uploads/woocommerce-placeholder.png", "name": "Placeholder", "alt": "Placeholder"},
+      "attributes": [{"id": 1, "name": "Tamaño", "option": "Mediana"}], "menu_order": 1
+    },
+    {
+      "id": 203, "status": "publish", "sku": "SILLA-NOGAL-G", "global_unique_id": "", "price": "63.00", "regular_price": "70.00", "sale_price": "63.00",
+      "date_on_sale_from": null, "date_on_sale_from_gmt": null, "date_on_sale_to": null, "date_on_sale_to_gmt": null, "manage_stock": true, "stock_quantity": 2, "weight": "9",
+      "image": {"id": 0, "src": "https://tienda.test/wp-content/uploads/woocommerce-placeholder.png", "name": "Placeholder", "alt": "Placeholder"},
+      "attributes": [{"id": 1, "name": "Tamaño", "option": "Grande"}], "menu_order": 2
+    }
+  ],
+  "/wp-json/wc/v3/products/attributes": [
+    {"id": 1, "name": "Tamaño", "slug": "pa_tamano", "type": "select", "order_by": "menu_order", "has_archives": false},
+    {"id": 2, "name": "Acabado", "slug": "pa_acabado", "type": "select", "order_by": "menu_order", "has_archives": false}
+  ],
+  "/wp-json/wc/v3/products/attributes/1/terms": [
+    {"id": 21, "name": "Pequeña", "slug": "pequena", "menu_order": 0, "count": 1},
+    {"id": 22, "name": "Mediana", "slug": "mediana", "menu_order": 0, "count": 1},
+    {"id": 23, "name": "Grande", "slug": "grande", "menu_order": 0, "count": 1}
+  ],
+  "/wp-json/wc/v3/products/attributes/2/terms": [
+    {"id": 25, "name": "Natural", "slug": "natural", "menu_order": 0, "count": 1},
+    {"id": 26, "name": "Barnizado", "slug": "barnizado", "menu_order": 0, "count": 0}
+  ],
+  "/wp-json/wc/v3/products/categories": [
+    {"id": 2, "name": "Muebles", "slug": "muebles", "parent": 0, "description": "<p>Muebles</p>", "display": "default", "image": null, "menu_order": 0, "count": 4},
+    {"id": 12, "name": "Mesas", "slug": "mesas", "parent": 2, "description": "<p>Mesas</p>", "display": "default", "image": null, "menu_order": 1, "count": 1},
+    {"id": 13, "name": "Sillas", "slug": "sillas", "parent": 2, "description": "<p>Sillas</p>", "display": "default", "image": null, "menu_order": 0, "count": 4},
+    {"id": 14, "name": "Iluminación", "slug": "iluminacion", "parent": 0, "description": "", "display": "default", "image": null, "menu_order": 0, "count": 1}
+  ],
+  "/wp-json/wc/v3/products/brands": [
+    {"id": 9, "name": "Nordika", "slug": "nordika", "parent": 0, "description": "<p>Madera con certificado.</p>", "image": {"id": 410, "src": "https://tienda.test/wp-content/uploads/2026/01/logo.png", "alt": ""}, "menu_order": 0, "count": 1}
+  ],
+  "/wp-json/wc/store/v1/products/categories": [
+    {"id": 2, "name": "Muebles", "slug": "muebles", "parent": 0, "description": "<p>Muebles</p>", "permalink": "https://tienda.test/categoria/muebles/", "count": 4, "image": null},
+    {"id": 12, "name": "Mesas", "slug": "mesas", "parent": 2, "description": "<p>Mesas</p>", "permalink": "https://tienda.test/categoria/muebles/mesas/", "count": 1, "image": null},
+    {"id": 13, "name": "Sillas", "slug": "sillas", "parent": 2, "description": "<p>Sillas</p>", "permalink": "https://tienda.test/categoria/muebles/sillas/", "count": 4, "image": null},
+    {"id": 14, "name": "Iluminación", "slug": "iluminacion", "parent": 0, "description": "", "permalink": "https://tienda.test/categoria/iluminacion/", "count": 1, "image": null}
+  ]
+}

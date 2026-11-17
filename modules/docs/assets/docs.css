@@ -1,0 +1,46 @@
+/*
+ * AIFEC — estilos de la documentación. Solo usan las variables del tema (--surface, --ink, --line, --accent…): valen con cualquier tema.
+ * Autor: Ecom Experts · 2026 · Ver LICENSE.md
+ */
+.af-docs{display:grid;gap:1.5rem;align-items:start}
+.af-docs-side,.af-docs-body,.af-docs-toc{min-width:0}
+.af-docs-menu{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+.af-docs-menu>summary{display:flex;align-items:center;min-height:44px;padding:.5rem 1rem;font-weight:700;cursor:pointer}
+.af-docs-menu>*:not(summary){margin:0 1rem 1rem}
+.af-docs-search{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 1rem}
+.af-docs-search .af-input{flex:1 1 10rem;min-width:0}
+.af-docs-group{margin:0 0 1.1rem}
+.af-docs-group-title{margin:0 0 .35rem;color:var(--muted);font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.af-docs-list{margin:0;padding:0;list-style:none}
+.af-docs-list a{display:block;min-height:36px;padding:.35rem .6rem;border-radius:calc(var(--radius) - 2px);color:var(--ink);text-decoration:none}
+.af-docs-list a:hover{background:var(--surface-2)}
+.af-docs-list a[aria-current="page"]{background:var(--accent-soft);font-weight:700}
+.af-docs-prose{max-width:none}
+.af-docs-table{max-width:100%;margin:1rem 0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.af-docs-table table{margin:0;min-width:100%}
+.af-docs-table thead th{position:sticky;top:0;z-index:1;background:var(--surface)}
+.af-docs-prose img{display:block;max-width:100%;height:auto;margin:1rem 0;border:1px solid var(--line);border-radius:var(--radius)}
+.af-docs-pending{display:inline-block;color:var(--muted);font-size:.85rem;font-style:italic}
+.af-docs-subtitle{margin:.75rem 0 .25rem;color:var(--muted);font-size:.75rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+.af-docs-sub{margin:.5rem 0}
+.af-docs-sub>summary{display:flex;align-items:center;gap:.35rem;min-height:36px;padding:.35rem .6rem;color:var(--muted);font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer}
+.af-docs-prose pre{max-width:100%}
+.af-docs-prose code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em}
+.af-docs-prose :not(pre)>code{padding:.1em .35em;border-radius:4px;background:var(--surface-2)}
+.af-docs-prose h2,.af-docs-prose h3{scroll-margin-top:calc(var(--header-h) + 1rem)}
+.af-docs-pager{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.75rem;margin:2rem 0 1rem}
+.af-docs-pager a{display:block;flex:1 1 12rem;min-height:44px;padding:.7rem 1rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);color:var(--ink);text-decoration:none}
+.af-docs-pager a:hover{border-color:var(--ink)}
+.af-docs-next{text-align:right}
+.af-docs-toc{font-size:.9rem}
+.af-docs-index{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));margin-top:1.5rem}
+.af-docs-results{display:grid;gap:1.1rem;margin:1rem 0 0;padding:0;list-style:none}
+.af-docs-result-title{font-size:1.1rem;font-weight:700}
+.af-docs-snippet{margin:.25rem 0 0;color:var(--muted)}
+.af-docs-snippet mark{padding:0 .15em;border-radius:3px;background:var(--accent-soft);color:var(--ink)}
+@media (min-width:900px){
+  .af-docs{grid-template-columns:15rem minmax(0,1fr)}
+  .af-docs:has(.af-docs-toc){grid-template-columns:15rem minmax(0,1fr) 13rem}
+  .af-docs-side,.af-docs-toc{position:sticky;top:calc(var(--header-h) + 1rem);max-height:calc(100vh - var(--header-h) - 2rem);overflow-y:auto}
+  .af-docs-menu>summary{pointer-events:none}
+}

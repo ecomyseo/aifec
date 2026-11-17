@@ -1,0 +1,391 @@
+[
+    {
+        "code": "inicio",
+        "title": "Inicio",
+        "home": true,
+        "meta_title": "Métrica: ferretería por medida y por trabajo",
+        "meta_description": "Tienda de demostración de ferretería: tornillería por métrica y largo, herramienta manual y eléctrica. Todos los datos son inventados.",
+        "blocks": [
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Cómo se lee una medida"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Un tornillo se pide con dos números. <strong>M6 × 40</strong> quiere decir rosca métrica de 6 mm de diámetro y 40 mm de largo, medidos por debajo de la cabeza. La tuerca y la arandela se piden por la misma métrica que el tornillo."
+                }
+            },
+            {
+                "type": "table",
+                "attrs": {
+                    "head": [
+                        "Métrica",
+                        "Diámetro de la rosca",
+                        "Agujero para que pase",
+                        "Llave (DIN 933)"
+                    ],
+                    "rows": [
+                        [
+                            "M4",
+                            "4 mm",
+                            "4,5 mm",
+                            "7 mm"
+                        ],
+                        [
+                            "M5",
+                            "5 mm",
+                            "5,5 mm",
+                            "8 mm"
+                        ],
+                        [
+                            "M6",
+                            "6 mm",
+                            "6,6 mm",
+                            "10 mm"
+                        ],
+                        [
+                            "M8",
+                            "8 mm",
+                            "9 mm",
+                            "13 mm"
+                        ],
+                        [
+                            "M10",
+                            "10 mm",
+                            "11 mm",
+                            "17 mm"
+                        ]
+                    ]
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Cómo servimos"
+                }
+            },
+            {
+                "type": "columns",
+                "children": [
+                    {
+                        "type": "column",
+                        "children": [
+                            {
+                                "type": "heading",
+                                "attrs": {
+                                    "level": 3,
+                                    "html": "Sale el mismo día"
+                                }
+                            },
+                            {
+                                "type": "paragraph",
+                                "attrs": {
+                                    "html": "Los pedidos hechos antes de las 14:00 salen esa tarde. Envío gratis a partir de 60 € en la Península."
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "column",
+                        "children": [
+                            {
+                                "type": "heading",
+                                "attrs": {
+                                    "level": 3,
+                                    "html": "Por cajas o por unidad"
+                                }
+                            },
+                            {
+                                "type": "paragraph",
+                                "attrs": {
+                                    "html": "La tornillería va en cajas de una sola medida; la herramienta y los soportes, por unidad."
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "column",
+                        "children": [
+                            {
+                                "type": "heading",
+                                "attrs": {
+                                    "level": 3,
+                                    "html": "Devolución en 30 días"
+                                }
+                            },
+                            {
+                                "type": "paragraph",
+                                "attrs": {
+                                    "html": "Si la medida no era la que necesitabas, la cambias o la devuelves sin dar explicaciones."
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "<em>Esta es una tienda de demostración: los productos, los precios, las marcas y las opiniones son de ejemplo.</em>"
+                }
+            }
+        ]
+    },
+    {
+        "code": "sobre-nosotros",
+        "title": "Sobre la tienda",
+        "excerpt": "Qué es Métrica y cómo está ordenada.",
+        "meta_title": "Sobre Métrica",
+        "meta_description": "Métrica es una ferretería de demostración ordenada por medida y por trabajo. Todos los datos son inventados.",
+        "blocks": [
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 1,
+                    "html": "Sobre la tienda"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Métrica es una ferretería <strong>de demostración</strong>: no existe, no vende nada y todos sus productos, marcas y opiniones son inventados. Sirve para probar cómo queda una ferretería montada con AIFEC."
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Dos maneras de pedir"
+                }
+            },
+            {
+                "type": "list",
+                "attrs": {
+                    "ordered": false,
+                    "items": [
+                        {
+                            "html": "<strong>Por medida:</strong> la tornillería se elige por su métrica y su largo, como en el mostrador. Cada medida tiene su referencia, sus existencias y su precio."
+                        },
+                        {
+                            "html": "<strong>Por trabajo:</strong> colgar, fijar, cortar, atornillar o medir. Cada trabajo reúne su lista de material."
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Los datos de esta demostración"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Marcas, precios, referencias, códigos de barras, teléfonos y opiniones son de ejemplo. Puedes añadir productos al carrito y pagar con la forma de pago de prueba: no se cobra nada y no sale ningún correo."
+                }
+            }
+        ]
+    },
+    {
+        "code": "envios-y-devoluciones",
+        "title": "Envíos y devoluciones",
+        "excerpt": "Plazos, tarifas y cómo devolver un pedido.",
+        "meta_title": "Envíos y devoluciones | Métrica",
+        "meta_description": "Tarifas de envío por peso a Península, Baleares y Canarias, envío gratis desde 60 € y devolución en 30 días.",
+        "blocks": [
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 1,
+                    "html": "Envíos y devoluciones"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "<em>Información de ejemplo de una tienda de demostración.</em>"
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Envío estándar"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Los pedidos hechos antes de las 14:00 salen el mismo día y llegan en uno o dos días laborables. El envío es gratis a partir de 60 € en la Península."
+                }
+            },
+            {
+                "type": "table",
+                "attrs": {
+                    "head": [
+                        "Peso del pedido",
+                        "Península",
+                        "Baleares",
+                        "Canarias"
+                    ],
+                    "rows": [
+                        [
+                            "Hasta 2 kg",
+                            "4,50 €",
+                            "7,50 €",
+                            "13,50 €"
+                        ],
+                        [
+                            "De 2 a 10 kg",
+                            "5,90 €",
+                            "9,90 €",
+                            "18,90 €"
+                        ],
+                        [
+                            "Más de 10 kg",
+                            "8,90 €",
+                            "14,90 €",
+                            "27,90 €"
+                        ]
+                    ]
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Recogida en el mostrador"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Sin coste. El pedido está preparado en 24 horas."
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Devoluciones"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Tienes 30 días para devolver un producto sin usar y en su caja. Las cajas de tornillería se devuelven completas."
+                }
+            }
+        ]
+    },
+    {
+        "code": "contacto",
+        "title": "Contacto",
+        "excerpt": "Escríbenos para cualquier duda sobre medidas, pedidos o devoluciones.",
+        "meta_title": "Contacto | Métrica",
+        "meta_description": "Formulario de contacto de la tienda de demostración Métrica.",
+        "blocks": [
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 1,
+                    "html": "Contacto"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Dinos la medida o el trabajo y te ayudamos a elegir. Es una tienda de demostración: el mensaje no se envía a nadie."
+                }
+            },
+            {
+                "type": "form",
+                "attrs": {
+                    "form_id": "contact"
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Otros datos"
+                }
+            },
+            {
+                "type": "list",
+                "attrs": {
+                    "ordered": false,
+                    "items": [
+                        {
+                            "html": "Correo: tienda@ejemplo.test"
+                        },
+                        {
+                            "html": "Dirección: Calle Mayor 1 (dirección de ejemplo)"
+                        },
+                        {
+                            "html": "Horario: lunes a viernes, de 8 a 18 horas"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "code": "aviso-legal",
+        "title": "Aviso legal",
+        "excerpt": "Texto de ejemplo.",
+        "blocks": [
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 1,
+                    "html": "Aviso legal"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "<em>Texto de ejemplo.</em> Esta tienda es una demostración. Titular ficticio: Ferretería Métrica, S. L., Calle Mayor 1, correo tienda@ejemplo.test. Ninguno de estos datos corresponde a una empresa real."
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Los productos, los precios y las valoraciones son inventados y no constituyen una oferta. No se cobra ningún pedido hecho en esta tienda."
+                }
+            }
+        ]
+    },
+    {
+        "code": "privacidad",
+        "title": "Política de privacidad",
+        "excerpt": "Texto de ejemplo.",
+        "blocks": [
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 1,
+                    "html": "Política de privacidad"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "<em>Texto de ejemplo.</em> En esta tienda de demostración no se envían correos ni se conservan los datos que escribas más allá de la limpieza nocturna, en la que la tienda vuelve a su estado original."
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Si montas una tienda real a partir de esta, sustituye este texto por el de tu política de privacidad."
+                }
+            }
+        ]
+    }
+]

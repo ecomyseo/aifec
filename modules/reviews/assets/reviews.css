@@ -1,0 +1,43 @@
+/* AIFEC reviews: compact section. Theme variables only. Ecom Experts, 2026. */
+.af-rv-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem 1.5rem;margin-bottom:.5rem}
+.af-rv-sum{display:flex;flex:1 1 100%;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0}
+.af-rv-bars{display:grid;gap:.15rem;width:16rem;max-width:100%;margin:0;padding:0;list-style:none;font-size:.8rem}
+.af-rv-bars li{display:flex;align-items:center;gap:.5rem}
+.af-rv-bars li span:first-child{flex:0 0 4.5rem}
+.af-rv-bars progress{flex:1;min-width:0;height:.5rem;accent-color:var(--star)}
+.af-rv-bars-d{display:none}
+.af-rv-dist{flex:1 1 100%}
+.af-rv-dist summary{display:flex;align-items:center;min-height:44px;cursor:pointer}
+.af-rv-write{flex:1 1 100%}
+.af-rv-write>summary{display:flex;align-items:center;justify-content:center;min-height:44px;padding:.5rem 1.25rem;border:1px solid var(--accent);border-radius:var(--radius);background:var(--accent);color:var(--accent-ink);font-weight:600;cursor:pointer;list-style:none}
+.af-rv-write>summary::-webkit-details-marker{display:none}
+.af-rv-write[open]{order:9}
+.af-rv-write[open]>summary{border-color:var(--line);background:none;color:var(--ink)}
+.af-rv-form{display:grid;gap:.75rem;margin-top:.75rem}
+.af-rv-form .af-field{margin:0}
+.af-rv-pair{display:grid;gap:.75rem}
+.af-rv-rate{margin:0;padding:0;border:0}
+.af-rv-rate legend{padding:0;font-weight:600}
+.af-rv-stars{display:flex}
+.af-rv-star{position:relative}
+.af-rv-star input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.af-rv-star label{display:block;min-width:44px;min-height:44px;font-size:1.75rem;line-height:44px;text-align:center;color:var(--line)}
+.af-rv-star input:checked+label{color:var(--star)}
+.af-rv-star:has(input:checked) label,.af-rv-star:has(~ .af-rv-star input:checked) label,.af-rv-star:hover label,.af-rv-star:has(~ .af-rv-star:hover) label{color:var(--star)}
+.af-rv-star input:focus-visible+label{outline:2px solid var(--accent);outline-offset:-2px;border-radius:var(--radius)}
+.af-rv-list{margin:0;padding:0;list-style:none}
+.af-rv-item{padding:.8rem 0;border-top:1px solid var(--line);overflow-wrap:anywhere}
+.af-rv-item p{margin:0 0 .25rem}
+.af-rv-m{font-size:.85rem;color:var(--muted)}
+.af-rv-ok{color:var(--ok);font-weight:600}
+.af-rv-clamp.is-clamped{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;line-clamp:4;overflow:hidden}
+.af-rv-more{min-height:44px;padding:0;border:0;background:none;color:var(--accent);font:inherit;font-weight:600;cursor:pointer}
+.af-rv-reply{margin:.4rem 0 0 1rem;padding-left:.75rem;border-left:2px solid var(--line);font-size:.85rem}
+@media (min-width:48em){
+.af-rv-sum{flex:1 1 12rem}
+.af-rv-bars-d{display:grid}
+.af-rv-dist{display:none}
+.af-rv-write,.af-rv-write[open]{flex:0 0 auto}
+.af-rv-write[open]{flex:1 1 100%}
+}
+@media (min-width:40em){.af-rv-pair{grid-template-columns:1fr 1fr}}

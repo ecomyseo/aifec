@@ -1,0 +1,52 @@
+[
+    {
+        "code": "chaquetas",
+        "name": "Chaquetas",
+        "position": 0,
+        "description": "<p>La chaqueta corta de paño camel, a la cintura y con dos bolsillos de parche, en seis versiones: sin forro, forrada, con cachemir, de corte amplio y con patrones para otras estaturas y tallas.</p>",
+        "meta_title": "Chaquetas | Sarga & Tilo",
+        "meta_description": "La chaqueta corta de paño camel, a la cintura y con dos bolsillos de parche, en seis versiones: sin forro, forrada, con cachemir, de corte amplio y con patrones para otras estaturas y tallas."
+    },
+    {
+        "code": "pantalones",
+        "name": "Pantalones",
+        "position": 1,
+        "description": "<p>El pantalón ancho azul marino de tiro alto, con pinzas y raya marcada, en sarga o en lana fría y con tres largos de pierna.</p>",
+        "meta_title": "Pantalones | Sarga & Tilo",
+        "meta_description": "El pantalón ancho azul marino de tiro alto, con pinzas y raya marcada, en sarga o en lana fría y con tres largos de pierna."
+    },
+    {
+        "code": "bolsos",
+        "name": "Bolsos",
+        "position": 2,
+        "description": "<p>El bolso de hombro de piel burdeos con herraje dorado, en tres tamaños y con asa corta o larga.</p>",
+        "meta_title": "Bolsos | Sarga & Tilo",
+        "meta_description": "El bolso de hombro de piel burdeos con herraje dorado, en tres tamaños y con asa corta o larga."
+    },
+    {
+        "code": "a-tu-medida",
+        "name": "A tu medida",
+        "position": 3,
+        "description": "<p>Los mismos diseños con otro patrón: chaquetas para estaturas de hasta 1,60 m y para las tallas de la 46 a la 54, y pantalones con 76 y 84 cm de entrepierna.</p>",
+        "meta_title": "A tu medida | Sarga & Tilo",
+        "meta_description": "Los mismos diseños con otro patrón: chaquetas para estaturas de hasta 1,60 m y para las tallas de la 46 a la 54, y pantalones con 76 y 84 cm de entrepierna."
+    },
+    {
+        "code": "chaquetas-por-talla",
+        "name": "Chaquetas por talla",
+        "parent": "a-tu-medida",
+        "position": 0,
+        "description": "<p>La chaqueta corta camel con patrón de talla corta y con patrón propio para las tallas de la 46 a la 54.</p>",
+        "meta_title": "Chaquetas por talla | Sarga & Tilo",
+        "meta_description": "La chaqueta corta camel con patrón de talla corta y con patrón propio para las tallas de la 46 a la 54."
+    },
+    {
+        "code": "pantalones-por-largo",
+        "name": "Pantalones por largo",
+        "parent": "a-tu-medida",
+        "position": 1,
+        "description": "<p>El pantalón ancho de tiro alto con la pierna más corta, de 76 cm, y más larga, de 84 cm.</p>",
+        "meta_title": "Pantalones por largo | Sarga & Tilo",
+        "meta_description": "El pantalón ancho de tiro alto con la pierna más corta, de 76 cm, y más larga, de 84 cm."
+    }
+]

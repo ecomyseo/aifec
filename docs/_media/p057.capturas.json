@@ -1,0 +1,21 @@
+[
+    {"nombre": "contenido-paginas-listado", "ruta": "/admin/r/pages", "panel": true, "movil": false},
+    {"nombre": "contenido-pagina-editor", "ruta": "/admin/r/pages/1", "panel": true, "movil": false, "acciones": [["wait", 900]]},
+    {"nombre": "contenido-medios", "ruta": "/admin/media", "panel": true, "movil": false},
+    {"nombre": "contenido-menus", "ruta": "/admin/cms/menus", "panel": true, "movil": false},
+    {"nombre": "contenido-menu-editar", "ruta": "/admin/cms/menus/main", "panel": true, "movil": false},
+    {"nombre": "contenido-portada", "ruta": "/admin/themes/home", "panel": true, "movil": false},
+    {"nombre": "contenido-temas", "ruta": "/admin/themes", "panel": true, "movil": false},
+    {"nombre": "contenido-personalizar", "ruta": "/admin/themes/customise/base", "panel": true, "movil": false, "acciones": [["wait", 1500]]},
+    {"nombre": "contenido-plugins", "ruta": "/admin/plugins", "panel": true, "movil": false},
+    {"nombre": "contenido-seo-auditoria", "ruta": "/admin/seo/audit", "panel": true, "movil": false},
+    {"nombre": "ia-ajustes", "ruta": "/admin/settings/ai", "panel": true, "movil": false},
+    {"nombre": "ia-ficha-producto", "ruta": "/admin/r/products/1", "panel": true, "movil": false, "acciones": [["click", "[data-af-tab=\"pdseo\"]"], ["wait", 300]]},
+    {"nombre": "ia-uso", "ruta": "/admin/ai/usage", "panel": true, "movil": false},
+    {"nombre": "ia-asistente-ajustes", "ruta": "/admin/settings/assistant", "panel": true, "movil": false},
+    {"nombre": "ia-producto-pagina", "ruta": "/producto/silla-ergo-pro", "panel": false, "movil": false},
+    {"nombre": "ia-seo-robots", "ruta": "/admin/settings/seo", "panel": true, "movil": false, "acciones": [["click", "[data-af-tab=\"seobots\"]"], ["wait", 300]]},
+    {"nombre": "ia-robots-panel", "ruta": "/admin/semantic/bots", "panel": true, "movil": false},
+    {"nombre": "ia-auditoria", "ruta": "/admin/semantic/audit", "panel": true, "movil": false},
+    {"nombre": "ia-claves-api", "ruta": "/admin/r/api_keys", "panel": true, "movil": false}
+]

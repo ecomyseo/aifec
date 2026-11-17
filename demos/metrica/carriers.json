@@ -1,0 +1,86 @@
+{
+    "carriers": [
+        {
+            "code": "envio-estandar",
+            "name": "Envío estándar",
+            "delay": "1-2 días laborables",
+            "handler": "rates",
+            "free_from": 6000,
+            "min_days": 1,
+            "max_days": 2,
+            "rates": [
+                {
+                    "zone": "Peninsula",
+                    "basis": "weight",
+                    "min": 0,
+                    "max": 2000,
+                    "price": 450
+                },
+                {
+                    "zone": "Peninsula",
+                    "basis": "weight",
+                    "min": 2001,
+                    "max": 10000,
+                    "price": 590
+                },
+                {
+                    "zone": "Peninsula",
+                    "basis": "weight",
+                    "min": 10001,
+                    "max": 0,
+                    "price": 890
+                },
+                {
+                    "zone": "Balearic Islands",
+                    "basis": "weight",
+                    "min": 0,
+                    "max": 2000,
+                    "price": 750
+                },
+                {
+                    "zone": "Balearic Islands",
+                    "basis": "weight",
+                    "min": 2001,
+                    "max": 10000,
+                    "price": 990
+                },
+                {
+                    "zone": "Balearic Islands",
+                    "basis": "weight",
+                    "min": 10001,
+                    "max": 0,
+                    "price": 1490
+                },
+                {
+                    "zone": "Canary Islands",
+                    "basis": "weight",
+                    "min": 0,
+                    "max": 2000,
+                    "price": 1350
+                },
+                {
+                    "zone": "Canary Islands",
+                    "basis": "weight",
+                    "min": 2001,
+                    "max": 10000,
+                    "price": 1890
+                },
+                {
+                    "zone": "Canary Islands",
+                    "basis": "weight",
+                    "min": 10001,
+                    "max": 0,
+                    "price": 2790
+                }
+            ]
+        },
+        {
+            "code": "recogida-en-mostrador",
+            "name": "Recogida en el mostrador",
+            "delay": "Disponible en 24 horas",
+            "handler": "pickup",
+            "min_days": 1,
+            "max_days": 1
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <title>Mesa de trabajo de pino</title>
+  <rect width="800" height="600" fill="#f2e9f0"/>
+  <rect y="480" width="800" height="120" fill="#e1d2de"/>
+  <rect x="100" y="200" width="600" height="36" rx="8" fill="#d6a45c"/>
+  <rect x="110" y="236" width="580" height="12" fill="#b98943"/>
+  <rect x="130" y="248" width="28" height="230" fill="#b98943"/>
+  <rect x="642" y="248" width="28" height="230" fill="#b98943"/>
+  <rect x="500" y="248" width="142" height="110" rx="6" fill="#c8954b"/>
+  <rect x="512" y="262" width="118" height="38" rx="4" fill="#b98943"/>
+  <rect x="512" y="308" width="118" height="38" rx="4" fill="#b98943"/>
+  <ellipse cx="400" cy="490" rx="310" ry="14" fill="#000000" opacity="0.08"/>
+</svg>

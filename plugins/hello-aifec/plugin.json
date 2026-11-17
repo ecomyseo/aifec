@@ -1,0 +1,19 @@
+{
+    "name": "Hello AIFEC",
+    "version": "1.0.0",
+    "description": "Example plugin: a typed data on the product, its field in the panel, a slot in the product page and a setting",
+    "namespace": "Plugins\\HelloAifec",
+    "essential": false,
+    "default": false,
+    "requires": {
+        "php": ">=7.4",
+        "aifec": ">=1.0.0",
+        "modules": ["catalog"]
+    },
+    "contract": {
+        "hosts": [],
+        "personal_data": [],
+        "tables": ["hello_aifec_made_in"],
+        "capabilities": []
+    }
+}

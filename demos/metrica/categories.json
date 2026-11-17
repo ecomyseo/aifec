@@ -1,0 +1,106 @@
+[
+    {
+        "code": "tornilleria-y-fijacion",
+        "name": "Tornillería y fijación",
+        "description": "Tornillos, tuercas, arandelas, tacos y escuadras, pedidos por su medida: métrica y largo.",
+        "position": 0,
+        "meta_title": "Tornillería y fijación | Métrica",
+        "meta_description": "Tornillos, tuercas, arandelas, tacos y escuadras, pedidos por su medida: métrica y largo."
+    },
+    {
+        "code": "herramienta-manual",
+        "name": "Herramienta manual",
+        "description": "Martillos, destornilladores, serruchos y herramienta de medir para el banco de trabajo y para casa.",
+        "position": 1,
+        "meta_title": "Herramienta manual | Métrica",
+        "meta_description": "Martillos, destornilladores, serruchos y herramienta de medir para el banco de trabajo y para casa."
+    },
+    {
+        "code": "herramienta-electrica",
+        "name": "Herramienta eléctrica",
+        "description": "Taladros, atornilladores, sierras de calar y sus consumibles.",
+        "position": 2,
+        "meta_title": "Herramienta eléctrica | Métrica",
+        "meta_description": "Taladros, atornilladores, sierras de calar y sus consumibles."
+    },
+    {
+        "code": "trabajos",
+        "name": "Trabajos",
+        "description": "El material ordenado por lo que vas a hacer: colgar, fijar, cortar, atornillar o medir.",
+        "position": 3,
+        "meta_title": "Trabajos | Métrica",
+        "meta_description": "El material ordenado por lo que vas a hacer: colgar, fijar, cortar, atornillar o medir."
+    },
+    {
+        "code": "tornillos",
+        "name": "Tornillos",
+        "description": "Tornillos de rosca métrica y tirafondos para madera, por cajas.",
+        "position": 0,
+        "meta_title": "Tornillos | Métrica",
+        "meta_description": "Tornillos de rosca métrica y tirafondos para madera, por cajas.",
+        "parent": "tornilleria-y-fijacion"
+    },
+    {
+        "code": "tuercas-y-arandelas",
+        "name": "Tuercas y arandelas",
+        "description": "Tuercas hexagonales y arandelas planas de la misma métrica que el tornillo.",
+        "position": 1,
+        "meta_title": "Tuercas y arandelas | Métrica",
+        "meta_description": "Tuercas hexagonales y arandelas planas de la misma métrica que el tornillo.",
+        "parent": "tornilleria-y-fijacion"
+    },
+    {
+        "code": "tacos-y-soportes",
+        "name": "Tacos y soportes",
+        "description": "Tacos de expansión con su tornillo y escuadras para baldas.",
+        "position": 2,
+        "meta_title": "Tacos y soportes | Métrica",
+        "meta_description": "Tacos de expansión con su tornillo y escuadras para baldas.",
+        "parent": "tornilleria-y-fijacion"
+    },
+    {
+        "code": "colgar",
+        "name": "Colgar un cuadro o un espejo",
+        "description": "Un taco y un tornillo por cada punto de fijación, y las herramientas para hacer el agujero donde toca.",
+        "position": 0,
+        "meta_title": "Colgar un cuadro o un espejo | Métrica",
+        "meta_description": "Un taco y un tornillo por cada punto de fijación, y las herramientas para hacer el agujero donde toca.",
+        "parent": "trabajos"
+    },
+    {
+        "code": "fijar",
+        "name": "Fijar una estantería",
+        "description": "Escuadras, tacos y tornillos para una balda que no se mueve, y con qué ponerla a nivel.",
+        "position": 1,
+        "meta_title": "Fijar una estantería | Métrica",
+        "meta_description": "Escuadras, tacos y tornillos para una balda que no se mueve, y con qué ponerla a nivel.",
+        "parent": "trabajos"
+    },
+    {
+        "code": "cortar",
+        "name": "Cortar madera y tablero",
+        "description": "Para marcar la medida y cortar recto o en curva: a mano o con máquina.",
+        "position": 2,
+        "meta_title": "Cortar madera y tablero | Métrica",
+        "meta_description": "Para marcar la medida y cortar recto o en curva: a mano o con máquina.",
+        "parent": "trabajos"
+    },
+    {
+        "code": "atornillar",
+        "name": "Atornillar y montar muebles",
+        "description": "Tornillos para madera y con qué apretarlos sin pasarse de apriete.",
+        "position": 3,
+        "meta_title": "Atornillar y montar muebles | Métrica",
+        "meta_description": "Tornillos para madera y con qué apretarlos sin pasarse de apriete.",
+        "parent": "trabajos"
+    },
+    {
+        "code": "medir",
+        "name": "Medir y nivelar",
+        "description": "Lo que hace falta antes de taladrar o cortar: medir bien y comprobar que está a nivel.",
+        "position": 4,
+        "meta_title": "Medir y nivelar | Métrica",
+        "meta_description": "Lo que hace falta antes de taladrar o cortar: medir bien y comprobar que está a nivel.",
+        "parent": "trabajos"
+    }
+]

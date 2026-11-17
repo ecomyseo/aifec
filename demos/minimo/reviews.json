@@ -1,0 +1,5 @@
+[
+    {"sku": "DEMO-SILLA-01", "name": "Ana de Ejemplo", "rating": 5, "title": "Muy cómoda", "text": "Opinión inventada para la demostración: la silla es cómoda y se ve bien."},
+    {"sku": "DEMO-SILLA-01", "name": "Luis de Prueba", "rating": 4, "title": "Buena relación calidad precio", "text": "Opinión inventada para la demostración: llegó bien embalada."},
+    {"sku": "DEMO-MESA-01", "name": "Marta Ficticia", "rating": 5, "title": "Una mesa para años", "text": "Opinión inventada para la demostración: el tablero es grueso y firme."}
+]

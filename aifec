@@ -1,0 +1,26 @@
+<?php
+/**
+ * AIFEC — orden de consola:  php aifec <orden> [argumentos] [--site=id]
+ *
+ * @author    Ecom Experts <ecomyseo@gmail.com>
+ * @copyright 2026 Ecom Experts
+ * @license   Ver LICENSE.md
+ */
+
+declare(strict_types=1);
+
+if (PHP_SAPI !== 'cli') {
+    exit(1);
+}
+
+require __DIR__ . '/core/bootstrap.php';
+
+$aifecData = is_file(__DIR__ . '/data-path.php') ? (string) require __DIR__ . '/data-path.php' : __DIR__ . '/sites';
+foreach ($argv as $aifecIndex => $aifecArg) {
+    if (strpos($aifecArg, '--data=') === 0) {
+        $aifecData = substr($aifecArg, 7);
+        unset($argv[$aifecIndex]);
+    }
+}
+
+exit((new \Aifec\Cli\Console())->run(array_values($argv), __DIR__, $aifecData));

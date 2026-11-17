@@ -1,0 +1,72 @@
+/*
+ * AIFEC — AI-First E-Commerce.
+ *
+ * @author    Ecom Experts <ecomyseo@gmail.com>
+ * @copyright 2026 Ecom Experts
+ * @license   Ver LICENSE.md
+ *
+ * Pantalla del copiloto. Solo lo que no hay ya en el CSS del panel; los colores salen de sus variables.
+ */
+.cp-ask textarea {
+  width: 100%;
+  resize: vertical;
+}
+
+.cp-label {
+  display: block;
+  margin-bottom: var(--s2);
+  font-weight: 600;
+}
+
+.cp-ask-row,
+.cp-actions,
+.cp-choices {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s2);
+  margin-top: var(--s3);
+}
+
+.cp-inline {
+  display: inline-block;
+  margin: 0;
+}
+
+.cp-details {
+  display: grid;
+  gap: var(--s3);
+  margin-top: var(--s3);
+  max-width: 34rem;
+}
+
+.cp-field label {
+  display: block;
+  margin-bottom: var(--s1);
+  font-size: var(--f1);
+}
+
+.cp-field-missing label {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.cp-found {
+  margin: var(--s2) 0 0;
+  padding-left: var(--s4);
+}
+
+.cp-changes td:first-child {
+  overflow-wrap: anywhere;
+}
+
+[data-af-field-pointed] {
+  outline: 2px solid var(--accent, currentColor);
+  outline-offset: 2px;
+}
+
+.cp-pointed {
+  outline: 2px solid var(--accent, currentColor);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}

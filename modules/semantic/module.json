@@ -1,0 +1,1 @@
+{"name":"Semantic","version":"1.0.0","description":"Structured data, text versions, llms.txt and product feeds","essential":false,"default":true,"requires":{"modules":[]},"contract":{"hosts":[],"personal_data":[],"tables":["audit_scores","bot_visits","bot_offsets"],"capabilities":[]}}

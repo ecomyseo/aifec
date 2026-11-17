@@ -1,0 +1,2 @@
+{"name":"Translations","version":"1.0.0","description":"What is missing in each language of the shop and how to translate it, by hand or with AI","essential":false,"default":true,
+ "contract":{"hosts":[],"personal_data":[],"tables":["translation_jobs","translation_proposals"],"capabilities":[]}}

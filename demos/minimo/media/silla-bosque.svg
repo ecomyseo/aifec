@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <title>Silla Bosque</title>
+  <rect width="800" height="600" fill="#dfe9de"/>
+  <rect y="470" width="800" height="130" fill="#c7d6c5"/>
+  <rect x="285" y="90" width="230" height="200" rx="40" fill="#5d7f5a"/>
+  <rect x="300" y="105" width="200" height="170" rx="30" fill="#7da279"/>
+  <rect x="255" y="290" width="290" height="44" rx="12" fill="#4a6b47"/>
+  <rect x="275" y="334" width="24" height="136" rx="6" fill="#3d5a3b"/>
+  <rect x="501" y="334" width="24" height="136" rx="6" fill="#3d5a3b"/>
+  <ellipse cx="400" cy="480" rx="180" ry="14" fill="#000000" opacity="0.08"/>
+</svg>

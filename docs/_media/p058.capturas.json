@@ -1,0 +1,14 @@
+[
+    {"nombre": "temas-listado", "ruta": "/admin/themes", "panel": true, "movil": false},
+    {"nombre": "temas-personalizar", "ruta": "/admin/themes/customise/base", "panel": true, "movil": false},
+    {"nombre": "temas-informe", "ruta": "/admin/themes/base/report", "panel": true, "movil": false},
+    {"nombre": "plugins-listado", "ruta": "/admin/plugins", "panel": true, "movil": false},
+    {"nombre": "plugins-nuevo", "ruta": "/admin/plugins/new", "panel": true, "movil": false},
+    {"nombre": "plugins-ajustes", "ruta": "/admin/settings/hello-aifec", "panel": true, "movil": false},
+    {"nombre": "plugins-recurso", "ruta": "/admin/r/api_keys", "panel": true, "movil": false},
+    {"nombre": "plugins-tareas", "ruta": "/admin/jobs/schedule", "panel": true, "movil": false},
+    {"nombre": "plugins-informe", "ruta": "/admin/plugins/hello-aifec/report", "panel": true, "movil": false},
+    {"nombre": "referencia-ajustes", "ruta": "/admin/settings", "panel": true, "movil": false},
+    {"nombre": "referencia-papeles", "ruta": "/admin/r/roles", "panel": true, "movil": false},
+    {"nombre": "referencia-api", "ruta": "/api", "panel": false, "movil": false}
+]

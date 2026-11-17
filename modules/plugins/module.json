@@ -1,0 +1,1 @@
+{"name":"Plugins","version":"1.0.0","description":"Module and plugin manager with the AIFEC contract validator","essential":false,"default":true,"requires":{"modules":[]},"contract":{"hosts":[],"personal_data":[],"tables":[],"capabilities":[]}}

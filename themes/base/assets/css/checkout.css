@@ -1,0 +1,56 @@
+/*
+ * AIFEC — la caja (tema base). Se carga solo en la página de la caja, encima de theme.css. Sin colores fuera de las
+ * variables del tema, sin hojas importadas ni recursos de fuera.
+ * Autor: Ecom Experts · 2026 · Ver LICENSE.md
+ */
+
+/* ---------- «Rellénalo de una vez» (lo enseña checkout.js; sin JavaScript no se ve) ---------- */
+.af-co-understand{padding:1rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--accent-soft)}
+.af-co-understand>label{display:block;margin-bottom:.15rem;font-weight:700}
+.af-co-understand .af-hint{display:block;margin-bottom:.6rem;color:var(--muted);font-size:.9rem}
+.af-co-understand-row{display:flex;gap:.6rem;align-items:flex-start}
+.af-co-understand-row .af-textarea{flex:1 1 auto;min-width:0;min-height:44px}
+.af-co-understand-row .af-btn{flex:none;min-height:44px}
+.af-co-understand [role="status"]{margin:.6rem 0 0}
+.af-co-understand [role="status"]:empty{display:none}
+.af-co-doubt{color:var(--warn);font-size:.85rem;font-weight:600}
+[data-af-doubt]{border-color:var(--warn)!important;background:var(--warn-soft)}
+
+/* ---------- dirección, desplegables y factura a otros datos (sin JavaScript también) ---------- */
+.af-co-address>.af-field,.af-co-address .af-grid>.af-field{margin-bottom:0}
+.af-co-company summary{display:flex;align-items:center;min-height:44px;font-weight:600;color:var(--accent);cursor:pointer}
+.af-co-company summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--radius)}
+.af-co-company[open] summary{margin-bottom:.5rem}
+.af-co-toggle{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.25rem .6rem}
+.af-co-toggle-input{flex:none;width:1.25rem;height:1.25rem;margin:.75rem 0 0;accent-color:var(--accent)}
+.af-co-toggle>label{display:flex;flex:1 1 0;align-items:center;min-height:44px;cursor:pointer}
+.af-co-toggle-box{display:none;flex:0 0 100%}
+.af-co-toggle-input:checked~.af-co-toggle-box{display:block}
+.af-co-wait{margin:0}
+
+/* ---------- formas de pago: la elegida se despliega con lo suyo ---------- */
+.af-radio-card input:not(:checked)+.af-radio-card-body .af-co-method-detail{display:none}
+
+/* ---------- resumen: miniatura con su cantidad ---------- */
+.af-co-lines{margin:0;padding:0;list-style:none}
+.af-co-line{display:grid;grid-template-columns:3.5rem minmax(0,1fr) auto;gap:.75rem;align-items:center}
+.af-co-thumb{position:relative;display:block;width:3.5rem;height:3.5rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface-2)}
+.af-co-thumb img,.af-co-thumb .af-noimage{display:block;width:100%;height:100%;border-radius:var(--radius);object-fit:contain}
+.af-co-qty{position:absolute;top:-.45rem;right:-.45rem;display:grid;place-items:center;min-width:1.4rem;height:1.4rem;padding:0 .3rem;border-radius:999px;background:var(--ink);color:var(--bg);font-size:.75rem;font-weight:700;line-height:1}
+.af-co-line-name{min-width:0;overflow-wrap:anywhere}
+.af-co-mobile-summary>summary{min-height:44px;cursor:pointer}
+
+/* ---------- el botón de pagar nunca queda tapado por la barra inferior del móvil ---------- */
+.af-co-pay{scroll-margin-bottom:calc(var(--bar-h) + env(safe-area-inset-bottom) + 1rem)}
+.af-co .af-btn{min-height:44px}
+.af-co [data-af-fragment]{transition:opacity .15s}
+.af-co[aria-busy="true"] [data-af-fragment]{opacity:.55}
+[data-af-checkout-submit][aria-busy="true"]{opacity:.7;cursor:progress}
+
+@media (max-width:899px){
+  .af-co-understand-row{flex-direction:column;align-items:stretch}
+  .af-co-understand-row .af-btn{width:100%}
+}
+@media (prefers-reduced-motion:reduce){
+  .af-co [data-af-fragment]{transition:none}
+}

@@ -1,0 +1,1490 @@
+[
+    {
+        "sku": "DEMO-CAFE-001",
+        "name": "Cápsulas Ristretto Brasa · cono clásico · 10 uds",
+        "summary": "<p>Ristretto corto y denso de tueste muy oscuro, con cacao amargo y regaliz. Diez cápsulas de aluminio para cafeteras de cápsula de cono clásico.</p>",
+        "description": "<p>Una mezcla de arábica de Brasil y robusta de la India tostada despacio hasta el borde del oscuro: cuerpo espeso, crema de color avellana y un final largo y seco.</p><p>Pide la taza pequeña de tu cafetera (25 ml). Con un chorro de leche caliente se convierte en un cortado con carácter.</p><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 390,
+        "manage_stock": true,
+        "mpn": "CT-001",
+        "weight": 110,
+        "tax_class": "reduced",
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "categories": [
+            "capsulas",
+            "cafe"
+        ],
+        "attributes": {
+            "cafetera": [
+                "cono-clasico"
+            ],
+            "intensidad": 11,
+            "tueste": "muy-oscuro",
+            "taza": [
+                "ristretto",
+                "espresso"
+            ],
+            "notas": "Cacao amargo, regaliz, nuez tostada",
+            "variedad": "mezcla",
+            "origen": "Brasil e India",
+            "unidades": 10
+        },
+        "facts": [
+            {
+                "label": "Formato",
+                "value": "Caja de 10 cápsulas de aluminio"
+            },
+            {
+                "label": "Café",
+                "value": "Arábica y robusta"
+            },
+            {
+                "label": "Origen",
+                "value": "Brasil e India"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Vale para mi cafetera?",
+                "answer": "Vale para las cafeteras de cono clásico. Si la tuya usa otro tipo de cápsula, elige tu cafetera en la cabecera y la tienda te enseña las suyas."
+            },
+            {
+                "question": "¿Cuánto café lleva cada una?",
+                "answer": "Entre cinco y siete gramos de café molido y envasado al momento, según el formato. El precio por unidad está junto al precio de la caja."
+            }
+        ],
+        "tags": [
+            "cacao-amargo",
+            "capsulas",
+            "muy-oscuro",
+            "regaliz"
+        ],
+        "meta_title": "Cápsulas Ristretto Brasa | Café Tizón",
+        "meta_description": "Ristretto corto y denso de tueste muy oscuro, con cacao amargo y regaliz. Diez cápsulas de aluminio para cafeteras de cápsula de cono clásico.",
+        "images": [
+            {
+                "file": "capsulas-ristretto-brasa.webp",
+                "alt": "Cápsulas Ristretto Brasa"
+            },
+            {
+                "file": "capsulas-ristretto-brasa-detalle.webp",
+                "alt": "Cápsulas Ristretto Brasa, detalle"
+            }
+        ],
+        "featured": true,
+        "gtin": "2990000000019",
+        "stock": 60,
+        "related": [
+            "DEMO-CAFE-002",
+            "DEMO-CAFE-003",
+            "DEMO-CAFE-004"
+        ]
+    },
+    {
+        "sku": "DEMO-CAFE-002",
+        "name": "Cápsulas Lungo Alba · cono clásico · 10 uds",
+        "summary": "<p>Lungo suave de tueste medio, con cereal tostado y miel, para una taza larga sin amargor. Diez cápsulas para cafeteras de cápsula de cono clásico.</p>",
+        "description": "<p>Arábica de Centroamérica de tueste medio, molido un punto más grueso para que aguante el doble de agua sin volverse áspero.</p><p>Es el café de la primera taza del día: limpio, dulce y con un final de cereal. Pide la taza larga (110 ml).</p><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 360,
+        "manage_stock": true,
+        "mpn": "CT-002",
+        "weight": 110,
+        "tax_class": "reduced",
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "categories": [
+            "capsulas",
+            "cafe"
+        ],
+        "attributes": {
+            "cafetera": [
+                "cono-clasico"
+            ],
+            "intensidad": 6,
+            "tueste": "medio",
+            "taza": [
+                "lungo"
+            ],
+            "notas": "Cereal tostado, miel, almendra",
+            "variedad": "arabica",
+            "origen": "Honduras y Guatemala",
+            "unidades": 10
+        },
+        "facts": [
+            {
+                "label": "Formato",
+                "value": "Caja de 10 cápsulas de aluminio"
+            },
+            {
+                "label": "Café",
+                "value": "100 % arábica"
+            },
+            {
+                "label": "Origen",
+                "value": "Honduras y Guatemala"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Vale para mi cafetera?",
+                "answer": "Vale para las cafeteras de cono clásico. Si la tuya usa otro tipo de cápsula, elige tu cafetera en la cabecera y la tienda te enseña las suyas."
+            },
+            {
+                "question": "¿Cuánto café lleva cada una?",
+                "answer": "Entre cinco y siete gramos de café molido y envasado al momento, según el formato. El precio por unidad está junto al precio de la caja."
+            }
+        ],
+        "tags": [
+            "capsulas",
+            "cereal-tostado",
+            "medio",
+            "miel"
+        ],
+        "meta_title": "Cápsulas Lungo Alba | Café Tizón",
+        "meta_description": "Lungo suave de tueste medio, con cereal tostado y miel, para una taza larga sin amargor. Diez cápsulas para cafeteras de cápsula de cono clásico.",
+        "images": [
+            {
+                "file": "capsulas-lungo-alba.webp",
+                "alt": "Cápsulas Lungo Alba"
+            },
+            {
+                "file": "capsulas-lungo-alba-detalle.webp",
+                "alt": "Cápsulas Lungo Alba, detalle"
+            }
+        ],
+        "sale_price": 306,
+        "gtin": "2990000000026",
+        "stock": 48,
+        "related": [
+            "DEMO-CAFE-001",
+            "DEMO-CAFE-003",
+            "DEMO-CAFE-004"
+        ]
+    },
+    {
+        "sku": "DEMO-CAFE-003",
+        "name": "Cápsulas Gran Taza Cobre · cúpula · 10 uds",
+        "summary": "<p>Taza grande de 230 ml con avellana y galleta, para tomar solo o con leche. Cápsulas de cúpula para las cafeteras que las hacen girar.</p>",
+        "description": "<p>La cápsula de cúpula guarda más café que una normal: la cafetera la hace girar y saca una taza grande con una capa de crema alta.</p><p>Tueste medio-oscuro, redondo, que se lleva muy bien con la leche sin perder el sabor del café.</p><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 540,
+        "manage_stock": true,
+        "mpn": "CT-003",
+        "weight": 110,
+        "tax_class": "reduced",
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "categories": [
+            "capsulas",
+            "cafe"
+        ],
+        "attributes": {
+            "cafetera": [
+                "cupula"
+            ],
+            "intensidad": 8,
+            "tueste": "oscuro",
+            "taza": [
+                "lungo",
+                "con-leche"
+            ],
+            "notas": "Avellana, galleta, caramelo",
+            "variedad": "arabica",
+            "origen": "Colombia y Etiopía",
+            "unidades": 10
+        },
+        "facts": [
+            {
+                "label": "Formato",
+                "value": "Caja de 10 cápsulas de cúpula"
+            },
+            {
+                "label": "Café",
+                "value": "100 % arábica"
+            },
+            {
+                "label": "Origen",
+                "value": "Colombia y Etiopía"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Vale para mi cafetera?",
+                "answer": "Vale para las cafeteras de cúpula. Si la tuya usa otro tipo de cápsula, elige tu cafetera en la cabecera y la tienda te enseña las suyas."
+            },
+            {
+                "question": "¿Cuánto café lleva cada una?",
+                "answer": "Entre cinco y siete gramos de café molido y envasado al momento, según el formato. El precio por unidad está junto al precio de la caja."
+            }
+        ],
+        "tags": [
+            "avellana",
+            "capsulas",
+            "galleta",
+            "oscuro"
+        ],
+        "meta_title": "Cápsulas Gran Taza Cobre | Café Tizón",
+        "meta_description": "Taza grande de 230 ml con avellana y galleta, para tomar solo o con leche. Cápsulas de cúpula para las cafeteras que las hacen girar.",
+        "images": [
+            {
+                "file": "capsulas-gran-taza-cobre.webp",
+                "alt": "Cápsulas Gran Taza Cobre"
+            },
+            {
+                "file": "capsulas-gran-taza-cobre-detalle.webp",
+                "alt": "Cápsulas Gran Taza Cobre, detalle"
+            }
+        ],
+        "gtin": "2990000000033",
+        "stock": 36,
+        "related": [
+            "DEMO-CAFE-001",
+            "DEMO-CAFE-002",
+            "DEMO-CAFE-004"
+        ]
+    },
+    {
+        "sku": "DEMO-CAFE-004",
+        "name": "Cápsulas Cortado Canela · vaso ancho · 16 uds",
+        "summary": "<p>Espresso redondo con un toque de canela y caramelo, para cortado o café con leche. Dieciséis cápsulas de vaso ancho.</p>",
+        "description": "<p>Un café de tueste medio que no se esconde bajo la leche: el caramelo aparece al primer sorbo y la canela, al final.</p><p>Prepara el espresso en la marca 2 de tu cafetera y añade la leche que quieras.</p><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 490,
+        "manage_stock": true,
+        "mpn": "CT-004",
+        "weight": 152,
+        "tax_class": "reduced",
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "categories": [
+            "capsulas",
+            "cafe"
+        ],
+        "attributes": {
+            "cafetera": [
+                "vaso-ancho"
+            ],
+            "intensidad": 7,
+            "tueste": "medio",
+            "taza": [
+                "espresso",
+                "con-leche"
+            ],
+            "notas": "Caramelo, canela, galleta",
+            "variedad": "mezcla",
+            "origen": "Brasil y Vietnam",
+            "unidades": 16
+        },
+        "facts": [
+            {
+                "label": "Formato",
+                "value": "Caja de 16 cápsulas"
+            },
+            {
+                "label": "Café",
+                "value": "Arábica y robusta"
+            },
+            {
+                "label": "Origen",
+                "value": "Brasil y Vietnam"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Vale para mi cafetera?",
+                "answer": "Vale para las cafeteras de vaso ancho. Si la tuya usa otro tipo de cápsula, elige tu cafetera en la cabecera y la tienda te enseña las suyas."
+            },
+            {
+                "question": "¿Cuánto café lleva cada una?",
+                "answer": "Entre cinco y siete gramos de café molido y envasado al momento, según el formato. El precio por unidad está junto al precio de la caja."
+            }
+        ],
+        "tags": [
+            "canela",
+            "capsulas",
+            "caramelo",
+            "medio"
+        ],
+        "meta_title": "Cápsulas Cortado Canela | Café Tizón",
+        "meta_description": "Espresso redondo con un toque de canela y caramelo, para cortado o café con leche. Dieciséis cápsulas de vaso ancho.",
+        "images": [
+            {
+                "file": "capsulas-cortado-canela.webp",
+                "alt": "Cápsulas Cortado Canela"
+            },
+            {
+                "file": "capsulas-cortado-canela-detalle.webp",
+                "alt": "Cápsulas Cortado Canela, detalle"
+            }
+        ],
+        "featured": true,
+        "gtin": "2990000000040",
+        "stock": 52,
+        "related": [
+            "DEMO-CAFE-001",
+            "DEMO-CAFE-002",
+            "DEMO-CAFE-003"
+        ]
+    },
+    {
+        "sku": "DEMO-CAFE-005",
+        "name": "Discos Café con Leche Nube · disco · 16 uds",
+        "summary": "<p>Café con leche cremoso de tueste medio con vainilla suave. Dieciséis discos para las cafeteras que leen el disco y ajustan solas el agua.</p>",
+        "description": "<p>Un café de tueste medio pensado para la taza grande con leche: dulce, sin aristas y con una nota de vainilla.</p><p>La cafetera lee el disco y ajusta sola el agua y la temperatura.</p><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 520,
+        "manage_stock": true,
+        "mpn": "CT-005",
+        "weight": 152,
+        "tax_class": "reduced",
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "categories": [
+            "capsulas",
+            "cafe"
+        ],
+        "attributes": {
+            "cafetera": [
+                "disco"
+            ],
+            "intensidad": 6,
+            "tueste": "medio",
+            "taza": [
+                "con-leche"
+            ],
+            "notas": "Vainilla, leche, cereal",
+            "variedad": "mezcla",
+            "origen": "Brasil y Uganda",
+            "unidades": 16
+        },
+        "facts": [
+            {
+                "label": "Formato",
+                "value": "Caja de 16 discos"
+            },
+            {
+                "label": "Café",
+                "value": "Arábica y robusta"
+            },
+            {
+                "label": "Origen",
+                "value": "Brasil y Uganda"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Vale para mi cafetera?",
+                "answer": "Vale para las cafeteras de disco. Si la tuya usa otro tipo de cápsula, elige tu cafetera en la cabecera y la tienda te enseña las suyas."
+            },
+            {
+                "question": "¿Cuánto café lleva cada una?",
+                "answer": "Entre cinco y siete gramos de café molido y envasado al momento, según el formato. El precio por unidad está junto al precio de la caja."
+            }
+        ],
+        "tags": [
+            "capsulas",
+            "leche",
+            "medio",
+            "vainilla"
+        ],
+        "meta_title": "Discos Café con Leche Nube | Café Tizón",
+        "meta_description": "Café con leche cremoso de tueste medio con vainilla suave. Dieciséis discos para las cafeteras que leen el disco y ajustan solas el agua.",
+        "images": [
+            {
+                "file": "discos-cafe-con-leche-nube.webp",
+                "alt": "Discos Café con Leche Nube"
+            },
+            {
+                "file": "discos-cafe-con-leche-nube-detalle.webp",
+                "alt": "Discos Café con Leche Nube, detalle"
+            }
+        ],
+        "gtin": "2990000000057",
+        "stock": 3,
+        "related": [
+            "DEMO-CAFE-001",
+            "DEMO-CAFE-002",
+            "DEMO-CAFE-003"
+        ]
+    },
+    {
+        "sku": "DEMO-CAFE-006",
+        "name": "Monodosis Suave Mañana · blanda · 18 uds",
+        "summary": "<p>Monodosis de papel blandas para una taza larga y suave con notas de cítricos y cereal. Para cafeteras de monodosis blanda.</p>",
+        "description": "<p>Arábica de tueste claro en bolsitas de papel de filtro: la cafetera empuja el agua a través de ellas y sale una taza larga con espuma fina.</p><p>Ligero y fresco, para quien toma varias tazas al día.</p><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 290,
+        "manage_stock": true,
+        "mpn": "CT-006",
+        "weight": 166,
+        "tax_class": "reduced",
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "categories": [
+            "capsulas",
+            "cafe"
+        ],
+        "attributes": {
+            "cafetera": [
+                "monodosis-blanda"
+            ],
+            "intensidad": 4,
+            "tueste": "claro",
+            "taza": [
+                "lungo"
+            ],
+            "notas": "Cítricos, cereal, flor de azahar",
+            "variedad": "arabica",
+            "origen": "Perú",
+            "unidades": 18
+        },
+        "facts": [
+            {
+                "label": "Formato",
+                "value": "Bolsa de 18 monodosis de papel"
+            },
+            {
+                "label": "Café",
+                "value": "100 % arábica"
+            },
+            {
+                "label": "Origen",
+                "value": "Perú"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Vale para mi cafetera?",
+                "answer": "Vale para las cafeteras de monodosis blanda. Si la tuya usa otro tipo de cápsula, elige tu cafetera en la cabecera y la tienda te enseña las suyas."
+            },
+            {
+                "question": "¿Cuánto café lleva cada una?",
+                "answer": "Entre cinco y siete gramos de café molido y envasado al momento, según el formato. El precio por unidad está junto al precio de la caja."
+            }
+        ],
+        "tags": [
+            "capsulas",
+            "cereal",
+            "citricos",
+            "claro"
+        ],
+        "meta_title": "Monodosis Suave Mañana | Café Tizón",
+        "meta_description": "Monodosis de papel blandas para una taza larga y suave con notas de cítricos y cereal. Para cafeteras de monodosis blanda.",
+        "images": [
+            {
+                "file": "monodosis-suave-manana.webp",
+                "alt": "Monodosis Suave Mañana"
+            },
+            {
+                "file": "monodosis-suave-manana-detalle.webp",
+                "alt": "Monodosis Suave Mañana, detalle"
+            }
+        ],
+        "gtin": "2990000000064",
+        "stock": 40,
+        "related": [
+            "DEMO-CAFE-001",
+            "DEMO-CAFE-002",
+            "DEMO-CAFE-003"
+        ]
+    },
+    {
+        "sku": "DEMO-CAFE-007",
+        "name": "Cápsulas Crema Siciliana · cilindro · 16 uds",
+        "summary": "<p>Espresso de barra con chocolate negro y especias, crema espesa y tueste oscuro. Dieciséis cápsulas de cilindro.</p>",
+        "description": "<p>Una mezcla al estilo del sur de Italia, con un tercio de robusta para que la crema dure en la taza.</p><p>Corto y potente: pide 40 ml y tómalo con una pizca de azúcar.</p><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 560,
+        "manage_stock": true,
+        "mpn": "CT-007",
+        "weight": 152,
+        "tax_class": "reduced",
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "categories": [
+            "capsulas",
+            "cafe"
+        ],
+        "attributes": {
+            "cafetera": [
+                "cilindro"
+            ],
+            "intensidad": 10,
+            "tueste": "oscuro",
+            "taza": [
+                "espresso"
+            ],
+            "notas": "Chocolate negro, especias, pan tostado",
+            "variedad": "mezcla",
+            "origen": "Brasil e India",
+            "unidades": 16
+        },
+        "facts": [
+            {
+                "label": "Formato",
+                "value": "Caja de 16 cápsulas"
+            },
+            {
+                "label": "Café",
+                "value": "Arábica y robusta"
+            },
+            {
+                "label": "Origen",
+                "value": "Brasil e India"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Vale para mi cafetera?",
+                "answer": "Vale para las cafeteras de cilindro. Si la tuya usa otro tipo de cápsula, elige tu cafetera en la cabecera y la tienda te enseña las suyas."
+            },
+            {
+                "question": "¿Cuánto café lleva cada una?",
+                "answer": "Entre cinco y siete gramos de café molido y envasado al momento, según el formato. El precio por unidad está junto al precio de la caja."
+            }
+        ],
+        "tags": [
+            "capsulas",
+            "chocolate-negro",
+            "especias",
+            "oscuro"
+        ],
+        "meta_title": "Cápsulas Crema Siciliana | Café Tizón",
+        "meta_description": "Espresso de barra con chocolate negro y especias, crema espesa y tueste oscuro. Dieciséis cápsulas de cilindro.",
+        "images": [
+            {
+                "file": "capsulas-crema-siciliana.webp",
+                "alt": "Cápsulas Crema Siciliana"
+            },
+            {
+                "file": "capsulas-crema-siciliana-detalle.webp",
+                "alt": "Cápsulas Crema Siciliana, detalle"
+            }
+        ],
+        "gtin": "2990000000071",
+        "stock": 28,
+        "related": [
+            "DEMO-CAFE-001",
+            "DEMO-CAFE-002",
+            "DEMO-CAFE-003"
+        ]
+    },
+    {
+        "sku": "DEMO-CAFE-008",
+        "name": "Monodosis Napoli · papel 44 mm · 18 uds",
+        "summary": "<p>Monodosis de papel de 44 mm para cafeteras de brazo, con cacao y nuez. Una dosis, un espresso.</p>",
+        "description": "<p>La monodosis de papel de 44 mm vale para cualquier cafetera de brazo que la admita: se pone en el portafiltro y se olvida el molinillo.</p><p>Tueste oscuro de estilo napolitano, con cuerpo y un amargor amable.</p><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 440,
+        "manage_stock": true,
+        "mpn": "CT-008",
+        "weight": 166,
+        "tax_class": "reduced",
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "categories": [
+            "capsulas",
+            "cafe"
+        ],
+        "attributes": {
+            "cafetera": [
+                "papel-44"
+            ],
+            "intensidad": 9,
+            "tueste": "oscuro",
+            "taza": [
+                "ristretto",
+                "espresso"
+            ],
+            "notas": "Cacao, nuez, azúcar moreno",
+            "variedad": "mezcla",
+            "origen": "Brasil y Tanzania",
+            "unidades": 18
+        },
+        "facts": [
+            {
+                "label": "Formato",
+                "value": "Caja de 18 monodosis de papel"
+            },
+            {
+                "label": "Café",
+                "value": "Arábica y robusta"
+            },
+            {
+                "label": "Origen",
+                "value": "Brasil y Tanzania"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Vale para mi cafetera?",
+                "answer": "Vale para las cafeteras de papel 44 mm. Si la tuya usa otro tipo de cápsula, elige tu cafetera en la cabecera y la tienda te enseña las suyas."
+            },
+            {
+                "question": "¿Cuánto café lleva cada una?",
+                "answer": "Entre cinco y siete gramos de café molido y envasado al momento, según el formato. El precio por unidad está junto al precio de la caja."
+            }
+        ],
+        "tags": [
+            "cacao",
+            "capsulas",
+            "nuez",
+            "oscuro"
+        ],
+        "meta_title": "Monodosis Napoli | Café Tizón",
+        "meta_description": "Monodosis de papel de 44 mm para cafeteras de brazo, con cacao y nuez. Una dosis, un espresso.",
+        "images": [
+            {
+                "file": "monodosis-napoli.webp",
+                "alt": "Monodosis Napoli"
+            },
+            {
+                "file": "monodosis-napoli-detalle.webp",
+                "alt": "Monodosis Napoli, detalle"
+            }
+        ],
+        "gtin": "2990000000088",
+        "stock": 34,
+        "related": [
+            "DEMO-CAFE-001",
+            "DEMO-CAFE-002",
+            "DEMO-CAFE-003"
+        ]
+    },
+    {
+        "sku": "DEMO-CAFE-009",
+        "name": "Café en grano Origen Huila · tueste medio · 1 kg",
+        "summary": "<p>Arábica lavado de Huila (Colombia) de tueste medio, con panela y mandarina. Para superautomática, espresso o filtro.</p>",
+        "description": "<p>Un café de finca de altura, lavado y secado al sol, que da una taza dulce y con una acidez de mandarina muy limpia.</p><p>Es el todoterreno de la casa: va bien en la superautomática, en la cafetera de brazo y molido grueso en la prensa.</p><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 2190,
+        "manage_stock": true,
+        "mpn": "CT-009",
+        "weight": 1080,
+        "tax_class": "reduced",
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "categories": [
+            "cafe-en-grano",
+            "cafe"
+        ],
+        "attributes": {
+            "cafetera": [
+                "superautomatica",
+                "espresso-de-brazo",
+                "italiana",
+                "goteo",
+                "prensa-francesa"
+            ],
+            "intensidad": 7,
+            "tueste": "medio",
+            "taza": [
+                "espresso",
+                "lungo",
+                "con-leche"
+            ],
+            "notas": "Panela, mandarina, chocolate con leche",
+            "variedad": "arabica",
+            "origen": "Colombia (Huila)",
+            "proceso": "lavado",
+            "peso-neto": 1000
+        },
+        "facts": [
+            {
+                "label": "Formato",
+                "value": "Bolsa de 1 kg con válvula"
+            },
+            {
+                "label": "Café",
+                "value": "100 % arábica"
+            },
+            {
+                "label": "Origen",
+                "value": "Colombia (Huila)"
+            },
+            {
+                "label": "Proceso",
+                "value": "Lavado"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Cuándo se tostó?",
+                "answer": "Tostamos cada semana y la fecha de tueste va escrita en la bolsa. Es una tienda de demostración: la respuesta es de ejemplo."
+            },
+            {
+                "question": "¿Cómo lo conservo?",
+                "answer": "En su bolsa, bien cerrada, en un armario fresco y sin luz. Mejor no guardarlo en la nevera: coge humedad y olores."
+            }
+        ],
+        "tags": [
+            "en-grano",
+            "mandarina",
+            "medio",
+            "panela"
+        ],
+        "meta_title": "Café en grano Origen Huila | Café Tizón",
+        "meta_description": "Arábica lavado de Huila (Colombia) de tueste medio, con panela y mandarina. Para superautomática, espresso o filtro.",
+        "images": [
+            {
+                "file": "cafe-en-grano-origen-huila.webp",
+                "alt": "Café en grano Origen Huila"
+            },
+            {
+                "file": "cafe-en-grano-origen-huila-detalle.webp",
+                "alt": "Café en grano Origen Huila, detalle"
+            }
+        ],
+        "sale_price": 1752,
+        "featured": true,
+        "gtin": "2990000000095",
+        "stock": 22,
+        "related": [
+            "DEMO-CAFE-010",
+            "DEMO-CAFE-011",
+            "DEMO-CAFE-012"
+        ]
+    },
+    {
+        "sku": "DEMO-CAFE-010",
+        "name": "Café en grano Mezcla Barra · tueste oscuro · 1 kg",
+        "summary": "<p>La mezcla de las cafeterías: espresso con mucho cuerpo, chocolate y nuez tostada, que aguanta la leche. Para superautomática y espresso.</p>",
+        "description": "<p>Setenta por ciento arábica de Brasil y treinta de robusta de la India: crema espesa, cuerpo alto y poca acidez.</p><p>Pensada para el café con leche y el cortado de todos los días.</p><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 1850,
+        "manage_stock": true,
+        "mpn": "CT-010",
+        "weight": 1080,
+        "tax_class": "reduced",
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "categories": [
+            "cafe-en-grano",
+            "cafe"
+        ],
+        "attributes": {
+            "cafetera": [
+                "superautomatica",
+                "espresso-de-brazo",
+                "italiana",
+                "goteo",
+                "prensa-francesa"
+            ],
+            "intensidad": 10,
+            "tueste": "oscuro",
+            "taza": [
+                "espresso",
+                "con-leche"
+            ],
+            "notas": "Chocolate, nuez tostada, melaza",
+            "variedad": "mezcla",
+            "origen": "Brasil e India",
+            "proceso": "natural",
+            "peso-neto": 1000
+        },
+        "facts": [
+            {
+                "label": "Formato",
+                "value": "Bolsa de 1 kg con válvula"
+            },
+            {
+                "label": "Café",
+                "value": "Arábica y robusta"
+            },
+            {
+                "label": "Origen",
+                "value": "Brasil e India"
+            },
+            {
+                "label": "Proceso",
+                "value": "Natural"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Cuándo se tostó?",
+                "answer": "Tostamos cada semana y la fecha de tueste va escrita en la bolsa. Es una tienda de demostración: la respuesta es de ejemplo."
+            },
+            {
+                "question": "¿Cómo lo conservo?",
+                "answer": "En su bolsa, bien cerrada, en un armario fresco y sin luz. Mejor no guardarlo en la nevera: coge humedad y olores."
+            }
+        ],
+        "tags": [
+            "chocolate",
+            "en-grano",
+            "nuez-tostada",
+            "oscuro"
+        ],
+        "meta_title": "Café en grano Mezcla Barra | Café Tizón",
+        "meta_description": "La mezcla de las cafeterías: espresso con mucho cuerpo, chocolate y nuez tostada, que aguanta la leche. Para superautomática y espresso.",
+        "images": [
+            {
+                "file": "cafe-en-grano-mezcla-barra.webp",
+                "alt": "Café en grano Mezcla Barra"
+            },
+            {
+                "file": "cafe-en-grano-mezcla-barra-detalle.webp",
+                "alt": "Café en grano Mezcla Barra, detalle"
+            }
+        ],
+        "gtin": "2990000000101",
+        "stock": 30,
+        "related": [
+            "DEMO-CAFE-009",
+            "DEMO-CAFE-011",
+            "DEMO-CAFE-012"
+        ]
+    },
+    {
+        "sku": "DEMO-CAFE-011",
+        "name": "Café en grano Sidamo Lavado · tueste claro · 500 g",
+        "summary": "<p>Arábica etíope de tueste claro, floral y cítrico, con jazmín, limón y té negro. Para filtro, prensa y espresso ligero.</p>",
+        "description": "<p>Un café de Sidamo lavado y tostado claro para que se note de dónde viene: aroma de jazmín y una acidez de limón que recuerda al té.</p><p>Brilla en la cafetera de goteo y en el filtro de cono; en espresso da una taza viva y ligera.</p><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 1490,
+        "manage_stock": true,
+        "mpn": "CT-011",
+        "weight": 550,
+        "tax_class": "reduced",
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "categories": [
+            "cafe-en-grano",
+            "cafe"
+        ],
+        "attributes": {
+            "cafetera": [
+                "superautomatica",
+                "espresso-de-brazo",
+                "italiana",
+                "goteo",
+                "prensa-francesa"
+            ],
+            "intensidad": 5,
+            "tueste": "claro",
+            "taza": [
+                "lungo"
+            ],
+            "notas": "Jazmín, limón, té negro",
+            "variedad": "arabica",
+            "origen": "Etiopía (Sidamo)",
+            "proceso": "lavado",
+            "peso-neto": 500
+        },
+        "facts": [
+            {
+                "label": "Formato",
+                "value": "Bolsa de 500 g con válvula"
+            },
+            {
+                "label": "Café",
+                "value": "100 % arábica"
+            },
+            {
+                "label": "Origen",
+                "value": "Etiopía (Sidamo)"
+            },
+            {
+                "label": "Proceso",
+                "value": "Lavado"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Cuándo se tostó?",
+                "answer": "Tostamos cada semana y la fecha de tueste va escrita en la bolsa. Es una tienda de demostración: la respuesta es de ejemplo."
+            },
+            {
+                "question": "¿Cómo lo conservo?",
+                "answer": "En su bolsa, bien cerrada, en un armario fresco y sin luz. Mejor no guardarlo en la nevera: coge humedad y olores."
+            }
+        ],
+        "tags": [
+            "claro",
+            "en-grano",
+            "jazmin",
+            "limon"
+        ],
+        "meta_title": "Café en grano Sidamo Lavado | Café Tizón",
+        "meta_description": "Arábica etíope de tueste claro, floral y cítrico, con jazmín, limón y té negro. Para filtro, prensa y espresso ligero.",
+        "images": [
+            {
+                "file": "cafe-en-grano-sidamo-lavado.webp",
+                "alt": "Café en grano Sidamo Lavado"
+            },
+            {
+                "file": "cafe-en-grano-sidamo-lavado-detalle.webp",
+                "alt": "Café en grano Sidamo Lavado, detalle"
+            }
+        ],
+        "gtin": "2990000000118",
+        "stock": 14,
+        "related": [
+            "DEMO-CAFE-009",
+            "DEMO-CAFE-010",
+            "DEMO-CAFE-012"
+        ]
+    },
+    {
+        "sku": "DEMO-CAFE-012",
+        "name": "Café en grano Descafeinado Agua Clara · 500 g",
+        "summary": "<p>Descafeinado sin disolventes, con agua, de tueste medio: almendra y caramelo con todo el sabor y casi nada de cafeína.</p>",
+        "description": "<p>La cafeína se quita solo con agua y filtros de carbón, antes de tostar: el grano conserva el azúcar y el cuerpo.</p><p>Para la taza de la tarde o de la noche, en espresso o en taza larga.</p><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 1290,
+        "manage_stock": true,
+        "mpn": "CT-012",
+        "weight": 550,
+        "tax_class": "reduced",
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "categories": [
+            "cafe-en-grano",
+            "cafe"
+        ],
+        "attributes": {
+            "cafetera": [
+                "superautomatica",
+                "espresso-de-brazo",
+                "italiana",
+                "goteo",
+                "prensa-francesa"
+            ],
+            "intensidad": 6,
+            "tueste": "medio",
+            "taza": [
+                "espresso",
+                "lungo"
+            ],
+            "notas": "Almendra, caramelo, cacao suave",
+            "variedad": "descafeinado",
+            "origen": "Colombia y México",
+            "proceso": "descafeinado-al-agua",
+            "peso-neto": 500
+        },
+        "facts": [
+            {
+                "label": "Formato",
+                "value": "Bolsa de 500 g con válvula"
+            },
+            {
+                "label": "Café",
+                "value": "100 % arábica descafeinado"
+            },
+            {
+                "label": "Origen",
+                "value": "Colombia y México"
+            },
+            {
+                "label": "Proceso",
+                "value": "Descafeinado al agua"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Cuándo se tostó?",
+                "answer": "Tostamos cada semana y la fecha de tueste va escrita en la bolsa. Es una tienda de demostración: la respuesta es de ejemplo."
+            },
+            {
+                "question": "¿Cómo lo conservo?",
+                "answer": "En su bolsa, bien cerrada, en un armario fresco y sin luz. Mejor no guardarlo en la nevera: coge humedad y olores."
+            }
+        ],
+        "tags": [
+            "almendra",
+            "caramelo",
+            "en-grano",
+            "medio"
+        ],
+        "meta_title": "Café en grano Descafeinado Agua Clara | Café Tizón",
+        "meta_description": "Descafeinado sin disolventes, con agua, de tueste medio: almendra y caramelo con todo el sabor y casi nada de cafeína.",
+        "images": [
+            {
+                "file": "cafe-en-grano-descafeinado-agua-clara.webp",
+                "alt": "Café en grano Descafeinado Agua Clara"
+            },
+            {
+                "file": "cafe-en-grano-descafeinado-agua-clara-detalle.webp",
+                "alt": "Café en grano Descafeinado Agua Clara, detalle"
+            }
+        ],
+        "gtin": "2990000000125",
+        "stock": 0,
+        "related": [
+            "DEMO-CAFE-009",
+            "DEMO-CAFE-010",
+            "DEMO-CAFE-011"
+        ]
+    },
+    {
+        "sku": "DEMO-CAFE-013",
+        "name": "Café molido Mezcla Tradición · 250 g",
+        "summary": "<p>Mezcla de tueste oscuro con caramelo tostado y cacao, molida para tu cafetera: espresso, italiana, filtro o prensa.</p>",
+        "description": "<p>La mezcla de siempre, con cuerpo y sin acidez, que funciona igual de bien en la italiana de casa que con un chorro de leche.</p><p>Se muele al envasar en la molienda que elijas y se cierra al vacío para que llegue con todo el aroma.</p><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 590,
+        "manage_stock": true,
+        "mpn": "CT-013",
+        "weight": 285,
+        "tax_class": "reduced",
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "categories": [
+            "cafe-molido",
+            "cafe"
+        ],
+        "attributes": {
+            "cafetera": [
+                "espresso-de-brazo",
+                "italiana",
+                "goteo",
+                "prensa-francesa"
+            ],
+            "intensidad": 8,
+            "tueste": "oscuro",
+            "taza": [
+                "espresso",
+                "con-leche"
+            ],
+            "notas": "Caramelo tostado, cacao, pan",
+            "variedad": "mezcla",
+            "origen": "Brasil y Vietnam",
+            "peso-neto": 250
+        },
+        "facts": [
+            {
+                "label": "Formato",
+                "value": "Paquete de 250 g al vacío"
+            },
+            {
+                "label": "Café",
+                "value": "Arábica y robusta"
+            },
+            {
+                "label": "Origen",
+                "value": "Brasil y Vietnam"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Qué molienda elijo?",
+                "answer": "La de tu cafetera: Espresso para la de brazo, Italiana para la cafetera italiana, Filtro para la de goteo y Prensa francesa para la de émbolo."
+            },
+            {
+                "question": "¿Cuánto dura una vez abierto?",
+                "answer": "El café molido pierde aroma antes que el grano: una vez abierto, lo ideal es gastarlo en dos o tres semanas."
+            }
+        ],
+        "tags": [
+            "cacao",
+            "caramelo-tostado",
+            "molido",
+            "oscuro"
+        ],
+        "meta_title": "Café molido Mezcla Tradición | Café Tizón",
+        "meta_description": "Mezcla de tueste oscuro con caramelo tostado y cacao, molida para tu cafetera: espresso, italiana, filtro o prensa.",
+        "images": [
+            {
+                "file": "cafe-molido-mezcla-tradicion.webp",
+                "alt": "Café molido Mezcla Tradición"
+            },
+            {
+                "file": "cafe-molido-mezcla-tradicion-detalle.webp",
+                "alt": "Café molido Mezcla Tradición, detalle"
+            }
+        ],
+        "sale_price": 531,
+        "featured": true,
+        "variants": [
+            {
+                "sku": "DEMO-CAFE-013-ESP",
+                "gtin": "2990000013019",
+                "stock": 11,
+                "values": {
+                    "molienda": "espresso"
+                }
+            },
+            {
+                "sku": "DEMO-CAFE-013-ITA",
+                "gtin": "2990000013026",
+                "stock": 16,
+                "values": {
+                    "molienda": "italiana"
+                }
+            },
+            {
+                "sku": "DEMO-CAFE-013-FIL",
+                "gtin": "2990000013033",
+                "stock": 21,
+                "values": {
+                    "molienda": "filtro"
+                }
+            },
+            {
+                "sku": "DEMO-CAFE-013-PRE",
+                "gtin": "2990000013040",
+                "stock": 26,
+                "values": {
+                    "molienda": "prensa-francesa"
+                }
+            }
+        ],
+        "related": [
+            "DEMO-CAFE-014",
+            "DEMO-CAFE-015",
+            "DEMO-CAFE-016"
+        ]
+    },
+    {
+        "sku": "DEMO-CAFE-014",
+        "name": "Café molido Cerrado Brasil · 250 g",
+        "summary": "<p>Arábica natural de Brasil de tueste medio, con avellana y chocolate con leche. Muy fácil en cualquier cafetera.</p>",
+        "description": "<p>Un café del Cerrado secado con su fruto, dulce y de cuerpo medio, que perdona una molienda o un agua imperfectas.</p><p>En la italiana sale redondo y en la prensa, sedoso.</p><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 640,
+        "manage_stock": true,
+        "mpn": "CT-014",
+        "weight": 285,
+        "tax_class": "reduced",
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "categories": [
+            "cafe-molido",
+            "cafe"
+        ],
+        "attributes": {
+            "cafetera": [
+                "espresso-de-brazo",
+                "italiana",
+                "goteo",
+                "prensa-francesa"
+            ],
+            "intensidad": 7,
+            "tueste": "medio",
+            "taza": [
+                "espresso",
+                "lungo"
+            ],
+            "notas": "Avellana, chocolate con leche, galleta",
+            "variedad": "arabica",
+            "origen": "Brasil (Cerrado Mineiro)",
+            "proceso": "natural",
+            "peso-neto": 250
+        },
+        "facts": [
+            {
+                "label": "Formato",
+                "value": "Paquete de 250 g al vacío"
+            },
+            {
+                "label": "Café",
+                "value": "100 % arábica"
+            },
+            {
+                "label": "Origen",
+                "value": "Brasil (Cerrado Mineiro)"
+            },
+            {
+                "label": "Proceso",
+                "value": "Natural"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Qué molienda elijo?",
+                "answer": "La de tu cafetera: Espresso para la de brazo, Italiana para la cafetera italiana, Filtro para la de goteo y Prensa francesa para la de émbolo."
+            },
+            {
+                "question": "¿Cuánto dura una vez abierto?",
+                "answer": "El café molido pierde aroma antes que el grano: una vez abierto, lo ideal es gastarlo en dos o tres semanas."
+            }
+        ],
+        "tags": [
+            "avellana",
+            "chocolate-con-leche",
+            "medio",
+            "molido"
+        ],
+        "meta_title": "Café molido Cerrado Brasil | Café Tizón",
+        "meta_description": "Arábica natural de Brasil de tueste medio, con avellana y chocolate con leche. Muy fácil en cualquier cafetera.",
+        "images": [
+            {
+                "file": "cafe-molido-cerrado-brasil.webp",
+                "alt": "Café molido Cerrado Brasil"
+            },
+            {
+                "file": "cafe-molido-cerrado-brasil-detalle.webp",
+                "alt": "Café molido Cerrado Brasil, detalle"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-CAFE-014-ESP",
+                "gtin": "2990000014016",
+                "stock": 11,
+                "values": {
+                    "molienda": "espresso"
+                }
+            },
+            {
+                "sku": "DEMO-CAFE-014-ITA",
+                "gtin": "2990000014023",
+                "stock": 16,
+                "values": {
+                    "molienda": "italiana"
+                }
+            },
+            {
+                "sku": "DEMO-CAFE-014-FIL",
+                "gtin": "2990000014030",
+                "stock": 21,
+                "values": {
+                    "molienda": "filtro"
+                }
+            },
+            {
+                "sku": "DEMO-CAFE-014-PRE",
+                "gtin": "2990000014047",
+                "stock": 26,
+                "values": {
+                    "molienda": "prensa-francesa"
+                }
+            }
+        ],
+        "related": [
+            "DEMO-CAFE-013",
+            "DEMO-CAFE-015",
+            "DEMO-CAFE-016"
+        ]
+    },
+    {
+        "sku": "DEMO-CAFE-015",
+        "name": "Café molido Antigua Guatemala · 250 g",
+        "summary": "<p>Arábica lavado de Antigua de tueste medio-claro, con cacao y especias suaves. Ideal para goteo e italiana.</p>",
+        "description": "<p>Cultivado entre volcanes, da una taza equilibrada con una acidez suave y un fondo de cacao.</p><p>En la cafetera de goteo y en el filtro de cono enseña todas sus capas.</p><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 720,
+        "manage_stock": true,
+        "mpn": "CT-015",
+        "weight": 285,
+        "tax_class": "reduced",
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "categories": [
+            "cafe-molido",
+            "cafe"
+        ],
+        "attributes": {
+            "cafetera": [
+                "espresso-de-brazo",
+                "italiana",
+                "goteo",
+                "prensa-francesa"
+            ],
+            "intensidad": 6,
+            "tueste": "medio",
+            "taza": [
+                "lungo"
+            ],
+            "notas": "Cacao, especias suaves, naranja",
+            "variedad": "arabica",
+            "origen": "Guatemala (Antigua)",
+            "proceso": "lavado",
+            "peso-neto": 250
+        },
+        "facts": [
+            {
+                "label": "Formato",
+                "value": "Paquete de 250 g al vacío"
+            },
+            {
+                "label": "Café",
+                "value": "100 % arábica"
+            },
+            {
+                "label": "Origen",
+                "value": "Guatemala (Antigua)"
+            },
+            {
+                "label": "Proceso",
+                "value": "Lavado"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Qué molienda elijo?",
+                "answer": "La de tu cafetera: Espresso para la de brazo, Italiana para la cafetera italiana, Filtro para la de goteo y Prensa francesa para la de émbolo."
+            },
+            {
+                "question": "¿Cuánto dura una vez abierto?",
+                "answer": "El café molido pierde aroma antes que el grano: una vez abierto, lo ideal es gastarlo en dos o tres semanas."
+            }
+        ],
+        "tags": [
+            "cacao",
+            "especias-suaves",
+            "medio",
+            "molido"
+        ],
+        "meta_title": "Café molido Antigua Guatemala | Café Tizón",
+        "meta_description": "Arábica lavado de Antigua de tueste medio-claro, con cacao y especias suaves. Ideal para goteo e italiana.",
+        "images": [
+            {
+                "file": "cafe-molido-antigua-guatemala.webp",
+                "alt": "Café molido Antigua Guatemala"
+            },
+            {
+                "file": "cafe-molido-antigua-guatemala-detalle.webp",
+                "alt": "Café molido Antigua Guatemala, detalle"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-CAFE-015-ESP",
+                "gtin": "2990000015013",
+                "stock": 11,
+                "values": {
+                    "molienda": "espresso"
+                }
+            },
+            {
+                "sku": "DEMO-CAFE-015-ITA",
+                "gtin": "2990000015020",
+                "stock": 16,
+                "values": {
+                    "molienda": "italiana"
+                }
+            },
+            {
+                "sku": "DEMO-CAFE-015-FIL",
+                "gtin": "2990000015037",
+                "stock": 21,
+                "values": {
+                    "molienda": "filtro"
+                }
+            },
+            {
+                "sku": "DEMO-CAFE-015-PRE",
+                "gtin": "2990000015044",
+                "stock": 26,
+                "values": {
+                    "molienda": "prensa-francesa"
+                }
+            }
+        ],
+        "related": [
+            "DEMO-CAFE-013",
+            "DEMO-CAFE-014",
+            "DEMO-CAFE-016"
+        ]
+    },
+    {
+        "sku": "DEMO-CAFE-016",
+        "name": "Café molido Natural Etiopía · 250 g",
+        "summary": "<p>Etíope natural de tueste claro, afrutado y floral, con arándano y flor blanca. Para filtro y prensa francesa.</p>",
+        "description": "<p>Secado con el fruto entero, este café da una taza que huele a frutos del bosque y termina limpia, casi como un té.</p><p>Pídelo en molienda de filtro o de prensa y usa agua a 93 grados.</p><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 790,
+        "manage_stock": true,
+        "mpn": "CT-016",
+        "weight": 285,
+        "tax_class": "reduced",
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "categories": [
+            "cafe-molido",
+            "cafe"
+        ],
+        "attributes": {
+            "cafetera": [
+                "espresso-de-brazo",
+                "italiana",
+                "goteo",
+                "prensa-francesa"
+            ],
+            "intensidad": 5,
+            "tueste": "claro",
+            "taza": [
+                "lungo"
+            ],
+            "notas": "Arándano, flor blanca, melocotón",
+            "variedad": "arabica",
+            "origen": "Etiopía (Guji)",
+            "proceso": "natural",
+            "peso-neto": 250
+        },
+        "facts": [
+            {
+                "label": "Formato",
+                "value": "Paquete de 250 g al vacío"
+            },
+            {
+                "label": "Café",
+                "value": "100 % arábica"
+            },
+            {
+                "label": "Origen",
+                "value": "Etiopía (Guji)"
+            },
+            {
+                "label": "Proceso",
+                "value": "Natural"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Qué molienda elijo?",
+                "answer": "La de tu cafetera: Espresso para la de brazo, Italiana para la cafetera italiana, Filtro para la de goteo y Prensa francesa para la de émbolo."
+            },
+            {
+                "question": "¿Cuánto dura una vez abierto?",
+                "answer": "El café molido pierde aroma antes que el grano: una vez abierto, lo ideal es gastarlo en dos o tres semanas."
+            }
+        ],
+        "tags": [
+            "arandano",
+            "claro",
+            "flor-blanca",
+            "molido"
+        ],
+        "meta_title": "Café molido Natural Etiopía | Café Tizón",
+        "meta_description": "Etíope natural de tueste claro, afrutado y floral, con arándano y flor blanca. Para filtro y prensa francesa.",
+        "images": [
+            {
+                "file": "cafe-molido-natural-etiopia.webp",
+                "alt": "Café molido Natural Etiopía"
+            },
+            {
+                "file": "cafe-molido-natural-etiopia-detalle.webp",
+                "alt": "Café molido Natural Etiopía, detalle"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-CAFE-016-ESP",
+                "gtin": "2990000016010",
+                "stock": 11,
+                "values": {
+                    "molienda": "espresso"
+                }
+            },
+            {
+                "sku": "DEMO-CAFE-016-ITA",
+                "gtin": "2990000016027",
+                "stock": 16,
+                "values": {
+                    "molienda": "italiana"
+                }
+            },
+            {
+                "sku": "DEMO-CAFE-016-FIL",
+                "gtin": "2990000016034",
+                "stock": 21,
+                "values": {
+                    "molienda": "filtro"
+                }
+            },
+            {
+                "sku": "DEMO-CAFE-016-PRE",
+                "gtin": "2990000016041",
+                "stock": 26,
+                "values": {
+                    "molienda": "prensa-francesa"
+                }
+            }
+        ],
+        "related": [
+            "DEMO-CAFE-013",
+            "DEMO-CAFE-014",
+            "DEMO-CAFE-015"
+        ]
+    }
+]

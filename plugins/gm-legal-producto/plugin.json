@@ -1,0 +1,19 @@
+{
+    "name": "GM legal texts per product",
+    "version": "1.0.0",
+    "description": "Reusable legal text blocks assigned to products or categories, shown in the product page, the checkout and the order email, with the withdrawal waiver for digital products",
+    "namespace": "Gm\\LegalProducto",
+    "essential": false,
+    "default": false,
+    "requires": {
+        "php": ">=7.4",
+        "aifec": ">=1.0.0",
+        "modules": ["catalog", "orders", "customers"]
+    },
+    "contract": {
+        "hosts": [],
+        "personal_data": ["email"],
+        "tables": ["gm_legal_blocks", "gm_legal_assignments", "gm_legal_orders"],
+        "capabilities": ["orders"]
+    }
+}

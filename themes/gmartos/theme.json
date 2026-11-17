@@ -1,0 +1,81 @@
+{
+    "name": "gmartos",
+    "version": "1.0.0",
+    "description": "The current gmartos.es shop on AIFEC: announcement strip, light header with a dark contact button, a home with a connected-nodes diagram, search box and four product cards, rounded cards in blue and navy, a page title panel in the listing, a product page with a bordered gallery, a proof strip and a dark call to action, and a navy footer.",
+    "parent": "base",
+    "css": "replace",
+    "menus": {"main": "Main menu", "footer": "Footer", "legal": "Legal links"},
+    "image_sizes": {"thumb": [160, 160], "card": [480, 384], "large": [1200, 1200]},
+    "font_stacks": {
+        "sans": "'Segoe UI', Arial, sans-serif",
+        "mono": "Consolas, ui-monospace, SFMono-Regular, Menlo, 'Liberation Mono', monospace"
+    },
+    "settings": {
+        "colors": {"label": "Colours", "fields": {
+            "bg": {"type": "color", "label": "Page background", "default": "#f5f8fe", "var": "--bg"},
+            "surface": {"type": "color", "label": "Cards and panels", "default": "#ffffff", "var": "--surface"},
+            "ink": {"type": "color", "label": "Text", "default": "#10233f", "var": "--ink"},
+            "muted": {"type": "color", "label": "Secondary text", "default": "#51647e", "var": "--muted"},
+            "line": {"type": "color", "label": "Borders", "default": "#d9e3f2", "var": "--line"},
+            "accent": {"type": "color", "label": "Accent colour", "default": "#2563eb", "var": "--accent"},
+            "accent_ink": {"type": "color", "label": "Text on the accent colour", "default": "#ffffff", "var": "--accent-ink"},
+            "pale": {"type": "color", "label": "Pale blue (support card, chips)", "default": "#dce9ff", "var": "--pale"},
+            "soft": {"type": "color", "label": "Soft blue (panels and image backgrounds)", "default": "#e8f0fd", "var": "--soft"},
+            "dark": {"type": "color", "label": "Navy (announcement strip, footer, dark cards)", "default": "#10233f", "var": "--dark"},
+            "sale": {"type": "color", "label": "Offers", "default": "#10233f", "var": "--sale"},
+            "ok": {"type": "color", "label": "Success", "default": "#1d6b43", "var": "--ok"},
+            "warn": {"type": "color", "label": "Warning", "default": "#7a5200", "var": "--warn"},
+            "bad": {"type": "color", "label": "Error", "default": "#b3261e", "var": "--bad"}
+        }},
+        "typography": {"label": "Typography", "fields": {
+            "font": {"type": "font", "label": "Body font", "default": "sans", "var": "--font", "options": {"sans": "Segoe UI", "mono": "Monospace"}},
+            "font_head": {"type": "font", "label": "Headings font", "default": "sans", "var": "--font-head", "options": {"sans": "Segoe UI", "mono": "Monospace"}},
+            "font_size": {"type": "number", "label": "Base text size", "default": 16, "min": 14, "max": 20, "unit": "px", "var": "--font-size"}
+        }},
+        "layout": {"label": "Layout", "fields": {
+            "radius": {"type": "number", "label": "Corner radius", "default": 16, "min": 0, "max": 28, "unit": "px", "var": "--radius"},
+            "container": {"type": "number", "label": "Page width", "default": 1280, "min": 960, "max": 1600, "unit": "px", "var": "--container"}
+        }},
+        "structure": {"label": "Structure", "fields": {
+            "announce_show": {"type": "toggle", "label": "Show the announcement strip", "default": 1},
+            "announce_label": {"type": "text", "label": "Announcement label", "default": ""},
+            "announce_text": {"type": "text", "label": "Announcement text", "default": ""},
+            "announce_aside": {"type": "text", "label": "Announcement text on the right", "default": ""},
+            "header_button_text": {"type": "text", "label": "Header button text", "default": ""},
+            "header_button_link": {"type": "text", "label": "Header button link (empty: no button)", "default": ""},
+            "shop_link": {"type": "text", "label": "Link to the whole shop (empty: none)", "default": ""},
+            "proof_show": {"type": "toggle", "label": "Show the three reasons under the product", "default": 1},
+            "cta_show": {"type": "toggle", "label": "Show the dark call to action under the product", "default": 1},
+            "cta_link": {"type": "text", "label": "Call to action main link (empty: no button)", "default": ""},
+            "cta_link2": {"type": "text", "label": "Call to action second link (empty: no button)", "default": ""}
+        }},
+        "home": {"label": "Home page", "fields": {
+            "home_kicker": {"type": "text", "label": "Home kicker", "default": ""},
+            "home_title": {"type": "text", "label": "Home title (| breaks the line)", "default": ""},
+            "home_text": {"type": "text", "label": "Home text", "default": ""},
+            "home_button": {"type": "text", "label": "Home main button text", "default": ""},
+            "home_button2": {"type": "text", "label": "Home second button text", "default": ""},
+            "home_button2_link": {"type": "text", "label": "Home second button link (empty: no button)", "default": ""},
+            "home_chips": {"type": "text", "label": "Search shortcuts (label=search, separated by commas)", "default": ""},
+            "diagram_show": {"type": "toggle", "label": "Show the connected-nodes diagram", "default": 1},
+            "catalog_kicker": {"type": "text", "label": "Products kicker", "default": ""},
+            "catalog_title": {"type": "text", "label": "Products title (| breaks the line)", "default": ""},
+            "services_show": {"type": "toggle", "label": "Show the two service cards", "default": 1},
+            "dev_title": {"type": "text", "label": "First card title (| breaks the line)", "default": ""},
+            "dev_text": {"type": "text", "label": "First card text", "default": ""},
+            "dev_link_text": {"type": "text", "label": "First card link text", "default": ""},
+            "dev_link": {"type": "text", "label": "First card link (empty: no link)", "default": ""},
+            "support_title": {"type": "text", "label": "Second card title (| breaks the line)", "default": ""},
+            "support_text": {"type": "text", "label": "Second card text", "default": ""},
+            "support_link_text": {"type": "text", "label": "Second card link text", "default": ""},
+            "support_link": {"type": "text", "label": "Second card link (empty: no link)", "default": ""},
+            "about_show": {"type": "toggle", "label": "Show the presentation block", "default": 1},
+            "about_title": {"type": "text", "label": "Presentation title (| breaks the line)", "default": ""},
+            "about_text": {"type": "text", "label": "Presentation text", "default": ""},
+            "about_name": {"type": "text", "label": "Presentation name", "default": ""},
+            "about_role": {"type": "text", "label": "Presentation line under the name", "default": ""},
+            "about_note": {"type": "text", "label": "Presentation note", "default": ""},
+            "footer_tagline": {"type": "text", "label": "Footer text under the logo (| breaks the line)", "default": ""}
+        }}
+    }
+}

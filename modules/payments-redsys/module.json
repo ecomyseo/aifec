@@ -1,0 +1,1 @@
+{"name":"Redsys","version":"1.0.0","description":"Card and Bizum payments through Redsys","essential":false,"default":false,"requires":{"modules":["orders"]},"contract":{"hosts":["sis.redsys.es","sis-t.redsys.es"],"personal_data":["email"],"tables":[],"capabilities":[]}}

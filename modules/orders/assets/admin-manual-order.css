@@ -1,0 +1,55 @@
+/**
+ * AIFEC — «Pedido nuevo» del panel. Solo lo que no traen las piezas del panel (af-card, af-table, af-btn…) y solo con las
+ * medidas del sistema de diseño: los cinco colores, los ocho espacios y los cinco tamaños de letra.
+ *
+ * @author    Ecom Experts <ecomyseo@gmail.com>
+ * @copyright 2026 Ecom Experts
+ * @license   Ver LICENSE.md
+ */
+
+.mo { position: relative; align-items: start; }
+.mo-side { position: sticky; top: var(--s4); }
+
+/* Buscadores: el campo y su botón en una fila que se parte si no cabe; la lista de resultados, debajo. */
+.mo-find { position: relative; }
+.mo-find-row { display: flex; flex-wrap: wrap; gap: var(--s2); align-items: center; }
+.mo-find-row .af-input { flex: 1 1 200px; min-width: 0; width: auto; }
+.mo-options { list-style: none; margin: var(--s1) 0 0; padding: var(--s1) 0; max-height: 50vh; overflow-y: auto; background: var(--surface); border: 1px solid var(--muted); border-radius: var(--radius-sm); }
+.mo-options [role="option"] { padding: var(--s2) var(--s3); min-height: var(--tap-sm); cursor: pointer; overflow-wrap: anywhere; }
+.mo-options [role="option"]:hover, .mo-options [role="option"][aria-selected="true"] { background: var(--bg); }
+.mo-options [role="option"][aria-selected="true"] { outline: 2px solid var(--accent); outline-offset: -2px; }
+.mo-options [role="option"][aria-disabled="true"] { color: var(--muted); cursor: not-allowed; text-decoration: line-through; }
+.mo-results { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s2); }
+.mo-results li { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s2); padding-bottom: var(--s2); border-bottom: 1px solid var(--bg); }
+.mo-results li span { min-width: 0; overflow-wrap: anywhere; }
+
+/* Lo elegido, las opciones de radio y las filas de botones. */
+.mo-picked { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s3); }
+.mo-picked p { margin: 0; overflow-wrap: anywhere; }
+.mo-choices { border: 0; margin: 0; padding: 0; display: grid; gap: var(--s1); min-width: 0; }
+.mo-choice { align-items: flex-start; overflow-wrap: anywhere; }
+.mo-off { color: var(--muted); cursor: not-allowed; }
+.mo-actions { display: flex; flex-wrap: wrap; gap: var(--s2); align-items: center; }
+.mo-new > summary, .mo-price > summary { cursor: pointer; color: var(--accent); min-height: var(--tap-sm); }
+.mo-new-form { display: grid; gap: 0; }
+.mo-price-form { display: grid; gap: var(--s1); margin-top: var(--s2); }
+.mo-coupon { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s2); }
+
+/* Las líneas: unidades estrechas, y la que cambió entre el total enseñado y la confirmación, marcada. */
+.mo-qty-form { display: flex; flex-wrap: wrap; gap: var(--s1); align-items: center; }
+.mo-qty { width: 8ch; }
+.mo-changed td { box-shadow: inset 3px 0 0 var(--accent); }
+
+/* El resumen. */
+.mo-rows { margin: 0; display: grid; gap: var(--s1); }
+.mo-row { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s3); }
+.mo-row dt { min-width: 0; overflow-wrap: anywhere; }
+.mo-row dd { margin: 0; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.mo-row-sub dt, .mo-row-tax dt, .mo-row-tax dd { color: var(--muted); }
+.mo-row-line + .mo-row-sub, .mo-row-total { border-top: 1px solid var(--bg); padding-top: var(--s2); }
+.mo-row-total { font-size: var(--f3); font-weight: 700; }
+.mo-notes, .mo-missing { margin: 0; padding-left: var(--s5); }
+
+@media (max-width: 900px) {
+  .mo-side { position: static; grid-column: span 12; }
+}

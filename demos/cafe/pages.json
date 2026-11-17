@@ -1,0 +1,362 @@
+[
+    {
+        "code": "inicio",
+        "title": "Inicio",
+        "home": true,
+        "meta_title": "Café Tizón: café para la cafetera que ya tienes",
+        "meta_description": "Cápsulas compatibles y café en grano y molido. Elige tu cafetera y la tienda te enseña solo lo que te vale, con el precio de cada taza.",
+        "blocks": [
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "La molienda según tu cafetera"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "En grano o molido, el mismo café cambia con la molienda. Esta es la que pide cada cafetera de casa; al comprar café molido se elige en la ficha."
+                }
+            },
+            {
+                "type": "table",
+                "attrs": {
+                    "head": [
+                        "Cafetera",
+                        "Molienda",
+                        "Se parece a",
+                        "Tiempo"
+                    ],
+                    "rows": [
+                        [
+                            "Espresso de brazo",
+                            "Espresso",
+                            "Sal fina",
+                            "25 a 30 segundos"
+                        ],
+                        [
+                            "Italiana",
+                            "Italiana",
+                            "Arena fina",
+                            "4 a 5 minutos"
+                        ],
+                        [
+                            "Goteo y filtro",
+                            "Filtro",
+                            "Azúcar",
+                            "3 a 4 minutos"
+                        ],
+                        [
+                            "Prensa francesa",
+                            "Prensa francesa",
+                            "Sal gorda",
+                            "4 minutos"
+                        ],
+                        [
+                            "Superautomática",
+                            "En grano",
+                            "Muele ella",
+                            "Según la máquina"
+                        ]
+                    ]
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Por qué comprar aquí"
+                }
+            },
+            {
+                "type": "columns",
+                "children": [
+                    {
+                        "type": "column",
+                        "children": [
+                            {
+                                "type": "heading",
+                                "attrs": {
+                                    "level": 3,
+                                    "html": "Sabes si te vale"
+                                }
+                            },
+                            {
+                                "type": "paragraph",
+                                "attrs": {
+                                    "html": "Cada café dice para qué cafetera sirve. Elige la tuya una vez y la tienda te lo recuerda en cada tarjeta."
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "column",
+                        "children": [
+                            {
+                                "type": "heading",
+                                "attrs": {
+                                    "level": 3,
+                                    "html": "El precio de cada taza"
+                                }
+                            },
+                            {
+                                "type": "paragraph",
+                                "attrs": {
+                                    "html": "Junto al precio del paquete va el de cada cápsula o el del kilo, para comparar sin hacer cuentas."
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "column",
+                        "children": [
+                            {
+                                "type": "heading",
+                                "attrs": {
+                                    "level": 3,
+                                    "html": "Envío en 1 a 3 días"
+                                }
+                            },
+                            {
+                                "type": "paragraph",
+                                "attrs": {
+                                    "html": "Gratis a partir de 39 € en la Península. <em>Tienda de demostración: los productos, los precios y los plazos son inventados y no se cobra ningún pedido.</em>"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Del cuaderno"
+                }
+            },
+            {
+                "type": "posts",
+                "attrs": {
+                    "limit": 3
+                }
+            }
+        ]
+    },
+    {
+        "code": "sobre-nosotros",
+        "title": "Sobre nosotros",
+        "excerpt": "Quiénes somos y cómo elegimos el café.",
+        "meta_title": "Sobre Café Tizón",
+        "meta_description": "Café Tizón es una tienda de demostración de café y cápsulas. Todos los datos son inventados.",
+        "blocks": [
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 1,
+                    "html": "Sobre nosotros"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Café Tizón es una tienda <strong>de demostración</strong>: no existe, no vende nada y todos sus productos y opiniones son inventados. Sirve para probar cómo luce una tienda de café montada con AIFEC."
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Cómo elegimos el café"
+                }
+            },
+            {
+                "type": "list",
+                "attrs": {
+                    "ordered": false,
+                    "items": [
+                        {
+                            "html": "<strong>Por la cafetera:</strong> cada café se prueba en la cafetera para la que se vende."
+                        },
+                        {
+                            "html": "<strong>Tandas pequeñas:</strong> se tuesta cada semana y la fecha va en la bolsa."
+                        },
+                        {
+                            "html": "<strong>Sin letra pequeña:</strong> la intensidad, el tueste y el precio por taza, a la vista."
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "code": "envios-y-devoluciones",
+        "title": "Envíos y devoluciones",
+        "excerpt": "Plazos, costes y cómo devolver un pedido.",
+        "meta_title": "Envíos y devoluciones | Café Tizón",
+        "meta_description": "Costes y plazos de envío y condiciones de devolución de la tienda de demostración Café Tizón.",
+        "blocks": [
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 1,
+                    "html": "Envíos y devoluciones"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "<em>Texto de ejemplo.</em> Los pedidos salen en 24 horas y llegan en 1 a 3 días laborables. El envío es gratis a partir de 39 € en la Península."
+                }
+            },
+            {
+                "type": "table",
+                "attrs": {
+                    "head": [
+                        "Peso del pedido",
+                        "Península",
+                        "Baleares",
+                        "Canarias"
+                    ],
+                    "rows": [
+                        [
+                            "Hasta 2 kg",
+                            "3,95 €",
+                            "5,95 €",
+                            "9,95 €"
+                        ],
+                        [
+                            "De 2 a 10 kg",
+                            "4,95 €",
+                            "7,95 €",
+                            "12,95 €"
+                        ],
+                        [
+                            "Más de 10 kg",
+                            "6,95 €",
+                            "10,95 €",
+                            "18,95 €"
+                        ]
+                    ]
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Devoluciones"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Tienes 14 días para devolver un paquete sin abrir. El café abierto no se puede devolver, salvo que haya llegado en mal estado."
+                }
+            }
+        ]
+    },
+    {
+        "code": "contacto",
+        "title": "Contacto",
+        "excerpt": "Escríbenos para cualquier duda sobre tu cafetera o tu pedido.",
+        "meta_title": "Contacto | Café Tizón",
+        "meta_description": "Formulario de contacto de la tienda de demostración Café Tizón.",
+        "blocks": [
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 1,
+                    "html": "Contacto"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Cuéntanos qué cafetera tienes y qué café buscas. Es una tienda de demostración: el mensaje no se envía a nadie."
+                }
+            },
+            {
+                "type": "form",
+                "attrs": {
+                    "form_id": "contact"
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Otros datos"
+                }
+            },
+            {
+                "type": "list",
+                "attrs": {
+                    "ordered": false,
+                    "items": [
+                        {
+                            "html": "Correo: tienda@ejemplo.test"
+                        },
+                        {
+                            "html": "Dirección: Calle del Tostadero 1 (dirección de ejemplo)"
+                        },
+                        {
+                            "html": "Horario: lunes a viernes, de 9 a 17 horas"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "code": "aviso-legal",
+        "title": "Aviso legal",
+        "excerpt": "Texto de ejemplo.",
+        "blocks": [
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 1,
+                    "html": "Aviso legal"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "<em>Texto de ejemplo.</em> Esta tienda es una demostración. Titular ficticio: Café Tizón, S. L., Calle del Tostadero 1, correo tienda@ejemplo.test. Ninguno de estos datos corresponde a una empresa real."
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Los productos, los precios y las valoraciones son inventados y no constituyen una oferta. No se cobra ningún pedido hecho en esta tienda."
+                }
+            }
+        ]
+    },
+    {
+        "code": "privacidad",
+        "title": "Política de privacidad",
+        "excerpt": "Texto de ejemplo.",
+        "blocks": [
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 1,
+                    "html": "Política de privacidad"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "<em>Texto de ejemplo.</em> Esta tienda de demostración no recoge datos con fines comerciales. Lo que escribas en sus formularios se borra cada noche, cuando la tienda vuelve a su estado inicial."
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "La cafetera que elijas se guarda solo en tu navegador y no se envía a ningún servidor."
+                }
+            }
+        ]
+    }
+]

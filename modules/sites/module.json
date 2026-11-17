@@ -1,0 +1,1 @@
+{"name":"Sites","version":"1.0.0","description":"Master panel: sites and demo shops in subfolders","essential":false,"default":false,"requires":{"modules":[]},"contract":{"hosts":[],"personal_data":[],"tables":[],"capabilities":[]}}

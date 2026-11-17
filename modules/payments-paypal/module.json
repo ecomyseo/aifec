@@ -1,0 +1,1 @@
+{"name":"PayPal","version":"1.0.0","description":"PayPal payments","essential":false,"default":false,"requires":{"modules":["orders"]},"contract":{"hosts":["api-m.paypal.com","api-m.sandbox.paypal.com","www.paypal.com","www.sandbox.paypal.com","www.paypalobjects.com","pay.google.com"],"personal_data":["email","name","address"],"tables":[],"capabilities":[]}}

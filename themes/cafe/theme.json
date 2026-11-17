@@ -1,0 +1,51 @@
+{
+    "name": "Café",
+    "version": "1.0.0",
+    "description": "Coffee and capsule shop theme ordered by the customer's coffee maker: toasted notice strip, a two-floor header with the brand, text sections and a dark rail of coffee makers, borderless cards with a full-width compatibility ribbon, an intensity scale and the price per unit, a full-width listing with a summary box and filters in a row, a product page with a tasting sheet under the gallery and a footer on coffee ink.",
+    "parent": "base",
+    "font_stacks": {
+        "roast": "'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', 'Source Serif Pro', Georgia, serif"
+    },
+    "settings": {
+        "colors": {"fields": {
+            "bg": {"default": "#f5eee3"},
+            "surface": {"default": "#fbf6ee"},
+            "ink": {"default": "#2a1d15"},
+            "muted": {"default": "#6b5a4c"},
+            "line": {"default": "#dccdb8"},
+            "accent": {"default": "#9a5428"},
+            "accent_ink": {"default": "#ffffff"},
+            "sale": {"default": "#a3412c"},
+            "ok": {"default": "#2f6b42"},
+            "warn": {"default": "#7f5310"},
+            "bad": {"default": "#a3412c"},
+            "tone": {"type": "color", "label": "Photo background (milk tone)", "default": "#ebe0cf", "var": "--cf-tone"},
+            "band": {"type": "color", "label": "Dark bands (rail and footer)", "default": "#2a1d15", "var": "--cf-band"},
+            "band_ink": {"type": "color", "label": "Text on the dark bands", "default": "#f3e9da", "var": "--cf-band-ink"},
+            "strip": {"type": "color", "label": "Notice strip background", "default": "#9a5428", "var": "--cf-strip"},
+            "strip_ink": {"type": "color", "label": "Notice strip text", "default": "#fbf6ee", "var": "--cf-strip-ink"}
+        }},
+        "typography": {"fields": {
+            "font_head": {"default": "roast", "options": {"roast": "Roaster serif"}}
+        }},
+        "layout": {"fields": {
+            "radius": {"default": 6}
+        }},
+        "home": {"fields": {
+            "home_kicker": {"type": "text", "label": "Line above the home page title", "default": ""},
+            "home_makers": {"type": "toggle", "label": "Show the coffee maker row on the home page", "default": 1}
+        }},
+        "coffee": {"label": "Coffee shop", "fields": {
+            "strip_show": {"type": "toggle", "label": "Show the notice strip", "default": 1},
+            "strip_text": {"type": "text", "label": "Notices of the strip, separated by |", "default": ""},
+            "rail_show": {"type": "toggle", "label": "Show the coffee maker rail under the header", "default": 1},
+            "listing_cols": {"type": "select", "label": "Product list columns", "options": {"3": "Three", "4": "Four"}, "default": "4"},
+            "card_scale": {"type": "toggle", "label": "Show the intensity scale in product cards", "default": 1},
+            "unit_price_show": {"type": "toggle", "label": "Show the price per unit or per kilo", "default": 1},
+            "card_add": {"type": "toggle", "label": "Add to the cart from product cards", "default": 1},
+            "scale_max": {"type": "number", "label": "Top of the intensity scale", "default": 13, "min": 5, "max": 13},
+            "system_attr": {"type": "text", "label": "Code of the coffee maker attribute (empty: found by its name)", "default": ""},
+            "footer_text": {"type": "text", "label": "Footer text about the roastery", "default": ""}
+        }}
+    }
+}

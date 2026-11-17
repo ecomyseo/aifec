@@ -1,0 +1,1 @@
+{"name":"Cash on delivery","version":"1.0.0","description":"The customer pays when the order is delivered","essential":false,"default":false,"requires":{"modules":["orders"]},"contract":{"hosts":[],"personal_data":[],"tables":[],"capabilities":[]}}

@@ -1,0 +1,71 @@
+{
+    "name": "Métrica (demostración de ferretería)",
+    "description": "Ferretería en línea con 16 productos inventados: tornillería por métrica y largo con una referencia por medida, herramienta manual y eléctrica, listas de material por trabajo, dos guías de blog, envíos por peso y cupones de ejemplo. Usa el tema «metrica».",
+    "sector": "ferreteria",
+    "locale": "es",
+    "theme": "metrica",
+    "theme_options": {
+        "strip_text": "Pide antes de las 14:00 y sale hoy",
+        "bench_show": 1,
+        "listing_cols": "5",
+        "card_measures": 1,
+        "card_qty": 1,
+        "gallery_rail": "side",
+        "sizes_table": 1,
+        "counters_show": 1,
+        "measure_facets": "metrica,largo",
+        "show_brand_in_card": 0,
+        "home_title": "Dinos la medida o el trabajo",
+        "home_text": "Tornillos, tacos y herramientas, pedidos como se piden en el mostrador: por métrica y largo, o por lo que vas a hacer."
+    },
+    "store": {
+        "name": "Métrica",
+        "email": "tienda@ejemplo.test",
+        "address": "Calle Mayor 1 (dirección de ejemplo)",
+        "legal_name": "Ferretería Métrica, S. L. (ejemplo)",
+        "currency": "EUR",
+        "currency_symbol": "€",
+        "country": "ES",
+        "prices_include_tax": true,
+        "display_with_tax": true
+    },
+    "settings": {
+        "catalog.per_page": 20,
+        "cms.demo_legal_pages": true
+    },
+    "modules": [
+        "catalog",
+        "cms",
+        "media",
+        "orders",
+        "search",
+        "seo",
+        "shipping",
+        "tax",
+        "themes",
+        "coupons",
+        "customers",
+        "reviews",
+        "ai",
+        "assistant",
+        "copilot",
+        "semantic",
+        "api",
+        "mcp",
+        "webmcp",
+        "consent",
+        "returns"
+    ],
+    "files": [
+        "categories.json",
+        "brands.json",
+        "attributes.json",
+        "products.json",
+        "pages.json",
+        "posts.json",
+        "menus.json",
+        "carriers.json",
+        "coupons.json",
+        "reviews.json"
+    ]
+}

@@ -1,0 +1,11 @@
+[
+    {"code": "material", "name": "Material", "type": "select", "filterable": true, "values": [
+        {"code": "roble", "label": "Roble"},
+        {"code": "haya", "label": "Haya"},
+        {"code": "pino", "label": "Pino"}
+    ]},
+    {"code": "color", "name": "Color", "type": "select", "filterable": true, "variant": true, "values": [
+        {"code": "natural", "label": "Natural", "color": "#c98a47"},
+        {"code": "negro", "label": "Negro", "color": "#2b2b2b"}
+    ]}
+]

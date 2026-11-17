@@ -1,0 +1,1 @@
+{"name":"Simulated payment","version":"1.0.0","description":"A payment that charges nothing, to test the shop and for demos","essential":false,"default":false,"requires":{"modules":["orders"]},"contract":{"hosts":[],"personal_data":[],"tables":[],"capabilities":[]}}

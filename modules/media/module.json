@@ -1,0 +1,1 @@
+{"name":"Media","version":"1.0.0","description":"Media library: optimised images and private files","essential":false,"default":true,"requires":{"modules":[]},"contract":{"hosts":[],"personal_data":[],"tables":["media"],"capabilities":[]}}

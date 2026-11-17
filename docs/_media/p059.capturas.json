@@ -1,0 +1,9 @@
+[
+    {"nombre": "operacion-tareas-programadas", "ruta": "/admin/jobs/schedule", "panel": true, "movil": false},
+    {"nombre": "operacion-correo-ajustes", "ruta": "/admin/settings/mail", "panel": true, "movil": false},
+    {"nombre": "operacion-copias", "ruta": "/admin/tools/backups", "panel": true, "movil": false},
+    {"nombre": "operacion-sitios-y-demos", "ruta": "/admin/sites", "panel": true, "movil": false},
+    {"nombre": "operacion-cache-y-mantenimiento", "ruta": "/admin/tools/cache", "panel": true, "movil": false},
+    {"nombre": "operacion-diagnostico", "ruta": "/admin/tools/doctor", "panel": true, "movil": false},
+    {"nombre": "operacion-migracion", "ruta": "/admin/import", "panel": true, "movil": false}
+]

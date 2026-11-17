@@ -1,0 +1,1 @@
+{"name":"Customers","version":"1.0.0","description":"Customer accounts, addresses, groups and consents","essential":false,"default":true,"requires":{"modules":[]},"contract":{"hosts":[],"personal_data":["email","name","phone","address","vat_id"],"tables":["customers","addresses","customer_groups","consents","withdrawals"],"capabilities":[]}}

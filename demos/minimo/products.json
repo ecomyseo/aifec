@@ -1,0 +1,107 @@
+[
+    {
+        "sku": "DEMO-SILLA-01",
+        "name": "Silla Aldea",
+        "summary": "<p>Silla de comedor de roble con respaldo de listones.</p>",
+        "description": "<p>Una silla sencilla y cómoda, pensada para usarla todos los días. Estructura de roble y acabado al aceite. Producto de ejemplo.</p>",
+        "price": 4990,
+        "sale_price": 3990,
+        "stock": 0,
+        "gtin": "2990000000019",
+        "weight": 4200,
+        "featured": true,
+        "categories": ["sillas"],
+        "brand": "taller-ejemplo",
+        "attributes": {"material": "roble"},
+        "facts": [
+            {"label": "Material", "value": "Roble macizo"},
+            {"label": "Altura del asiento", "value": "46 cm"},
+            {"label": "Peso máximo", "value": "120 kg"}
+        ],
+        "faqs": [
+            {"question": "¿Viene montada?", "answer": "Sí, se entrega montada y lista para usar."},
+            {"question": "¿Se puede apilar?", "answer": "No, el respaldo de listones no está pensado para apilarse."}
+        ],
+        "variants": [
+            {"sku": "DEMO-SILLA-01-NAT", "gtin": "2990000000071", "stock": 8, "values": {"color": "natural"}},
+            {"sku": "DEMO-SILLA-01-NEG", "gtin": "2990000000088", "stock": 6, "values": {"color": "negro"}}
+        ],
+        "images": [{"file": "silla-aldea.svg", "alt": "Silla Aldea de roble, vista lateral"}]
+    },
+    {
+        "sku": "DEMO-SILLA-02",
+        "name": "Silla Bosque",
+        "summary": "<p>Silla tapizada en verde con patas de haya.</p>",
+        "description": "<p>Respaldo envolvente y asiento acolchado. Ideal para el escritorio o la mesa del comedor. Producto de ejemplo.</p>",
+        "price": 5990,
+        "stock": 9,
+        "gtin": "2990000000026",
+        "weight": 5100,
+        "featured": true,
+        "categories": ["sillas"],
+        "brand": "taller-ejemplo",
+        "attributes": {"material": "haya"},
+        "facts": [{"label": "Material", "value": "Haya y tela"}, {"label": "Altura del asiento", "value": "45 cm"}],
+        "images": ["silla-bosque.svg"]
+    },
+    {
+        "sku": "DEMO-SILLA-03",
+        "name": "Taburete Pino",
+        "summary": "<p>Taburete de pino para la cocina o el taller.</p>",
+        "description": "<p>Ligero, resistente y fácil de mover. Producto de ejemplo.</p>",
+        "price": 2990,
+        "stock": 20,
+        "gtin": "2990000000033",
+        "weight": 2300,
+        "categories": ["sillas"],
+        "brand": "taller-ejemplo",
+        "attributes": {"material": "pino"},
+        "images": ["taburete-pino.svg"]
+    },
+    {
+        "sku": "DEMO-MESA-01",
+        "name": "Mesa de comedor de roble",
+        "summary": "<p>Mesa para seis personas con tablero de roble macizo.</p>",
+        "description": "<p>Un tablero grueso que aguanta el uso diario y envejece bien. Producto de ejemplo.</p>",
+        "price": 24900,
+        "compare_price": 27900,
+        "stock": 4,
+        "gtin": "2990000000040",
+        "weight": 28000,
+        "featured": true,
+        "categories": ["mesas"],
+        "brand": "taller-ejemplo",
+        "attributes": {"material": "roble"},
+        "facts": [{"label": "Medidas", "value": "180 × 90 cm"}, {"label": "Material", "value": "Roble macizo"}],
+        "faqs": [{"question": "¿Cuántas personas caben?", "answer": "Seis cómodamente y ocho si se aprietan un poco."}],
+        "images": ["mesa-comedor.svg"]
+    },
+    {
+        "sku": "DEMO-MESA-02",
+        "name": "Mesa auxiliar de haya",
+        "summary": "<p>Mesa redonda auxiliar de un solo pie.</p>",
+        "description": "<p>Para dejar el café o una lámpara junto al sofá. Producto de ejemplo.</p>",
+        "price": 8900,
+        "stock": 11,
+        "gtin": "2990000000057",
+        "weight": 6800,
+        "categories": ["mesas"],
+        "brand": "taller-ejemplo",
+        "attributes": {"material": "haya"},
+        "images": ["mesa-auxiliar.svg"]
+    },
+    {
+        "sku": "DEMO-MESA-03",
+        "name": "Mesa de trabajo de pino",
+        "summary": "<p>Mesa de escritorio con un cajón.</p>",
+        "description": "<p>Superficie amplia y un cajón con guía suave. Producto de ejemplo.</p>",
+        "price": 15900,
+        "stock": 6,
+        "gtin": "2990000000064",
+        "weight": 17500,
+        "categories": ["mesas"],
+        "brand": "taller-ejemplo",
+        "attributes": {"material": "pino"},
+        "images": ["mesa-trabajo.svg"]
+    }
+]

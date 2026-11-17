@@ -1,0 +1,19 @@
+{
+    "name": "GM coming soon",
+    "version": "1.0.0",
+    "description": "Coming soon products: visible but not buyable, with a badge and a form to be told when they are available",
+    "namespace": "Gm\\Proximamente",
+    "essential": false,
+    "default": false,
+    "requires": {
+        "php": ">=7.4",
+        "aifec": ">=1.0.0",
+        "modules": ["catalog", "orders"]
+    },
+    "contract": {
+        "hosts": [],
+        "personal_data": ["email"],
+        "tables": ["gm_soon_products", "gm_soon_requests"],
+        "capabilities": ["pricing"]
+    }
+}

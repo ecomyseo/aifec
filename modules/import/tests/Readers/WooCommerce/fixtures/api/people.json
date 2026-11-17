@@ -1,0 +1,29 @@
+{
+  "/wp-json/wc/v3/customers": [
+    {
+      "id": 77, "date_created": "2024-05-02T18:20:00", "date_created_gmt": "2024-05-02T16:20:00", "date_modified": "2026-10-01T10:00:00", "date_modified_gmt": "2026-10-01T08:00:00",
+      "email": "ana@cliente.test", "first_name": "Ana", "last_name": "Ruiz Peña", "role": "customer", "username": "ana",
+      "billing": {"first_name": "Ana", "last_name": "Ruiz Peña", "company": "", "address_1": "Calle Mayor 1", "address_2": "2.º B", "city": "Madrid", "state": "M", "postcode": "28013", "country": "ES", "email": "ana@cliente.test", "phone": "999000001"},
+      "shipping": {"first_name": "Ana", "last_name": "Ruiz Peña", "company": "", "address_1": "Calle Mayor 1", "address_2": "2.º B", "city": "Madrid", "state": "M", "postcode": "28013", "country": "ES"},
+      "is_paying_customer": true, "avatar_url": "", "meta_data": []
+    },
+    {
+      "id": 78, "date_created": "2024-06-11T11:00:00", "date_created_gmt": "2024-06-11T09:00:00", "date_modified": "2026-10-01T10:00:00", "date_modified_gmt": "2026-10-01T08:00:00",
+      "email": "luis@cliente.test", "first_name": "Luis", "last_name": "Gil", "role": "customer", "username": "luis",
+      "billing": {"first_name": "Luis", "last_name": "Gil", "company": "", "address_1": "Calle Larga 2", "address_2": "", "city": "Sevilla", "state": "SE", "postcode": "41001", "country": "ES", "email": "luis@cliente.test", "phone": "999000002"},
+      "shipping": {"first_name": "Luis", "last_name": "Gil", "company": "", "address_1": "Calle Larga 2", "address_2": "", "city": "Sevilla", "state": "SE", "postcode": "41001", "country": "ES"},
+      "is_paying_customer": true, "avatar_url": "", "meta_data": []
+    },
+    {
+      "id": 79, "date_created": "2025-01-20T13:00:00", "date_created_gmt": "2025-01-20T12:00:00", "date_modified": "2026-10-01T10:00:00", "date_modified_gmt": "2026-10-01T08:00:00",
+      "email": "marta@cliente.test", "first_name": "Marta", "last_name": "Soler", "role": "customer", "username": "marta",
+      "billing": {"first_name": "Marta", "last_name": "Soler", "company": "", "address_1": "Calle Corta 3", "address_2": "", "city": "Ceuta", "state": "CE", "postcode": "51001", "country": "ES", "email": "marta@cliente.test", "phone": "999000003"},
+      "shipping": {"first_name": "Marta", "last_name": "Soler", "company": "", "address_1": "Calle Corta 3", "address_2": "", "city": "Ceuta", "state": "CE", "postcode": "51001", "country": "ES"},
+      "is_paying_customer": false, "avatar_url": "", "meta_data": []
+    }
+  ],
+  "/wp-json/wp/v2/users": [
+    {"id": 1, "name": "Administrador", "email": "admin@tienda.test", "username": "admin", "roles": ["administrator"], "locale": "es_ES"},
+    {"id": 80, "name": "Gestor de tienda", "email": "gestor@tienda.test", "username": "gestor", "roles": ["shop_manager"], "locale": ""}
+  ]
+}

@@ -1,0 +1,87 @@
+[
+    {
+        "code": "main",
+        "name": "Menú principal",
+        "items": [
+            {
+                "type": "category",
+                "ref": "chaquetas",
+                "label": "Chaquetas"
+            },
+            {
+                "type": "category",
+                "ref": "pantalones",
+                "label": "Pantalones"
+            },
+            {
+                "type": "category",
+                "ref": "bolsos",
+                "label": "Bolsos"
+            },
+            {
+                "type": "category",
+                "ref": "a-tu-medida",
+                "label": "A tu medida",
+                "children": [
+                    {
+                        "type": "category",
+                        "ref": "chaquetas-por-talla",
+                        "label": "Chaquetas por talla"
+                    },
+                    {
+                        "type": "category",
+                        "ref": "pantalones-por-largo",
+                        "label": "Pantalones por largo"
+                    }
+                ]
+            },
+            {
+                "type": "page",
+                "ref": "la-casa",
+                "label": "La casa"
+            }
+        ]
+    },
+    {
+        "code": "footer",
+        "name": "Menú del pie",
+        "items": [
+            {
+                "type": "page",
+                "ref": "la-casa",
+                "label": "La casa"
+            },
+            {
+                "type": "page",
+                "ref": "envios-y-devoluciones",
+                "label": "Envíos y devoluciones"
+            },
+            {
+                "type": "page",
+                "ref": "guia-de-tallas",
+                "label": "Guía de tallas"
+            },
+            {
+                "type": "page",
+                "ref": "contacto",
+                "label": "Contacto"
+            }
+        ]
+    },
+    {
+        "code": "legal",
+        "name": "Menú legal",
+        "items": [
+            {
+                "type": "page",
+                "ref": "aviso-legal",
+                "label": "Aviso legal"
+            },
+            {
+                "type": "page",
+                "ref": "privacidad",
+                "label": "Política de privacidad"
+            }
+        ]
+    }
+]

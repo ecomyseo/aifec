@@ -1,0 +1,24 @@
+[
+    {
+        "code": "inicio",
+        "title": "Inicio",
+        "home": true,
+        "meta_title": "Taller de ejemplo: sillas y mesas de madera",
+        "meta_description": "Tienda de demostración con sillas y mesas de madera. Todos los datos son inventados.",
+        "blocks": [
+            {"type": "heading", "attrs": {"level": 1, "html": "Muebles de madera para todos los días"}},
+            {"type": "paragraph", "attrs": {"html": "Esta es una tienda de demostración: los productos, los precios y las opiniones son de ejemplo."}},
+            {"type": "products", "attrs": {"mode": "featured", "limit": 3, "columns": 3}}
+        ]
+    },
+    {
+        "code": "sobre-esta-demo",
+        "title": "Sobre esta demostración",
+        "excerpt": "Qué es esta tienda y qué se puede probar.",
+        "blocks": [
+            {"type": "heading", "attrs": {"level": 2, "html": "Una tienda para probar"}},
+            {"type": "paragraph", "attrs": {"html": "Puedes añadir productos al carrito y pagar con la forma de pago de prueba. No se cobra nada y no sale ningún correo."}},
+            {"type": "list", "attrs": {"ordered": false, "items": [{"html": "El panel de esta tienda está abierto con la cuenta de demostración."}, {"html": "Cada noche la tienda vuelve a su estado original."}]}}
+        ]
+    }
+]

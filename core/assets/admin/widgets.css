@@ -1,0 +1,39 @@
+/*
+ * AIFEC — panel de administración: piezas que crea admin.js (editor de texto, selector con búsqueda,
+ * reordenación de filas). Solo las medidas de admin.css (5 colores, 8 espacios, 5 tamaños de letra): ni un color fijo.
+ * Autor: Ecom Experts · 2026 · Ver LICENSE.md
+ */
+
+/* ---------- editor de texto ---------- */
+.af-rt { border: 1px solid var(--muted); border-radius: var(--radius-sm); background: var(--surface); }
+.af-rt:focus-within { outline: 2px solid var(--accent); outline-offset: 1px; }
+.af-rt-bar { display: flex; flex-wrap: wrap; gap: var(--s0); padding: var(--s1); border-bottom: 1px solid var(--bg); background: var(--bg); border-radius: var(--radius-sm) var(--radius-sm) 0 0; }
+.af-rt-btn { display: inline-grid; place-items: center; min-width: var(--tap-sm); height: var(--tap-sm); padding: 0 var(--s2); border: 1px solid transparent; border-radius: var(--radius-sm); background: transparent; color: var(--ink); font: inherit; font-size: var(--f1); font-weight: 700; cursor: pointer; }
+.af-rt-btn:hover { background: var(--surface); }
+.af-rt-btn[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
+.af-rt-btn[disabled] { opacity: .45; cursor: not-allowed; }
+.af-rt-btn svg { display: block; }
+.af-rt-area { min-height: 12rem; max-height: 60vh; overflow-y: auto; padding: var(--s2) var(--s3); color: var(--ink); line-height: 1.55; overflow-wrap: anywhere; }
+.af-rt-area:focus { outline: none; } /* el marco de foco lo pinta .af-rt:focus-within alrededor de todo el editor */
+.af-rt-area h2, .af-rt-area h3 { margin: var(--s3) 0 var(--s2); }
+.af-rt-area p { margin: 0 0 var(--s3); }
+.af-rt-area blockquote { margin: 0 0 var(--s3); padding: var(--s0) var(--s4); border-left: 3px solid var(--muted); color: var(--muted); }
+.af-rt-area ul, .af-rt-area ol { margin: 0 0 var(--s3); padding-left: var(--s5); }
+.af-rt-area a { color: var(--accent); text-decoration: underline; }
+.af-rt > .af-textarea { border: 0; border-radius: 0 0 var(--radius-sm) var(--radius-sm); }
+.af-rt + .af-textarea { margin-top: var(--s2); }
+
+/* ---------- selector con búsqueda ---------- */
+.af-rel { position: relative; display: flex; align-items: center; gap: var(--s1); max-width: 340px; }
+.af-rel .af-rel-input { flex: 1; min-width: 0; max-width: none; }
+.af-rel-clear { flex: none; font-size: var(--f3); line-height: 1; }
+.af-rel-list { position: absolute; left: 0; right: 0; top: calc(100% + var(--s1)); z-index: 45; margin: 0; padding: var(--s1); list-style: none; max-height: 16rem; overflow-y: auto; background: var(--surface); border: 1px solid var(--muted); border-radius: var(--radius-sm); }
+.af-rel-list li { display: flex; align-items: center; min-height: var(--tap); padding: var(--s1) var(--s3); border-radius: var(--radius-sm); color: var(--ink); cursor: pointer; overflow-wrap: anywhere; }
+.af-rel-list li:hover, .af-rel-list li.is-active { background: var(--bg); box-shadow: inset 3px 0 0 var(--accent); }
+
+/* ---------- reordenar filas del repetidor ---------- */
+.af-drag { touch-action: none; user-select: none; }
+.af-dragging, .af-dragging * { cursor: grabbing !important; user-select: none; }
+.af-repeater-row.af-drop-before { box-shadow: 0 -3px 0 0 var(--accent); }
+.af-repeater-row.af-drop-after { box-shadow: 0 3px 0 0 var(--accent); }
+@media (max-width: 767.98px) { .af-rel { max-width: none; } }

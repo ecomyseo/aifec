@@ -1,0 +1,32 @@
+[
+    {
+        "code": "hilo-claro",
+        "name": "Hilo Claro",
+        "description": "Marca inventada para esta demostración: básicos de algodón y lino con un corte sencillo.",
+        "website": "https://tienda.test"
+    },
+    {
+        "code": "brezo-estudio",
+        "name": "Brezo Estudio",
+        "description": "Marca inventada para esta demostración: punto, seda y prendas de silueta suelta.",
+        "website": "https://tienda.test"
+    },
+    {
+        "code": "marea-alta",
+        "name": "Marea Alta",
+        "description": "Marca inventada para esta demostración: denim, gabardinas y ropa de exterior.",
+        "website": "https://tienda.test"
+    },
+    {
+        "code": "zarza",
+        "name": "Zarza",
+        "description": "Marca inventada para esta demostración: calzado y marroquinería de curtición vegetal.",
+        "website": "https://tienda.test"
+    },
+    {
+        "code": "lino-y-sal",
+        "name": "Lino y Sal",
+        "description": "Marca inventada para esta demostración: lino, lana y complementos de temporada.",
+        "website": "https://tienda.test"
+    }
+]

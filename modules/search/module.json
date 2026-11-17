@@ -1,0 +1,1 @@
+{"name":"Search","version":"1.2.0","description":"Own search engine that understands phrases, tolerates typos and suggests while typing","essential":false,"default":true,"requires":{"modules":["catalog"]},"contract":{"hosts":[],"personal_data":[],"tables":["search_docs","search_terms","search_postings","search_log","search_filters","synonyms"],"capabilities":[]}}

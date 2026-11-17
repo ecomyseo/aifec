@@ -1,0 +1,1 @@
+{"name":"Tax","version":"1.0.0","description":"Tax classes and rates by destination","essential":false,"default":true,"requires":{"modules":[]},"contract":{"hosts":[],"personal_data":[],"tables":["tax_classes","tax_rates"],"capabilities":["pricing"]}}

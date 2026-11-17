@@ -1,0 +1,1744 @@
+[
+    {
+        "sku": "DEMO-LOOK-001",
+        "name": "Chaqueta corta de paño camel",
+        "summary": "<p>Chaqueta a la cintura en paño de lana camel, con cuello camisero y dos bolsillos de parche.</p>",
+        "description": "<p>Corta, recta y con el hombro en su sitio: una chaqueta para llevar con pantalón de tiro alto o sobre un vestido. Los botones de pasta imitan el asta.</p><p>El paño tiene cuerpo y cae sin arrugarse, de modo que sirve de entretiempo y de abrigo ligero.</p>",
+        "price": 14900,
+        "manage_stock": true,
+        "mpn": "ST-001",
+        "weight": 920,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": true,
+        "categories": [
+            "chaquetas"
+        ],
+        "attributes": {
+            "material": "pano-de-lana",
+            "temporada": "otono-invierno"
+        },
+        "facts": [
+            {
+                "label": "Tejido",
+                "value": "Paño de mezcla de lana"
+            },
+            {
+                "label": "Largo de espalda",
+                "value": "50 cm en la talla 38"
+            },
+            {
+                "label": "Bolsillos",
+                "value": "Dos de parche con tapeta"
+            },
+            {
+                "label": "Forro",
+                "value": "Sin forro"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Qué talla elijo?",
+                "answer": "Compara el largo de espalda y el ancho de hombros de una chaqueta que ya tengas con la guía de tallas. Si dudas entre dos, elige la mayor para llevar un jersey debajo."
+            },
+            {
+                "question": "¿Cómo se cuida el paño?",
+                "answer": "Cepíllala después de usarla, déjala airear en una percha ancha y llévala a limpieza en seco cuando lo necesite. No se lava en casa."
+            }
+        ],
+        "tags": [
+            "chaqueta",
+            "paño",
+            "camel"
+        ],
+        "meta_title": "Chaqueta corta de paño camel | Sarga & Tilo",
+        "meta_description": "Chaqueta a la cintura en paño de lana camel, con cuello camisero y dos bolsillos de parche.",
+        "images": [
+            {
+                "file": "chaqueta-corta-de-pano-camel.jpg",
+                "alt": "Chaqueta corta de paño camel"
+            },
+            {
+                "file": "chaqueta-corta-de-pano-camel-detalle-1.jpg",
+                "alt": "Chaqueta corta de paño camel, detalle del cuello y la botonadura"
+            },
+            {
+                "file": "chaqueta-corta-de-pano-camel-detalle-2.jpg",
+                "alt": "Chaqueta corta de paño camel, detalle del bolsillo y el bajo"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-LOOK-001-36",
+                "gtin": "2990200000017",
+                "stock": 6,
+                "values": {
+                    "talla": "36",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-001-38",
+                "gtin": "2990200000024",
+                "stock": 9,
+                "values": {
+                    "talla": "38",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-001-40",
+                "gtin": "2990200000031",
+                "stock": 4,
+                "values": {
+                    "talla": "40",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-001-42",
+                "gtin": "2990200000048",
+                "stock": 0,
+                "values": {
+                    "talla": "42",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-001-44",
+                "gtin": "2990200000055",
+                "stock": 2,
+                "values": {
+                    "talla": "44",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel.jpg"
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-LOOK-002",
+        "name": "Chaqueta corta de paño camel forrada",
+        "summary": "<p>La chaqueta corta camel con forro completo de viscosa: se desliza sobre el jersey y abriga más.</p>",
+        "description": "<p>El forro cambia la forma de llevarla. Entra con facilidad sobre prendas de punto, no se pega al cuerpo y añade una capa de abrigo.</p><p>Lleva un bolsillo interior para el móvil.</p>",
+        "price": 16900,
+        "manage_stock": true,
+        "mpn": "ST-002",
+        "weight": 920,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "chaquetas"
+        ],
+        "attributes": {
+            "material": "pano-de-lana",
+            "temporada": "otono-invierno"
+        },
+        "facts": [
+            {
+                "label": "Tejido",
+                "value": "Paño de mezcla de lana"
+            },
+            {
+                "label": "Forro",
+                "value": "Completo, de viscosa"
+            },
+            {
+                "label": "Bolsillo interior",
+                "value": "Uno, con botón"
+            },
+            {
+                "label": "Largo de espalda",
+                "value": "50 cm en la talla 38"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Qué talla elijo?",
+                "answer": "Compara el largo de espalda y el ancho de hombros de una chaqueta que ya tengas con la guía de tallas. Si dudas entre dos, elige la mayor para llevar un jersey debajo."
+            },
+            {
+                "question": "¿Cómo se cuida el paño?",
+                "answer": "Cepíllala después de usarla, déjala airear en una percha ancha y llévala a limpieza en seco cuando lo necesite. No se lava en casa."
+            }
+        ],
+        "tags": [
+            "chaqueta",
+            "paño",
+            "camel"
+        ],
+        "meta_title": "Chaqueta corta de paño camel forrada | Sarga & Tilo",
+        "meta_description": "La chaqueta corta camel con forro completo de viscosa: se desliza sobre el jersey y abriga más.",
+        "images": [
+            {
+                "file": "chaqueta-corta-de-pano-camel-forrada.jpg",
+                "alt": "Chaqueta corta de paño camel forrada"
+            },
+            {
+                "file": "chaqueta-corta-de-pano-camel-forrada-detalle-1.jpg",
+                "alt": "Chaqueta corta de paño camel forrada, detalle del cuello y la botonadura"
+            },
+            {
+                "file": "chaqueta-corta-de-pano-camel-forrada-detalle-2.jpg",
+                "alt": "Chaqueta corta de paño camel forrada, detalle del bolsillo y el bajo"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-LOOK-002-36",
+                "gtin": "2990200000062",
+                "stock": 0,
+                "values": {
+                    "talla": "36",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel-forrada.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-002-38",
+                "gtin": "2990200000079",
+                "stock": 2,
+                "values": {
+                    "talla": "38",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel-forrada.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-002-40",
+                "gtin": "2990200000086",
+                "stock": 7,
+                "values": {
+                    "talla": "40",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel-forrada.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-002-42",
+                "gtin": "2990200000093",
+                "stock": 1,
+                "values": {
+                    "talla": "42",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel-forrada.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-002-44",
+                "gtin": "2990200000109",
+                "stock": 5,
+                "values": {
+                    "talla": "44",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel-forrada.jpg"
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-LOOK-003",
+        "name": "Chaqueta corta de paño camel en mezcla de cachemir",
+        "summary": "<p>El mismo patrón en un paño de lana con un diez por ciento de cachemir, más suave y ligero.</p>",
+        "description": "<p>Al tacto se nota enseguida: el paño es más blando, pesa menos y abriga igual. Es la versión para quien busca una prenda que dure muchas temporadas.</p><p>Va forrada y con las costuras interiores ribeteadas.</p>",
+        "price": 22900,
+        "manage_stock": true,
+        "mpn": "ST-003",
+        "weight": 920,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": true,
+        "categories": [
+            "chaquetas"
+        ],
+        "attributes": {
+            "material": "lana-y-cachemir",
+            "temporada": "otono-invierno"
+        },
+        "facts": [
+            {
+                "label": "Tejido",
+                "value": "Paño de 90 % lana y 10 % cachemir"
+            },
+            {
+                "label": "Forro",
+                "value": "Completo"
+            },
+            {
+                "label": "Costuras interiores",
+                "value": "Ribeteadas"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Limpieza en seco"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Qué talla elijo?",
+                "answer": "Compara el largo de espalda y el ancho de hombros de una chaqueta que ya tengas con la guía de tallas. Si dudas entre dos, elige la mayor para llevar un jersey debajo."
+            },
+            {
+                "question": "¿Cómo se cuida el paño?",
+                "answer": "Cepíllala después de usarla, déjala airear en una percha ancha y llévala a limpieza en seco cuando lo necesite. No se lava en casa."
+            }
+        ],
+        "tags": [
+            "chaqueta",
+            "paño",
+            "camel"
+        ],
+        "meta_title": "Chaqueta corta de paño camel en mezcla de cachemir | Sarga & Tilo",
+        "meta_description": "El mismo patrón en un paño de lana con un diez por ciento de cachemir, más suave y ligero.",
+        "images": [
+            {
+                "file": "chaqueta-corta-de-pano-camel-en-mezcla-de-cachemir.jpg",
+                "alt": "Chaqueta corta de paño camel en mezcla de cachemir"
+            },
+            {
+                "file": "chaqueta-corta-de-pano-camel-en-mezcla-de-cachemir-detalle-1.jpg",
+                "alt": "Chaqueta corta de paño camel en mezcla de cachemir, detalle del bolsillo de parche y la tapeta"
+            },
+            {
+                "file": "chaqueta-corta-de-pano-camel-en-mezcla-de-cachemir-detalle-2.jpg",
+                "alt": "Chaqueta corta de paño camel en mezcla de cachemir, detalle del puño y el bajo de la manga"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-LOOK-003-36",
+                "gtin": "2990200000116",
+                "stock": 1,
+                "values": {
+                    "talla": "36",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel-en-mezcla-de-cachemir.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-003-38",
+                "gtin": "2990200000123",
+                "stock": 5,
+                "values": {
+                    "talla": "38",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel-en-mezcla-de-cachemir.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-003-40",
+                "gtin": "2990200000130",
+                "stock": 3,
+                "values": {
+                    "talla": "40",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel-en-mezcla-de-cachemir.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-003-42",
+                "gtin": "2990200000147",
+                "stock": 8,
+                "values": {
+                    "talla": "42",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel-en-mezcla-de-cachemir.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-003-44",
+                "gtin": "2990200000154",
+                "stock": 6,
+                "values": {
+                    "talla": "44",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel-en-mezcla-de-cachemir.jpg"
+            }
+        ],
+        "sale_price": 19900
+    },
+    {
+        "sku": "DEMO-LOOK-004",
+        "name": "Chaqueta corta de paño camel, corte amplio",
+        "summary": "<p>Patrón más holgado, con el hombro caído y la manga ancha, para llevar con capas debajo.</p>",
+        "description": "<p>Conserva el largo a la cintura, pero gana seis centímetros de contorno. Admite un jersey grueso o una sudadera sin tirar de sisa.</p><p>Si dudas entre dos tallas, en este corte elige la pequeña.</p>",
+        "price": 15900,
+        "manage_stock": true,
+        "mpn": "ST-004",
+        "weight": 920,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "chaquetas"
+        ],
+        "attributes": {
+            "material": "pano-de-lana",
+            "temporada": "otono-invierno"
+        },
+        "facts": [
+            {
+                "label": "Corte",
+                "value": "Amplio, de hombro caído"
+            },
+            {
+                "label": "Tejido",
+                "value": "Paño de mezcla de lana"
+            },
+            {
+                "label": "Bolsillos",
+                "value": "Dos de parche con tapeta"
+            },
+            {
+                "label": "Forro",
+                "value": "Sin forro"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Qué talla elijo?",
+                "answer": "Compara el largo de espalda y el ancho de hombros de una chaqueta que ya tengas con la guía de tallas. Si dudas entre dos, elige la mayor para llevar un jersey debajo."
+            },
+            {
+                "question": "¿Cómo se cuida el paño?",
+                "answer": "Cepíllala después de usarla, déjala airear en una percha ancha y llévala a limpieza en seco cuando lo necesite. No se lava en casa."
+            }
+        ],
+        "tags": [
+            "chaqueta",
+            "paño",
+            "camel"
+        ],
+        "meta_title": "Chaqueta corta de paño camel, corte amplio | Sarga & Tilo",
+        "meta_description": "Patrón más holgado, con el hombro caído y la manga ancha, para llevar con capas debajo.",
+        "images": [
+            {
+                "file": "chaqueta-corta-de-pano-camel-corte-amplio.jpg",
+                "alt": "Chaqueta corta de paño camel, corte amplio"
+            },
+            {
+                "file": "chaqueta-corta-de-pano-camel-corte-amplio-detalle-1.jpg",
+                "alt": "Chaqueta corta de paño camel, corte amplio, detalle del bolsillo de parche y la tapeta"
+            },
+            {
+                "file": "chaqueta-corta-de-pano-camel-corte-amplio-detalle-2.jpg",
+                "alt": "Chaqueta corta de paño camel, corte amplio, detalle del puño y el bajo de la manga"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-LOOK-004-36",
+                "gtin": "2990200000161",
+                "stock": 8,
+                "values": {
+                    "talla": "36",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel-corte-amplio.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-004-38",
+                "gtin": "2990200000178",
+                "stock": 6,
+                "values": {
+                    "talla": "38",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel-corte-amplio.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-004-40",
+                "gtin": "2990200000185",
+                "stock": 9,
+                "values": {
+                    "talla": "40",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel-corte-amplio.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-004-42",
+                "gtin": "2990200000192",
+                "stock": 4,
+                "values": {
+                    "talla": "42",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel-corte-amplio.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-004-44",
+                "gtin": "2990200000208",
+                "stock": 0,
+                "values": {
+                    "talla": "44",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel-corte-amplio.jpg"
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-LOOK-005",
+        "name": "Chaqueta corta de paño camel, patrón talla corta",
+        "summary": "<p>Patrón adaptado para estaturas de menos de 1,60 m: manga, talle y bolsillos más arriba.</p>",
+        "description": "<p>No es la misma chaqueta en pequeño: acortamos la manga cuatro centímetros, subimos los bolsillos y ajustamos el largo para que termine en la cintura.</p><p>Así se evita tener que llevarla a arreglar.</p>",
+        "price": 14900,
+        "manage_stock": true,
+        "mpn": "ST-005",
+        "weight": 920,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "chaquetas",
+            "chaquetas-por-talla",
+            "a-tu-medida"
+        ],
+        "attributes": {
+            "material": "pano-de-lana",
+            "temporada": "otono-invierno"
+        },
+        "facts": [
+            {
+                "label": "Estatura",
+                "value": "Hasta 1,60 m"
+            },
+            {
+                "label": "Manga",
+                "value": "4 cm más corta"
+            },
+            {
+                "label": "Largo de espalda",
+                "value": "46 cm en la talla 38"
+            },
+            {
+                "label": "Tejido",
+                "value": "Paño de mezcla de lana"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Qué talla elijo?",
+                "answer": "Compara el largo de espalda y el ancho de hombros de una chaqueta que ya tengas con la guía de tallas. Si dudas entre dos, elige la mayor para llevar un jersey debajo."
+            },
+            {
+                "question": "¿Cómo se cuida el paño?",
+                "answer": "Cepíllala después de usarla, déjala airear en una percha ancha y llévala a limpieza en seco cuando lo necesite. No se lava en casa."
+            }
+        ],
+        "tags": [
+            "chaqueta",
+            "paño",
+            "camel"
+        ],
+        "meta_title": "Chaqueta corta de paño camel, patrón talla corta | Sarga & Tilo",
+        "meta_description": "Patrón adaptado para estaturas de menos de 1,60 m: manga, talle y bolsillos más arriba.",
+        "images": [
+            {
+                "file": "chaqueta-corta-de-pano-camel-patron-talla-corta.jpg",
+                "alt": "Chaqueta corta de paño camel, patrón talla corta"
+            },
+            {
+                "file": "chaqueta-corta-de-pano-camel-patron-talla-corta-detalle-1.jpg",
+                "alt": "Chaqueta corta de paño camel, patrón talla corta, detalle del hombro y el cuello"
+            },
+            {
+                "file": "chaqueta-corta-de-pano-camel-patron-talla-corta-detalle-2.jpg",
+                "alt": "Chaqueta corta de paño camel, patrón talla corta, detalle del bajo y el último botón"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-LOOK-005-34",
+                "gtin": "2990200000215",
+                "stock": 4,
+                "values": {
+                    "talla": "34",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel-patron-talla-corta.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-005-36",
+                "gtin": "2990200000222",
+                "stock": 0,
+                "values": {
+                    "talla": "36",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel-patron-talla-corta.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-005-38",
+                "gtin": "2990200000239",
+                "stock": 2,
+                "values": {
+                    "talla": "38",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel-patron-talla-corta.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-005-40",
+                "gtin": "2990200000246",
+                "stock": 7,
+                "values": {
+                    "talla": "40",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel-patron-talla-corta.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-005-42",
+                "gtin": "2990200000253",
+                "stock": 1,
+                "values": {
+                    "talla": "42",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel-patron-talla-corta.jpg"
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-LOOK-006",
+        "name": "Chaqueta corta de paño camel, tallas 46 a 54",
+        "summary": "<p>La chaqueta corta camel con patrón propio para las tallas de la 46 a la 54.</p>",
+        "description": "<p>El patrón está redibujado para estas tallas, con más holgura en pecho y brazo y pinzas en la espalda para que siente bien.</p><p>Mantiene el cuello camisero, los botones y los bolsillos de parche del modelo original.</p>",
+        "price": 15900,
+        "manage_stock": true,
+        "mpn": "ST-006",
+        "weight": 920,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "chaquetas",
+            "chaquetas-por-talla",
+            "a-tu-medida"
+        ],
+        "attributes": {
+            "material": "pano-de-lana",
+            "temporada": "otono-invierno"
+        },
+        "facts": [
+            {
+                "label": "Tallas",
+                "value": "De la 46 a la 54"
+            },
+            {
+                "label": "Entalle",
+                "value": "Pinzas en la espalda"
+            },
+            {
+                "label": "Tejido",
+                "value": "Paño de mezcla de lana"
+            },
+            {
+                "label": "Forro",
+                "value": "En las mangas"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Qué talla elijo?",
+                "answer": "Compara el largo de espalda y el ancho de hombros de una chaqueta que ya tengas con la guía de tallas. Si dudas entre dos, elige la mayor para llevar un jersey debajo."
+            },
+            {
+                "question": "¿Cómo se cuida el paño?",
+                "answer": "Cepíllala después de usarla, déjala airear en una percha ancha y llévala a limpieza en seco cuando lo necesite. No se lava en casa."
+            }
+        ],
+        "tags": [
+            "chaqueta",
+            "paño",
+            "camel"
+        ],
+        "meta_title": "Chaqueta corta de paño camel, tallas 46 a 54 | Sarga & Tilo",
+        "meta_description": "La chaqueta corta camel con patrón propio para las tallas de la 46 a la 54.",
+        "images": [
+            {
+                "file": "chaqueta-corta-de-pano-camel-tallas-46-a-54.jpg",
+                "alt": "Chaqueta corta de paño camel, tallas 46 a 54"
+            },
+            {
+                "file": "chaqueta-corta-de-pano-camel-tallas-46-a-54-detalle-1.jpg",
+                "alt": "Chaqueta corta de paño camel, tallas 46 a 54, detalle del hombro y el cuello"
+            },
+            {
+                "file": "chaqueta-corta-de-pano-camel-tallas-46-a-54-detalle-2.jpg",
+                "alt": "Chaqueta corta de paño camel, tallas 46 a 54, detalle del bajo y el último botón"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-LOOK-006-46",
+                "gtin": "2990200000260",
+                "stock": 7,
+                "values": {
+                    "talla": "46",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel-tallas-46-a-54.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-006-48",
+                "gtin": "2990200000277",
+                "stock": 1,
+                "values": {
+                    "talla": "48",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel-tallas-46-a-54.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-006-50",
+                "gtin": "2990200000284",
+                "stock": 5,
+                "values": {
+                    "talla": "50",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel-tallas-46-a-54.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-006-52",
+                "gtin": "2990200000291",
+                "stock": 3,
+                "values": {
+                    "talla": "52",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel-tallas-46-a-54.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-006-54",
+                "gtin": "2990200000307",
+                "stock": 8,
+                "values": {
+                    "talla": "54",
+                    "color": "camel"
+                },
+                "image": "chaqueta-corta-de-pano-camel-tallas-46-a-54.jpg"
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-LOOK-007",
+        "name": "Pantalón ancho azul marino de tiro alto",
+        "summary": "<p>Pantalón de pierna ancha y tiro alto en azul marino, con pinzas y raya marcada.</p>",
+        "description": "<p>La cintura alta y la pierna que cae recta desde la cadera alargan la figura. Las dos pinzas delanteras dan holgura sin añadir volumen.</p><p>El tejido tiene un ligero dibujo de espiga que solo se aprecia de cerca.</p>",
+        "price": 8900,
+        "manage_stock": true,
+        "mpn": "ST-007",
+        "weight": 540,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": true,
+        "categories": [
+            "pantalones"
+        ],
+        "attributes": {
+            "material": "sarga",
+            "temporada": "otono-invierno"
+        },
+        "facts": [
+            {
+                "label": "Cierre",
+                "value": "Tiro alto con cremallera y corchete"
+            },
+            {
+                "label": "Largo de entrepierna",
+                "value": "80 cm"
+            },
+            {
+                "label": "Bolsillos",
+                "value": "Laterales al bies"
+            },
+            {
+                "label": "Tejido",
+                "value": "Sarga de peso medio"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Cómo sé qué largo me corresponde?",
+                "answer": "Mide la entrepierna de un pantalón que te quede bien, de la costura al bajo. El modelo estándar mide 80 cm y hay versiones de 76 y de 84 cm."
+            },
+            {
+                "question": "¿La cintura cede con el uso?",
+                "answer": "Muy poco. El tejido tiene cuerpo y recupera la forma; si estás entre dos tallas, elige la que te quede cómoda sentada."
+            }
+        ],
+        "tags": [
+            "pantalón",
+            "tiro alto",
+            "azul marino"
+        ],
+        "meta_title": "Pantalón ancho azul marino de tiro alto | Sarga & Tilo",
+        "meta_description": "Pantalón de pierna ancha y tiro alto en azul marino, con pinzas y raya marcada.",
+        "images": [
+            {
+                "file": "pantalon-ancho-azul-marino-de-tiro-alto.jpg",
+                "alt": "Pantalón ancho azul marino de tiro alto"
+            },
+            {
+                "file": "pantalon-ancho-azul-marino-de-tiro-alto-detalle-1.jpg",
+                "alt": "Pantalón ancho azul marino de tiro alto, detalle de la cintura y las pinzas"
+            },
+            {
+                "file": "pantalon-ancho-azul-marino-de-tiro-alto-detalle-2.jpg",
+                "alt": "Pantalón ancho azul marino de tiro alto, detalle del bajo y la caída"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-LOOK-007-36",
+                "gtin": "2990200000314",
+                "stock": 3,
+                "values": {
+                    "talla": "36",
+                    "color": "marino"
+                },
+                "image": "pantalon-ancho-azul-marino-de-tiro-alto.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-007-38",
+                "gtin": "2990200000321",
+                "stock": 8,
+                "values": {
+                    "talla": "38",
+                    "color": "marino"
+                },
+                "image": "pantalon-ancho-azul-marino-de-tiro-alto.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-007-40",
+                "gtin": "2990200000338",
+                "stock": 6,
+                "values": {
+                    "talla": "40",
+                    "color": "marino"
+                },
+                "image": "pantalon-ancho-azul-marino-de-tiro-alto.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-007-42",
+                "gtin": "2990200000345",
+                "stock": 9,
+                "values": {
+                    "talla": "42",
+                    "color": "marino"
+                },
+                "image": "pantalon-ancho-azul-marino-de-tiro-alto.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-007-44",
+                "gtin": "2990200000352",
+                "stock": 4,
+                "values": {
+                    "talla": "44",
+                    "color": "marino"
+                },
+                "image": "pantalon-ancho-azul-marino-de-tiro-alto.jpg"
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-LOOK-008",
+        "name": "Pantalón ancho azul marino, largo de pierna 76 cm",
+        "summary": "<p>El pantalón ancho de tiro alto con la pierna más corta, para llevar con zapato plano.</p>",
+        "description": "<p>Cuatro centímetros menos de largo para que el bajo roce el empeine sin arrastrar. Es el que conviene si mides menos de 1,65 m o no usas tacón.</p><p>El resto del patrón no cambia: misma cintura, mismas pinzas.</p>",
+        "price": 8900,
+        "manage_stock": true,
+        "mpn": "ST-008",
+        "weight": 540,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "pantalones",
+            "pantalones-por-largo",
+            "a-tu-medida"
+        ],
+        "attributes": {
+            "material": "sarga",
+            "temporada": "otono-invierno"
+        },
+        "facts": [
+            {
+                "label": "Largo de entrepierna",
+                "value": "76 cm"
+            },
+            {
+                "label": "Cierre",
+                "value": "Tiro alto con cremallera y corchete"
+            },
+            {
+                "label": "Bajo",
+                "value": "Dobladillo de 4 cm"
+            },
+            {
+                "label": "Bolsillos",
+                "value": "Laterales al bies"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Cómo sé qué largo me corresponde?",
+                "answer": "Mide la entrepierna de un pantalón que te quede bien, de la costura al bajo. El modelo estándar mide 80 cm y hay versiones de 76 y de 84 cm."
+            },
+            {
+                "question": "¿La cintura cede con el uso?",
+                "answer": "Muy poco. El tejido tiene cuerpo y recupera la forma; si estás entre dos tallas, elige la que te quede cómoda sentada."
+            }
+        ],
+        "tags": [
+            "pantalón",
+            "tiro alto",
+            "azul marino"
+        ],
+        "meta_title": "Pantalón ancho azul marino, largo de pierna 76 cm | Sarga & Tilo",
+        "meta_description": "El pantalón ancho de tiro alto con la pierna más corta, para llevar con zapato plano.",
+        "images": [
+            {
+                "file": "pantalon-ancho-azul-marino-largo-de-pierna-76-cm.jpg",
+                "alt": "Pantalón ancho azul marino, largo de pierna 76 cm"
+            },
+            {
+                "file": "pantalon-ancho-azul-marino-largo-de-pierna-76-cm-detalle-1.jpg",
+                "alt": "Pantalón ancho azul marino, largo de pierna 76 cm, detalle de la cintura y las pinzas"
+            },
+            {
+                "file": "pantalon-ancho-azul-marino-largo-de-pierna-76-cm-detalle-2.jpg",
+                "alt": "Pantalón ancho azul marino, largo de pierna 76 cm, detalle del bajo y la caída"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-LOOK-008-36",
+                "gtin": "2990200000369",
+                "stock": 9,
+                "values": {
+                    "talla": "36",
+                    "color": "marino"
+                },
+                "image": "pantalon-ancho-azul-marino-largo-de-pierna-76-cm.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-008-38",
+                "gtin": "2990200000376",
+                "stock": 4,
+                "values": {
+                    "talla": "38",
+                    "color": "marino"
+                },
+                "image": "pantalon-ancho-azul-marino-largo-de-pierna-76-cm.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-008-40",
+                "gtin": "2990200000383",
+                "stock": 0,
+                "values": {
+                    "talla": "40",
+                    "color": "marino"
+                },
+                "image": "pantalon-ancho-azul-marino-largo-de-pierna-76-cm.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-008-42",
+                "gtin": "2990200000390",
+                "stock": 2,
+                "values": {
+                    "talla": "42",
+                    "color": "marino"
+                },
+                "image": "pantalon-ancho-azul-marino-largo-de-pierna-76-cm.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-008-44",
+                "gtin": "2990200000406",
+                "stock": 7,
+                "values": {
+                    "talla": "44",
+                    "color": "marino"
+                },
+                "image": "pantalon-ancho-azul-marino-largo-de-pierna-76-cm.jpg"
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-LOOK-009",
+        "name": "Pantalón ancho azul marino, largo de pierna 84 cm",
+        "summary": "<p>Versión larga, con 84 cm de entrepierna, para estaturas altas o para llevar con tacón.</p>",
+        "description": "<p>La pierna ancha pide que el pantalón llegue casi al suelo. Con este largo lo consigue quien mide más de 1,75 m o lleva plataforma.</p><p>El dobladillo ancho permite sacar hasta tres centímetros más.</p>",
+        "price": 8900,
+        "manage_stock": true,
+        "mpn": "ST-009",
+        "weight": 540,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "pantalones",
+            "pantalones-por-largo",
+            "a-tu-medida"
+        ],
+        "attributes": {
+            "material": "sarga",
+            "temporada": "otono-invierno"
+        },
+        "facts": [
+            {
+                "label": "Largo de entrepierna",
+                "value": "84 cm"
+            },
+            {
+                "label": "Dobladillo",
+                "value": "Con margen para alargar 3 cm"
+            },
+            {
+                "label": "Cierre",
+                "value": "Tiro alto con cremallera y corchete"
+            },
+            {
+                "label": "Bolsillos",
+                "value": "Laterales al bies"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Cómo sé qué largo me corresponde?",
+                "answer": "Mide la entrepierna de un pantalón que te quede bien, de la costura al bajo. El modelo estándar mide 80 cm y hay versiones de 76 y de 84 cm."
+            },
+            {
+                "question": "¿La cintura cede con el uso?",
+                "answer": "Muy poco. El tejido tiene cuerpo y recupera la forma; si estás entre dos tallas, elige la que te quede cómoda sentada."
+            }
+        ],
+        "tags": [
+            "pantalón",
+            "tiro alto",
+            "azul marino"
+        ],
+        "meta_title": "Pantalón ancho azul marino, largo de pierna 84 cm | Sarga & Tilo",
+        "meta_description": "Versión larga, con 84 cm de entrepierna, para estaturas altas o para llevar con tacón.",
+        "images": [
+            {
+                "file": "pantalon-ancho-azul-marino-largo-de-pierna-84-cm.jpg",
+                "alt": "Pantalón ancho azul marino, largo de pierna 84 cm"
+            },
+            {
+                "file": "pantalon-ancho-azul-marino-largo-de-pierna-84-cm-detalle-1.jpg",
+                "alt": "Pantalón ancho azul marino, largo de pierna 84 cm, detalle del bolsillo al bies"
+            },
+            {
+                "file": "pantalon-ancho-azul-marino-largo-de-pierna-84-cm-detalle-2.jpg",
+                "alt": "Pantalón ancho azul marino, largo de pierna 84 cm, detalle de la raya de la pierna"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-LOOK-009-36",
+                "gtin": "2990200000413",
+                "stock": 2,
+                "values": {
+                    "talla": "36",
+                    "color": "marino"
+                },
+                "image": "pantalon-ancho-azul-marino-largo-de-pierna-84-cm.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-009-38",
+                "gtin": "2990200000420",
+                "stock": 7,
+                "values": {
+                    "talla": "38",
+                    "color": "marino"
+                },
+                "image": "pantalon-ancho-azul-marino-largo-de-pierna-84-cm.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-009-40",
+                "gtin": "2990200000437",
+                "stock": 1,
+                "values": {
+                    "talla": "40",
+                    "color": "marino"
+                },
+                "image": "pantalon-ancho-azul-marino-largo-de-pierna-84-cm.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-009-42",
+                "gtin": "2990200000444",
+                "stock": 5,
+                "values": {
+                    "talla": "42",
+                    "color": "marino"
+                },
+                "image": "pantalon-ancho-azul-marino-largo-de-pierna-84-cm.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-009-44",
+                "gtin": "2990200000451",
+                "stock": 3,
+                "values": {
+                    "talla": "44",
+                    "color": "marino"
+                },
+                "image": "pantalon-ancho-azul-marino-largo-de-pierna-84-cm.jpg"
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-LOOK-010",
+        "name": "Pantalón ancho azul marino de lana fría",
+        "summary": "<p>El mismo corte en lana fría: un pantalón de vestir que no se arruga y sirve todo el año.</p>",
+        "description": "<p>La lana fría es un tejido fino y transpirable que recupera la forma de un día para otro. Ideal para viajes de trabajo y jornadas largas.</p><p>Va forrado hasta la rodilla para que no pique ni se marque.</p>",
+        "price": 12900,
+        "manage_stock": true,
+        "mpn": "ST-010",
+        "weight": 540,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": true,
+        "categories": [
+            "pantalones"
+        ],
+        "attributes": {
+            "material": "lana-fria",
+            "temporada": "todo-el-ano"
+        },
+        "facts": [
+            {
+                "label": "Tejido",
+                "value": "Lana fría de peso ligero"
+            },
+            {
+                "label": "Forro",
+                "value": "Hasta la rodilla"
+            },
+            {
+                "label": "Largo de entrepierna",
+                "value": "80 cm"
+            },
+            {
+                "label": "Cuidados",
+                "value": "Limpieza en seco"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Cómo sé qué largo me corresponde?",
+                "answer": "Mide la entrepierna de un pantalón que te quede bien, de la costura al bajo. El modelo estándar mide 80 cm y hay versiones de 76 y de 84 cm."
+            },
+            {
+                "question": "¿La cintura cede con el uso?",
+                "answer": "Muy poco. El tejido tiene cuerpo y recupera la forma; si estás entre dos tallas, elige la que te quede cómoda sentada."
+            }
+        ],
+        "tags": [
+            "pantalón",
+            "tiro alto",
+            "azul marino"
+        ],
+        "meta_title": "Pantalón ancho azul marino de lana fría | Sarga & Tilo",
+        "meta_description": "El mismo corte en lana fría: un pantalón de vestir que no se arruga y sirve todo el año.",
+        "images": [
+            {
+                "file": "pantalon-ancho-azul-marino-de-lana-fria.jpg",
+                "alt": "Pantalón ancho azul marino de lana fría"
+            },
+            {
+                "file": "pantalon-ancho-azul-marino-de-lana-fria-detalle-1.jpg",
+                "alt": "Pantalón ancho azul marino de lana fría, detalle del bolsillo al bies"
+            },
+            {
+                "file": "pantalon-ancho-azul-marino-de-lana-fria-detalle-2.jpg",
+                "alt": "Pantalón ancho azul marino de lana fría, detalle de la raya de la pierna"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-LOOK-010-36",
+                "gtin": "2990200000468",
+                "stock": 5,
+                "values": {
+                    "talla": "36",
+                    "color": "marino"
+                },
+                "image": "pantalon-ancho-azul-marino-de-lana-fria.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-010-38",
+                "gtin": "2990200000475",
+                "stock": 3,
+                "values": {
+                    "talla": "38",
+                    "color": "marino"
+                },
+                "image": "pantalon-ancho-azul-marino-de-lana-fria.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-010-40",
+                "gtin": "2990200000482",
+                "stock": 8,
+                "values": {
+                    "talla": "40",
+                    "color": "marino"
+                },
+                "image": "pantalon-ancho-azul-marino-de-lana-fria.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-010-42",
+                "gtin": "2990200000499",
+                "stock": 6,
+                "values": {
+                    "talla": "42",
+                    "color": "marino"
+                },
+                "image": "pantalon-ancho-azul-marino-de-lana-fria.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-010-44",
+                "gtin": "2990200000505",
+                "stock": 9,
+                "values": {
+                    "talla": "44",
+                    "color": "marino"
+                },
+                "image": "pantalon-ancho-azul-marino-de-lana-fria.jpg"
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-LOOK-011",
+        "name": "Pantalón ancho azul marino con cintura elástica",
+        "summary": "<p>Por delante, pinzas y cinturilla lisa; por detrás, un elástico oculto que da comodidad.</p>",
+        "description": "<p>De frente no se distingue del pantalón original. El elástico trasero cede al sentarse y se adapta a las pequeñas variaciones de talla.</p><p>No lleva cremallera: se sube como un pantalón de punto.</p>",
+        "price": 9500,
+        "manage_stock": true,
+        "mpn": "ST-011",
+        "weight": 540,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "pantalones"
+        ],
+        "attributes": {
+            "material": "sarga",
+            "temporada": "otono-invierno"
+        },
+        "facts": [
+            {
+                "label": "Cintura",
+                "value": "Lisa delante y elástica detrás"
+            },
+            {
+                "label": "Cierre",
+                "value": "Sin cremallera"
+            },
+            {
+                "label": "Largo de entrepierna",
+                "value": "80 cm"
+            },
+            {
+                "label": "Bolsillos",
+                "value": "Laterales al bies"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Cómo sé qué largo me corresponde?",
+                "answer": "Mide la entrepierna de un pantalón que te quede bien, de la costura al bajo. El modelo estándar mide 80 cm y hay versiones de 76 y de 84 cm."
+            },
+            {
+                "question": "¿La cintura cede con el uso?",
+                "answer": "Muy poco. El tejido tiene cuerpo y recupera la forma; si estás entre dos tallas, elige la que te quede cómoda sentada."
+            }
+        ],
+        "tags": [
+            "pantalón",
+            "tiro alto",
+            "azul marino"
+        ],
+        "meta_title": "Pantalón ancho azul marino con cintura elástica | Sarga & Tilo",
+        "meta_description": "Por delante, pinzas y cinturilla lisa; por detrás, un elástico oculto que da comodidad.",
+        "images": [
+            {
+                "file": "pantalon-ancho-azul-marino-con-cintura-elastica.jpg",
+                "alt": "Pantalón ancho azul marino con cintura elástica"
+            },
+            {
+                "file": "pantalon-ancho-azul-marino-con-cintura-elastica-detalle-1.jpg",
+                "alt": "Pantalón ancho azul marino con cintura elástica, detalle de la cinturilla y el corchete"
+            },
+            {
+                "file": "pantalon-ancho-azul-marino-con-cintura-elastica-detalle-2.jpg",
+                "alt": "Pantalón ancho azul marino con cintura elástica, detalle del vuelo de la pierna"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-LOOK-011-36",
+                "gtin": "2990200000512",
+                "stock": 6,
+                "values": {
+                    "talla": "36",
+                    "color": "marino"
+                },
+                "image": "pantalon-ancho-azul-marino-con-cintura-elastica.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-011-38",
+                "gtin": "2990200000529",
+                "stock": 9,
+                "values": {
+                    "talla": "38",
+                    "color": "marino"
+                },
+                "image": "pantalon-ancho-azul-marino-con-cintura-elastica.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-011-40",
+                "gtin": "2990200000536",
+                "stock": 4,
+                "values": {
+                    "talla": "40",
+                    "color": "marino"
+                },
+                "image": "pantalon-ancho-azul-marino-con-cintura-elastica.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-011-42",
+                "gtin": "2990200000543",
+                "stock": 0,
+                "values": {
+                    "talla": "42",
+                    "color": "marino"
+                },
+                "image": "pantalon-ancho-azul-marino-con-cintura-elastica.jpg"
+            },
+            {
+                "sku": "DEMO-LOOK-011-44",
+                "gtin": "2990200000550",
+                "stock": 2,
+                "values": {
+                    "talla": "44",
+                    "color": "marino"
+                },
+                "image": "pantalon-ancho-azul-marino-con-cintura-elastica.jpg"
+            }
+        ],
+        "sale_price": 7900
+    },
+    {
+        "sku": "DEMO-LOOK-012",
+        "name": "Bolso de hombro de piel burdeos mediano, 26 cm",
+        "summary": "<p>Bolso de solapa en piel lisa burdeos, con herraje dorado y asa corta para llevar bajo el brazo.</p>",
+        "description": "<p>La medida de diario: caben la cartera, el móvil, las llaves, las gafas y un neceser pequeño. La solapa cierra con imán bajo el herraje.</p><p>El asa se regula con dos hebillas para subir o bajar el bolso unos centímetros.</p>",
+        "price": 14500,
+        "manage_stock": true,
+        "mpn": "ST-012",
+        "weight": 620,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": true,
+        "categories": [
+            "bolsos"
+        ],
+        "attributes": {
+            "material": "piel",
+            "temporada": "todo-el-ano"
+        },
+        "facts": [
+            {
+                "label": "Medidas",
+                "value": "26 × 16 × 8 cm"
+            },
+            {
+                "label": "Piel",
+                "value": "De vacuno, de acabado liso"
+            },
+            {
+                "label": "Cierre",
+                "value": "Imán bajo el herraje dorado"
+            },
+            {
+                "label": "Asa",
+                "value": "Regulable de 50 a 58 cm"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Cómo se cuida la piel?",
+                "answer": "Límpiala con un paño seco y aplica una crema incolora un par de veces al año. Guárdalo relleno y en su funda para que no pierda la forma."
+            },
+            {
+                "question": "¿El herraje se raya?",
+                "answer": "Lleva un baño dorado mate que disimula el roce del día a día. Evita guardarlo junto a llaves sueltas."
+            }
+        ],
+        "tags": [
+            "bolso",
+            "piel",
+            "burdeos"
+        ],
+        "meta_title": "Bolso de hombro de piel burdeos mediano, 26 cm | Sarga & Tilo",
+        "meta_description": "Bolso de solapa en piel lisa burdeos, con herraje dorado y asa corta para llevar bajo el brazo.",
+        "images": [
+            {
+                "file": "bolso-de-hombro-de-piel-burdeos-mediano-26-cm.jpg",
+                "alt": "Bolso de hombro de piel burdeos mediano, 26 cm"
+            },
+            {
+                "file": "bolso-de-hombro-de-piel-burdeos-mediano-26-cm-detalle-1.jpg",
+                "alt": "Bolso de hombro de piel burdeos mediano, 26 cm, detalle de la solapa y el herraje"
+            },
+            {
+                "file": "bolso-de-hombro-de-piel-burdeos-mediano-26-cm-detalle-2.jpg",
+                "alt": "Bolso de hombro de piel burdeos mediano, 26 cm, detalle del asa"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-LOOK-012-BUR",
+                "gtin": "2990200000567",
+                "stock": 2,
+                "values": {
+                    "color": "burdeos"
+                },
+                "image": "bolso-de-hombro-de-piel-burdeos-mediano-26-cm.jpg"
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-LOOK-013",
+        "name": "Bolso de hombro de piel burdeos pequeño, 20 cm",
+        "summary": "<p>El formato pequeño del bolso de solapa, para salir con lo imprescindible.</p>",
+        "description": "<p>Móvil, tarjetero, llaves y pintalabios: no admite más y esa es su gracia. Un bolso de noche que también funciona de día con vaqueros.</p><p>Mismo herraje y misma piel que el tamaño mediano.</p>",
+        "price": 11900,
+        "manage_stock": true,
+        "mpn": "ST-013",
+        "weight": 430,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "bolsos"
+        ],
+        "attributes": {
+            "material": "piel",
+            "temporada": "todo-el-ano"
+        },
+        "facts": [
+            {
+                "label": "Medidas",
+                "value": "20 × 13 × 6 cm"
+            },
+            {
+                "label": "Piel",
+                "value": "De vacuno, de acabado liso"
+            },
+            {
+                "label": "Interior",
+                "value": "Un compartimento con bolsillo plano"
+            },
+            {
+                "label": "Asa",
+                "value": "Regulable de 46 a 52 cm"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Cómo se cuida la piel?",
+                "answer": "Límpiala con un paño seco y aplica una crema incolora un par de veces al año. Guárdalo relleno y en su funda para que no pierda la forma."
+            },
+            {
+                "question": "¿El herraje se raya?",
+                "answer": "Lleva un baño dorado mate que disimula el roce del día a día. Evita guardarlo junto a llaves sueltas."
+            }
+        ],
+        "tags": [
+            "bolso",
+            "piel",
+            "burdeos"
+        ],
+        "meta_title": "Bolso de hombro de piel burdeos pequeño, 20 cm | Sarga & Tilo",
+        "meta_description": "El formato pequeño del bolso de solapa, para salir con lo imprescindible.",
+        "images": [
+            {
+                "file": "bolso-de-hombro-de-piel-burdeos-pequeno-20-cm.jpg",
+                "alt": "Bolso de hombro de piel burdeos pequeño, 20 cm"
+            },
+            {
+                "file": "bolso-de-hombro-de-piel-burdeos-pequeno-20-cm-detalle-1.jpg",
+                "alt": "Bolso de hombro de piel burdeos pequeño, 20 cm, detalle de la solapa y el herraje"
+            },
+            {
+                "file": "bolso-de-hombro-de-piel-burdeos-pequeno-20-cm-detalle-2.jpg",
+                "alt": "Bolso de hombro de piel burdeos pequeño, 20 cm, detalle del asa"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-LOOK-013-BUR",
+                "gtin": "2990200000574",
+                "stock": 3,
+                "values": {
+                    "color": "burdeos"
+                },
+                "image": "bolso-de-hombro-de-piel-burdeos-pequeno-20-cm.jpg"
+            }
+        ],
+        "sale_price": 9900
+    },
+    {
+        "sku": "DEMO-LOOK-014",
+        "name": "Bolso de hombro de piel burdeos grande, 32 cm",
+        "summary": "<p>Tamaño grande, de 32 cm, en el que cabe una tableta y la agenda sin perder la forma.</p>",
+        "description": "<p>Para ir a trabajar con todo encima. Lleva dos compartimentos separados por un bolsillo central de cremallera.</p><p>La base va reforzada para que el bolso se sostenga de pie sobre la mesa.</p>",
+        "price": 18500,
+        "manage_stock": true,
+        "mpn": "ST-014",
+        "weight": 840,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": true,
+        "categories": [
+            "bolsos"
+        ],
+        "attributes": {
+            "material": "piel",
+            "temporada": "todo-el-ano"
+        },
+        "facts": [
+            {
+                "label": "Medidas",
+                "value": "32 × 20 × 10 cm"
+            },
+            {
+                "label": "Interior",
+                "value": "Dos compartimentos y bolsillo central"
+            },
+            {
+                "label": "Base",
+                "value": "Reforzada"
+            },
+            {
+                "label": "Asa",
+                "value": "Regulable de 52 a 60 cm"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Cómo se cuida la piel?",
+                "answer": "Límpiala con un paño seco y aplica una crema incolora un par de veces al año. Guárdalo relleno y en su funda para que no pierda la forma."
+            },
+            {
+                "question": "¿El herraje se raya?",
+                "answer": "Lleva un baño dorado mate que disimula el roce del día a día. Evita guardarlo junto a llaves sueltas."
+            }
+        ],
+        "tags": [
+            "bolso",
+            "piel",
+            "burdeos"
+        ],
+        "meta_title": "Bolso de hombro de piel burdeos grande, 32 cm | Sarga & Tilo",
+        "meta_description": "Tamaño grande, de 32 cm, en el que cabe una tableta y la agenda sin perder la forma.",
+        "images": [
+            {
+                "file": "bolso-de-hombro-de-piel-burdeos-grande-32-cm.jpg",
+                "alt": "Bolso de hombro de piel burdeos grande, 32 cm"
+            },
+            {
+                "file": "bolso-de-hombro-de-piel-burdeos-grande-32-cm-detalle-1.jpg",
+                "alt": "Bolso de hombro de piel burdeos grande, 32 cm, detalle de la anilla y la costura"
+            },
+            {
+                "file": "bolso-de-hombro-de-piel-burdeos-grande-32-cm-detalle-2.jpg",
+                "alt": "Bolso de hombro de piel burdeos grande, 32 cm, detalle del herraje dorado"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-LOOK-014-BUR",
+                "gtin": "2990200000581",
+                "stock": 10,
+                "values": {
+                    "color": "burdeos"
+                },
+                "image": "bolso-de-hombro-de-piel-burdeos-grande-32-cm.jpg"
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-LOOK-015",
+        "name": "Bolso de hombro de piel burdeos con asa larga",
+        "summary": "<p>El bolso mediano con un asa de 110 cm para llevarlo cruzado y con las manos libres.</p>",
+        "description": "<p>Sustituimos el asa corta por una larga, regulable, del mismo cuero. Cruzado sobre un abrigo, el bolso queda a la altura de la cadera.</p><p>Las hebillas permiten acortarla hasta dejarla de nuevo al hombro.</p>",
+        "price": 15500,
+        "manage_stock": true,
+        "mpn": "ST-015",
+        "weight": 620,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "bolsos"
+        ],
+        "attributes": {
+            "material": "piel",
+            "temporada": "todo-el-ano"
+        },
+        "facts": [
+            {
+                "label": "Medidas",
+                "value": "26 × 16 × 8 cm"
+            },
+            {
+                "label": "Asa",
+                "value": "Regulable de 60 a 110 cm"
+            },
+            {
+                "label": "Piel",
+                "value": "De vacuno, de acabado liso"
+            },
+            {
+                "label": "Cierre",
+                "value": "Imán bajo el herraje dorado"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Cómo se cuida la piel?",
+                "answer": "Límpiala con un paño seco y aplica una crema incolora un par de veces al año. Guárdalo relleno y en su funda para que no pierda la forma."
+            },
+            {
+                "question": "¿El herraje se raya?",
+                "answer": "Lleva un baño dorado mate que disimula el roce del día a día. Evita guardarlo junto a llaves sueltas."
+            }
+        ],
+        "tags": [
+            "bolso",
+            "piel",
+            "burdeos"
+        ],
+        "meta_title": "Bolso de hombro de piel burdeos con asa larga | Sarga & Tilo",
+        "meta_description": "El bolso mediano con un asa de 110 cm para llevarlo cruzado y con las manos libres.",
+        "images": [
+            {
+                "file": "bolso-de-hombro-de-piel-burdeos-con-asa-larga.jpg",
+                "alt": "Bolso de hombro de piel burdeos con asa larga"
+            },
+            {
+                "file": "bolso-de-hombro-de-piel-burdeos-con-asa-larga-detalle-1.jpg",
+                "alt": "Bolso de hombro de piel burdeos con asa larga, detalle de la anilla y la costura"
+            },
+            {
+                "file": "bolso-de-hombro-de-piel-burdeos-con-asa-larga-detalle-2.jpg",
+                "alt": "Bolso de hombro de piel burdeos con asa larga, detalle del herraje dorado"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-LOOK-015-BUR",
+                "gtin": "2990200000598",
+                "stock": 6,
+                "values": {
+                    "color": "burdeos"
+                },
+                "image": "bolso-de-hombro-de-piel-burdeos-con-asa-larga.jpg"
+            }
+        ]
+    },
+    {
+        "sku": "DEMO-LOOK-016",
+        "name": "Bolso de hombro de piel burdeos con bolsillo trasero",
+        "summary": "<p>El bolso mediano con un bolsillo exterior en la trasera para el móvil o el abono de transporte.</p>",
+        "description": "<p>Un bolsillo plano, pegado al cuerpo y cerrado con imán, para tener a mano lo que más se saca sin abrir la solapa.</p><p>El interior va forrado en ante de color arena, que deja ver el fondo del bolso.</p>",
+        "price": 15900,
+        "manage_stock": true,
+        "mpn": "ST-016",
+        "weight": 620,
+        "delivery_min_days": 1,
+        "delivery_max_days": 3,
+        "featured": false,
+        "categories": [
+            "bolsos"
+        ],
+        "attributes": {
+            "material": "piel",
+            "temporada": "todo-el-ano"
+        },
+        "facts": [
+            {
+                "label": "Medidas",
+                "value": "26 × 16 × 8 cm"
+            },
+            {
+                "label": "Bolsillo trasero",
+                "value": "Exterior, con imán"
+            },
+            {
+                "label": "Interior",
+                "value": "Forrado en ante"
+            },
+            {
+                "label": "Asa",
+                "value": "Regulable de 50 a 58 cm"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Cómo se cuida la piel?",
+                "answer": "Límpiala con un paño seco y aplica una crema incolora un par de veces al año. Guárdalo relleno y en su funda para que no pierda la forma."
+            },
+            {
+                "question": "¿El herraje se raya?",
+                "answer": "Lleva un baño dorado mate que disimula el roce del día a día. Evita guardarlo junto a llaves sueltas."
+            }
+        ],
+        "tags": [
+            "bolso",
+            "piel",
+            "burdeos"
+        ],
+        "meta_title": "Bolso de hombro de piel burdeos con bolsillo trasero | Sarga & Tilo",
+        "meta_description": "El bolso mediano con un bolsillo exterior en la trasera para el móvil o el abono de transporte.",
+        "images": [
+            {
+                "file": "bolso-de-hombro-de-piel-burdeos-con-bolsillo-trasero.jpg",
+                "alt": "Bolso de hombro de piel burdeos con bolsillo trasero"
+            },
+            {
+                "file": "bolso-de-hombro-de-piel-burdeos-con-bolsillo-trasero-detalle-1.jpg",
+                "alt": "Bolso de hombro de piel burdeos con bolsillo trasero, detalle del lateral y el pespunte"
+            },
+            {
+                "file": "bolso-de-hombro-de-piel-burdeos-con-bolsillo-trasero-detalle-2.jpg",
+                "alt": "Bolso de hombro de piel burdeos con bolsillo trasero, detalle de la solapa y la base"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "DEMO-LOOK-016-BUR",
+                "gtin": "2990200000604",
+                "stock": 0,
+                "values": {
+                    "color": "burdeos"
+                },
+                "image": "bolso-de-hombro-de-piel-burdeos-con-bolsillo-trasero.jpg"
+            }
+        ]
+    }
+]

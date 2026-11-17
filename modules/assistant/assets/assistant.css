@@ -1,0 +1,88 @@
+/*
+ * AIFEC — asistente de la tienda: botón flotante y ventana de conversación.
+ * Todo color sale de las variables del tema (con un respaldo) para que el tema oscuro y los temas hijos lo respeten.
+ * Autor: Ecom Experts · 2026 · Ver LICENSE.md
+ */
+.af-assistant[hidden],.af-assistant-panel[hidden]{display:none!important}
+.af-assistant{--as-bar:var(--bar-h,3.5rem)}
+
+/* Botón flotante. En móvil se coloca por encima de la barra inferior, que no tapa. */
+.af-assistant-fab{position:fixed;right:1rem;bottom:calc(var(--as-bar) + env(safe-area-inset-bottom) + .75rem + var(--af-consent-h,0px));z-index:60;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-width:48px;min-height:48px;padding:.65rem;border:0;border-radius:999px;background:var(--accent,#b94a17);color:var(--accent-ink,#fff);font:inherit;font-weight:700;line-height:1;box-shadow:var(--shadow,0 6px 20px rgba(0,0,0,.25));cursor:pointer}
+.af-assistant-fab:hover{filter:brightness(1.08)}
+.af-assistant-fab:focus-visible,.af-assistant-close:focus-visible,.af-assistant-chip:focus-visible{outline:3px solid var(--ink,#111);outline-offset:2px}
+.af-assistant-fab-label{display:none}
+.af-assistant.is-open .af-assistant-fab{display:none}
+
+/* Ventana: en móvil ocupa toda la pantalla. */
+.af-assistant-panel{position:fixed;inset:0;z-index:70;display:flex;flex-direction:column;background:var(--surface,#fff);color:var(--ink,#111);font-size:.95rem}
+.af-assistant-head{display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding:.75rem 1rem;border-bottom:1px solid var(--line,#ddd);background:var(--surface-2,#f3f1ec)}
+.af-assistant-title{margin:0;font-size:1.05rem}
+.af-assistant-close{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;border:0;border-radius:var(--radius,10px);background:transparent;color:inherit;cursor:pointer}
+.af-assistant-log{position:relative;flex:1 1 auto;display:flex;flex-direction:column;gap:.6rem;min-height:0;padding:1rem;overflow-y:auto;overscroll-behavior:contain}
+.af-assistant-msg{max-width:92%;padding:.6rem .8rem;border-radius:var(--radius,10px);overflow-wrap:anywhere}
+.af-assistant-msg p{margin:0;white-space:pre-line}
+.af-assistant-msg ul{margin:0;padding-left:1.1rem}
+.af-assistant-msg p+p,.af-assistant-msg p+ul,.af-assistant-msg ul+p{margin-top:.4rem}
+.af-assistant-msg strong{font-weight:700}
+.af-assistant-msg.is-bot{align-self:flex-start;background:var(--surface-2,#f3f1ec)}
+.af-assistant-msg.is-user{align-self:flex-end;background:var(--accent,#b94a17);color:var(--accent-ink,#fff)}
+.af-assistant-msg.is-busy{color:var(--muted,#555);font-style:italic}
+
+/* Fichas de producto. */
+/* Arriba y en grande, las fotos (dos si las hay); debajo, el nombre, el precio y lo que se puede elegir. Varias fichas van una debajo de otra, como el resto de la conversación: sin carrusel. */
+.af-assistant-cards{display:grid;gap:.6rem;align-self:stretch}
+.af-assistant-card{min-width:0;display:grid;align-content:start;overflow:hidden;border:1px solid var(--line,#ddd);border-radius:var(--radius,10px);background:var(--surface,#fff)}
+.af-assistant-card:not(:only-child) .af-assistant-card-photos img{aspect-ratio:4/3}
+.af-assistant-card-photos{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:2px;background:var(--line,#ddd)}
+.af-assistant-card-photos img,.af-assistant-card-noimg{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:contain;background:var(--surface-2,#f3f1ec)}
+.af-assistant-card-photos img:only-child,.af-assistant-card-noimg{aspect-ratio:4/3}
+.af-assistant-card-body{min-width:0;display:grid;gap:.25rem;align-content:start;padding:.6rem .7rem .7rem}
+.af-assistant-card-name{display:block;font-weight:600;overflow-wrap:anywhere;color:inherit;text-decoration:none}
+a.af-assistant-card-name:hover{text-decoration:underline}
+.af-assistant-card-price{display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem}
+.af-assistant-card-now{font-size:1.3rem;font-weight:800;line-height:1.15}
+.af-assistant-card-old{color:var(--muted,#555);text-decoration:line-through}
+.af-assistant-card-opts{font-size:.85rem;overflow-wrap:anywhere}
+.af-assistant-card-opt{font-weight:700}
+.af-assistant-card-av{color:var(--muted,#555);font-size:.85rem}
+.af-assistant-card-actions{display:flex;margin-top:.3rem}
+.af-assistant-card-actions .af-btn{flex:1 1 auto;justify-content:center;min-height:44px;padding:.4rem .9rem}
+
+/* El resumen del pedido con su botón de confirmar, y los botones de pago. */
+.af-assistant-order{display:grid;gap:.35rem;align-self:stretch;padding:.75rem;border:1px solid var(--line,#ddd);border-radius:var(--radius,10px);background:var(--surface,#fff)}
+.af-assistant-order-title{font-weight:700}
+.af-assistant-order-row{display:flex;justify-content:space-between;gap:.75rem;overflow-wrap:anywhere}
+.af-assistant-order-amount{flex:none;font-weight:600;text-align:right}
+.af-assistant-order-row.is-total{padding-top:.35rem;border-top:1px solid var(--line,#ddd);font-weight:700}
+.af-assistant-order-where{overflow-wrap:anywhere}
+.af-assistant-order-terms{margin:0;color:var(--muted,#555);font-size:.85rem}
+.af-assistant-order-terms a{color:inherit;text-decoration:underline}
+.af-assistant-confirm{min-height:44px;margin-top:.25rem}
+.af-assistant-confirm[disabled]{opacity:.5;cursor:not-allowed}
+.af-assistant-payform{display:contents}
+.af-assistant-log>.af-btn{align-self:flex-start;min-height:44px;display:inline-flex;align-items:center}
+.af-assistant-payform .af-btn{align-self:flex-start;min-height:44px}
+
+/* Respuestas rápidas y formulario. */
+.af-assistant-chips{display:flex;flex-wrap:wrap;gap:.4rem;padding:0 1rem .5rem}
+.af-assistant-chips:empty{display:none}
+.af-assistant-chip{min-height:44px;padding:.35rem .85rem;border:1px solid var(--field,#868d88);border-radius:999px;background:var(--surface,#fff);color:inherit;font:inherit;cursor:pointer}
+.af-assistant-form{display:flex;flex-wrap:wrap;gap:.5rem;padding:.75rem 1rem calc(.75rem + env(safe-area-inset-bottom));border-top:1px solid var(--line,#ddd)}
+.af-assistant-form .af-input{flex:1 1 12rem;min-width:0;min-height:44px}
+.af-assistant-form .af-btn{min-height:44px}
+html.af-assistant-lock{overflow:hidden}
+
+/* Escritorio: una ventana en la esquina. */
+@media (min-width:900px){
+  /* En reposo, solo el icono: una pastilla con texto tapaba la columna de compra de la ficha. El texto sale al acercarse. */
+  .af-assistant-fab{bottom:calc(1.25rem + var(--af-consent-h,0px));right:1.25rem}
+  .af-assistant-fab:hover,.af-assistant-fab:focus-visible{padding:.65rem 1.1rem}
+  .af-assistant-fab:hover .af-assistant-fab-label,.af-assistant-fab:focus-visible .af-assistant-fab-label{display:inline}
+  .af-assistant-panel{inset:auto 1.25rem calc(1.25rem + var(--af-consent-h,0px)) auto;width:24rem;max-width:calc(100vw - 2.5rem);height:min(36rem,calc(100vh - 2.5rem - var(--af-consent-h,0px)));border:1px solid var(--line,#ddd);border-radius:var(--radius,10px);box-shadow:var(--shadow,0 10px 30px rgba(0,0,0,.25));overflow:hidden}
+  html.af-assistant-lock{overflow:auto}
+}
+@media (prefers-reduced-motion:no-preference){
+  .af-assistant-panel{animation:af-assistant-in .15s ease-out}
+  @keyframes af-assistant-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+}
+@media print{.af-assistant{display:none!important}}

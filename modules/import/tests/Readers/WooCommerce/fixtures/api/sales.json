@@ -1,0 +1,104 @@
+{
+  "/wp-json/wc/v3/orders": [
+    {
+      "id": 9001, "parent_id": 0, "number": "9001", "order_key": "wc_order_abc123", "created_via": "checkout", "version": "10.8.1", "status": "processing", "currency": "EUR",
+      "date_created": "2026-10-01T10:15:00", "date_created_gmt": "2026-10-01T08:15:00", "date_modified": "2026-10-03T11:00:00", "date_modified_gmt": "2026-10-03T09:00:00",
+      "discount_total": "0.00", "discount_tax": "0.00", "shipping_total": "5.90", "shipping_tax": "1.24", "cart_tax": "22.39", "total": "136.14", "total_tax": "23.63",
+      "prices_include_tax": false, "customer_id": 77, "customer_ip_address": "203.0.113.5", "customer_user_agent": "", "customer_note": "Llamar antes de entregar",
+      "billing": {"first_name": "Ana", "last_name": "Ruiz Peña", "company": "", "address_1": "Calle Mayor 1", "address_2": "2.º B", "city": "Madrid", "state": "M", "postcode": "28013", "country": "ES", "email": "ana@cliente.test", "phone": "999000001"},
+      "shipping": {"first_name": "Ana", "last_name": "Ruiz Peña", "company": "", "address_1": "Calle Mayor 1", "address_2": "2.º B", "city": "Madrid", "state": "M", "postcode": "28013", "country": "ES", "phone": "999000001"},
+      "payment_method": "redsys", "payment_method_title": "Tarjeta", "transaction_id": "000001042", "date_paid": "2026-10-01T10:16:00", "date_paid_gmt": "2026-10-01T08:16:00",
+      "date_completed": null, "date_completed_gmt": null, "cart_hash": "cafe0001", "meta_data": [],
+      "line_items": [
+        {"id": 5001, "name": "Mesa auxiliar de roble", "product_id": 101, "variation_id": 0, "quantity": 1, "tax_class": "", "subtotal": "106.61", "subtotal_tax": "22.39", "total": "106.61", "total_tax": "22.39",
+         "taxes": [{"id": 1, "total": "22.39", "subtotal": "22.39"}], "meta_data": [], "sku": "MESA-ROBLE", "price": 106.61}
+      ],
+      "tax_lines": [{"id": 5003, "rate_code": "ES-IVA 21 %-1", "rate_id": 1, "label": "IVA 21 %", "compound": false, "tax_total": "22.39", "shipping_tax_total": "1.24", "rate_percent": 21}],
+      "shipping_lines": [{"id": 5002, "method_title": "Mensajería 24 h", "method_id": "flat_rate", "instance_id": "11", "total": "5.90", "total_tax": "1.24", "taxes": [{"id": 1, "total": "1.24"}]}],
+      "fee_lines": [], "coupon_lines": [], "refunds": []
+    },
+    {
+      "id": 9002, "parent_id": 0, "number": "9002", "order_key": "wc_order_def456", "created_via": "checkout", "version": "10.8.1", "status": "completed", "currency": "EUR",
+      "date_created": "2026-10-05T12:00:00", "date_created_gmt": "2026-10-05T10:00:00", "date_modified": "2026-10-06T11:00:00", "date_modified_gmt": "2026-10-06T09:00:00",
+      "discount_total": "0.00", "discount_tax": "0.00", "shipping_total": "5.90", "shipping_tax": "1.24", "cart_tax": "33.18", "total": "198.32", "total_tax": "34.42",
+      "prices_include_tax": false, "customer_id": 78, "customer_ip_address": "203.0.113.6", "customer_user_agent": "", "customer_note": "",
+      "billing": {"first_name": "Luis", "last_name": "Gil", "company": "", "address_1": "Calle Larga 2", "address_2": "", "city": "Sevilla", "state": "SE", "postcode": "41001", "country": "ES", "email": "luis@cliente.test", "phone": "999000002"},
+      "shipping": {"first_name": "Luis", "last_name": "Gil", "company": "", "address_1": "Calle Larga 2", "address_2": "", "city": "Sevilla", "state": "SE", "postcode": "41001", "country": "ES", "phone": "999000002"},
+      "payment_method": "redsys", "payment_method_title": "Tarjeta", "transaction_id": "000001043", "date_paid": "2026-10-05T12:05:00", "date_paid_gmt": "2026-10-05T10:05:00",
+      "date_completed": "2026-10-06T10:00:00", "date_completed_gmt": "2026-10-06T08:00:00", "cart_hash": "cafe0002", "meta_data": [],
+      "line_items": [
+        {"id": 5011, "name": "Estantería en oferta", "product_id": 104, "variation_id": 0, "quantity": 2, "tax_class": "", "subtotal": "158.00", "subtotal_tax": "33.18", "total": "158.00", "total_tax": "33.18",
+         "taxes": [{"id": 1, "total": "33.18", "subtotal": "33.18"}], "meta_data": [], "sku": "ESTANTE-OF", "price": 79}
+      ],
+      "tax_lines": [{"id": 5013, "rate_code": "ES-IVA 21 %-1", "rate_id": 1, "label": "IVA 21 %", "compound": false, "tax_total": "33.18", "shipping_tax_total": "1.24", "rate_percent": 21}],
+      "shipping_lines": [{"id": 5012, "method_title": "Mensajería 24 h", "method_id": "flat_rate", "instance_id": "11", "total": "5.90", "total_tax": "1.24", "taxes": [{"id": 1, "total": "1.24"}]}],
+      "fee_lines": [], "coupon_lines": [], "refunds": [{"id": 9102, "reason": "Una unidad llegó golpeada", "total": "-95.59"}]
+    },
+    {
+      "id": 9003, "parent_id": 0, "number": "9003", "order_key": "wc_order_ghi789", "created_via": "checkout", "version": "10.8.1", "status": "cancelled", "currency": "EUR",
+      "date_created": "2026-10-07T09:00:00", "date_created_gmt": "2026-10-07T07:00:00", "date_modified": "2026-10-08T09:00:00", "date_modified_gmt": "2026-10-08T07:00:00",
+      "discount_total": "0.00", "discount_tax": "0.00", "shipping_total": "0.00", "shipping_tax": "0.00", "cart_tax": "31.50", "total": "181.50", "total_tax": "31.50",
+      "prices_include_tax": false, "customer_id": 79, "customer_ip_address": "203.0.113.7", "customer_note": "",
+      "billing": {"first_name": "Marta", "last_name": "Soler", "company": "", "address_1": "Calle Corta 3", "address_2": "", "city": "Ceuta", "state": "CE", "postcode": "51001", "country": "ES", "email": "marta@cliente.test", "phone": "999000003"},
+      "shipping": {"first_name": "Marta", "last_name": "Soler", "company": "", "address_1": "Calle Corta 3", "address_2": "", "city": "Ceuta", "state": "CE", "postcode": "51001", "country": "ES", "phone": "999000003"},
+      "payment_method": "redsys", "payment_method_title": "Tarjeta", "transaction_id": "", "date_paid": null, "date_paid_gmt": null, "date_completed": null, "date_completed_gmt": null,
+      "cart_hash": "cafe0003", "meta_data": [],
+      "line_items": [
+        {"id": 5031, "name": "Banco sin existencias", "product_id": 105, "variation_id": 0, "quantity": 1, "tax_class": "", "subtotal": "150.00", "subtotal_tax": "31.50", "total": "150.00", "total_tax": "31.50",
+         "taxes": [{"id": 1, "total": "31.50", "subtotal": "31.50"}], "meta_data": [], "sku": "BANCO-S", "price": 150}
+      ],
+      "tax_lines": [{"id": 5033, "rate_code": "ES-IVA 21 %-1", "rate_id": 1, "label": "IVA 21 %", "compound": false, "tax_total": "31.50", "shipping_tax_total": "0.00", "rate_percent": 21}],
+      "shipping_lines": [], "fee_lines": [], "coupon_lines": [], "refunds": []
+    },
+    {
+      "id": 9004, "parent_id": 0, "number": "9004", "order_key": "wc_order_jkl012", "created_via": "checkout", "version": "10.8.1", "status": "on-hold", "currency": "EUR",
+      "date_created": "2026-10-09T15:00:00", "date_created_gmt": "2026-10-09T13:00:00", "date_modified": "2026-10-09T15:00:00", "date_modified_gmt": "2026-10-09T13:00:00",
+      "discount_total": "0.00", "shipping_total": "5.90", "shipping_tax": "1.24", "cart_tax": "12.60", "total": "79.74", "total_tax": "13.84",
+      "prices_include_tax": false, "customer_id": 0, "customer_ip_address": "203.0.113.8", "customer_note": "",
+      "billing": {"first_name": "Pepe", "last_name": "Invitado", "company": "", "address_1": "Calle Nueva 4", "address_2": "", "city": "Cádiz", "state": "CA", "postcode": "11001", "country": "ES", "email": "invitado@cliente.test", "phone": "999000004"},
+      "shipping": {"first_name": "Pepe", "last_name": "Invitado", "company": "", "address_1": "Calle Nueva 4", "address_2": "", "city": "Cádiz", "state": "CA", "postcode": "11001", "country": "ES", "phone": "999000004"},
+      "payment_method": "redsys", "payment_method_title": "Tarjeta", "transaction_id": "", "date_paid": null, "date_paid_gmt": null, "date_completed": null, "date_completed_gmt": null,
+      "cart_hash": "cafe0004", "meta_data": [],
+      "line_items": [
+        {"id": 5041, "name": "Silla de nogal - Mediana", "product_id": 102, "variation_id": 202, "quantity": 1, "tax_class": "", "subtotal": "60.00", "subtotal_tax": "12.60", "total": "60.00", "total_tax": "12.60",
+         "taxes": [{"id": 1, "total": "12.60", "subtotal": "12.60"}],
+         "meta_data": [{"id": 1, "key": "pa_tamano", "value": "mediana", "display_key": "Tamaño", "display_value": "Mediana"}], "sku": "SILLA-NOGAL-M", "price": 60}
+      ],
+      "tax_lines": [{"id": 5043, "rate_code": "ES-IVA 21 %-1", "rate_id": 1, "label": "IVA 21 %", "compound": false, "tax_total": "12.60", "shipping_tax_total": "1.24", "rate_percent": 21}],
+      "shipping_lines": [{"id": 5042, "method_title": "Mensajería 24 h", "method_id": "flat_rate", "instance_id": "11", "total": "5.90", "total_tax": "1.24", "taxes": [{"id": 1, "total": "1.24"}]}],
+      "fee_lines": [], "coupon_lines": [], "refunds": []
+    }
+  ],
+  "/wp-json/wc/v3/orders/9002/refunds": [
+    {
+      "id": 9102, "date_created": "2026-10-06T09:00:00", "date_created_gmt": "2026-10-06T07:00:00", "amount": "95.59", "reason": "Una unidad llegó golpeada", "refunded_by": 1, "refunded_payment": false, "meta_data": [],
+      "line_items": [
+        {"id": 5021, "name": "Estantería en oferta", "product_id": 104, "variation_id": 0, "quantity": -1, "tax_class": "", "subtotal": "-79.00", "subtotal_tax": "-16.59", "total": "-79.00", "total_tax": "-16.59",
+         "taxes": [{"id": 1, "total": "-16.59", "subtotal": "-16.59"}], "meta_data": [], "sku": "ESTANTE-OF", "price": -79, "refunded_item_id": 5011}
+      ],
+      "tax_lines": [], "shipping_lines": [], "fee_lines": []
+    }
+  ],
+  "/wp-json/wc/v3/orders/9001/notes": [
+    {"id": 701, "author": "system", "date_created": "2026-10-01T10:16:00", "date_created_gmt": "2026-10-01T08:16:00", "note": "Pago recibido con tarjeta", "customer_note": false},
+    {"id": 702, "author": "system", "date_created": "2026-10-02T08:00:00", "date_created_gmt": "2026-10-02T06:00:00", "note": "Pedido enviado por mensajería", "customer_note": true}
+  ],
+  "/wp-json/wc/v3/coupons": [
+    {
+      "id": 301, "code": "otono10", "amount": "10.00", "date_modified": "2026-09-21T10:00:00", "date_modified_gmt": "2026-09-21T08:00:00", "discount_type": "percent", "description": "Campaña de otoño",
+      "date_expires": "2026-12-21T01:00:00", "date_expires_gmt": "2026-12-21T00:00:00", "usage_count": 37, "individual_use": true, "product_ids": [], "excluded_product_ids": [], "usage_limit": 200,
+      "usage_limit_per_user": 1, "limit_usage_to_x_items": null, "free_shipping": false, "product_categories": [12], "excluded_product_categories": [], "exclude_sale_items": true,
+      "minimum_amount": "50.00", "maximum_amount": "0.00", "email_restrictions": []
+    },
+    {
+      "id": 302, "code": "envio-gratis", "amount": "0.00", "date_modified": "2026-01-10T10:00:00", "date_modified_gmt": "2026-01-10T09:00:00", "discount_type": "fixed_cart", "description": "",
+      "date_expires": null, "date_expires_gmt": null, "usage_count": 0, "individual_use": false, "product_ids": [], "excluded_product_ids": [105], "usage_limit": null, "usage_limit_per_user": null,
+      "limit_usage_to_x_items": null, "free_shipping": true, "product_categories": [], "excluded_product_categories": [], "exclude_sale_items": false, "minimum_amount": "0.00", "maximum_amount": "0.00",
+      "email_restrictions": ["ana@cliente.test"]
+    }
+  ],
+  "/wp-json/wc/v3/products/reviews": [
+    {"id": 15, "date_created": "2026-10-10T20:00:00", "date_created_gmt": "2026-10-10T18:00:00", "product_id": 101, "status": "approved", "reviewer": "Ana R.", "reviewer_email": "ana@cliente.test", "review": "<p>Llegó en dos días y sin un golpe.</p>", "rating": 5, "verified": true},
+    {"id": 16, "date_created": "2026-10-10T20:00:00", "date_created_gmt": "2026-10-10T18:00:00", "product_id": 104, "status": "hold", "reviewer": "Luis", "reviewer_email": "luis@cliente.test", "review": "<p>Falta una balda.</p>", "rating": 3, "verified": false}
+  ]
+}

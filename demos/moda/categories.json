@@ -1,0 +1,218 @@
+[
+    {
+        "code": "vestidos-y-faldas",
+        "name": "Vestidos y faldas",
+        "description": "Vestidos camiseros, plisados y de punto, y faldas midi para todo el año. Tejidos naturales y cortes con caída.",
+        "image": "categoria-vestidos-y-faldas.svg",
+        "position": 0,
+        "meta_title": "Vestidos y faldas | Atelier Brezal",
+        "meta_description": "Vestidos camiseros, plisados y de punto, y faldas midi para todo el año. Tejidos naturales y cortes con caída."
+    },
+    {
+        "code": "camisas-y-tops",
+        "name": "Camisas y tops",
+        "description": "Camisas de popelín y lino, blusas de seda, camisetas básicas y tops de canalé.",
+        "image": "categoria-camisas-y-tops.svg",
+        "position": 1,
+        "meta_title": "Camisas y tops | Atelier Brezal",
+        "meta_description": "Camisas de popelín y lino, blusas de seda, camisetas básicas y tops de canalé."
+    },
+    {
+        "code": "punto",
+        "name": "Punto",
+        "description": "Jerséis de lana merino y cachemir, cárdigans de punto grueso y chalecos para la temporada fría.",
+        "image": "categoria-punto.svg",
+        "position": 2,
+        "meta_title": "Punto | Atelier Brezal",
+        "meta_description": "Jerséis de lana merino y cachemir, cárdigans de punto grueso y chalecos para la temporada fría."
+    },
+    {
+        "code": "pantalones",
+        "name": "Pantalones",
+        "description": "Vaqueros rectos y de talle alto, pantalones de vestir con pinzas, pantalones fluidos de lino y bermudas.",
+        "image": "categoria-pantalones.svg",
+        "position": 3,
+        "meta_title": "Pantalones | Atelier Brezal",
+        "meta_description": "Vaqueros rectos y de talle alto, pantalones de vestir con pinzas, pantalones fluidos de lino y bermudas."
+    },
+    {
+        "code": "abrigos",
+        "name": "Abrigos y chaquetas",
+        "description": "Gabardinas, abrigos de paño, chaquetas vaqueras, americanas y plumas ligeros.",
+        "image": "categoria-abrigos.svg",
+        "position": 4,
+        "meta_title": "Abrigos y chaquetas | Atelier Brezal",
+        "meta_description": "Gabardinas, abrigos de paño, chaquetas vaqueras, americanas y plumas ligeros."
+    },
+    {
+        "code": "calzado",
+        "name": "Calzado",
+        "description": "Botines, zapatillas de piel, mocasines de ante y sandalias de cuero, con suela cosida y reparable.",
+        "image": "categoria-calzado.svg",
+        "position": 5,
+        "meta_title": "Calzado | Atelier Brezal",
+        "meta_description": "Botines, zapatillas de piel, mocasines de ante y sandalias de cuero, con suela cosida y reparable."
+    },
+    {
+        "code": "complementos",
+        "name": "Complementos",
+        "description": "Bolsos, bufandas, gorros, cinturones, gafas de sol y calcetines que completan el conjunto.",
+        "image": "categoria-complementos.svg",
+        "position": 6,
+        "meta_title": "Complementos | Atelier Brezal",
+        "meta_description": "Bolsos, bufandas, gorros, cinturones, gafas de sol y calcetines que completan el conjunto."
+    },
+    {
+        "code": "vestidos",
+        "name": "Vestidos",
+        "description": "Vestidos camiseros, plisados y de punto, de largo midi.",
+        "parent": "vestidos-y-faldas",
+        "position": 0,
+        "meta_title": "Vestidos | Atelier Brezal",
+        "meta_description": "Vestidos camiseros, plisados y de punto, de largo midi."
+    },
+    {
+        "code": "faldas",
+        "name": "Faldas",
+        "description": "Faldas midi y largas en popelín de algodón y crepé.",
+        "parent": "vestidos-y-faldas",
+        "position": 1,
+        "meta_title": "Faldas | Atelier Brezal",
+        "meta_description": "Faldas midi y largas en popelín de algodón y crepé."
+    },
+    {
+        "code": "camisas",
+        "name": "Camisas",
+        "description": "Camisas de popelín y de lino, de corte regular o holgado.",
+        "parent": "camisas-y-tops",
+        "position": 0,
+        "meta_title": "Camisas | Atelier Brezal",
+        "meta_description": "Camisas de popelín y de lino, de corte regular o holgado."
+    },
+    {
+        "code": "blusas",
+        "name": "Blusas",
+        "description": "Blusas de seda lavada y tejidos fluidos.",
+        "parent": "camisas-y-tops",
+        "position": 1,
+        "meta_title": "Blusas | Atelier Brezal",
+        "meta_description": "Blusas de seda lavada y tejidos fluidos."
+    },
+    {
+        "code": "camisetas",
+        "name": "Camisetas y tops",
+        "description": "Camisetas de algodón orgánico, rayas marineras y tops de canalé.",
+        "parent": "camisas-y-tops",
+        "position": 2,
+        "meta_title": "Camisetas y tops | Atelier Brezal",
+        "meta_description": "Camisetas de algodón orgánico, rayas marineras y tops de canalé."
+    },
+    {
+        "code": "jerseis",
+        "name": "Jerséis y chalecos",
+        "description": "Jerséis de cuello redondo o alto y chalecos de lana.",
+        "parent": "punto",
+        "position": 0,
+        "meta_title": "Jerséis y chalecos | Atelier Brezal",
+        "meta_description": "Jerséis de cuello redondo o alto y chalecos de lana."
+    },
+    {
+        "code": "cardigans",
+        "name": "Cárdigans",
+        "description": "Cárdigans de punto grueso con botones.",
+        "parent": "punto",
+        "position": 1,
+        "meta_title": "Cárdigans | Atelier Brezal",
+        "meta_description": "Cárdigans de punto grueso con botones."
+    },
+    {
+        "code": "vaqueros",
+        "name": "Vaqueros",
+        "description": "Vaqueros de denim con corte recto y de talle alto.",
+        "parent": "pantalones",
+        "position": 0,
+        "meta_title": "Vaqueros | Atelier Brezal",
+        "meta_description": "Vaqueros de denim con corte recto y de talle alto."
+    },
+    {
+        "code": "pantalones-de-vestir",
+        "name": "Pantalones y bermudas",
+        "description": "Pantalones de pinzas, fluidos de lino y bermudas de algodón.",
+        "parent": "pantalones",
+        "position": 1,
+        "meta_title": "Pantalones y bermudas | Atelier Brezal",
+        "meta_description": "Pantalones de pinzas, fluidos de lino y bermudas de algodón."
+    },
+    {
+        "code": "gabardinas",
+        "name": "Gabardinas y abrigos",
+        "description": "Gabardinas impermeables y abrigos largos de paño.",
+        "parent": "abrigos",
+        "position": 0,
+        "meta_title": "Gabardinas y abrigos | Atelier Brezal",
+        "meta_description": "Gabardinas impermeables y abrigos largos de paño."
+    },
+    {
+        "code": "chaquetas",
+        "name": "Chaquetas",
+        "description": "Chaquetas vaqueras, americanas de lana y plumas ligeros.",
+        "parent": "abrigos",
+        "position": 1,
+        "meta_title": "Chaquetas | Atelier Brezal",
+        "meta_description": "Chaquetas vaqueras, americanas de lana y plumas ligeros."
+    },
+    {
+        "code": "botines",
+        "name": "Botines",
+        "description": "Botines de piel con suela de goma.",
+        "parent": "calzado",
+        "position": 0,
+        "meta_title": "Botines | Atelier Brezal",
+        "meta_description": "Botines de piel con suela de goma."
+    },
+    {
+        "code": "zapatillas",
+        "name": "Zapatillas",
+        "description": "Zapatillas de piel lisa para todos los días.",
+        "parent": "calzado",
+        "position": 1,
+        "meta_title": "Zapatillas | Atelier Brezal",
+        "meta_description": "Zapatillas de piel lisa para todos los días."
+    },
+    {
+        "code": "mocasines",
+        "name": "Mocasines",
+        "description": "Mocasines de ante con suela de cuero.",
+        "parent": "calzado",
+        "position": 2,
+        "meta_title": "Mocasines | Atelier Brezal",
+        "meta_description": "Mocasines de ante con suela de cuero."
+    },
+    {
+        "code": "bolsos",
+        "name": "Bolsos",
+        "description": "Bolsos tote y bandoleras de lona y de piel.",
+        "parent": "complementos",
+        "position": 0,
+        "meta_title": "Bolsos | Atelier Brezal",
+        "meta_description": "Bolsos tote y bandoleras de lona y de piel."
+    },
+    {
+        "code": "bufandas",
+        "name": "Bufandas y gorros",
+        "description": "Bufandas y gorros de lana para el invierno.",
+        "parent": "complementos",
+        "position": 1,
+        "meta_title": "Bufandas y gorros | Atelier Brezal",
+        "meta_description": "Bufandas y gorros de lana para el invierno."
+    },
+    {
+        "code": "cinturones",
+        "name": "Cinturones",
+        "description": "Cinturones de cuero con hebilla de latón.",
+        "parent": "complementos",
+        "position": 2,
+        "meta_title": "Cinturones | Atelier Brezal",
+        "meta_description": "Cinturones de cuero con hebilla de latón."
+    }
+]

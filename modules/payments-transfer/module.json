@@ -1,0 +1,1 @@
+{"name":"Bank transfer","version":"1.0.0","description":"Payment by bank transfer to your account","essential":false,"default":true,"requires":{"modules":["orders"]},"contract":{"hosts":[],"personal_data":[],"tables":[],"capabilities":[]}}

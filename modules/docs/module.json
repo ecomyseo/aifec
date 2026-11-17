@@ -1,0 +1,1 @@
+{"name":"Docs","version":"1.0.0","description":"Publishes the Markdown documentation of the project inside the site","essential":false,"default":false,"requires":{"modules":[]},"contract":{"hosts":[],"personal_data":[],"tables":[],"capabilities":[]}}

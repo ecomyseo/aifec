@@ -1,0 +1,94 @@
+{
+  "/wp-json/": {
+    "name": "Muebles Ñandú & Cía", "description": "Mesas, sillas y estanterías", "url": "https://tienda.test", "home": "https://tienda.test",
+    "gmt_offset": 1, "timezone_string": "Europe/Madrid", "site_logo": 410, "site_icon": 0, "namespaces": ["wp/v2", "wc/v3", "wc/store/v1"]
+  },
+  "/wp-json/wp/v2/media/410": {
+    "id": 410, "source_url": "https://tienda.test/wp-content/uploads/2026/01/logo.png", "mime_type": "image/png", "alt_text": "Logotipo", "title": {"rendered": "logo"}
+  },
+  "/wp-json/wc/v3/system_status": {
+    "environment": {"version": "10.8.1", "wp_version": "7.1.4", "language": "es_ES"},
+    "settings": {"currency": "EUR", "HPOS_enabled": false},
+    "active_plugins": [
+      {"plugin": "woocommerce/woocommerce.php", "name": "WooCommerce", "version": "10.8.1"},
+      {"plugin": "wordpress-seo/wp-seo.php", "name": "Yoast SEO", "version": "25.0"},
+      {"plugin": "woocommerce-subscriptions/woocommerce-subscriptions.php", "name": "WooCommerce Subscriptions", "version": "7.0"},
+      {"plugin": "mailpoet/mailpoet.php", "name": "MailPoet", "version": "5.0"},
+      {"plugin": "gravityforms/gravityforms.php", "name": "Gravity Forms", "version": "2.9"}
+    ]
+  },
+  "/wp-json/wc/v3/settings/general": [
+    {"id": "woocommerce_store_address", "value": "Polígono Sur, nave 4"},
+    {"id": "woocommerce_store_address_2", "value": ""},
+    {"id": "woocommerce_store_city", "value": "Sevilla"},
+    {"id": "woocommerce_default_country", "value": "ES:SE"},
+    {"id": "woocommerce_store_postcode", "value": "41001"},
+    {"id": "woocommerce_currency", "value": "EUR"},
+    {"id": "woocommerce_currency_pos", "value": "right_space"},
+    {"id": "woocommerce_price_num_decimals", "value": "2"},
+    {"id": "woocommerce_calc_taxes", "value": "yes"}
+  ],
+  "/wp-json/wc/v3/settings/products": [
+    {"id": "woocommerce_weight_unit", "value": "kg"},
+    {"id": "woocommerce_dimension_unit", "value": "cm"},
+    {"id": "woocommerce_manage_stock", "value": "yes"}
+  ],
+  "/wp-json/wc/v3/settings/tax": [
+    {"id": "woocommerce_prices_include_tax", "value": "no"},
+    {"id": "woocommerce_tax_based_on", "value": "shipping"},
+    {"id": "woocommerce_tax_display_shop", "value": "incl"}
+  ],
+  "/wp-json/wc/v3/settings/account": [
+    {"id": "woocommerce_enable_guest_checkout", "value": "yes"}
+  ],
+  "/wp-json/wc/v3/settings/email": [
+    {"id": "woocommerce_email_from_name", "value": "Muebles Ñandú"},
+    {"id": "woocommerce_email_from_address", "value": "hola@tienda.test"}
+  ],
+  "/wp-json/wc/v3/settings/advanced": [
+    {"id": "woocommerce_terms_page_id", "value": "8"},
+    {"id": "woocommerce_refund_returns_page_id", "value": ""}
+  ],
+  "/wp-json/wc/v3/taxes/classes": [
+    {"slug": "reduced-rate", "name": "Tipo reducido"}
+  ],
+  "/wp-json/wc/v3/taxes": [
+    {"id": 1, "country": "ES", "state": "", "postcode": "", "city": "", "postcodes": [], "cities": [], "rate": "21.0000", "name": "IVA 21 %", "priority": 1, "compound": false, "shipping": true, "order": 1, "class": "standard"},
+    {"id": 2, "country": "ES", "state": "TF", "postcode": "35;38", "city": "", "postcodes": ["35*", "38*"], "cities": [], "rate": "7.0000", "name": "IGIC 7 %", "priority": 1, "compound": false, "shipping": true, "order": 2, "class": "standard"},
+    {"id": 3, "country": "ES", "state": "CE", "postcode": "51", "city": "", "postcodes": ["51*"], "cities": [], "rate": "4.0000", "name": "IPSI Ceuta", "priority": 1, "compound": false, "shipping": true, "order": 3, "class": "standard"},
+    {"id": 4, "country": "ES", "state": "", "postcode": "", "city": "", "postcodes": [], "cities": [], "rate": "10.0000", "name": "IVA reducido", "priority": 1, "compound": false, "shipping": true, "order": 4, "class": "reduced-rate"}
+  ],
+  "/wp-json/wc/v3/shipping/zones": [
+    {"id": 1, "name": "Península", "order": 0},
+    {"id": 2, "name": "Canarias", "order": 1}
+  ],
+  "/wp-json/wc/v3/shipping/zones/1/locations": [
+    {"code": "ES", "type": "country"},
+    {"code": "PT", "type": "country"}
+  ],
+  "/wp-json/wc/v3/shipping/zones/2/locations": [
+    {"code": "ES:TF", "type": "state"},
+    {"code": "ES:GC", "type": "state"},
+    {"code": "35*", "type": "postcode"},
+    {"code": "38*", "type": "postcode"}
+  ],
+  "/wp-json/wc/v3/shipping/zones/0/methods": [],
+  "/wp-json/wc/v3/shipping/zones/1/methods": [
+    {"instance_id": 11, "title": "Mensajería 24 h", "order": 1, "enabled": true, "method_id": "flat_rate", "method_title": "Flat rate",
+     "settings": {"title": {"id": "title", "value": "Mensajería 24 h"}, "tax_status": {"id": "tax_status", "value": "taxable"}, "cost": {"id": "cost", "value": "5.90"}, "class_cost_7": {"id": "class_cost_7", "value": "3.00"}, "no_class_cost": {"id": "no_class_cost", "value": ""}}},
+    {"instance_id": 12, "title": "Envío gratis", "order": 2, "enabled": true, "method_id": "free_shipping", "method_title": "Free shipping",
+     "settings": {"title": {"id": "title", "value": "Envío gratis"}, "requires": {"id": "requires", "value": "min_amount"}, "min_amount": {"id": "min_amount", "value": "60"}}},
+    {"instance_id": 13, "title": "Recogida en taller", "order": 3, "enabled": true, "method_id": "local_pickup", "method_title": "Local pickup",
+     "settings": {"title": {"id": "title", "value": "Recogida en taller"}, "tax_status": {"id": "tax_status", "value": "none"}, "cost": {"id": "cost", "value": "0"}}}
+  ],
+  "/wp-json/wc/v3/shipping/zones/2/methods": [
+    {"instance_id": 21, "title": "Mensajería Canarias", "order": 1, "enabled": true, "method_id": "flat_rate", "method_title": "Flat rate",
+     "settings": {"title": {"id": "title", "value": "Mensajería Canarias"}, "tax_status": {"id": "tax_status", "value": "taxable"}, "cost": {"id": "cost", "value": "12.00"}}}
+  ],
+  "/wp-json/wc/v3/payment_gateways": [
+    {"id": "bacs", "title": "Transferencia bancaria", "order": 0, "enabled": true, "method_title": "Direct bank transfer",
+     "settings": {"title": {"id": "title", "value": "Transferencia bancaria"}, "description": {"id": "description", "value": "Paga por transferencia"}}},
+    {"id": "redsys", "title": "Tarjeta", "order": 1, "enabled": false, "method_title": "Redsys",
+     "settings": {"title": {"id": "title", "value": "Tarjeta"}, "testmode": {"id": "testmode", "value": "yes"}, "merchant_code": {"id": "merchant_code", "value": "000000000"}, "secret_key": {"id": "secret_key", "value": "clave-de-mentira"}}}
+  ]
+}

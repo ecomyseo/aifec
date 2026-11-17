@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 460" width="560" height="460" role="img" aria-labelledby="t d">
+  <title id="t">Una sola verdad</title>
+  <desc id="d">Un dato único alimenta la página, los datos estructurados, el texto, el feed, la API y el MCP.</desc>
+  <g fill="none" stroke="#c4511d" stroke-width="2" stroke-linecap="round">
+    <path d="M200 230 C 270 230, 270 36, 356 36"/>
+    <path d="M200 230 C 270 230, 270 108, 356 108"/>
+    <path d="M200 230 C 270 230, 270 180, 356 180"/>
+    <path d="M200 230 C 270 230, 270 252, 356 252"/>
+    <path d="M200 230 C 270 230, 270 324, 356 324"/>
+    <path d="M200 230 C 270 230, 270 396, 356 396"/>
+  </g>
+  <g fill="#c4511d">
+    <circle cx="200" cy="230" r="6"/>
+    <circle cx="356" cy="36" r="5"/>
+    <circle cx="356" cy="108" r="5"/>
+    <circle cx="356" cy="180" r="5"/>
+    <circle cx="356" cy="252" r="5"/>
+    <circle cx="356" cy="324" r="5"/>
+    <circle cx="356" cy="396" r="5"/>
+  </g>
+  <rect x="16" y="160" width="184" height="140" rx="4" fill="#1c3a2f"/>
+  <text x="36" y="206" font-family="'Iowan Old Style','Palatino Linotype',Georgia,serif" font-size="28" font-weight="600" fill="#f6f1e7">Una sola</text>
+  <text x="36" y="240" font-family="'Iowan Old Style','Palatino Linotype',Georgia,serif" font-size="28" font-style="italic" font-weight="600" fill="#f2a37e">verdad</text>
+  <text x="36" y="276" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="11" letter-spacing="1.2" fill="#f6f1e7">PRECIO · STOCK · PLAZO</text>
+  <g font-family="ui-monospace,Menlo,Consolas,monospace" font-size="13" font-weight="600" letter-spacing="1.4" fill="#1c3a2f">
+    <rect x="356" y="12" width="188" height="48" rx="4" fill="#f6f1e7" stroke="#bfa98a"/>
+    <text x="374" y="42">PÁGINA</text>
+    <rect x="356" y="84" width="188" height="48" rx="4" fill="#f6f1e7" stroke="#bfa98a"/>
+    <text x="374" y="114">DATOS ESTRUCTURADOS</text>
+    <rect x="356" y="156" width="188" height="48" rx="4" fill="#f6f1e7" stroke="#bfa98a"/>
+    <text x="374" y="186">TEXTO (.MD)</text>
+    <rect x="356" y="228" width="188" height="48" rx="4" fill="#f6f1e7" stroke="#bfa98a"/>
+    <text x="374" y="258">FEED</text>
+    <rect x="356" y="300" width="188" height="48" rx="4" fill="#f6f1e7" stroke="#bfa98a"/>
+    <text x="374" y="330">API</text>
+    <rect x="356" y="372" width="188" height="48" rx="4" fill="#f6f1e7" stroke="#bfa98a"/>
+    <text x="374" y="402">MCP</text>
+  </g>
+</svg>

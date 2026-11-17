@@ -1,0 +1,16 @@
+[
+    {
+        "code": "OTONO10",
+        "kind": "percent",
+        "percent": 1000,
+        "note": "10 % de descuento en el primer pedido (cupón de ejemplo)"
+    },
+    {
+        "code": "BOLSO15",
+        "kind": "fixed",
+        "amount": 1500,
+        "min_subtotal": 12000,
+        "exclude_sale": true,
+        "note": "15 € de descuento en compras desde 120 €, sin contar las ofertas (cupón de ejemplo)"
+    }
+]

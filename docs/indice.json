@@ -1,0 +1,356 @@
+{
+  "sections": [
+    {
+      "slug": "empezar",
+      "title": "Empezar",
+      "pages": [
+        {
+          "slug": "que-es-aifec",
+          "title": "Qué es AIFEC"
+        },
+        {
+          "slug": "entrar-al-panel",
+          "title": "Entrar al panel"
+        },
+        {
+          "slug": "primeros-ajustes",
+          "title": "Primeros ajustes"
+        },
+        {
+          "slug": "equipo-y-papeles",
+          "title": "Equipo y papeles"
+        },
+        {
+          "slug": "lista-para-vender",
+          "title": "La lista para vender"
+        }
+      ]
+    },
+    {
+      "slug": "tienda",
+      "title": "Tu tienda",
+      "pages": [
+        {
+          "slug": "productos",
+          "title": "Productos"
+        },
+        {
+          "slug": "variantes-y-atributos",
+          "title": "Variantes y atributos"
+        },
+        {
+          "slug": "categorias-marcas-y-etiquetas",
+          "title": "Categorías, marcas y etiquetas"
+        },
+        {
+          "slug": "precios-y-existencias",
+          "title": "Precios y existencias"
+        },
+        {
+          "slug": "pedidos",
+          "title": "Pedidos"
+        },
+        {
+          "slug": "clientes",
+          "title": "Clientes"
+        },
+        {
+          "slug": "envios",
+          "title": "Envíos"
+        },
+        {
+          "slug": "impuestos",
+          "title": "Impuestos"
+        },
+        {
+          "slug": "cupones",
+          "title": "Cupones"
+        },
+        {
+          "slug": "formas-de-pago",
+          "title": "Formas de pago"
+        },
+        {
+          "slug": "correo",
+          "title": "Correo"
+        },
+        {
+          "slug": "valoraciones",
+          "title": "Valoraciones"
+        },
+        {
+          "slug": "facturas",
+          "title": "Facturas"
+        },
+        {
+          "slug": "importar-y-exportar",
+          "title": "Importar y exportar"
+        },
+        {
+          "slug": "pedidos-a-mano",
+          "title": "Pedidos a mano"
+        },
+        {
+          "slug": "suscripciones",
+          "title": "Servicios y suscripciones mensuales"
+        }
+      ]
+    },
+    {
+      "slug": "contenido-y-diseno",
+      "title": "Contenido y diseño",
+      "pages": [
+        {
+          "slug": "paginas-y-blog",
+          "title": "Páginas y blog"
+        },
+        {
+          "slug": "medios",
+          "title": "Medios"
+        },
+        {
+          "slug": "menus-y-portada",
+          "title": "Menús y portada"
+        },
+        {
+          "slug": "temas-y-personalizador",
+          "title": "Temas y personalizador"
+        },
+        {
+          "slug": "plugins",
+          "title": "Plugins"
+        },
+        {
+          "slug": "seo",
+          "title": "SEO"
+        },
+        {
+          "slug": "ia-en-el-panel",
+          "title": "IA en el panel"
+        },
+        {
+          "slug": "asistente-de-compra",
+          "title": "Asistente de compra"
+        },
+        {
+          "slug": "probar-y-aprender",
+          "title": "Probar y aprender en el buscador"
+        },
+        {
+          "slug": "traducciones",
+          "title": "Traducciones"
+        }
+      ]
+    },
+    {
+      "slug": "ai-first",
+      "title": "AI-first: lo que tu tienda ofrece a las máquinas",
+      "pages": [
+        {
+          "slug": "una-sola-verdad",
+          "title": "Una sola verdad por producto"
+        },
+        {
+          "slug": "lo-que-publica-tu-tienda",
+          "title": "Lo que publica tu tienda"
+        },
+        {
+          "slug": "robots-de-ia",
+          "title": "Robots de IA"
+        },
+        {
+          "slug": "la-auditoria-aifec",
+          "title": "La auditoría AIFEC"
+        },
+        {
+          "slug": "api-y-mcp-para-no-tecnicos",
+          "title": "API y MCP, para no técnicos"
+        },
+        {
+          "slug": "preguntas-frecuentes",
+          "title": "Preguntas frecuentes"
+        },
+        {
+          "slug": "ucp-y-agentes-que-pagan",
+          "title": "UCP y agentes que pagan"
+        }
+      ]
+    },
+    {
+      "slug": "temas",
+      "title": "Temas",
+      "pages": [
+        {
+          "slug": "como-funciona-un-tema",
+          "title": "Cómo funciona un tema"
+        },
+        {
+          "slug": "tu-primer-tema-hijo",
+          "title": "Tu primer tema hijo"
+        },
+        {
+          "slug": "plantillas-y-piezas",
+          "title": "Plantillas y piezas"
+        },
+        {
+          "slug": "opciones-y-personalizador",
+          "title": "Opciones y personalizador"
+        },
+        {
+          "slug": "huecos-y-datos",
+          "title": "Huecos y datos"
+        },
+        {
+          "slug": "el-contrato-de-un-tema",
+          "title": "El contrato de un tema"
+        },
+        {
+          "slug": "traducir-un-tema",
+          "title": "Traducir un tema"
+        }
+      ]
+    },
+    {
+      "slug": "plugins",
+      "title": "Plugins",
+      "pages": [
+        {
+          "slug": "como-funciona-un-plugin",
+          "title": "Cómo funciona un plugin"
+        },
+        {
+          "slug": "tu-primer-plugin",
+          "title": "Tu primer plugin"
+        },
+        {
+          "slug": "ganchos",
+          "title": "Ganchos"
+        },
+        {
+          "slug": "panel",
+          "title": "El panel"
+        },
+        {
+          "slug": "datos-y-migraciones",
+          "title": "Datos y migraciones"
+        },
+        {
+          "slug": "tienda",
+          "title": "La tienda"
+        },
+        {
+          "slug": "tareas-correo-e-ia",
+          "title": "Tareas, correo e IA"
+        },
+        {
+          "slug": "el-contrato-aifec",
+          "title": "El Contrato AIFEC"
+        },
+        {
+          "slug": "pruebas",
+          "title": "Pruebas"
+        },
+        {
+          "slug": "publicar-y-vender",
+          "title": "Publicar y vender"
+        }
+      ]
+    },
+    {
+      "slug": "referencia",
+      "title": "Referencia",
+      "pages": [
+        {
+          "slug": "arquitectura",
+          "title": "Arquitectura"
+        },
+        {
+          "slug": "consola",
+          "title": "Consola"
+        },
+        {
+          "slug": "ganchos",
+          "title": "Ganchos"
+        },
+        {
+          "slug": "ajustes",
+          "title": "Ajustes"
+        },
+        {
+          "slug": "rutas",
+          "title": "Rutas"
+        },
+        {
+          "slug": "permisos",
+          "title": "Permisos"
+        },
+        {
+          "slug": "api",
+          "title": "API"
+        },
+        {
+          "slug": "mcp",
+          "title": "MCP"
+        },
+        {
+          "slug": "glosario",
+          "title": "Glosario"
+        }
+      ]
+    },
+    {
+      "slug": "operacion",
+      "title": "Instalar y mantener",
+      "pages": [
+        {
+          "slug": "requisitos",
+          "title": "Requisitos del servidor"
+        },
+        {
+          "slug": "instalar",
+          "title": "Instalar AIFEC"
+        },
+        {
+          "slug": "servidor-web",
+          "title": "Servidor web"
+        },
+        {
+          "slug": "tareas-programadas",
+          "title": "Tareas programadas"
+        },
+        {
+          "slug": "correo",
+          "title": "Correo"
+        },
+        {
+          "slug": "copias-y-restaurar",
+          "title": "Copias de seguridad y restaurar"
+        },
+        {
+          "slug": "actualizar",
+          "title": "Actualizar AIFEC"
+        },
+        {
+          "slug": "varios-sitios-y-demos",
+          "title": "Varios sitios y demostraciones"
+        },
+        {
+          "slug": "seguridad",
+          "title": "Seguridad"
+        },
+        {
+          "slug": "rendimiento",
+          "title": "Rendimiento"
+        },
+        {
+          "slug": "diagnostico-y-problemas",
+          "title": "Diagnóstico y problemas"
+        },
+        {
+          "slug": "migrar-desde-otra-tienda",
+          "title": "Migrar desde otra tienda"
+        }
+      ]
+    }
+  ]
+}

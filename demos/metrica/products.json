@@ -1,0 +1,1329 @@
+[
+    {
+        "sku": "MET-HEX",
+        "name": "Tornillo hexagonal DIN 933 zincado · caja de 50",
+        "summary": "<p>Tornillo de cabeza hexagonal con rosca métrica hasta la cabeza, en acero zincado de calidad 8.8. El de casi todo: máquinas, estructuras y bancos de trabajo.</p>",
+        "description": "<p>Rosca completa, cabeza para llave fija o de vaso y un zincado que aguanta el taller y el garaje. Se sirve en caja de cincuenta unidades de una misma medida.</p><p>Elige la métrica por el agujero o por la tuerca que ya tienes, y el largo por lo que tiene que atravesar más la tuerca y la arandela.</p><ul><li>Medidas: M5, M6, M8, M10 × 20, 30, 40, 60 mm</li><li>Acero de calidad 8.8, zincado</li><li>Rosca métrica de paso normal, completa</li><li>Caja de 50 unidades de una sola medida</li></ul><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 490,
+        "mpn": "MT-001",
+        "weight": 600,
+        "delivery_min_days": 1,
+        "delivery_max_days": 2,
+        "featured": true,
+        "categories": [
+            "tornillos",
+            "tornilleria-y-fijacion",
+            "fijar"
+        ],
+        "brand": "roscafina",
+        "attributes": {
+            "material": "acero-zincado",
+            "norma": "din-933",
+            "cabeza": "hexagonal"
+        },
+        "facts": [
+            {
+                "label": "Calidad",
+                "value": "8.8"
+            },
+            {
+                "label": "Rosca",
+                "value": "Métrica de paso normal, hasta la cabeza"
+            },
+            {
+                "label": "Presentación",
+                "value": "Caja de 50 unidades de una sola medida"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Qué llave necesito para cada métrica?",
+                "answer": "Según DIN 933: llave de 8 mm para M5, de 10 mm para M6, de 13 mm para M8 y de 17 mm para M10."
+            },
+            {
+                "question": "¿Vienen con tuerca y arandela?",
+                "answer": "No. Se piden aparte, de la misma métrica que el tornillo."
+            }
+        ],
+        "meta_title": "Tornillo hexagonal DIN 933 zincado · caja de 50 | Métrica",
+        "meta_description": "Tornillo de cabeza hexagonal con rosca métrica hasta la cabeza, en acero zincado de calidad 8.8. El de casi todo: máquinas, estructuras y bancos de trabajo",
+        "images": [
+            {
+                "file": "metrica-tornillo-hexagonal-din-933.jpg",
+                "alt": "Un tornillo de cabeza hexagonal de acero zincado plateado, con rosca métrica en todo el vástago, tumbado en diagonal"
+            },
+            {
+                "file": "metrica-tornillo-hexagonal-din-933-detalle.jpg",
+                "alt": "Tornillo hexagonal DIN 933, detalle de cerca"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "MET-HEX-M5-20",
+                "gtin": "2990002000017",
+                "label": "M5 × 20 mm",
+                "stock": 17,
+                "values": {
+                    "metrica": "m5",
+                    "largo": "20"
+                },
+                "price": 416,
+                "compare_price": 490
+            },
+            {
+                "sku": "MET-HEX-M5-30",
+                "gtin": "2990002000024",
+                "label": "M5 × 30 mm",
+                "stock": 30,
+                "values": {
+                    "metrica": "m5",
+                    "largo": "30"
+                },
+                "price": 493,
+                "compare_price": 580
+            },
+            {
+                "sku": "MET-HEX-M5-40",
+                "gtin": "2990002000031",
+                "label": "M5 × 40 mm",
+                "stock": 43,
+                "values": {
+                    "metrica": "m5",
+                    "largo": "40"
+                },
+                "price": 565,
+                "compare_price": 665
+            },
+            {
+                "sku": "MET-HEX-M5-60",
+                "gtin": "2990002000048",
+                "label": "M5 × 60 mm",
+                "stock": 10,
+                "values": {
+                    "metrica": "m5",
+                    "largo": "60"
+                },
+                "price": 731,
+                "compare_price": 860
+            },
+            {
+                "sku": "MET-HEX-M6-20",
+                "gtin": "2990002000055",
+                "label": "M6 × 20 mm",
+                "stock": 24,
+                "values": {
+                    "metrica": "m6",
+                    "largo": "20"
+                },
+                "price": 518,
+                "compare_price": 610
+            },
+            {
+                "sku": "MET-HEX-M6-30",
+                "gtin": "2990002000062",
+                "label": "M6 × 30 mm",
+                "stock": 37,
+                "values": {
+                    "metrica": "m6",
+                    "largo": "30"
+                },
+                "price": 616,
+                "compare_price": 725
+            },
+            {
+                "sku": "MET-HEX-M6-40",
+                "gtin": "2990002000079",
+                "label": "M6 × 40 mm",
+                "stock": 50,
+                "values": {
+                    "metrica": "m6",
+                    "largo": "40"
+                },
+                "price": 710,
+                "compare_price": 835
+            },
+            {
+                "sku": "MET-HEX-M6-60",
+                "gtin": "2990002000086",
+                "label": "M6 × 60 mm",
+                "stock": 17,
+                "values": {
+                    "metrica": "m6",
+                    "largo": "60"
+                },
+                "price": 910,
+                "compare_price": 1070
+            },
+            {
+                "sku": "MET-HEX-M8-20",
+                "gtin": "2990002000093",
+                "label": "M8 × 20 mm",
+                "stock": 2,
+                "values": {
+                    "metrica": "m8",
+                    "largo": "20"
+                },
+                "price": 790,
+                "compare_price": 930
+            },
+            {
+                "sku": "MET-HEX-M8-30",
+                "gtin": "2990002000109",
+                "label": "M8 × 30 mm",
+                "stock": 44,
+                "values": {
+                    "metrica": "m8",
+                    "largo": "30"
+                },
+                "price": 935,
+                "compare_price": 1100
+            },
+            {
+                "sku": "MET-HEX-M8-40",
+                "gtin": "2990002000116",
+                "label": "M8 × 40 mm",
+                "stock": 11,
+                "values": {
+                    "metrica": "m8",
+                    "largo": "40"
+                },
+                "price": 1075,
+                "compare_price": 1265
+            },
+            {
+                "sku": "MET-HEX-M8-60",
+                "gtin": "2990002000123",
+                "label": "M8 × 60 mm",
+                "stock": 24,
+                "values": {
+                    "metrica": "m8",
+                    "largo": "60"
+                },
+                "price": 1386,
+                "compare_price": 1630
+            },
+            {
+                "sku": "MET-HEX-M10-20",
+                "gtin": "2990002000130",
+                "label": "M10 × 20 mm",
+                "stock": 38,
+                "values": {
+                    "metrica": "m10",
+                    "largo": "20"
+                },
+                "price": 1207,
+                "compare_price": 1420
+            },
+            {
+                "sku": "MET-HEX-M10-30",
+                "gtin": "2990002000147",
+                "label": "M10 × 30 mm",
+                "stock": 51,
+                "values": {
+                    "metrica": "m10",
+                    "largo": "30"
+                },
+                "price": 1424,
+                "compare_price": 1675
+            },
+            {
+                "sku": "MET-HEX-M10-40",
+                "gtin": "2990002000154",
+                "label": "M10 × 40 mm",
+                "stock": 18,
+                "values": {
+                    "metrica": "m10",
+                    "largo": "40"
+                },
+                "price": 1645,
+                "compare_price": 1935
+            },
+            {
+                "sku": "MET-HEX-M10-60",
+                "gtin": "2990002000161",
+                "label": "M10 × 60 mm",
+                "stock": 0,
+                "values": {
+                    "metrica": "m10",
+                    "largo": "60"
+                },
+                "price": 2112,
+                "compare_price": 2485
+            }
+        ]
+    },
+    {
+        "sku": "MET-ALLEN",
+        "name": "Tornillo Allen DIN 912 pavonado · caja de 50",
+        "summary": "<p>Tornillo de cabeza cilíndrica con hueco hexagonal, en acero pavonado de calidad 12.9. Para donde no entra una llave fija y la cabeza tiene que quedar recogida.</p>",
+        "description": "<p>La cabeza cilíndrica se aloja en un avellanado recto y se aprieta con llave Allen, sin necesitar sitio alrededor. Acero de alta resistencia con acabado negro.</p><p>Se sirve en caja de cincuenta unidades de una misma medida.</p><ul><li>Medidas: M4, M5, M6, M8 × 16, 20, 30, 40 mm</li><li>Acero de calidad 12.9, pavonado en negro</li><li>Hueco hexagonal para llave Allen</li><li>Caja de 50 unidades de una sola medida</li></ul><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 560,
+        "mpn": "MT-002",
+        "weight": 450,
+        "delivery_min_days": 1,
+        "delivery_max_days": 2,
+        "featured": false,
+        "categories": [
+            "tornillos",
+            "tornilleria-y-fijacion"
+        ],
+        "brand": "roscafina",
+        "attributes": {
+            "material": "acero-pavonado",
+            "norma": "din-912",
+            "cabeza": "cilindrica-allen"
+        },
+        "facts": [
+            {
+                "label": "Calidad",
+                "value": "12.9"
+            },
+            {
+                "label": "Acabado",
+                "value": "Pavonado en negro"
+            },
+            {
+                "label": "Presentación",
+                "value": "Caja de 50 unidades de una sola medida"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Qué llave Allen lleva cada métrica?",
+                "answer": "Llave de 3 mm para M4, de 4 mm para M5, de 5 mm para M6 y de 6 mm para M8."
+            }
+        ],
+        "meta_title": "Tornillo Allen DIN 912 pavonado · caja de 50 | Métrica",
+        "meta_description": "Tornillo de cabeza cilíndrica con hueco hexagonal, en acero pavonado de calidad 12.9. Para donde no entra una llave fija y la cabeza tiene que quedar recog",
+        "images": [
+            {
+                "file": "metrica-tornillo-allen-din-912.jpg",
+                "alt": "Un tornillo Allen de cabeza cilíndrica con hueco hexagonal, de acero pavonado negro mate, con rosca métrica, tumbado en diagonal"
+            },
+            {
+                "file": "metrica-tornillo-allen-din-912-detalle.jpg",
+                "alt": "Tornillo Allen DIN 912, detalle de cerca"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "MET-ALLEN-M4-16",
+                "gtin": "2990002000178",
+                "label": "M4 × 16 mm",
+                "stock": 17,
+                "values": {
+                    "metrica": "m4",
+                    "largo": "16"
+                },
+                "price": 560
+            },
+            {
+                "sku": "MET-ALLEN-M4-20",
+                "gtin": "2990002000185",
+                "label": "M4 × 20 mm",
+                "stock": 30,
+                "values": {
+                    "metrica": "m4",
+                    "largo": "20"
+                },
+                "price": 605
+            },
+            {
+                "sku": "MET-ALLEN-M4-30",
+                "gtin": "2990002000192",
+                "label": "M4 × 30 mm",
+                "stock": 43,
+                "values": {
+                    "metrica": "m4",
+                    "largo": "30"
+                },
+                "price": 700
+            },
+            {
+                "sku": "MET-ALLEN-M4-40",
+                "gtin": "2990002000208",
+                "label": "M4 × 40 mm",
+                "stock": 0,
+                "values": {
+                    "metrica": "m4",
+                    "largo": "40"
+                },
+                "price": 810
+            },
+            {
+                "sku": "MET-ALLEN-M5-16",
+                "gtin": "2990002000215",
+                "label": "M5 × 16 mm",
+                "stock": 24,
+                "values": {
+                    "metrica": "m5",
+                    "largo": "16"
+                },
+                "price": 645
+            },
+            {
+                "sku": "MET-ALLEN-M5-20",
+                "gtin": "2990002000222",
+                "label": "M5 × 20 mm",
+                "stock": 37,
+                "values": {
+                    "metrica": "m5",
+                    "largo": "20"
+                },
+                "price": 695
+            },
+            {
+                "sku": "MET-ALLEN-M5-30",
+                "gtin": "2990002000239",
+                "label": "M5 × 30 mm",
+                "stock": 50,
+                "values": {
+                    "metrica": "m5",
+                    "largo": "30"
+                },
+                "price": 805
+            },
+            {
+                "sku": "MET-ALLEN-M5-40",
+                "gtin": "2990002000246",
+                "label": "M5 × 40 mm",
+                "stock": 17,
+                "values": {
+                    "metrica": "m5",
+                    "largo": "40"
+                },
+                "price": 935
+            },
+            {
+                "sku": "MET-ALLEN-M6-16",
+                "gtin": "2990002000253",
+                "label": "M6 × 16 mm",
+                "stock": 2,
+                "values": {
+                    "metrica": "m6",
+                    "largo": "16"
+                },
+                "price": 785
+            },
+            {
+                "sku": "MET-ALLEN-M6-20",
+                "gtin": "2990002000260",
+                "label": "M6 × 20 mm",
+                "stock": 44,
+                "values": {
+                    "metrica": "m6",
+                    "largo": "20"
+                },
+                "price": 845
+            },
+            {
+                "sku": "MET-ALLEN-M6-30",
+                "gtin": "2990002000277",
+                "label": "M6 × 30 mm",
+                "stock": 11,
+                "values": {
+                    "metrica": "m6",
+                    "largo": "30"
+                },
+                "price": 980
+            },
+            {
+                "sku": "MET-ALLEN-M6-40",
+                "gtin": "2990002000284",
+                "label": "M6 × 40 mm",
+                "stock": 24,
+                "values": {
+                    "metrica": "m6",
+                    "largo": "40"
+                },
+                "price": 1135
+            },
+            {
+                "sku": "MET-ALLEN-M8-16",
+                "gtin": "2990002000291",
+                "label": "M8 × 16 mm",
+                "stock": 38,
+                "values": {
+                    "metrica": "m8",
+                    "largo": "16"
+                },
+                "price": 1175
+            },
+            {
+                "sku": "MET-ALLEN-M8-20",
+                "gtin": "2990002000307",
+                "label": "M8 × 20 mm",
+                "stock": 51,
+                "values": {
+                    "metrica": "m8",
+                    "largo": "20"
+                },
+                "price": 1270
+            },
+            {
+                "sku": "MET-ALLEN-M8-30",
+                "gtin": "2990002000314",
+                "label": "M8 × 30 mm",
+                "stock": 18,
+                "values": {
+                    "metrica": "m8",
+                    "largo": "30"
+                },
+                "price": 1470
+            },
+            {
+                "sku": "MET-ALLEN-M8-40",
+                "gtin": "2990002000321",
+                "label": "M8 × 40 mm",
+                "stock": 31,
+                "values": {
+                    "metrica": "m8",
+                    "largo": "40"
+                },
+                "price": 1705
+            }
+        ]
+    },
+    {
+        "sku": "MET-TUERCA",
+        "name": "Tuerca hexagonal DIN 934 zincada · caja de 100",
+        "summary": "<p>La tuerca de siempre, en acero zincado de calidad 8. Casa con cualquier tornillo de rosca métrica de paso normal.</p>",
+        "description": "<p>Seis caras para llave fija o de vaso y rosca limpia, sin rebabas. Pídela de la misma métrica que el tornillo: una M6 solo entra en un M6.</p><p>Se sirve en caja de cien unidades de una misma métrica.</p><ul><li>Medidas: M4, M5, M6, M8, M10</li><li>Acero de calidad 8, zincado</li><li>Rosca métrica de paso normal</li><li>Caja de 100 unidades de una sola métrica</li></ul><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 320,
+        "mpn": "MT-003",
+        "weight": 350,
+        "delivery_min_days": 1,
+        "delivery_max_days": 2,
+        "featured": false,
+        "categories": [
+            "tuercas-y-arandelas",
+            "tornilleria-y-fijacion"
+        ],
+        "brand": "roscafina",
+        "attributes": {
+            "material": "acero-zincado",
+            "norma": "din-934"
+        },
+        "facts": [
+            {
+                "label": "Calidad",
+                "value": "8"
+            },
+            {
+                "label": "Rosca",
+                "value": "Métrica de paso normal"
+            },
+            {
+                "label": "Presentación",
+                "value": "Caja de 100 unidades de una sola métrica"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Cómo sé qué métrica pedir?",
+                "answer": "La del tornillo: una tuerca M6 solo entra en un tornillo M6. Si dudas, mide el diámetro de la rosca del tornillo."
+            }
+        ],
+        "meta_title": "Tuerca hexagonal DIN 934 zincada · caja de 100 | Métrica",
+        "meta_description": "La tuerca de siempre, en acero zincado de calidad 8. Casa con cualquier tornillo de rosca métrica de paso normal.",
+        "images": [
+            {
+                "file": "metrica-tuerca-hexagonal-din-934.jpg",
+                "alt": "Una tuerca hexagonal de acero zincado plateado, con la rosca interior a la vista, apoyada sobre una de sus caras planas"
+            },
+            {
+                "file": "metrica-tuerca-hexagonal-din-934-detalle.jpg",
+                "alt": "Tuerca hexagonal DIN 934, detalle de cerca"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "MET-TUERCA-M4",
+                "gtin": "2990002000338",
+                "label": "M4",
+                "stock": 17,
+                "values": {
+                    "metrica": "m4"
+                },
+                "price": 320
+            },
+            {
+                "sku": "MET-TUERCA-M5",
+                "gtin": "2990002000345",
+                "label": "M5",
+                "stock": 24,
+                "values": {
+                    "metrica": "m5"
+                },
+                "price": 340
+            },
+            {
+                "sku": "MET-TUERCA-M6",
+                "gtin": "2990002000352",
+                "label": "M6",
+                "stock": 31,
+                "values": {
+                    "metrica": "m6"
+                },
+                "price": 380
+            },
+            {
+                "sku": "MET-TUERCA-M8",
+                "gtin": "2990002000369",
+                "label": "M8",
+                "stock": 38,
+                "values": {
+                    "metrica": "m8"
+                },
+                "price": 520
+            },
+            {
+                "sku": "MET-TUERCA-M10",
+                "gtin": "2990002000376",
+                "label": "M10",
+                "stock": 2,
+                "values": {
+                    "metrica": "m10"
+                },
+                "price": 760
+            }
+        ]
+    },
+    {
+        "sku": "MET-ARANDELA",
+        "name": "Arandela plana DIN 125 zincada · caja de 100",
+        "summary": "<p>Arandela plana de acero zincado. Reparte el apriete y evita que la cabeza del tornillo o la tuerca marquen la pieza.</p>",
+        "description": "<p>Va debajo de la cabeza, debajo de la tuerca o en los dos sitios. La métrica es la del tornillo que la atraviesa.</p><p>Se sirve en caja de cien unidades de una misma métrica.</p><ul><li>Medidas: M4, M5, M6, M8, M10</li><li>Acero zincado, canto sin rebaba</li><li>Para tornillos y tuercas de rosca métrica</li><li>Caja de 100 unidades de una sola métrica</li></ul><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 240,
+        "mpn": "MT-004",
+        "weight": 250,
+        "delivery_min_days": 1,
+        "delivery_max_days": 2,
+        "featured": false,
+        "categories": [
+            "tuercas-y-arandelas",
+            "tornilleria-y-fijacion"
+        ],
+        "brand": "roscafina",
+        "attributes": {
+            "material": "acero-zincado",
+            "norma": "din-125"
+        },
+        "facts": [
+            {
+                "label": "Canto",
+                "value": "Sin rebaba"
+            },
+            {
+                "label": "Uso",
+                "value": "Tornillos y tuercas de rosca métrica"
+            },
+            {
+                "label": "Presentación",
+                "value": "Caja de 100 unidades de una sola métrica"
+            }
+        ],
+        "meta_title": "Arandela plana DIN 125 zincada · caja de 100 | Métrica",
+        "meta_description": "Arandela plana de acero zincado. Reparte el apriete y evita que la cabeza del tornillo o la tuerca marquen la pieza.",
+        "images": [
+            {
+                "file": "metrica-arandela-plana-din-125.jpg",
+                "alt": "Una arandela plana de acero zincado plateado, un disco fino con un agujero redondo en el centro, tumbada"
+            },
+            {
+                "file": "metrica-arandela-plana-din-125-detalle.jpg",
+                "alt": "Arandela plana DIN 125, detalle de cerca"
+            }
+        ],
+        "variants": [
+            {
+                "sku": "MET-ARANDELA-M4",
+                "gtin": "2990002000383",
+                "label": "M4",
+                "stock": 17,
+                "values": {
+                    "metrica": "m4"
+                },
+                "price": 240
+            },
+            {
+                "sku": "MET-ARANDELA-M5",
+                "gtin": "2990002000390",
+                "label": "M5",
+                "stock": 0,
+                "values": {
+                    "metrica": "m5"
+                },
+                "price": 250
+            },
+            {
+                "sku": "MET-ARANDELA-M6",
+                "gtin": "2990002000406",
+                "label": "M6",
+                "stock": 31,
+                "values": {
+                    "metrica": "m6"
+                },
+                "price": 270
+            },
+            {
+                "sku": "MET-ARANDELA-M8",
+                "gtin": "2990002000413",
+                "label": "M8",
+                "stock": 38,
+                "values": {
+                    "metrica": "m8"
+                },
+                "price": 330
+            },
+            {
+                "sku": "MET-ARANDELA-M10",
+                "gtin": "2990002000420",
+                "label": "M10",
+                "stock": 45,
+                "values": {
+                    "metrica": "m10"
+                },
+                "price": 420
+            }
+        ]
+    },
+    {
+        "sku": "MET-TACO",
+        "name": "Taco de nailon con tornillo Ø 6 × 30 · caja de 25",
+        "summary": "<p>Taco de expansión de nailon con su tornillo, para ladrillo, hormigón y bloque. Broca del 6 y listo.</p>",
+        "description": "<p>El taco se abre en cuatro sentidos al entrar el tornillo y no gira en el agujero. Cada caja trae veinticinco tacos con sus veinticinco tornillos de cabeza avellanada.</p><p>Para pladur o ladrillo hueco muy fino, pregunta antes: hay tacos que agarran mejor.</p><ul><li>Taco de 6 mm de diámetro y 30 mm de largo</li><li>Tornillo de 4 × 40 mm, cabeza avellanada</li><li>Broca recomendada: 6 mm</li><li>Caja de 25 tacos con sus tornillos</li></ul><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 650,
+        "mpn": "MT-005",
+        "weight": 180,
+        "delivery_min_days": 1,
+        "delivery_max_days": 2,
+        "featured": true,
+        "categories": [
+            "tacos-y-soportes",
+            "tornilleria-y-fijacion",
+            "colgar",
+            "fijar"
+        ],
+        "brand": "roscafina",
+        "attributes": {
+            "material": "nailon",
+            "diametro": 6,
+            "longitud": 30
+        },
+        "facts": [
+            {
+                "label": "Tornillo",
+                "value": "4 × 40 mm, cabeza avellanada"
+            },
+            {
+                "label": "Broca recomendada",
+                "value": "6 mm"
+            },
+            {
+                "label": "Soporte",
+                "value": "Ladrillo, hormigón y bloque"
+            },
+            {
+                "label": "Presentación",
+                "value": "Caja de 25 tacos con sus tornillos"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Qué broca uso?",
+                "answer": "Una de 6 mm, la misma medida que el diámetro del taco."
+            },
+            {
+                "question": "¿Vale para pladur?",
+                "answer": "No es el más indicado. Para pladur o ladrillo hueco muy fino hay tacos que agarran mejor."
+            }
+        ],
+        "meta_title": "Taco de nailon con tornillo Ø 6 × 30 · caja de 25 | Métrica",
+        "meta_description": "Taco de expansión de nailon con su tornillo, para ladrillo, hormigón y bloque. Broca del 6 y listo.",
+        "images": [
+            {
+                "file": "metrica-taco-de-nailon-con-tornillo.jpg",
+                "alt": "Un taco de pared de nailon gris claro con estrías y, a su lado, un tornillo de cabeza avellanada de acero dorado, los dos tumbados y juntos"
+            },
+            {
+                "file": "metrica-taco-de-nailon-con-tornillo-detalle.jpg",
+                "alt": "Taco de nailon con tornillo Ø 6 × 30, detalle de cerca"
+            }
+        ],
+        "gtin": "2990002000437",
+        "stock": 64
+    },
+    {
+        "sku": "MET-TIRAFONDO",
+        "name": "Tirafondo para madera 4 × 40 · caja de 200",
+        "summary": "<p>Tornillo para madera y aglomerado de cabeza avellanada y huella de estrella, bicromatado. Entra sin rajar y la cabeza queda a ras.</p>",
+        "description": "<p>La punta afilada y el filete alto muerden la madera sin taladro previo en tablas blandas; en maderas duras, un taladro guía de 2,5 mm evita que se raje.</p><p>Caja de doscientas unidades: para montar un mueble, una tarima o un cajón sin quedarte corto.</p><ul><li>4 mm de diámetro y 40 mm de largo</li><li>Cabeza avellanada con huella de estrella PZ2</li><li>Acero bicromatado</li><li>Caja de 200 unidades</li></ul><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 790,
+        "mpn": "MT-006",
+        "weight": 520,
+        "delivery_min_days": 1,
+        "delivery_max_days": 2,
+        "featured": false,
+        "categories": [
+            "tornillos",
+            "tornilleria-y-fijacion",
+            "fijar",
+            "atornillar"
+        ],
+        "brand": "roscafina",
+        "attributes": {
+            "material": "acero-bicromatado",
+            "cabeza": "avellanada",
+            "diametro": 4,
+            "longitud": 40
+        },
+        "facts": [
+            {
+                "label": "Huella",
+                "value": "Estrella PZ2"
+            },
+            {
+                "label": "Presentación",
+                "value": "Caja de 200 unidades"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Hace falta taladrar antes?",
+                "answer": "En tablas blandas, no. En maderas duras, un taladro guía de 2,5 mm evita que se raje."
+            }
+        ],
+        "meta_title": "Tirafondo para madera 4 × 40 · caja de 200 | Métrica",
+        "meta_description": "Tornillo para madera y aglomerado de cabeza avellanada y huella de estrella, bicromatado. Entra sin rajar y la cabeza queda a ras.",
+        "images": [
+            {
+                "file": "metrica-tirafondo-para-madera.jpg",
+                "alt": "Un tornillo para madera de cabeza avellanada con huella de estrella, de acero dorado, con rosca ancha y punta afilada, tumbado en diagonal"
+            },
+            {
+                "file": "metrica-tirafondo-para-madera-detalle.jpg",
+                "alt": "Tirafondo para madera 4 × 40, detalle de cerca"
+            }
+        ],
+        "gtin": "2990002000444",
+        "stock": 37
+    },
+    {
+        "sku": "MET-ESCUADRA",
+        "name": "Escuadra de acero para estantería 150 × 200 mm",
+        "summary": "<p>Escuadra reforzada de acero lacado en blanco para baldas de hasta 20 cm de fondo. Se vende por unidad: una balda lleva dos.</p>",
+        "description": "<p>El nervio central le da rigidez y aguanta veinticinco kilos por pareja bien anclada. Tres agujeros a la pared y dos a la balda.</p><p>Calcula una escuadra cada sesenta centímetros de balda, y siempre dos como mínimo.</p><ul><li>Brazos de 150 y 200 mm</li><li>Acero de 2 mm con nervio de refuerzo, lacado en blanco</li><li>Carga orientativa: 25 kg por pareja</li><li>Se vende por unidad, sin tornillos</li></ul><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 390,
+        "mpn": "MT-007",
+        "weight": 210,
+        "delivery_min_days": 1,
+        "delivery_max_days": 2,
+        "featured": false,
+        "categories": [
+            "tacos-y-soportes",
+            "tornilleria-y-fijacion",
+            "fijar"
+        ],
+        "brand": "roscafina",
+        "attributes": {
+            "material": "acero-lacado",
+            "longitud": 200,
+            "carga": 25
+        },
+        "facts": [
+            {
+                "label": "Brazos",
+                "value": "150 y 200 mm"
+            },
+            {
+                "label": "Chapa",
+                "value": "Acero de 2 mm con nervio de refuerzo"
+            },
+            {
+                "label": "Se vende",
+                "value": "Por unidad, sin tornillos"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Cuántas escuadras lleva una balda?",
+                "answer": "Una cada sesenta centímetros de balda, y siempre dos como mínimo."
+            }
+        ],
+        "meta_title": "Escuadra de acero para estantería 150 × 200 mm | Métrica",
+        "meta_description": "Escuadra reforzada de acero lacado en blanco para baldas de hasta 20 cm de fondo. Se vende por unidad: una balda lleva dos.",
+        "images": [
+            {
+                "file": "metrica-escuadra-de-acero-para-estanteria.jpg",
+                "alt": "Una escuadra de estantería de acero lacado en blanco, en forma de L con un nervio de refuerzo y agujeros para tornillos, de pie"
+            },
+            {
+                "file": "metrica-escuadra-de-acero-para-estanteria-detalle.jpg",
+                "alt": "Escuadra para estantería, detalle de cerca"
+            }
+        ],
+        "gtin": "2990002000451",
+        "stock": 120
+    },
+    {
+        "sku": "MET-DESTORNILLADORES",
+        "name": "Juego de 6 destornilladores de precisión",
+        "summary": "<p>Tres planos y tres de estrella, con la punta imantada y el mango de dos materiales. Para tornillos de 2 a 6 mm.</p>",
+        "description": "<p>La varilla es de acero al cromo vanadio y la punta, pavonada, no se redondea a la tercera vez. El mango gira bien en la mano y no resbala con grasa.</p><p>Trae una funda para colgar en el panel o guardar en el cajón.</p><ul><li>Planos de 3, 4 y 5,5 mm; estrella PH0, PH1 y PH2</li><li>Varilla de acero al cromo vanadio, punta imantada</li><li>Mango de dos materiales</li><li>Con funda para colgar</li></ul><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 1890,
+        "mpn": "MT-008",
+        "weight": 480,
+        "delivery_min_days": 1,
+        "delivery_max_days": 2,
+        "featured": false,
+        "categories": [
+            "herramienta-manual",
+            "atornillar"
+        ],
+        "brand": "banco-tres",
+        "attributes": {
+            "material": "cromo-vanadio",
+            "contenido": 6
+        },
+        "facts": [
+            {
+                "label": "Puntas",
+                "value": "Planos de 3, 4 y 5,5 mm; estrella PH0, PH1 y PH2"
+            },
+            {
+                "label": "Punta",
+                "value": "Imantada y pavonada"
+            },
+            {
+                "label": "Incluye",
+                "value": "Funda para colgar"
+            }
+        ],
+        "meta_title": "Juego de 6 destornilladores de precisión | Métrica",
+        "meta_description": "Tres planos y tres de estrella, con la punta imantada y el mango de dos materiales. Para tornillos de 2 a 6 mm.",
+        "images": [
+            {
+                "file": "metrica-juego-de-6-destornilladores.jpg",
+                "alt": "Un juego de seis destornilladores de distintos tamaños con mango negro y amarillo y varilla de acero, colocados en fila uno junto a otro"
+            },
+            {
+                "file": "metrica-juego-de-6-destornilladores-detalle.jpg",
+                "alt": "Juego de 6 destornilladores, detalle de cerca"
+            }
+        ],
+        "gtin": "2990002000468",
+        "stock": 22
+    },
+    {
+        "sku": "MET-MARTILLO",
+        "name": "Martillo de carpintero con mango de fresno 450 g",
+        "summary": "<p>Martillo de uña con cabeza forjada de 450 gramos y mango de fresno. Clava, arranca y dura una vida.</p>",
+        "description": "<p>La cabeza va templada en la boca y en la uña, y encajada con cuña de acero. El fresno amortigua el golpe mejor que un mango de tubo.</p><p>El peso justo para alcayatas, puntas y trabajos de carpintería de casa.</p><ul><li>Cabeza forjada de 450 g, templada</li><li>Uña curva para arrancar puntas</li><li>Mango de fresno barnizado, 32 cm</li><li>Encajado con cuña de acero</li></ul><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 1650,
+        "mpn": "MT-009",
+        "weight": 620,
+        "delivery_min_days": 1,
+        "delivery_max_days": 2,
+        "featured": true,
+        "categories": [
+            "herramienta-manual",
+            "colgar"
+        ],
+        "brand": "banco-tres",
+        "attributes": {
+            "material": "acero-forjado",
+            "longitud": 320,
+            "peso": 450
+        },
+        "facts": [
+            {
+                "label": "Uña",
+                "value": "Curva, para arrancar puntas"
+            },
+            {
+                "label": "Mango",
+                "value": "Fresno barnizado, encajado con cuña de acero"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Vale para clavar alcayatas?",
+                "answer": "Sí. Con 450 g tiene el peso justo para alcayatas, puntas y carpintería de casa."
+            }
+        ],
+        "meta_title": "Martillo de carpintero con mango de fresno 450 g | Métrica",
+        "meta_description": "Martillo de uña con cabeza forjada de 450 gramos y mango de fresno. Clava, arranca y dura una vida.",
+        "images": [
+            {
+                "file": "metrica-martillo-de-carpintero.jpg",
+                "alt": "Un martillo de carpintero de uña curva con cabeza de acero pulido y mango de madera clara de fresno, tumbado en diagonal"
+            },
+            {
+                "file": "metrica-martillo-de-carpintero-detalle.jpg",
+                "alt": "Martillo de carpintero, detalle de cerca"
+            }
+        ],
+        "gtin": "2990002000475",
+        "stock": 18,
+        "sale_price": 1320
+    },
+    {
+        "sku": "MET-CINTA",
+        "name": "Cinta métrica de 5 m con freno y gancho imantado",
+        "summary": "<p>Flexómetro de cinco metros con cinta de 25 mm, freno, gancho imantado y carcasa engomada. Se sostiene sola más de dos metros.</p>",
+        "description": "<p>La cinta ancha no se dobla al medir a una mano y el gancho imantado se queda en un perfil o en la cabeza de un tornillo mientras marcas.</p><p>Graduada en milímetros por las dos caras.</p><ul><li>5 m de largo y 25 mm de ancho</li><li>Freno y gancho imantado</li><li>Graduada en milímetros por las dos caras</li><li>Carcasa engomada con pinza para el cinturón</li></ul><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 980,
+        "mpn": "MT-010",
+        "weight": 290,
+        "delivery_min_days": 1,
+        "delivery_max_days": 2,
+        "featured": true,
+        "categories": [
+            "herramienta-manual",
+            "colgar",
+            "cortar",
+            "medir"
+        ],
+        "brand": "banco-tres",
+        "attributes": {
+            "largo-de-cinta": 5,
+            "ancho": 25
+        },
+        "facts": [
+            {
+                "label": "Graduación",
+                "value": "En milímetros, por las dos caras"
+            },
+            {
+                "label": "Gancho",
+                "value": "Imantado"
+            },
+            {
+                "label": "Carcasa",
+                "value": "Engomada, con freno y pinza para el cinturón"
+            }
+        ],
+        "meta_title": "Cinta métrica de 5 m con freno y gancho imantado | Métrica",
+        "meta_description": "Flexómetro de cinco metros con cinta de 25 mm, freno, gancho imantado y carcasa engomada. Se sostiene sola más de dos metros.",
+        "images": [
+            {
+                "file": "metrica-cinta-metrica-de-5-m.jpg",
+                "alt": "Una cinta métrica flexómetro de bolsillo con carcasa amarilla y negra y un tramo de cinta metálica amarilla sacado hacia un lado"
+            },
+            {
+                "file": "metrica-cinta-metrica-de-5-m-detalle.jpg",
+                "alt": "Cinta métrica de 5 m, detalle de cerca"
+            }
+        ],
+        "gtin": "2990002000482",
+        "stock": 45
+    },
+    {
+        "sku": "MET-NIVEL",
+        "name": "Nivel de burbuja de aluminio de 60 cm",
+        "summary": "<p>Nivel de perfil de aluminio con dos burbujas, horizontal y vertical, y base fresada. Precisión de medio milímetro por metro.</p>",
+        "description": "<p>El perfil cerrado no se tuerce si se cae y la base fresada apoya de verdad sobre la pieza. Las burbujas se leen de frente y desde arriba.</p><p>El largo de sesenta centímetros vale para baldas, cuadros, marcos y electrodomésticos.</p><ul><li>60 cm de largo, perfil de aluminio cerrado</li><li>Dos burbujas: horizontal y vertical</li><li>Precisión de 0,5 mm por metro</li><li>Base fresada y tapas de goma</li></ul><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 2100,
+        "mpn": "MT-011",
+        "weight": 410,
+        "delivery_min_days": 1,
+        "delivery_max_days": 2,
+        "featured": false,
+        "categories": [
+            "herramienta-manual",
+            "colgar",
+            "fijar",
+            "medir"
+        ],
+        "brand": "banco-tres",
+        "attributes": {
+            "material": "aluminio",
+            "longitud": 600
+        },
+        "facts": [
+            {
+                "label": "Burbujas",
+                "value": "Dos: horizontal y vertical"
+            },
+            {
+                "label": "Precisión",
+                "value": "0,5 mm por metro"
+            },
+            {
+                "label": "Base",
+                "value": "Fresada, con tapas de goma"
+            }
+        ],
+        "meta_title": "Nivel de burbuja de aluminio de 60 cm | Métrica",
+        "meta_description": "Nivel de perfil de aluminio con dos burbujas, horizontal y vertical, y base fresada. Precisión de medio milímetro por metro.",
+        "images": [
+            {
+                "file": "metrica-nivel-de-burbuja-de-aluminio.jpg",
+                "alt": "Un nivel de burbuja largo de perfil de aluminio plateado con dos ampollas de líquido verde y tapas negras en los extremos, tumbado en horizontal"
+            },
+            {
+                "file": "metrica-nivel-de-burbuja-de-aluminio-detalle.jpg",
+                "alt": "Nivel de burbuja de 60 cm, detalle de cerca"
+            }
+        ],
+        "gtin": "2990002000499",
+        "stock": 3
+    },
+    {
+        "sku": "MET-SERRUCHO",
+        "name": "Serrucho universal de 500 mm con dentado templado",
+        "summary": "<p>Serrucho de hoja de 500 mm con dentado templado de triple filo. Corta a la ida y a la vuelta, en madera, tablero y plástico.</p>",
+        "description": "<p>Siete dientes por pulgada: avanza rápido y deja un corte limpio en tablero y en listón. El mango marca 45 y 90 grados contra el canto.</p><p>La hoja lleva una capa que resbala y no se oxida.</p><ul><li>Hoja de 500 mm con capa antifricción</li><li>Dentado templado de triple filo, 7 dientes por pulgada</li><li>Mango de dos materiales con guía de 45° y 90°</li><li>Para madera, tablero y plástico</li></ul><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 1740,
+        "mpn": "MT-012",
+        "weight": 430,
+        "delivery_min_days": 1,
+        "delivery_max_days": 2,
+        "featured": false,
+        "categories": [
+            "herramienta-manual",
+            "cortar"
+        ],
+        "brand": "banco-tres",
+        "attributes": {
+            "longitud": 500
+        },
+        "facts": [
+            {
+                "label": "Dentado",
+                "value": "Templado de triple filo, 7 dientes por pulgada"
+            },
+            {
+                "label": "Mango",
+                "value": "De dos materiales, con guía de 45° y 90°"
+            },
+            {
+                "label": "Corta",
+                "value": "Madera, tablero y plástico"
+            }
+        ],
+        "meta_title": "Serrucho universal de 500 mm con dentado templado | Métrica",
+        "meta_description": "Serrucho de hoja de 500 mm con dentado templado de triple filo. Corta a la ida y a la vuelta, en madera, tablero y plástico.",
+        "images": [
+            {
+                "file": "metrica-serrucho-universal-de-500-mm.jpg",
+                "alt": "Un serrucho de carpintero con hoja de acero ancha y dentada y mango cerrado negro y naranja, tumbado en horizontal"
+            },
+            {
+                "file": "metrica-serrucho-universal-de-500-mm-detalle.jpg",
+                "alt": "Serrucho universal, detalle de cerca"
+            }
+        ],
+        "gtin": "2990002000505",
+        "stock": 14
+    },
+    {
+        "sku": "MET-TALADRO",
+        "name": "Taladro percutor de 18 V con dos baterías",
+        "summary": "<p>Taladro atornillador con percutor, motor sin escobillas y dos baterías de 2 Ah. Taladra pared, madera y metal, y atornilla con veinte pares de apriete.</p>",
+        "description": "<p>El portabrocas de 13 mm se aprieta a mano y la luz se enciende al tocar el gatillo. Con percutor para ladrillo y hormigón; sin él, para madera y metal.</p><p>Trae cargador rápido de una hora y maletín.</p><ul><li>18 V, motor sin escobillas, dos velocidades</li><li>Portabrocas automático de 13 mm</li><li>Dos baterías de 2 Ah y cargador de una hora</li><li>Par máximo de 60 Nm, con maletín</li></ul><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 12900,
+        "mpn": "MT-013",
+        "weight": 3400,
+        "delivery_min_days": 1,
+        "delivery_max_days": 2,
+        "featured": true,
+        "categories": [
+            "herramienta-electrica",
+            "colgar",
+            "fijar"
+        ],
+        "brand": "dieciocho-voltios",
+        "attributes": {
+            "tension": 18,
+            "portabrocas": 13
+        },
+        "facts": [
+            {
+                "label": "Motor",
+                "value": "Sin escobillas, dos velocidades"
+            },
+            {
+                "label": "Par máximo",
+                "value": "60 Nm"
+            },
+            {
+                "label": "Incluye",
+                "value": "Dos baterías de 2 Ah, cargador de una hora y maletín"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "¿Taladra hormigón?",
+                "answer": "Sí, con el percutor puesto y una broca de widia. Sin percutor, para madera y metal."
+            }
+        ],
+        "meta_title": "Taladro percutor de 18 V con dos baterías | Métrica",
+        "meta_description": "Taladro atornillador con percutor, motor sin escobillas y dos baterías de 2 Ah. Taladra pared, madera y metal, y atornilla con veinte pares de apriete.",
+        "images": [
+            {
+                "file": "metrica-taladro-percutor-de-18-v.jpg",
+                "alt": "Un taladro percutor a batería de color gris oscuro y amarillo, con portabrocas metálico y batería encajada en la base de la empuñadura, de pie sobre su batería"
+            },
+            {
+                "file": "metrica-taladro-percutor-de-18-v-detalle.jpg",
+                "alt": "Taladro percutor de 18 V, detalle de cerca"
+            }
+        ],
+        "gtin": "2990002000512",
+        "stock": 9
+    },
+    {
+        "sku": "MET-ATORNILLADOR",
+        "name": "Atornillador a batería de 12 V con maletín",
+        "summary": "<p>Atornillador compacto de 12 V con batería de 2 Ah, dos velocidades y quince posiciones de embrague. Para montar muebles sin pasarse de apriete.</p>",
+        "description": "<p>Pesa menos de un kilo y entra donde el taladro grande no cabe. El embrague salta antes de pasar la rosca o hundir la cabeza en el tablero.</p><p>Trae una batería, cargador, diez puntas y maletín.</p><ul><li>12 V, dos velocidades, 15 posiciones de embrague</li><li>Portapuntas hexagonal de 1/4 de pulgada</li><li>Batería de 2 Ah y cargador</li><li>Con diez puntas y maletín</li></ul><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 7900,
+        "mpn": "MT-014",
+        "weight": 1900,
+        "delivery_min_days": 1,
+        "delivery_max_days": 2,
+        "featured": false,
+        "categories": [
+            "herramienta-electrica",
+            "atornillar"
+        ],
+        "brand": "dieciocho-voltios",
+        "attributes": {
+            "tension": 12
+        },
+        "facts": [
+            {
+                "label": "Embrague",
+                "value": "15 posiciones, dos velocidades"
+            },
+            {
+                "label": "Portapuntas",
+                "value": "Hexagonal de 1/4 de pulgada"
+            },
+            {
+                "label": "Incluye",
+                "value": "Batería de 2 Ah, cargador, diez puntas y maletín"
+            }
+        ],
+        "meta_title": "Atornillador a batería de 12 V con maletín | Métrica",
+        "meta_description": "Atornillador compacto de 12 V con batería de 2 Ah, dos velocidades y quince posiciones de embrague. Para montar muebles sin pasarse de apriete.",
+        "images": [
+            {
+                "file": "metrica-atornillador-a-bateria-de-12-v.jpg",
+                "alt": "Un atornillador a batería compacto de color gris oscuro y amarillo, con portapuntas hexagonal corto y batería pequeña en la empuñadura, de pie sobre su batería"
+            },
+            {
+                "file": "metrica-atornillador-a-bateria-de-12-v-detalle.jpg",
+                "alt": "Atornillador a batería de 12 V, detalle de cerca"
+            }
+        ],
+        "gtin": "2990002000529",
+        "stock": 12,
+        "sale_price": 7110
+    },
+    {
+        "sku": "MET-CALADORA",
+        "name": "Sierra de calar pendular de 650 W",
+        "summary": "<p>Sierra de calar de 650 W con movimiento pendular en cuatro posiciones y cambio de hoja sin llave. Cortes rectos y curvos en tablero de hasta 80 mm.</p>",
+        "description": "<p>La base se inclina hasta 45 grados a los dos lados y el soplador mantiene limpia la línea de corte. Con el pendular al máximo come tablero deprisa; al mínimo, deja el canto fino.</p><p>Trae tres hojas: madera, metal y corte curvo.</p><ul><li>650 W, velocidad regulable</li><li>Pendular de cuatro posiciones</li><li>Corte en madera hasta 80 mm; base inclinable a 45°</li><li>Cambio de hoja sin llave; con tres hojas</li></ul><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 8400,
+        "mpn": "MT-015",
+        "weight": 2600,
+        "delivery_min_days": 1,
+        "delivery_max_days": 2,
+        "featured": false,
+        "categories": [
+            "herramienta-electrica",
+            "cortar"
+        ],
+        "brand": "dieciocho-voltios",
+        "attributes": {
+            "potencia": 650,
+            "corte-en-madera": 80
+        },
+        "facts": [
+            {
+                "label": "Pendular",
+                "value": "Cuatro posiciones"
+            },
+            {
+                "label": "Base",
+                "value": "Inclinable a 45° a los dos lados"
+            },
+            {
+                "label": "Incluye",
+                "value": "Tres hojas: madera, metal y corte curvo"
+            }
+        ],
+        "meta_title": "Sierra de calar pendular de 650 W | Métrica",
+        "meta_description": "Sierra de calar de 650 W con movimiento pendular en cuatro posiciones y cambio de hoja sin llave. Cortes rectos y curvos en tablero de hasta 80 mm.",
+        "images": [
+            {
+                "file": "metrica-sierra-de-calar-pendular.jpg",
+                "alt": "Una sierra de calar eléctrica de color gris oscuro y amarillo, con empuñadura cerrada, base metálica plana y una hoja fina dentada hacia abajo, vista de lado"
+            },
+            {
+                "file": "metrica-sierra-de-calar-pendular-detalle.jpg",
+                "alt": "Sierra de calar pendular, detalle de cerca"
+            }
+        ],
+        "gtin": "2990002000536",
+        "stock": 0
+    },
+    {
+        "sku": "MET-BROCAS",
+        "name": "Juego de 19 brocas para metal, madera y pared",
+        "summary": "<p>Diecinueve brocas en estuche: ocho de acero rápido para metal, seis de tres puntas para madera y cinco de widia para pared, de 3 a 10 mm.</p>",
+        "description": "<p>Las tres familias que piden los trabajos de casa, ordenadas por diámetro y marcadas en el estuche. Las de pared llevan placa de widia para taladrar con percutor.</p><p>Vástago cilíndrico: valen para cualquier portabrocas de 10 o de 13 mm.</p><ul><li>8 brocas de acero rápido para metal, de 3 a 10 mm</li><li>6 brocas de tres puntas para madera, de 4 a 10 mm</li><li>5 brocas de widia para pared, de 4 a 10 mm</li><li>Estuche con los diámetros marcados</li></ul><p><em>Producto de ejemplo de una tienda de demostración.</em></p>",
+        "price": 2450,
+        "mpn": "MT-016",
+        "weight": 540,
+        "delivery_min_days": 1,
+        "delivery_max_days": 2,
+        "featured": false,
+        "categories": [
+            "herramienta-electrica",
+            "colgar",
+            "fijar",
+            "atornillar"
+        ],
+        "brand": "dieciocho-voltios",
+        "attributes": {
+            "contenido": 19
+        },
+        "facts": [
+            {
+                "label": "Para metal",
+                "value": "8 brocas de acero rápido, de 3 a 10 mm"
+            },
+            {
+                "label": "Para madera",
+                "value": "6 brocas de tres puntas, de 4 a 10 mm"
+            },
+            {
+                "label": "Para pared",
+                "value": "5 brocas de widia, de 4 a 10 mm"
+            },
+            {
+                "label": "Vástago",
+                "value": "Cilíndrico, para portabrocas de 10 o de 13 mm"
+            }
+        ],
+        "meta_title": "Juego de 19 brocas para metal, madera y pared | Métrica",
+        "meta_description": "Diecinueve brocas en estuche: ocho de acero rápido para metal, seis de tres puntas para madera y cinco de widia para pared, de 3 a 10 mm.",
+        "images": [
+            {
+                "file": "metrica-juego-de-19-brocas.jpg",
+                "alt": "Un estuche abierto de plástico gris oscuro con un juego de brocas de acero de distintos diámetros ordenadas en fila de menor a mayor"
+            },
+            {
+                "file": "metrica-juego-de-19-brocas-detalle.jpg",
+                "alt": "Juego de 19 brocas, detalle de cerca"
+            }
+        ],
+        "gtin": "2990002000543",
+        "stock": 31
+    }
+]

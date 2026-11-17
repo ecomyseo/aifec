@@ -1,0 +1,2 @@
+{"name":"Mail","version":"1.0.0","description":"Outgoing email: templates, queue, log and safety switch","essential":true,"default":true,
+ "contract":{"hosts":[],"personal_data":["email","name"],"tables":["mail_messages"],"capabilities":[]}}

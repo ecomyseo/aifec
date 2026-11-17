@@ -1,0 +1,72 @@
+<?php
+/**
+ * AIFEC — catálogo castellano de GM legal texts per product.
+ * La clave es la cadena inglesa tal como está en el código; no se toca. El valor es la traducción.
+ *
+ * @author    Ecom Experts <ecomyseo@gmail.com>
+ * @copyright 2026 Ecom Experts
+ * @license   Ver LICENSE.md
+ */
+
+declare(strict_types=1);
+
+return [
+    'A block is a legal text you write once: guarantee, withdrawal of digital content, compatibility, support.' => 'Un bloque es un texto legal que escribes una vez: garantía, desistimiento de contenido digital, compatibilidad, soporte.',
+    'Active' => 'Activo',
+    'Also send it in the order email' => 'Enviarlo también en el correo del pedido',
+    'Answered on' => 'Contestó el',
+    'Ask about the waiver when the cart has digital products' => 'Preguntar por la renuncia cuando el carrito lleva productos digitales',
+    'Assign it to categories or to products and it appears in the product page, in the checkout and, if you choose it, in the order email.' => 'Asígnalo a categorías o a productos y sale en la ficha del producto, en la caja y, si lo eliges, en el correo del pedido.',
+    'At the end of the page' => 'Al final de la página',
+    'Categories' => 'Categorías',
+    'Change the version of the texts every time you rewrite them: it is saved with each answer.' => 'Cambia la versión de los textos cada vez que los reescribas: se guarda con cada respuesta.',
+    'Code' => 'Código',
+    'Compatibility' => 'Compatibilidad',
+    'Create and change the legal text blocks' => 'Crear y cambiar los bloques de texto legal',
+    'Each line of the text is a paragraph.' => 'Cada línea del texto es un párrafo.',
+    'Empty: the standard wording.' => 'Vacío: la redacción de serie.',
+    'For example 1.1 · 2026-11-13. It is saved with each answer.' => 'Por ejemplo 1.1 · 13/11/2026. Se guarda con cada respuesta.',
+    'GM legal texts per product' => 'Textos legales por producto de gmartos',
+    'Guarantee' => 'Garantía',
+    'Hello {name}' => 'Hola {name}',
+    'I ask for the download to start now and I understand that, once it starts, I lose my right of withdrawal.' => 'Pido que la descarga empiece ya y entiendo que, una vez empiece, pierdo mi derecho de desistimiento.',
+    'In the product page' => 'En la ficha del producto',
+    'It applies to every product of these categories and their subcategories.' => 'Se aplica a todos los productos de estas categorías y de sus subcategorías.',
+    'Legal email sent on' => 'Correo legal enviado el',
+    'Legal information' => 'Información legal',
+    'Legal information about your order {number} - {shop}' => 'Información legal de tu pedido {number} - {shop}',
+    'Legal text block' => 'Bloque de texto legal',
+    'Legal text blocks' => 'Bloques de texto legal',
+    'Legal text blocks in the product page, the checkout and the order email' => 'Bloques de texto legal en la ficha del producto, en la caja y en el correo del pedido',
+    'Legal texts per product' => 'Textos legales por producto',
+    'Letters, numbers and hyphens. It identifies the block.' => 'Letras, números y guiones. Identifica el bloque.',
+    'Other' => 'Otro',
+    'Plain text. Each line is a paragraph.' => 'Texto sin formato. Cada línea es un párrafo.',
+    'Position' => 'Posición',
+    'Product numbers separated by commas.' => 'Números de producto separados por comas.',
+    'Products' => 'Productos',
+    'Reusable legal text blocks assigned to products or categories, shown in the product page, the checkout and the order email, with the withdrawal waiver for digital products' => 'Bloques de texto legal reutilizables asignados a productos o categorías, que se enseñan en la ficha, en la caja y en el correo del pedido, con la renuncia al desistimiento de los productos digitales',
+    'See the legal text blocks' => 'Ver los bloques de texto legal',
+    'Sent to the customer once, when the order is paid, with the legal texts of what they bought' => 'Se envía al cliente una vez, cuando se paga el pedido, con los textos legales de lo que ha comprado',
+    'Show the texts in the checkout' => 'Enseñar los textos en la caja',
+    'Text' => 'Texto',
+    'Text of the box' => 'Texto de la casilla',
+    'The blocks are written in Content, Legal text blocks, and assigned to categories or products.' => 'Los bloques se escriben en Contenido, Bloques de texto legal, y se asignan a categorías o a productos.',
+    'The customer asked for the download to start now and waived the right of withdrawal.' => 'El cliente pidió que la descarga empezara ya y renunció al derecho de desistimiento.',
+    'The customer did not waive the right of withdrawal.' => 'El cliente no renunció al derecho de desistimiento.',
+    'The waiver box appears in the checkout only when the cart has digital products. It does not stop the purchase: it records what the customer answered.' => 'La casilla de la renuncia sale en la caja solo si el carrito lleva productos digitales. No impide comprar: apunta lo que contestó el cliente.',
+    'These are the legal texts that apply to your order {number}. Keep this email.' => 'Estos son los textos legales que se aplican a tu pedido {number}. Guarda este correo.',
+    'This box is optional. If you do not tick it, you keep your right of withdrawal.' => 'Esta casilla es opcional. Si no la marcas, conservas tu derecho de desistimiento.',
+    'Title' => 'Título',
+    'Type' => 'Tipo',
+    'Under the summary' => 'Bajo el resumen',
+    'Version of the texts' => 'Versión de los textos',
+    'Where it applies' => 'Dónde se aplica',
+    'Where they appear' => 'Dónde salen',
+    'Withdrawal of digital content' => 'Desistimiento de contenido digital',
+    'Withdrawal waiver' => 'Renuncia al desistimiento',
+    'You asked for the download to start now and you accepted that you lose your right of withdrawal once it starts.' => 'Pediste que la descarga empezara ya y aceptaste que pierdes tu derecho de desistimiento cuando empiece.',
+    'You did not waive your right of withdrawal, so you keep it.' => 'No renunciaste a tu derecho de desistimiento, así que lo conservas.',
+    'Right of withdrawal' => 'Derecho de desistimiento',
+    'The download is held until you accept that you lose your right of withdrawal. Write to the shop and we will release it.' => 'La descarga queda retenida hasta que aceptes que pierdes tu derecho de desistimiento. Escribe a la tienda y la liberaremos.',
+];

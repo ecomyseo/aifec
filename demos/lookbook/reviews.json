@@ -1,0 +1,82 @@
+[
+    {
+        "sku": "DEMO-LOOK-001",
+        "name": "Irene",
+        "rating": 5,
+        "title": "La chaqueta de todos los días",
+        "text": "Opinión inventada para la demostración: el paño tiene cuerpo y el largo queda justo en la cintura. La llevo con vaqueros y con vestido.",
+        "date": "2026-10-02"
+    },
+    {
+        "sku": "DEMO-LOOK-001",
+        "name": "Marta",
+        "rating": 4,
+        "title": "Bonita, algo justa de hombro",
+        "text": "Opinión inventada para la demostración: me encanta el color camel. De hombro me queda justa con un jersey grueso; pediría una talla más.",
+        "date": "2026-10-11"
+    },
+    {
+        "sku": "DEMO-LOOK-003",
+        "name": "Lucía",
+        "rating": 5,
+        "title": "Se nota el cachemir",
+        "text": "Opinión inventada para la demostración: es más suave y pesa menos que la de paño normal. El forro hace que entre sola.",
+        "date": "2026-10-15"
+    },
+    {
+        "sku": "DEMO-LOOK-006",
+        "name": "Carmen",
+        "rating": 5,
+        "title": "Por fin un patrón pensado",
+        "text": "Opinión inventada para la demostración: las pinzas de la espalda sientan muy bien y la manga no tira. Talla 48, perfecta.",
+        "date": "2026-10-20"
+    },
+    {
+        "sku": "DEMO-LOOK-007",
+        "name": "Noa",
+        "rating": 5,
+        "title": "Cae de maravilla",
+        "text": "Opinión inventada para la demostración: la raya aguanta todo el día y el tiro alto es cómodo. El azul marino combina con todo.",
+        "date": "2026-10-06"
+    },
+    {
+        "sku": "DEMO-LOOK-007",
+        "name": "Elena",
+        "rating": 4,
+        "title": "Largo para llevar con tacón",
+        "text": "Opinión inventada para la demostración: con zapato plano me arrastra un poco; cambié al de 76 cm y ahora sí.",
+        "date": "2026-10-18"
+    },
+    {
+        "sku": "DEMO-LOOK-010",
+        "name": "Paula",
+        "rating": 5,
+        "title": "No se arruga",
+        "text": "Opinión inventada para la demostración: lo he llevado en un viaje de trabajo y salió de la maleta sin una arruga.",
+        "date": "2026-10-24"
+    },
+    {
+        "sku": "DEMO-LOOK-012",
+        "name": "Sara",
+        "rating": 5,
+        "title": "El tamaño justo",
+        "text": "Opinión inventada para la demostración: caben la cartera, el móvil y las llaves, y el herraje cierra solo con el imán.",
+        "date": "2026-10-09"
+    },
+    {
+        "sku": "DEMO-LOOK-013",
+        "name": "Julia",
+        "rating": 4,
+        "title": "Pequeño de verdad",
+        "text": "Opinión inventada para la demostración: es para lo imprescindible, tal como dice la ficha. La piel es muy agradable.",
+        "date": "2026-10-27"
+    },
+    {
+        "sku": "DEMO-LOOK-014",
+        "name": "Teresa",
+        "rating": 5,
+        "title": "Cabe la tableta",
+        "text": "Opinión inventada para la demostración: lo uso para trabajar: tableta, agenda y neceser, y no pierde la forma.",
+        "date": "2026-11-03"
+    }
+]

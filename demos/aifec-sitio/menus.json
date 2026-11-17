@@ -1,0 +1,37 @@
+[
+    {
+        "code": "main",
+        "name": "Menú principal",
+        "items": [
+            {"type": "home", "label": "Inicio"},
+            {"type": "page", "ref": "que-es-aifec", "label": "Qué es AIFEC"},
+            {"type": "url", "url": "#tienda", "label": "Tienda"},
+            {"type": "url", "url": "/demos", "label": "Demos"},
+            {"type": "url", "url": "/docs", "label": "Documentación"},
+            {"type": "page", "ref": "para-desarrolladores", "label": "Desarrolladores"},
+            {"type": "page", "ref": "contacto", "label": "Contacto"}
+        ]
+    },
+    {
+        "code": "footer",
+        "name": "Pie de página",
+        "items": [
+            {"type": "page", "ref": "que-es-aifec", "label": "Qué es AIFEC"},
+            {"type": "page", "ref": "sobre-las-demos", "label": "Sobre las demos"},
+            {"type": "page", "ref": "para-desarrolladores", "label": "Para desarrolladores"},
+            {"type": "url", "url": "/docs", "label": "Documentación"},
+            {"type": "page", "ref": "predicciones", "label": "Predicciones 2026–2030"},
+            {"type": "page", "ref": "precio-y-licencia", "label": "Precio y licencia"},
+            {"type": "page", "ref": "contacto", "label": "Contacto"}
+        ]
+    },
+    {
+        "code": "legal",
+        "name": "Enlaces legales",
+        "items": [
+            {"type": "page", "ref": "aviso-legal", "label": "Aviso legal"},
+            {"type": "page", "ref": "privacidad", "label": "Política de privacidad"},
+            {"type": "page", "ref": "condiciones-de-compra", "label": "Condiciones de compra"}
+        ]
+    }
+]

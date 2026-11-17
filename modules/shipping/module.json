@@ -1,0 +1,1 @@
+{"name":"Shipping","version":"1.0.0","description":"Shipping zones, carriers and rates","essential":false,"default":true,"requires":{"modules":["tax"]},"contract":{"hosts":[],"personal_data":[],"tables":["shipping_zones","zone_locations","carriers","carrier_rates"],"capabilities":["pricing"]}}

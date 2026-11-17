@@ -1,0 +1,1 @@
+{"name":"Consent","version":"1.0.0","description":"Cookie notice, blocking of third-party scripts, Google Consent Mode v2 and a proof of every decision","essential":false,"default":true,"requires":{"modules":[]},"contract":{"hosts":[],"personal_data":[],"tables":["consent_log","consent_cookies"],"capabilities":[]}}

@@ -1,0 +1,193 @@
+[
+    {
+        "code": "main",
+        "name": "Menú principal",
+        "items": [
+            {
+                "type": "home",
+                "label": "Inicio"
+            },
+            {
+                "type": "category",
+                "ref": "vestidos-y-faldas",
+                "label": "Vestidos y faldas",
+                "children": [
+                    {
+                        "type": "category",
+                        "ref": "vestidos",
+                        "label": "Vestidos"
+                    },
+                    {
+                        "type": "category",
+                        "ref": "faldas",
+                        "label": "Faldas"
+                    }
+                ]
+            },
+            {
+                "type": "category",
+                "ref": "camisas-y-tops",
+                "label": "Camisas y tops",
+                "children": [
+                    {
+                        "type": "category",
+                        "ref": "camisas",
+                        "label": "Camisas"
+                    },
+                    {
+                        "type": "category",
+                        "ref": "blusas",
+                        "label": "Blusas"
+                    },
+                    {
+                        "type": "category",
+                        "ref": "camisetas",
+                        "label": "Camisetas y tops"
+                    }
+                ]
+            },
+            {
+                "type": "category",
+                "ref": "punto",
+                "label": "Punto",
+                "children": [
+                    {
+                        "type": "category",
+                        "ref": "jerseis",
+                        "label": "Jerséis y chalecos"
+                    },
+                    {
+                        "type": "category",
+                        "ref": "cardigans",
+                        "label": "Cárdigans"
+                    }
+                ]
+            },
+            {
+                "type": "category",
+                "ref": "pantalones",
+                "label": "Pantalones",
+                "children": [
+                    {
+                        "type": "category",
+                        "ref": "vaqueros",
+                        "label": "Vaqueros"
+                    },
+                    {
+                        "type": "category",
+                        "ref": "pantalones-de-vestir",
+                        "label": "Pantalones y bermudas"
+                    }
+                ]
+            },
+            {
+                "type": "category",
+                "ref": "abrigos",
+                "label": "Abrigos y chaquetas",
+                "children": [
+                    {
+                        "type": "category",
+                        "ref": "gabardinas",
+                        "label": "Gabardinas y abrigos"
+                    },
+                    {
+                        "type": "category",
+                        "ref": "chaquetas",
+                        "label": "Chaquetas"
+                    }
+                ]
+            },
+            {
+                "type": "category",
+                "ref": "calzado",
+                "label": "Calzado",
+                "children": [
+                    {
+                        "type": "category",
+                        "ref": "botines",
+                        "label": "Botines"
+                    },
+                    {
+                        "type": "category",
+                        "ref": "zapatillas",
+                        "label": "Zapatillas"
+                    },
+                    {
+                        "type": "category",
+                        "ref": "mocasines",
+                        "label": "Mocasines"
+                    }
+                ]
+            },
+            {
+                "type": "category",
+                "ref": "complementos",
+                "label": "Complementos",
+                "children": [
+                    {
+                        "type": "category",
+                        "ref": "bolsos",
+                        "label": "Bolsos"
+                    },
+                    {
+                        "type": "category",
+                        "ref": "bufandas",
+                        "label": "Bufandas y gorros"
+                    },
+                    {
+                        "type": "category",
+                        "ref": "cinturones",
+                        "label": "Cinturones"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "code": "footer",
+        "name": "Menú del pie",
+        "items": [
+            {
+                "type": "page",
+                "ref": "sobre-nosotros",
+                "label": "Sobre nosotros"
+            },
+            {
+                "type": "page",
+                "ref": "envios-y-devoluciones",
+                "label": "Envíos y devoluciones"
+            },
+            {
+                "type": "page",
+                "ref": "contacto",
+                "label": "Contacto"
+            },
+            {
+                "type": "post",
+                "ref": "como-elegir-tu-talla",
+                "label": "Guía de tallas"
+            }
+        ]
+    },
+    {
+        "code": "legal",
+        "name": "Menú legal",
+        "items": [
+            {
+                "type": "page",
+                "ref": "aviso-legal",
+                "label": "Aviso legal"
+            },
+            {
+                "type": "page",
+                "ref": "privacidad",
+                "label": "Política de privacidad"
+            },
+            {
+                "type": "page",
+                "ref": "envios-y-devoluciones",
+                "label": "Devoluciones"
+            }
+        ]
+    }
+]

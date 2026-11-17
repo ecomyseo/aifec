@@ -1,0 +1,214 @@
+[
+    {
+        "code": "cafetera",
+        "name": "Cafetera",
+        "type": "multiselect",
+        "filterable": true,
+        "visible": true,
+        "values": [
+            {
+                "code": "cono-clasico",
+                "label": "Cono clásico"
+            },
+            {
+                "code": "cupula",
+                "label": "Cúpula"
+            },
+            {
+                "code": "vaso-ancho",
+                "label": "Vaso ancho"
+            },
+            {
+                "code": "disco",
+                "label": "Disco"
+            },
+            {
+                "code": "monodosis-blanda",
+                "label": "Monodosis blanda"
+            },
+            {
+                "code": "cilindro",
+                "label": "Cilindro"
+            },
+            {
+                "code": "papel-44",
+                "label": "Papel 44 mm"
+            },
+            {
+                "code": "superautomatica",
+                "label": "Superautomática"
+            },
+            {
+                "code": "espresso-de-brazo",
+                "label": "Espresso de brazo"
+            },
+            {
+                "code": "italiana",
+                "label": "Italiana"
+            },
+            {
+                "code": "goteo",
+                "label": "Goteo y filtro"
+            },
+            {
+                "code": "prensa-francesa",
+                "label": "Prensa francesa"
+            }
+        ]
+    },
+    {
+        "code": "intensidad",
+        "name": "Intensidad",
+        "type": "number",
+        "visible": true,
+        "values": []
+    },
+    {
+        "code": "tueste",
+        "name": "Tueste",
+        "type": "select",
+        "filterable": true,
+        "visible": true,
+        "values": [
+            {
+                "code": "claro",
+                "label": "Claro"
+            },
+            {
+                "code": "medio",
+                "label": "Medio"
+            },
+            {
+                "code": "oscuro",
+                "label": "Oscuro"
+            },
+            {
+                "code": "muy-oscuro",
+                "label": "Muy oscuro"
+            }
+        ]
+    },
+    {
+        "code": "taza",
+        "name": "Taza",
+        "type": "multiselect",
+        "filterable": true,
+        "visible": true,
+        "values": [
+            {
+                "code": "ristretto",
+                "label": "Ristretto"
+            },
+            {
+                "code": "espresso",
+                "label": "Espresso"
+            },
+            {
+                "code": "lungo",
+                "label": "Lungo"
+            },
+            {
+                "code": "con-leche",
+                "label": "Con leche"
+            }
+        ]
+    },
+    {
+        "code": "notas",
+        "name": "Notas de cata",
+        "type": "text",
+        "visible": true,
+        "values": []
+    },
+    {
+        "code": "variedad",
+        "name": "Café",
+        "type": "select",
+        "filterable": true,
+        "visible": true,
+        "values": [
+            {
+                "code": "arabica",
+                "label": "100 % arábica"
+            },
+            {
+                "code": "mezcla",
+                "label": "Arábica y robusta"
+            },
+            {
+                "code": "descafeinado",
+                "label": "100 % arábica descafeinado"
+            }
+        ]
+    },
+    {
+        "code": "origen",
+        "name": "Origen",
+        "type": "text",
+        "visible": true,
+        "values": []
+    },
+    {
+        "code": "proceso",
+        "name": "Proceso",
+        "type": "select",
+        "filterable": true,
+        "visible": true,
+        "values": [
+            {
+                "code": "lavado",
+                "label": "Lavado"
+            },
+            {
+                "code": "natural",
+                "label": "Natural"
+            },
+            {
+                "code": "descafeinado-al-agua",
+                "label": "Descafeinado al agua"
+            }
+        ]
+    },
+    {
+        "code": "unidades",
+        "name": "Unidades del paquete",
+        "type": "number",
+        "unit": "uds",
+        "visible": true,
+        "values": []
+    },
+    {
+        "code": "peso-neto",
+        "name": "Peso neto",
+        "type": "number",
+        "unit": "g",
+        "visible": true,
+        "values": []
+    },
+    {
+        "code": "molienda",
+        "name": "Molienda",
+        "type": "select",
+        "filterable": true,
+        "visible": true,
+        "variant": true,
+        "values": [
+            {
+                "code": "espresso",
+                "label": "Espresso"
+            },
+            {
+                "code": "italiana",
+                "label": "Italiana"
+            },
+            {
+                "code": "filtro",
+                "label": "Filtro"
+            },
+            {
+                "code": "prensa-francesa",
+                "label": "Prensa francesa"
+            }
+        ]
+    }
+]

@@ -1,0 +1,1503 @@
+{
+    "configurations": [
+        {
+            "id": "1",
+            "id_configuration": "1",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_SHOP_NAME",
+            "value": "Muebles Ñandú & Cía",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "2",
+            "id_configuration": "2",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_SHOP_EMAIL",
+            "value": "hola@tienda.test",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "3",
+            "id_configuration": "3",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_SHOP_PHONE",
+            "value": "999500007",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "4",
+            "id_configuration": "4",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_SHOP_ADDR1",
+            "value": "Polígono Sur, nave 4",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "5",
+            "id_configuration": "5",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_SHOP_ADDR2",
+            "value": "",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "6",
+            "id_configuration": "6",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_SHOP_CODE",
+            "value": "41001",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "7",
+            "id_configuration": "7",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_SHOP_CITY",
+            "value": "Sevilla",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "8",
+            "id_configuration": "8",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_SHOP_COUNTRY_ID",
+            "value": "1",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "9",
+            "id_configuration": "9",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_SHOP_STATE_ID",
+            "value": "7",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "10",
+            "id_configuration": "10",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_SHOP_DETAILS",
+            "value": "Ñandú Muebles S.L. - B00000000",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "11",
+            "id_configuration": "11",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_SHOP_DOMAIN",
+            "value": "tienda.test",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "12",
+            "id_configuration": "12",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_CURRENCY_DEFAULT",
+            "value": "1",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "13",
+            "id_configuration": "13",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_LANG_DEFAULT",
+            "value": "1",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "14",
+            "id_configuration": "14",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_COUNTRY_DEFAULT",
+            "value": "1",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "15",
+            "id_configuration": "15",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_TIMEZONE",
+            "value": "Europe/Madrid",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "16",
+            "id_configuration": "16",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_WEIGHT_UNIT",
+            "value": "kg",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "17",
+            "id_configuration": "17",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_DIMENSION_UNIT",
+            "value": "cm",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "18",
+            "id_configuration": "18",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_CUSTOMER_GROUP",
+            "value": "3",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "19",
+            "id_configuration": "19",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_TAX_ADDRESS_TYPE",
+            "value": "id_address_delivery",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "20",
+            "id_configuration": "20",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_TAX",
+            "value": "1",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "21",
+            "id_configuration": "21",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_GUEST_CHECKOUT_ENABLED",
+            "value": "1",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "22",
+            "id_configuration": "22",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_STOCK_MANAGEMENT",
+            "value": "1",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "23",
+            "id_configuration": "23",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_ORDER_OUT_OF_STOCK",
+            "value": "0",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "24",
+            "id_configuration": "24",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_INVOICE_START_NUMBER",
+            "value": "1",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "25",
+            "id_configuration": "25",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_MAIL_METHOD",
+            "value": "2",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "26",
+            "id_configuration": "26",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_MAIL_SERVER",
+            "value": "smtp.tienda.test",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "27",
+            "id_configuration": "27",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_MAIL_USER",
+            "value": "envios@tienda.test",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "28",
+            "id_configuration": "28",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_MAIL_PASSWD",
+            "value": "clave-de-mentira",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "29",
+            "id_configuration": "29",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_MAIL_SMTP_ENCRYPTION",
+            "value": "tls",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "30",
+            "id_configuration": "30",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_MAIL_SMTP_PORT",
+            "value": "587",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "31",
+            "id_configuration": "31",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_LOGO",
+            "value": "logo-1700000000.png",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "32",
+            "id_configuration": "32",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_FAVICON",
+            "value": "favicon.ico",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "33",
+            "id_configuration": "33",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_CONDITIONS_CMS_ID",
+            "value": "3",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "34",
+            "id_configuration": "34",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_CATALOG_MODE",
+            "value": "0",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "35",
+            "id_configuration": "35",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_HOME_CATEGORY",
+            "value": "2",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "36",
+            "id_configuration": "36",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_ROOT_CATEGORY",
+            "value": "1",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "37",
+            "id_configuration": "37",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_SHIPPING_METHOD",
+            "value": "1",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "38",
+            "id_configuration": "38",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_SHIPPING_HANDLING",
+            "value": "2.000000",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "39",
+            "id_configuration": "39",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_SHIPPING_FREE_PRICE",
+            "value": "60.000000",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "40",
+            "id_configuration": "40",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_SHIPPING_FREE_WEIGHT",
+            "value": "0.000000",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "41",
+            "id_configuration": "41",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_VERSION_DB",
+            "value": "8.2.0",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "42",
+            "id_configuration": "42",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_SHOP_DEFAULT",
+            "value": "1",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "43",
+            "id_configuration": "43",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_OS_BANKWIRE",
+            "value": "1",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "44",
+            "id_configuration": "44",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_OS_PAYMENT",
+            "value": "2",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "45",
+            "id_configuration": "45",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_OS_PREPARATION",
+            "value": "3",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "46",
+            "id_configuration": "46",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_OS_SHIPPING",
+            "value": "4",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "47",
+            "id_configuration": "47",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_OS_DELIVERED",
+            "value": "5",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "48",
+            "id_configuration": "48",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_OS_CANCELED",
+            "value": "6",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "49",
+            "id_configuration": "49",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_OS_REFUND",
+            "value": "7",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "50",
+            "id_configuration": "50",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_OS_ERROR",
+            "value": "8",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "51",
+            "id_configuration": "51",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "BANK_WIRE_OWNER",
+            "value": "Ñandú Muebles S.L.",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "52",
+            "id_configuration": "52",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "BANK_WIRE_DETAILS",
+            "value": "ES00 0000 0000 0000 0000 0000",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "53",
+            "id_configuration": "53",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PAYPAL_SANDBOX",
+            "value": "1",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "54",
+            "id_configuration": "54",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PAYPAL_API_USER",
+            "value": "usuario-de-mentira",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "55",
+            "id_configuration": "55",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PAYPAL_API_PASSWORD",
+            "value": "clave-de-mentira",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "56",
+            "id_configuration": "56",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_ROUTE_other",
+            "value": "no-se-lee",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "57",
+            "id_configuration": "57",
+            "id_shop_group": "1",
+            "id_shop": "2",
+            "name": "PS_SHOP_NAME",
+            "value": "Segunda Tienda",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "58",
+            "id_configuration": "58",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_INVOICE_PREFIX",
+            "value": "",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "59",
+            "id_configuration": "59",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_CREDIT_SLIP_PREFIX",
+            "value": "",
+            "date_add": "",
+            "date_upd": ""
+        }
+    ],
+    "countries": [
+        {
+            "id": "1",
+            "id_country": "1",
+            "id_zone": "2",
+            "id_currency": "1",
+            "iso_code": "ES",
+            "call_prefix": "",
+            "active": "1",
+            "contains_states": "1",
+            "need_identification_number": "",
+            "need_zip_code": "",
+            "zip_code_format": "",
+            "display_tax_label": ""
+        },
+        {
+            "id": "2",
+            "id_country": "2",
+            "id_zone": "1",
+            "id_currency": "1",
+            "iso_code": "PT",
+            "call_prefix": "",
+            "active": "1",
+            "contains_states": "0",
+            "need_identification_number": "",
+            "need_zip_code": "",
+            "zip_code_format": "",
+            "display_tax_label": ""
+        },
+        {
+            "id": "3",
+            "id_country": "3",
+            "id_zone": "1",
+            "id_currency": "1",
+            "iso_code": "FR",
+            "call_prefix": "",
+            "active": "1",
+            "contains_states": "0",
+            "need_identification_number": "",
+            "need_zip_code": "",
+            "zip_code_format": "",
+            "display_tax_label": ""
+        },
+        {
+            "id": "4",
+            "id_country": "4",
+            "id_zone": "1",
+            "id_currency": "1",
+            "iso_code": "IT",
+            "call_prefix": "",
+            "active": "0",
+            "contains_states": "0",
+            "need_identification_number": "",
+            "need_zip_code": "",
+            "zip_code_format": "",
+            "display_tax_label": ""
+        }
+    ],
+    "currencies": [
+        {
+            "id": "1",
+            "id_currency": "1",
+            "name": "Euro",
+            "iso_code": "EUR",
+            "numeric_iso_code": "",
+            "precision": "",
+            "conversion_rate": "",
+            "deleted": "0",
+            "active": "1",
+            "unofficial": "",
+            "modified": ""
+        },
+        {
+            "id": "2",
+            "id_currency": "2",
+            "name": "Dólar",
+            "iso_code": "USD",
+            "numeric_iso_code": "",
+            "precision": "",
+            "conversion_rate": "",
+            "deleted": "0",
+            "active": "1",
+            "unofficial": "",
+            "modified": ""
+        }
+    ],
+    "groups": [
+        {
+            "id": "1",
+            "id_group": "1",
+            "reduction": "0.000000",
+            "price_display_method": "1",
+            "show_prices": "1",
+            "date_add": "",
+            "date_upd": "",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Visitante"
+                },
+                {
+                    "id": "2",
+                    "value": "Visitor"
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "id_group": "2",
+            "reduction": "0.000000",
+            "price_display_method": "1",
+            "show_prices": "1",
+            "date_add": "",
+            "date_upd": "",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Invitado"
+                },
+                {
+                    "id": "2",
+                    "value": "Guest"
+                }
+            ]
+        },
+        {
+            "id": "3",
+            "id_group": "3",
+            "reduction": "0.000000",
+            "price_display_method": "0",
+            "show_prices": "1",
+            "date_add": "",
+            "date_upd": "",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Cliente"
+                },
+                {
+                    "id": "2",
+                    "value": "Customer"
+                }
+            ]
+        },
+        {
+            "id": "4",
+            "id_group": "4",
+            "reduction": "10.000000",
+            "price_display_method": "1",
+            "show_prices": "1",
+            "date_add": "",
+            "date_upd": "",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Profesionales"
+                },
+                {
+                    "id": "2",
+                    "value": "Professionals"
+                }
+            ]
+        }
+    ],
+    "languages": [
+        {
+            "id": "1",
+            "id_lang": "1",
+            "name": "Español",
+            "active": "1",
+            "iso_code": "es",
+            "language_code": "es-es",
+            "locale": "",
+            "date_format_lite": "",
+            "date_format_full": "",
+            "is_rtl": ""
+        },
+        {
+            "id": "2",
+            "id_lang": "2",
+            "name": "English",
+            "active": "1",
+            "iso_code": "en",
+            "language_code": "en-us",
+            "locale": "",
+            "date_format_lite": "",
+            "date_format_full": "",
+            "is_rtl": ""
+        },
+        {
+            "id": "3",
+            "id_lang": "3",
+            "name": "Français",
+            "active": "0",
+            "iso_code": "fr",
+            "language_code": "fr-fr",
+            "locale": "",
+            "date_format_lite": "",
+            "date_format_full": "",
+            "is_rtl": ""
+        }
+    ],
+    "order_states": [
+        {
+            "id": "1",
+            "id_order_state": "1",
+            "invoice": "0",
+            "send_email": "1",
+            "module_name": "",
+            "color": "",
+            "unremovable": "",
+            "hidden": "0",
+            "logable": "0",
+            "delivery": "0",
+            "shipped": "0",
+            "paid": "0",
+            "pdf_invoice": "",
+            "pdf_delivery": "",
+            "deleted": "0",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "En espera de transferencia"
+                },
+                {
+                    "id": "2",
+                    "value": "Awaiting bank wire"
+                }
+            ],
+            "template": [
+                {
+                    "id": "1",
+                    "value": ""
+                },
+                {
+                    "id": "2",
+                    "value": ""
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "id_order_state": "2",
+            "invoice": "1",
+            "send_email": "1",
+            "module_name": "",
+            "color": "",
+            "unremovable": "",
+            "hidden": "0",
+            "logable": "1",
+            "delivery": "0",
+            "shipped": "0",
+            "paid": "1",
+            "pdf_invoice": "",
+            "pdf_delivery": "",
+            "deleted": "0",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Pago aceptado"
+                },
+                {
+                    "id": "2",
+                    "value": "Payment accepted"
+                }
+            ],
+            "template": [
+                {
+                    "id": "1",
+                    "value": ""
+                },
+                {
+                    "id": "2",
+                    "value": ""
+                }
+            ]
+        },
+        {
+            "id": "3",
+            "id_order_state": "3",
+            "invoice": "1",
+            "send_email": "1",
+            "module_name": "",
+            "color": "",
+            "unremovable": "",
+            "hidden": "0",
+            "logable": "1",
+            "delivery": "0",
+            "shipped": "0",
+            "paid": "1",
+            "pdf_invoice": "",
+            "pdf_delivery": "",
+            "deleted": "0",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Preparación en curso"
+                },
+                {
+                    "id": "2",
+                    "value": "Processing"
+                }
+            ],
+            "template": [
+                {
+                    "id": "1",
+                    "value": ""
+                },
+                {
+                    "id": "2",
+                    "value": ""
+                }
+            ]
+        },
+        {
+            "id": "4",
+            "id_order_state": "4",
+            "invoice": "1",
+            "send_email": "1",
+            "module_name": "",
+            "color": "",
+            "unremovable": "",
+            "hidden": "0",
+            "logable": "1",
+            "delivery": "0",
+            "shipped": "1",
+            "paid": "1",
+            "pdf_invoice": "",
+            "pdf_delivery": "",
+            "deleted": "0",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Enviado"
+                },
+                {
+                    "id": "2",
+                    "value": "Shipped"
+                }
+            ],
+            "template": [
+                {
+                    "id": "1",
+                    "value": ""
+                },
+                {
+                    "id": "2",
+                    "value": ""
+                }
+            ]
+        },
+        {
+            "id": "5",
+            "id_order_state": "5",
+            "invoice": "1",
+            "send_email": "1",
+            "module_name": "",
+            "color": "",
+            "unremovable": "",
+            "hidden": "0",
+            "logable": "1",
+            "delivery": "1",
+            "shipped": "1",
+            "paid": "1",
+            "pdf_invoice": "",
+            "pdf_delivery": "",
+            "deleted": "0",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Entregado"
+                },
+                {
+                    "id": "2",
+                    "value": "Delivered"
+                }
+            ],
+            "template": [
+                {
+                    "id": "1",
+                    "value": ""
+                },
+                {
+                    "id": "2",
+                    "value": ""
+                }
+            ]
+        },
+        {
+            "id": "6",
+            "id_order_state": "6",
+            "invoice": "0",
+            "send_email": "1",
+            "module_name": "",
+            "color": "",
+            "unremovable": "",
+            "hidden": "0",
+            "logable": "0",
+            "delivery": "0",
+            "shipped": "0",
+            "paid": "0",
+            "pdf_invoice": "",
+            "pdf_delivery": "",
+            "deleted": "0",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Cancelado"
+                },
+                {
+                    "id": "2",
+                    "value": "Canceled"
+                }
+            ],
+            "template": [
+                {
+                    "id": "1",
+                    "value": ""
+                },
+                {
+                    "id": "2",
+                    "value": ""
+                }
+            ]
+        },
+        {
+            "id": "7",
+            "id_order_state": "7",
+            "invoice": "0",
+            "send_email": "1",
+            "module_name": "",
+            "color": "",
+            "unremovable": "",
+            "hidden": "0",
+            "logable": "0",
+            "delivery": "0",
+            "shipped": "0",
+            "paid": "0",
+            "pdf_invoice": "",
+            "pdf_delivery": "",
+            "deleted": "0",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Reembolsado"
+                },
+                {
+                    "id": "2",
+                    "value": "Refunded"
+                }
+            ],
+            "template": [
+                {
+                    "id": "1",
+                    "value": ""
+                },
+                {
+                    "id": "2",
+                    "value": ""
+                }
+            ]
+        },
+        {
+            "id": "8",
+            "id_order_state": "8",
+            "invoice": "0",
+            "send_email": "1",
+            "module_name": "",
+            "color": "",
+            "unremovable": "",
+            "hidden": "0",
+            "logable": "0",
+            "delivery": "0",
+            "shipped": "0",
+            "paid": "0",
+            "pdf_invoice": "",
+            "pdf_delivery": "",
+            "deleted": "0",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Error en el pago"
+                },
+                {
+                    "id": "2",
+                    "value": "Payment error"
+                }
+            ],
+            "template": [
+                {
+                    "id": "1",
+                    "value": ""
+                },
+                {
+                    "id": "2",
+                    "value": ""
+                }
+            ]
+        }
+    ],
+    "shops": [
+        {
+            "id": "1",
+            "id_shop": "1",
+            "id_shop_group": "1",
+            "name": "Muebles Ñandú",
+            "color": "",
+            "id_category": "2",
+            "theme_name": "",
+            "active": "1",
+            "deleted": "0"
+        },
+        {
+            "id": "2",
+            "id_shop": "2",
+            "id_shop_group": "1",
+            "name": "Segunda Tienda",
+            "color": "",
+            "id_category": "2",
+            "theme_name": "",
+            "active": "1",
+            "deleted": "0"
+        }
+    ],
+    "states": [
+        {
+            "id": "1",
+            "id_state": "1",
+            "id_country": "1",
+            "id_zone": "2",
+            "name": "Madrid",
+            "iso_code": "M",
+            "tax_behavior": "",
+            "active": "1"
+        },
+        {
+            "id": "2",
+            "id_state": "2",
+            "id_country": "1",
+            "id_zone": "2",
+            "name": "Barcelona",
+            "iso_code": "B",
+            "tax_behavior": "",
+            "active": "1"
+        },
+        {
+            "id": "3",
+            "id_state": "3",
+            "id_country": "1",
+            "id_zone": "3",
+            "name": "Las Palmas",
+            "iso_code": "GC",
+            "tax_behavior": "",
+            "active": "1"
+        },
+        {
+            "id": "4",
+            "id_state": "4",
+            "id_country": "1",
+            "id_zone": "3",
+            "name": "Santa Cruz de Tenerife",
+            "iso_code": "TF",
+            "tax_behavior": "",
+            "active": "1"
+        },
+        {
+            "id": "5",
+            "id_state": "5",
+            "id_country": "1",
+            "id_zone": "2",
+            "name": "Ceuta",
+            "iso_code": "ES-CE",
+            "tax_behavior": "",
+            "active": "1"
+        },
+        {
+            "id": "6",
+            "id_state": "6",
+            "id_country": "1",
+            "id_zone": "2",
+            "name": "Melilla",
+            "iso_code": "ML",
+            "tax_behavior": "",
+            "active": "1"
+        },
+        {
+            "id": "7",
+            "id_state": "7",
+            "id_country": "1",
+            "id_zone": "2",
+            "name": "Sevilla",
+            "iso_code": "SE",
+            "tax_behavior": "",
+            "active": "1"
+        }
+    ],
+    "tax_rule_groups": [
+        {
+            "id": "1",
+            "id_tax_rules_group": "1",
+            "name": "ES IVA general",
+            "active": "1",
+            "deleted": "0",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "2",
+            "id_tax_rules_group": "2",
+            "name": "ES IVA reducido",
+            "active": "1",
+            "deleted": "0",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "3",
+            "id_tax_rules_group": "3",
+            "name": "Grupo borrado",
+            "active": "1",
+            "deleted": "1",
+            "date_add": "",
+            "date_upd": ""
+        },
+        {
+            "id": "4",
+            "id_tax_rules_group": "4",
+            "name": "Grupo inactivo",
+            "active": "0",
+            "deleted": "0",
+            "date_add": "",
+            "date_upd": ""
+        }
+    ],
+    "tax_rules": [
+        {
+            "id": "1",
+            "id_tax_rule": "1",
+            "id_tax_rules_group": "1",
+            "id_country": "1",
+            "id_state": "0",
+            "zipcode_from": "0",
+            "zipcode_to": "0",
+            "id_tax": "1",
+            "behavior": "0",
+            "description": ""
+        },
+        {
+            "id": "2",
+            "id_tax_rule": "2",
+            "id_tax_rules_group": "1",
+            "id_country": "1",
+            "id_state": "0",
+            "zipcode_from": "35000",
+            "zipcode_to": "35999",
+            "id_tax": "3",
+            "behavior": "0",
+            "description": ""
+        },
+        {
+            "id": "3",
+            "id_tax_rule": "3",
+            "id_tax_rules_group": "1",
+            "id_country": "1",
+            "id_state": "0",
+            "zipcode_from": "38000",
+            "zipcode_to": "38999",
+            "id_tax": "3",
+            "behavior": "0",
+            "description": ""
+        },
+        {
+            "id": "4",
+            "id_tax_rule": "4",
+            "id_tax_rules_group": "1",
+            "id_country": "1",
+            "id_state": "5",
+            "zipcode_from": "0",
+            "zipcode_to": "0",
+            "id_tax": "4",
+            "behavior": "0",
+            "description": ""
+        },
+        {
+            "id": "5",
+            "id_tax_rule": "5",
+            "id_tax_rules_group": "1",
+            "id_country": "1",
+            "id_state": "6",
+            "zipcode_from": "0",
+            "zipcode_to": "0",
+            "id_tax": "4",
+            "behavior": "0",
+            "description": ""
+        },
+        {
+            "id": "6",
+            "id_tax_rule": "6",
+            "id_tax_rules_group": "2",
+            "id_country": "1",
+            "id_state": "0",
+            "zipcode_from": "0",
+            "zipcode_to": "0",
+            "id_tax": "2",
+            "behavior": "0",
+            "description": ""
+        },
+        {
+            "id": "7",
+            "id_tax_rule": "7",
+            "id_tax_rules_group": "3",
+            "id_country": "1",
+            "id_state": "0",
+            "zipcode_from": "0",
+            "zipcode_to": "0",
+            "id_tax": "1",
+            "behavior": "0",
+            "description": ""
+        },
+        {
+            "id": "8",
+            "id_tax_rule": "8",
+            "id_tax_rules_group": "2",
+            "id_country": "3",
+            "id_state": "0",
+            "zipcode_from": "0",
+            "zipcode_to": "0",
+            "id_tax": "2",
+            "behavior": "2",
+            "description": ""
+        },
+        {
+            "id": "9",
+            "id_tax_rule": "9",
+            "id_tax_rules_group": "1",
+            "id_country": "2",
+            "id_state": "0",
+            "zipcode_from": "0",
+            "zipcode_to": "0",
+            "id_tax": "1",
+            "behavior": "1",
+            "description": ""
+        },
+        {
+            "id": "10",
+            "id_tax_rule": "10",
+            "id_tax_rules_group": "1",
+            "id_country": "1",
+            "id_state": "0",
+            "zipcode_from": "0",
+            "zipcode_to": "0",
+            "id_tax": "5",
+            "behavior": "0",
+            "description": ""
+        }
+    ],
+    "taxes": [
+        {
+            "id": "1",
+            "id_tax": "1",
+            "rate": "21.000",
+            "active": "1",
+            "deleted": "0",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "IVA 21 %"
+                },
+                {
+                    "id": "2",
+                    "value": "VAT 21 %"
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "id_tax": "2",
+            "rate": "10.000",
+            "active": "1",
+            "deleted": "0",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "IVA 10 %"
+                },
+                {
+                    "id": "2",
+                    "value": "VAT 10 %"
+                }
+            ]
+        },
+        {
+            "id": "3",
+            "id_tax": "3",
+            "rate": "7.000",
+            "active": "1",
+            "deleted": "0",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "IGIC 7 %"
+                },
+                {
+                    "id": "2",
+                    "value": "IGIC 7 %"
+                }
+            ]
+        },
+        {
+            "id": "4",
+            "id_tax": "4",
+            "rate": "4.000",
+            "active": "1",
+            "deleted": "0",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "IPSI 4 %"
+                },
+                {
+                    "id": "2",
+                    "value": "IPSI 4 %"
+                }
+            ]
+        },
+        {
+            "id": "5",
+            "id_tax": "5",
+            "rate": "3.000",
+            "active": "1",
+            "deleted": "1",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Impuesto borrado"
+                },
+                {
+                    "id": "2",
+                    "value": "Deleted tax"
+                }
+            ]
+        }
+    ],
+    "translated_configurations": [
+        {
+            "id": "58",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_INVOICE_PREFIX",
+            "value": [
+                {
+                    "id": "1",
+                    "value": "F2026-"
+                },
+                {
+                    "id": "2",
+                    "value": "F2026-"
+                }
+            ]
+        },
+        {
+            "id": "59",
+            "id_shop_group": "",
+            "id_shop": "",
+            "name": "PS_CREDIT_SLIP_PREFIX",
+            "value": [
+                {
+                    "id": "1",
+                    "value": "AB"
+                },
+                {
+                    "id": "2",
+                    "value": "CR"
+                }
+            ]
+        }
+    ],
+    "zones": [
+        {
+            "id": "1",
+            "id_zone": "1",
+            "name": "Europa",
+            "active": "1"
+        },
+        {
+            "id": "2",
+            "id_zone": "2",
+            "name": "Península y Baleares",
+            "active": "1"
+        },
+        {
+            "id": "3",
+            "id_zone": "3",
+            "name": "Canarias",
+            "active": "1"
+        },
+        {
+            "id": "4",
+            "id_zone": "4",
+            "name": "Zona vacía",
+            "active": "1"
+        },
+        {
+            "id": "5",
+            "id_zone": "5",
+            "name": "Zona apagada",
+            "active": "0"
+        }
+    ]
+}

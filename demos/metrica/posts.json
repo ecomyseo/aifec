@@ -1,0 +1,155 @@
+[
+    {
+        "code": "como-se-lee-una-medida",
+        "title": "Cómo se lee una medida: qué es M6 × 40",
+        "date": "2026-11-03",
+        "excerpt": "Métrica, largo y paso: los tres datos de un tornillo y cómo medirlos en casa.",
+        "meta_title": "Cómo se lee la medida de un tornillo | Métrica",
+        "meta_description": "Qué significan la métrica y el largo de un tornillo, cómo medirlos con un calibre o una regla y qué tuerca le corresponde.",
+        "blocks": [
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "En el mostrador de una ferretería los tornillos no se piden por su nombre, sino por su medida. Con dos números basta casi siempre."
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "La métrica"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "La <strong>M</strong> seguida de un número es el diámetro exterior de la rosca en milímetros: un M6 mide 6 mm. Para saber la de un tornillo que ya tienes, mide la rosca con un calibre; con una regla también sale, si miras de frente."
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "El largo"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "El segundo número es el largo en milímetros, medido <strong>por debajo de la cabeza</strong>. En los tornillos de cabeza avellanada, que quedan a ras, la cabeza sí cuenta."
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Qué tuerca y qué arandela"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Las de la misma métrica: tornillo M6, tuerca M6 y arandela M6. El largo no influye."
+                }
+            },
+            {
+                "type": "list",
+                "attrs": {
+                    "ordered": true,
+                    "items": [
+                        {
+                            "html": "Suma el grosor de lo que vas a unir, más la arandela y la tuerca."
+                        },
+                        {
+                            "html": "Elige el largo inmediatamente superior: mejor que asomen dos hilos de rosca a que falten."
+                        },
+                        {
+                            "html": "Si el tornillo rosca en la propia pieza, que entre al menos una vez y media su diámetro."
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "<em>Guía de ejemplo de una tienda de demostración.</em>"
+                }
+            }
+        ]
+    },
+    {
+        "code": "que-taco-y-que-broca-para-cada-pared",
+        "title": "Qué taco y qué broca para cada pared",
+        "date": "2026-11-10",
+        "excerpt": "Ladrillo, hormigón o bloque: el taco, la broca y el tornillo que van juntos.",
+        "meta_title": "Qué taco y qué broca para cada pared | Métrica",
+        "meta_description": "Cómo elegir el taco según la pared, qué broca le corresponde y cuánto tiene que entrar el tornillo.",
+        "blocks": [
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Un cuadro que se cae casi nunca es culpa del tornillo: es que el taco no era el de esa pared o el agujero quedó grande."
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "La regla de la broca"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "La broca es del mismo diámetro que el taco: taco de 6, broca de 6. En ladrillo y bloque, taladra sin percutor para no romper el tabique; en hormigón, con percutor y broca de widia."
+                }
+            },
+            {
+                "type": "table",
+                "attrs": {
+                    "head": [
+                        "Pared",
+                        "Taco",
+                        "Cómo taladrar"
+                    ],
+                    "rows": [
+                        [
+                            "Ladrillo macizo",
+                            "De nailon de expansión",
+                            "Con percutor suave"
+                        ],
+                        [
+                            "Ladrillo hueco y bloque",
+                            "De nailon de expansión, entero dentro",
+                            "Sin percutor"
+                        ],
+                        [
+                            "Hormigón",
+                            "De nailon de expansión",
+                            "Con percutor y broca de widia"
+                        ]
+                    ]
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "El tornillo"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Tiene que ser más largo que el taco: lo que mide el taco más el grosor de lo que cuelgas. Un taco de 6 × 30 con un tornillo de 4 × 40 deja un centímetro para la pieza."
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "<em>Guía de ejemplo de una tienda de demostración.</em>"
+                }
+            }
+        ]
+    }
+]

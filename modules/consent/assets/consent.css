@@ -1,0 +1,36 @@
+/* AIFEC consent.css. Autor: Ecom Experts 2026. Solo variables del tema; nada que empuje el contenido. */
+.af-consent[hidden],.af-consent [hidden]{display:none!important}
+.af-consent{position:fixed;z-index:90;left:0;right:0;bottom:0;pointer-events:none}
+.af-consent-card{pointer-events:auto;position:relative;margin:.75rem;max-width:26rem;max-height:60vh;overflow:auto;padding:1rem;background:var(--surface,#fff);color:var(--ink,#1f2421);border:1px solid var(--line,#e2dfd8);border-radius:var(--radius,10px);box-shadow:var(--shadow,0 10px 28px rgba(20,24,22,.1))}
+.af-consent-title{margin:0 0 .4rem;font-size:1.05rem}
+.af-consent-text,.af-consent-desc{margin:0 0 .75rem;font-size:.9rem;line-height:1.45}
+.af-consent-desc{margin:.15rem 0 .4rem;color:var(--muted,#5c6660)}
+.af-consent-actions{display:flex;flex-wrap:wrap;gap:.5rem}
+.af-consent-actions .af-btn{flex:1 1 auto;min-height:44px}
+.af-consent-back{pointer-events:auto;position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:1rem;background:var(--overlay,rgba(20,24,22,.5))}
+.af-consent-prefs{position:relative;width:100%;max-width:34rem;max-height:100%;overflow:auto;padding:1.25rem;background:var(--surface,#fff);color:var(--ink,#1f2421);border-radius:var(--radius,10px)}
+.af-consent-group{padding:.6rem 0;border-top:1px solid var(--line,#e2dfd8)}
+.af-consent-cat{display:flex;align-items:center;gap:.6rem;min-height:44px;font-weight:600}
+.af-consent-cat input{width:1.25rem;height:1.25rem}
+.af-consent-list{font-size:.85rem}
+.af-consent-list summary{min-height:44px;display:flex;align-items:center;cursor:pointer}
+.af-consent-list ul{margin:0 0 .5rem;padding-left:1.1rem}
+.af-consent-ph{display:block;width:100%;min-height:44px;padding:.75rem;border:1px dashed var(--line,#e2dfd8);border-radius:var(--radius,10px);background:var(--surface-2,#f3f1ec);color:var(--ink,#1f2421);cursor:pointer}
+.af-consent button:focus-visible,.af-consent a:focus-visible,.af-consent input:focus-visible,.af-consent summary:focus-visible{outline:2px solid var(--accent,#b94a17);outline-offset:2px}
+@media (max-width:899px){
+  .af-has-bar .af-consent{bottom:calc(var(--bar-h,3.5rem) + env(safe-area-inset-bottom))}
+  /* Compacto: sin título a la vista (sigue para lectores de pantalla), texto corto y los tres botones en una fila. */
+  .af-consent-card{margin:.4rem;max-width:none;max-height:30vh;padding:.6rem .75rem}
+  .af-consent-card>.af-consent-title{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .af-consent-text{margin:0 0 .5rem;font-size:.8125rem;line-height:1.35}
+  .af-consent-actions{flex-wrap:nowrap;gap:.35rem}
+  .af-consent-actions .af-btn{flex:1 1 0;min-width:0;padding:.4rem .35rem;font-size:.8125rem}
+}
+@media (min-width:900px){
+  /* Barra baja de ancho completo: texto a la izquierda y botones a la derecha, para no tapar la llamada a la acción del hero. */
+  .af-consent-card{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:1.5rem;align-items:center;margin:0;max-width:none;max-height:none;padding:.6rem 1.25rem;border-width:1px 0 0;border-radius:0}
+  .af-consent-card>.af-consent-title{grid-column:1;margin:0;font-size:.95rem}
+  .af-consent-card>.af-consent-text{grid-column:1;margin:0;font-size:.875rem;line-height:1.4}
+  .af-consent-card>.af-consent-actions{grid-column:2;grid-row:1/3;flex-wrap:nowrap}
+}
+@media (prefers-reduced-motion:reduce){.af-consent *{transition:none!important;animation:none!important}}

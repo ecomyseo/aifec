@@ -1,0 +1,20 @@
+{
+    "name": "AIFEC",
+    "description": "El sitio de AIFEC hecho con AIFEC: portada en bloques editables, la página larga «Qué es AIFEC», las demos, la página para desarrolladores, la documentación y el contacto. No trae catálogo: si el sitio donde se aplica tiene tienda, el tema enseña sus categorías y sus productos (package:apply aplica solo páginas, menús y tema).",
+    "sector": "producto",
+    "locale": "es",
+    "theme": "aifec",
+    "theme_options": {},
+    "store": {
+        "name": "AIFEC",
+        "email": "web@ejemplo.test",
+        "currency": "EUR",
+        "currency_symbol": "€",
+        "country": "ES",
+        "prices_include_tax": true,
+        "display_with_tax": true
+    },
+    "settings": {},
+    "modules": ["cms", "media", "seo", "semantic", "docs"],
+    "files": ["pages.json", "menus.json"]
+}

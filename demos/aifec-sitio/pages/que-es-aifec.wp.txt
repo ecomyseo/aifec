@@ -1,0 +1,993 @@
+<!-- wp:paragraph -->
+<p><em>Actualizado en noviembre de 2026 · Lectura: unos 40 minutos · Por Ecom Experts</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Durante veinte años hemos construido tiendas online pensando en una persona sentada delante de una pantalla: alguien que escribe en un buscador, pulsa un enlace azul, recorre menús, mira fotos, compara precios en varias pestañas y, si nada le distrae, rellena un formulario de compra. Todo el comercio electrónico que conocemos, desde las plantillas hasta los plugins de marketing, gira alrededor de ese recorrido.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Ese recorrido está cambiando. Cada vez más compras empiezan con una pregunta a un asistente de inteligencia artificial: «búscame una silla de oficina que aguante muchas horas sentado, que no pase de 450 euros y que llegue antes del jueves». Quien lee tu tienda en ese momento no es una persona, es un programa. Lee deprisa, no ve tus fotos como las ve un cliente, no tiene paciencia con páginas lentas y descarta lo que no entiende. Si le convences, recomienda tu producto. Si no, ni siquiera llegas a la lista.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A esa forma de entender una tienda la llamamos <strong>AIFEC</strong>, de <strong>AI-First E-Commerce</strong>: comercio electrónico pensado primero para que lo entiendan las máquinas y, sobre esa misma base, para que lo disfruten las personas. En esta página explicamos qué es, qué están haciendo de verdad las grandes empresas tecnológicas (con fechas y sin exagerar), cómo se construye un sistema así, en qué se diferencia de Shopify, WooCommerce o PrestaShop, qué problemas siguen sin resolver y qué puedes hacer hoy en tu tienda, la uses con AIFEC o no.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Una advertencia antes de empezar: este sector cambia cada mes. Algunas de las cosas que se anunciaron con mucho ruido en 2025 ya han cambiado de rumbo en 2026. Por eso, cuando contamos lo que hace una empresa, decimos cuándo lo anunció y hasta dónde ha llegado, y separamos lo que está funcionando de lo que solo se ha prometido.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading" id="contenido">Índice</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li><a href="#que-ha-cambiado">Qué ha cambiado: el cliente ya no busca, pregunta</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#que-es-aifec">Qué es AIFEC y qué no es</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#grandes-empresas">Lo que están haciendo las grandes empresas</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#compra-agentica">Anatomía de una compra hecha por una IA</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#arquitectura">Cómo se construye un sistema AIFEC</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#comparativa">AIFEC frente a Shopify, WooCommerce y PrestaShop</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#pendiente">Lo que todavía no está resuelto</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#prepararse">Cómo preparar tu tienda desde hoy</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#prototipo">AIFEC en marcha: el prototipo de ai.gmartos.es</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#preguntas">Preguntas frecuentes</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#glosario">Glosario</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#predicciones">Qué predicen cuatro IA para 2026–2030</a></li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list --></div>
+<!-- /wp:group -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading" id="que-ha-cambiado">1. Qué ha cambiado: el cliente ya no busca, pregunta</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>El buscador clásico devolvía diez enlaces y dejaba el trabajo al usuario: abrir, comparar, volver atrás, abrir otro. Los asistentes de IA hacen ese trabajo por él. Reciben una pregunta en lenguaje natural, consultan su índice, leen varias páginas, filtran, comparan y devuelven una respuesta cerrada: «estas dos opciones cumplen lo que pides, y esta es la más barata». El usuario muchas veces no llega a visitar ninguna tienda hasta que ya ha decidido.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Eso tiene una consecuencia directa para cualquier comercio: la batalla ya no es solo aparecer en la primera página de Google, sino <strong>ser elegido por el programa que resume</strong>. Y ese programa no se deja impresionar por un carrusel animado ni por un banner con descuento. Necesita datos claros, coherentes y fáciles de comprobar: qué es el producto, cuánto cuesta de verdad, si hay existencias, cuándo llega, qué garantía tiene y qué pasa si quieres devolverlo.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Los robots de IA ya están leyendo tu tienda</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>No hace falta creer en predicciones para comprobarlo. Basta con abrir el registro de visitas del servidor. En esta misma web, en cuatro días y medio de noviembre de 2026, contamos estas peticiones de robots identificados por su nombre:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:table -->
+<figure class="wp-block-table"><table><thead><tr><th>Robot</th><th>De quién es</th><th>Peticiones</th></tr></thead><tbody><tr><td>Googlebot</td><td>Google</td><td>≈ 1.150</td></tr><tr><td>Bingbot</td><td>Microsoft</td><td>≈ 1.000</td></tr><tr><td>Applebot</td><td>Apple</td><td>≈ 850</td></tr><tr><td>Amazonbot</td><td>Amazon</td><td>≈ 750</td></tr><tr><td>OAI-SearchBot</td><td>OpenAI (búsqueda de ChatGPT)</td><td>≈ 210</td></tr><tr><td>GPTBot</td><td>OpenAI</td><td>≈ 150</td></tr><tr><td>ClaudeBot</td><td>Anthropic</td><td>≈ 65</td></tr><tr><td>PerplexityBot</td><td>Perplexity</td><td>≈ 10</td></tr></tbody></table><figcaption class="wp-element-caption">Peticiones registradas en gmartos.es entre el 8 y el 12 de noviembre de 2026.</figcaption></figure>
+<!-- /wp:table -->
+
+<!-- wp:paragraph -->
+<p>Para una web pequeña y especializada como la nuestra, Applebot y Amazonbot ya hacen casi tantas visitas como el robot de Bing, y los robots de OpenAI juntos superan las 350 peticiones en cuatro días. Ninguno de ellos compra nada, claro, pero cada uno alimenta un asistente que sí recomienda productos a millones de personas. Si tu tienda es lenta, si bloquea a estos robots sin querer o si sus datos son confusos, el asistente se forma una idea pobre de ella, o ninguna.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Del SEO al GEO</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Al trabajo de hacerse visible en estas respuestas se le empieza a llamar <strong>GEO</strong> (<em>Generative Engine Optimization</em>, optimización para motores generativos). No sustituye al SEO de toda la vida: Google sigue mandando tráfico y sus resultados con IA se apoyan en buena parte en su propio índice. Pero añade exigencias nuevas. Un asistente cita y recomienda lo que puede verificar: precios que coinciden entre la ficha, el carrito y el feed; atributos escritos como datos y no enterrados en un párrafo; políticas de envío y devolución que se pueden leer sin adivinar; páginas que cargan rápido y no esconden el contenido detrás de JavaScript.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>La buena noticia es que casi todo lo que mejora el GEO mejora también la experiencia de las personas. Una ficha con datos claros convierte mejor. Una página rápida vende más. Un catálogo coherente genera menos devoluciones y menos consultas. AIFEC no propone abandonar al cliente humano para contentar a un robot: propone construir la tienda sobre datos limpios para que los dos la entiendan a la primera.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Del enlace a la compra dentro de la conversación</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>El paso siguiente ya ha empezado: que el asistente no solo recomiende, sino que también compre. Google, OpenAI y Microsoft han lanzado entre 2025 y 2026 formas de pagar sin salir del chat, y las grandes redes de pago han presentado sistemas para que un agente pueda pagar en nombre de una persona con permisos acotados. Todavía es pronto, la mayoría de estas funciones solo existen en Estados Unidos y alguna ya ha dado marcha atrás, como veremos. Pero la dirección es clara: la tienda que quiera estar en esa conversación tendrá que exponer su catálogo, sus precios y su proceso de pago de forma que un programa los pueda usar con seguridad.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading" id="que-es-aifec">2. Qué es AIFEC y qué no es</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><strong>AIFEC (AI-First E-Commerce) es una forma de construir una tienda online en la que la fuente de verdad es un catálogo de datos estructurados, y todo lo demás sale de ahí</strong>: la página que ve el cliente, la información que leen los buscadores, los feeds para Google o Microsoft, las respuestas del asistente de compra y las conexiones con los agentes de IA de terceros. No hay una versión «para humanos» y otra «para robots» que se desincronizan: hay un único dato y varias formas de enseñarlo.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Dicho de otro modo: en una tienda tradicional se diseña primero la página y luego se intenta extraer de ella información para las máquinas, normalmente con un plugin de datos estructurados, otro de feeds y otro de SEO, cada uno leyendo los datos a su manera. En una tienda AIFEC se define primero qué es cada producto, con campos tipados y comprobables, y luego se generan desde ahí todas las salidas. El orden de construcción es el contrario.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Los seis principios</h3>
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Una sola verdad.</strong> Precio, existencias, plazo de entrega, garantía y condiciones viven en un único sitio. La ficha, el carrito, el marcado estructurado, el feed y el asistente leen lo mismo. Si el precio cambia, cambia a la vez en todas partes.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Datos antes que textos.</strong> «Aguanta hasta 130 kg» no es una frase bonita en la descripción: es un atributo con su número y su unidad. La descripción comercial existe, pero se apoya en datos que una máquina puede comparar.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Puertas para las máquinas.</strong> Además de páginas, la tienda ofrece salidas pensadas para programas: marcado JSON-LD completo, feeds, mapas del sitio, una API de lectura con su disponibilidad, un servidor MCP y herramientas WebMCP para los asistentes que navegan la tienda.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Páginas ligeras y servidas desde el servidor.</strong> El contenido importante llega en el primer HTML, sin depender de que se ejecute JavaScript. Es más rápido para las personas y legible para cualquier robot.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>IA dentro, con una persona al mando.</strong> La IA ayuda a completar fichas, redactar preguntas frecuentes, traducir y detectar datos que faltan, pero nada sale a la tienda sin que alguien lo revise. Y la tienda dice con claridad qué textos se han redactado con ayuda de la IA.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Soberanía.</strong> El código, los datos, los clientes y el servidor son del comercio. Los protocolos de las grandes empresas se usan como puertas de salida, no como dueños de la tienda.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Lo que AIFEC no es</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Conviene decirlo pronto, porque el término «IA» está tan gastado que sirve para vender casi cualquier cosa:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>No es poner un chat en una esquina.</strong> Un chat que responde con frases genéricas y no sabe si hay existencias no hace una tienda AIFEC. El asistente es útil solo si se apoya en los mismos datos que el resto de la tienda.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>No es generar mil descripciones automáticas.</strong> Rellenar fichas con textos inventados por un modelo empeora las cosas: los asistentes externos detectan contradicciones y el cliente también.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>No es renunciar al diseño.</strong> Una tienda AIFEC puede ser tan bonita como cualquier otra. Lo que cambia es lo que hay debajo.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>No es depender de un único gigante.</strong> Si mañana un protocolo cambia o desaparece, la tienda sigue funcionando y sigue vendiendo por sus propios medios.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>No es magia.</strong> Ningún sistema garantiza que una IA te recomiende. Lo que sí puede garantizar es que, si no te recomienda, no sea porque no te ha entendido.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p>En una tienda tradicional, las máquinas tienen que adivinar lo que está pensado para los ojos de una persona. En una tienda AIFEC, la tienda habla primero el idioma de los datos y, sobre él, construye una página clara para las personas.</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading" id="grandes-empresas">3. Lo que están haciendo las grandes empresas</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Se ha escrito mucho, y muy exagerado, sobre las compras con IA. Aquí repasamos empresa por empresa lo que se ha anunciado, cuándo, y en qué punto está a finales de 2026, según sus propios anuncios y la prensa especializada. Cuando algo solo funciona en Estados Unidos, lo decimos: para una tienda española es una diferencia importante.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Google: Shopping Graph, AI Mode y el Universal Commerce Protocol</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Google parte con ventaja: lleva años construyendo el <strong>Shopping Graph</strong>, una base de datos de productos, precios, existencias y comercios alimentada por Merchant Center y por el rastreo de millones de tiendas. Sobre ella funcionan los resúmenes con IA del buscador (<em>AI Overviews</em>), el modo conversacional <strong>AI Mode</strong> y el asistente Gemini, que ya responden a preguntas de compra comparando productos, precios y opiniones.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>En septiembre de 2025 Google presentó el <strong>Agent Payments Protocol (AP2)</strong>, un protocolo abierto para que un agente de IA pueda pagar en nombre de una persona con pruebas firmadas de lo que esa persona ha autorizado. AP2 trabaja con «mandatos»: uno que recoge la intención («compra esta silla si baja de 400 euros») y otro que fija el carrito concreto que se va a pagar. La idea es que, si algo sale mal, quede constancia verificable de quién autorizó qué. Se presentó con el apoyo de más de sesenta empresas de pagos y comercio.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>En enero de 2026, en la feria NRF de Nueva York, Google anunció el <strong>Universal Commerce Protocol (UCP)</strong>, un estándar abierto desarrollado con Shopify, Etsy, Wayfair, Target y Walmart, y respaldado por redes y procesadores de pago como Visa, Mastercard, American Express, Stripe o Adyen. UCP define cómo un agente descubre lo que vende un comercio, construye un carrito, calcula impuestos y envío y completa el pago. Es compatible con AP2, con el protocolo A2A de comunicación entre agentes y con MCP, del que hablamos más abajo. Su primera aplicación fue el pago directo desde AI Mode y desde la aplicación de Gemini en comercios de Estados Unidos, con Google Pay y, poco después, PayPal.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Durante 2026 Google ha ido ampliándolo. En Google Marketing Live, en primavera, presentó un carrito universal para guardar productos de distintos comercios y pagarlos con Google Pay o con el proceso de pago del propio comercio, añadió financiación con Klarna y Affirm, y pasó de compras de un solo producto a carritos con varios artículos. La prensa especializada informa además de su extensión a reservas de hotel y comida a domicilio, y de una llegada prevista a Canadá, Australia y Reino Unido.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Qué significa para una tienda española:</strong> a la hora de escribir esto, el pago dentro de AI Mode no está disponible para comercios en España. Lo que sí funciona aquí, y desde hace años, es la puerta de entrada: Merchant Center, el feed de productos, el marcado estructurado y la calidad de las fichas. Google exige tener cuenta activa en Merchant Center y productos aptos para participar en UCP. Quien tenga hoy ese trabajo bien hecho estará preparado cuando llegue.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">OpenAI: ChatGPT, el Agentic Commerce Protocol y un cambio de rumbo</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>ChatGPT se ha convertido en uno de los sitios donde más gente investiga antes de comprar. OpenAI rastrea la web con robots propios (OAI-SearchBot para la búsqueda de ChatGPT, GPTBot para otros usos) y acepta catálogos de los comercios que se dan de alta en su programa para vendedores.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>En septiembre de 2025 OpenAI y Stripe publicaron el <strong>Agentic Commerce Protocol (ACP)</strong>, una especificación abierta para que un asistente consulte productos, prepare un pedido y pase al comercio una credencial de pago delegada, de forma que el comercio sigue siendo el vendedor y el responsable del pedido. Con ACP llegó <strong>Instant Checkout</strong>, la compra dentro de ChatGPT, que empezó con vendedores de Etsy en Estados Unidos y se anunció también para comercios de Shopify. En febrero de 2026 se amplió a todos los usuarios estadounidenses, con grandes catálogos como el de Walmart en pruebas.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Y entonces llegó el giro. En marzo de 2026, según publicó la prensa especializada, OpenAI reorientó su estrategia: dejó de perseguir que todas las tiendas cobraran dentro del chat y centró ACP en el descubrimiento de productos y la consulta de existencias, dejando el pago en manos del proceso de cada comercio o de sus aplicaciones dentro de ChatGPT. La compra dentro del chat se mantiene con algunos grandes vendedores, pero ya no es el objetivo para todos.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>La lección es valiosa para cualquier comercio:</strong> los protocolos de las grandes empresas cambian, y lo que se presenta como el futuro en septiembre puede reordenarse en marzo. Lo que no cambia es lo que todos necesitan: un catálogo limpio, precios y existencias fiables y un proceso de pago propio que funcione bien. Una tienda AIFEC trata estos protocolos como adaptadores intercambiables, no como cimientos.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Microsoft: Copilot Checkout</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>El 8 de enero de 2026 Microsoft y PayPal anunciaron <strong>Copilot Checkout</strong>, la compra sin salir de Copilot, disponible en Estados Unidos en Copilot.com y con planes de extenderse a Bing, Edge y MSN. Los socios de lanzamiento fueron PayPal, Shopify y Stripe, con Etsy entre los primeros comercios, y Visa y Mastercard anunciadas para más adelante. Los comercios de Shopify se incorporaron de forma automática, con un plazo para darse de baja; los que cobran con PayPal o Stripe pueden solicitar el alta.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Un detalle importante que Microsoft dejó claro desde el principio: el comercio sigue siendo el vendedor de cara a la ley, conserva los datos del cliente y la relación con él. Es un buen ejemplo de hacia dónde van estas integraciones serias: el asistente es un escaparate y un mostrador más, pero la tienda sigue siendo responsable del producto, del envío y de la factura. Para un comercio europeo eso no es un matiz: es lo que permite cumplir con la normativa de consumo, de protección de datos y de facturación.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Amazon: Rufus, Buy for Me y un jardín bien vallado</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Amazon juega en dos direcciones a la vez. Dentro de su tienda ha desplegado <strong>Rufus</strong>, un asistente de compra entrenado con su catálogo, sus opiniones y sus preguntas de clientes, y ha renovado <strong>Alexa</strong> con capacidades de agente. En 2025 empezó a probar <strong>Buy for Me</strong>, una función que permite comprar desde la aplicación de Amazon productos de webs de otras marcas que Amazon no vende, completando el pedido en esas webs en nombre del cliente.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Al mismo tiempo, Amazon protege con firmeza su propio terreno. En noviembre de 2025 demandó a Perplexity por usar su navegador con agente para comprar en Amazon en nombre de los usuarios. Y su robot, Amazonbot, recorre la web con mucha intensidad: en nuestra propia tienda hizo unas 750 peticiones en cuatro días y medio. El mensaje es claro: los grandes quieren que sus agentes lean tu tienda, pero no siempre quieren que los agentes de otros lean la suya. Para un comercio independiente, eso refuerza una idea: conviene tener una tienda propia que cualquier agente pueda entender, en vez de depender por completo del escaparate de un tercero.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Apple: una Siri nueva, sin agente de compras todavía</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Apple ha llegado tarde a la IA generativa y lo ha reconocido con hechos: en la WWDC de junio de 2026 presentó una Siri reconstruida, según la prensa con modelos de Google Gemini, capaz de mantener una conversación, buscar en el contexto personal del usuario y encadenar acciones dentro de las aplicaciones. La pieza clave para los desarrolladores es <strong>App Intents</strong>, el sistema con el que una aplicación declara qué acciones sabe hacer (buscar un producto, añadirlo al carrito, consultar un pedido) para que Siri las pueda ejecutar sin que el usuario abra la aplicación.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Lo que Apple no ha anunciado, a día de hoy, es un agente que compre en tiendas de terceros ni un protocolo de pago con agentes basado en Apple Pay; hay especulación, pero no anuncio. Lo que sí hace Apple es leer la web: Applebot fue el tercer robot más activo en nuestra tienda, con unas 850 peticiones en cuatro días y medio. Para un comercio, la lectura práctica es doble: tener una web que Applebot entienda bien y, si se tiene aplicación propia, exponer sus acciones con App Intents.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Perplexity, Anthropic y Shopify</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><strong>Perplexity</strong> fue de los primeros en lanzar compras desde un buscador con IA: a finales de 2024 presentó «Buy with Pro» para suscriptores en Estados Unidos, en 2025 se alió con PayPal para abrir las compras a más usuarios y lanzó Comet, un navegador con agente capaz de navegar y comprar por el usuario, el mismo que motivó la demanda de Amazon.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Anthropic</strong>, la empresa que desarrolla Claude, no vende nada a consumidores, pero creó una de las piezas más usadas de todo este ecosistema: el <strong>Model Context Protocol (MCP)</strong>, publicado a finales de 2024. MCP es un estándar abierto para que un modelo de IA se conecte a herramientas y datos externos de forma uniforme: consultar un catálogo, comprobar existencias, crear un borrador de pedido. En diciembre de 2025 MCP pasó a una fundación dentro de la Linux Foundation, junto con aportaciones de otras empresas, lo que lo convierte en un estándar neutral. Hoy lo admiten la mayoría de asistentes y entornos de desarrollo, y tanto UCP como muchas plataformas de comercio lo usan como canal.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Shopify</strong> es, entre las plataformas de tiendas, la que más deprisa se ha movido: ha publicado servidores MCP para que los agentes consulten el catálogo y el carrito de sus tiendas, ha participado en el diseño de UCP con Google, se integró desde el primer día en Copilot Checkout y ofrece a sus comercios aparecer en varios asistentes desde su panel. Es su gran argumento comercial, y es real. El precio es el de siempre: estás dentro de su plataforma, con sus cuotas, sus reglas y sus integraciones, y no decides tú cuándo ni cómo entras en cada asistente.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Las redes de pago: Visa, Mastercard, PayPal y Stripe</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Que un programa pague por una persona plantea una pregunta que los bancos se toman muy en serio: ¿cómo sabe el comercio que esa compra la ha autorizado alguien de verdad? Las redes de pago llevan desde 2025 construyendo respuestas:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Visa</strong> presentó en 2025 Visa Intelligent Commerce, con credenciales tokenizadas para agentes y límites que fija el titular de la tarjeta, y después un protocolo para que los comercios distingan a un agente de confianza de un robot cualquiera.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Mastercard</strong> lanzó Agent Pay, con «tokens de agente» registrados que identifican qué agente paga y con qué permisos.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>PayPal</strong> se ha convertido en socio de casi todos: Copilot Checkout, Perplexity, Google y acuerdos con OpenAI, además de herramientas para que los comercios estén listos para agentes.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Stripe</strong> coescribió ACP con OpenAI, procesa pagos en Copilot Checkout y respalda UCP, con credenciales de pago compartidas de un solo uso para que el agente nunca vea la tarjeta.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Klarna y Affirm</strong> han entrado como opciones de financiación dentro de los pagos con agentes de Google.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>En Europa hay una capa más: la directiva de servicios de pago exige <strong>autenticación reforzada del cliente</strong> en la mayoría de pagos con tarjeta, la famosa confirmación en el móvil del banco. Un agente no puede saltársela por su cuenta. Por eso, en España, el camino realista a corto plazo no es que el agente pague solo, sino que prepare el pedido y deje al cliente un paso de pago corto y seguro: una pasarela como Redsys con tarjeta, Bizum, Google Pay o Apple Pay, o un botón de PayPal. Es exactamente lo que hace el asistente de nuestro prototipo, como contamos más abajo.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Lo que tienen en común</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Si se quitan los nombres comerciales, todos piden a las tiendas lo mismo:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Un catálogo estructurado</strong>, con identificadores (GTIN, referencia del fabricante, SKU), atributos claros, variantes bien separadas e imágenes correctas.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Precio y existencias fiables y al día</strong>, que coincidan entre la ficha, el feed y el carrito.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Condiciones legibles</strong>: gastos y plazos de envío por zona, política de devoluciones y garantía, en formato que una máquina pueda leer.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Un proceso de pago que funcione desde fuera</strong>: que un agente pueda crear un carrito y entregar al cliente un pago seguro, o pagar con credenciales delegadas donde la ley lo permita.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Velocidad y estabilidad</strong>: respuestas rápidas, sin errores y sin bloqueos innecesarios a los robots legítimos.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Ninguno de estos requisitos es nuevo. Lo nuevo es que ahora se notan mucho más cuando faltan, porque el que lee la tienda ya no perdona como perdonaba una persona con paciencia.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading" id="compra-agentica">4. Anatomía de una compra hecha por una IA</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Para entender qué necesita una tienda, lo mejor es seguir paso a paso lo que hace un asistente cuando alguien le encarga una compra. Usaremos un ejemplo sencillo: «busca una silla de oficina ergonómica, con apoyo lumbar regulable y reposabrazos ajustables, que aguante 130 kg, por menos de 450 euros con envío incluido a Madrid, que llegue antes del jueves y con al menos tres años de garantía».</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Paso 1. Entender la petición</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>El asistente convierte la frase en condiciones: tipo de producto (silla de oficina), características obligatorias (lumbar regulable, reposabrazos ajustables), un número mínimo (130 kg de carga), un precio máximo con el envío incluido, un destino (Madrid), una fecha límite (el jueves) y una garantía mínima (36 meses). Algunas condiciones son obligatorias y otras preferencias. Este paso no depende de tu tienda, pero condiciona todos los demás: cuantas más condiciones haya, más importa que tus datos sean exactos.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Paso 2. Reunir candidatos</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>El asistente no visita miles de tiendas en ese momento: consulta lo que ya tiene indexado (el Shopping Graph de Google, el índice de ChatGPT, los catálogos de sus socios) y, como mucho, visita unas pocas páginas para completar. Si tu tienda no está bien indexada, porque es lenta, porque bloquea a los robots o porque su contenido solo aparece después de ejecutar JavaScript, no entra en la lista de candidatos. Aquí se pierde la mayoría de comercios, sin que nadie se entere.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Paso 3. Comprobar atributos</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Con una lista de candidatos, el asistente comprueba cada condición. ¿Dice en algún sitio que aguanta 130 kg? ¿Es regulable el apoyo lumbar? ¿Los reposabrazos se ajustan? Si la información está en una tabla de características bien marcada, la comprobación es inmediata y segura. Si está en una imagen, en un PDF o en una frase ambigua como «muy resistente», el asistente no puede asegurarlo. Y un asistente serio, ante la duda, prefiere no recomendar a equivocarse.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Paso 4. Precio final y existencias</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Para los finalistas, el asistente necesita el precio real con impuestos y envío a Madrid, y saber si hay existencias. Aquí aparecen los problemas clásicos: un precio en la ficha distinto del feed, gastos de envío que solo se conocen en el último paso del pago, descuentos que dependen de un cupón, existencias que el feed da como disponibles y la tienda como agotadas. Cada contradicción resta confianza. En los sistemas con pago integrado, como UCP o ACP, el agente incluso crea un carrito para obtener el total exacto, y si ese total no coincide con lo anunciado, el comercio queda mal.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Paso 5. Plazo, devoluciones y garantía</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>¿Llega antes del jueves? Para responder, el asistente necesita plazos de preparación y de transporte por zona, idealmente declarados en el marcado de la ficha (Schema.org tiene campos para ello) o en Merchant Center. ¿Qué pasa si no gusta? Necesita la política de devoluciones: plazo, quién paga el envío de vuelta, condiciones. ¿Tres años de garantía? Tiene que estar escrito como dato, no deducirse. Un comercio que tiene todo esto claro y en el mismo sitio gana frente a otro que obliga a leer tres páginas legales.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Paso 6. Recomendar, y quizá comprar</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Al final, el asistente presenta dos o tres opciones con sus motivos («esta cumple todo y es la más barata; esta cuesta 30 euros más pero tiene cinco años de garantía»). Si el usuario lo autoriza y el comercio participa en un protocolo de pago, puede completar la compra. Si no, envía al usuario a la ficha del producto, idealmente con el carrito ya preparado. En los dos casos, la tienda que llega a este paso es la que ha superado los cinco anteriores con datos claros.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:table -->
+<figure class="wp-block-table"><table><thead><tr><th>Paso</th><th>Qué necesita el asistente</th><th>Dónde suele fallar una tienda</th></tr></thead><tbody><tr><td>Candidatos</td><td>Páginas rápidas e indexables</td><td>Lentitud, contenido solo con JavaScript, robots bloqueados</td></tr><tr><td>Atributos</td><td>Características como datos</td><td>Datos en imágenes, PDF o frases vagas</td></tr><tr><td>Precio y existencias</td><td>Total real y disponibilidad al día</td><td>Feed desfasado, envío oculto hasta el final</td></tr><tr><td>Plazo y devolución</td><td>Plazos por zona y política legible</td><td>Condiciones repartidas en páginas legales</td></tr><tr><td>Compra</td><td>Carrito y pago utilizables desde fuera</td><td>Proceso de pago solo pensado para un navegador</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading" id="arquitectura">5. Cómo se construye un sistema AIFEC</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Un sistema AIFEC se puede entender como seis capas apiladas. Las grandes plataformas tienen piezas de varias de ellas repartidas en plugins y aplicaciones; la diferencia de construirlo desde cero es que todas comparten el mismo modelo de datos y se diseñan juntas.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Capa 1. El catálogo como datos</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Es el corazón. Cada producto tiene identificadores (SKU interno, GTIN o código de barras cuando existe, referencia del fabricante), un tipo (físico, digital, servicio), variantes con su propio precio y existencias, y atributos tipados: no «tamaño: grande», sino anchura, altura y profundidad en centímetros; no «aguanta mucho», sino carga máxima en kilos. Los atributos se agrupan por familia de producto, de forma que una silla y una crema tengan los campos que les corresponden.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>En la misma capa viven las reglas de negocio que afectan a la decisión de compra: tarifas y plazos de envío por zona y por peso, el plazo de devolución, impuestos por país y tipo de producto, y promociones con fecha de inicio y fin; lo que no tiene campo propio, como la garantía, va como dato clave de la ficha. Todo con su valor y su unidad, para que el cálculo del total sea el mismo en la ficha, en el carrito, en el feed y en la respuesta del asistente.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Capa 2. Las salidas para máquinas</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Desde el catálogo se generan, sin pasos manuales:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Marcado JSON-LD completo</strong> en cada página: producto, oferta, variantes, envío, devoluciones, valoraciones, migas de pan, organización y preguntas frecuentes, siempre coincidente con lo que se ve en pantalla.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Feeds</strong> de producto en tres formatos (el de Google Merchant Center, uno en JSON propio y el de los programas de vendedores de OpenAI), que se rehacen unos minutos después de que cambie un precio o las existencias, no una vez al día.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Mapas del sitio</strong> con fecha real de modificación, y un archivo <code>robots.txt</code> que decide de forma consciente qué robots entran y cuáles no.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Un archivo <code>llms.txt</code></strong> con un resumen del comercio y enlaces a catálogo, políticas y documentación. No es un estándar oficial, Google ha dicho que no lo usa y su efecto es discutido, pero cuesta poco y algunos asistentes lo leen.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Una API de consulta</strong> para disponibilidad, coste de envío a un destino y detalle de producto, con su documento OpenAPI, rápida y con límites de uso.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Un servidor MCP</strong> para que cualquier asistente compatible pueda buscar en el catálogo, comprobar existencias o preparar un carrito con las herramientas que la tienda decida ofrecer.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Protocolos de las grandes empresas.</strong> Todavía no hay adaptadores para UCP ni para ACP. Cuando estén abiertos a comercios españoles, entrarán como plugins, sin tocar el núcleo, y se podrán cambiar si el protocolo cambia.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Capa 3. Las páginas para personas</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Las páginas se generan en el servidor y llegan completas en el primer HTML, con etiquetas semánticas (artículo, secciones, tablas de características, listas de definiciones) y sin depender de JavaScript para mostrar el precio o la descripción. El JavaScript se reserva para lo que de verdad lo necesita: el carrito, el buscador, el asistente. Las imágenes se guardan en varios tamaños y en WebP cuando el servidor lo permite. El resultado es una tienda pensada para cargar rápido en un móvil normal y que cualquier robot entiende sin ejecutar nada.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>El diseño no queda sacrificado. Las plantillas trabajan con componentes (cabecera, ficha, tarjeta de producto, listado) que reciben datos y los presentan con la identidad de cada marca. Cambiar de plantilla no cambia los datos ni las salidas para máquinas, porque las dos cosas están separadas.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Capa 4. La IA dentro del panel</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Donde la IA ahorra más trabajo no es en la tienda, sino en el panel de administración. Al dar de alta un producto, la IA propone la descripción y el resumen, los datos clave, las preguntas frecuentes, los títulos y descripciones para buscadores, el texto alternativo de las imágenes y las traducciones, y a partir del nombre de una ficha nueva propone su resumen y su categoría. Todo como propuesta: una persona aprueba, corrige o descarta, y el sistema guarda quién aprobó qué.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>El copiloto del panel entiende órdenes en lenguaje llano: busca ajustes y datos, prepara el cambio, enseña qué cambiará, lo aplica cuando pulsas y permite deshacerlo. Y el panel guarda las preguntas que los clientes hacen al asistente y que no supo responder. Esas son especialmente valiosas: lo que la gente pregunta y la tienda no sabe responder es exactamente lo que falta en el catálogo.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Capa 5. El buscador y el asistente de compra</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>El buscador de una tienda AIFEC entiende intenciones, no solo palabras. Parte de una búsqueda clásica por términos que entiende plurales, tolera erratas y admite los sinónimos que defina el comerciante y, si hay una IA configurada, le suma la búsqueda por significado (los productos y la consulta se convierten en vectores y se comparan por cercanía), para que «algo para que no me duela la espalda en la oficina» encuentre la silla con apoyo lumbar aunque no comparta ninguna palabra. Cuando nada encaja de verdad, lo dice, en vez de enseñar resultados que no sirven.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>El asistente de compra se apoya en ese buscador y en el catálogo. Pregunta lo que necesita saber, recomienda con motivos, comprueba existencias y precio en el momento, añade al carrito, recoge los datos de contacto y de entrega, el envío y la forma de pago, enseña un resumen del pedido y lo hace solo cuando la persona lo confirma con un botón o con un sí claro. Si el pedido pasa del límite del chat o la persona prefiere la web, le da el enlace a la caja. Tiene límites claros: solo habla de la tienda y de sus productos, no inventa precios ni plazos, no promete lo que el catálogo no dice y avisa de que es una IA. Si alguien intenta usarlo para otra cosa, lo reconduce con educación.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Capa 6. Pagos, cumplimiento y seguridad</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>El pago se conecta con varias formas a la vez: Redsys para tarjeta y Bizum, PayPal, transferencia bancaria y contra reembolso. El pedido se marca como pagado cuando el banco confirma el cobro, una sola vez aunque el aviso llegue repetido. En los pagos por internet la autenticación reforzada la hace la pasarela del banco: el asistente prepara, el cliente confirma.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>El cumplimiento no es un añadido. Las condiciones de venta, el derecho de desistimiento y la protección de datos se aplican igual en la ficha que en el chat. Las facturas salen en PDF con numeración correlativa sin huecos y, en las devoluciones, como facturas rectificativas; el derecho de desistimiento de 14 días tiene su propia página y su flujo de devolución desde el pedido, y el aviso de cookies es propio y bloquea los guiones de terceros hasta que se acepta. Y el asistente cumple las obligaciones de transparencia del Reglamento europeo de IA: quien habla con él sabe que habla con una máquina.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>La seguridad tiene un frente nuevo: un asistente que lee textos puede ser engañado por textos, lo que se llama inyección de instrucciones. Un sistema AIFEC separa lo que el asistente puede leer de lo que puede hacer: las acciones que mueven dinero o datos pasan por reglas fijas del servidor, nunca por lo que el modelo decida. Y el archivo robots.txt se gestiona por familias de robots (buscadores, asistentes con navegación, entrenamiento) para decidir a cuáles se abre la puerta.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Medir lo que pasa</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Sobre las seis capas hace falta una mirada que las mida: qué robots de IA visitan la tienda y qué páginas leen, cuántas visitas y ventas llegan desde asistentes, qué preguntas recibe el asistente propio y cuáles no sabe responder, qué fichas tienen datos incompletos (la auditoría AIFEC puntúa el sitio y cada producto y dice dónde se arregla). Sin esas cifras, cualquier conversación sobre IA y comercio se queda en opiniones.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading" id="comparativa">6. AIFEC frente a Shopify, WooCommerce y PrestaShop</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Trabajamos a diario con WooCommerce y PrestaShop, y conocemos bien Shopify. Las tres son plataformas serias que mueven millones de tiendas, y sería injusto despacharlas como antiguallas. Lo que sí es cierto es que nacieron con otra prioridad, y que adaptarlas a lo que piden los asistentes exige un trabajo considerable.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Shopify</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Es hoy la plataforma mejor conectada con los asistentes: ha diseñado UCP con Google, participa en Copilot Checkout, ofrece servidores MCP y permite a sus comercios aparecer en varios asistentes desde el panel. Si lo único que buscas es estar en esos canales pronto y sin técnica, es una opción muy razonable. A cambio, pagas cuotas mensuales y comisiones si no usas su pasarela, dependes de aplicaciones de terceros para muchas funciones, tus datos viven en su plataforma y tu presencia en los asistentes depende de los acuerdos que Shopify firme, no de los tuyos.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">WordPress con WooCommerce</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Es imbatible como gestor de contenidos y muy flexible, con miles de plugins y una comunidad enorme. Su problema para el comercio con IA está en el diseño: los productos se guardan como entradas y sus datos en una tabla genérica de metadatos, y cada función moderna (datos estructurados, feeds, caché, buscador, campos de producto) suele llegar de un plugin distinto que lee los datos a su manera. En nuestra propia tienda llegamos a tener más de cincuenta plugins activos, varias plantillas instaladas y restos de herramientas que ya nadie usaba. Se puede hacer muy bien, pero exige mucho cuidado para que todas las piezas digan lo mismo.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">PrestaShop</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Nació como software de tienda y tiene un modelo de datos de comercio mucho más sólido: combinaciones, características, transportistas, impuestos por zona. Es una base excelente para un catálogo bien estructurado, y por eso desarrollamos módulos para llevarlo hacia lo que piden los asistentes: buscador semántico, asistente de compra que cobra en el chat, marcado completo. Su punto débil es el mantenimiento: actualizar entre versiones mayores, mantener la velocidad y convivir con módulos de terceros exige conocimiento técnico.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Un sistema AIFEC construido desde cero</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Su ventaja es la coherencia: un único modelo de datos, salidas para máquinas generadas desde el principio, páginas ligeras, IA integrada en el panel y en la tienda, y libertad para conectarse a cualquier protocolo sin pedir permiso. Sus inconvenientes también hay que decirlos: es nuevo, tiene menos integraciones listas que plataformas con quince años de ecosistema, y migrar una tienda existente exige revisar el resultado: AIFEC trae una importación completa desde PrestaShop y WooCommerce, pero años de datos sucios no se arreglan solos (bien hecha, la migración es también la ocasión de limpiarlos).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:table -->
+<figure class="wp-block-table"><table><thead><tr><th>Aspecto</th><th>Shopify</th><th>WooCommerce</th><th>PrestaShop</th><th>AIFEC</th></tr></thead><tbody><tr><td>Modelo de datos</td><td>Bueno, cerrado</td><td>Genérico</td><td>Sólido</td><td>Tipado desde el origen</td></tr><tr><td>Conexión con asistentes</td><td>La más avanzada</td><td>Con plugins</td><td>Con módulos</td><td>Nativa y propia</td></tr><tr><td>Velocidad de serie</td><td>Buena</td><td>Variable</td><td>Variable</td><td>Alta</td></tr><tr><td>Control y datos</td><td>Del proveedor</td><td>Tuyos</td><td>Tuyos</td><td>Tuyos</td></tr><tr><td>Coste recurrente</td><td>Cuota y apps</td><td>Plugins y servidor</td><td>Módulos y servidor</td><td>Servidor</td></tr><tr><td>Ecosistema</td><td>Enorme</td><td>Enorme</td><td>Grande</td><td>Pequeño, nuevo</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:paragraph -->
+<p>No hay una respuesta única. Para una tienda que empieza y quiere estar en los asistentes cuanto antes sin tocar código, Shopify tiene sentido. Para una tienda con un PrestaShop o un WooCommerce sanos, lo más rentable suele ser mejorar sus datos y añadir las piezas que faltan. Un sistema AIFEC desde cero tiene sentido cuando la plataforma actual se ha convertido en un lastre, cuando el catálogo es complejo y los datos importan mucho, o cuando se quiere controlar de punta a punta cómo entra la tienda en el comercio con IA.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading" id="pendiente">7. Lo que todavía no está resuelto</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Sería deshonesto presentar el comercio con IA como un camino despejado. Estos son los problemas abiertos que cualquier comercio debería tener en cuenta antes de invertir:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>El volumen todavía es pequeño.</strong> Las compras completadas dentro de un asistente son aún una fracción mínima del comercio electrónico. Lo que sí es grande, y crece, es la investigación previa: mucha gente decide en el asistente y compra después en la web.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Los protocolos están en movimiento.</strong> ACP cambió de enfoque en seis meses; UCP se amplía cada pocas semanas; los programas para vendedores cambian de requisitos. Apostar todo a uno es arriesgado.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Casi todo empieza en Estados Unidos.</strong> En España, a día de hoy, el pago dentro de los asistentes no está abierto a los comercios. Lo que sí cuenta ya es la visibilidad en sus respuestas.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>La autenticación reforzada en Europa.</strong> Los pagos sin intervención del cliente chocan con la normativa europea. Las soluciones con tokens y mandatos avanzan, pero de momento el cliente sigue confirmando.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Los asistentes se equivocan.</strong> Pueden atribuirte un precio viejo, una característica que no tienes o una política que no es la tuya. Cuanto más claros sean tus datos, menos ocurre, pero no desaparece.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>La relación con el cliente.</strong> Si el asistente hace de intermediario, el comercio corre el riesgo de convertirse en un proveedor anónimo. Los anuncios serios mantienen al comercio como vendedor y dueño de la relación, pero hay que vigilarlo.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>El coste de los robots.</strong> Abrir la puerta a los robots de IA tiene un coste en servidor, y no todos aportan lo mismo. Hay que decidir con datos a quién se deja entrar.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Nada de esto es un motivo para esperar sin hacer nada. Es un motivo para invertir primero en lo que sirve pase lo que pase (datos, velocidad, condiciones claras, un pago propio que funcione bien) y dejar los protocolos concretos como piezas que se enchufan cuando estén maduras.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading" id="prepararse">8. Cómo preparar tu tienda desde hoy</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Esta lista vale para cualquier tienda, sea WooCommerce, PrestaShop, Shopify o un sistema propio. Está ordenada de lo más rentable a lo más avanzado:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Revisa quién entra en tu tienda.</strong> Mira el registro de visitas del servidor y comprueba qué robots de IA te visitan. Revisa también el <code>robots.txt</code> y las reglas del servidor: es frecuente bloquear sin querer a robots que interesan, o dejar pasar a otros que solo consumen recursos.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Haz que el contenido llegue sin JavaScript.</strong> Abre una ficha con el JavaScript desactivado: si no ves el nombre, el precio, la disponibilidad y la descripción, un robot tampoco los ve con seguridad.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Completa los identificadores.</strong> GTIN o código de barras cuando exista, referencia del fabricante y marca. Son la forma más rápida de que un asistente sepa que tu producto es el mismo que busca.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Convierte frases en atributos.</strong> Medidas, materiales, compatibilidades, cargas, capacidades, tallas: como características con su valor y su unidad, no dentro de un párrafo.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Haz coincidir precios y existencias.</strong> Comprueba que la ficha, el feed de Merchant Center y el carrito dicen lo mismo, y que el feed se actualiza cuando algo cambia.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Declara envíos y devoluciones.</strong> Plazos y costes por zona en Merchant Center y en el marcado de la ficha; política de devoluciones clara y enlazada.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Completa el marcado estructurado.</strong> Producto, oferta, variantes, envío, devoluciones, organización y preguntas frecuentes, y comprueba que coincide con lo que se ve en pantalla.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Mide la velocidad del servidor.</strong> Lo que tarda en responder la primera petición importa tanto a los robots como a las personas. Una caché bien configurada y menos plugins suelen dar más que cualquier truco.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Escribe preguntas frecuentes reales.</strong> Las que de verdad hacen tus clientes por correo, teléfono o redes, respondidas con datos. Son oro para los asistentes.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Ofrece pagos rápidos.</strong> Bizum, Google Pay, Apple Pay y PayPal reducen el paso más frágil de la compra, venga el cliente de un asistente o de un anuncio.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Prueba un buscador que entienda intenciones.</strong> Es la forma más directa de ver qué falta en tu catálogo: lo que la gente busca y no encuentra.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Prepara la puerta para agentes.</strong> Un servidor MCP o una API sencilla de catálogo y disponibilidad, y el alta en Merchant Center y en los programas de vendedores que abran en tu país.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Los ocho primeros puntos no requieren ninguna tecnología nueva y se notan ya en el SEO de siempre. Los cuatro últimos son los que empiezan a separar una tienda preparada para el comercio con IA de una que solo está bien hecha.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Cómo saber si los asistentes ya te recomiendan</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Antes de invertir, conviene medir el punto de partida. No existe todavía un panel único que diga cuántas veces te ha recomendado cada asistente, pero con cuatro comprobaciones sencillas se obtiene una imagen bastante fiel:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Pregunta como pregunta tu cliente.</strong> Escribe en ChatGPT, Gemini, Copilot y Perplexity las preguntas reales que te hacen los clientes, sin nombrar tu tienda, y apunta si apareces, en qué posición y con qué datos. Repite la prueba cada mes con las mismas preguntas.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Mira de dónde llegan las visitas.</strong> En la analítica, revisa las visitas que llegan desde dominios de asistentes como chatgpt.com, perplexity.ai, copilot.microsoft.com o gemini.google.com. ChatGPT, por ejemplo, añade una marca de origen a los enlaces que ofrece, lo que facilita separarlas.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Cruza con el registro del servidor.</strong> Qué páginas leen los robots de búsqueda de los asistentes y con qué frecuencia. Si un robot nunca pasa por tus fichas de producto, el asistente difícilmente las conocerá.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Revisa Merchant Center y Search Console.</strong> Los avisos de productos rechazados, de precios que no coinciden o de datos que faltan son exactamente los problemas que también penalizan en los asistentes. Y el tráfico de los resultados con IA de Google se recoge en los mismos informes de Search Console que el resto.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Con esas cuatro fuentes se puede trazar una línea de partida y repetir la medida tras cada mejora. Si después de completar atributos, ajustar el feed y acelerar las fichas empiezas a aparecer en respuestas en las que antes no salías, ya sabes qué funciona en tu caso concreto. Y si no cambia nada, también es un dato: quizá el problema esté en el precio, en el plazo de entrega o en la competencia, y no en la tecnología.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Un consejo práctico: guarda las preguntas de prueba y las respuestas de cada mes en una hoja de cálculo, con la fecha y el asistente. Las respuestas de los modelos varían de un día a otro y de una cuenta a otra, así que una sola prueba no demuestra nada; la tendencia de varios meses, sí.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading" id="prototipo">9. AIFEC en marcha: el prototipo de ai.gmartos.es</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>No queríamos escribir sobre AIFEC sin haberlo probado. Por eso montamos un prototipo sobre nuestro propio catálogo de módulos y servicios, en <a href="https://ai.gmartos.es/">ai.gmartos.es</a>, en nuestro propio servidor y sin depender de ninguna plataforma externa. Lo que hace hoy:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Buscador por significado.</strong> Cada producto se convierte en vectores con un modelo de lenguaje que funciona en nuestro servidor, y la búsqueda combina significado y palabras. Si preguntas «quiero que no entren bots en mi formulario», encuentra el módulo adecuado aunque no uses su nombre. Y si nada encaja, lo dice en vez de enseñar resultados de relleno.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Explicación de cada resultado.</strong> La IA dice por qué un producto encaja con lo que has pedido, y cuando el resultado no lo resuelve del todo, propone otras búsquedas.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Asistente que vende en la conversación.</strong> Pregunta lo que necesita, recomienda, añade al carrito, recoge nombre, dirección, código postal y NIF, y ofrece el pago sin pasar por el proceso de compra clásico.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Pago real con Redsys.</strong> Tarjeta, Bizum, Google Pay y Apple Pay, con el pedido creado solo cuando el banco confirma el cobro, y una sola vez aunque el aviso llegue repetido.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Límites claros.</strong> El asistente solo habla de la tienda: si alguien le pregunta por la llegada a la Luna, lo reconduce con educación. No inventa precios, porque los lee del catálogo en cada respuesta.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>El prototipo nos ha enseñado cosas que no salen en los artículos. Que el mayor salto de calidad del buscador no vino de cambiar de modelo, sino de describir mejor los productos. Que un asistente necesita reglas fijas para todo lo que toca dinero, porque un modelo de lenguaje es estupendo conversando y poco fiable sumando. Y que los clientes que lo prueban preguntan, sobre todo, por lo que más les cuesta hoy: que una tienda pequeña venda por la noche, sin nadie atendiendo, con la misma calidad de respuesta que de día.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Ese prototipo fue el punto de partida del sistema que describe esta página, y el sistema ya existe: con su panel de administración, sus temas y sus plugins, su importación desde PrestaShop y WooCommerce, y esta misma web funcionando sobre él. También hemos llevado las mismas ideas a PrestaShop en forma de módulos, para quien quiera dar el paso sin cambiar de plataforma.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading" id="preguntas">10. Preguntas frecuentes</h2>
+<!-- /wp:heading -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>¿AIFEC es un producto o una forma de trabajar?</summary><!-- wp:paragraph -->
+<p>Las dos cosas. Es, ante todo, una forma de construir una tienda: los datos primero, una sola verdad y salidas para personas y para máquinas desde la misma base. Sobre esa idea hay un sistema concreto, que es el que estás viendo, pero muchos de sus principios se pueden aplicar hoy en WooCommerce, PrestaShop o Shopify.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>¿Tengo que cambiar de plataforma para vender a través de los asistentes de IA?</summary><!-- wp:paragraph -->
+<p>No necesariamente. Lo primero que miran los asistentes es la calidad de tus datos, la velocidad de tu web y la claridad de tus condiciones, y eso se puede mejorar en casi cualquier plataforma. Cambiar tiene sentido cuando la plataforma actual impide hacerlo bien o cuesta demasiado mantenerla.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>¿Puede ya un cliente español comprar en mi tienda desde ChatGPT o desde Gemini?</summary><!-- wp:paragraph -->
+<p>Puede encontrar tu tienda, compararla y llegar a ella desde las respuestas de esos asistentes, y eso ya ocurre. El pago dentro del propio asistente, a día de hoy, solo está abierto a comercios de Estados Unidos y se está extendiendo a otros países. Prepararse ahora significa estar listo cuando llegue y, mientras tanto, ganar visibilidad.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>¿Debo dejar entrar a los robots de IA en mi web?</summary><!-- wp:paragraph -->
+<p>Depende de lo que te aporte cada uno. Los robots que alimentan la búsqueda de los asistentes (por ejemplo, el de búsqueda de ChatGPT) son los que pueden traerte visitas y recomendaciones. Otros se dedican a entrenar modelos y no siempre devuelven nada. Lo sensato es decidirlo uno por uno, con los datos de tu registro de visitas delante, y no bloquear en bloque por miedo ni abrir en bloque por moda.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>¿Sirve de algo el archivo llms.txt?</summary><!-- wp:paragraph -->
+<p>Es una propuesta de 2024 para resumir un sitio web para los modelos de lenguaje. No es un estándar oficial y Google ha dicho que no lo usa. Algunos asistentes y herramientas sí lo leen. Como cuesta muy poco mantenerlo, lo incluimos, pero no esperes que cambie nada por sí solo: lo que de verdad cuenta son el marcado, los feeds y la calidad de las páginas.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>¿Un asistente de compra en mi tienda puede equivocarse con un precio?</summary><!-- wp:paragraph -->
+<p>Si está bien hecho, no: el precio no lo escribe el modelo de lenguaje, lo lee del catálogo en el momento de responder, y el total del pedido lo calcula el servidor con las mismas reglas que el carrito. El modelo conversa y recomienda; las cuentas las hacen reglas fijas. Es una de las diferencias entre un asistente serio y un chat genérico pegado a la web.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>¿Qué pasa con la protección de datos cuando un cliente habla con un asistente?</summary><!-- wp:paragraph -->
+<p>Se aplica lo mismo que en cualquier otra parte de la tienda: informar, pedir solo los datos necesarios y guardarlos el tiempo justo. Un buen diseño evita enviar al proveedor del modelo datos personales que no hacen falta para responder, y deja claro en la política de privacidad qué se hace con las conversaciones.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>¿Es caro montar una tienda AIFEC?</summary><!-- wp:paragraph -->
+<p>El coste principal no es el software, sino el trabajo de ordenar los datos del catálogo, que hay que hacer igualmente para vender bien en cualquier canal. En funcionamiento, un sistema propio en un servidor propio evita cuotas por venta y licencias de plugins, aunque, como cualquier sistema, necesita mantenimiento.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>¿Qué pasa si los protocolos de Google u OpenAI cambian?</summary><!-- wp:paragraph -->
+<p>Ya ha pasado: OpenAI cambió el enfoque de su protocolo en 2026. Por eso en AIFEC los protocolos de las grandes empresas se tratan como puertas de salida y no como cimientos: hoy están la API, el servidor MCP y las herramientas WebMCP, y UCP o ACP entrarán como plugins cuando estén abiertos a comercios españoles. Si un protocolo cambia, se cambia esa pieza; el catálogo, las páginas y el pago propio siguen igual.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>¿Sirve AIFEC para cualquier tipo de tienda?</summary><!-- wp:paragraph -->
+<p>Los principios, sí: productos físicos, digitales o servicios. Donde más se nota es en catálogos con muchas características que comparar (tecnología, mobiliario, recambios, droguería, cosmética) y en tiendas que reciben muchas preguntas antes de la compra. En una tienda con diez productos muy sencillos, la ganancia está más en la velocidad y en el pago que en el catálogo.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading" id="glosario">11. Glosario</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>AIFEC (AI-First E-Commerce):</strong> forma de construir una tienda en la que un catálogo de datos estructurados es la única fuente de verdad, de la que salen las páginas, el marcado, los feeds, el asistente y las conexiones con agentes.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Agente de IA:</strong> programa basado en un modelo de lenguaje que no solo responde, sino que actúa: busca, compara, rellena formularios o compra con permiso del usuario.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>GEO (Generative Engine Optimization):</strong> trabajo para que una tienda aparezca y sea citada en las respuestas de los asistentes de IA.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>UCP (Universal Commerce Protocol):</strong> protocolo abierto presentado por Google en enero de 2026 para que los agentes descubran productos, construyan carritos y paguen en comercios.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>ACP (Agentic Commerce Protocol):</strong> especificación abierta de OpenAI y Stripe de 2025 para el comercio desde asistentes, reorientada en 2026 hacia el descubrimiento de productos.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>AP2 (Agent Payments Protocol):</strong> protocolo de Google de 2025 para pagos hechos por agentes con mandatos firmados que prueban qué autorizó el usuario.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>MCP (Model Context Protocol):</strong> estándar abierto, creado por Anthropic y hoy en una fundación neutral, para conectar modelos de IA con herramientas y datos externos.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>A2A (Agent2Agent):</strong> protocolo para que agentes de distintas empresas se comuniquen entre sí.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>JSON-LD y Schema.org:</strong> formato y vocabulario con los que una página describe de forma estructurada sus productos, ofertas, envíos o devoluciones para buscadores y asistentes.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Feed de productos:</strong> fichero con todo el catálogo en formato estructurado que se entrega a Google Merchant Center u otros canales.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>llms.txt:</strong> archivo de texto propuesto en 2024 para resumir un sitio web para modelos de lenguaje; no es un estándar oficial.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Vendedor de cara a la ley (merchant of record):</strong> quien vende legalmente, factura y responde del pedido. En las integraciones serias con asistentes, sigue siendo el comercio.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Autenticación reforzada (SCA):</strong> obligación europea de confirmar la mayoría de pagos con tarjeta con un segundo factor, normalmente en la aplicación del banco.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Búsqueda semántica o vectorial:</strong> búsqueda que compara significados en lugar de palabras exactas, convirtiendo textos en vectores numéricos.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Inyección de instrucciones:</strong> intento de engañar a un asistente escondiendo órdenes dentro de un texto que va a leer.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading" id="predicciones">12. Qué predicen cuatro IA para 2026–2030</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>En noviembre de 2026 hicimos la misma pregunta a Grok, ChatGPT, Gemini y Claude: ¿será un negocio relevante la tienda que esté más preparada para agentes de IA que para clientes humanos? Las cuatro contestan que sí, y las cuatro ponen la misma condición: no sustituye a la tienda para personas, se añade a ella.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:table -->
+<figure class="wp-block-table"><table><thead><tr><th>IA</th><th>Su respuesta</th><th>Cómo ve 2029–2030</th></tr></thead><tbody><tr><td>Grok</td><td>Sí. No sustituyen a las tiendas de siempre, pero se llevan una parte creciente y rentable: la compra repetitiva y objetiva.</td><td>El agente es un canal más y, en B2B, oficina y reposición, el principal.</td></tr><tr><td>ChatGPT</td><td>Sí, pero dando prioridad a la tienda que atiende a la vez a personas y agentes. La tienda solo para agentes es la apuesta más arriesgada.</td><td>Conviven la compra humana y la delegada. Muy alta en 11 de los 28 sectores que valora.</td></tr><tr><td>Gemini</td><td>Sí, con el mercado partido en dos: lo que es un trámite lo compran los agentes; lo que es una experiencia sigue siendo de personas.</td><td>Una parte sustancial de las ventas ocurre sin que nadie vea la ficha. Las tiendas solo para agentes son rentables en producto de alta rotación.</td></tr><tr><td>Claude</td><td>Sí, pero como negocio de nicho. En el resto del comercio gana quien añade una capa para agentes a la misma tienda.</td><td>Entre el 10 y el 15 % de los pedidos online en EE. UU. y entre el 5 y el 10 % en Europa los completa un agente.</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:paragraph -->
+<p>Coinciden en el orden: primero la compra repetitiva y que se puede describir con datos (suministros entre empresas, oficina, componentes, ferretería, recambios, droguería y mascotas), y mucho después la moda de tendencia, el lujo, la decoración y el regalo, donde el agente recomienda y la persona decide. Y coinciden en lo que hace falta: catálogo estructurado, precio, existencias y plazo fiables, condiciones legibles, no bloquear a los agentes legítimos y una caja que el agente pueda completar con la persona confirmando.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Son predicciones, no datos medidos. Las tablas completas de las cuatro, por plazo y por tipo de tienda, están en <a href="/predicciones">Predicciones: comercio con agentes 2026–2030</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading" id="conclusion">El comercio electrónico del futuro se construye hoy</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Los asistentes de IA no van a sustituir mañana a las tiendas online, pero ya están cambiando quién las lee primero y cómo se decide una compra. Google, OpenAI, Microsoft, Amazon y las redes de pago están construyendo sus propias puertas de entrada, y algunas cambian de forma cada pocos meses. Lo que no cambia es lo que todas piden: datos claros, precios fiables, condiciones legibles, páginas rápidas y un pago que funcione.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Esa es la apuesta de AIFEC: construir la tienda sobre esa base desde el principio, con la IA trabajando dentro y las puertas abiertas a los agentes de fuera, sin dejar de ser una tienda bonita, rápida y propia para las personas que compran en ella.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Hace quince años, las tiendas que tardaron en adaptarse al móvil perdieron clientes sin entender muy bien por qué: la web seguía allí, pero cada vez menos gente la usaba. Con la IA puede pasar algo parecido, con una diferencia: esta vez el cambio no se ve en la pantalla del comercio, sino en una conversación a la que el comercio no asiste. Por eso merece la pena prepararse con calma, con datos y sin promesas exageradas, pero empezar ya. Lo que se haga hoy por el catálogo, la velocidad y las condiciones de venta rinde desde el primer día, llegue antes o después el comercio completo con agentes.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Si quieres ver cómo funciona, <a href="/demos">abre una de las demos</a> o compra algo en esta misma tienda. Y si quieres preparar tu tienda, sea WooCommerce, PrestaShop o un proyecto nuevo, <a href="https://gmartos.es/contacta/">cuéntanos qué tienes y qué necesitas</a>: te diremos con datos por dónde empezar.</p>
+<!-- /wp:paragraph -->

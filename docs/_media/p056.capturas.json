@@ -1,0 +1,21 @@
+[
+  {"nombre": "empezar-entrar", "ruta": "/admin/login", "panel": false, "movil": false},
+  {"nombre": "empezar-ajustes-identidad", "ruta": "/admin/settings/core", "panel": true, "movil": false},
+  {"nombre": "empezar-equipo-listado", "ruta": "/admin/r/users", "panel": true, "movil": false},
+  {"nombre": "empezar-inicio-avisos", "ruta": "/admin", "panel": true, "movil": false},
+  {"nombre": "tienda-productos-listado", "ruta": "/admin/r/products", "panel": true, "movil": false},
+  {"nombre": "tienda-producto-precio", "ruta": "/admin/r/products/6", "panel": true, "movil": false, "acciones": [["click", "[data-af-tab=\"pdprice\"]"], ["wait", 300]]},
+  {"nombre": "tienda-variantes", "ruta": "/admin/catalog/products/1/variants", "panel": true, "movil": false},
+  {"nombre": "tienda-categorias", "ruta": "/admin/r/categories", "panel": true, "movil": false},
+  {"nombre": "tienda-existencias-y-precios", "ruta": "/admin/catalog/stock", "panel": true, "movil": false},
+  {"nombre": "tienda-pedidos-listado", "ruta": "/admin/orders", "panel": true, "movil": false},
+  {"nombre": "tienda-clientes-listado", "ruta": "/admin/r/customers", "panel": true, "movil": false},
+  {"nombre": "tienda-envios-zonas", "ruta": "/admin/shipping/zones", "panel": true, "movil": false},
+  {"nombre": "tienda-impuestos-tipos", "ruta": "/admin/r/tax_rates", "panel": true, "movil": false},
+  {"nombre": "tienda-cupon-formulario", "ruta": "/admin/r/coupons/new", "panel": true, "movil": false},
+  {"nombre": "tienda-pagos-redsys", "ruta": "/admin/settings/payments-redsys", "panel": true, "movil": false},
+  {"nombre": "tienda-correo-modo", "ruta": "/admin/settings/mail", "panel": true, "movil": false},
+  {"nombre": "tienda-valoraciones-listado", "ruta": "/admin/reviews", "panel": true, "movil": false},
+  {"nombre": "tienda-facturas-listado", "ruta": "/admin/invoices", "panel": true, "movil": false},
+  {"nombre": "tienda-csv-productos", "ruta": "/admin/tools/csv", "panel": true, "movil": false}
+]

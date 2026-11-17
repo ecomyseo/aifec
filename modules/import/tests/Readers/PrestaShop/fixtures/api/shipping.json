@@ -1,0 +1,280 @@
+{
+    "carriers": [
+        {
+            "id": "1",
+            "id_carrier": "1",
+            "id_reference": "1",
+            "name": "Mensajería 24 h",
+            "url": "",
+            "active": "1",
+            "deleted": "1",
+            "shipping_handling": "0",
+            "range_behavior": "0",
+            "is_module": "0",
+            "is_free": "0",
+            "shipping_external": "",
+            "need_range": "1",
+            "external_module_name": "",
+            "shipping_method": "1",
+            "position": "0",
+            "max_width": "",
+            "max_height": "",
+            "max_depth": "",
+            "max_weight": "15.000000",
+            "grade": "",
+            "id_tax_rules_group": "0",
+            "delay": []
+        },
+        {
+            "id": "2",
+            "id_carrier": "2",
+            "id_reference": "2",
+            "name": "Recogida en taller",
+            "url": "",
+            "active": "1",
+            "deleted": "0",
+            "shipping_handling": "0",
+            "range_behavior": "0",
+            "is_module": "0",
+            "is_free": "1",
+            "shipping_external": "",
+            "need_range": "1",
+            "external_module_name": "",
+            "shipping_method": "3",
+            "position": "1",
+            "max_width": "",
+            "max_height": "",
+            "max_depth": "",
+            "max_weight": "0",
+            "grade": "",
+            "id_tax_rules_group": "0",
+            "delay": [
+                {
+                    "id": "1",
+                    "value": "Recógelo cuando quieras"
+                }
+            ]
+        },
+        {
+            "id": "3",
+            "id_carrier": "3",
+            "id_reference": "1",
+            "name": "Mensajería 24 h",
+            "url": "https://envios.test/seguir/@",
+            "active": "1",
+            "deleted": "0",
+            "shipping_handling": "1",
+            "range_behavior": "0",
+            "is_module": "0",
+            "is_free": "0",
+            "shipping_external": "",
+            "need_range": "1",
+            "external_module_name": "",
+            "shipping_method": "1",
+            "position": "0",
+            "max_width": "",
+            "max_height": "",
+            "max_depth": "",
+            "max_weight": "20.000000",
+            "grade": "",
+            "id_tax_rules_group": "1",
+            "delay": [
+                {
+                    "id": "1",
+                    "value": "Entrega en 24-48 horas"
+                },
+                {
+                    "id": "2",
+                    "value": "Delivery in 24-48 hours"
+                }
+            ]
+        },
+        {
+            "id": "4",
+            "id_carrier": "4",
+            "id_reference": "4",
+            "name": "Transporte apagado",
+            "url": "",
+            "active": "0",
+            "deleted": "0",
+            "shipping_handling": "0",
+            "range_behavior": "0",
+            "is_module": "0",
+            "is_free": "0",
+            "shipping_external": "",
+            "need_range": "1",
+            "external_module_name": "",
+            "shipping_method": "1",
+            "position": "0",
+            "max_width": "",
+            "max_height": "",
+            "max_depth": "",
+            "max_weight": "0",
+            "grade": "",
+            "id_tax_rules_group": "0",
+            "delay": []
+        }
+    ],
+    "deliveries": [
+        {
+            "id": "1",
+            "id_delivery": "1",
+            "id_shop": "",
+            "id_shop_group": "",
+            "id_carrier": "3",
+            "id_range_price": "0",
+            "id_range_weight": "1",
+            "id_zone": "1",
+            "price": "9.900000"
+        },
+        {
+            "id": "2",
+            "id_delivery": "2",
+            "id_shop": "",
+            "id_shop_group": "",
+            "id_carrier": "3",
+            "id_range_price": "0",
+            "id_range_weight": "2",
+            "id_zone": "1",
+            "price": "12.900000"
+        },
+        {
+            "id": "3",
+            "id_delivery": "3",
+            "id_shop": "",
+            "id_shop_group": "",
+            "id_carrier": "3",
+            "id_range_price": "0",
+            "id_range_weight": "3",
+            "id_zone": "1",
+            "price": "18.000000"
+        },
+        {
+            "id": "4",
+            "id_delivery": "4",
+            "id_shop": "",
+            "id_shop_group": "",
+            "id_carrier": "3",
+            "id_range_price": "0",
+            "id_range_weight": "1",
+            "id_zone": "2",
+            "price": "5.900000"
+        },
+        {
+            "id": "5",
+            "id_delivery": "5",
+            "id_shop": "",
+            "id_shop_group": "",
+            "id_carrier": "3",
+            "id_range_price": "0",
+            "id_range_weight": "2",
+            "id_zone": "2",
+            "price": "7.900000"
+        },
+        {
+            "id": "6",
+            "id_delivery": "6",
+            "id_shop": "",
+            "id_shop_group": "",
+            "id_carrier": "3",
+            "id_range_price": "0",
+            "id_range_weight": "3",
+            "id_zone": "2",
+            "price": "11.500000"
+        },
+        {
+            "id": "7",
+            "id_delivery": "7",
+            "id_shop": "",
+            "id_shop_group": "",
+            "id_carrier": "3",
+            "id_range_price": "0",
+            "id_range_weight": "1",
+            "id_zone": "3",
+            "price": "12.500000"
+        },
+        {
+            "id": "8",
+            "id_delivery": "8",
+            "id_shop": "",
+            "id_shop_group": "",
+            "id_carrier": "3",
+            "id_range_price": "0",
+            "id_range_weight": "2",
+            "id_zone": "3",
+            "price": "15.000000"
+        },
+        {
+            "id": "9",
+            "id_delivery": "9",
+            "id_shop": "",
+            "id_shop_group": "",
+            "id_carrier": "3",
+            "id_range_price": "0",
+            "id_range_weight": "3",
+            "id_zone": "3",
+            "price": "22.000000"
+        },
+        {
+            "id": "10",
+            "id_delivery": "10",
+            "id_shop": "",
+            "id_shop_group": "",
+            "id_carrier": "1",
+            "id_range_price": "0",
+            "id_range_weight": "4",
+            "id_zone": "2",
+            "price": "6.000000"
+        },
+        {
+            "id": "11",
+            "id_delivery": "11",
+            "id_shop": "",
+            "id_shop_group": "",
+            "id_carrier": "2",
+            "id_range_price": "1",
+            "id_range_weight": "0",
+            "id_zone": "2",
+            "price": "0.000000"
+        }
+    ],
+    "price_ranges": [
+        {
+            "id": "1",
+            "id_range_price": "1",
+            "id_carrier": "2",
+            "delimiter1": "0.000000",
+            "delimiter2": "1000.000000"
+        }
+    ],
+    "weight_ranges": [
+        {
+            "id": "1",
+            "id_range_weight": "1",
+            "id_carrier": "3",
+            "delimiter1": "0.000000",
+            "delimiter2": "5.000000"
+        },
+        {
+            "id": "2",
+            "id_range_weight": "2",
+            "id_carrier": "3",
+            "delimiter1": "5.000000",
+            "delimiter2": "10.000000"
+        },
+        {
+            "id": "3",
+            "id_range_weight": "3",
+            "id_carrier": "3",
+            "delimiter1": "10.000000",
+            "delimiter2": "20.000000"
+        },
+        {
+            "id": "4",
+            "id_range_weight": "4",
+            "id_carrier": "1",
+            "delimiter1": "0.000000",
+            "delimiter2": "15.000000"
+        }
+    ]
+}

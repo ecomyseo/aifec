@@ -1,0 +1,12 @@
+[
+    {
+        "code": "main",
+        "name": "Menú principal",
+        "items": [
+            {"type": "home", "label": "Inicio"},
+            {"type": "category", "ref": "sillas", "label": "Sillas"},
+            {"type": "category", "ref": "mesas", "label": "Mesas"},
+            {"type": "page", "ref": "sobre-esta-demo", "label": "Sobre la demo"}
+        ]
+    }
+]

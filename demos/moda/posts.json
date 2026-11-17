@@ -1,0 +1,422 @@
+[
+    {
+        "code": "como-elegir-tu-talla",
+        "title": "Cómo elegir tu talla sin equivocarte",
+        "date": "2026-10-28",
+        "image": "blog-tallas.svg",
+        "excerpt": "Tres medidas, una tabla y un par de trucos para acertar con la talla la primera vez.",
+        "meta_title": "Cómo elegir tu talla sin equivocarte | Atelier Brezal",
+        "meta_description": "Mide el pecho, la cintura y la cadera, compara con las medidas de cada prenda y ten en cuenta cómo cede el tejido.",
+        "blocks": [
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Elegir talla por internet da pereza porque cada marca corta a su manera. La buena noticia es que acertar es más fácil si se hace siempre igual: medirte una vez, comparar con las medidas de la prenda y pensar en cómo se comporta el tejido."
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Mide antes de comprar"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Con una cinta métrica de costura y sin ropa gruesa, anota tres medidas. Basta con hacerlo una vez y guardar los números."
+                }
+            },
+            {
+                "type": "list",
+                "attrs": {
+                    "ordered": false,
+                    "items": [
+                        {
+                            "html": "<strong>Pecho:</strong> alrededor de la parte más ancha, con la cinta horizontal y sin apretar."
+                        },
+                        {
+                            "html": "<strong>Cintura:</strong> en la parte más estrecha del torso, normalmente sobre el ombligo."
+                        },
+                        {
+                            "html": "<strong>Cadera:</strong> alrededor de la parte más ancha, con los pies juntos."
+                        },
+                        {
+                            "html": "<strong>Largo de pierna:</strong> desde la entrepierna hasta el tobillo, para los pantalones."
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Pide a alguien que te ayude, porque medirse solo suele dar números de más. Mantén la cinta paralela al suelo, respira con normalidad y no tires de ella. Repite cada medida dos veces y quédate con la mayor."
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Compara con las medidas de la prenda"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "En cada ficha de producto hay una imagen con el ancho y el largo de la prenda, medidos en plano. Compara ese ancho con una prenda que ya te quede bien: extiéndela sobre una mesa y mide de axila a axila. Si coincide, esa es tu talla."
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "El tejido también cuenta"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Dos prendas con las mismas medidas se llevan distinto según la fibra. Estas son las reglas que usamos nosotros:"
+                }
+            },
+            {
+                "type": "list",
+                "attrs": {
+                    "ordered": false,
+                    "items": [
+                        {
+                            "html": "El <strong>lino</strong> cede un poco con el uso y se arruga: si dudas entre dos tallas, elige la menor."
+                        },
+                        {
+                            "html": "El <strong>denim</strong> cede una talla en la cintura durante las primeras semanas: elige la que ajuste, no la que sobre."
+                        },
+                        {
+                            "html": "El <strong>punto</strong> con elastano recupera la forma, así que admite una talla más ajustada."
+                        },
+                        {
+                            "html": "La <strong>lana</strong> bien tejida no se estira en exceso; si quieres llevarla sobre otra prenda, pide una talla más."
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "products",
+                "attrs": {
+                    "mode": "manual",
+                    "product_skus": [
+                        "DEMO-MODA-016",
+                        "DEMO-MODA-017",
+                        "DEMO-MODA-009",
+                        "DEMO-MODA-012"
+                    ],
+                    "columns": 4
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "El calzado, por la tarde"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "El pie se hincha a lo largo del día y a última hora es cuando más mide. Si te mides el pie por la tarde, apoyado sobre un papel, y marcas el talón y el dedo más largo, la distancia entre ambas marcas es la longitud que necesitas. Suma entre 0,5 y 1 centímetro de holgura y compara con la tabla de la ficha."
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Si estás entre dos tallas, elige la mayor en calzado de piel lisa y en zapatilla; la piel cede, pero el hueco que falta nunca se gana. En un mocasín de ante, que se adapta al pie, puede valer la menor."
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Y si aun así no acertaste, tienes 30 días para cambiarla: el primer cambio de talla es gratuito."
+                }
+            }
+        ]
+    },
+    {
+        "code": "armario-capsula-de-doce-prendas",
+        "title": "Un armario cápsula de doce prendas",
+        "date": "2026-11-04",
+        "image": "blog-capsula.svg",
+        "excerpt": "Doce piezas que se combinan entre sí y resuelven el año entero sin comprar de más.",
+        "meta_title": "Un armario cápsula de doce prendas | Atelier Brezal",
+        "meta_description": "Cómo armar un armario con pocas prendas que combinen entre sí: colores neutros, tejidos naturales y cortes sencillos.",
+        "blocks": [
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Un armario cápsula no es un armario pequeño por obligación, sino uno en el que casi todo combina con casi todo. Se consigue con una paleta corta, prendas bien hechas y la paciencia de comprar lo que de verdad vas a ponerte."
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Empieza por la paleta"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Elige tres colores base —crudo, marino y camel, por ejemplo— y uno o dos de acento: un verde oliva, un burdeos. Cuando todo comparte la misma paleta, cada prenda nueva multiplica los conjuntos posibles en lugar de añadir uno solo."
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Las doce piezas"
+                }
+            },
+            {
+                "type": "list",
+                "attrs": {
+                    "ordered": true,
+                    "items": [
+                        {
+                            "html": "Dos camisetas lisas, una blanca y otra negra o marino."
+                        },
+                        {
+                            "html": "Una camiseta de rayas marineras."
+                        },
+                        {
+                            "html": "Una camisa de popelín blanca o azul cielo."
+                        },
+                        {
+                            "html": "Un jersey de lana merino de cuello redondo."
+                        },
+                        {
+                            "html": "Un vaquero recto."
+                        },
+                        {
+                            "html": "Un pantalón de vestir o uno de lino, según el clima."
+                        },
+                        {
+                            "html": "Una falda midi o un vestido camisero."
+                        },
+                        {
+                            "html": "Una chaqueta vaquera o una americana."
+                        },
+                        {
+                            "html": "Una gabardina para la lluvia."
+                        },
+                        {
+                            "html": "Unas zapatillas blancas de piel."
+                        },
+                        {
+                            "html": "Unos botines o unos mocasines, según tu estilo."
+                        },
+                        {
+                            "html": "Un bolso grande de lona o de piel."
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Cómo combinarlas"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "La regla de las tres capas funciona casi siempre: una base ajustada (camiseta o camisa), una capa intermedia (jersey o chaqueta) y una exterior (gabardina). Si cada capa va en un tono distinto de tu paleta, el resultado se ve pensado sin esfuerzo."
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Prueba también a variar las proporciones: una prenda ancha pide otra ajustada, y una larga se equilibra con una corta. Con solo esas dos reglas, doce prendas dan para más de cuarenta conjuntos distintos, y casi ninguno exige pensar demasiado por la mañana."
+                }
+            },
+            {
+                "type": "products",
+                "attrs": {
+                    "mode": "manual",
+                    "product_skus": [
+                        "DEMO-MODA-009",
+                        "DEMO-MODA-006",
+                        "DEMO-MODA-016",
+                        "DEMO-MODA-021",
+                        "DEMO-MODA-027",
+                        "DEMO-MODA-030"
+                    ],
+                    "columns": 3
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Qué dejar fuera"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Un armario cápsula no necesita prendas de un solo uso: el vestido que solo va con unos zapatos concretos, el estampado que obliga a una única parte de arriba. Si al probártela no se te ocurren tres conjuntos distintos con lo que ya tienes, probablemente sobra. Tampoco hace falta renunciar a lo que te hace ilusión: reserva uno o dos huecos para caprichos que no tengan que combinar con nada."
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Compra mejor, no más"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Antes de añadir una prenda al carrito, comprueba que puedes combinarla con al menos tres que ya tienes. Mira la composición de la etiqueta: las fibras naturales envejecen mejor. Y lee las medidas, porque lo que no te queda bien no sale del armario, por bueno que sea."
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Con doce piezas bien elegidas, el armario se renueva solo con pequeños añadidos de temporada: una bufanda, un gorro o unas gafas de sol cambian el aspecto de todo lo demás."
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Si empiezas desde cero, no hace falta comprarlo todo de golpe. Ve sumando una prenda cada mes, la que más huecos te cubra, y revisa al cabo de una temporada qué has llevado de verdad y qué no."
+                }
+            }
+        ]
+    },
+    {
+        "code": "como-cuidar-la-lana-y-el-lino",
+        "title": "Cómo cuidar la lana y el lino para que duren",
+        "date": "2026-11-10",
+        "image": "blog-cuidados.svg",
+        "excerpt": "Lavado, secado y guardado de dos fibras que aguantan décadas si se tratan bien.",
+        "meta_title": "Cómo cuidar la lana y el lino | Atelier Brezal",
+        "meta_description": "Consejos para lavar, secar y guardar prendas de lana merino, cachemir y lino sin estropearlas.",
+        "blocks": [
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "La lana y el lino son de las fibras que más tiempo duran, pero solo si se tratan como lo que son. Casi todos los problemas —el jersey encogido, la camisa amarilleada— vienen del mismo sitio: demasiado calor, demasiado jabón y demasiada centrifugadora."
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Lana y cachemir"
+                }
+            },
+            {
+                "type": "list",
+                "attrs": {
+                    "ordered": false,
+                    "items": [
+                        {
+                            "html": "<strong>Lava lo justo.</strong> Un jersey de lana rara vez necesita lavarse más de tres o cuatro veces por temporada; ventilarlo entre usos basta."
+                        },
+                        {
+                            "html": "<strong>Agua fría y jabón suave.</strong> A 30 °C como máximo y con un champú o detergente específico para lana. Sin suavizante."
+                        },
+                        {
+                            "html": "<strong>No lo retuerzas.</strong> Presiona entre dos toallas para quitar el agua y extiéndelo en plano, sin colgarlo."
+                        },
+                        {
+                            "html": "<strong>Quita las bolitas con un peine</strong> o un cepillo de lana, nunca con la mano ni con una cuchilla."
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Lino"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "El lino es la fibra vegetal más resistente, y se vuelve más suave con cada lavado. Lávalo a 30 °C, sin lejía, y sácalo de la lavadora en cuanto acabe: si se queda amontonado, las arrugas se fijan."
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Para plancharlo, hazlo todavía húmedo y con la plancha caliente, por el revés. Si prefieres el aspecto arrugado natural, basta con colgarlo bien extendido al sol. El lino blanco o crudo no debe secarse al sol directo durante horas, porque amarillea."
+                }
+            },
+            {
+                "type": "products",
+                "attrs": {
+                    "mode": "manual",
+                    "product_skus": [
+                        "DEMO-MODA-012",
+                        "DEMO-MODA-013",
+                        "DEMO-MODA-007",
+                        "DEMO-MODA-019"
+                    ],
+                    "columns": 4
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Manchas y olores"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Actúa pronto y con poco. Ante una mancha reciente, absorbe con un paño limpio sin frotar, porque frotar mete la mancha en la fibra. Un poco de agua fría y jabón neutro bastan casi siempre, y las manchas de grasa se tratan mejor con un poco de talco, que se deja actuar unas horas antes de cepillarlo."
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Para los olores, en lugar de lavar, ventila la prenda a la sombra durante una noche. La lana y el lino se refrescan solos, y evitas un lavado que no hacía falta."
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Pequeños arreglos a tiempo"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Un botón suelto, un hilo que sobresale o un dobladillo descosido se arreglan en cinco minutos si se atienden pronto, y se convierten en un problema si se esperan. Tener a mano aguja, hilo del color de tus prendas y un par de botones de repuesto evita que una pieza buena acabe olvidada en el fondo del armario. Si el hilo del jersey se ha escapado, no lo cortes: empújalo hacia dentro con una aguja fina."
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Guardar fuera de temporada"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Antes de guardar la ropa de abrigo, lávala: las manchas invisibles atraen a las polillas. Guarda el punto doblado, nunca colgado, porque la percha lo deforma. Añade unas bolsitas de cedro o de lavanda y usa fundas de algodón transpirable en lugar de bolsas de plástico, que retienen la humedad."
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Con estos cuidados, un jersey de merino puede durar diez años o más, y una camisa de lino, mucho más de lo que dura la moda que la acompaña."
+                }
+            }
+        ]
+    }
+]

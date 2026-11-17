@@ -1,0 +1,23 @@
+/*!
+ * AIFEC — editor de menús del panel de contenidos.
+ *
+ * @author    Ecom Experts <ecomyseo@gmail.com>
+ * @copyright 2026 Ecom Experts
+ * @license   Ver LICENSE.md
+ *
+ * Solo variables del panel: nada de colores fijos, para que el tema oscuro se lea.
+ */
+.af-menu-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s2); }
+.af-menu-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2) var(--s3); padding: var(--s2) var(--s3); border: 1px solid var(--bg); border-radius: var(--radius); background: var(--surface); }
+.af-menu-row[data-level="1"] { margin-left: var(--s6); border-left: 4px solid var(--bg); }
+.af-menu-main { flex: 1 1 14rem; min-width: 0; display: flex; align-items: center; gap: var(--s2); }
+.af-menu-main strong { overflow-wrap: anywhere; }
+.af-menu-labels { flex: 2 1 16rem; display: flex; flex-wrap: wrap; gap: var(--s2); min-width: 0; }
+.af-menu-labels .af-input { flex: 1 1 10rem; min-width: 0; }
+.af-menu-tools { display: flex; gap: var(--s1); margin-left: auto; }
+.af-menu-add { display: grid; gap: var(--s3); max-width: 36rem; }
+.af-menu-add [hidden] { display: none; }
+@media (max-width: 640px) {
+  .af-menu-row[data-level="1"] { margin-left: var(--s4); }
+  .af-menu-tools { margin-left: 0; }
+}

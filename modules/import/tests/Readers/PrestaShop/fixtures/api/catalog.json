@@ -1,0 +1,2106 @@
+{
+    "attachments": [
+        {
+            "id": "1",
+            "id_attachment": "1",
+            "file": "a1b2c3d4",
+            "file_name": "manual-mesa.pdf",
+            "file_size": "20480",
+            "mime": "application/pdf",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Manual de montaje"
+                },
+                {
+                    "id": "2",
+                    "value": "Assembly manual"
+                }
+            ],
+            "description": [
+                {
+                    "id": "1",
+                    "value": ""
+                },
+                {
+                    "id": "2",
+                    "value": ""
+                }
+            ]
+        }
+    ],
+    "categories": [
+        {
+            "id": "1",
+            "id_category": "1",
+            "id_parent": "0",
+            "id_shop_default": "1",
+            "level_depth": "",
+            "nleft": "",
+            "nright": "",
+            "active": "1",
+            "date_add": "2025-01-01 09:00:00",
+            "date_upd": "2026-03-01 09:00:00",
+            "position": "0",
+            "is_root_category": "0",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Raíz"
+                },
+                {
+                    "id": "2",
+                    "value": "Root"
+                }
+            ],
+            "description": [
+                {
+                    "id": "1",
+                    "value": "<p>Raíz de calidad.</p>"
+                },
+                {
+                    "id": "2",
+                    "value": "<p>Quality Root.</p>"
+                }
+            ],
+            "link_rewrite": [
+                {
+                    "id": "1",
+                    "value": "raiz"
+                },
+                {
+                    "id": "2",
+                    "value": "root"
+                }
+            ],
+            "meta_title": [
+                {
+                    "id": "1",
+                    "value": "Raíz de madera"
+                },
+                {
+                    "id": "2",
+                    "value": "Root of wood"
+                }
+            ],
+            "meta_description": [
+                {
+                    "id": "1",
+                    "value": "Descubre Raíz"
+                },
+                {
+                    "id": "2",
+                    "value": "Discover Root"
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "id_category": "2",
+            "id_parent": "1",
+            "id_shop_default": "1",
+            "level_depth": "",
+            "nleft": "",
+            "nright": "",
+            "active": "1",
+            "date_add": "2025-01-01 09:00:00",
+            "date_upd": "2026-03-01 09:00:00",
+            "position": "0",
+            "is_root_category": "1",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Inicio"
+                },
+                {
+                    "id": "2",
+                    "value": "Home"
+                }
+            ],
+            "description": [
+                {
+                    "id": "1",
+                    "value": "<p>Inicio de calidad.</p>"
+                },
+                {
+                    "id": "2",
+                    "value": "<p>Quality Home.</p>"
+                }
+            ],
+            "link_rewrite": [
+                {
+                    "id": "1",
+                    "value": "inicio"
+                },
+                {
+                    "id": "2",
+                    "value": "home"
+                }
+            ],
+            "meta_title": [
+                {
+                    "id": "1",
+                    "value": "Inicio de madera"
+                },
+                {
+                    "id": "2",
+                    "value": "Home of wood"
+                }
+            ],
+            "meta_description": [
+                {
+                    "id": "1",
+                    "value": "Descubre Inicio"
+                },
+                {
+                    "id": "2",
+                    "value": "Discover Home"
+                }
+            ]
+        },
+        {
+            "id": "3",
+            "id_category": "3",
+            "id_parent": "2",
+            "id_shop_default": "1",
+            "level_depth": "",
+            "nleft": "",
+            "nright": "",
+            "active": "1",
+            "date_add": "2025-01-01 09:00:00",
+            "date_upd": "2026-03-01 09:00:00",
+            "position": "1",
+            "is_root_category": "0",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Muebles"
+                },
+                {
+                    "id": "2",
+                    "value": "Furniture"
+                }
+            ],
+            "description": [
+                {
+                    "id": "1",
+                    "value": "<p>Muebles de calidad.</p>"
+                },
+                {
+                    "id": "2",
+                    "value": "<p>Quality Furniture.</p>"
+                }
+            ],
+            "link_rewrite": [
+                {
+                    "id": "1",
+                    "value": "muebles"
+                },
+                {
+                    "id": "2",
+                    "value": "furniture"
+                }
+            ],
+            "meta_title": [
+                {
+                    "id": "1",
+                    "value": "Muebles de madera"
+                },
+                {
+                    "id": "2",
+                    "value": "Furniture of wood"
+                }
+            ],
+            "meta_description": [
+                {
+                    "id": "1",
+                    "value": "Descubre Muebles"
+                },
+                {
+                    "id": "2",
+                    "value": "Discover Furniture"
+                }
+            ]
+        },
+        {
+            "id": "4",
+            "id_category": "4",
+            "id_parent": "3",
+            "id_shop_default": "1",
+            "level_depth": "",
+            "nleft": "",
+            "nright": "",
+            "active": "1",
+            "date_add": "2025-01-01 09:00:00",
+            "date_upd": "2026-03-01 09:00:00",
+            "position": "1",
+            "is_root_category": "0",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Mesas"
+                },
+                {
+                    "id": "2",
+                    "value": "Tables"
+                }
+            ],
+            "description": [
+                {
+                    "id": "1",
+                    "value": "<p>Mesas de calidad.</p>"
+                },
+                {
+                    "id": "2",
+                    "value": "<p>Quality Tables.</p>"
+                }
+            ],
+            "link_rewrite": [
+                {
+                    "id": "1",
+                    "value": "mesas"
+                },
+                {
+                    "id": "2",
+                    "value": "tables"
+                }
+            ],
+            "meta_title": [
+                {
+                    "id": "1",
+                    "value": "Mesas de madera"
+                },
+                {
+                    "id": "2",
+                    "value": "Tables of wood"
+                }
+            ],
+            "meta_description": [
+                {
+                    "id": "1",
+                    "value": "Descubre Mesas"
+                },
+                {
+                    "id": "2",
+                    "value": "Discover Tables"
+                }
+            ]
+        },
+        {
+            "id": "5",
+            "id_category": "5",
+            "id_parent": "3",
+            "id_shop_default": "1",
+            "level_depth": "",
+            "nleft": "",
+            "nright": "",
+            "active": "1",
+            "date_add": "2025-01-01 09:00:00",
+            "date_upd": "2026-03-01 09:00:00",
+            "position": "2",
+            "is_root_category": "0",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Sillas"
+                },
+                {
+                    "id": "2",
+                    "value": "Chairs"
+                }
+            ],
+            "description": [
+                {
+                    "id": "1",
+                    "value": "<p>Sillas de calidad.</p>"
+                },
+                {
+                    "id": "2",
+                    "value": "<p>Quality Chairs.</p>"
+                }
+            ],
+            "link_rewrite": [
+                {
+                    "id": "1",
+                    "value": "sillas"
+                },
+                {
+                    "id": "2",
+                    "value": "chairs"
+                }
+            ],
+            "meta_title": [
+                {
+                    "id": "1",
+                    "value": "Sillas de madera"
+                },
+                {
+                    "id": "2",
+                    "value": "Chairs of wood"
+                }
+            ],
+            "meta_description": [
+                {
+                    "id": "1",
+                    "value": "Descubre Sillas"
+                },
+                {
+                    "id": "2",
+                    "value": "Discover Chairs"
+                }
+            ]
+        }
+    ],
+    "combinations": [
+        {
+            "id": "1",
+            "id_product_attribute": "1",
+            "id_product": "2",
+            "reference": "SILLA-P-ROB",
+            "supplier_reference": "",
+            "ean13": "",
+            "isbn": "",
+            "upc": "",
+            "mpn": "",
+            "wholesale_price": "0.000000",
+            "price": "0.000000",
+            "ecotax": "0",
+            "weight": "0.000000",
+            "unit_price_impact": "0",
+            "default_on": "1",
+            "minimal_quantity": "1",
+            "low_stock_threshold": "",
+            "low_stock_alert": "",
+            "available_date": "0000-00-00",
+            "associations": {
+                "product_option_values": [
+                    {
+                        "id": "1"
+                    },
+                    {
+                        "id": "3"
+                    }
+                ],
+                "images": [
+                    {
+                        "id": "3"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "2",
+            "id_product_attribute": "2",
+            "id_product": "2",
+            "reference": "SILLA-P-NOG",
+            "supplier_reference": "",
+            "ean13": "",
+            "isbn": "",
+            "upc": "",
+            "mpn": "",
+            "wholesale_price": "0.000000",
+            "price": "12.396694",
+            "ecotax": "0",
+            "weight": "0.500000",
+            "unit_price_impact": "0",
+            "default_on": "0",
+            "minimal_quantity": "1",
+            "low_stock_threshold": "",
+            "low_stock_alert": "",
+            "available_date": "0000-00-00",
+            "associations": {
+                "product_option_values": [
+                    {
+                        "id": "1"
+                    },
+                    {
+                        "id": "4"
+                    }
+                ],
+                "images": [
+                    {
+                        "id": "4"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "3",
+            "id_product_attribute": "3",
+            "id_product": "2",
+            "reference": "SILLA-G-ROB",
+            "supplier_reference": "",
+            "ean13": "",
+            "isbn": "",
+            "upc": "",
+            "mpn": "",
+            "wholesale_price": "0.000000",
+            "price": "10.000000",
+            "ecotax": "0",
+            "weight": "1.000000",
+            "unit_price_impact": "0",
+            "default_on": "0",
+            "minimal_quantity": "1",
+            "low_stock_threshold": "",
+            "low_stock_alert": "",
+            "available_date": "0000-00-00",
+            "associations": {
+                "product_option_values": [
+                    {
+                        "id": "2"
+                    },
+                    {
+                        "id": "3"
+                    }
+                ],
+                "images": [
+                    {
+                        "id": "5"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "4",
+            "id_product_attribute": "4",
+            "id_product": "2",
+            "reference": "SILLA-G-NOG",
+            "supplier_reference": "",
+            "ean13": "",
+            "isbn": "",
+            "upc": "",
+            "mpn": "",
+            "wholesale_price": "0.000000",
+            "price": "22.396694",
+            "ecotax": "0",
+            "weight": "1.500000",
+            "unit_price_impact": "0",
+            "default_on": "0",
+            "minimal_quantity": "1",
+            "low_stock_threshold": "",
+            "low_stock_alert": "",
+            "available_date": "0000-00-00",
+            "associations": {
+                "product_option_values": [
+                    {
+                        "id": "2"
+                    },
+                    {
+                        "id": "4"
+                    }
+                ],
+                "images": []
+            }
+        }
+    ],
+    "manufacturers": [
+        {
+            "id": "1",
+            "id_manufacturer": "1",
+            "name": "Nordika",
+            "date_add": "2025-01-01 09:00:00",
+            "date_upd": "2026-02-01 09:00:00",
+            "active": "1",
+            "description": [
+                {
+                    "id": "1",
+                    "value": "<p>Madera con certificado.</p>"
+                },
+                {
+                    "id": "2",
+                    "value": "<p>Certified wood.</p>"
+                }
+            ],
+            "short_description": [
+                {
+                    "id": "1",
+                    "value": "Madera certificada"
+                },
+                {
+                    "id": "2",
+                    "value": "Certified wood"
+                }
+            ],
+            "meta_title": [
+                {
+                    "id": "1",
+                    "value": "Nordika muebles"
+                },
+                {
+                    "id": "2",
+                    "value": "Nordika furniture"
+                }
+            ],
+            "meta_description": [
+                {
+                    "id": "1",
+                    "value": "Todo Nordika"
+                },
+                {
+                    "id": "2",
+                    "value": "All Nordika"
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "id_manufacturer": "2",
+            "name": "Ñandú Taller",
+            "date_add": "",
+            "date_upd": "",
+            "active": "0",
+            "description": [
+                {
+                    "id": "1",
+                    "value": ""
+                },
+                {
+                    "id": "2",
+                    "value": ""
+                }
+            ],
+            "short_description": [
+                {
+                    "id": "1",
+                    "value": ""
+                },
+                {
+                    "id": "2",
+                    "value": ""
+                }
+            ],
+            "meta_title": [
+                {
+                    "id": "1",
+                    "value": ""
+                },
+                {
+                    "id": "2",
+                    "value": ""
+                }
+            ],
+            "meta_description": [
+                {
+                    "id": "1",
+                    "value": ""
+                },
+                {
+                    "id": "2",
+                    "value": ""
+                }
+            ]
+        }
+    ],
+    "product_feature_values": [
+        {
+            "id": "1",
+            "id_feature_value": "1",
+            "id_feature": "1",
+            "custom": "0",
+            "value": [
+                {
+                    "id": "1",
+                    "value": "Madera"
+                },
+                {
+                    "id": "2",
+                    "value": "Wood"
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "id_feature_value": "2",
+            "id_feature": "1",
+            "custom": "0",
+            "value": [
+                {
+                    "id": "1",
+                    "value": "Acero"
+                },
+                {
+                    "id": "2",
+                    "value": "Steel"
+                }
+            ]
+        },
+        {
+            "id": "3",
+            "id_feature_value": "3",
+            "id_feature": "2",
+            "custom": "1",
+            "value": [
+                {
+                    "id": "1",
+                    "value": "48"
+                },
+                {
+                    "id": "2",
+                    "value": "48"
+                }
+            ]
+        }
+    ],
+    "product_features": [
+        {
+            "id": "1",
+            "id_feature": "1",
+            "position": "0",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Material"
+                },
+                {
+                    "id": "2",
+                    "value": "Material"
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "id_feature": "2",
+            "position": "1",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Altura (cm)"
+                },
+                {
+                    "id": "2",
+                    "value": "Height (cm)"
+                }
+            ]
+        }
+    ],
+    "product_option_values": [
+        {
+            "id": "1",
+            "id_attribute": "1",
+            "id_attribute_group": "1",
+            "color": "",
+            "position": "0",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Pequeña"
+                },
+                {
+                    "id": "2",
+                    "value": "Small"
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "id_attribute": "2",
+            "id_attribute_group": "1",
+            "color": "",
+            "position": "1",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Grande"
+                },
+                {
+                    "id": "2",
+                    "value": "Large"
+                }
+            ]
+        },
+        {
+            "id": "3",
+            "id_attribute": "3",
+            "id_attribute_group": "2",
+            "color": "#C19A6B",
+            "position": "0",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Roble"
+                },
+                {
+                    "id": "2",
+                    "value": "Oak"
+                }
+            ]
+        },
+        {
+            "id": "4",
+            "id_attribute": "4",
+            "id_attribute_group": "2",
+            "color": "#5C4033",
+            "position": "1",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Nogal"
+                },
+                {
+                    "id": "2",
+                    "value": "Walnut"
+                }
+            ]
+        }
+    ],
+    "product_options": [
+        {
+            "id": "1",
+            "id_attribute_group": "1",
+            "is_color_group": "0",
+            "group_type": "select",
+            "position": "0",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Tamaño"
+                },
+                {
+                    "id": "2",
+                    "value": "Size"
+                }
+            ],
+            "public_name": [
+                {
+                    "id": "1",
+                    "value": "Tamaño"
+                },
+                {
+                    "id": "2",
+                    "value": "Size"
+                }
+            ],
+            "associations": {
+                "product_option_values": [
+                    {
+                        "id": "1"
+                    },
+                    {
+                        "id": "2"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "2",
+            "id_attribute_group": "2",
+            "is_color_group": "1",
+            "group_type": "color",
+            "position": "1",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Color (interno)"
+                },
+                {
+                    "id": "2",
+                    "value": "Colour (internal)"
+                }
+            ],
+            "public_name": [
+                {
+                    "id": "1",
+                    "value": "Color"
+                },
+                {
+                    "id": "2",
+                    "value": "Colour"
+                }
+            ],
+            "associations": {
+                "product_option_values": [
+                    {
+                        "id": "3"
+                    },
+                    {
+                        "id": "4"
+                    }
+                ]
+            }
+        }
+    ],
+    "product_suppliers": [
+        {
+            "id": "1",
+            "id_product_supplier": "1",
+            "id_product": "1",
+            "id_product_attribute": "0",
+            "id_supplier": "1",
+            "product_supplier_reference": "NRD-44",
+            "product_supplier_price_te": "40.000000",
+            "id_currency": "1"
+        }
+    ],
+    "products": [
+        {
+            "id": "1",
+            "id_product": "1",
+            "id_supplier": "1",
+            "id_manufacturer": "1",
+            "id_category_default": "4",
+            "id_shop_default": "1",
+            "id_tax_rules_group": "1",
+            "on_sale": "0",
+            "online_only": "0",
+            "ean13": "8400000000017",
+            "isbn": "",
+            "upc": "",
+            "mpn": "",
+            "ecotax": "0.000000",
+            "quantity": "0",
+            "minimal_quantity": "1",
+            "low_stock_threshold": "",
+            "low_stock_alert": "",
+            "price": "82.644628",
+            "wholesale_price": "40.000000",
+            "unity": "",
+            "unit_price": "0.000000",
+            "unit_price_ratio": "0.000000",
+            "additional_shipping_cost": "",
+            "reference": "MESA-ROBLE",
+            "supplier_reference": "NRD-44",
+            "location": "",
+            "width": "40.000000",
+            "height": "48.000000",
+            "depth": "40.000000",
+            "weight": "6.500000",
+            "out_of_stock": "2",
+            "additional_delivery_times": "",
+            "quantity_discount": "",
+            "customizable": "0",
+            "uploadable_files": "0",
+            "text_fields": "0",
+            "active": "1",
+            "redirect_type": "",
+            "id_type_redirected": "0",
+            "available_for_order": "1",
+            "available_date": "0000-00-00",
+            "show_condition": "0",
+            "condition": "new",
+            "show_price": "1",
+            "indexed": "1",
+            "visibility": "both",
+            "cache_is_pack": "",
+            "cache_has_attachments": "",
+            "is_virtual": "0",
+            "cache_default_attribute": "",
+            "date_add": "2025-02-11 10:00:00",
+            "date_upd": "2026-10-01 08:00:00",
+            "advanced_stock_management": "",
+            "pack_stock_type": "",
+            "state": "",
+            "product_type": "",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Mesa auxiliar de roble"
+                },
+                {
+                    "id": "2",
+                    "value": "Oak side table"
+                }
+            ],
+            "description": [
+                {
+                    "id": "1",
+                    "value": "<p>Descripción de Mesa auxiliar de roble & más.</p>"
+                },
+                {
+                    "id": "2",
+                    "value": "<p>Description of Oak side table &amp; more.</p>"
+                }
+            ],
+            "description_short": [
+                {
+                    "id": "1",
+                    "value": "<p>Resumen 1</p>"
+                },
+                {
+                    "id": "2",
+                    "value": "<p>Summary 1</p>"
+                }
+            ],
+            "link_rewrite": [
+                {
+                    "id": "1",
+                    "value": "mesa-auxiliar-de-roble"
+                },
+                {
+                    "id": "2",
+                    "value": "oak-side-table"
+                }
+            ],
+            "meta_title": [
+                {
+                    "id": "1",
+                    "value": "Mesa auxiliar de roble | Ñandú"
+                },
+                {
+                    "id": "2",
+                    "value": "Oak side table | Nandu"
+                }
+            ],
+            "meta_description": [
+                {
+                    "id": "1",
+                    "value": "Compra Mesa auxiliar de roble"
+                },
+                {
+                    "id": "2",
+                    "value": "Buy Oak side table"
+                }
+            ],
+            "meta_keywords": [
+                {
+                    "id": "1",
+                    "value": ""
+                },
+                {
+                    "id": "2",
+                    "value": ""
+                }
+            ],
+            "id_default_image": "1",
+            "associations": {
+                "categories": [
+                    {
+                        "id": "3"
+                    },
+                    {
+                        "id": "4"
+                    }
+                ],
+                "images": [
+                    {
+                        "id": "1"
+                    },
+                    {
+                        "id": "2"
+                    }
+                ],
+                "combinations": [],
+                "product_option_values": [],
+                "product_features": [
+                    {
+                        "id": "1",
+                        "id_feature_value": "1"
+                    },
+                    {
+                        "id": "2",
+                        "id_feature_value": "3"
+                    }
+                ],
+                "tags": [
+                    {
+                        "id": "1"
+                    },
+                    {
+                        "id": "2"
+                    }
+                ],
+                "stock_availables": [
+                    {
+                        "id": "1",
+                        "id_product_attribute": "0"
+                    }
+                ],
+                "attachments": [
+                    {
+                        "id": "1"
+                    }
+                ],
+                "accessories": [
+                    {
+                        "id": "2"
+                    }
+                ],
+                "product_bundle": [
+                    {
+                        "id": "2",
+                        "id_product_attribute": "0",
+                        "quantity": "2"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "2",
+            "id_product": "2",
+            "id_supplier": "0",
+            "id_manufacturer": "0",
+            "id_category_default": "5",
+            "id_shop_default": "1",
+            "id_tax_rules_group": "1",
+            "on_sale": "0",
+            "online_only": "0",
+            "ean13": "",
+            "isbn": "",
+            "upc": "",
+            "mpn": "",
+            "ecotax": "0.000000",
+            "quantity": "0",
+            "minimal_quantity": "1",
+            "low_stock_threshold": "",
+            "low_stock_alert": "",
+            "price": "50.000000",
+            "wholesale_price": "25.000000",
+            "unity": "",
+            "unit_price": "0.000000",
+            "unit_price_ratio": "0.000000",
+            "additional_shipping_cost": "",
+            "reference": "SILLA-NORDICA",
+            "supplier_reference": "",
+            "location": "",
+            "width": "45",
+            "height": "85",
+            "depth": "50",
+            "weight": "4.000000",
+            "out_of_stock": "2",
+            "additional_delivery_times": "",
+            "quantity_discount": "",
+            "customizable": "0",
+            "uploadable_files": "0",
+            "text_fields": "0",
+            "active": "1",
+            "redirect_type": "",
+            "id_type_redirected": "0",
+            "available_for_order": "1",
+            "available_date": "0000-00-00",
+            "show_condition": "0",
+            "condition": "new",
+            "show_price": "1",
+            "indexed": "1",
+            "visibility": "both",
+            "cache_is_pack": "",
+            "cache_has_attachments": "",
+            "is_virtual": "0",
+            "cache_default_attribute": "",
+            "date_add": "2025-02-11 10:00:00",
+            "date_upd": "2026-10-01 08:00:00",
+            "advanced_stock_management": "",
+            "pack_stock_type": "",
+            "state": "",
+            "product_type": "",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Silla nórdica"
+                },
+                {
+                    "id": "2",
+                    "value": "Nordic chair"
+                }
+            ],
+            "description": [
+                {
+                    "id": "1",
+                    "value": "<p>Descripción de Silla nórdica & más.</p>"
+                },
+                {
+                    "id": "2",
+                    "value": "<p>Description of Nordic chair &amp; more.</p>"
+                }
+            ],
+            "description_short": [
+                {
+                    "id": "1",
+                    "value": "<p>Resumen 2</p>"
+                },
+                {
+                    "id": "2",
+                    "value": "<p>Summary 2</p>"
+                }
+            ],
+            "link_rewrite": [
+                {
+                    "id": "1",
+                    "value": "silla-nordica"
+                },
+                {
+                    "id": "2",
+                    "value": "nordic-chair"
+                }
+            ],
+            "meta_title": [
+                {
+                    "id": "1",
+                    "value": "Silla nórdica | Ñandú"
+                },
+                {
+                    "id": "2",
+                    "value": "Nordic chair | Nandu"
+                }
+            ],
+            "meta_description": [
+                {
+                    "id": "1",
+                    "value": "Compra Silla nórdica"
+                },
+                {
+                    "id": "2",
+                    "value": "Buy Nordic chair"
+                }
+            ],
+            "meta_keywords": [
+                {
+                    "id": "1",
+                    "value": ""
+                },
+                {
+                    "id": "2",
+                    "value": ""
+                }
+            ],
+            "id_default_image": "3",
+            "associations": {
+                "categories": [
+                    {
+                        "id": "3"
+                    },
+                    {
+                        "id": "5"
+                    }
+                ],
+                "images": [
+                    {
+                        "id": "3"
+                    },
+                    {
+                        "id": "4"
+                    },
+                    {
+                        "id": "5"
+                    }
+                ],
+                "combinations": [
+                    {
+                        "id": "1"
+                    },
+                    {
+                        "id": "2"
+                    },
+                    {
+                        "id": "3"
+                    },
+                    {
+                        "id": "4"
+                    }
+                ],
+                "product_option_values": [
+                    {
+                        "id": "1"
+                    },
+                    {
+                        "id": "3"
+                    },
+                    {
+                        "id": "4"
+                    },
+                    {
+                        "id": "2"
+                    }
+                ],
+                "product_features": [
+                    {
+                        "id": "1",
+                        "id_feature_value": "2"
+                    }
+                ],
+                "tags": [],
+                "stock_availables": [
+                    {
+                        "id": "2",
+                        "id_product_attribute": "0"
+                    },
+                    {
+                        "id": "7",
+                        "id_product_attribute": "1"
+                    },
+                    {
+                        "id": "8",
+                        "id_product_attribute": "2"
+                    },
+                    {
+                        "id": "9",
+                        "id_product_attribute": "3"
+                    },
+                    {
+                        "id": "10",
+                        "id_product_attribute": "4"
+                    }
+                ],
+                "attachments": [],
+                "accessories": [],
+                "product_bundle": []
+            }
+        },
+        {
+            "id": "3",
+            "id_product": "3",
+            "id_supplier": "0",
+            "id_manufacturer": "0",
+            "id_category_default": "3",
+            "id_shop_default": "1",
+            "id_tax_rules_group": "2",
+            "on_sale": "0",
+            "online_only": "0",
+            "ean13": "",
+            "isbn": "",
+            "upc": "",
+            "mpn": "",
+            "ecotax": "0.000000",
+            "quantity": "0",
+            "minimal_quantity": "1",
+            "low_stock_threshold": "",
+            "low_stock_alert": "",
+            "price": "9.917355",
+            "wholesale_price": "0.000000",
+            "unity": "",
+            "unit_price": "0.000000",
+            "unit_price_ratio": "0.000000",
+            "additional_shipping_cost": "",
+            "reference": "GUIA-PDF",
+            "supplier_reference": "",
+            "location": "",
+            "width": "0",
+            "height": "0",
+            "depth": "0",
+            "weight": "0",
+            "out_of_stock": "0",
+            "additional_delivery_times": "",
+            "quantity_discount": "",
+            "customizable": "0",
+            "uploadable_files": "0",
+            "text_fields": "0",
+            "active": "1",
+            "redirect_type": "",
+            "id_type_redirected": "0",
+            "available_for_order": "1",
+            "available_date": "0000-00-00",
+            "show_condition": "0",
+            "condition": "new",
+            "show_price": "1",
+            "indexed": "1",
+            "visibility": "both",
+            "cache_is_pack": "",
+            "cache_has_attachments": "",
+            "is_virtual": "1",
+            "cache_default_attribute": "",
+            "date_add": "2025-02-11 10:00:00",
+            "date_upd": "2026-10-01 08:00:00",
+            "advanced_stock_management": "",
+            "pack_stock_type": "",
+            "state": "",
+            "product_type": "",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Guía de cuidado (PDF)"
+                },
+                {
+                    "id": "2",
+                    "value": "Care guide (PDF)"
+                }
+            ],
+            "description": [
+                {
+                    "id": "1",
+                    "value": "<p>Descripción de Guía de cuidado (PDF) & más.</p>"
+                },
+                {
+                    "id": "2",
+                    "value": "<p>Description of Care guide (PDF) &amp; more.</p>"
+                }
+            ],
+            "description_short": [
+                {
+                    "id": "1",
+                    "value": "<p>Resumen 3</p>"
+                },
+                {
+                    "id": "2",
+                    "value": "<p>Summary 3</p>"
+                }
+            ],
+            "link_rewrite": [
+                {
+                    "id": "1",
+                    "value": "guia-de-cuidado"
+                },
+                {
+                    "id": "2",
+                    "value": "care-guide"
+                }
+            ],
+            "meta_title": [
+                {
+                    "id": "1",
+                    "value": "Guía de cuidado (PDF) | Ñandú"
+                },
+                {
+                    "id": "2",
+                    "value": "Care guide (PDF) | Nandu"
+                }
+            ],
+            "meta_description": [
+                {
+                    "id": "1",
+                    "value": "Compra Guía de cuidado (PDF)"
+                },
+                {
+                    "id": "2",
+                    "value": "Buy Care guide (PDF)"
+                }
+            ],
+            "meta_keywords": [
+                {
+                    "id": "1",
+                    "value": ""
+                },
+                {
+                    "id": "2",
+                    "value": ""
+                }
+            ],
+            "id_default_image": "6",
+            "associations": {
+                "categories": [
+                    {
+                        "id": "3"
+                    }
+                ],
+                "images": [
+                    {
+                        "id": "6"
+                    }
+                ],
+                "combinations": [],
+                "product_option_values": [],
+                "product_features": [],
+                "tags": [],
+                "stock_availables": [
+                    {
+                        "id": "3",
+                        "id_product_attribute": "0"
+                    }
+                ],
+                "attachments": [],
+                "accessories": [],
+                "product_bundle": []
+            }
+        },
+        {
+            "id": "4",
+            "id_product": "4",
+            "id_supplier": "0",
+            "id_manufacturer": "0",
+            "id_category_default": "5",
+            "id_shop_default": "1",
+            "id_tax_rules_group": "1",
+            "on_sale": "1",
+            "online_only": "0",
+            "ean13": "",
+            "isbn": "",
+            "upc": "",
+            "mpn": "",
+            "ecotax": "1.500000",
+            "quantity": "0",
+            "minimal_quantity": "1",
+            "low_stock_threshold": "",
+            "low_stock_alert": "",
+            "price": "120.000000",
+            "wholesale_price": "0.000000",
+            "unity": "ud",
+            "unit_price": "0.000000",
+            "unit_price_ratio": "2.000000",
+            "additional_shipping_cost": "",
+            "reference": "SILLON-4",
+            "supplier_reference": "",
+            "location": "",
+            "width": "0",
+            "height": "0",
+            "depth": "0",
+            "weight": "12.000000",
+            "out_of_stock": "2",
+            "additional_delivery_times": "",
+            "quantity_discount": "",
+            "customizable": "0",
+            "uploadable_files": "0",
+            "text_fields": "0",
+            "active": "1",
+            "redirect_type": "",
+            "id_type_redirected": "0",
+            "available_for_order": "1",
+            "available_date": "0000-00-00",
+            "show_condition": "0",
+            "condition": "refurbished",
+            "show_price": "1",
+            "indexed": "1",
+            "visibility": "both",
+            "cache_is_pack": "",
+            "cache_has_attachments": "",
+            "is_virtual": "0",
+            "cache_default_attribute": "",
+            "date_add": "2025-02-11 10:00:00",
+            "date_upd": "2026-10-01 08:00:00",
+            "advanced_stock_management": "",
+            "pack_stock_type": "",
+            "state": "",
+            "product_type": "",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Sillón \"Cuatro\""
+                },
+                {
+                    "id": "2",
+                    "value": "Armchair Four"
+                }
+            ],
+            "description": [
+                {
+                    "id": "1",
+                    "value": "<p>Descripción de Sillón \"Cuatro\" & más.</p>"
+                },
+                {
+                    "id": "2",
+                    "value": "<p>Description of Armchair Four &amp; more.</p>"
+                }
+            ],
+            "description_short": [
+                {
+                    "id": "1",
+                    "value": "<p>Resumen 4</p>"
+                },
+                {
+                    "id": "2",
+                    "value": "<p>Summary 4</p>"
+                }
+            ],
+            "link_rewrite": [
+                {
+                    "id": "1",
+                    "value": "sillon-cuatro"
+                },
+                {
+                    "id": "2",
+                    "value": "armchair-four"
+                }
+            ],
+            "meta_title": [
+                {
+                    "id": "1",
+                    "value": "Sillón \"Cuatro\" | Ñandú"
+                },
+                {
+                    "id": "2",
+                    "value": "Armchair Four | Nandu"
+                }
+            ],
+            "meta_description": [
+                {
+                    "id": "1",
+                    "value": "Compra Sillón \"Cuatro\""
+                },
+                {
+                    "id": "2",
+                    "value": "Buy Armchair Four"
+                }
+            ],
+            "meta_keywords": [
+                {
+                    "id": "1",
+                    "value": ""
+                },
+                {
+                    "id": "2",
+                    "value": ""
+                }
+            ],
+            "id_default_image": "7",
+            "associations": {
+                "categories": [
+                    {
+                        "id": "5"
+                    }
+                ],
+                "images": [
+                    {
+                        "id": "7"
+                    }
+                ],
+                "combinations": [],
+                "product_option_values": [],
+                "product_features": [],
+                "tags": [],
+                "stock_availables": [
+                    {
+                        "id": "4",
+                        "id_product_attribute": "0"
+                    }
+                ],
+                "attachments": [],
+                "accessories": [],
+                "product_bundle": []
+            }
+        },
+        {
+            "id": "5",
+            "id_product": "5",
+            "id_supplier": "0",
+            "id_manufacturer": "0",
+            "id_category_default": "4",
+            "id_shop_default": "1",
+            "id_tax_rules_group": "1",
+            "on_sale": "0",
+            "online_only": "0",
+            "ean13": "",
+            "isbn": "",
+            "upc": "",
+            "mpn": "",
+            "ecotax": "0.000000",
+            "quantity": "0",
+            "minimal_quantity": "1",
+            "low_stock_threshold": "",
+            "low_stock_alert": "",
+            "price": "30.000000",
+            "wholesale_price": "0.000000",
+            "unity": "",
+            "unit_price": "0.000000",
+            "unit_price_ratio": "0.000000",
+            "additional_shipping_cost": "",
+            "reference": "MANTEL-5",
+            "supplier_reference": "",
+            "location": "",
+            "width": "0",
+            "height": "0",
+            "depth": "0",
+            "weight": "0",
+            "out_of_stock": "1",
+            "additional_delivery_times": "",
+            "quantity_discount": "",
+            "customizable": "1",
+            "uploadable_files": "0",
+            "text_fields": "2",
+            "active": "1",
+            "redirect_type": "",
+            "id_type_redirected": "0",
+            "available_for_order": "1",
+            "available_date": "2026-12-01",
+            "show_condition": "0",
+            "condition": "new",
+            "show_price": "1",
+            "indexed": "1",
+            "visibility": "both",
+            "cache_is_pack": "",
+            "cache_has_attachments": "",
+            "is_virtual": "0",
+            "cache_default_attribute": "",
+            "date_add": "2025-02-11 10:00:00",
+            "date_upd": "2026-10-01 08:00:00",
+            "advanced_stock_management": "",
+            "pack_stock_type": "",
+            "state": "",
+            "product_type": "",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Mantel de lino"
+                },
+                {
+                    "id": "2",
+                    "value": "Linen tablecloth"
+                }
+            ],
+            "description": [
+                {
+                    "id": "1",
+                    "value": "<p>Descripción de Mantel de lino & más.</p>"
+                },
+                {
+                    "id": "2",
+                    "value": "<p>Description of Linen tablecloth &amp; more.</p>"
+                }
+            ],
+            "description_short": [
+                {
+                    "id": "1",
+                    "value": "<p>Resumen 5</p>"
+                },
+                {
+                    "id": "2",
+                    "value": "<p>Summary 5</p>"
+                }
+            ],
+            "link_rewrite": [
+                {
+                    "id": "1",
+                    "value": "mantel-de-lino"
+                },
+                {
+                    "id": "2",
+                    "value": "linen-tablecloth"
+                }
+            ],
+            "meta_title": [
+                {
+                    "id": "1",
+                    "value": "Mantel de lino | Ñandú"
+                },
+                {
+                    "id": "2",
+                    "value": "Linen tablecloth | Nandu"
+                }
+            ],
+            "meta_description": [
+                {
+                    "id": "1",
+                    "value": "Compra Mantel de lino"
+                },
+                {
+                    "id": "2",
+                    "value": "Buy Linen tablecloth"
+                }
+            ],
+            "meta_keywords": [
+                {
+                    "id": "1",
+                    "value": ""
+                },
+                {
+                    "id": "2",
+                    "value": ""
+                }
+            ],
+            "id_default_image": "",
+            "associations": {
+                "categories": [
+                    {
+                        "id": "4"
+                    }
+                ],
+                "images": [],
+                "combinations": [],
+                "product_option_values": [],
+                "product_features": [],
+                "tags": [],
+                "stock_availables": [
+                    {
+                        "id": "5",
+                        "id_product_attribute": "0"
+                    }
+                ],
+                "attachments": [],
+                "accessories": [],
+                "product_bundle": []
+            }
+        },
+        {
+            "id": "6",
+            "id_product": "6",
+            "id_supplier": "0",
+            "id_manufacturer": "0",
+            "id_category_default": "3",
+            "id_shop_default": "1",
+            "id_tax_rules_group": "1",
+            "on_sale": "0",
+            "online_only": "0",
+            "ean13": "",
+            "isbn": "",
+            "upc": "",
+            "mpn": "",
+            "ecotax": "0.000000",
+            "quantity": "0",
+            "minimal_quantity": "1",
+            "low_stock_threshold": "",
+            "low_stock_alert": "",
+            "price": "10.000000",
+            "wholesale_price": "0.000000",
+            "unity": "",
+            "unit_price": "0.000000",
+            "unit_price_ratio": "0.000000",
+            "additional_shipping_cost": "",
+            "reference": "VIEJO-6",
+            "supplier_reference": "",
+            "location": "",
+            "width": "0",
+            "height": "0",
+            "depth": "0",
+            "weight": "0",
+            "out_of_stock": "2",
+            "additional_delivery_times": "",
+            "quantity_discount": "",
+            "customizable": "0",
+            "uploadable_files": "0",
+            "text_fields": "0",
+            "active": "0",
+            "redirect_type": "301-product",
+            "id_type_redirected": "1",
+            "available_for_order": "0",
+            "available_date": "0000-00-00",
+            "show_condition": "0",
+            "condition": "new",
+            "show_price": "0",
+            "indexed": "1",
+            "visibility": "none",
+            "cache_is_pack": "",
+            "cache_has_attachments": "",
+            "is_virtual": "0",
+            "cache_default_attribute": "",
+            "date_add": "2025-02-11 10:00:00",
+            "date_upd": "2026-10-01 08:00:00",
+            "advanced_stock_management": "",
+            "pack_stock_type": "",
+            "state": "",
+            "product_type": "",
+            "name": [
+                {
+                    "id": "1",
+                    "value": "Producto retirado"
+                },
+                {
+                    "id": "2",
+                    "value": "Withdrawn product"
+                }
+            ],
+            "description": [
+                {
+                    "id": "1",
+                    "value": "<p>Descripción de Producto retirado & más.</p>"
+                },
+                {
+                    "id": "2",
+                    "value": "<p>Description of Withdrawn product &amp; more.</p>"
+                }
+            ],
+            "description_short": [
+                {
+                    "id": "1",
+                    "value": "<p>Resumen 6</p>"
+                },
+                {
+                    "id": "2",
+                    "value": "<p>Summary 6</p>"
+                }
+            ],
+            "link_rewrite": [
+                {
+                    "id": "1",
+                    "value": "producto-retirado"
+                },
+                {
+                    "id": "2",
+                    "value": "withdrawn-product"
+                }
+            ],
+            "meta_title": [
+                {
+                    "id": "1",
+                    "value": "Producto retirado | Ñandú"
+                },
+                {
+                    "id": "2",
+                    "value": "Withdrawn product | Nandu"
+                }
+            ],
+            "meta_description": [
+                {
+                    "id": "1",
+                    "value": "Compra Producto retirado"
+                },
+                {
+                    "id": "2",
+                    "value": "Buy Withdrawn product"
+                }
+            ],
+            "meta_keywords": [
+                {
+                    "id": "1",
+                    "value": ""
+                },
+                {
+                    "id": "2",
+                    "value": ""
+                }
+            ],
+            "id_default_image": "",
+            "associations": {
+                "categories": [
+                    {
+                        "id": "3"
+                    }
+                ],
+                "images": [],
+                "combinations": [],
+                "product_option_values": [],
+                "product_features": [],
+                "tags": [],
+                "stock_availables": [
+                    {
+                        "id": "6",
+                        "id_product_attribute": "0"
+                    }
+                ],
+                "attachments": [],
+                "accessories": [],
+                "product_bundle": []
+            }
+        }
+    ],
+    "specific_prices": [
+        {
+            "id": "1",
+            "id_specific_price": "1",
+            "id_specific_price_rule": "0",
+            "id_cart": "0",
+            "id_product": "4",
+            "id_shop": "0",
+            "id_shop_group": "0",
+            "id_currency": "0",
+            "id_country": "0",
+            "id_group": "0",
+            "id_customer": "0",
+            "id_product_attribute": "0",
+            "price": "-1.000000",
+            "from_quantity": "1",
+            "reduction": "0.200000",
+            "reduction_tax": "1",
+            "reduction_type": "percentage",
+            "from": "2026-01-01 00:00:00",
+            "to": "0000-00-00 00:00:00"
+        },
+        {
+            "id": "2",
+            "id_specific_price": "2",
+            "id_specific_price_rule": "0",
+            "id_cart": "0",
+            "id_product": "4",
+            "id_shop": "0",
+            "id_shop_group": "0",
+            "id_currency": "0",
+            "id_country": "0",
+            "id_group": "4",
+            "id_customer": "0",
+            "id_product_attribute": "0",
+            "price": "-1.000000",
+            "from_quantity": "1",
+            "reduction": "0.300000",
+            "reduction_tax": "1",
+            "reduction_type": "percentage",
+            "from": "0000-00-00 00:00:00",
+            "to": "0000-00-00 00:00:00"
+        },
+        {
+            "id": "3",
+            "id_specific_price": "3",
+            "id_specific_price_rule": "0",
+            "id_cart": "0",
+            "id_product": "4",
+            "id_shop": "0",
+            "id_shop_group": "0",
+            "id_currency": "0",
+            "id_country": "0",
+            "id_group": "0",
+            "id_customer": "0",
+            "id_product_attribute": "0",
+            "price": "-1.000000",
+            "from_quantity": "1",
+            "reduction": "5.000000",
+            "reduction_tax": "0",
+            "reduction_type": "amount",
+            "from": "0000-00-00 00:00:00",
+            "to": "2025-12-31 23:59:59"
+        },
+        {
+            "id": "4",
+            "id_specific_price": "4",
+            "id_specific_price_rule": "0",
+            "id_cart": "0",
+            "id_product": "5",
+            "id_shop": "0",
+            "id_shop_group": "0",
+            "id_currency": "0",
+            "id_country": "0",
+            "id_group": "0",
+            "id_customer": "0",
+            "id_product_attribute": "0",
+            "price": "-1.000000",
+            "from_quantity": "5",
+            "reduction": "0.050000",
+            "reduction_tax": "1",
+            "reduction_type": "percentage",
+            "from": "0000-00-00 00:00:00",
+            "to": "0000-00-00 00:00:00"
+        }
+    ],
+    "stock_availables": [
+        {
+            "id": "1",
+            "id_stock_available": "1",
+            "id_product": "1",
+            "id_product_attribute": "0",
+            "id_shop": "1",
+            "id_shop_group": "0",
+            "quantity": "14",
+            "physical_quantity": "",
+            "reserved_quantity": "",
+            "depends_on_stock": "",
+            "out_of_stock": "2",
+            "location": ""
+        },
+        {
+            "id": "2",
+            "id_stock_available": "2",
+            "id_product": "2",
+            "id_product_attribute": "0",
+            "id_shop": "1",
+            "id_shop_group": "0",
+            "quantity": "25",
+            "physical_quantity": "",
+            "reserved_quantity": "",
+            "depends_on_stock": "",
+            "out_of_stock": "2",
+            "location": ""
+        },
+        {
+            "id": "3",
+            "id_stock_available": "3",
+            "id_product": "3",
+            "id_product_attribute": "0",
+            "id_shop": "1",
+            "id_shop_group": "0",
+            "quantity": "999",
+            "physical_quantity": "",
+            "reserved_quantity": "",
+            "depends_on_stock": "",
+            "out_of_stock": "0",
+            "location": ""
+        },
+        {
+            "id": "4",
+            "id_stock_available": "4",
+            "id_product": "4",
+            "id_product_attribute": "0",
+            "id_shop": "1",
+            "id_shop_group": "0",
+            "quantity": "6",
+            "physical_quantity": "",
+            "reserved_quantity": "",
+            "depends_on_stock": "",
+            "out_of_stock": "2",
+            "location": ""
+        },
+        {
+            "id": "5",
+            "id_stock_available": "5",
+            "id_product": "5",
+            "id_product_attribute": "0",
+            "id_shop": "1",
+            "id_shop_group": "0",
+            "quantity": "0",
+            "physical_quantity": "",
+            "reserved_quantity": "",
+            "depends_on_stock": "",
+            "out_of_stock": "1",
+            "location": ""
+        },
+        {
+            "id": "6",
+            "id_stock_available": "6",
+            "id_product": "6",
+            "id_product_attribute": "0",
+            "id_shop": "1",
+            "id_shop_group": "0",
+            "quantity": "2",
+            "physical_quantity": "",
+            "reserved_quantity": "",
+            "depends_on_stock": "",
+            "out_of_stock": "2",
+            "location": ""
+        },
+        {
+            "id": "7",
+            "id_stock_available": "7",
+            "id_product": "2",
+            "id_product_attribute": "1",
+            "id_shop": "1",
+            "id_shop_group": "0",
+            "quantity": "10",
+            "physical_quantity": "",
+            "reserved_quantity": "",
+            "depends_on_stock": "",
+            "out_of_stock": "2",
+            "location": ""
+        },
+        {
+            "id": "8",
+            "id_stock_available": "8",
+            "id_product": "2",
+            "id_product_attribute": "2",
+            "id_shop": "1",
+            "id_shop_group": "0",
+            "quantity": "5",
+            "physical_quantity": "",
+            "reserved_quantity": "",
+            "depends_on_stock": "",
+            "out_of_stock": "2",
+            "location": ""
+        },
+        {
+            "id": "9",
+            "id_stock_available": "9",
+            "id_product": "2",
+            "id_product_attribute": "3",
+            "id_shop": "1",
+            "id_shop_group": "0",
+            "quantity": "7",
+            "physical_quantity": "",
+            "reserved_quantity": "",
+            "depends_on_stock": "",
+            "out_of_stock": "2",
+            "location": ""
+        },
+        {
+            "id": "10",
+            "id_stock_available": "10",
+            "id_product": "2",
+            "id_product_attribute": "4",
+            "id_shop": "1",
+            "id_shop_group": "0",
+            "quantity": "3",
+            "physical_quantity": "",
+            "reserved_quantity": "",
+            "depends_on_stock": "",
+            "out_of_stock": "2",
+            "location": ""
+        },
+        {
+            "id": "20",
+            "id_stock_available": "20",
+            "id_product": "1",
+            "id_product_attribute": "0",
+            "id_shop": "2",
+            "id_shop_group": "0",
+            "quantity": "3",
+            "physical_quantity": "",
+            "reserved_quantity": "",
+            "depends_on_stock": "",
+            "out_of_stock": "2",
+            "location": ""
+        }
+    ],
+    "tags": [
+        {
+            "id": "1",
+            "id_tag": "1",
+            "id_lang": "1",
+            "name": "roble"
+        },
+        {
+            "id": "2",
+            "id_tag": "2",
+            "id_lang": "2",
+            "name": "oak"
+        }
+    ]
+}

@@ -1,0 +1,48 @@
+{
+    "name": "AIFEC",
+    "version": "1.0.0",
+    "description": "The theme of the AIFEC website: a white page with deep green ink and one green accent, a dark green band for the headline, large editorial serif headlines with one italic keyword, hairlines instead of cards, a sober header with a «See demos» button and a footer with the six principles in one line.",
+    "parent": "base",
+    "css": "replace",
+    "menus": {"main": "Main menu", "footer": "Footer", "legal": "Legal links"},
+    "image_sizes": {"thumb": [160, 160], "card": [480, 360], "large": [1200, 900]},
+    "font_stacks": {
+        "system": "system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+        "serif": "'Iowan Old Style', 'Palatino Linotype', Georgia, serif",
+        "mono": "ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace"
+    },
+    "settings": {
+        "colors": {"label": "Colours", "fields": {
+            "bg": {"type": "color", "label": "Page background", "default": "#ffffff", "var": "--bg"},
+            "surface": {"type": "color", "label": "Cards and panels", "default": "#f3f8f5", "var": "--surface"},
+            "ink": {"type": "color", "label": "Text", "default": "#0d3b2a", "var": "--ink"},
+            "muted": {"type": "color", "label": "Secondary text", "default": "#4a5f55", "var": "--muted"},
+            "line": {"type": "color", "label": "Borders", "default": "#d5e0d9", "var": "--line"},
+            "accent": {"type": "color", "label": "Accent colour", "default": "#0b7a43", "var": "--accent"},
+            "accent_ink": {"type": "color", "label": "Text on the accent colour", "default": "#ffffff", "var": "--accent-ink"},
+            "sand": {"type": "color", "label": "Sand (rules and details)", "default": "#b9cbbf", "var": "--sand"},
+            "sale": {"type": "color", "label": "Offers", "default": "#b3261e", "var": "--sale"},
+            "ok": {"type": "color", "label": "Success", "default": "#0b7a43", "var": "--ok"},
+            "warn": {"type": "color", "label": "Warning", "default": "#7a5200", "var": "--warn"},
+            "bad": {"type": "color", "label": "Error", "default": "#b3261e", "var": "--bad"}
+        }},
+        "typography": {"label": "Typography", "fields": {
+            "font": {"type": "font", "label": "Body font", "default": "system", "var": "--font", "options": {"system": "System", "serif": "Serif", "mono": "Monospace"}},
+            "font_head": {"type": "font", "label": "Headings font", "default": "serif", "var": "--font-head", "options": {"system": "System", "serif": "Serif", "mono": "Monospace"}},
+            "font_size": {"type": "number", "label": "Base text size", "default": 16, "min": 14, "max": 20, "unit": "px", "var": "--font-size"}
+        }},
+        "layout": {"label": "Layout", "fields": {
+            "radius": {"type": "number", "label": "Corner radius", "default": 4, "min": 0, "max": 24, "unit": "px", "var": "--radius"},
+            "container": {"type": "number", "label": "Page width", "default": 1180, "min": 960, "max": 1600, "unit": "px", "var": "--container"}
+        }},
+        "structure": {"label": "Structure", "fields": {
+            "header_style": {"type": "select", "label": "Header", "options": {"bar": "Name on the left, menu beside it", "centered": "Name centred, menu below"}, "default": "bar"},
+            "header_cta": {"type": "toggle", "label": "Show the header button", "default": 1},
+            "header_cta_text": {"type": "text", "label": "Header button text", "default": ""},
+            "header_cta_link": {"type": "text", "label": "Header button link (empty: the demos page)", "default": ""},
+            "shop_links": {"type": "toggle", "label": "Always show the shop search and cart (a site with products shows them anyway)", "default": 0},
+            "footer_style": {"type": "select", "label": "Footer", "options": {"columns": "With columns", "compact": "Compact"}, "default": "columns"},
+            "footer_principles": {"type": "toggle", "label": "Show the six principles in the footer", "default": 1}
+        }}
+    }
+}

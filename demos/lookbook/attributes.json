@@ -1,0 +1,123 @@
+[
+    {
+        "code": "talla",
+        "name": "Talla",
+        "type": "select",
+        "filterable": true,
+        "variant": true,
+        "values": [
+            {
+                "code": "34",
+                "label": "34"
+            },
+            {
+                "code": "36",
+                "label": "36"
+            },
+            {
+                "code": "38",
+                "label": "38"
+            },
+            {
+                "code": "40",
+                "label": "40"
+            },
+            {
+                "code": "42",
+                "label": "42"
+            },
+            {
+                "code": "44",
+                "label": "44"
+            },
+            {
+                "code": "46",
+                "label": "46"
+            },
+            {
+                "code": "48",
+                "label": "48"
+            },
+            {
+                "code": "50",
+                "label": "50"
+            },
+            {
+                "code": "52",
+                "label": "52"
+            },
+            {
+                "code": "54",
+                "label": "54"
+            }
+        ]
+    },
+    {
+        "code": "color",
+        "name": "Color",
+        "type": "select",
+        "filterable": true,
+        "variant": true,
+        "values": [
+            {
+                "code": "camel",
+                "label": "Camel",
+                "color": "#b88a58"
+            },
+            {
+                "code": "marino",
+                "label": "Azul marino",
+                "color": "#1f2a44"
+            },
+            {
+                "code": "burdeos",
+                "label": "Burdeos",
+                "color": "#6e2f3a"
+            }
+        ]
+    },
+    {
+        "code": "material",
+        "name": "Material",
+        "type": "select",
+        "filterable": true,
+        "values": [
+            {
+                "code": "pano-de-lana",
+                "label": "Paño de lana"
+            },
+            {
+                "code": "lana-y-cachemir",
+                "label": "Lana y cachemir"
+            },
+            {
+                "code": "sarga",
+                "label": "Sarga"
+            },
+            {
+                "code": "lana-fria",
+                "label": "Lana fría"
+            },
+            {
+                "code": "piel",
+                "label": "Piel"
+            }
+        ]
+    },
+    {
+        "code": "temporada",
+        "name": "Temporada",
+        "type": "select",
+        "filterable": true,
+        "values": [
+            {
+                "code": "otono-invierno",
+                "label": "Otoño-invierno"
+            },
+            {
+                "code": "todo-el-ano",
+                "label": "Todo el año"
+            }
+        ]
+    }
+]

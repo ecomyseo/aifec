@@ -1,0 +1,1 @@
+{"name":"Invoices","version":"1.0.0","description":"PDF invoices and credit notes with gapless numbering","essential":false,"default":true,"requires":{"modules":["orders"]},"contract":{"hosts":[],"personal_data":["name","address","vat_id"],"tables":["invoices"],"capabilities":[]}}

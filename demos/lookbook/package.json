@@ -1,0 +1,72 @@
+{
+    "name": "Sarga & Tilo (demostración de moda de temporada)",
+    "description": "Tienda de moda de temporada compuesta como una revista, con 16 productos inventados (chaquetas, pantalones y bolsos), tallas y colores como variantes, envíos por peso y cupones de ejemplo. Usa el tema «lookbook».",
+    "sector": "moda",
+    "locale": "es",
+    "theme": "lookbook",
+    "theme_options": {
+        "season_show": 1,
+        "season_text": "Nueva colección otoño-invierno · Envío gratis desde 120 €",
+        "season_place": "above",
+        "header_style": "centered",
+        "opening_first": 1,
+        "opening_kicker": "Nueva colección",
+        "opening_text_1": "Paño de lana camel, corte a la cintura y botones de pasta.",
+        "opening_text_2": "Pierna ancha, tiro alto y raya marcada, en azul marino.",
+        "listing_rhythm": "sequence",
+        "card_ratio": "portrait",
+        "card_second": 1,
+        "show_brand_in_card": 0,
+        "gallery_layout": "pairs",
+        "buy_sticky": 1,
+        "home_text": "Pocas piezas, bien hechas, para llevarlas muchos otoños."
+    },
+    "store": {
+        "name": "Sarga & Tilo",
+        "email": "tienda@sargaytilo.test",
+        "address": "Calle de Ejemplo 8 (dirección de ejemplo)",
+        "legal_name": "Sarga y Tilo, S. L. (ejemplo)",
+        "currency": "EUR",
+        "currency_symbol": "€",
+        "country": "ES",
+        "prices_include_tax": true,
+        "display_with_tax": true
+    },
+    "settings": {
+        "catalog.per_page": 12,
+        "cms.demo_legal_pages": true
+    },
+    "modules": [
+        "catalog",
+        "cms",
+        "media",
+        "orders",
+        "search",
+        "seo",
+        "shipping",
+        "tax",
+        "themes",
+        "coupons",
+        "customers",
+        "reviews",
+        "ai",
+        "assistant",
+        "copilot",
+        "semantic",
+        "api",
+        "mcp",
+        "webmcp",
+        "consent",
+        "returns"
+    ],
+    "files": [
+        "categories.json",
+        "attributes.json",
+        "products.json",
+        "pages.json",
+        "menus.json",
+        "carriers.json",
+        "coupons.json",
+        "reviews.json"
+    ]
+}

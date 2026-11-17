@@ -1,0 +1,490 @@
+[
+    {
+        "code": "inicio",
+        "title": "Inicio",
+        "home": true,
+        "meta_title": "Sarga & Tilo: la colección de otoño-invierno",
+        "meta_description": "Tienda de demostración de moda de temporada: una chaqueta corta camel, un pantalón ancho azul marino y un bolso de piel burdeos. Todos los datos son inventados.",
+        "blocks": [
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 1,
+                    "html": "La colección de otoño-invierno"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Una chaqueta corta de paño camel, un pantalón ancho azul marino y un bolso de piel burdeos, cada uno en varios patrones y tamaños para que encuentres el tuyo."
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "<em>Esta es una tienda de demostración: los productos, los precios y las opiniones son de ejemplo.</em>"
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Por qué comprar aquí"
+                }
+            },
+            {
+                "type": "columns",
+                "children": [
+                    {
+                        "type": "column",
+                        "children": [
+                            {
+                                "type": "heading",
+                                "attrs": {
+                                    "level": 3,
+                                    "html": "Envío en 2 a 4 días"
+                                }
+                            },
+                            {
+                                "type": "paragraph",
+                                "attrs": {
+                                    "html": "Gratis a partir de 120 € en la Península. Recogida en tienda sin coste."
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "column",
+                        "children": [
+                            {
+                                "type": "heading",
+                                "attrs": {
+                                    "level": 3,
+                                    "html": "Devolución en 30 días"
+                                }
+                            },
+                            {
+                                "type": "paragraph",
+                                "attrs": {
+                                    "html": "Si no te queda bien, la cambias o la devuelves sin dar explicaciones."
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "column",
+                        "children": [
+                            {
+                                "type": "heading",
+                                "attrs": {
+                                    "level": 3,
+                                    "html": "Un patrón para cada medida"
+                                }
+                            },
+                            {
+                                "type": "paragraph",
+                                "attrs": {
+                                    "html": "Tallas de la 34 a la 54, patrón de talla corta y tres largos de pierna."
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Las tres piezas de la temporada"
+                }
+            },
+            {
+                "type": "products",
+                "attrs": {
+                    "mode": "manual",
+                    "product_skus": [
+                        "DEMO-LOOK-001",
+                        "DEMO-LOOK-007",
+                        "DEMO-LOOK-012"
+                    ],
+                    "columns": 3
+                }
+            }
+        ]
+    },
+    {
+        "code": "la-casa",
+        "title": "La casa",
+        "excerpt": "Quiénes somos y cómo hacemos la colección.",
+        "meta_title": "La casa | Sarga & Tilo",
+        "meta_description": "Sarga & Tilo es una tienda de demostración de moda de temporada. Todos los datos son inventados.",
+        "blocks": [
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 1,
+                    "html": "La casa"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Sarga &amp; Tilo es una tienda <strong>de demostración</strong>: no existe, no vende nada y todos sus productos y opiniones son inventados. Sirve para ver cómo luce una tienda de moda montada con AIFEC."
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Pocas piezas, muchas temporadas"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Si la tienda fuera real, haría cada otoño lo mismo: tres piezas —una chaqueta, un pantalón y un bolso— y, de cada una, las versiones que hacen falta para que le siente bien a más gente. El mismo diseño con otro forro, otro tejido, otro largo u otro patrón."
+                }
+            },
+            {
+                "type": "list",
+                "attrs": {
+                    "ordered": false,
+                    "items": [
+                        {
+                            "html": "<strong>Tejidos que se pueden nombrar:</strong> paño de lana, sarga, lana fría y piel de vacuno."
+                        },
+                        {
+                            "html": "<strong>Patrones para cada medida:</strong> talla corta, tallas de la 46 a la 54 y tres largos de pierna."
+                        },
+                        {
+                            "html": "<strong>Fichas claras:</strong> medidas, forro, bolsillos y cuidados, sin adjetivos de más."
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "code": "envios-y-devoluciones",
+        "title": "Envíos y devoluciones",
+        "excerpt": "Plazos, tarifas y cómo devolver un pedido.",
+        "meta_title": "Envíos y devoluciones | Sarga & Tilo",
+        "meta_description": "Tarifas de envío por peso a Península, Baleares y Canarias, envío gratis desde 120 € y devolución en 30 días.",
+        "blocks": [
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 1,
+                    "html": "Envíos y devoluciones"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "<em>Información de ejemplo de una tienda de demostración.</em>"
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Envío estándar"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Preparamos los pedidos en 24 horas laborables y los entregamos en 2 a 4 días laborables. El envío es <strong>gratis a partir de 120 €</strong>. Por debajo de ese importe, la tarifa depende del peso del pedido y del destino."
+                }
+            },
+            {
+                "type": "table",
+                "attrs": {
+                    "head": [
+                        "Peso del pedido",
+                        "Península",
+                        "Baleares",
+                        "Canarias"
+                    ],
+                    "rows": [
+                        [
+                            "Hasta 1 kg",
+                            "3,95 €",
+                            "6,95 €",
+                            "12,95 €"
+                        ],
+                        [
+                            "De 1 a 3 kg",
+                            "4,95 €",
+                            "8,95 €",
+                            "16,95 €"
+                        ],
+                        [
+                            "Más de 3 kg",
+                            "6,95 €",
+                            "12,95 €",
+                            "24,95 €"
+                        ]
+                    ]
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Envío urgente"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Solo en la Península: entrega al día siguiente laborable por 7,95 € (9,95 € si el pedido pesa más de 2 kg)."
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Recogida en tienda"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Puedes recoger tu pedido sin coste en nuestra tienda de ejemplo a partir de 24 horas desde que lo recibimos. Te avisamos cuando esté listo."
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Cambios y devoluciones"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Dispones de <strong>30 días</strong> desde la recepción para devolver o cambiar tu pedido, siempre que la prenda esté sin usar y con su etiqueta. El cambio de talla o de largo no tiene coste."
+                }
+            }
+        ]
+    },
+    {
+        "code": "guia-de-tallas",
+        "title": "Guía de tallas",
+        "excerpt": "Cómo medir y qué talla elegir.",
+        "meta_title": "Guía de tallas | Sarga & Tilo",
+        "meta_description": "Medidas de pecho, cintura y cadera de cada talla, y los tres largos de pierna del pantalón.",
+        "blocks": [
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 1,
+                    "html": "Guía de tallas"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "<em>Tabla de ejemplo.</em> Mide sobre el cuerpo, con la cinta recta y sin apretar, y compara con la tabla. Si estás entre dos tallas, elige la mayor en la chaqueta y la que te quede cómoda sentada en el pantalón."
+                }
+            },
+            {
+                "type": "table",
+                "attrs": {
+                    "head": [
+                        "Talla",
+                        "Pecho",
+                        "Cintura",
+                        "Cadera"
+                    ],
+                    "rows": [
+                        [
+                            "34",
+                            "80 cm",
+                            "62 cm",
+                            "88 cm"
+                        ],
+                        [
+                            "36",
+                            "84 cm",
+                            "66 cm",
+                            "92 cm"
+                        ],
+                        [
+                            "38",
+                            "88 cm",
+                            "70 cm",
+                            "96 cm"
+                        ],
+                        [
+                            "40",
+                            "92 cm",
+                            "74 cm",
+                            "100 cm"
+                        ],
+                        [
+                            "42",
+                            "96 cm",
+                            "78 cm",
+                            "104 cm"
+                        ],
+                        [
+                            "44",
+                            "100 cm",
+                            "82 cm",
+                            "108 cm"
+                        ],
+                        [
+                            "46",
+                            "104 cm",
+                            "87 cm",
+                            "112 cm"
+                        ],
+                        [
+                            "48",
+                            "110 cm",
+                            "93 cm",
+                            "117 cm"
+                        ],
+                        [
+                            "50",
+                            "116 cm",
+                            "99 cm",
+                            "122 cm"
+                        ],
+                        [
+                            "52",
+                            "122 cm",
+                            "105 cm",
+                            "127 cm"
+                        ],
+                        [
+                            "54",
+                            "128 cm",
+                            "111 cm",
+                            "132 cm"
+                        ]
+                    ]
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Largo de pierna"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "El pantalón ancho se hace con tres largos de entrepierna: 76 cm, 80 cm (el estándar) y 84 cm. Mide un pantalón que te quede bien, de la costura de la entrepierna al bajo."
+                }
+            }
+        ]
+    },
+    {
+        "code": "contacto",
+        "title": "Contacto",
+        "excerpt": "Escríbenos para cualquier duda sobre tallas, pedidos o devoluciones.",
+        "meta_title": "Contacto | Sarga & Tilo",
+        "meta_description": "Formulario de contacto de la tienda de demostración Sarga & Tilo.",
+        "blocks": [
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 1,
+                    "html": "Contacto"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Cuéntanos qué necesitas y te respondemos en un día laborable. Es una tienda de demostración: el mensaje no se envía a nadie."
+                }
+            },
+            {
+                "type": "form",
+                "attrs": {
+                    "form_id": "contact"
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Otros datos"
+                }
+            },
+            {
+                "type": "list",
+                "attrs": {
+                    "ordered": false,
+                    "items": [
+                        {
+                            "html": "Correo: tienda@sargaytilo.test"
+                        },
+                        {
+                            "html": "Dirección: Calle de Ejemplo 8 (dirección de ejemplo)"
+                        },
+                        {
+                            "html": "Horario: de lunes a viernes, de 10 a 18 horas"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "code": "aviso-legal",
+        "title": "Aviso legal",
+        "excerpt": "Texto de ejemplo.",
+        "blocks": [
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 1,
+                    "html": "Aviso legal"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "<em>Texto de ejemplo.</em> Esta tienda es una demostración. Titular ficticio: Sarga y Tilo, S. L. (ejemplo), Calle de Ejemplo 8 (dirección de ejemplo), correo tienda@sargaytilo.test. Ninguno de estos datos corresponde a una empresa real."
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Los productos, los precios y las valoraciones son inventados y no constituyen una oferta. No se cobra ningún pedido hecho en esta tienda."
+                }
+            }
+        ]
+    },
+    {
+        "code": "privacidad",
+        "title": "Política de privacidad",
+        "excerpt": "Texto de ejemplo.",
+        "blocks": [
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 1,
+                    "html": "Política de privacidad"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "<em>Texto de ejemplo.</em> En esta tienda de demostración no se envían correos ni se conservan los datos que escribas más allá de la limpieza nocturna, en la que la tienda vuelve a su estado original."
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Si montas una tienda real a partir de esta, sustituye este texto por el de tu política de privacidad."
+                }
+            }
+        ]
+    }
+]

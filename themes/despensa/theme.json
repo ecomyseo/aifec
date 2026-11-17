@@ -1,0 +1,75 @@
+{
+    "name": "Despensa",
+    "version": "1.0.0",
+    "description": "Warm gourmet theme: emblem and centred menu, story-led home with an organic picture, gift tiles, a swipeable seasonal row, producer block, tinted product cards with origin and price per kilo, category pills with a filter panel and a product page with selectable formats and tasting notes.",
+    "parent": "base",
+    "css": "replace",
+    "image_sizes": {"thumb": [160, 160], "card": [600, 600], "large": [1200, 1200]},
+    "font_stacks": {
+        "warm": "'Iowan Old Style', 'Palatino Linotype', Palatino, 'Hoefler Text', Charter, 'Bitstream Charter', Georgia, 'Times New Roman', serif",
+        "soft": "ui-rounded, 'Hiragino Maru Gothic ProN', 'Avenir Next', Nunito, Quicksand, 'Segoe UI', system-ui, sans-serif"
+    },
+    "settings": {
+        "colors": {"label": "Colours", "fields": {
+            "bg": {"type": "color", "label": "Page background", "default": "#f8f1e4", "var": "--bg"},
+            "surface": {"type": "color", "label": "Cards and panels", "default": "#fffcf6", "var": "--surface"},
+            "ink": {"type": "color", "label": "Text", "default": "#2b2a1f", "var": "--ink"},
+            "muted": {"type": "color", "label": "Secondary text", "default": "#5f5d4c", "var": "--muted"},
+            "line": {"type": "color", "label": "Borders", "default": "#e3d8c0", "var": "--line"},
+            "accent": {"type": "color", "label": "Accent colour", "default": "#a4452a", "var": "--accent"},
+            "accent_ink": {"type": "color", "label": "Text on the accent colour", "default": "#ffffff", "var": "--accent-ink"},
+            "olive": {"type": "color", "label": "Olive green", "default": "#4f5b2a", "var": "--olive"},
+            "sale": {"type": "color", "label": "Offers", "default": "#a8321f", "var": "--sale"},
+            "ok": {"type": "color", "label": "Success", "default": "#2f6b3a", "var": "--ok"},
+            "warn": {"type": "color", "label": "Warning", "default": "#7a5200", "var": "--warn"},
+            "bad": {"type": "color", "label": "Error", "default": "#a8321f", "var": "--bad"}
+        }},
+        "tones": {"label": "Category tints", "fields": {
+            "tone_1": {"type": "color", "label": "Tint 1", "default": "#f3e4bd", "var": "--tone-1"},
+            "tone_2": {"type": "color", "label": "Tint 2", "default": "#e2e8c6", "var": "--tone-2"},
+            "tone_3": {"type": "color", "label": "Tint 3", "default": "#f1d8c8", "var": "--tone-3"},
+            "tone_4": {"type": "color", "label": "Tint 4", "default": "#ead2d0", "var": "--tone-4"},
+            "tone_5": {"type": "color", "label": "Tint 5", "default": "#d9e3dc", "var": "--tone-5"},
+            "tone_6": {"type": "color", "label": "Tint 6", "default": "#e4daea", "var": "--tone-6"}
+        }},
+        "typography": {"label": "Typography", "fields": {
+            "font": {"type": "font", "label": "Body font", "default": "system", "var": "--font", "options": {"system": "System", "serif": "Serif", "rounded": "Rounded", "mono": "Monospace", "warm": "Warm serif", "soft": "Soft sans"}},
+            "font_head": {"type": "font", "label": "Headings font", "default": "warm", "var": "--font-head", "options": {"system": "System", "serif": "Serif", "rounded": "Rounded", "mono": "Monospace", "warm": "Warm serif", "soft": "Soft sans"}},
+            "font_size": {"type": "number", "label": "Base text size", "default": 17, "min": 14, "max": 20, "unit": "px", "var": "--font-size"}
+        }},
+        "layout": {"label": "Layout", "fields": {
+            "radius": {"type": "number", "label": "Corner radius", "default": 16, "min": 0, "max": 28, "unit": "px", "var": "--radius"},
+            "container": {"type": "number", "label": "Page width", "default": 1240, "min": 960, "max": 1600, "unit": "px", "var": "--container"},
+            "header_style": {"type": "select", "label": "Header", "options": {"classic": "Classic", "centered": "Centred"}, "default": "centered"},
+            "card_ratio": {"type": "select", "label": "Product card image", "options": {"square": "Square", "portrait": "Portrait"}, "default": "square"},
+            "show_brand_in_card": {"type": "toggle", "label": "Show the brand in product cards", "default": 1}
+        }},
+        "structure": {"label": "Structure", "fields": {
+            "strip_show": {"type": "toggle", "label": "Show the shipping strip", "default": 1},
+            "strip_text": {"type": "text", "label": "Shipping strip text", "default": ""},
+            "search_style": {"type": "select", "label": "Search in the header", "options": {"drop": "Drop-down", "bar": "Always open"}, "default": "drop"},
+            "season_row": {"type": "select", "label": "Home product sections", "options": {"swipe": "Swipeable row", "grid": "Grid"}, "default": "swipe"},
+            "listing_cols": {"type": "select", "label": "Product list columns", "options": {"3": "Three", "4": "Four"}, "default": "3"},
+            "card_add": {"type": "toggle", "label": "Round add button on cards", "default": 1},
+            "unit_price_show": {"type": "toggle", "label": "Show the price per kilo or litre", "default": 1},
+            "gallery_thumbs": {"type": "select", "label": "Product thumbnails", "options": {"below": "Below the picture", "hidden": "Hidden"}, "default": "below"}
+        }},
+        "story": {"label": "Home story", "fields": {
+            "story_side": {"type": "select", "label": "Picture side", "options": {"right": "Right", "left": "Left"}, "default": "right"},
+            "story_kicker": {"type": "text", "label": "Story kicker", "default": ""},
+            "story_title": {"type": "text", "label": "Story title", "default": ""},
+            "story_text": {"type": "text", "label": "Story text", "default": ""},
+            "story_cta": {"type": "text", "label": "Story button text", "default": ""},
+            "story_link": {"type": "text", "label": "Story button link", "default": ""},
+            "story_image": {"type": "image", "label": "Story picture", "default": ""},
+            "gifts_title": {"type": "text", "label": "Gift tiles title", "default": ""}
+        }},
+        "producer": {"label": "Producer block", "fields": {
+            "producer_show": {"type": "toggle", "label": "Show the producer block", "default": 1},
+            "producer_title": {"type": "text", "label": "Producer title", "default": ""},
+            "producer_place": {"type": "text", "label": "Producer origin", "default": ""},
+            "producer_text": {"type": "text", "label": "Producer text", "default": ""},
+            "recipes_show": {"type": "toggle", "label": "Show the recipes from the blog", "default": 1}
+        }}
+    }
+}

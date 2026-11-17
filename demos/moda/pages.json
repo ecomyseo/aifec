@@ -1,0 +1,447 @@
+[
+    {
+        "code": "inicio",
+        "title": "Inicio",
+        "home": true,
+        "meta_title": "Atelier Brezal: ropa de fibras naturales para llevar de verdad",
+        "meta_description": "Tienda de demostración de moda con lino, lana merino, algodón orgánico y piel. Todos los datos son inventados.",
+        "blocks": [
+            {
+                "type": "cover",
+                "attrs": {
+                    "media_file": "portada-coleccion.svg",
+                    "overlay": "#1f1b16",
+                    "dim": 38,
+                    "min_height": 380,
+                    "class_hint": "full"
+                },
+                "children": [
+                    {
+                        "type": "heading",
+                        "attrs": {
+                            "level": 1,
+                            "html": "Prendas para llevar de verdad"
+                        }
+                    },
+                    {
+                        "type": "paragraph",
+                        "attrs": {
+                            "html": "Lino, lana merino, algodón orgánico y piel: fibras naturales, cortes sencillos y colores que se mezclan entre sí."
+                        }
+                    },
+                    {
+                        "type": "paragraph",
+                        "attrs": {
+                            "html": "<em>Esta es una tienda de demostración: los productos, los precios y las opiniones son de ejemplo.</em>"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "La selección de la temporada"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Cuatro prendas que resumen la colección: un vestido de lino, un jersey de merino, una gabardina y unas zapatillas de piel."
+                }
+            },
+            {
+                "type": "products",
+                "attrs": {
+                    "mode": "manual",
+                    "product_skus": [
+                        "DEMO-MODA-001",
+                        "DEMO-MODA-012",
+                        "DEMO-MODA-021",
+                        "DEMO-MODA-027"
+                    ],
+                    "columns": 4
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Por qué comprar aquí"
+                }
+            },
+            {
+                "type": "columns",
+                "children": [
+                    {
+                        "type": "column",
+                        "children": [
+                            {
+                                "type": "heading",
+                                "attrs": {
+                                    "level": 3,
+                                    "html": "Envío en 2 a 4 días"
+                                }
+                            },
+                            {
+                                "type": "paragraph",
+                                "attrs": {
+                                    "html": "Gratis a partir de 75 € en la Península. Recogida en tienda disponible sin coste."
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "column",
+                        "children": [
+                            {
+                                "type": "heading",
+                                "attrs": {
+                                    "level": 3,
+                                    "html": "Devolución en 30 días"
+                                }
+                            },
+                            {
+                                "type": "paragraph",
+                                "attrs": {
+                                    "html": "Si no te queda bien, la cambias o la devuelves sin dar explicaciones."
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "column",
+                        "children": [
+                            {
+                                "type": "heading",
+                                "attrs": {
+                                    "level": 3,
+                                    "html": "Fibras naturales"
+                                }
+                            },
+                            {
+                                "type": "paragraph",
+                                "attrs": {
+                                    "html": "Lino, lana, algodón orgánico y piel de curtición vegetal, con la composición siempre a la vista."
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Del cuaderno"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Guías cortas para elegir la talla, armar un armario con pocas prendas y cuidar la lana y el lino."
+                }
+            },
+            {
+                "type": "posts",
+                "attrs": {
+                    "limit": 3
+                }
+            }
+        ]
+    },
+    {
+        "code": "sobre-nosotros",
+        "title": "Sobre nosotros",
+        "excerpt": "Quiénes somos y cómo elegimos lo que vendemos.",
+        "meta_title": "Sobre Atelier Brezal",
+        "meta_description": "Atelier Brezal es una tienda de demostración de moda de fibras naturales. Todos los datos son inventados.",
+        "blocks": [
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 1,
+                    "html": "Sobre nosotros"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Atelier Brezal es una tienda <strong>de demostración</strong>: no existe, no vende nada y todos sus productos, marcas y opiniones son inventados. Sirve para probar cómo luce una tienda de moda montada con AIFEC."
+                }
+            },
+            {
+                "type": "image",
+                "attrs": {
+                    "media_file": "sobre-nosotros.svg",
+                    "alt": "Mesa de trabajo con muestras de tela, tijeras, carretes de hilo y una cinta métrica"
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Cómo elegimos las prendas"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Si la tienda fuera real, partiríamos de una idea simple: pocas prendas, bien hechas, con fibras que se pueden nombrar. Cada ficha indicaría la composición exacta, el gramaje del tejido, las medidas y los cuidados, y diría con franqueza cuándo una prenda arruga, cede o pide limpieza en seco."
+                }
+            },
+            {
+                "type": "list",
+                "attrs": {
+                    "ordered": false,
+                    "items": [
+                        {
+                            "html": "<strong>Fibras naturales primero:</strong> lino, lana merino, algodón orgánico, seda lavada y piel de curtición vegetal."
+                        },
+                        {
+                            "html": "<strong>Cortes que duran:</strong> siluetas sencillas que no dependen de la moda de una temporada."
+                        },
+                        {
+                            "html": "<strong>Reparables:</strong> las suelas del calzado van cosidas y se pueden cambiar; los botones, con refuerzo."
+                        },
+                        {
+                            "html": "<strong>Medidas reales:</strong> cada prenda lleva su guía de medidas para elegir la talla sin dudar."
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Los datos de esta demostración"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Marcas, precios, referencias, códigos de barras, teléfonos y opiniones son de ejemplo. Las ilustraciones están dibujadas en código para la ocasión. Puedes añadir productos al carrito y pagar con la forma de pago de prueba: no se cobra nada y no sale ningún correo."
+                }
+            }
+        ]
+    },
+    {
+        "code": "envios-y-devoluciones",
+        "title": "Envíos y devoluciones",
+        "excerpt": "Plazos, tarifas y cómo devolver un pedido.",
+        "meta_title": "Envíos y devoluciones | Atelier Brezal",
+        "meta_description": "Tarifas de envío por peso a Península, Baleares y Canarias, envío gratis desde 75 € y devolución en 30 días.",
+        "blocks": [
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 1,
+                    "html": "Envíos y devoluciones"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "<em>Información de ejemplo de una tienda de demostración.</em>"
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Envío estándar"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Preparamos los pedidos en 24 horas laborables y los entregamos en 2 a 4 días laborables en la Península. El envío es <strong>gratis a partir de 75 €</strong>. Por debajo de ese importe, la tarifa depende del peso del pedido y del destino."
+                }
+            },
+            {
+                "type": "table",
+                "attrs": {
+                    "head": [
+                        "Peso del pedido",
+                        "Península",
+                        "Baleares",
+                        "Canarias"
+                    ],
+                    "rows": [
+                        [
+                            "Hasta 1 kg",
+                            "3,95 €",
+                            "6,95 €",
+                            "12,95 €"
+                        ],
+                        [
+                            "De 1 a 3 kg",
+                            "4,95 €",
+                            "8,95 €",
+                            "16,95 €"
+                        ],
+                        [
+                            "Más de 3 kg",
+                            "6,95 €",
+                            "12,95 €",
+                            "24,95 €"
+                        ]
+                    ]
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Recogida en tienda"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Puedes recoger tu pedido sin coste en nuestra tienda de ejemplo, en Calle Mayor 1, a partir de 24 horas desde que lo recibimos. Te avisamos cuando esté listo."
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Cambios y devoluciones"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Dispones de <strong>30 días</strong> desde la recepción para devolver o cambiar tu pedido, siempre que la prenda esté sin usar, con sus etiquetas y en su embalaje original."
+                }
+            },
+            {
+                "type": "list",
+                "attrs": {
+                    "ordered": true,
+                    "items": [
+                        {
+                            "html": "Indica el número de pedido y el motivo desde el formulario de contacto."
+                        },
+                        {
+                            "html": "Te enviamos una etiqueta de devolución; el primer cambio de talla es gratuito."
+                        },
+                        {
+                            "html": "Devolvemos el importe por el mismo medio de pago en un máximo de 7 días tras recibir la prenda."
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "El calzado debe probarse sobre una superficie limpia; los pendientes y la ropa interior no admiten devolución por razones de higiene."
+                }
+            }
+        ]
+    },
+    {
+        "code": "contacto",
+        "title": "Contacto",
+        "excerpt": "Escríbenos para cualquier duda sobre tallas, pedidos o devoluciones.",
+        "meta_title": "Contacto | Atelier Brezal",
+        "meta_description": "Formulario de contacto de la tienda de demostración Atelier Brezal.",
+        "blocks": [
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 1,
+                    "html": "Contacto"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Cuéntanos qué necesitas y te respondemos en un día laborable. Es una tienda de demostración: el mensaje no se envía a nadie."
+                }
+            },
+            {
+                "type": "form",
+                "attrs": {
+                    "form_id": "contact"
+                }
+            },
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 2,
+                    "html": "Otros datos"
+                }
+            },
+            {
+                "type": "list",
+                "attrs": {
+                    "ordered": false,
+                    "items": [
+                        {
+                            "html": "Correo: tienda@ejemplo.test"
+                        },
+                        {
+                            "html": "Dirección: Calle Mayor 1 (dirección de ejemplo)"
+                        },
+                        {
+                            "html": "Horario: lunes a viernes, de 10 a 18 horas"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "code": "aviso-legal",
+        "title": "Aviso legal",
+        "excerpt": "Texto de ejemplo.",
+        "blocks": [
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 1,
+                    "html": "Aviso legal"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "<em>Texto de ejemplo.</em> Esta tienda es una demostración. Titular ficticio: Atelier Brezal, S. L., Calle Mayor 1, correo tienda@ejemplo.test. Ninguno de estos datos corresponde a una empresa real."
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Los productos, los precios y las valoraciones son inventados y no constituyen una oferta. No se cobra ningún pedido hecho en esta tienda."
+                }
+            }
+        ]
+    },
+    {
+        "code": "privacidad",
+        "title": "Política de privacidad",
+        "excerpt": "Texto de ejemplo.",
+        "blocks": [
+            {
+                "type": "heading",
+                "attrs": {
+                    "level": 1,
+                    "html": "Política de privacidad"
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "<em>Texto de ejemplo.</em> En esta tienda de demostración no se envían correos ni se conservan los datos que escribas más allá de la limpieza nocturna, en la que la tienda vuelve a su estado original."
+                }
+            },
+            {
+                "type": "paragraph",
+                "attrs": {
+                    "html": "Si montas una tienda real a partir de esta, sustituye este texto por el de tu política de privacidad."
+                }
+            }
+        ]
+    }
+]

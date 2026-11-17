@@ -1,0 +1,45 @@
+{
+    "name": "Base",
+    "version": "1.0.0",
+    "description": "Light, fast and accessible base theme. Every other theme inherits from it.",
+    "parent": null,
+    "menus": {"main": "Main menu", "footer": "Footer", "legal": "Legal links"},
+    "image_sizes": {"thumb": [160, 160], "card": [480, 480], "large": [1200, 1200]},
+    "font_stacks": {
+        "system": "system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+        "serif": "Georgia, 'Times New Roman', Times, serif",
+        "rounded": "ui-rounded, 'Hiragino Maru Gothic ProN', Quicksand, Nunito, system-ui, sans-serif",
+        "mono": "ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace"
+    },
+    "settings": {
+        "colors": {"label": "Colours", "fields": {
+            "bg": {"type": "color", "label": "Page background", "default": "#fbfaf8", "var": "--bg"},
+            "surface": {"type": "color", "label": "Cards and panels", "default": "#ffffff", "var": "--surface"},
+            "ink": {"type": "color", "label": "Text", "default": "#1f2421", "var": "--ink"},
+            "muted": {"type": "color", "label": "Secondary text", "default": "#5c6660", "var": "--muted"},
+            "line": {"type": "color", "label": "Borders", "default": "#e2dfd8", "var": "--line"},
+            "accent": {"type": "color", "label": "Accent colour", "default": "#b94a17", "var": "--accent"},
+            "accent_ink": {"type": "color", "label": "Text on the accent colour", "default": "#ffffff", "var": "--accent-ink"},
+            "sale": {"type": "color", "label": "Offers", "default": "#b3261e", "var": "--sale"},
+            "ok": {"type": "color", "label": "Success", "default": "#1d7a46", "var": "--ok"},
+            "warn": {"type": "color", "label": "Warning", "default": "#8a5a00", "var": "--warn"},
+            "bad": {"type": "color", "label": "Error", "default": "#b3261e", "var": "--bad"}
+        }},
+        "typography": {"label": "Typography", "fields": {
+            "font": {"type": "font", "label": "Body font", "default": "system", "var": "--font", "options": {"system": "System", "serif": "Serif", "rounded": "Rounded", "mono": "Monospace"}},
+            "font_head": {"type": "font", "label": "Headings font", "default": "system", "var": "--font-head", "options": {"system": "System", "serif": "Serif", "rounded": "Rounded", "mono": "Monospace"}},
+            "font_size": {"type": "number", "label": "Base text size", "default": 16, "min": 14, "max": 20, "unit": "px", "var": "--font-size"}
+        }},
+        "layout": {"label": "Layout", "fields": {
+            "radius": {"type": "number", "label": "Corner radius", "default": 10, "min": 0, "max": 24, "unit": "px", "var": "--radius"},
+            "container": {"type": "number", "label": "Page width", "default": 1200, "min": 960, "max": 1600, "unit": "px", "var": "--container"},
+            "header_style": {"type": "select", "label": "Header", "options": {"classic": "Classic", "centered": "Centred"}, "default": "classic"},
+            "card_ratio": {"type": "select", "label": "Product card image", "options": {"square": "Square", "portrait": "Portrait"}, "default": "square"},
+            "show_brand_in_card": {"type": "toggle", "label": "Show the brand in product cards", "default": 1}
+        }},
+        "home": {"label": "Home page", "fields": {
+            "home_title": {"type": "text", "label": "Home page title", "default": ""},
+            "home_text": {"type": "text", "label": "Home page text", "default": ""}
+        }}
+    }
+}

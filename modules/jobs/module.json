@@ -1,0 +1,2 @@
+{"name":"Jobs","version":"1.0.0","description":"Background queue and scheduled tasks","essential":true,"default":true,
+ "contract":{"hosts":[],"personal_data":[],"tables":["jobs","cron_runs"],"capabilities":[]}}

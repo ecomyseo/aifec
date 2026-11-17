@@ -1,0 +1,1 @@
+{"name":"Themes","version":"1.0.0","description":"Theme chooser, customiser, generator and validator","essential":false,"default":true,"requires":{"modules":[]},"contract":{"hosts":[],"personal_data":[],"tables":[],"capabilities":[]}}

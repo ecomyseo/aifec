@@ -1,0 +1,16 @@
+[
+    {
+        "code": "BIENVENIDA10",
+        "kind": "percent",
+        "percent": 1000,
+        "note": "10 % de descuento en el primer pedido (cupón de ejemplo)"
+    },
+    {
+        "code": "REGALO20",
+        "kind": "fixed",
+        "amount": 2000,
+        "min_subtotal": 10000,
+        "exclude_sale": true,
+        "note": "20 € de descuento en compras desde 100 €, sin contar las ofertas (cupón de ejemplo)"
+    }
+]

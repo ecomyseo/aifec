@@ -1,0 +1,22 @@
+{
+    "name": "Taller de ejemplo (paquete mínimo)",
+    "description": "Una tienda de sillas y mesas de madera con datos inventados: seis productos, dos categorías, dos páginas y un menú. Sirve de modelo y de prueba del formato de paquete.",
+    "sector": "muebles",
+    "locale": "es",
+    "theme": "base",
+    "theme_options": {},
+    "store": {
+        "name": "Taller de ejemplo",
+        "email": "tienda@ejemplo.test",
+        "currency": "EUR",
+        "currency_symbol": "€",
+        "country": "ES",
+        "prices_include_tax": true,
+        "display_with_tax": true
+    },
+    "settings": {
+        "catalog.per_page": 12
+    },
+    "modules": ["catalog", "cms", "media", "orders", "search", "seo", "shipping", "tax", "themes", "coupons", "customers", "ai", "assistant", "copilot", "semantic", "api", "mcp", "webmcp", "consent", "returns"],
+    "files": ["categories.json", "brands.json", "attributes.json", "products.json", "pages.json", "menus.json", "carriers.json", "coupons.json", "reviews.json"]
+}

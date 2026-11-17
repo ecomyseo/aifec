@@ -1,0 +1,21 @@
+/* AIFEC catalog: buying from a listing card (options, quantity, add). Theme variables only. Ecom Experts, 2026. */
+.af-co{display:grid;gap:.5rem;min-width:0}
+[data-af-card]>.af-co{margin-top:auto;padding:0 .9rem .9rem}
+[data-af-card]>[class*="card-link"]{flex:0 0 auto}
+.af-co .af-variants{margin:0}
+.af-co .af-variants legend{margin-bottom:.2rem;font-size:.75rem;color:var(--muted)}
+.af-co .af-variants-list{gap:.3rem}
+.af-co .af-variant{display:inline-flex;align-items:center;justify-content:center;min-width:2.25rem;min-height:2.25rem;padding:.2rem .55rem;font-size:.8rem;line-height:1.1}
+.af-co-pick{display:grid;gap:.2rem;font-size:.75rem;color:var(--muted)}
+.af-co-pick .af-select{min-height:2.5rem;padding-block:.3rem;font-size:.9rem}
+.af-co-stock{margin:0;color:var(--muted)}
+.af-co-stock:empty{display:none}
+.af-co-row{display:flex;flex-wrap:wrap;align-items:stretch;gap:.4rem;min-width:0}
+.af-co .af-qty{flex:0 0 auto}
+.af-co .af-qty-btn{width:2rem}
+.af-co .af-qty-input{width:2.2rem}
+.af-co-add{flex:1 1 4.6rem;justify-content:center;min-width:0;padding-inline:.5rem}
+:where(.af-variant):has(input:focus-visible){outline:2px solid var(--focus,var(--ink));outline-offset:2px}
+.af-co-add[disabled]{opacity:.5;cursor:not-allowed}
+.af-co-more{display:flex;justify-content:center;margin:auto .9rem .9rem}
+@media (pointer:coarse){.af-co .af-variant{min-width:2.75rem;min-height:2.75rem}}

@@ -1,0 +1,1 @@
+{"name":"Returns","version":"1.0.0","description":"Returns and the 14-day right of withdrawal: the customer asks from the order, the shop resolves in one screen","essential":false,"default":false,"requires":{"modules":["orders"]},"contract":{"hosts":[],"personal_data":["email","comment","photos"],"tables":["returns","return_items","return_events"],"capabilities":[]}}

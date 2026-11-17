@@ -1,0 +1,51 @@
+{
+    "name": "Métrica",
+    "version": "1.0.0",
+    "description": "Hardware shop theme built on two threads, the measure and the job: a yellow brand plate beside two stacked header rows with a jobs bar, a home with two counters, drawer-label product cards with a measures line in monospace, a filter matrix above a five-column grid, and a product page with a thumbnail rail, a measures table with reference, stock and price, and a graphite footer.",
+    "parent": "base",
+    "menus": {"jobs": "Jobs bar"},
+    "image_sizes": {"thumb": [160, 160], "card": [480, 480], "large": [1200, 1200]},
+    "font_stacks": {
+        "geometric": "Outfit, 'Avenir Next', Avenir, 'Century Gothic', Futura, 'URW Gothic', 'Segoe UI', system-ui, sans-serif"
+    },
+    "settings": {
+        "colors": {"label": "Colours", "fields": {
+            "bg": {"type": "color", "label": "Page background", "default": "#efe9dd", "var": "--bg"},
+            "surface": {"type": "color", "label": "Cards and panels", "default": "#f7f3ea", "var": "--surface"},
+            "tone": {"type": "color", "label": "Photo tone and soft panels", "default": "#ddd5c5", "var": "--mt-tone"},
+            "ink": {"type": "color", "label": "Text", "default": "#23262b", "var": "--ink"},
+            "muted": {"type": "color", "label": "Secondary text", "default": "#55534c", "var": "--muted"},
+            "line": {"type": "color", "label": "Borders", "default": "#c9c1b2", "var": "--line"},
+            "accent": {"type": "color", "label": "Signal colour (always a background)", "default": "#f2c200", "var": "--accent"},
+            "accent_ink": {"type": "color", "label": "Text on the signal colour", "default": "#23262b", "var": "--accent-ink"},
+            "band": {"type": "color", "label": "Graphite bands (strip, jobs bar and footer)", "default": "#23262b", "var": "--mt-band"},
+            "band_ink": {"type": "color", "label": "Text on the graphite bands", "default": "#efe9dd", "var": "--mt-band-ink"},
+            "sale": {"type": "color", "label": "Offers", "default": "#a8231c", "var": "--sale"},
+            "ok": {"type": "color", "label": "Success", "default": "#1f6239", "var": "--ok"},
+            "warn": {"type": "color", "label": "Warning", "default": "#7a4f0d", "var": "--warn"},
+            "bad": {"type": "color", "label": "Error", "default": "#a8231c", "var": "--bad"}
+        }},
+        "typography": {"label": "Typography", "fields": {
+            "font": {"type": "font", "label": "Body font", "default": "system", "var": "--font", "options": {"system": "System", "geometric": "Geometric", "serif": "Serif", "rounded": "Rounded", "mono": "Monospace"}},
+            "font_head": {"type": "font", "label": "Headings font", "default": "geometric", "var": "--font-head", "options": {"system": "System", "geometric": "Geometric", "serif": "Serif", "rounded": "Rounded", "mono": "Monospace"}},
+            "font_mono": {"type": "font", "label": "Measures font", "default": "mono", "var": "--mt-mono", "options": {"mono": "Monospace", "system": "System", "geometric": "Geometric"}}
+        }},
+        "layout": {"label": "Layout", "fields": {
+            "radius": {"type": "number", "label": "Corner radius", "default": 2, "min": 0, "max": 12, "unit": "px", "var": "--radius"},
+            "container": {"type": "number", "label": "Page width", "default": 1400, "min": 960, "max": 1600, "unit": "px", "var": "--container"}
+        }},
+        "structure": {"label": "Structure", "fields": {
+            "strip_text": {"type": "text", "label": "Notice strip text (empty hides it)", "default": ""},
+            "bench_show": {"type": "toggle", "label": "Show the jobs bar in the header", "default": 1},
+            "listing_cols": {"type": "select", "label": "Product list columns", "options": {"5": "Five", "4": "Four"}, "default": "5"},
+            "card_measures": {"type": "toggle", "label": "Show the measures line on product cards", "default": 1},
+            "card_qty": {"type": "toggle", "label": "Quantity and Add on the cards of products without measures", "default": 1},
+            "gallery_rail": {"type": "select", "label": "Product thumbnails", "options": {"side": "Vertical rail, left of the photo", "below": "Below the photo"}, "default": "side"},
+            "sizes_table": {"type": "toggle", "label": "Show the measures table on the product page", "default": 1}
+        }},
+        "home": {"label": "Home page", "fields": {
+            "counters_show": {"type": "toggle", "label": "Show the two counters: by measure and by job", "default": 1},
+            "measure_facets": {"type": "text", "label": "Attribute codes of the measure counter, separated by commas", "default": "metrica,largo"}
+        }}
+    }
+}

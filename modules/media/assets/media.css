@@ -1,0 +1,61 @@
+/**
+ * AIFEC — estilos del módulo de medios: rejilla, ficha, zona de subida y selector de imágenes.
+ * Solo variables de admin.css: así el tema oscuro se ve bien.
+ *
+ * @author    Ecom Experts <ecomyseo@gmail.com>
+ * @copyright 2026 Ecom Experts
+ * @license   Ver LICENSE.md
+ */
+
+/* Rejilla de la biblioteca */
+.af-media-grid { list-style: none; margin: 0; padding: var(--s4); display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--s4); }
+.af-media-card { display: flex; flex-direction: column; gap: var(--s1); color: var(--ink); text-decoration: none; min-width: 0; }
+.af-media-card:hover { text-decoration: none; }
+.af-media-card:hover .af-media-thumb { border-color: var(--accent); }
+.af-media-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: var(--radius-sm); }
+.af-media-thumb { display: block; aspect-ratio: 1 / 1; overflow: hidden; border: 1px solid var(--bg); border-radius: var(--radius-sm); background: var(--bg); }
+.af-media-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.af-media-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+
+/* Ficha de una imagen */
+.af-media-preview { display: grid; place-items: center; background: var(--bg); border-radius: var(--radius-sm); }
+.af-media-preview img { max-width: 100%; height: auto; max-height: 60vh; object-fit: contain; background: var(--af-dominant, transparent); }
+.af-media-uses { margin: 0; padding-left: var(--s4); }
+.af-media-actions { display: flex; flex-wrap: wrap; gap: var(--s2); justify-content: space-between; }
+.af-inline { display: inline; }
+
+/* Zona de subida */
+.af-dropzone { border: 2px dashed var(--muted); border-radius: var(--radius); background: var(--bg); transition: border-color .15s, background-color .15s; }
+.af-dropzone.is-over { border-color: var(--accent); background: var(--bg); }
+.af-dropzone.is-busy { opacity: .6; pointer-events: none; }
+.af-dropzone .af-card-body, .af-dropzone.af-picker-zone { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s3); }
+.af-dropzone-hint { display: inline-flex; align-items: center; gap: var(--s2); color: var(--ink); }
+.af-dropzone > input[type="file"] { max-width: 100%; margin: var(--s3); }
+
+/* Selector (ventana) */
+.af-picker { display: flex; flex-direction: column; gap: var(--s3); }
+.af-picker-search { display: flex; gap: var(--s2); }
+.af-picker-search .af-input { flex: 1; min-width: 0; }
+.af-picker-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: var(--s2); }
+.af-picker-item { display: block; width: 100%; aspect-ratio: 1 / 1; padding: 0; overflow: hidden; cursor: pointer; border: 2px solid var(--bg); border-radius: var(--radius-sm); background: var(--bg); }
+.af-picker-item:hover { border-color: var(--accent); }
+.af-picker-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.af-picker-item.is-selected { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+.af-picker-item img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.af-picker-pager { display: flex; align-items: center; justify-content: center; gap: var(--s3); }
+.af-picker-empty { text-align: center; padding: var(--s5) 0; margin: 0; }
+.af-picker-modal .af-modal-body { max-height: 64vh; }
+
+/* Miniaturas del campo de imagen */
+.af-media .af-thumb { -webkit-user-drag: none; user-select: none; }
+.af-media[data-multiple="1"] .af-thumb-item { cursor: grab; touch-action: none; }
+.af-media[data-multiple="1"] .af-thumb-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: var(--radius-sm); }
+.af-media .af-thumb-item.is-dragging { opacity: .5; }
+.af-media-drop-before { box-shadow: -3px 0 0 var(--accent); }
+.af-media-drop-after { box-shadow: 3px 0 0 var(--accent); }
+
+@media (max-width: 640px) {
+    .af-media-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); padding: var(--s3); gap: var(--s2); }
+    .af-picker-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
+    .af-picker-search { flex-wrap: wrap; }
+}

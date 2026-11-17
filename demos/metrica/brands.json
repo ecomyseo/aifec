@@ -1,0 +1,17 @@
+[
+    {
+        "code": "roscafina",
+        "name": "Roscafina",
+        "description": "Marca inventada para esta demostración: tornillería y fijaciones por cajas."
+    },
+    {
+        "code": "banco-tres",
+        "name": "Banco Tres",
+        "description": "Marca inventada para esta demostración: herramienta manual para el banco de trabajo."
+    },
+    {
+        "code": "dieciocho-voltios",
+        "name": "Dieciocho Voltios",
+        "description": "Marca inventada para esta demostración: herramienta eléctrica y consumibles."
+    }
+]

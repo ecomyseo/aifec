@@ -1,0 +1,1 @@
+{"name":"API","version":"1.0.0","description":"Public read API and cart API","essential":false,"default":true,"requires":{"modules":["assistant"]},"contract":{"hosts":[],"personal_data":["ip"],"tables":[],"capabilities":[]}}

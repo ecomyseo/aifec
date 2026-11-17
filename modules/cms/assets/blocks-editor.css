@@ -1,0 +1,138 @@
+/*
+ * AIFEC — editor de bloques del panel.
+ *
+ * Autor: Ecom Experts <ecomyseo@gmail.com> · 2026 · Ver LICENSE.md
+ *
+ * Solo variables de admin.css (nada de colores fijos: el tema oscuro lo respeta). Pensado también para móvil:
+ * las barras de cada bloque se ven siempre, los botones miden 36 px como mínimo y nada desborda a lo ancho.
+ */
+.afb { border: 1px solid var(--muted); border-radius: var(--radius); background: var(--surface); max-width: 100%; }
+.afb-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s1); padding: var(--s2) var(--s2); border-bottom: 1px solid var(--bg); background: var(--bg); border-radius: var(--radius) var(--radius) 0 0; position: sticky; top: var(--top); z-index: 5; }
+.afb-grow { flex: 1 1 auto; }
+.afb-sep { width: 1px; align-self: stretch; margin: var(--s0) var(--s1); background: var(--muted); }
+.afb-tb { min-width: 36px; min-height: 36px; padding: 0 var(--s2); border: 1px solid var(--muted); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink); font: inherit; cursor: pointer; }
+.afb-tb:hover:not(:disabled) { background: var(--bg); }
+.afb-tb:disabled { opacity: .45; cursor: default; }
+.afb-tb[aria-pressed="true"] { background: var(--bg); border-color: var(--accent); }
+.afb-tb-b { font-weight: 800; }
+.afb-tb-i { font-style: italic; }
+
+.afb-wp { padding: var(--s2) var(--s3); border-bottom: 1px solid var(--bg); background: var(--bg); }
+.afb-wp-actions { display: flex; gap: var(--s2); margin-top: var(--s2); }
+
+.afb-main { display: flex; gap: 0; align-items: stretch; min-width: 0; }
+.afb-canvas { flex: 1 1 0; min-width: 0; padding: var(--s2) var(--s3) var(--s4); }
+.afb-preview { flex: 0 0 42%; min-width: 0; border-left: 1px solid var(--bg); background: var(--bg); }
+.afb-frame { display: block; width: 100%; height: 100%; min-height: 60vh; border: 0; background: var(--surface); }
+
+.afb-block { position: relative; border: 1px solid var(--bg); border-radius: var(--radius-sm); background: var(--surface); margin: 0; outline: none; }
+.afb-block:focus-within { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.afb-bar { display: flex; align-items: center; gap: var(--s0); padding: var(--s0) var(--s1); border-bottom: 1px solid var(--bg); background: var(--bg); border-radius: var(--radius-sm) var(--radius-sm) 0 0; }
+.afb-type { font-size: var(--f1); font-weight: 650; color: var(--muted); text-transform: uppercase; letter-spacing: .03em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.afb-handle { display: inline-grid; place-items: center; width: 28px; min-height: 36px; color: var(--muted); cursor: grab; letter-spacing: -.15em; user-select: none; touch-action: none; }
+.afb-handle:active { cursor: grabbing; }
+.afb-ib { display: inline-grid; place-items: center; min-width: 36px; min-height: 36px; padding: 0; border: 1px solid transparent; border-radius: var(--radius-sm); background: transparent; color: var(--ink); font: inherit; cursor: pointer; }
+.afb-ib:hover:not(:disabled) { background: var(--bg); }
+.afb-ib:disabled { opacity: .35; cursor: default; }
+.afb-ib-del:hover:not(:disabled) { color: var(--accent); background: var(--bg); }
+.afb-body { position: relative; padding: var(--s2) var(--s3); display: flex; flex-direction: column; gap: var(--s2); min-width: 0; }
+.afb-dragging { opacity: .5; }
+.afb-drop-before { box-shadow: 0 -3px 0 0 var(--accent); }
+.afb-drop-after { box-shadow: 0 3px 0 0 var(--accent); }
+.afb-drop-here { outline: 2px dashed var(--accent); outline-offset: -2px; }
+
+.afb-insert { position: relative; display: flex; justify-content: center; min-height: 14px; }
+.afb-insert::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 1px dashed transparent; }
+.afb-insert:hover::before, .afb-insert:focus-within::before { border-top-color: var(--muted); }
+.afb-plus { position: relative; z-index: 1; display: inline-grid; place-items: center; width: 24px; height: 24px; margin: calc(-1 * var(--s1)) 0; padding: 0; border: 1px solid var(--muted); border-radius: 50%; background: var(--surface); color: var(--ink); font: inherit; line-height: 1; cursor: pointer; opacity: .35; }
+.afb-insert:hover .afb-plus, .afb-plus:focus-visible, .afb-insert:focus-within .afb-plus { opacity: 1; }
+.afb-plus:hover { background: var(--bg); border-color: var(--accent); color: var(--accent); }
+.afb-plus-lg { width: 36px; height: 36px; margin: 0; opacity: 1; }
+.afb-empty { position: relative; display: flex; flex-direction: column; align-items: center; gap: var(--s2); padding: var(--s4) var(--s2); text-align: center; }
+.afb-children > .afb-empty { padding: var(--s2); }
+
+.afb-menu { position: absolute; left: 50%; top: 100%; transform: translateX(-50%); z-index: 20; width: min(340px, 92vw); max-height: 360px; overflow: auto; padding: var(--s2); border: 1px solid var(--muted); border-radius: var(--radius); background: var(--surface);  }
+.afb-empty .afb-menu { top: calc(100% - .4rem); }
+.afb-body > .afb-menu { left: .7rem; right: .7rem; top: 2.6rem; transform: none; width: auto; }
+.afb-menu-list { list-style: none; margin: var(--s2) 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s1); }
+.afb-menu-item { display: block; width: 100%; min-height: 36px; padding: var(--s1) var(--s2); border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--ink); font: inherit; text-align: left; cursor: pointer; }
+.afb-menu-item:hover, .afb-menu-item:focus-visible { background: var(--bg); }
+.afb-menu-none { margin: var(--s2) 0 0; }
+
+.afb-rich { min-height: 2.1rem; padding: var(--s1) var(--s2); border: 1px solid transparent; border-radius: var(--radius-sm); background: var(--surface); color: var(--ink); overflow-wrap: anywhere; outline: none; }
+.afb-rich:hover { border-color: var(--bg); }
+.afb-rich:focus { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.afb-rich:empty::before { content: attr(data-placeholder); color: var(--muted); pointer-events: none; }
+.afb-rich a { color: var(--accent); text-decoration: underline; }
+.afb-rich mark { background: var(--bg); color: var(--ink); }
+.afb-h { font-weight: 700; line-height: 1.25; }
+.afb-h1 { font-size: var(--f5); } .afb-h2 { font-size: var(--f4); } .afb-h3 { font-size: var(--f3); } .afb-h4 { font-size: var(--f2); }
+.afb-h5, .afb-h6 { font-size: var(--f2); }
+.afb-quote { border-left: 3px solid var(--muted); padding-left: var(--s3); font-style: italic; }
+.afb-small { font-size: var(--f1); color: var(--ink); }
+.afb-summary { font-weight: 650; }
+.afb-btntext { font-weight: 600; }
+
+.afb-opts { display: flex; flex-wrap: wrap; gap: var(--s2); align-items: flex-end; }
+.afb-row { display: flex; flex-wrap: wrap; gap: var(--s2); }
+.afb-field { display: flex; flex-direction: column; gap: var(--s1); min-width: 0; }
+.afb-label { font-size: var(--f1); font-weight: 600; color: var(--muted); }
+.afb-check { display: inline-flex; align-items: center; gap: var(--s2); min-height: 36px; }
+.afb-check input { width: 18px; height: 18px; }
+.afb-warn { color: var(--accent); font-size: var(--f1); font-weight: 600; }
+.afb-field .af-input[aria-invalid="true"] { border-color: var(--accent); }
+.afb-note { margin: 0; }
+.afb-hr { width: 100%; border: 0; border-top: 2px solid var(--muted); margin: var(--s2) 0; }
+
+.afb-items { display: flex; flex-direction: column; gap: var(--s1); }
+.afb-item { display: flex; align-items: center; gap: var(--s1); }
+.afb-item .afb-rich { flex: 1 1 auto; border-color: var(--bg); }
+.afb-bullet { color: var(--muted); width: .8rem; text-align: center; }
+.afb-btn-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) auto; gap: var(--s2); align-items: end; padding: var(--s2); border: 1px dashed var(--muted); border-radius: var(--radius-sm); }
+.afb-btn-row .afb-rich { border-color: var(--bg); }
+
+.afb-table-wrap { max-width: 100%; overflow-x: auto; }
+.afb-table { border-collapse: collapse; width: 100%; min-width: 360px; }
+.afb-table th, .afb-table td { border: 1px solid var(--muted); padding: 0; vertical-align: top; min-width: 90px; }
+.afb-table th { background: var(--bg); }
+.afb-table .afb-cut td { border: 0; text-align: center; min-width: 0; }
+.afb-table .afb-rich { border: 0; border-radius: 0; min-height: 2rem; }
+.afb-table tr > td:last-child:empty { border: 0; min-width: 36px; width: 36px; }
+
+.afb-cols { display: grid; gap: var(--s2); min-width: 0; }
+.afb-col { min-width: 0; padding: var(--s2); border: 1px dashed var(--muted); border-radius: var(--radius-sm); }
+.afb-col-title { font-size: var(--f1); font-weight: 650; color: var(--muted); text-transform: uppercase; margin-bottom: var(--s1); }
+.afb-children { min-width: 0; padding-left: var(--s2); border-left: 3px solid var(--muted); }
+.afb-cols .afb-children { padding-left: 0; border-left: 0; }
+.afb-t-cover > .afb-body, .afb-t-group > .afb-body, .afb-t-details > .afb-body, .afb-t-columns > .afb-body { background: var(--bg); border-radius: 0 0 var(--radius-sm) var(--radius-sm); }
+
+.afb-gal { display: flex; flex-direction: column; gap: var(--s2); }
+.afb-gal-item { display: grid; grid-template-columns: 56px minmax(0, 1fr) minmax(0, 1fr) auto; gap: var(--s2); align-items: center; }
+.afb-gal-n { display: grid; place-items: center; width: 56px; height: 56px; overflow: hidden; border-radius: var(--radius-sm); background: var(--bg); color: var(--muted); font-size: var(--f1); }
+.afb-gal-n img { width: 100%; height: 100%; object-fit: cover; }
+.afb-thumb-id { display: grid; place-items: center; width: 56px; height: 56px; background: var(--bg); color: var(--muted); font-size: var(--f1); border-radius: var(--radius-sm); }
+.afb-preview-img { max-width: 220px; max-height: 140px; border-radius: var(--radius-sm); object-fit: cover; }
+
+.afb-picker { display: flex; flex-direction: column; gap: var(--s2); position: relative; }
+.afb-results { list-style: none; margin: 0; padding: var(--s1); border: 1px solid var(--muted); border-radius: var(--radius-sm); background: var(--surface); max-height: 220px; overflow: auto; }
+.afb-result { display: block; width: 100%; min-height: 36px; padding: var(--s1) var(--s2); border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--ink); font: inherit; text-align: left; cursor: pointer; }
+.afb-result:hover, .afb-result:focus-visible { background: var(--bg); }
+.afb-results-none { padding: var(--s2) var(--s2); }
+.afb-chips { display: flex; flex-wrap: wrap; gap: var(--s1); }
+.afb-chip { display: inline-flex; align-items: center; gap: var(--s1); padding: var(--s0) var(--s1) var(--s0) var(--s2); border-radius: 999px; background: var(--bg); color: var(--ink); font-size: var(--f1); max-width: 100%; }
+.afb-chip > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.afb-chip-x { display: inline-grid; place-items: center; min-width: 28px; min-height: 28px; border: 0; border-radius: 50%; background: transparent; color: var(--ink); font: inherit; cursor: pointer; }
+.afb-chip-x:hover { background: var(--bg); color: var(--accent); }
+
+@media (max-width: 900px) {
+  .afb-main { flex-direction: column; }
+  .afb-preview { flex: 0 0 auto; border-left: 0; border-top: 1px solid var(--bg); }
+  .afb-frame { min-height: 50vh; }
+  .afb-toolbar { top: 0; }
+  .afb-cols { grid-template-columns: minmax(0, 1fr) !important; }
+  .afb-menu-list { grid-template-columns: minmax(0, 1fr); }
+  .afb-plus { opacity: 1; }
+  .afb-gal-item { grid-template-columns: 48px minmax(0, 1fr) auto; }
+  .afb-gal-item .afb-rich { grid-column: 2 / 3; }
+  .afb-gal-n { width: 48px; height: 48px; }
+}

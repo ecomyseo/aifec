@@ -1,0 +1,327 @@
+[
+    {
+        "code": "talla",
+        "name": "Talla",
+        "type": "select",
+        "filterable": true,
+        "variant": true,
+        "values": [
+            {
+                "code": "xs",
+                "label": "XS"
+            },
+            {
+                "code": "s",
+                "label": "S"
+            },
+            {
+                "code": "m",
+                "label": "M"
+            },
+            {
+                "code": "l",
+                "label": "L"
+            },
+            {
+                "code": "xl",
+                "label": "XL"
+            },
+            {
+                "code": "w30",
+                "label": "W30"
+            },
+            {
+                "code": "w32",
+                "label": "W32"
+            },
+            {
+                "code": "w34",
+                "label": "W34"
+            },
+            {
+                "code": "w36",
+                "label": "W36"
+            },
+            {
+                "code": "36",
+                "label": "36"
+            },
+            {
+                "code": "37",
+                "label": "37"
+            },
+            {
+                "code": "38",
+                "label": "38"
+            },
+            {
+                "code": "39",
+                "label": "39"
+            },
+            {
+                "code": "40",
+                "label": "40"
+            },
+            {
+                "code": "41",
+                "label": "41"
+            },
+            {
+                "code": "42",
+                "label": "42"
+            },
+            {
+                "code": "43",
+                "label": "43"
+            },
+            {
+                "code": "44",
+                "label": "44"
+            },
+            {
+                "code": "45",
+                "label": "45"
+            },
+            {
+                "code": "46",
+                "label": "46"
+            },
+            {
+                "code": "48",
+                "label": "48"
+            },
+            {
+                "code": "50",
+                "label": "50"
+            },
+            {
+                "code": "52",
+                "label": "52"
+            },
+            {
+                "code": "85",
+                "label": "85 cm"
+            },
+            {
+                "code": "95",
+                "label": "95 cm"
+            },
+            {
+                "code": "105",
+                "label": "105 cm"
+            },
+            {
+                "code": "35-38",
+                "label": "35-38"
+            },
+            {
+                "code": "39-42",
+                "label": "39-42"
+            }
+        ]
+    },
+    {
+        "code": "color",
+        "name": "Color",
+        "type": "select",
+        "filterable": true,
+        "variant": true,
+        "values": [
+            {
+                "code": "blanco",
+                "label": "Blanco",
+                "color": "#f3f1ec"
+            },
+            {
+                "code": "crudo",
+                "label": "Crudo",
+                "color": "#e9e0cf"
+            },
+            {
+                "code": "arena",
+                "label": "Arena",
+                "color": "#cdb995"
+            },
+            {
+                "code": "camel",
+                "label": "Camel",
+                "color": "#b88a58"
+            },
+            {
+                "code": "mostaza",
+                "label": "Mostaza",
+                "color": "#c59a3b"
+            },
+            {
+                "code": "terracota",
+                "label": "Terracota",
+                "color": "#b26443"
+            },
+            {
+                "code": "rosa",
+                "label": "Rosa empolvado",
+                "color": "#d9b4a8"
+            },
+            {
+                "code": "burdeos",
+                "label": "Burdeos",
+                "color": "#6e2f3a"
+            },
+            {
+                "code": "cielo",
+                "label": "Azul cielo",
+                "color": "#a9bfd6"
+            },
+            {
+                "code": "vaquero-claro",
+                "label": "Vaquero claro",
+                "color": "#7f9cbe"
+            },
+            {
+                "code": "vaquero",
+                "label": "Vaquero",
+                "color": "#4d6a8f"
+            },
+            {
+                "code": "marino",
+                "label": "Azul marino",
+                "color": "#2e3d57"
+            },
+            {
+                "code": "oliva",
+                "label": "Verde oliva",
+                "color": "#6f7a5c"
+            },
+            {
+                "code": "bosque",
+                "label": "Verde bosque",
+                "color": "#4f6a54"
+            },
+            {
+                "code": "piedra",
+                "label": "Gris piedra",
+                "color": "#a39e92"
+            },
+            {
+                "code": "gris",
+                "label": "Gris",
+                "color": "#8b8d90"
+            },
+            {
+                "code": "cuero",
+                "label": "Cuero",
+                "color": "#7a4a2c"
+            },
+            {
+                "code": "chocolate",
+                "label": "Chocolate",
+                "color": "#5a3a28"
+            },
+            {
+                "code": "negro",
+                "label": "Negro",
+                "color": "#2f2e2d"
+            }
+        ]
+    },
+    {
+        "code": "material",
+        "name": "Material",
+        "type": "select",
+        "filterable": true,
+        "values": [
+            {
+                "code": "algodon",
+                "label": "Algodón"
+            },
+            {
+                "code": "lino",
+                "label": "Lino"
+            },
+            {
+                "code": "lana-merino",
+                "label": "Lana merino"
+            },
+            {
+                "code": "lana",
+                "label": "Lana"
+            },
+            {
+                "code": "cachemir",
+                "label": "Cachemir"
+            },
+            {
+                "code": "seda",
+                "label": "Seda"
+            },
+            {
+                "code": "viscosa",
+                "label": "Viscosa"
+            },
+            {
+                "code": "poliester-reciclado",
+                "label": "Poliéster reciclado"
+            },
+            {
+                "code": "piel",
+                "label": "Piel"
+            },
+            {
+                "code": "ante",
+                "label": "Ante"
+            },
+            {
+                "code": "lona",
+                "label": "Lona"
+            },
+            {
+                "code": "denim",
+                "label": "Denim"
+            },
+            {
+                "code": "acetato",
+                "label": "Acetato"
+            }
+        ]
+    },
+    {
+        "code": "temporada",
+        "name": "Temporada",
+        "type": "select",
+        "filterable": true,
+        "values": [
+            {
+                "code": "primavera-verano",
+                "label": "Primavera-verano"
+            },
+            {
+                "code": "otono-invierno",
+                "label": "Otoño-invierno"
+            },
+            {
+                "code": "todo-el-ano",
+                "label": "Todo el año"
+            }
+        ]
+    },
+    {
+        "code": "genero",
+        "name": "Género",
+        "type": "select",
+        "filterable": true,
+        "values": [
+            {
+                "code": "mujer",
+                "label": "Mujer"
+            },
+            {
+                "code": "hombre",
+                "label": "Hombre"
+            },
+            {
+                "code": "unisex",
+                "label": "Unisex"
+            }
+        ]
+    }
+]

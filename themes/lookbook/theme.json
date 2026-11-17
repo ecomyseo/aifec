@@ -1,0 +1,52 @@
+{
+    "name": "Lookbook",
+    "version": "1.0.0",
+    "description": "Seasonal fashion theme laid out like a magazine: black and white, thin italic serif headlines, a one-row header with written actions, frameless portrait cards, filters as words that open across the page and a product page with every photo on show beside a narrow sticky buy column.",
+    "parent": "base",
+    "image_sizes": {"thumb": [160, 160], "card": [720, 960], "large": [1400, 1400]},
+    "font_stacks": {
+        "bodoni": "'Bodoni Moda', 'Bodoni 72', 'Bodoni MT', Didot, 'Didot LT STD', 'Playfair Display', 'Times New Roman', serif",
+        "geometric": "Jost, 'Century Gothic', 'Avenir Next', Avenir, Futura, 'Trebuchet MS', 'Segoe UI', sans-serif"
+    },
+    "settings": {
+        "colors": {"label": "Colours", "fields": {
+            "bg": {"type": "color", "label": "Page background", "default": "#ffffff", "var": "--bg"},
+            "surface": {"type": "color", "label": "Cards and panels", "default": "#ffffff", "var": "--surface"},
+            "ink": {"type": "color", "label": "Text", "default": "#111111", "var": "--ink"},
+            "muted": {"type": "color", "label": "Secondary text", "default": "#595959", "var": "--muted"},
+            "line": {"type": "color", "label": "Borders", "default": "#d6d6d6", "var": "--line"},
+            "accent": {"type": "color", "label": "Accent colour", "default": "#111111", "var": "--accent"},
+            "accent_ink": {"type": "color", "label": "Text on the accent colour", "default": "#ffffff", "var": "--accent-ink"},
+            "sale": {"type": "color", "label": "Offers", "default": "#b3122b", "var": "--sale"},
+            "band": {"type": "color", "label": "Season line", "default": "#111111", "var": "--lb-band"},
+            "band_ink": {"type": "color", "label": "Text on the season line", "default": "#ffffff", "var": "--lb-band-ink"},
+            "photo": {"type": "color", "label": "Background behind the photos", "default": "#f1efec", "var": "--lb-photo"}
+        }},
+        "typography": {"label": "Typography", "fields": {
+            "font": {"type": "font", "label": "Body font", "default": "geometric", "var": "--font", "options": {"system": "System", "serif": "Serif", "rounded": "Rounded", "mono": "Monospace", "bodoni": "Thin serif", "geometric": "Geometric sans"}},
+            "font_head": {"type": "font", "label": "Headings font", "default": "bodoni", "var": "--font-head", "options": {"system": "System", "serif": "Serif", "rounded": "Rounded", "mono": "Monospace", "bodoni": "Thin serif", "geometric": "Geometric sans"}},
+            "font_size": {"type": "number", "label": "Base text size", "default": 15, "min": 14, "max": 20, "unit": "px", "var": "--font-size"}
+        }},
+        "layout": {"label": "Layout", "fields": {
+            "radius": {"type": "number", "label": "Corner radius", "default": 0, "min": 0, "max": 24, "unit": "px", "var": "--radius"},
+            "container": {"type": "number", "label": "Page width", "default": 1400, "min": 960, "max": 1600, "unit": "px", "var": "--container"},
+            "column": {"type": "number", "label": "Reading column width", "default": 1120, "min": 880, "max": 1400, "unit": "px", "var": "--lb-page"},
+            "header_style": {"type": "select", "label": "Header", "options": {"centered": "Brand in the centre", "classic": "Brand on the left"}, "default": "centered"},
+            "card_ratio": {"type": "select", "label": "Product card image", "options": {"portrait": "Portrait", "tall": "Tall", "square": "Square"}, "default": "portrait"},
+            "show_brand_in_card": {"type": "toggle", "label": "Show the brand in product cards", "default": 0}
+        }},
+        "structure": {"label": "Structure", "fields": {
+            "season_show": {"type": "toggle", "label": "Show the season line", "default": 1},
+            "season_text": {"type": "text", "label": "Season line text", "default": ""},
+            "season_place": {"type": "select", "label": "Season line position", "options": {"above": "Above the header row", "below": "Below the header row"}, "default": "above"},
+            "opening_first": {"type": "toggle", "label": "Open the home page with the two main collections", "default": 1},
+            "opening_kicker": {"type": "text", "label": "Small line over each collection", "default": ""},
+            "opening_text_1": {"type": "text", "label": "Text of the first collection", "default": ""},
+            "opening_text_2": {"type": "text", "label": "Text of the second collection", "default": ""},
+            "listing_rhythm": {"type": "select", "label": "Product list rhythm", "options": {"sequence": "Two large pieces, then four", "even": "Every piece the same size"}, "default": "sequence"},
+            "card_second": {"type": "toggle", "label": "Show the second photo when hovering a card", "default": 1},
+            "gallery_layout": {"type": "select", "label": "Product photos", "options": {"pairs": "Cover across, the rest in pairs", "column": "Every photo across the column"}, "default": "pairs"},
+            "buy_sticky": {"type": "toggle", "label": "Keep the buy column in view while scrolling", "default": 1}
+        }}
+    }
+}

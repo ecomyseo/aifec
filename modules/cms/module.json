@@ -1,0 +1,1 @@
+{"name":"Content","version":"1.0.0","description":"Pages, blog, menus, forms and redirects","essential":false,"default":true,"requires":{"modules":["media"]},"contract":{"hosts":[],"personal_data":["email","name","ip"],"tables":["pages","page_i18n","posts","post_i18n","terms","term_i18n","post_terms","revisions","menus","menu_items","forms","form_entries"],"capabilities":[]}}

@@ -1,0 +1,1 @@
+{"name":"Copilot","version":"1.0.0","description":"Plain-language orders for the panel: it finds settings and data, prepares the change, shows what will change, applies it on your click and lets you undo it","essential":false,"default":true,"requires":{"modules":[]},"contract":{"hosts":[],"personal_data":["email","name"],"tables":["copilot_proposals"],"capabilities":[]}}

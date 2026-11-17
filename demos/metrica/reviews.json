@@ -1,0 +1,98 @@
+[
+    {
+        "sku": "MET-HEX",
+        "name": "Julián",
+        "rating": 5,
+        "title": "La medida que pedí",
+        "text": "Opinión inventada para la demostración: llegó la caja de M6 × 40 completa y la rosca entra limpia en la tuerca.",
+        "date": "2026-10-06"
+    },
+    {
+        "sku": "MET-HEX",
+        "name": "Maite",
+        "rating": 4,
+        "title": "Buen zincado",
+        "text": "Opinión inventada para la demostración: los uso en el garaje y de momento no hay óxido. Echo de menos una caja más pequeña.",
+        "date": "2026-10-19"
+    },
+    {
+        "sku": "MET-TACO",
+        "name": "Rosa",
+        "rating": 5,
+        "title": "Con su tornillo",
+        "text": "Opinión inventada para la demostración: broca del 6 y listo. Colgué un espejo grande con cuatro y no se mueve.",
+        "date": "2026-09-28"
+    },
+    {
+        "sku": "MET-TACO",
+        "name": "Andrés",
+        "rating": 4,
+        "title": "Agarran bien en ladrillo",
+        "text": "Opinión inventada para la demostración: en ladrillo macizo muy bien; en un tabique hueco tuve que cambiar de taco.",
+        "date": "2026-10-11"
+    },
+    {
+        "sku": "MET-MARTILLO",
+        "name": "Paco",
+        "rating": 5,
+        "title": "Pesa lo justo",
+        "text": "Opinión inventada para la demostración: el mango de fresno se agradece en la muñeca y la uña arranca puntas sin esfuerzo.",
+        "date": "2026-10-02"
+    },
+    {
+        "sku": "MET-CINTA",
+        "name": "Lucía",
+        "rating": 5,
+        "title": "Se sostiene sola",
+        "text": "Opinión inventada para la demostración: mido a una mano más de dos metros sin que se doble. El imán del gancho es muy cómodo.",
+        "date": "2026-09-17"
+    },
+    {
+        "sku": "MET-NIVEL",
+        "name": "Íñigo",
+        "rating": 4,
+        "title": "Fiable",
+        "text": "Opinión inventada para la demostración: comprobado girándolo sobre la misma línea: marca igual por los dos lados.",
+        "date": "2026-10-23"
+    },
+    {
+        "sku": "MET-TALADRO",
+        "name": "Carmen",
+        "rating": 5,
+        "title": "Dos baterías, sin esperas",
+        "text": "Opinión inventada para la demostración: taladré una pared de hormigón con el percutor y monté una cocina entera sin esperar a que cargara la batería.",
+        "date": "2026-10-14"
+    },
+    {
+        "sku": "MET-TALADRO",
+        "name": "Tomás",
+        "rating": 4,
+        "title": "Potente y compacto",
+        "text": "Opinión inventada para la demostración: el portabrocas agarra bien. El maletín viene justo de sitio para las brocas.",
+        "date": "2026-11-01"
+    },
+    {
+        "sku": "MET-ATORNILLADOR",
+        "name": "Elena",
+        "rating": 5,
+        "title": "Para montar muebles",
+        "text": "Opinión inventada para la demostración: el embrague salta antes de pasar la rosca. Entra donde el taladro no cabe.",
+        "date": "2026-10-27"
+    },
+    {
+        "sku": "MET-TIRAFONDO",
+        "name": "Mario",
+        "rating": 4,
+        "title": "Entran sin rajar",
+        "text": "Opinión inventada para la demostración: en pino sin taladro previo; en roble hice el taladro guía que recomiendan.",
+        "date": "2026-10-30"
+    },
+    {
+        "sku": "MET-BROCAS",
+        "name": "Nuria",
+        "rating": 4,
+        "title": "Las tres familias",
+        "text": "Opinión inventada para la demostración: metal, madera y pared ordenadas por diámetro. El estuche cierra firme.",
+        "date": "2026-11-05"
+    }
+]

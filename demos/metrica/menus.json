@@ -1,0 +1,243 @@
+[
+    {
+        "code": "main",
+        "name": "Menú principal",
+        "items": [
+            {
+                "type": "category",
+                "ref": "tornilleria-y-fijacion",
+                "label": "Tornillería y fijación",
+                "children": [
+                    {
+                        "type": "category",
+                        "ref": "tornillos",
+                        "label": "Tornillos"
+                    },
+                    {
+                        "type": "category",
+                        "ref": "tuercas-y-arandelas",
+                        "label": "Tuercas y arandelas"
+                    },
+                    {
+                        "type": "category",
+                        "ref": "tacos-y-soportes",
+                        "label": "Tacos y soportes"
+                    }
+                ]
+            },
+            {
+                "type": "category",
+                "ref": "herramienta-manual",
+                "label": "Herramienta manual"
+            },
+            {
+                "type": "category",
+                "ref": "herramienta-electrica",
+                "label": "Herramienta eléctrica"
+            },
+            {
+                "type": "category",
+                "ref": "trabajos",
+                "label": "Trabajos"
+            }
+        ]
+    },
+    {
+        "code": "jobs",
+        "name": "Banco de trabajos",
+        "items": [
+            {
+                "type": "category",
+                "ref": "colgar",
+                "label": "Colgar",
+                "children": [
+                    {
+                        "type": "product",
+                        "ref": "MET-TACO",
+                        "label": "Taco de nailon con tornillo Ø 6 × 30"
+                    },
+                    {
+                        "type": "product",
+                        "ref": "MET-MARTILLO",
+                        "label": "Martillo de carpintero"
+                    },
+                    {
+                        "type": "product",
+                        "ref": "MET-CINTA",
+                        "label": "Cinta métrica de 5 m"
+                    },
+                    {
+                        "type": "product",
+                        "ref": "MET-NIVEL",
+                        "label": "Nivel de burbuja de 60 cm"
+                    },
+                    {
+                        "type": "product",
+                        "ref": "MET-TALADRO",
+                        "label": "Taladro percutor de 18 V"
+                    },
+                    {
+                        "type": "product",
+                        "ref": "MET-BROCAS",
+                        "label": "Juego de 19 brocas"
+                    }
+                ]
+            },
+            {
+                "type": "category",
+                "ref": "fijar",
+                "label": "Fijar",
+                "children": [
+                    {
+                        "type": "product",
+                        "ref": "MET-HEX",
+                        "label": "Tornillo hexagonal DIN 933"
+                    },
+                    {
+                        "type": "product",
+                        "ref": "MET-TACO",
+                        "label": "Taco de nailon con tornillo Ø 6 × 30"
+                    },
+                    {
+                        "type": "product",
+                        "ref": "MET-TIRAFONDO",
+                        "label": "Tirafondo para madera 4 × 40"
+                    },
+                    {
+                        "type": "product",
+                        "ref": "MET-ESCUADRA",
+                        "label": "Escuadra para estantería"
+                    },
+                    {
+                        "type": "product",
+                        "ref": "MET-NIVEL",
+                        "label": "Nivel de burbuja de 60 cm"
+                    },
+                    {
+                        "type": "product",
+                        "ref": "MET-TALADRO",
+                        "label": "Taladro percutor de 18 V"
+                    },
+                    {
+                        "type": "product",
+                        "ref": "MET-BROCAS",
+                        "label": "Juego de 19 brocas"
+                    }
+                ]
+            },
+            {
+                "type": "category",
+                "ref": "cortar",
+                "label": "Cortar",
+                "children": [
+                    {
+                        "type": "product",
+                        "ref": "MET-CINTA",
+                        "label": "Cinta métrica de 5 m"
+                    },
+                    {
+                        "type": "product",
+                        "ref": "MET-SERRUCHO",
+                        "label": "Serrucho universal"
+                    },
+                    {
+                        "type": "product",
+                        "ref": "MET-CALADORA",
+                        "label": "Sierra de calar pendular"
+                    }
+                ]
+            },
+            {
+                "type": "category",
+                "ref": "atornillar",
+                "label": "Atornillar",
+                "children": [
+                    {
+                        "type": "product",
+                        "ref": "MET-TIRAFONDO",
+                        "label": "Tirafondo para madera 4 × 40"
+                    },
+                    {
+                        "type": "product",
+                        "ref": "MET-DESTORNILLADORES",
+                        "label": "Juego de 6 destornilladores"
+                    },
+                    {
+                        "type": "product",
+                        "ref": "MET-ATORNILLADOR",
+                        "label": "Atornillador a batería de 12 V"
+                    },
+                    {
+                        "type": "product",
+                        "ref": "MET-BROCAS",
+                        "label": "Juego de 19 brocas"
+                    }
+                ]
+            },
+            {
+                "type": "category",
+                "ref": "medir",
+                "label": "Medir",
+                "children": [
+                    {
+                        "type": "product",
+                        "ref": "MET-CINTA",
+                        "label": "Cinta métrica de 5 m"
+                    },
+                    {
+                        "type": "product",
+                        "ref": "MET-NIVEL",
+                        "label": "Nivel de burbuja de 60 cm"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "code": "footer",
+        "name": "Menú del pie",
+        "items": [
+            {
+                "type": "page",
+                "ref": "sobre-nosotros",
+                "label": "Sobre la tienda"
+            },
+            {
+                "type": "page",
+                "ref": "envios-y-devoluciones",
+                "label": "Envíos y devoluciones"
+            },
+            {
+                "type": "page",
+                "ref": "contacto",
+                "label": "Contacto"
+            },
+            {
+                "type": "post",
+                "ref": "como-se-lee-una-medida",
+                "label": "Cómo se lee una medida"
+            }
+        ]
+    },
+    {
+        "code": "legal",
+        "name": "Menú legal",
+        "items": [
+            {
+                "type": "page",
+                "ref": "aviso-legal",
+                "label": "Aviso legal"
+            },
+            {
+                "type": "page",
+                "ref": "privacidad",
+                "label": "Política de privacidad"
+            },
+            {
+                "type": "page",
+                "ref": "envios-y-devoluciones",
+                "label": "Devoluciones"
+            }
+        ]
+    }
+]
