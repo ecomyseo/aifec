@@ -78,7 +78,7 @@ final class OrdersAdmin
                 'prepare' => ['label' => 'To prepare', 'options' => ['1' => 'To prepare'], 'sql' => ['1' => self::TO_PREPARE]],
                 // De dónde salió el pedido: «Panel» son los hechos a mano (pedido por teléfono, WhatsApp o mostrador).
                 'source' => ['label' => 'Channel', 'column' => 'o.source', 'options' => [
-                    'web' => 'Web shop', 'admin' => 'Admin panel', 'assistant' => 'AI assistant', 'api' => 'API', 'mcp' => 'MCP', 'ucp' => 'AI platform (UCP)', 'import' => 'Import',
+                    'web' => 'Web shop', 'admin' => 'Admin panel', 'assistant' => 'AI assistant', 'api' => 'API', 'mcp' => 'MCP', 'ucp' => 'AI platform (UCP)', 'acp' => 'AI platform (ACP)', 'import' => 'Import',
                 ]],
                 'from' => ['label' => 'From', 'type' => 'date_from', 'column' => 'o.placed_at'],
                 'to' => ['label' => 'To', 'type' => 'date_to', 'column' => 'o.placed_at'],

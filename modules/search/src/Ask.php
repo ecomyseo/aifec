@@ -13,6 +13,7 @@ namespace Aifec\Modules\Search;
 
 use Aifec\Kernel\App;
 use Aifec\Modules\Catalog\Texts;
+use Aifec\Search\Tokenizer;
 use Aifec\Util\Str;
 
 /**
@@ -570,13 +571,20 @@ final class Ask
             // (los filtros solos, la IA, lo relacionado) lo dirá como lo que es.
             $half = !empty($text['relaxed']) && isset($text['terms']) && (int) $text['terms'] <= 2;
             if (!$text['confident'] || (int) $text['total'] < 1 || $half) {
-                // Las palabras no dan nada fiable: si lo demás de la frase sí dice de qué se habla (categoría, color, medida…), se
-                // lista solo con eso, en vez de dar un «no hay nada» que no es verdad.
-                if (!$dropText || !$this->hasSubject($plan)) {
-                    return $out;
+                $terms = (new Tokenizer($plan['lang']))->conversationalProductTerms((string) $plan['query']);
+                $primary = $terms !== null && $terms[0] !== $plan['text'] ? $terms[0] : '';
+                $product = $primary !== '' ? $this->search->query($primary, ['lang' => $plan['lang'], 'limit' => 200]) : null;
+                if ($product !== null && !empty($product['confident']) && !empty($product['ids']) && empty($product['corrected'])) {
+                    // Conserva los filtros extraídos y exige que el nombre del producto sea reconocible por separado.
+                    $plan['text'] = $primary;
+                    $out['text'] = $product;
+                } else {
+                    if (!$dropText || !$this->hasSubject($plan)) {
+                        return $out;
+                    }
+                    $dropped = (string) $plan['text'];
+                    $plan['text'] = '';
                 }
-                $dropped = (string) $plan['text'];
-                $plan['text'] = '';
             }
         }
         $catalog = $this->app->service('catalog');

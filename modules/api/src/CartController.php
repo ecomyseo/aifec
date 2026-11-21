@@ -122,6 +122,11 @@ final class CartController
      */
     public function resume(Request $request, array $params): Response
     {
+        if (\Aifec\Kernel\BrowserCommerce::blocked($this->app, $request, true)) {
+            $response = Response::text(t('This browser cannot modify carts through assistant links.'), 403);
+            $response->headers['Cache-Control'] = 'no-store, private';
+            return $response;
+        }
         if (!$this->app->has('cart') || !$this->app->router()->has('checkout')) {
             throw HttpError::notFound();
         }

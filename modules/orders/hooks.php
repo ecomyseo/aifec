@@ -12,6 +12,10 @@
 declare(strict_types=1);
 
 use Aifec\Kernel\App;
+use Aifec\Kernel\BrowserCommerce;
+use Aifec\Kernel\HttpError;
+use Aifec\Kernel\Request;
+use Aifec\Kernel\Response;
 use Aifec\Modules\Orders\Admin\OrdersDashboard;
 use Aifec\Modules\Orders\Cart;
 use Aifec\Modules\Orders\Checkout\CheckoutSession;
@@ -28,6 +32,13 @@ return static function (App $app): void {
     });
 
     // ------------------------------------------------------------------ carrito
+
+    $app->middleware('orders.cart', static function (Request $request, App $application, callable $next): Response {
+        if (BrowserCommerce::crawler($request->userAgent())) {
+            throw HttpError::forbidden(t('Automated cart access is blocked. To buy, open the product page and use Add to cart.'));
+        }
+        return $next($request);
+    });
 
     // Las líneas de ajuste de los módulos son dinero: solo un módulo con la capacidad «pricing» concedida puede añadirlas.
     $app->hooks()->seal('cart.adjustments', 'pricing');

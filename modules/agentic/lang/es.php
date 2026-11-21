@@ -11,6 +11,11 @@
 declare(strict_types=1);
 
 return [
+    'The buyer pays on the shop checkout.' => 'El comprador paga en la caja de la tienda.',
+    'Enable ACP' => 'Activar ACP',
+    'Agentic Commerce Protocol 2026-04-17. Give the platform an API key with the orders:create scope.' => 'Agentic Commerce Protocol 2026-04-17. Dale a la plataforma una clave de API con el permiso orders:create.',
+    'UCP and ACP checkout and verification of signed AI agents' => 'Compra por UCP y ACP y verificación de agentes de IA con firma',
+    "UCP and ACP prepare purchases using the shop's own checkout. Enable each protocol separately and give the platform an API key with the orders:create scope. Payment handlers are announced only when configured; unsupported payments continue on the shop checkout.\nProtocol compatibility does not grant access to a third-party commerce programme. Payment-provider and platform onboarding are separate. Signed browser agents are verified with Web Bot Auth." => "UCP y ACP preparan compras con la caja de la tienda. Activa cada protocolo por separado y dale a la plataforma una clave de API con el permiso orders:create. Solo se anuncian los manejadores de pago configurados; los pagos no admitidos se terminan en la caja de la tienda.\nLa compatibilidad con el protocolo no da acceso a un programa comercial externo. Las altas de plataforma y proveedor de pagos son independientes. Los agentes de navegador con firma se verifican mediante Web Bot Auth.",
     'Agentic commerce' => 'Comercio con agentes',
     'UCP checkout for AI platforms (Google AI Mode, Gemini) and verification of signed AI agents (ChatGPT agent and Wallet)' => 'Compra por UCP desde plataformas de IA (Modo IA de Google, Gemini) y verificación de los agentes de IA que firman (agente y monedero de ChatGPT)',
 
@@ -43,6 +48,7 @@ return [
 
     // La sesión de compra
     'Subtotal (including taxes)' => 'Subtotal (impuestos incluidos)',
+    'Subtotal (excluding taxes)' => 'Subtotal (impuestos excluidos)',
     'This shop takes the payment on its own checkout page: open the continue address to pay.' => 'Esta tienda cobra en su propia caja: abre la dirección para continuar y paga allí.',
     'The email of the buyer is required' => 'Hace falta el correo del comprador',
     'Choose a delivery option' => 'Elige una forma de entrega',
@@ -69,4 +75,27 @@ return [
     'The Idempotency-Key is too long.' => 'La Idempotency-Key es demasiado larga.',
     'This Idempotency-Key was already used with another request.' => 'Esta Idempotency-Key ya se usó con otra petición.',
     'This request is still being processed.' => 'Esta petición todavía se está procesando.',
+    'Accept delegated SPTs issued by the payment provider. This does not issue tokens or expose card details.' => 'Acepta SPT delegados emitidos por el proveedor de pagos. No emite tokens ni expone los datos de la tarjeta.',
+    'Discovery and installation' => 'Descubrimiento e instalación',
+    'Enable Stripe shared payment tokens for ACP' => 'Activar tokens de pago compartidos de Stripe para ACP',
+    'Manage refunds for this delegated payment in Stripe.' => 'Gestiona las devoluciones de este pago delegado en Stripe.',
+    'On Nginx, allow .well-known before rules that deny hidden paths. Use docs/04-ai-first/ucp-acp-nginx.conf and preserve the current PHP configuration.' => 'En Nginx, permite .well-known antes de las reglas que bloquean las rutas ocultas. Utiliza docs/04-ai-first/ucp-acp-nginx.conf y conserva la configuración actual de PHP.',
+    'Payment authorised with a shared payment token from the assistant.' => 'Pago autorizado mediante un token de pago compartido del asistente.',
+    'Public HTTP access has not been verified. Installing files does not confirm server routing.' => 'No se ha comprobado el acceso HTTP público. Instalar los archivos no confirma que el servidor resuelva las rutas.',
+    'Public protocol endpoints' => 'Direcciones públicas de los protocolos',
+    'Stripe business profile ID' => 'Identificador del perfil comercial de Stripe',
+    'Stripe delegated payment' => 'Pago delegado de Stripe',
+    'Stripe secret key for delegated payments' => 'Clave secreta de Stripe para pagos delegados',
+    'The delegated payment is not configured or authorised.' => 'El pago delegado no está configurado o autorizado.',
+    'The delegated payment provider could not be reached.' => 'No se ha podido contactar con el proveedor del pago delegado.',
+    'The delegated payment was declined or needs buyer authentication. Finish on the shop checkout.' => 'El pago delegado se ha rechazado o necesita la autenticación del comprador. Termina en la caja de la tienda.',
+    'The payment token is expired, revoked or outside its authorised limits.' => 'El token de pago ha caducado, se ha revocado o supera sus límites autorizados.',
+    'The provider must confirm the payment status. Do not submit another payment.' => 'El proveedor debe confirmar el estado del pago. No envíes otro pago.',
+    'The shop is confirming the payment. Do not pay again.' => 'La tienda está confirmando el pago. No vuelvas a pagar.',
+    'This delegated payment needs reconciliation before another payment attempt.' => 'Hay que conciliar este pago delegado antes de intentar otro pago.',
+    'This delegated token has already been attempted. Use the payment status before retrying.' => 'Ya se ha intentado utilizar este token delegado. Consulta el estado del pago antes de volver a intentarlo.',
+    'UCP and ACP profiles are dynamic endpoints of this shop. They require the protocol switches and server routing, not a product feed.' => 'Los perfiles UCP y ACP son direcciones dinámicas de esta tienda. Necesitan los protocolos activados y las rutas del servidor configuradas; un catálogo de productos no los sustituye.',
+    'Use a test key while validating the provider integration. The key is never published in a profile.' => 'Utiliza una clave de pruebas durante la validación de la integración con el proveedor. La clave nunca se publica en un perfil.',
+    'ACP product feed' => 'Catálogo ACP (JSONL)',
+    'Buyers confirm and pay in the shop checkout using the active payment methods.' => 'El comprador confirma y paga en la caja de la tienda con los métodos de pago activos.',
 ];

@@ -64,6 +64,11 @@ final class Gate
             }
             $cors = self::origin($app, $request, $spec);
             $key = self::authenticate($app, $request);
+            // CORS permite leer respuestas desde un origen; el permiso de crear carritos se comprueba aparte.
+            if ($key === null && $spec['kind'] !== 'read' && !in_array($request->method, ['GET', 'HEAD'], true)
+                && \Aifec\Kernel\BrowserCommerce::blocked($app, $request)) {
+                throw new HttpError(403, t('This browser cannot modify carts through assistant links.'));
+            }
             $blocked = self::limit($app, $request, $key);
             if ($blocked !== null) {
                 $response = $blocked;

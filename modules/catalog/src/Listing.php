@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Aifec\Modules\Catalog;
 
 use Aifec\Kernel\App;
+use Aifec\Search\Tokenizer;
 
 /**
  * El listado de productos con filtros, orden, paginación y facetas (catalog->listing() del contrato).
@@ -57,7 +58,7 @@ final class Listing
         $ctx = [
             'n' => $n,
             'now' => $this->app->clock()->sql(),
-            'search_ids' => $this->searchIds($n['q'], $lang),
+            'search_ids' => $this->searchIds($n['q'], $lang, $n['require_all_terms']),
             'category_path' => null,
         ];
         if ($n['category_id'] > 0) {
@@ -65,9 +66,19 @@ final class Listing
             $ctx['category_path'] = $row !== null ? Categories::pathOf($row) : false;
         }
 
+        $terms = $ctx['search_ids'] === null && $lang === 'es' ? (new Tokenizer('es'))->conversationalProductTerms($n['q']) : null;
+        if ($terms !== null) {
+            $ctx['n']['q'] = implode(' ', $terms);
+        }
         $params = [];
         $where = $this->where($ctx, [], $params);
         $total = (int) $db->value('SELECT COUNT(*) FROM {products} p WHERE ' . $where, $params);
+        if ($total === 0 && !$n['require_all_terms'] && $terms !== null && count($terms) > 1) {
+            $ctx['n']['q'] = $terms[0];
+            $params = [];
+            $where = $this->where($ctx, [], $params);
+            $total = (int) $db->value('SELECT COUNT(*) FROM {products} p WHERE ' . $where, $params);
+        }
         $perPage = $n['per_page'];
         $pages = max(1, (int) ceil($total / $perPage));
         $page = min($n['page'], $pages);
@@ -170,6 +181,7 @@ final class Listing
             'tag' => isset($q['tag']) && is_scalar($q['tag']) ? trim((string) $q['tag']) : '',
             'ids' => $ids,
             'q' => isset($q['q']) && is_scalar($q['q']) ? trim((string) $q['q']) : '',
+            'require_all_terms' => !empty($q['require_all_terms']),
             'filters' => $filters,
             'price_min' => $this->cents($q, 'price_min'),
             'price_max' => $this->cents($q, 'price_max'),
@@ -195,14 +207,16 @@ final class Listing
      *
      * @return int[]|null
      */
-    private function searchIds(string $q, string $lang): ?array
+    private function searchIds(string $q, string $lang, bool $requireAllTerms): ?array
     {
         if ($q === '' || !$this->app->has('search')) {
             return null;
         }
         try {
             $search = $this->app->service('search');
-            $result = is_callable([$search, 'query']) ? $search->query($q, ['lang' => $lang, 'limit' => 200]) : null;
+            $result = is_callable([$search, 'query'])
+                ? $search->query($q, ['lang' => $lang, 'limit' => 200, 'require_all_terms' => $requireAllTerms])
+                : null;
         } catch (\Throwable $e) {
             return null;
         }

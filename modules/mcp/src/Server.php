@@ -83,6 +83,12 @@ final class Server
      */
     public function handle($message): ?array
     {
+        return self::respond($this->app, $message, [$this, 'dispatch']);
+    }
+
+    /** Permite reutilizar JSON-RPC con un conjunto distinto de herramientas MCP. */
+    public static function respond(App $app, $message, callable $dispatch): ?array
+    {
         if (!is_array($message) || array_keys($message) === range(0, count($message) - 1) && $message !== [] || !isset($message['jsonrpc']) || $message['jsonrpc'] !== '2.0') {
             return self::error(is_array($message) && isset($message['id']) && (is_int($message['id']) || is_string($message['id'])) ? $message['id'] : null, self::INVALID_REQUEST, 'Invalid Request: a JSON-RPC 2.0 object is expected');
         }
@@ -108,14 +114,14 @@ final class Server
             return null;
         }
         try {
-            $result = $this->dispatch($message['method'], $params);
+            $result = $dispatch($message['method'], $params);
 
             // Un resultado vacío (ping) es un objeto: «[]» no es lo que dice el protocolo.
             return ['jsonrpc' => '2.0', 'id' => $id, 'result' => $result === [] ? new \stdClass() : $result];
         } catch (RpcError $e) {
             return self::error($id, $e->rpcCode(), $e->getMessage());
         } catch (\Throwable $e) {
-            $this->app->log()->exception($e, 'mcp ' . $message['method']);
+            $app->log()->exception($e, 'mcp ' . $message['method']);
 
             return self::error($id, self::INTERNAL_ERROR, 'Internal error');
         }

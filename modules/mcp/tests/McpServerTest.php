@@ -272,8 +272,11 @@ test('un cliente que no guarda la cabecera de sesión (el de ChatGPT) compra igu
     // Y la caja de ese carrito ya en la respuesta: el ChatGPT con la lista de herramientas de antes no puede mandar session_id (R79).
     $direct = (string) ($added['structuredContent']['checkout_url'] ?? '');
     contains('/carrito/retomar/', $direct, 'cart_add devuelve la caja de su carrito');
-    $opened = apiCall($app, 'GET', (string) preg_replace('#^https?://[^/]+#', '', $direct), null,
-        ['user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36', 'accept' => 'text/html']);
+    $browser = ['user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36', 'accept' => 'text/html'];
+    $navigation = $browser + ['sec-fetch-user' => '?1', 'sec-fetch-dest' => 'document', 'sec-fetch-mode' => 'navigate'];
+    $path = (string) preg_replace('#^https?://[^/]+#', '', $direct);
+    same(403, apiCall($app, 'GET', $path, null, $browser)->status, 'una apertura automatizada no se queda con el carrito');
+    $opened = apiCall($app, 'GET', $path, null, $navigation);
     contains('finalizar-compra', (string) ($opened->headers['Location'] ?? ''), 'y abre la caja');
     $view = mcpTool($app, 'cart_view', ['session_id' => $session]);
     contains((string) $ids['silla_roja'], (string) json_encode($view['structuredContent']), 'con la sesión por argumento, el mismo carrito');
@@ -281,7 +284,7 @@ test('un cliente que no guarda la cabecera de sesión (el de ChatGPT) compra igu
     contains('/carrito/retomar/', (string) $link['structuredContent']['url'], 'y la caja de ese carrito');
     // Y la persona que la abre llega a la caja con ese carrito.
     $resume = apiCall($app, 'GET', (string) preg_replace('#^https?://[^/]+#', '', (string) $link['structuredContent']['url']), null,
-        ['user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36', 'accept' => 'text/html']);
+        $navigation);
     check(in_array($resume->status, [302, 303], true), 'la caja: ' . $resume->status);
     contains('finalizar-compra', (string) ($resume->headers['Location'] ?? ''));
     // Sin la sesión, un carrito vacío: no se mezclan.

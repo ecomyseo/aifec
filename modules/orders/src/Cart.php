@@ -217,6 +217,11 @@ final class Cart
         if ($index === null && count($items) >= self::MAX_LINES) {
             return $this->fail(t('Your cart is full'));
         }
+        // Un plugin puede negarse a juntar esta línea con las que ya hay (un vendedor por carrito): devuelve el motivo.
+        $veto = $this->app->hooks()->apply('cart.add.check', '', ['product_id' => $productId, 'variant_id' => $variantId, 'qty' => $qty, 'items' => $items]);
+        if (is_string($veto) && trim($veto) !== '') {
+            return $this->fail(trim($veto));
+        }
 
         if ($index !== null) {
             $items[$index]['qty'] = $have + $qty;
@@ -1128,6 +1133,9 @@ final class Cart
         $needsShipping = false;
         $weight = 0;
         $shipQty = 0;
+        // Las líneas que viajan, para los transportes que cobran por producto (ShippingHandler: «lines» del paquete).
+        $shipLines = [];
+        $payLines = [];
         $itemsTotal = 0;
         $count = 0;
         foreach ($resolved as $r) {
@@ -1182,10 +1190,12 @@ final class Cart
                 ];
                 $lineRates[] = ['rate' => (int) $rate['rate'], 'name' => (string) $rate['name']];
                 $itemsTotal += (int) $p['unit_price'] * $item['qty'];
+                $payLines[] = ['product_id' => (int) $item['product_id'], 'variant_id' => isset($item['variant_id']) ? (int) $item['variant_id'] : 0, 'qty' => (int) $item['qty']];
                 if ((string) $p['kind'] === 'physical') {
                     $needsShipping = true;
                     $weight += (int) $p['weight'] * $item['qty'];
                     $shipQty += $item['qty'];
+                    $shipLines[] = ['product_id' => (int) $item['product_id'], 'variant_id' => isset($item['variant_id']) ? (int) $item['variant_id'] : 0, 'qty' => (int) $item['qty']];
                 }
             }
             $lines[$item['key']] = $line;
@@ -1223,7 +1233,7 @@ final class Cart
         $chosen = null;
         $shipping = null;
         if ($needsShipping && $app->has('shipping')) {
-            $options = $app->service('shipping')->options(['weight' => $weight, 'items_total' => $itemsTotal, 'qty' => $shipQty, 'needs_shipping' => true], $destination);
+            $options = $app->service('shipping')->options(['weight' => $weight, 'items_total' => $itemsTotal, 'qty' => $shipQty, 'needs_shipping' => true, 'lines' => $shipLines], $destination);
             $options = array_values(array_filter($options, static function ($option): bool {
                 return is_array($option) && isset($option['carrier_id'], $option['price']);
             }));
@@ -1300,6 +1310,8 @@ final class Cart
         $context = [
             'total' => (int) $totals['total'], 'currency' => $currency, 'country' => $destination['country'],
             'needs_shipping' => $needsShipping, 'customer_id' => $customer !== null ? (int) $customer['id'] : 0, 'lang' => $lang,
+            // Todas las líneas, para las formas de pago que dependen de lo que se compra (el TPV de cada vendedor).
+            'lines' => $payLines,
         ];
         $methods = [];
         $selected = isset($row['payment_method']) && is_string($row['payment_method']) ? $row['payment_method'] : '';

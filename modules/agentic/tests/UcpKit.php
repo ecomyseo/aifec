@@ -53,7 +53,7 @@ if (!function_exists('ucpApp')) {
      */
     function ucpCall(App $app, string $metodo, string $ruta, $cuerpo = null, array $cabeceras = [], string $ip = '203.0.113.10'): Response
     {
-        $raw = $cuerpo === null ? '' : (is_string($cuerpo) ? $cuerpo : (string) json_encode($cuerpo));
+        $raw = $cuerpo === null ? '' : (is_string($cuerpo) ? $cuerpo : (string) json_encode($cuerpo === [] ? new \stdClass() : $cuerpo));
         $request = Request::create($metodo, $ruta, [], [], $cabeceras + ($raw !== '' ? ['content-type' => 'application/json'] : []) + ['ucp-agent' => 'profile="https://plataforma.test/profile"'], $raw);
         $request->host = 'tienda.test';
         $request->secure = true;

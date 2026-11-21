@@ -147,7 +147,7 @@ test('openai.json es JSON válido con los campos del feed de compra, las variant
     same(4.6, $p['star_rating']);
     same(10, $p['review_count']);
     same(true, $p['enable_search']);
-    same(true, $p['enable_checkout']);
+    same(false, $p['enable_checkout'], 'el ajuste por sí solo no anuncia un checkout que no está activo');
     same(14, $p['return_policy']['days']);
     same(2, count($p['variants']));
     same('Rojo', $p['variants'][0]['options']['color']);

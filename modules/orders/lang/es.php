@@ -11,6 +11,7 @@
 declare(strict_types=1);
 
 return [
+    'Automated cart access is blocked. To buy, open the product page and use Add to cart.' => 'Acceso automatizado al carrito bloqueado. Para comprar, abre la ficha y pulsa «Añadir al carrito».',
     'Simulated monthly payment' => 'Pago mensual simulado',
     'PayPal monthly payment' => 'Pago mensual con PayPal',
     'Picking list' => 'Lista de preparación',
@@ -280,6 +281,7 @@ return [
     'API' => 'API',
     'MCP' => 'MCP',
     'AI platform (UCP)' => 'Plataforma de IA (UCP)',
+    'AI platform (ACP)' => 'Plataforma de IA (ACP)',
     'Admin panel' => 'Panel de administración',
     'Import' => 'Importación',
 

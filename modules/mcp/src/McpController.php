@@ -77,7 +77,12 @@ final class McpController
             return $this->json(Server::error(null, Server::INVALID_REQUEST, 'Invalid Request: an empty batch'), 400);
         }
 
-        $agent->prepare($server->needsCart($messages));
+        $writes = $server->needsCart($messages);
+        if ($writes && $key === null && \Aifec\Kernel\BrowserCommerce::blocked($this->app, $request)) {
+            return Response::json(['error' => ['status' => 403, 'message' => t('This browser cannot modify carts through assistant links.')]], 403)
+                ->header('Cache-Control', 'no-store, private');
+        }
+        $agent->prepare($writes);
         $responses = [];
         foreach ($messages as $message) {
             $answer = $server->handle($message);

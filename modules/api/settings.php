@@ -20,6 +20,8 @@ return [
             'api.enabled' => ['type' => 'toggle', 'label' => 'Turn the API on', 'default' => true, 'hint' => 'Off, every address of the API answers 404.'],
             'api.links' => ['type' => 'toggle', 'label' => 'Let assistants that can only read pages buy with links', 'default' => true,
                 'hint' => 'Many chat assistants cannot send a form, only open addresses. With this on, each step of the purchase is also an address they can open. The order still needs the code sent to the buyer.'],
+            'api.browser_agents_allowed' => ['type' => 'textarea', 'label' => 'Browsers allowed to use assistant carts', 'rows' => 3, 'default' => '',
+                'rules' => 'max:4000', 'hint' => 'Enter one complete User-Agent per line. Unlisted browsers cannot create carts through assistant links.'],
             'api.cors_origins' => ['type' => 'textarea', 'label' => 'Origins allowed to use the cart from a browser', 'rows' => 3, 'default' => '', 'rules' => 'max:600',
                 'hint' => 'One address per line, for example https://app.ejemplo.test. Reading is open to every origin.'],
         ]],

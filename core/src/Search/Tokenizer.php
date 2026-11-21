@@ -121,6 +121,32 @@ final class Tokenizer
         return is_string($s) ? trim($s) : '';
     }
 
+    /** @return string[]|null Términos de una petición coloquial en castellano, con el producto primero. */
+    public function conversationalProductTerms(string $text): ?array
+    {
+        if ($this->lang !== 'es' || preg_match('/\p{N}/u', $text)) {
+            return null;
+        }
+        $words = array_slice($this->chunks(mb_strtolower(self::cleanUtf8($text), 'UTF-8')), 0, 12);
+        if (count($words) < 3) {
+            return null;
+        }
+        $markers = array_fill_keys(array_map([self::class, 'fold'], ['tenéis', 'tienen', 'tienes', 'hay',
+            'alguna', 'algún', 'algunas', 'algunos', 'sencilla', 'sencillo', 'sencillas', 'sencillos',
+            'recomiendas', 'podrías', 'quiero', 'busco']), true);
+        $terms = [];
+        $natural = false;
+        foreach ($words as $word) {
+            if (isset($markers[self::fold($word)])) {
+                $natural = true;
+            } elseif ($this->tokens($word) !== []) {
+                $terms[] = $word;
+            }
+        }
+
+        return $natural && $terms !== [] ? $terms : null;
+    }
+
     /**
      * Palabras normalizadas, sin palabras vacías y reducidas a su raíz.
      *

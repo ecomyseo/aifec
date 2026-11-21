@@ -15,17 +15,28 @@ use Aifec\Modules\Agentic\Ucp;
 
 return [
     'title' => 'UCP and agents',
-    'description' => 'Purchases from AI platforms through UCP and verification of signed AI agents',
+    'description' => 'UCP and ACP checkout and verification of signed AI agents',
     'icon' => 'chat',
     'cap' => 'orders.edit',
-    'help' => "UCP is the protocol Google uses to buy in a shop from AI Mode and Gemini: the platform builds the cart, the delivery and the payment with the checkout of the shop, and the person pays with Google Pay.\nThe signed agents (the agent and the wallet of ChatGPT) buy on the web like a person: here the shop recognises them, so their sales are attributed to them.\nToday both only buy in the United States; in Europe they are announced but have no date.",
+    'help' => "UCP and ACP prepare purchases using the shop's own checkout. Enable each protocol separately and give the platform an API key with the orders:create scope. Buyers confirm and pay on the shop checkout with its enabled payment methods.\nProtocol compatibility does not grant access to a third-party commerce programme. Payment-provider and platform onboarding are separate. Signed browser agents are verified with Web Bot Auth.",
     'tabs' => [
+        'agdiscovery' => ['label' => 'Discovery and installation', 'fields' => [
+            'agentic.discovery_help' => ['type' => 'html', 'label' => 'Public protocol endpoints', 'html' => static function ($values, App $app): string {
+                $ucp = Ucp::absolute($app, $app->url()->to('/.well-known/ucp'));
+                $acp = Ucp::absolute($app, $app->url()->to('/.well-known/acp.json'));
+                return '<p>' . e(t('UCP and ACP profiles are dynamic endpoints of this shop. They require the protocol switches and server routing, not a product feed.')) . '</p>'
+                    . '<p><a href="' . e($ucp) . '" target="_blank" rel="noopener">' . e($ucp) . '</a><br><a href="' . e($acp) . '" target="_blank" rel="noopener">' . e($acp) . '</a></p>'
+                    . '<p>' . e(t('On Nginx, allow .well-known before rules that deny hidden paths. Use docs/04-ai-first/ucp-acp-nginx.conf and preserve the current PHP configuration.')) . '</p>'
+                    . '<p>' . e(t('Public HTTP access has not been verified. Installing files does not confirm server routing.')) . '</p>';
+            }],
+        ]],
         'agucp' => ['label' => 'UCP', 'fields' => [
+            'agentic.acp_enabled' => ['type' => 'toggle', 'label' => 'Enable ACP', 'default' => false,
+                'hint' => 'Agentic Commerce Protocol 2026-04-17. Give the platform an API key with the orders:create scope.'],
             'agentic.ucp_state' => ['type' => 'html', 'label' => 'Profile address', 'html' => static function ($values, App $app): string {
                 $url = $app->url()->origin() . $app->url()->to('/.well-known/ucp', [], '');
                 $state = !Ucp::enabled($app) ? t('Off: the profile and the purchase API answer 404.')
-                    : (Ucp::canPay($app) ? t('On: the platforms can complete the purchase with the payment methods announced.')
-                        : t('On, without a payment method for platforms: purchases are finished on the checkout page of the shop.'));
+                    : t('Buyers confirm and pay in the shop checkout using the active payment methods.');
 
                 return '<div class="af-input-group"><input type="text" class="af-input" readonly value="' . e($url) . '" aria-label="' . e(t('Profile address')) . '"></div>'
                     . '<p class="af-hint" data-af-ucp-state>' . e($state) . '</p>'

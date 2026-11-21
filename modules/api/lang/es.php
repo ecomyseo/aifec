@@ -131,6 +131,9 @@ return [
 
     // ------------------------------------------------------------------ la página /api y el llms.txt
     'API for programs and assistants' => 'API para programas y asistentes',
+    'Browsers allowed to use assistant carts' => 'Navegadores autorizados a usar carritos de asistentes',
+    'Enter one complete User-Agent per line. Unlisted browsers cannot create carts through assistant links.' => 'Escribe un User-Agent completo por línea. Los navegadores que no figuren en la lista no podrán crear carritos mediante enlaces para asistentes.',
+    'This browser cannot modify carts through assistant links.' => 'Este navegador no tiene permiso para modificar carritos mediante enlaces para asistentes.',
     'Read the catalogue, prepare a cart and place an order from a program or an assistant.' => 'Lee el catálogo, prepara un carrito y haz un pedido desde un programa o un asistente.',
     'Everything a person can do in this shop, a program can do: look at the catalogue, prepare a cart and, when the person says yes, place the order.' => 'Todo lo que una persona puede hacer en esta tienda lo puede hacer un programa: mirar el catálogo, preparar un carrito y, cuando la persona dice que sí, hacer el pedido.',
     'Reading needs no key. A key raises the usage limit and is needed to place orders.' => 'Leer no necesita clave. Una clave sube el límite de uso y hace falta para hacer pedidos.',

@@ -281,6 +281,21 @@ final class BrowseController
     {
         $this->check();
         $step = isset($params['step']) ? (string) $params['step'] : '';
+        if (\Aifec\Kernel\BrowserCommerce::blocked($this->app, $request)) {
+            $product = $params['a'] ?? $request->get('product_id');
+            if ($step === 'add' && !$this->json && is_scalar($product) && (int) $product > 0 && \Aifec\Kernel\BrowserCommerce::navigation($request)) {
+                $item = $this->app->service('catalog')->product((int) $product);
+                if ($item !== null && !empty($item['url_abs'])) {
+                    $response = Response::redirect((string) $item['url_abs']);
+                    $response->headers['Cache-Control'] = 'no-store, private';
+                    return $response;
+                }
+            }
+            $response = $this->json ? Response::json(['error' => 'browser_blocked'], 403)
+                : Response::text(t('This browser cannot modify carts through assistant links.'), 403);
+            $response->headers['Cache-Control'] = 'no-store, private';
+            return $response;
+        }
         if ($step === 'start') {
             if ($this->readerOnly()) {
                 // Al lector de una IA de chat, sin carrito vacío ni la plantilla «ID» que no puede completar: el catálogo con

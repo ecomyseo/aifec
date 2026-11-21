@@ -112,7 +112,7 @@ test('Web Bot Auth: el vector Ed25519 del RFC 9421 (B.2.6) se verifica, y un cam
     $tocada[10] = chr(ord($tocada[10]) ^ 1);
     same(false, WebBotAuth::verifyEd25519((string) $base, $tocada, $public), 'con un bit cambiado, no');
     // La clave que publica ChatGPT en su directorio (16/11/2026): su «kid» es la huella JWK de RFC 7638.
-    same('ArwjqcCqtA5oxEWkzXGC-To_0A9whHmajCHtfe8I9aY', WebBotAuth::thumbprint('P_1c4SX6fCavDcq6FRegWcVvaOKsp_aXHPEN1FcKDIA'), 'la huella JWK (RFC 7638) es el kid que publica ChatGPT');
+    same('ArwjqcCqtA5oxEWkzXGC-To_0A9whHmajCHtfe8I9aY', WebBotAuth::thumbprint('P_1c4SX6fCavDcq6FRegWcVvaOKsp_aXHPEN1FcKDIA'), 'la huella JWK (RFC 7638) es el identificador publicado por ChatGPT');
 });
 
 test('Web Bot Auth: el agente de ChatGPT firmado se reconoce, con la dirección de la persona', function (): void {

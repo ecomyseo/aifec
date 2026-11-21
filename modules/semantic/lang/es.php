@@ -46,6 +46,7 @@ return [
     'Google Merchant feed (google.xml)' => 'Feed de Google Merchant (google.xml)',
     'General product feed (products.json)' => 'Feed general de productos (products.json)',
     'Shopping assistants feed (openai.json)' => 'Feed para asistentes de compra (openai.json)',
+    'Activate after OpenAI enables checkout for your integration. ACP checkout and the terms and privacy pages must be active.' => 'Activa esta opción cuando OpenAI habilite la compra para tu integración. El checkout ACP y las páginas de condiciones y privacidad deben estar activos.',
     'Let assistants show the products in their answers' => 'Dejar que los asistentes enseñen los productos en sus respuestas',
     'Let assistants start the purchase' => 'Dejar que los asistentes inicien la compra',
     'Google product category' => 'Categoría de producto de Google',

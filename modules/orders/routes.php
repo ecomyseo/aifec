@@ -33,7 +33,7 @@ return static function (Router $r, App $app): void {
     $r->get($cart . '/summary.json', [CartController::class, 'summaryJson'])->name('cart.summary');
 
     // Las acciones: solo desde la propia web (intermediario csrf).
-    $r->group(['prefix' => $cart, 'middleware' => ['csrf']], static function (Router $r): void {
+    $r->group(['prefix' => $cart, 'middleware' => ['orders.cart', 'csrf']], static function (Router $r): void {
         $r->post('/add', [CartController::class, 'add'])->name('cart.add');
         $r->post('/update', [CartController::class, 'update'])->name('cart.update');
         $r->post('/remove', [CartController::class, 'remove'])->name('cart.remove');

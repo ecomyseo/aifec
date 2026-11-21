@@ -1,53 +1,35 @@
-# UCP y agentes que pagan
+# UCP, ACP y agentes que compran
 
-Algunas plataformas de IA ya no se limitan a recomendar: compran. Google lo hace desde el Modo IA y Gemini con **UCP** (Universal Commerce Protocol), y ChatGPT lo hace con su **agente** y su **monedero** (ChatGPT Wallet). El módulo **Comercio con agentes** prepara tu tienda para las dos cosas.
+El módulo **Comercio con agentes** conecta la caja de AIFEC con UCP y ACP. Utiliza los mismos productos, variantes, impuestos, descuentos, existencias y transportistas que la tienda. Cada protocolo se activa por separado en *Ajustes → UCP y agentes*.
 
-## En qué países funciona hoy
+## UCP
 
-A noviembre de 2026, las dos solo compran **en Estados Unidos**:
+El perfil público está en `/.well-known/ucp`. La versión predeterminada es **2026-08-25**; también se sirve el perfil **2026-04-08** en `/.well-known/ucp/2026-04-08`. Las respuestas llevan los manejadores de pago disponibles y las claves públicas para comprobar firmas HTTP.
 
-- **UCP de Google**: Estados Unidos; Canadá y Australia anunciados, después el Reino Unido. Para el resto de Europa no hay fecha.
-- **Monedero de ChatGPT**: Estados Unidos, con el plan Pro y tarjetas de allí. Fuera del Espacio Económico Europeo, Suiza y el Reino Unido.
+La API REST vive en `/ucp/v1`: catálogo (`POST /catalog/search`, `/catalog/lookup`, `/catalog/product`), carritos (`POST /carts`, `GET` y `PUT /carts/{id}`, `POST /carts/{id}/cancel`) y sesiones de compra (`POST /checkout-sessions`, `GET` y `PUT /checkout-sessions/{id}`, `POST /checkout-sessions/{id}/complete` y `/cancel`). Crear una compra con `cart_id` reutiliza el contenido del carrito, sin sustituirlo por líneas superpuestas de la petición.
 
-Por eso el módulo viene **apagado**: lo enciendes cuando Google o tu banco te den acceso, y ya está todo hecho.
+Los identificadores de artículo son `<producto>` o `<producto>-<variante>`, como en el catálogo. Las cantidades son unidades enteras. Los importes y las opciones de entrega los calcula la tienda; no se aceptan precios enviados por el agente.
 
-## UCP: la compra desde Google
+## ACP
 
-Con UCP la plataforma no abre tu web: habla con tu tienda por una API. Monta el carrito, pide los gastos de envío a una dirección, enseña el total a la persona y, cuando ésta paga con **Google Pay**, le pide a tu tienda que haga el pedido.
+El documento `/.well-known/acp.json` anuncia **Agentic Commerce Protocol 2026-04-17** por REST. Las sesiones se crean en `POST /checkout_sessions`; se consultan con `GET /checkout_sessions/{id}` y se actualizan con `POST` sobre la misma dirección. `POST …/complete` y `POST …/cancel` completan o cancelan la sesión. También existen las rutas equivalentes bajo `/acp/v1`.
 
-Todo pasa por la caja de tu tienda: los mismos precios, impuestos, envíos, existencias y avisos que en la web. El pedido aparece en tu panel con el canal **Plataforma de IA (UCP)** y la plataforma que lo trajo.
+Cada petición necesita una clave `Authorization: Bearer` de la API de la tienda con el permiso `orders:create`. Las operaciones que cambian una sesión necesitan `Idempotency-Key`. La cabecera `API-Version: 2026-04-17` fija el contrato. El documento de descubrimiento detalla el transporte disponible. El catálogo ACP se sirve en /acp/feed.jsonl. El comprador paga en la caja de la tienda.
 
-Lo que hace falta:
+Los artículos repetidos del contrato ACP se agrupan en su cantidad correspondiente. La adaptación conserva el estado completo de la caja y las actualizaciones parciales de ACP. Los pedidos se identifican con el canal **Plataforma de IA (ACP)**.
 
-1. Encender **UCP** en *Ajustes → UCP y agentes*. La dirección del perfil (`/.well-known/ucp`) es la que se da de alta en Google Merchant Center.
-2. Elegir la **página de privacidad** (y tener la de condiciones en los ajustes de pedidos): UCP pide las dos.
-3. Crear en la **API** una clave con el permiso `orders:create` y dársela a la plataforma. Sin esa clave, nadie puede cerrar una compra.
-4. Para cobrar dentro de la plataforma, encender **Google Pay** en *Ajustes → Redsys*, pedir al banco que active Google Pay en tu TPV y, para cobrar de verdad, darte de alta en la consola de Google Pay y Wallet.
+## Pago y continuación en la web
 
-Sin Google Pay, UCP funciona igual: la plataforma prepara la compra y manda a la persona a tu caja con el carrito ya lleno para pagar allí.
+La sesión mantiene los artículos y proporciona continue_url para que el comprador confirme en la tienda. La caja ofrece tarjeta, PayPal y los demás métodos que estén habilitados. El estado de la sesión recoge el pedido confirmado.
 
-### Qué ocurre si el pago no sale
+Las compras abiertas caducan a las 24 horas. Una sesión cancelada o caducada ya no se puede recuperar con su enlace. Las sesiones creadas con una clave solo se consultan o cambian con esa misma clave. Los reintentos idempotentes conservan el resultado y los cambios concurrentes de la misma compra se serializan.
 
-- **Tarjeta rechazada**: no se cobra nada; la compra sigue abierta y la persona puede probar con otra.
-- **El banco pide confirmar la tarjeta** (3D Secure): eso no se puede hacer dentro de la plataforma, así que la persona termina en tu caja.
-- **Pedido por encima del máximo**: el máximo de pedidos por programas de los ajustes de la API vale también aquí; por encima, a tu caja.
+## Agentes de navegador
 
-El token de Google Pay solo vive en la memoria mientras dura el cobro: no se guarda en la base de datos, ni en el registro, ni en la respuesta.
+Web Bot Auth permite verificar firmas de agentes de los orígenes de confianza configurados. Una cabecera `User-Agent` por sí sola no autentica a nadie. La firma válida permite atribuir la visita; no sustituye el consentimiento del comprador ni las comprobaciones del pago.
 
-## El agente y el monedero de ChatGPT
+En el módulo **ecom_aifec para PrestaShop**, la pantalla independiente *AIFEC: agentes de navegador* muestra agentes conocidos y cabeceras observadas, con actividad y permisos por tienda. Los navegadores automáticos desconocidos no crean carritos por defecto; el comerciante puede permitir entradas concretas. Los enlaces deliberados de una persona y las API autenticadas conservan sus recorridos. No existe una lista finita de todos los navegadores de agentes: el panel combina catálogo y observación real, y describe las cabeceras como indicios.
 
-El agente de ChatGPT compra **en tu web**, como una persona, con un navegador en la nube; el monedero solo le da una tarjeta para pagar en tu caja. No hay nada que conectar.
+## Verificación de esta integración
 
-Lo que sí hace tu tienda es **reconocerlo**: el agente firma cada petición (Web Bot Auth) y la tienda comprueba la firma con la clave pública que publica ChatGPT. Si la firma es buena:
-
-- la visita y la venta quedan **atribuidas a ChatGPT**;
-- los límites por dirección se aplican a la persona que lo usa, no a todos los que compran desde el mismo navegador en la nube.
-
-No bloquea a nadie y no da permisos especiales: una firma que no se puede comprobar es una visita normal. En *Ajustes → UCP y agentes → Agentes que firman* ves cuándo vino el último agente verificado y eliges de qué agentes te fías (de serie, solo `https://chatgpt.com`).
-
-## Para quien programa
-
-- Perfil: `GET /.well-known/ucp` (versión 2026-04-08, servicio `dev.ucp.shopping` por REST, capacidades de compra y entrega).
-- API: `POST /ucp/v1/checkout-sessions`, `GET` y `PUT /ucp/v1/checkout-sessions/{id}`, `POST …/{id}/complete` y `POST …/{id}/cancel`. Admite `Idempotency-Key`.
-- El identificador de cada artículo es el del feed de Merchant Center: `<producto>` o `<producto>-<variante>`.
-- Google Pay se anuncia con el manejador `com.google.pay` y se cobra por la API REST de Redsys.
+Las pruebas distinguen HTTP real y bases de datos locales de la simulación del proveedor de pagos. Crear un pedido local con un PSP simulado demuestra el recorrido y la persistencia; no es un cargo bancario ni una certificación de Google, OpenAI o un adquirente. Los informes de la integración conservan los esquemas oficiales, las peticiones, las respuestas y los fallos reproducidos y corregidos.

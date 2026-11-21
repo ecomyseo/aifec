@@ -197,6 +197,10 @@ final class DocsController
     {
         $name = isset($params['fichero']) ? (string) $params['fichero'] : '';
         $info = $this->docs->library()->media($name);
+        if ($info === null && ($fallback = $this->docs->fallbackLibrary()) !== null) {
+            // La documentación en inglés usa las mismas capturas que la de siempre.
+            $info = $fallback->media($name);
+        }
         if ($info === null) {
             throw HttpError::notFound();
         }

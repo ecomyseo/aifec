@@ -46,8 +46,33 @@ final class Docs
         return $this->library;
     }
 
-    /** La carpeta de documentación, absoluta. Una ruta relativa cuenta desde la raíz del proyecto. */
+    /** La documentación en inglés vive junto a la de siempre, con este final: «docs» → «docs-en» (17/11/2026). */
+    public const ENGLISH_SUFFIX = '-en';
+
+    /**
+     * La carpeta de documentación, absoluta: la inglesa («docs-en») cuando se navega en inglés y existe; si no, la de siempre.
+     */
     public function directory(): string
+    {
+        $base = $this->baseDirectory();
+        $lang = strtolower((string) $this->app->lang());
+
+        return strpos($lang, 'en') === 0 && is_dir($base . self::ENGLISH_SUFFIX) ? $base . self::ENGLISH_SUFFIX : $base;
+    }
+
+    /**
+     * La biblioteca de siempre cuando se está leyendo la inglesa, o null: de ella salen las imágenes que la inglesa no tiene
+     * (las capturas se comparten).
+     */
+    public function fallbackLibrary(): ?Library
+    {
+        $base = $this->baseDirectory();
+
+        return $this->directory() !== $base ? new Library($base) : null;
+    }
+
+    /** La carpeta de documentación de siempre, absoluta. Una ruta relativa cuenta desde la raíz del proyecto. */
+    public function baseDirectory(): string
     {
         $configured = trim($this->app->settings()->str('docs.dir', 'docs'));
         if ($configured === '') {

@@ -13,6 +13,7 @@ namespace Aifec\Modules\Search;
 
 use Aifec\Kernel\App;
 use Aifec\Search\Fuzzy;
+use Aifec\Search\Tokenizer;
 use Aifec\Search\Vector;
 
 /**
@@ -303,6 +304,7 @@ final class Search
         $type = isset($options['type']) && is_string($options['type']) && in_array($options['type'], self::TYPES, true) ? $options['type'] : 'product';
         $limit = isset($options['limit']) ? max(1, min(500, (int) $options['limit'])) : 200;
         $explain = !empty($options['explain']);
+        $requireAllTerms = !empty($options['require_all_terms']);
         $q = trim(mb_substr(Analyzer::clean($q), 0, self::MAX_QUERY, 'UTF-8'));
         if ($q === '') {
             return $this->empty(null);
@@ -313,11 +315,12 @@ final class Search
             $this->memo = [];
             $this->memoVersion = $version;
         }
-        $key = $lang . '|' . $type . '|' . $limit . '|' . ($explain ? '1' : '0') . '|' . $q;
+        $key = $lang . '|' . $type . '|' . $limit . '|' . ($explain ? '1' : '0') . '|' . ($requireAllTerms ? '1' : '0') . '|' . $q;
         if (isset($this->memo[$key])) {
             return $this->memo[$key];
         }
-        $result = $this->run($q, $lang, $type, $limit, $explain);
+        $natural = $type === 'product' && $lang === 'es' ? (new Tokenizer('es'))->conversationalProductTerms($q) : null;
+        $result = $this->run($natural === null ? $q : implode(' ', $natural), $lang, $type, $limit, $explain, $natural !== null, $requireAllTerms);
         if (count($this->memo) >= self::MEMO_MAX) {
             $this->memo = [];
         }
@@ -337,7 +340,7 @@ final class Search
     /**
      * @return array<string,mixed>
      */
-    private function run(string $q, string $lang, string $type, int $limit, bool $explain): array
+    private function run(string $q, string $lang, string $type, int $limit, bool $explain, bool $anchorFirst, bool $requireAllTerms): array
     {
         $analyzer = $this->analyzer($lang);
         $chunks = $analyzer->chunks($q, 12);
@@ -466,7 +469,7 @@ final class Search
         }
         $relaxed = false;
         $count = count($groups);
-        if (($matched === null || $matched === []) && $count >= 2) {
+        if (!$requireAllTerms && ($matched === null || $matched === []) && $count >= 2) {
             $hits = [];
             foreach ($groupDocs as $docs) {
                 foreach ($docs as $docId => $unused) {
@@ -475,7 +478,7 @@ final class Search
             }
             $matched = [];
             foreach ($hits as $docId => $n) {
-                if ($n >= max(1, $count - 1)) {
+                if ($n >= max(1, $count - 1) && (!$anchorFirst || isset($groupDocs[0][$docId]))) {
                     $matched[$docId] = true;
                 }
             }

@@ -130,7 +130,7 @@ final class SemanticController
             'languages' => $this->app->languages(),
             'default_language' => $this->app->defaultLang(),
             'currency' => $s->currency(),
-            'gates' => $s->gates(),
+            'gates' => $this->app->hooks()->apply('semantic.gates', $s->gates()),
         ];
         $json = json_encode($document, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_PRETTY_PRINT);
 

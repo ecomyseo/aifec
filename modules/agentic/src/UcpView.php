@@ -100,13 +100,14 @@ final class UcpView
         foreach ($state['problems'] as $problem) {
             $messages[] = ['type' => 'error', 'code' => 'item_unavailable', 'content' => (string) $problem, 'severity' => 'recoverable'];
         }
-        if ($lines === [] || $missing !== [] || $state['problems'] !== []) {
-            $status = self::INCOMPLETE;
-        } elseif (!Ucp::canPay($app)) {
+        if ($row['status'] === UcpCheckouts::OPEN && UcpCheckouts::legacyPaymentLocked($app, (string) $row['public_id'])) {
             $status = self::ESCALATION;
-            $messages[] = ['type' => 'warning', 'code' => 'payment_ineligible', 'content' => t('This shop takes the payment on its own checkout page: open the continue address to pay.'), 'severity' => 'recoverable'];
+            $messages[] = ['type' => 'warning', 'code' => 'payment_pending', 'content' => t('The shop is confirming the payment. Do not pay again.'), 'severity' => 'requires_buyer_review'];
+        } elseif ($lines === [] || $missing !== [] || $state['problems'] !== []) {
+            $status = self::INCOMPLETE;
         } else {
-            $status = self::READY;
+            $status = self::ESCALATION;
+            $messages[] = ['type' => 'warning', 'code' => 'payment_ineligible', 'content' => t('This shop takes the payment on its own checkout page: open the continue address to pay.'), 'severity' => 'requires_buyer_input'];
         }
 
         $view = [
@@ -122,7 +123,7 @@ final class UcpView
             'continue_url' => self::continueUrl($app, (string) $row['public_id']),
         ];
         if (!empty($state['needs_shipping'])) {
-            $view['fulfillment'] = self::fulfillment($state, $ids);
+            $view['fulfillment'] = self::fulfillment($app, $state, $ids);
         }
 
         return $view;
@@ -157,7 +158,7 @@ final class UcpView
     /** La dirección que abre esta compra en la caja de la tienda, en el navegador de la persona. */
     public static function continueUrl(App $app, string $id): string
     {
-        return $app->url()->origin() . $app->url()->to('/ucp/continue/' . UcpCheckouts::cartToken($id), [], '');
+        return $app->url()->origin() . $app->url()->to('/ucp/continue/' . UcpCheckouts::cartToken($app, $id), [], '');
     }
 
     /**
@@ -166,7 +167,7 @@ final class UcpView
      *
      * @return array<string,mixed>
      */
-    private static function fulfillment(array $state, array $ids): array
+    private static function fulfillment(App $app, array $state, array $ids): array
     {
         $address = is_array($state['address']) ? $state['address'] : [];
         $text = static function (string $key) use ($address): string {
@@ -191,7 +192,7 @@ final class UcpView
         foreach ($state['shipping']['options'] as $option) {
             $entry = ['id' => 'carrier_' . (int) $option['id'], 'title' => (string) $option['name'], 'totals' => [['type' => 'total', 'amount' => (int) $option['price']]]];
             if ((string) $option['delay'] !== '') {
-                $entry['description'] = (string) $option['delay'];
+                $entry['description'] = Ucp::version($app) === '2026-08-25' ? ['plain' => (string) $option['delay']] : (string) $option['delay'];
             }
             $options[] = $entry;
             if (!empty($option['selected'])) {

@@ -22,16 +22,26 @@ use Aifec\Kernel\Request;
  */
 final class Ucp
 {
-    public const VERSION = '2026-04-08';
+    public const VERSION = '2026-08-25';
+    public const VERSIONS = ['2026-08-25', '2026-04-08'];
 
     public const CHECKOUT = 'dev.ucp.shopping.checkout';
     public const FULFILLMENT = 'dev.ucp.shopping.fulfillment';
+    public const DISCOUNT = 'dev.ucp.shopping.discount';
+    public const CART = 'dev.ucp.shopping.cart';
 
     /** Prefijo de las claves de la API de AIFEC (las da de alta el módulo API). */
     private const KEY_PREFIX = 'aifec_api_';
 
     /** Ámbitos de una clave que puede cerrar compras por UCP. */
-    public const SCOPES = ['ucp', 'orders:create'];
+    public const SCOPES = ['ucp', 'acp', 'orders:create'];
+
+    public static function version(App $app): string
+    {
+        $version = $app->request()->attr('ucp_version', self::VERSION);
+
+        return is_string($version) && in_array($version, self::VERSIONS, true) ? $version : self::VERSION;
+    }
 
     public static function enabled(App $app): bool
     {
@@ -51,17 +61,29 @@ final class Ucp
      */
     public static function profile(App $app): array
     {
-        $v = self::VERSION;
+        $v = self::version($app);
 
-        return ['ucp' => [
-            'version' => $v,
-            'services' => ['dev.ucp.shopping' => [[
+        $keys = UcpSignatures::keys($app);
+        $bindings = [[
                 'version' => $v,
                 'spec' => 'https://ucp.dev/' . $v . '/specification/overview',
                 'transport' => 'rest',
                 'schema' => 'https://ucp.dev/' . $v . '/services/shopping/rest.openapi.json',
                 'endpoint' => self::endpoint($app),
-            ]]],
+        ]];
+        if ($v === self::VERSION && $app->modules()->isLoaded('mcp')) {
+            $bindings[] = [
+                'version' => $v,
+                'spec' => 'https://ucp.dev/' . $v . '/specification/overview',
+                'transport' => 'mcp',
+                'schema' => 'https://ucp.dev/' . $v . '/services/shopping/mcp.openrpc.json',
+                'endpoint' => $app->url()->abs('/ucp/mcp', [], ''),
+            ];
+        }
+
+        $profile = ['keys' => $keys, 'ucp' => [
+            'version' => $v,
+            'services' => ['dev.ucp.shopping' => $bindings],
             'capabilities' => [
                 self::CHECKOUT => [[
                     'version' => $v,
@@ -70,13 +92,39 @@ final class Ucp
                 ]],
                 self::FULFILLMENT => [[
                     'version' => $v,
-                    'spec' => 'https://ucp.dev/' . $v . '/specification/shopping/fulfillment',
+                    'spec' => 'https://ucp.dev/' . $v . '/specification/' . ($v === '2026-08-25' ? 'shopping/extensions/fulfillment' : 'fulfillment'),
                     'schema' => 'https://ucp.dev/' . $v . '/schemas/shopping/fulfillment.json',
                     'extends' => self::CHECKOUT,
+                ]],
+                self::DISCOUNT => [[
+                    'version' => $v,
+                    'spec' => 'https://ucp.dev/' . $v . '/specification/' . ($v === '2026-08-25' ? 'shopping/extensions/discount' : 'discount'),
+                    'schema' => 'https://ucp.dev/' . $v . '/schemas/shopping/discount.json',
+                    'extends' => [self::CHECKOUT, self::CART],
+                ]],
+                self::CART => [[
+                    'version' => $v,
+                    'spec' => 'https://ucp.dev/' . $v . '/specification/' . ($v === '2026-08-25' ? 'shopping/cart' : 'cart'),
+                    'schema' => 'https://ucp.dev/' . $v . '/schemas/shopping/cart.json',
+                ]],
+                'dev.ucp.shopping.catalog.search' => [[
+                    'version' => $v, 'spec' => 'https://ucp.dev/' . $v . '/specification/shopping/catalog/search',
+                    'schema' => 'https://ucp.dev/' . $v . '/schemas/shopping/catalog_search.json',
+                ]],
+                'dev.ucp.shopping.catalog.lookup' => [[
+                    'version' => $v, 'spec' => 'https://ucp.dev/' . $v . '/specification/shopping/catalog/lookup',
+                    'schema' => 'https://ucp.dev/' . $v . '/schemas/shopping/catalog_lookup.json',
                 ]],
             ],
             'payment_handlers' => self::handlers($app),
         ]];
+        if ($v !== self::VERSION) {
+            $profile['signing_keys'] = $keys;
+            unset($profile['ucp']['capabilities']['dev.ucp.shopping.catalog.search'], $profile['ucp']['capabilities']['dev.ucp.shopping.catalog.lookup']);
+        } elseif ($app->request()->attr('route') === 'ucp.profile' || $app->request()->path === '/ucp/v1') {
+            $profile['ucp']['supported_versions'] = ['2026-04-08' => $app->url()->abs('/.well-known/ucp/2026-04-08', [], '')];
+        }
+        return $profile;
     }
 
     /**
@@ -87,8 +135,9 @@ final class Ucp
     public static function envelope(App $app): array
     {
         return [
-            'version' => self::VERSION,
-            'capabilities' => [self::CHECKOUT => [['version' => self::VERSION]], self::FULFILLMENT => [['version' => self::VERSION]]],
+            'version' => self::version($app),
+            'status' => 'success',
+            'capabilities' => [self::CHECKOUT => [['version' => self::version($app)]], self::FULFILLMENT => [['version' => self::version($app)]], self::DISCOUNT => [['version' => self::version($app)]]],
             'payment_handlers' => self::handlers($app),
         ];
     }
@@ -101,21 +150,7 @@ final class Ucp
      */
     public static function handlers(App $app)
     {
-        $handlers = $app->hooks()->apply('ucp.payment_handlers', []);
-        $clean = [];
-        foreach (is_array($handlers) ? $handlers : [] as $name => $list) {
-            if (is_string($name) && preg_match('/^[a-z0-9_.\-]{3,80}$/D', $name) === 1 && is_array($list) && $list !== []) {
-                $clean[$name] = array_values(array_filter($list, 'is_array'));
-            }
-        }
-
-        return $clean === [] ? new \stdClass() : $clean;
-    }
-
-    /** ¿Hay algún manejador de pago que se pueda usar para cerrar la compra aquí? */
-    public static function canPay(App $app): bool
-    {
-        return !(self::handlers($app) instanceof \stdClass);
+        return new \stdClass();
     }
 
     /**

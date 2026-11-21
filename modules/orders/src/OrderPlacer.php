@@ -31,7 +31,7 @@ use Aifec\Security\Random;
  */
 final class OrderPlacer
 {
-    private const SOURCES = ['web', 'assistant', 'api', 'mcp', 'ucp', 'admin', 'import'];
+    private const SOURCES = ['web', 'assistant', 'api', 'mcp', 'ucp', 'acp', 'admin', 'import'];
 
     /** @var App */
     private $app;

@@ -13,18 +13,14 @@ namespace Aifec\Modules\Agentic;
 
 use Aifec\Kernel\App;
 use Aifec\Kernel\HttpError;
-use Aifec\Kernel\RateLimiter;
 use Aifec\Kernel\Request;
 use Aifec\Kernel\Response;
-use Aifec\Modules\Orders\OrderLog;
 
 /**
  * La API de compra de UCP (transporte REST): crear, leer, cambiar, completar y cancelar una sesión de compra.
  *
  * Sobre la caja de la tienda: las líneas, el comprador y la entrega se guardan en el carrito de la sesión y los precios, el
- * envío y los avisos los calcula la caja. Completar la compra exige un instrumento de pago que algún módulo sepa cobrar
- * (Google Pay por Redsys) y, con «agentic.ucp_require_key» encendido, la clave de la API que la tienda le dio a la plataforma.
- * Sin una forma de pagar aquí, la sesión pide terminar en la caja de la tienda (requires_escalation y continue_url).
+ * envío y los avisos los calcula la caja. El comprador revisa y paga desde la página de pago de la tienda.
  *
  * Los errores de negocio van con HTTP 200 y su aviso (como pide UCP); los de la petición, con su código HTTP.
  */
@@ -49,6 +45,12 @@ final class UcpController
 
     public function profile(Request $request, array $params): Response
     {
+        if (isset($params['version'])) {
+            if (!in_array($params['version'], Ucp::VERSIONS, true)) {
+                return $this->error(404, 'version_unsupported', 'Unsupported UCP version.');
+            }
+            $request->setAttr('ucp_version', $params['version']);
+        }
         $response = Response::json(Ucp::profile($this->app));
         $response->headers['Cache-Control'] = 'public, max-age=300';
         $response->headers['Access-Control-Allow-Origin'] = '*';
@@ -56,15 +58,25 @@ final class UcpController
         return $response;
     }
 
-    public function create(Request $request, array $params): Response
+    public function create(Request $request, array $params, string $kind = 'checkout'): Response
     {
-        return $this->idempotent($request, function (array $body) use ($request): Response {
+        return $this->idempotent($request, function (array $body) use ($request, $kind): Response {
+            if ($kind === 'checkout' && isset($body['cart_id']) && is_string($body['cart_id'])) {
+                $cart = $this->load(['id' => $body['cart_id']], $request);
+                if ($cart['kind'] !== 'cart' || $cart['status'] !== UcpCheckouts::OPEN) {
+                    return $this->error(409, 'cart_closed', 'This cart is already converted or closed.');
+                }
+                UcpCheckouts::bind($this->app, (string) $cart['public_id']);
+                UcpCheckouts::update($this->app, (string) $cart['public_id'], ['kind' => 'checkout']);
+
+                return Response::json(UcpView::live($this->app, $cart), 201);
+            }
             $lines = isset($body['line_items']) && is_array($body['line_items']) ? $body['line_items'] : [];
             if ($lines === []) {
                 return $this->error(400, 'invalid', t('A checkout needs at least one line item.'));
             }
             $key = Ucp::key($this->app, $request);
-            $row = UcpCheckouts::create($this->app, Ucp::platform($request), $key !== null ? (int) $key['id'] : null);
+            $row = UcpCheckouts::create($this->app, Ucp::platform($request), $key !== null ? (int) $key['id'] : null, $kind);
             $id = (string) $row['public_id'];
             UcpCheckouts::bind($this->app, $id);
             $applied = $this->applyLines($id, $lines, false);
@@ -84,7 +96,7 @@ final class UcpController
 
     public function show(Request $request, array $params): Response
     {
-        $row = $this->load($params);
+        $row = $this->load($params, $request);
         if ((string) $row['status'] !== UcpCheckouts::OPEN) {
             return Response::json(UcpView::stored($this->app, $row));
         }
@@ -95,11 +107,11 @@ final class UcpController
 
     public function update(Request $request, array $params): Response
     {
-        $row = $this->load($params);
+        $row = $this->load($params, $request);
 
         return $this->idempotent($request, function (array $body) use ($row): Response {
             $id = (string) $row['public_id'];
-            if ((string) $row['status'] !== UcpCheckouts::OPEN) {
+            if ((string) $row['status'] !== UcpCheckouts::OPEN || $row['snapshot'] !== null) {
                 return $this->error(409, 'checkout_closed', t('This checkout is already finished.'));
             }
             UcpCheckouts::bind($this->app, $id);
@@ -116,7 +128,7 @@ final class UcpController
 
     public function complete(Request $request, array $params): Response
     {
-        $row = $this->load($params);
+        $row = $this->load($params, $request);
 
         return $this->idempotent($request, function (array $body) use ($row, $request): Response {
             return $this->doComplete($row, $body, $request);
@@ -125,11 +137,12 @@ final class UcpController
 
     public function cancel(Request $request, array $params): Response
     {
-        $row = $this->load($params);
+        $row = $this->load($params, $request);
+        if ($row['status'] === UcpCheckouts::OPEN && UcpCheckouts::legacyPaymentLocked($this->app, (string) $row['public_id'])) { throw new HttpError(409, 'The delegated payment needs reconciliation.'); }
 
         return $this->idempotent($request, function (array $body) use ($row): Response {
             $id = (string) $row['public_id'];
-            if ((string) $row['status'] === UcpCheckouts::COMPLETED) {
+            if ((string) $row['status'] === UcpCheckouts::COMPLETED || ($row['status'] === UcpCheckouts::OPEN && $row['snapshot'] !== null)) {
                 return $this->error(409, 'checkout_closed', t('This checkout is already an order: it cannot be canceled here.'));
             }
             if ((string) $row['status'] === UcpCheckouts::OPEN) {
@@ -147,20 +160,38 @@ final class UcpController
     /** El enlace de continue_url: abre el carrito de la sesión en el navegador de la persona y la lleva a la caja. */
     public function resume(Request $request, array $params): Response
     {
+        if (\Aifec\Kernel\BrowserCommerce::blocked($this->app, $request, true)) {
+            throw new HttpError(403, t('This browser cannot modify carts through assistant links.'));
+        }
         $raw = strtolower(isset($params['token']) ? (string) $params['token'] : '');
+        $session = $this->app->db()->row('SELECT * FROM {ucp_checkouts} WHERE continue_hash = ?', [hash('sha256', $raw)]);
+        if ($session === null) {
+            throw HttpError::notFound();
+        }
+        if ($session['status'] === UcpCheckouts::OPEN && UcpCheckouts::legacyPaymentLocked($this->app, (string) $session['public_id'])) { throw new HttpError(409, 'The delegated payment needs reconciliation. Do not submit another payment.'); }
+        if ($session['status'] === UcpCheckouts::CANCELED
+            || ($session['status'] === UcpCheckouts::OPEN && $session['created_at'] < $this->app->clock()->sql($this->app->clock()->now() - 86400))) {
+            throw new HttpError(410, 'Checkout expired or canceled');
+        }
         $cart = $this->app->db()->row('SELECT id, order_id, source FROM {carts} WHERE token = ?', [hash('sha256', $raw)]);
         if ($cart === null || (string) $cart['source'] !== UcpCheckouts::SOURCE || !$this->app->router()->has('checkout')) {
             throw HttpError::notFound();
         }
         if ($cart['order_id'] !== null && (int) $cart['order_id'] > 0) {
-            $order = $this->app->db()->row('SELECT number, secret FROM {orders} WHERE id = ?', [(int) $cart['order_id']]);
+            $order = $this->app->db()->row('SELECT number FROM {orders} WHERE id = ?', [(int) $cart['order_id']]);
             if ($order === null || !$this->app->router()->has('order.thanks')) {
                 throw HttpError::notFound();
             }
-            $target = $this->app->url()->route('order.thanks', ['number' => (string) $order['number'], 'secret' => (string) $order['secret']]);
+            $target = $this->app->url()->route('order.thanks', ['number' => (string) $order['number'], 'secret' => $this->app->service('orders')->viewTokenOf((string) $order['number'])]);
         } else {
             $this->app->setCookie($this->app->cookieName('k'), $raw, 30);
             $this->app->setCookie($this->app->cookieName('ck'), '1', 30, true);
+            if ($session['snapshot'] === null) {
+                UcpCheckouts::bind($this->app, (string) $session['public_id']);
+                $view = UcpView::live($this->app, $session);
+                unset($view['ucp'], $view['continue_url']);
+                UcpCheckouts::update($this->app, (string) $session['public_id'], ['snapshot' => (string) json_encode($view, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)]);
+            }
             $target = $this->app->url()->route('checkout');
         }
         $response = Response::redirect($target);
@@ -180,6 +211,7 @@ final class UcpController
     private function doComplete(array $row, array $body, Request $request): Response
     {
         $id = (string) $row['public_id'];
+        if ($row['status'] === UcpCheckouts::OPEN && UcpCheckouts::legacyPaymentLocked($this->app, $id)) { return $this->error(409, 'payment_pending', t('The shop is confirming the payment. Do not pay again.')); }
         if ((string) $row['status'] !== UcpCheckouts::OPEN) {
             return (string) $row['status'] === UcpCheckouts::COMPLETED
                 ? Response::json(UcpView::stored($this->app, $row))
@@ -189,134 +221,13 @@ final class UcpController
         if ($key === null && $this->app->settings()->bool('agentic.ucp_require_key', true)) {
             return $this->error(401, 'unauthorized', t('Completing a purchase needs the API key that the shop gave to this platform (Authorization: Bearer).'));
         }
-        $instrument = self::instrument($body);
-        $method = '';
-        if ($instrument !== null) {
-            // El módulo de pago que sabe cobrar ese instrumento lo prepara (el token, solo en memoria) y dice su forma de pago.
-            $method = (string) $this->app->hooks()->apply('ucp.payment_instrument', '', $instrument);
+        UcpCheckouts::bind($this->app, $id);
+        if ($row['snapshot'] === null) { $this->applyDetails($id, $body); }
+        $view = UcpView::live($this->app, $row);
+        if ($view['status'] !== UcpView::INCOMPLETE) {
+            $view['status'] = UcpView::ESCALATION;
         }
-        $outcome = '';
-        try {
-            UcpCheckouts::bind($this->app, $id);
-            if ($method === '') {
-                $view = UcpView::live($this->app, $row, [[
-                    'type' => 'error', 'code' => 'payment_ineligible', 'path' => '$.payment.instruments',
-                    'content' => t('This payment cannot be taken here. Finish the purchase on the checkout page of the shop.'), 'severity' => 'recoverable',
-                ]]);
-                if ($view['status'] === UcpView::READY || $view['status'] === UcpView::ESCALATION) {
-                    $view['status'] = UcpView::ESCALATION;
-                }
-
-                return Response::json($view);
-            }
-            $co = $this->app->service('checkout');
-            if ($instrument !== null && isset($instrument['billing_address']) && is_array($instrument['billing_address'])) {
-                $billing = self::address($instrument['billing_address']);
-                if ($billing !== []) {
-                    $co->fill(['billing' => $billing]);
-                }
-            }
-            $chosen = $co->setPayment($method);
-            if (empty($chosen['ok'])) {
-                return Response::json($this->escalated($row, 'payment_ineligible', t('This payment cannot be taken for this purchase. Finish it on the checkout page of the shop.')));
-            }
-            $review = $co->review();
-            if (empty($review['ready'])) {
-                return Response::json(UcpView::live($this->app, $row));
-            }
-            $total = (int) $review['total'];
-            $max = max(0, $this->app->settings()->int('api.max_order_cents', 0));
-            if ($max > 0 && $total > $max) {
-                return Response::json($this->escalated($row, 'amount_limit_exceeded',t('This order is above the highest amount the shop takes from an AI platform. Finish it on the checkout page of the shop.')));
-            }
-            $limiter = new RateLimiter($this->app->db(), $this->app->clock());
-            $bucket = $key !== null ? 'ucp-orders:' . (int) $key['id'] : 'ucp-orders-ip:' . (string) $request->ip;
-            $hourly = max(0, $this->app->settings()->int('api.max_orders_per_hour', 10));
-            if ($hourly > 0 && $limiter->remaining($bucket, $hourly, 3600) < 1) {
-                return $this->error(429, 'rate_limited', t('Too many orders in an hour. Try again later.'));
-            }
-
-            // La foto de la compra antes de hacer el pedido (después, el carrito ya es un pedido).
-            $snapshot = UcpView::live($this->app, $row);
-            $platform = (string) $row['platform'];
-            $cartId = (int) $this->app->db()->value('SELECT id FROM {carts} WHERE token = ?', [hash('sha256', UcpCheckouts::cartToken($id))]);
-            $result = $co->place((string) $review['confirm_token'], [
-                'source' => UcpCheckouts::SOURCE,
-                'ip' => self::buyerIp($body, (string) $request->ip),
-                'accept_terms' => true,
-                'marketing' => false,
-                'attribution' => ['channel' => 'ucp', 'source' => $platform !== '' ? $platform : 'UCP', 'key_id' => $key !== null ? (int) $key['id'] : 0, 'key_name' => $key !== null ? (string) $key['name'] : ''],
-            ]);
-            $outcome = (string) $this->app->hooks()->apply('ucp.payment_finish', '', $method);
-            $method = '';
-            if (empty($result['ok'])) {
-                $view = $this->failed($row, $result, $outcome);
-                // La caja reabre el carrito con una ficha nueva al azar: vuelve a la de la sesión, o la siguiente petición no lo encuentra.
-                UcpCheckouts::restoreCart($this->app, $id, $cartId);
-
-                return Response::json($view);
-            }
-            if ($hourly > 0) {
-                $limiter->hit($bucket, $hourly, 3600);
-            }
-            $orderUrl = Ucp::absolute($this->app, (string) $result['order_url']);
-            try {
-                (new OrderLog($this->app))->add((int) $result['id'], 'note', null, null, 'Placed through UCP' . ($platform !== '' ? ' by ' . $platform : '') . ($key !== null ? ' with the key ' . (string) $key['name'] : ''), false);
-            } catch (\Throwable $e) {
-                $this->app->log()->exception($e, 'agentic.order.log');
-            }
-            unset($snapshot['ucp'], $snapshot['messages'], $snapshot['continue_url']);
-            $snapshot['payment'] = ['instruments' => [self::echoInstrument($instrument)]];
-            UcpCheckouts::update($this->app, $id, [
-                'status' => UcpCheckouts::COMPLETED, 'order_id' => (int) $result['id'], 'order_number' => (string) $result['number'], 'order_url' => $orderUrl,
-                'snapshot' => (string) json_encode($snapshot, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
-            ]);
-            $fresh = UcpCheckouts::find($this->app, $id);
-
-            return Response::json(UcpView::stored($this->app, is_array($fresh) ? $fresh : $row));
-        } finally {
-            if ($method !== '') {
-                // Si algo cortó antes de cobrar, el token no se queda en memoria.
-                $this->app->hooks()->apply('ucp.payment_finish', '', $method);
-            }
-        }
-    }
-
-    /**
-     * El cobro no ha salido: el pedido queda fallido y el carrito vuelve a estar libre (otra tarjeta, o la caja de la tienda).
-     *
-     * @param array<string,mixed> $row
-     * @param array<string,mixed> $result
-     *
-     * @return array<string,mixed>
-     */
-    private function failed(array $row, array $result, string $outcome): array
-    {
-        $error = (string) (isset($result['error']) ? $result['error'] : '');
-        if ($outcome === 'authentication') {
-            return $this->escalated($row, 'requires_3ds', t('The bank asks to confirm the card. Finish the purchase on the checkout page of the shop.'));
-        }
-        if (empty($result['reopened'])) {
-            return UcpView::live($this->app, $row, [['type' => 'error', 'code' => 'totals_changed', 'content' => $error !== '' ? $error : t('The order has changed. Review it again.'), 'severity' => 'recoverable']]);
-        }
-        $code = $outcome === 'declined' ? 'payment_declined' : 'payment_failed';
-
-        return UcpView::live($this->app, $row, [['type' => 'error', 'code' => $code, 'path' => '$.payment.instruments', 'content' => $error !== '' ? $error : t('The payment did not go through. Nothing was charged.'), 'severity' => 'recoverable']]);
-    }
-
-    /**
-     * La sesión enviada a la caja de la tienda: requires_escalation, con su aviso.
-     *
-     * @param array<string,mixed> $row
-     *
-     * @return array<string,mixed>
-     */
-    private function escalated(array $row, string $code, string $content): array
-    {
-        $view = UcpView::live($this->app, $row, [['type' => 'error', 'code' => $code, 'content' => $content, 'severity' => 'recoverable']]);
-        $view['status'] = UcpView::ESCALATION;
-
-        return $view;
+        return Response::json($view);
     }
 
     // ------------------------------------------------------------------ aplicar lo que manda la plataforma
@@ -336,16 +247,16 @@ final class UcpController
         if (!is_array($lines) || count($lines) > self::MAX_LINES) {
             return ['added' => 0, 'messages' => [['type' => 'error', 'code' => 'invalid', 'path' => '$.line_items', 'content' => t('The line items are not valid.'), 'severity' => 'recoverable']]];
         }
-        if ($replace) {
-            foreach ($cart->summary()['lines'] as $line) {
-                $cart->update((string) $line['key'], 0);
-            }
-            UcpCheckouts::keep($this->app, $id);
+        $existing = [];
+        foreach ($cart->summary()['lines'] as $old) {
+            $existing[(string) $old['key']] = $old;
         }
+        $kept = [];
         foreach (array_values($lines) as $i => $line) {
             $path = '$.line_items[' . $i . ']';
             $itemId = is_array($line) && isset($line['item']['id']) && is_scalar($line['item']['id']) ? trim((string) $line['item']['id']) : '';
-            $qty = is_array($line) && isset($line['quantity']) && is_numeric($line['quantity']) ? (int) $line['quantity'] : 1;
+            $quantity = is_array($line) && isset($line['quantity']) ? $line['quantity'] : 1;
+            $qty = is_int($quantity) ? $quantity : 0;
             if (preg_match('/^(\d{1,12})(?:-(\d{1,12}))?$/D', $itemId, $m) !== 1) {
                 $messages[] = ['type' => 'error', 'code' => 'item_unavailable', 'path' => $path, 'content' => t('Unknown item: {id}', ['id' => mb_substr($itemId, 0, 40, 'UTF-8')]), 'severity' => 'recoverable'];
                 continue;
@@ -354,14 +265,25 @@ final class UcpController
                 $messages[] = ['type' => 'error', 'code' => 'quantity_invalid_limit_exceeded', 'path' => $path . '.quantity', 'content' => t('Enter a valid quantity'), 'severity' => 'recoverable'];
                 continue;
             }
-            $result = $cart->add((int) $m[1], isset($m[2]) ? (int) $m[2] : 0, $qty);
+            $variant = isset($m[2]) ? (int) $m[2] : 0;
+            $lineKey = \Aifec\Modules\Orders\Cart::lineKey((int) $m[1], $variant);
+            $result = $replace && isset($existing[$lineKey]) ? $cart->update($lineKey, $qty) : $cart->add((int) $m[1], $variant, $qty);
             if (!empty($result['ok'])) {
                 ++$added;
+                $kept[(string) $result['key']] = true;
                 continue;
             }
             $error = (string) $result['error'];
             $code = stripos($error, 'stock') !== false || stripos($error, 'existencias') !== false || stripos($error, 'unidades') !== false ? 'out_of_stock' : 'item_unavailable';
             $messages[] = ['type' => 'error', 'code' => $code, 'path' => $path, 'content' => $error, 'severity' => 'recoverable'];
+        }
+        if ($replace && ($added > 0 || $lines === [])) {
+            // Añadir o cambiar primero evita perder el token del carrito al quitar su última línea.
+            foreach ($existing as $lineKey => $old) {
+                if (!isset($kept[$lineKey])) {
+                    $cart->update($lineKey, 0);
+                }
+            }
         }
         if ($added === 0 && $replace) {
             UcpCheckouts::keep($this->app, $id);
@@ -381,6 +303,25 @@ final class UcpController
     {
         $co = $this->app->service('checkout');
         $messages = [];
+        if (isset($body['discounts']['codes']) && is_array($body['discounts']['codes'])) {
+            $cart = $this->app->service('cart');
+            foreach ($cart->summary()['coupons'] as $current) {
+                $code = is_array($current) ? (string) ($current['code'] ?? '') : (string) $current;
+                if ($code !== '') {
+                    $cart->removeCoupon($code);
+                }
+            }
+            foreach (array_slice($body['discounts']['codes'], 0, 10) as $code) {
+                if (!is_string($code) || strlen($code) > 80) {
+                    $messages[] = ['type' => 'error', 'code' => 'discount_invalid', 'content' => 'Invalid discount code.', 'severity' => 'recoverable'];
+                    continue;
+                }
+                $applied = $cart->applyCoupon($code);
+                if (empty($applied['ok'])) {
+                    $messages[] = ['type' => 'error', 'code' => 'discount_invalid', 'content' => (string) $applied['error'], 'severity' => 'recoverable'];
+                }
+            }
+        }
         $fields = [];
         $address = [];
         if (isset($body['buyer']) && is_array($body['buyer'])) {
@@ -511,11 +452,19 @@ final class UcpController
      *
      * @return array<string,mixed>
      */
-    private function load(array $params): array
+    public function load(array $params, Request $request): array
     {
         $row = UcpCheckouts::find($this->app, isset($params['id']) ? (string) $params['id'] : '');
         if ($row === null) {
             throw new HttpError(404, 'Checkout not found');
+        }
+        $key = Ucp::key($this->app, $request);
+        if (!empty($row['key_id']) && ($key === null || (int) $key['id'] !== (int) $row['key_id'])) {
+            throw new HttpError(404, 'Checkout not found');
+        }
+        $row = UcpCheckouts::refreshOrder($this->app, $row);
+        if ((string) $row['status'] === UcpCheckouts::OPEN && (string) $row['created_at'] < $this->app->clock()->sql($this->app->clock()->now() - 86400)) {
+            throw new HttpError(410, 'Checkout expired');
         }
 
         return $row;
@@ -531,8 +480,20 @@ final class UcpController
             return $this->error(413, 'invalid', t('The request is too large.'));
         }
         $body = $request->body === '' ? [] : json_decode($request->body, true);
-        if (!is_array($body)) {
+        if (!is_array($body) || ($request->body !== '' && substr(ltrim($request->body), 0, 1) !== '{')) {
             return $this->error(400, 'invalid', t('The body must be a JSON object.'));
+        }
+        if (array_key_exists('line_items', $body)) {
+            if (!is_array($body['line_items']) || count($body['line_items']) > self::MAX_LINES) {
+                return $this->error(400, 'invalid', 'Invalid line_items.');
+            }
+            foreach ($body['line_items'] as $line) {
+                if (!is_array($line) || !isset($line['item']['id']) || !is_string($line['item']['id'])
+                    || preg_match('/^\d{1,12}(?:-\d{1,12})?$/D', $line['item']['id']) !== 1
+                    || (array_key_exists('quantity', $line) && (!is_int($line['quantity']) || $line['quantity'] < 1 || $line['quantity'] > 999))) {
+                    return $this->error(400, 'invalid', 'Each line needs a product identifier and an integer quantity between 1 and 999.');
+                }
+            }
         }
         $idem = trim((string) $request->header('idempotency-key', ''));
         if ($idem === '') {
@@ -544,8 +505,10 @@ final class UcpController
         $db = $this->app->db();
         $now = $this->app->clock()->now();
         $db->run('DELETE FROM {ucp_requests} WHERE created_at < ?', [$this->app->clock()->sql($now - self::IDEMPOTENCY_TTL)]);
-        $hash = hash('sha256', $request->method . '|' . $request->path . '|' . $idem);
-        $requestHash = hash('sha256', $request->body);
+        $key = Ucp::key($this->app, $request);
+        $actor = $key !== null ? 'key:' . (int) $key['id'] : 'anonymous:' . $request->ip;
+        $hash = hash('sha256', $actor . '|' . $request->method . '|' . $request->path . '|' . $idem);
+        $requestHash = (string) $request->attr('commerce_request_hash', hash('sha256', $request->body));
         $saved = $db->insertIgnore('ucp_requests', ['key_hash' => $hash, 'request_hash' => $requestHash, 'status' => 0, 'body' => null, 'created_at' => $this->app->clock()->sql($now)]);
         if (!$saved) {
             $row = $db->row('SELECT request_hash, status, body FROM {ucp_requests} WHERE key_hash = ?', [$hash]);
@@ -575,7 +538,7 @@ final class UcpController
     private function error(int $status, string $code, string $content, string $continueUrl = ''): Response
     {
         $data = [
-            'ucp' => ['version' => Ucp::VERSION, 'status' => 'error'],
+            'ucp' => ['version' => Ucp::version($this->app), 'status' => 'error'],
             'messages' => [['type' => 'error', 'code' => $code, 'content' => $content, 'severity' => 'unrecoverable']],
         ];
         if ($continueUrl !== '') {

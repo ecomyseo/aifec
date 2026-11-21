@@ -413,13 +413,15 @@ class Semantic
             return null;
         }
         $weight = isset($product['weight']) ? max(0, (int) $product['weight']) : 0;
-        $key = $weight . '|' . $gross . '|' . $this->country();
+        // Con el producto: un transporte que cobra por producto (ShippingHandler, «lines») da su precio, no uno genérico.
+        $productId = isset($product['id']) ? (int) $product['id'] : 0;
+        $key = $productId . '|' . $weight . '|' . $gross . '|' . $this->country();
         if (array_key_exists($key, $this->shipping)) {
             return $this->shipping[$key];
         }
         $destination = ['country' => $this->country()];
         try {
-            $options = $this->app->service('shipping')->options(['weight' => $weight, 'items_total' => $gross, 'qty' => 1, 'needs_shipping' => true], $destination);
+            $options = $this->app->service('shipping')->options(['weight' => $weight, 'items_total' => $gross, 'qty' => 1, 'needs_shipping' => true, 'lines' => $productId > 0 ? [['product_id' => $productId, 'variant_id' => 0, 'qty' => 1]] : []], $destination);
         } catch (\Throwable $e) {
             $options = [];
         }

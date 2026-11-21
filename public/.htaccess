@@ -6,6 +6,8 @@ AddDefaultCharset UTF-8
 RewriteEngine On
 RewriteCond %{HTTP:Authorization} .
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+# El descubrimiento es dinámico por dominio y tienda, incluso si queda una copia estática antigua.
+RewriteRule ^(?:[^/]+/)*\.well-known/(?:ucp(?:/[0-9]{4}-[0-9]{2}-[0-9]{2})?|acp(?:\.json)?)/?$ index.php [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.php [L]
 </IfModule>

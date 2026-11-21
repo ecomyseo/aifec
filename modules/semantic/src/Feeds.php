@@ -666,6 +666,7 @@ final class Feeds
         }
 
         $returns = $s->returns();
+        $checkoutPolicies = $s->app()->hooks()->apply('semantic.openai.policies', []);
         $item = [
             'id' => (string) (int) $p['id'],
             'title' => Str::limit($name, 150, ''),
@@ -687,8 +688,8 @@ final class Feeds
             'review_count' => isset($p['rating']['count']) && (int) $p['rating']['count'] > 0 ? (int) $p['rating']['count'] : null,
             'star_rating' => isset($p['rating']['count']) && (int) $p['rating']['count'] > 0 ? round((float) $p['rating']['average'], 2) : null,
             'enable_search' => $settings->bool('semantic.openai.enable_search', true),
-            'enable_checkout' => $settings->bool('semantic.openai.enable_checkout', false),
-        ];
+            'enable_checkout' => $checkoutPolicies !== [] && !in_array((string) ($availability['status'] ?? ''), ['out_of_stock', 'unavailable'], true),
+        ] + $checkoutPolicies;
 
         // Lo vacío no se escribe, pero los dos indicadores y las listas de variantes se conservan tal cual.
         return array_filter($item, static function ($value, $key): bool {

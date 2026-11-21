@@ -60,6 +60,7 @@ function linksCode(\Aifec\Kernel\App $app): string
 
 test('la compra entera solo abriendo direcciones: cada respuesta trae la del paso siguiente, y el pedido solo se hace con el código del comprador', function (): void {
     $app = apiApp();
+    $app->settings()->set('api.browser_agents_allowed', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/140.0 Safari/537.36');
     $ids = assistantShop($app);
 
     [$status, $guide, $response] = linksOpen($app, 'https://tienda.test/api/v1/go');
@@ -366,6 +367,7 @@ test('para el asistente que solo abre direcciones literales: una sola dirección
     contains('/buy-with-links/code/' . $cart2 . '/', $readerReview->body, 'con la de las cifras');
     notContains('/carrito/retomar/', $readerReview->body, 'ni la caja');
     $place2 = (string) preg_replace('#^https?://[^/]+#', '', substr(linksNext($review2, '/buy-with-links/place'), 0, -4) . linksCode($app));
+    $app->settings()->set('api.browser_agents_allowed', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/140.0 Safari/537.36');
     $byPerson = apiCall($app, 'GET', $place2, null, ['user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/140.0 Safari/537.36', 'accept' => 'text/html']);
     same(302, $byPerson->status, 'la persona va a su pedido: ' . substr($byPerson->body, 0, 300));
     contains('/pedido/', (string) $byPerson->headers['Location'], 'a la página de su pedido (o a pagar)');
@@ -773,7 +775,7 @@ test('el enlace de la caja con el carrito, abierto por el lector de una IA: dice
     same(200, $bot->status, 'contesta, no redirige a la caja que tiene cerrada (16/11/2026: ChatGPT decía que la tienda no era accesible)');
     contains('This address works: it is for the person who is buying', $bot->body);
     same(false, isset($bot->headers['Location']), 'sin redirección');
-    $person = apiCall($app, 'GET', $resume, null, ['user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/140.0 Safari/537.36']);
+    $person = apiCall($app, 'GET', $resume, null, ['user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/140.0 Safari/537.36', 'sec-fetch-user' => '?1', 'sec-fetch-dest' => 'document']);
     same(302, $person->status, 'la persona sí va a la caja');
 
     // Y el robots.txt se lo deja abrir a los lectores de los asistentes, aunque el resto del carrito siga cerrado.
@@ -853,8 +855,9 @@ test('«add» sin producto o con el ejemplo «ID», y el buscador con «WORDS»:
     contains('llms.txt', (string) $words['meta']['note'], 'manda al catálogo por enlaces: ' . json_encode($words));
 });
 
-test('la persona que abre la dirección de compra en su navegador va a la caja con el producto; la IA, a la página de pasos', function (): void {
+test('el navegador autorizado va a la caja con el producto y el asistente identificado recibe la página de pasos', function (): void {
     $app = apiApp();
+    $app->settings()->set('api.browser_agents_allowed', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/140.0 Safari/537.36');
     $ids = assistantShop($app);
     $add = '/buy-with-links/add?product_id=' . $ids['silla_roja'] . '&qty=1';
     $person = apiCall($app, 'GET', $add, null, ['user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/140.0 Safari/537.36', 'accept' => 'text/html,application/xhtml+xml']);
