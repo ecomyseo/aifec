@@ -102,10 +102,17 @@ final class AssetServer
      * Copia todos los recursos a la carpeta pública bajo un identificador de versión nuevo y lo apunta en
      * build.txt. Los ficheros nuevos no pisan a los que se están sirviendo: van a otra carpeta.
      *
+     * Las opciones «js» y «css» (las dos activadas por defecto) dicen si los guiones y las hojas se publican minificados o tal como
+     * están. Entran en la huella: cambiar una publica de nuevo todo bajo un identificador nuevo.
+     *
+     * @param array{js?:bool,css?:bool} $options
+     *
      * @return array{build:string,files:int}
      */
-    public static function publish(string $root, string $publicDir): array
+    public static function publish(string $root, string $publicDir, array $options = []): array
     {
+        $minJs = !array_key_exists('js', $options) || $options['js'];
+        $minCss = !array_key_exists('css', $options) || $options['css'];
         $root = rtrim(str_replace('\\', '/', $root), '/');
         $publicDir = rtrim(str_replace('\\', '/', $publicDir), '/');
         $sources = [];
@@ -132,7 +139,7 @@ final class AssetServer
                 $stamp .= $source[0] . $source[1] . $rel . filesize($full) . md5_file($full);
             }
         }
-        $build = substr(md5($stamp), 0, 10);
+        $build = substr(md5($stamp . '|minify-js:' . ($minJs ? '1' : '0') . '|minify-css:' . ($minCss ? '1' : '0')), 0, 10);
         foreach ($files as $f) {
             $target = $publicDir . '/assets/' . $f[0] . '/' . $f[1] . '/' . $build . '/' . $f[2];
             if (is_file($target)) {
@@ -141,9 +148,12 @@ final class AssetServer
             if (!is_dir(dirname($target))) {
                 mkdir(dirname($target), 0775, true);
             }
-            if (strtolower(pathinfo($f[3], PATHINFO_EXTENSION)) === 'js') {
-                // Los guiones se publican sin comentarios ni sangrías (PageSpeed: «minifica los recursos JavaScript»).
+            $ext = strtolower(pathinfo($f[3], PATHINFO_EXTENSION));
+            if ($ext === 'js' && $minJs) {
+                // Los guiones se publican sin comentarios ni espacios de más (PageSpeed: «minifica los recursos JavaScript»).
                 file_put_contents($target, self::minifyJs((string) file_get_contents($f[3])));
+            } elseif ($ext === 'css' && $minCss) {
+                file_put_contents($target, CssMinifier::minify((string) file_get_contents($f[3])));
             } else {
                 copy($f[3], $target);
             }
@@ -159,42 +169,20 @@ final class AssetServer
     }
 
     /**
-     * Quita a un guion lo que no se ejecuta, sin interpretarlo: los comentarios que ocupan líneas enteras (de bloque o de
-     * línea), la sangría y las líneas vacías. Conserva los saltos de línea (la inserción automática de punto y coma sigue igual) y
-     * todo lo que va detrás de código en la misma línea, así que una cadena o una expresión regular con «//» o «/*» no se toca.
+     * Las opciones de publicación que dicen los ajustes del sitio («Minificar el JavaScript» y «Minificar el CSS»).
+     *
+     * @return array{js:bool,css:bool}
+     */
+    public static function optionsFor(App $app): array
+    {
+        return ['js' => $app->settings()->bool('assets.minify_js', true), 'css' => $app->settings()->bool('assets.minify_css', true)];
+    }
+
+    /**
+     * Minifica un guion (comentarios, espacios y saltos de línea que sobran; no renombra nada). Ver JsMinifier.
      */
     public static function minifyJs(string $js): string
     {
-        $out = [];
-        $inComment = false;
-        foreach (preg_split('/\r\n|\r|\n/', $js) ?: [] as $line) {
-            $t = ltrim($line, " \t");
-            if ($inComment) {
-                $end = strpos($t, '*/');
-                if ($end === false) {
-                    continue;
-                }
-                $inComment = false;
-                $t = ltrim(substr($t, $end + 2), " \t");
-            }
-            while (strncmp($t, '/*', 2) === 0) {
-                $end = strpos($t, '*/', 2);
-                if ($end === false) {
-                    $inComment = true;
-                    $t = '';
-                    break;
-                }
-                $t = ltrim(substr($t, $end + 2), " \t");
-            }
-            if (strncmp($t, '//', 2) === 0) {
-                continue;
-            }
-            $t = rtrim($t, " \t");
-            if ($t !== '') {
-                $out[] = $t;
-            }
-        }
-
-        return implode("\n", $out) . "\n";
+        return JsMinifier::minify($js);
     }
 }

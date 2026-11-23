@@ -139,7 +139,11 @@ final class Console
         }
         if ($command === 'assets:publish') {
             $public = isset($args['public']) && is_string($args['public']) ? $args['public'] : $root . '/public';
-            $result = AssetServer::publish($root, $public);
+            // Sin aplicación no hay ajustes: «--minify-js=0» y «--minify-css=0» publican el original (por defecto, minificado).
+            $result = AssetServer::publish($root, $public, [
+                'js' => !isset($args['minify-js']) || !in_array($args['minify-js'], ['0', 'false', 'no', 'off'], true),
+                'css' => !isset($args['minify-css']) || !in_array($args['minify-css'], ['0', 'false', 'no', 'off'], true),
+            ]);
             $this->line('Published ' . $result['files'] . ' files, build ' . $result['build']);
 
             return 0;

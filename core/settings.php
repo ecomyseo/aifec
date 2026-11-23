@@ -39,6 +39,8 @@ return [
         ]],
         'coperformance' => ['label' => 'Performance', 'fields' => [
             'cache.pages' => ['type' => 'toggle', 'label' => 'Page cache', 'default' => true, 'hint' => 'Visitors without a cart or a session get a stored copy of each page.'],
+            'assets.minify_js' => ['type' => 'toggle', 'label' => 'Minify the JavaScript', 'default' => true, 'hint' => 'Publishes the scripts without comments or extra spaces. Off: the original files.'],
+            'assets.minify_css' => ['type' => 'toggle', 'label' => 'Minify the CSS', 'default' => true, 'hint' => 'Writes the style sheets without comments or extra characters. Off: the original files.'],
         ]],
         'cosecurity' => ['label' => 'Security', 'fields' => [
             'security.admin_path' => ['type' => 'text', 'label' => 'Address of the admin panel', 'default' => '', 'rules' => 'max:40|regex:/^[a-z0-9][a-z0-9-]{4,38}[a-z0-9]$/', 'width' => 'md',

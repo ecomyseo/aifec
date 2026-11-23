@@ -72,7 +72,9 @@ test('inlineCss: quita comentarios y espacios, respeta las cadenas, y no escribe
     $ok = $dir . '/ok.css';
     file_put_contents($ok, "/* cabecera */\n.a  {  color : red ;\n  content: \"a  /* no */  b\" ; }\n\n.b > .c ,\n.d { margin : 0 auto ; }\n@media (max-width: 600px) { .a { display: none; } }\n");
     $css = (string) ThemeVars::inlineCss($ok);
-    same('.a{color : red;content: "a  /* no */  b"}.b > .c,.d{margin : 0 auto}@media (max-width: 600px){.a{display: none}}', $css);
+    same('.a{color:red;content:"a  /* no */  b"}.b > .c,.d{margin:0 auto}@media (max-width:600px){.a{display:none}}', $css);
+    // Con el interruptor «Minificar el CSS» apagado, la hoja va tal cual.
+    same((string) file_get_contents($ok), (string) ThemeVars::inlineCss($ok, ThemeVars::INLINE_CSS_MAX, false));
 
     $cases = [
         'cierre.css' => '.a::after { content: "</style><script>alert(1)</script>"; }',

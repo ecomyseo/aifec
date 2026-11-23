@@ -161,7 +161,7 @@ final class ToolsController
     {
         $this->app->auth()->requireCap('tools.edit');
         try {
-            $done = AssetServer::publish($this->app->root(), $this->app->publicDir());
+            $done = AssetServer::publish($this->app->root(), $this->app->publicDir(), AssetServer::optionsFor($this->app));
             $this->app->invalidate(['pages']);
             Admin::audit($this->app, 'tools.publish_assets', 'assets', (string) $done['build'], 'Static files published');
             Admin::flash($this->app, 'ok', t('Static files published: {files} files.', ['files' => $done['files']]));

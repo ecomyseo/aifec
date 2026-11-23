@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace Aifec\Front;
 
 use Aifec\Kernel\App;
+use Aifec\Kernel\CssMinifier;
 
 final class ThemeVars
 {
@@ -166,7 +167,7 @@ final class ThemeVars
             foreach ($dirs[$kind] as $dir) {
                 $path = $app->root() . '/' . $dir . '/' . $slug . '/assets/' . ltrim($file, '/');
                 if (is_file($path)) {
-                    $css = self::inlineCss($path);
+                    $css = self::inlineCss($path, self::INLINE_CSS_MAX, $app->settings()->bool('assets.minify_css', true));
                     break;
                 }
             }
@@ -184,29 +185,20 @@ final class ThemeVars
      * El contenido de una hoja listo para ir dentro de <style>: sin comentarios ni espacios de más (las cadenas entre
      * comillas no se tocan). null si no conviene escribirla en la página.
      */
-    public static function inlineCss(string $file, int $max = self::INLINE_CSS_MAX): ?string
+    public static function inlineCss(string $file, int $max = self::INLINE_CSS_MAX, bool $minify = true): ?string
     {
-        if (array_key_exists($file, self::$inlined)) {
-            return self::$inlined[$file];
+        $cacheKey = $file . ($minify ? '' : '|raw');
+        if (array_key_exists($cacheKey, self::$inlined)) {
+            return self::$inlined[$cacheKey];
         }
         $css = is_file($file) && filesize($file) <= $max ? file_get_contents($file) : false;
         if (!is_string($css) || $css === '' || stripos($css, '</style') !== false || stripos($css, '@import') !== false
             || preg_match('#url\(\s*+["\']?+(?!data:|https?://|/)#i', $css) === 1) {
-            return self::$inlined[$file] = null;
-        }
-        $parts = preg_split('#("(?:[^"\\\\]|\\\\.)*"|\'(?:[^\'\\\\]|\\\\.)*\')#', $css, -1, PREG_SPLIT_DELIM_CAPTURE);
-        $out = '';
-        foreach (is_array($parts) ? $parts : [$css] as $i => $part) {
-            if ($i % 2 === 1) {
-                $out .= $part;
-                continue;
-            }
-            $part = (string) preg_replace('#/\*.*?\*/#s', '', $part);
-            $part = (string) preg_replace('#\s+#', ' ', $part);
-            $out .= (string) preg_replace('#\s*([{};,])\s*#', '$1', $part);
+            return self::$inlined[$cacheKey] = null;
         }
 
-        return self::$inlined[$file] = trim(str_replace(';}', '}', $out));
+        // Con el interruptor «Minificar el CSS» apagado, la hoja va tal cual está.
+        return self::$inlined[$cacheKey] = $minify ? CssMinifier::minify($css) : $css;
     }
 
     /** Las etiquetas <script defer> del guion del tema activo y de sus padres. */
