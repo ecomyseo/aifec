@@ -79,11 +79,11 @@ Perplexity tiene un programa de comerciantes. No ha publicado una especificació
 
 ## Redsys: qué pedir a tu banco
 
-Redsys todavía no ha anunciado pagos hechos por agentes de IA. El 23/11/2026 su soporte contestó por escrito que **solo da soporte a lo que recoge su documentación técnica oficial**: no confirma compatibilidad con UCP, ACP, Visa Intelligent Commerce, Trusted Agent Protocol ni Mastercard Agent Pay, ni da fechas. Sí documenta Google Pay y Apple Pay con el TPV Virtual (en pagosonline.redsys.es, «Otros métodos de pago»). Por eso AIFEC deja a la persona en la caja de la tienda y no ofrece el pago dentro del asistente con Redsys.
+Redsys contestó por escrito el 23/11/2026 que solo da soporte a lo que recoge su documentación técnica oficial. No confirma UCP, ACP, Visa Intelligent Commerce, Trusted Agent Protocol ni Mastercard Agent Pay, ni da fechas. Google Pay y Apple Pay con el TPV virtual sí están documentados.
 
 1. Pregunta a tu banco: active Google Pay en mi TPV virtual Redsys. Qué modo de conexión necesito y qué valor es el gateway merchant ID.
-2. Escribe a soportevirtual@redsys.es (con copia a info@redsys.es) preguntando si Redsys aceptará los tokens de Google Pay que lleguen desde agentes de IA y un token de pago compartido como el de OpenAI.
-3. Pregunta también por los productos de pago para agentes de Visa y Mastercard y cómo funcionaría la autenticación reforzada.
+2. Sigue la guía de Google Pay de Redsys (pagosonline.redsys.es, Otros métodos de pago) para conectarlo a tu TPV virtual.
+3. Hasta que Redsys recoja los pagos hechos por agentes, el comprador termina en tu caja. Así funciona AIFEC y no es un fallo de la tienda.
 
 ## Qué es solo tuyo y qué depende de ellos
 

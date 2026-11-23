@@ -60,10 +60,10 @@ final class ExternalGuide
             ['Look for the Perplexity merchant programme sign-up on its website and apply.', null],
             ['When asked for a feed, give the Google Merchant file.', '/acp/feed-google.tsv'],
         ]],
-        ['redsys', 'Redsys: what to ask your bank', 'Redsys does not announce payments made by AI agents yet. Asking now shows demand and gets you an answer.', [
+        ['redsys', 'Redsys: what to ask your bank', 'Redsys answered in writing on 23/11/2026 that it only supports what its official technical documentation lists. It does not confirm UCP, ACP, Visa Intelligent Commerce, Trusted Agent Protocol or Mastercard Agent Pay, and it gives no dates. Google Pay and Apple Pay with the virtual terminal are documented.', [
             ['Ask your bank: please enable Google Pay on my Redsys virtual terminal. Which connection mode do I need and which value is the gateway merchant ID?', null],
-            ['Write to soportevirtual@redsys.es (copy to info@redsys.es) asking whether Redsys will accept Google Pay tokens coming from AI agents and a shared payment token like the one of OpenAI.', null],
-            ['Ask also about the agent payment products of Visa and Mastercard and how strong authentication would work.', null],
+            ['Follow the Google Pay guide of Redsys (pagosonline.redsys.es, Other payment methods) to connect it to your virtual terminal.', null],
+            ['Until Redsys lists payments made by agents, the buyer finishes on your checkout. That is how AIFEC works and it is not a fault of the shop.', null],
         ]],
         ];
     }
