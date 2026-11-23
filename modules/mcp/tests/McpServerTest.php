@@ -387,8 +387,18 @@ test('las IA encuentran el MCP: ficha del servidor en las direcciones de descubr
     contains('image/svg+xml', (string) $icon->headers['Content-Type']);
     contains('<svg', $icon->body);
     $catalog = apiJson(apiCall($app, 'GET', '/.well-known/ai-catalog.json'));
-    same('mcp-server', $catalog['entries'][0]['type']);
-    same('https://tienda.test/.well-known/mcp/server-card.json', $catalog['entries'][0]['card']);
+    // ARD (Agentic Resource Discovery): cada entrada lleva identificador urn:air, nombre, tipo IANA, dirección y consultas
+    // representativas; el mismo catálogo sale en /.well-known/ard.json (23/11/2026: la auditoría externa lo daba por inválido).
+    same('application/mcp-server-card+json', $catalog['entries'][0]['type']);
+    same('https://tienda.test/.well-known/mcp/server-card.json', $catalog['entries'][0]['url']);
+    foreach ($catalog['entries'] as $entry) {
+        check(preg_match('/^urn:air:[a-z0-9.-]+:[a-z0-9:_-]+$/', (string) ($entry['identifier'] ?? '')) === 1, 'identificador ARD: ' . json_encode($entry));
+        check(trim((string) ($entry['displayName'] ?? '')) !== '', 'nombre ARD');
+        check(preg_match('#^[a-z]+/[a-z0-9.+-]+$#', (string) ($entry['type'] ?? '')) === 1, 'tipo IANA: ' . ($entry['type'] ?? ''));
+        check(isset($entry['representativeQueries']) && count($entry['representativeQueries']) >= 1, 'consultas representativas');
+        check(isset($entry['url']) && !isset($entry['data']), 'una sola de url y data');
+    }
+    same($catalog, apiJson(apiCall($app, 'GET', '/.well-known/ard.json')));
     // Abierta como una página (una persona o el lector de una IA de chat), /mcp explica qué es y cómo se conecta; un cliente MCP
     // (JSON o flujo de eventos) sigue recibiendo el 405 del protocolo.
     $page = apiCall($app, 'GET', '/mcp', null, ['accept' => 'text/html,application/xhtml+xml']);

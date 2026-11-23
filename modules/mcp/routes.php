@@ -28,6 +28,8 @@ return static function (Router $r, App $app): void {
     // El icono de la ficha (y del registro oficial): el de la tienda o el de serie.
     $r->get('/mcp/icon.svg', [McpController::class, 'icon'])->middleware('mcp.on')->name('mcp.icon');
     $r->get('/.well-known/ai-catalog.json', [McpController::class, 'aiCatalog'])->middleware('mcp.on', 'api')->name('mcp.catalog');
+    // El mismo catálogo con el nombre actual de la especificación ARD (el anterior, ai-catalog.json, se conserva).
+    $r->get('/.well-known/ard.json', [McpController::class, 'aiCatalog'])->middleware('mcp.on', 'api')->name('mcp.ard');
     // La prueba de que el dominio es de la tienda, para publicar el servidor en el registro oficial de MCP (17/11/2026).
     $r->get('/.well-known/mcp-registry-auth', [McpController::class, 'registryAuth'])->middleware('mcp.on')->name('mcp.registry.auth');
 };

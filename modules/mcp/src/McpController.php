@@ -238,13 +238,39 @@ final class McpController
     public function aiCatalog(Request $request, array $params): Response
     {
         $url = $this->app->url();
-        $entries = [['type' => 'mcp-server', 'name' => $this->app->settings()->str('store.name', 'AIFEC'), 'url' => $url->abs('/mcp', [], ''),
-            'card' => $url->abs('/.well-known/mcp/server-card.json', [], ''), 'transport' => 'streamable-http', 'authentication' => 'none']];
+        $settings = $this->app->settings();
+        $store = $settings->str('store.name', 'AIFEC');
+        $host = strtolower((string) preg_replace('/[^a-z0-9.-]/i', '', (string) parse_url($url->abs('/', [], ''), PHP_URL_HOST)));
+        $host = $host !== '' ? $host : 'localhost';
+        $q = static function (string $text) use ($store): string {
+            return str_replace('{store}', $store, t($text));
+        };
+        // Cada entrada lleva lo que ARD exige (identificador con la forma urn:air:<dominio>:<espacio>:<nombre>, nombre, tipo IANA y
+        // la dirección) y las consultas representativas con las que un buscador de agentes encuentra la entrada (23/11/2026).
+        $entries = [['identifier' => 'urn:air:' . $host . ':server:mcp', 'displayName' => $store . ' MCP', 'type' => 'application/mcp-server-card+json',
+            'url' => $url->abs('/.well-known/mcp/server-card.json', [], ''),
+            'description' => t('Model Context Protocol server of the shop: search the catalogue, build a cart and get a checkout link'),
+            'capabilities' => ['search_products', 'get_product', 'cart_add', 'checkout_link'],
+            'representativeQueries' => [$q('Search products in {store}'), $q('Add a product of {store} to a cart'), $q('Get a checkout link for a {store} cart')]]];
         if ($this->app->router()->has('semantic.llms')) {
-            $entries[] = ['type' => 'llms.txt', 'url' => $url->abs('/llms.txt', [], '')];
+            $entries[] = ['identifier' => 'urn:air:' . $host . ':docs:llms-txt', 'displayName' => $store . ' llms.txt', 'type' => 'text/plain',
+                'url' => $url->abs('/llms.txt', [], ''), 'description' => t('Summary of the shop for language models: categories, best sellers, policies and the doors for agents'),
+                'representativeQueries' => [$q('What does {store} sell?'), $q('Read the policies and how to buy at {store}')]];
         }
         if ($this->app->modules()->isLoaded('api')) {
-            $entries[] = ['type' => 'openapi', 'url' => $url->abs('/api/openapi.json', [], '')];
+            $entries[] = ['identifier' => 'urn:air:' . $host . ':api:openapi', 'displayName' => $store . ' API', 'type' => 'application/vnd.oai.openapi+json',
+                'url' => $url->abs('/api/openapi.json', [], ''), 'description' => t('Description of the shop API: catalogue search, carts and checkout'),
+                'representativeQueries' => [$q('Search the {store} catalogue through an API'), $q('Create a cart and check out at {store} through an API')]];
+        }
+        if ($this->app->modules()->isLoaded('agentic') && $settings->bool('agentic.ucp_enabled', false)) {
+            $entries[] = ['identifier' => 'urn:air:' . $host . ':commerce:ucp', 'displayName' => $store . ' UCP', 'type' => 'application/json',
+                'url' => $url->abs('/.well-known/ucp', [], ''), 'description' => t('Universal Commerce Protocol profile of the shop'),
+                'representativeQueries' => [$q('Buy from {store} with the Universal Commerce Protocol')]];
+        }
+        if ($this->app->modules()->isLoaded('agentic') && $settings->bool('agentic.acp_enabled', false)) {
+            $entries[] = ['identifier' => 'urn:air:' . $host . ':commerce:acp', 'displayName' => $store . ' ACP', 'type' => 'application/json',
+                'url' => $url->abs('/.well-known/acp.json', [], ''), 'description' => t('Agentic Commerce Protocol profile of the shop'),
+                'representativeQueries' => [$q('Buy from {store} with the Agentic Commerce Protocol')]];
         }
         $response = Response::json(['version' => '1.0', 'entries' => $entries]);
         $response->headers['Cache-Control'] = 'public, max-age=300';

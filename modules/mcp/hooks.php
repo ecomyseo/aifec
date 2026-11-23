@@ -31,7 +31,8 @@ return static function (App $app): void {
         }
         $url = $app->url();
 
-        return '<link rel="mcp" href="' . e($url->abs('/mcp', [], '')) . '">'
+        return '<link rel="ard" href="' . e($url->abs('/.well-known/ard.json', [], '')) . '">'
+            . '<link rel="mcp" href="' . e($url->abs('/mcp', [], '')) . '">'
             . '<link rel="alternate" type="application/json" title="MCP server card" href="' . e($url->abs('/.well-known/mcp/server-card.json', [], '')) . '">';
     });
 };
