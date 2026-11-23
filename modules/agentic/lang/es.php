@@ -149,4 +149,7 @@ return [
     'Redsys answered in writing on 23/11/2026 that it only supports what its official technical documentation lists. It does not confirm UCP, ACP, Visa Intelligent Commerce, Trusted Agent Protocol or Mastercard Agent Pay, and it gives no dates. Google Pay and Apple Pay with the virtual terminal are documented.' => 'Redsys contestó por escrito el 23/11/2026 que solo da soporte a lo que recoge su documentación técnica oficial. No confirma UCP, ACP, Visa Intelligent Commerce, Trusted Agent Protocol ni Mastercard Agent Pay, ni da fechas. Google Pay y Apple Pay con el TPV virtual sí están documentados.',
     'Follow the Google Pay guide of Redsys (pagosonline.redsys.es, Other payment methods) to connect it to your virtual terminal.' => 'Sigue la guía de Google Pay de Redsys (pagosonline.redsys.es, Otros métodos de pago) para conectarlo a tu TPV virtual.',
     'Until Redsys lists payments made by agents, the buyer finishes on your checkout. That is how AIFEC works and it is not a fault of the shop.' => 'Hasta que Redsys recoja los pagos hechos por agentes, el comprador termina en tu caja. Así funciona AIFEC y no es un fallo de la tienda.',
+    'UCP and ACP are turned on' => 'UCP y ACP están encendidos',
+    'UCP and ACP answer on their well-known addresses.' => 'UCP y ACP responden en sus direcciones «well-known».',
+    '{list} is off: assistants that look for it get a «not found».' => '{list} está apagado: los asistentes que lo buscan reciben un «no encontrado».',
 ];

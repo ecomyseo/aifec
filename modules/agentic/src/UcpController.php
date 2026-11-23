@@ -58,6 +58,19 @@ final class UcpController
         return $response;
     }
 
+    /** La pregunta previa (OPTIONS) de quien lee la ficha desde una página: solo lectura, abierta a todos los orígenes. */
+    public function preflight(Request $request, array $params): Response
+    {
+        $response = Response::text('', 204);
+        $response->headers['Access-Control-Allow-Origin'] = '*';
+        $response->headers['Access-Control-Allow-Methods'] = 'GET, HEAD, OPTIONS';
+        $response->headers['Access-Control-Allow-Headers'] = 'Content-Type, Accept, UCP-Agent';
+        $response->headers['Access-Control-Max-Age'] = '86400';
+        $response->headers['Allow'] = 'GET, HEAD, OPTIONS';
+
+        return $response;
+    }
+
     public function create(Request $request, array $params, string $kind = 'checkout'): Response
     {
         return $this->idempotent($request, function (array $body) use ($request, $kind): Response {

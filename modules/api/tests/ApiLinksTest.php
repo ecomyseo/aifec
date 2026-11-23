@@ -487,6 +487,18 @@ test('del llms.txt al carrito sin montar ninguna dirección: la ficha y el lista
     notContains('/new/' . $ids['silla_azul'] . ')', $list->body);
     notContains('?product_id=', $list->body, 'ninguna lleva parámetros');
 
+    // La búsqueda de la API trae la misma dirección en cada resultado que se puede comprar (23/11/2026, la pidió una auditoría).
+    [$st, $found] = linksOpen($app, 'https://tienda.test/api/v1/search?q=silla');
+    same(200, $st);
+    $byId = [];
+    foreach ($found['data'] as $item) {
+        $byId[(int) $item['id']] = $item;
+    }
+    same($add, $byId[$ids['silla_roja']]['buy_url'] ?? null, 'el resultado trae la dirección que mete el producto en un carrito');
+    if (isset($byId[$ids['silla_azul']])) {
+        same(null, $byId[$ids['silla_azul']]['buy_url'], 'un producto agotado no la trae');
+    }
+
     // Abrirla tal cual, sin carrito previo: lo crea, mete el producto y dice las dos salidas.
     [$status, $added] = linksOpen($app, $add);
     same(200, $status, json_encode($added));

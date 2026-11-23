@@ -25,6 +25,14 @@ return static function (Router $r, App $app): void {
     $r->get('/.well-known/ucp.json', [UcpController::class, 'profile'])->middleware('ucp.on', 'api')->name('ucp.profile.json');
     $r->get('/.well-known/ucp/{version:[0-9-]{10}}', [UcpController::class, 'profile'])->middleware('ucp.on', 'api');
     $r->get('/.well-known/acp.json', [AcpController::class, 'discovery'])->middleware('acp.on', 'api');
+    // Quien lee estas fichas desde una página (un agente en el navegador) hace antes una pregunta OPTIONS: se contesta con 204 y
+    // los permisos de lectura. No gasta un uso de la API.
+    foreach (['/.well-known/ucp', '/.well-known/ucp.json', '/.well-known/ucp/{version:[0-9-]{10}}', '/ucp/v1'] as $path) {
+        $r->add(['OPTIONS'], $path, [UcpController::class, 'preflight'])->middleware('ucp.on');
+    }
+    foreach (['/.well-known/acp.json', '/.well-known/acp'] as $path) {
+        $r->add(['OPTIONS'], $path, [UcpController::class, 'preflight'])->middleware('acp.on');
+    }
     $r->get('/.well-known/acp', [AcpController::class, 'discovery'])->middleware('acp.on', 'api');
     $r->get('/ucp/v1', [UcpController::class, 'profile'])->middleware('ucp.on', 'api');
     $r->post('/ucp/mcp', [UcpMcp::class, 'post'])->middleware('ucp.on', 'api')->name('ucp.mcp');

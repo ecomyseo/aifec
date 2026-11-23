@@ -4,7 +4,7 @@ Esta guía describe la implementación. No acredita el despliegue público ni un
 
 ## AIFEC
 
-Activa cada protocolo en **Ajustes → UCP y agentes** y entrega a cada integración su propia clave con los permisos necesarios. Los perfiles son rutas dinámicas: `/.well-known/ucp` y `/.well-known/acp.json`. No se sustituyen por el feed de productos de OpenAI.
+Activa cada protocolo en **Ajustes → UCP y agentes** y entrega a cada integración su propia clave con los permisos necesarios. Los perfiles son rutas dinámicas: `/.well-known/ucp` (también como `/.well-known/ucp.json`, con barra final y con la versión: `/.well-known/ucp/2026-04-08`) y `/.well-known/acp.json` (también `/.well-known/acp`). Las direcciones `.well-known` se escriben en minúsculas: con mayúsculas dan 404. Con el protocolo apagado, responden 404 en JSON diciendo que está apagado, y «Sistema → Diagnóstico» lo avisa. No se sustituyen por el feed de productos de OpenAI.
 
 Apache necesita el `public/.htaccess` de esta entrega. Para Nginx se incluye `docs/04-ai-first/ucp-acp-nginx.conf`: las excepciones de `.well-known` deben preceder a las reglas que bloquean rutas ocultas. Se conserva la configuración PHP existente. En instalaciones con varias tiendas bajo un dominio, cada prefijo conserva sus endpoints; el perfil de la raíz identifica un único comercio principal. No se debe servir allí el catálogo de otro comercio.
 

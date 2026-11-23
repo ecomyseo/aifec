@@ -63,7 +63,8 @@ return static function (App $app): void {
     $app->middleware('commerce.api', [ProtocolGate::class, 'handle']);
     $app->middleware('acp.on', static function (Request $request, App $application, callable $next): Response {
         if (!AcpController::enabled($application)) {
-            return Response::json(['type' => 'invalid_request', 'code' => 'not_found', 'message' => 'Not found'], 404);
+            // 404 en JSON y diciendo por qué: quien llega aquí es un programa, y «not found» a secas parece una ruta que no existe.
+            return Response::json(['type' => 'invalid_request', 'code' => 'acp_disabled', 'message' => 'ACP is turned off on this shop. The owner can turn it on in Settings, UCP and agents.'], 404);
         }
 
         return $next($request);
@@ -71,10 +72,33 @@ return static function (App $app): void {
     // Con UCP apagado en los ajustes, sus direcciones dan 404 (en JSON: las usan programas).
     $app->middleware('ucp.on', static function (Request $request, App $application, callable $next): Response {
         if (!Ucp::enabled($application)) {
-            return Response::json(['error' => ['status' => 404, 'message' => 'Not found']], 404);
+            return Response::json(['error' => ['status' => 404, 'code' => 'ucp_disabled', 'message' => 'UCP is turned off on this shop. The owner can turn it on in Settings, UCP and agents.']], 404);
         }
 
         return $next($request);
+    });
+
+    // «Sistema → Diagnóstico»: el módulo está activo pero UCP o ACP siguen apagados (de serie lo están), y los asistentes no encuentran
+    // sus perfiles. Solo avisa: encenderlos es una decisión de la persona.
+    $app->hooks()->filter('doctor.checks', static function ($checks) {
+        $checks = is_array($checks) ? $checks : [];
+        $checks[] = ['id' => 'agentic.protocols', 'group' => 'shop', 'label' => t('UCP and ACP are turned on'), 'run' => static function (App $application): array {
+            $off = [];
+            if (!Ucp::enabled($application)) {
+                $off[] = 'UCP';
+            }
+            if (!AcpController::enabled($application)) {
+                $off[] = 'ACP';
+            }
+            if ($off === []) {
+                return ['status' => 'ok', 'detail' => t('UCP and ACP answer on their well-known addresses.')];
+            }
+
+            return ['status' => 'warn', 'detail' => t('{list} is off: assistants that look for it get a «not found».', ['list' => implode(' + ', $off)]),
+                'fix_url' => $application->url()->plain('/admin/settings/agentic')];
+        }];
+
+        return $checks;
     });
 
     // Un agente de IA que firma sus peticiones (Web Bot Auth): se comprueba la firma al empezar la petición.
