@@ -30,6 +30,7 @@ $app = app();
             <div class="af-control"><input class="af-input" id="af-password" type="password" name="password" autocomplete="current-password" required></div>
         </div>
         <button type="submit" class="af-btn af-btn-primary"><?= e(t('Sign in')) ?></button>
+        <?= $app->hooks()->render('admin.login.after') ?>
         <p class="af-small" style="text-align:center;margin: var(--s4) 0 0"><a href="<?= e($app->url()->plain('/admin/forgot')) ?>"><?= e(t('I forgot my password')) ?></a></p>
     </form>
 

@@ -39,6 +39,12 @@ final class Urls
             $prefix .= '/' . $lang;
         }
         $path = '/' . ltrim($path, '/');
+        if ($path === '/admin' || strpos($path, '/admin/') === 0) {
+            $alias = $this->app->adminAlias();
+            if ($alias !== '') {
+                $path = '/' . $alias . substr($path, 6);
+            }
+        }
         $url = $prefix . ($path === '/' ? ($prefix === '' ? '/' : '/') : $path);
         $query = array_filter($query, static function ($v): bool {
             return $v !== null && $v !== '';

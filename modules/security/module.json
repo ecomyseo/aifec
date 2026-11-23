@@ -1,0 +1,1 @@
+{"name":"Security","version":"1.0.0","description":"Passkeys for the admin panel, a security audit of the shop and a notice when a new version of AIFEC is out","essential":false,"default":true,"requires":{"modules":[]},"contract":{"hosts":["api.github.com"],"personal_data":[],"tables":["passkeys"],"capabilities":[]}}

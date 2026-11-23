@@ -1,3 +1,26 @@
+# AIFEC 1.2.5
+
+## Seguridad del panel
+
+- **Dirección propia del panel.** Nuevo ajuste «Dirección del panel» (General → Seguridad). Con él, el panel vive en esa ruta, `/admin` responde «no encontrado», todos los enlaces y formularios salen con la ruta nueva y la cookie de sesión se limita a ella. Un valor mal escrito o reservado se ignora y el panel sigue en `/admin`.
+- **Passkeys (WebAuthn).** Módulo nuevo `security`: alta, entrada sin contraseña y borrado de passkeys de las personas del panel. Solo se guarda la clave pública; se comprueban desafío, origen, sitio, verificación del usuario, firma y contador. Sin dependencias: CBOR y WebAuthn escritos a mano, con `openssl`.
+- **Auditoría de seguridad.** Pantalla, `php aifec security:audit` y tarea diaria: doce comprobaciones con nota de 0 a 100 y aviso en el Inicio si algo está en rojo.
+- **Aviso de versión nueva.** Una vez al día se lee la última release de GitHub y el Inicio avisa si es mayor que la instalada (`php aifec security:update-check`). No instala nada.
+
+## Catálogo ARD válido
+
+- `/.well-known/ai-catalog.json` (y su nombre actual `/.well-known/ard.json`) lleva en cada entrada identificador, nombre, tipo IANA válido y consultas representativas, y la portada enlaza con `rel="ard"`.
+
+## Probado
+
+- `tests/run.php modules/security`: 29 correctas (182 comprobaciones), con claves P-256 reales para las passkeys, en PHP 7.4 y 8.3.
+
+## Qué no cambia
+
+- Sin ruta propia el panel sigue en `/admin`. La actualización automática desde GitHub es otra entrega: hoy solo se avisa.
+
+---
+
 # AIFEC 1.2.4
 
 ## Catálogo para Google, Microsoft y Perplexity

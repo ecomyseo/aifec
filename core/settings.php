@@ -41,6 +41,8 @@ return [
             'cache.pages' => ['type' => 'toggle', 'label' => 'Page cache', 'default' => true, 'hint' => 'Visitors without a cart or a session get a stored copy of each page.'],
         ]],
         'cosecurity' => ['label' => 'Security', 'fields' => [
+            'security.admin_path' => ['type' => 'text', 'label' => 'Address of the admin panel', 'default' => '', 'rules' => 'max:40|regex:/^[a-z0-9][a-z0-9-]{4,38}[a-z0-9]$/', 'width' => 'md',
+                'hint' => 'Six to forty letters, numbers or hyphens, for example «panel-4k7x». The panel opens there and «/admin» answers «not found». Write it down before saving.'],
             'api.rate_per_minute' => ['type' => 'number', 'label' => 'API requests per minute', 'default' => 120, 'rules' => 'min:0|max:6000', 'hint' => 'Per address. Zero means no limit.'],
             'security.csp' => ['type' => 'select', 'label' => 'Content security policy', 'default' => 'strict',
                 'options' => ['strict' => 'Strict: only the scripts of the shop', 'relaxed' => 'Relaxed: scripts from any secure site', 'off' => 'Off'],

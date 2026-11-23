@@ -182,6 +182,8 @@ return [
     'Other sites the pages may load from' => 'Otras webs de las que pueden cargar las páginas',
     'One per line, starting with https://. Only what you have added yourself: the modules declare theirs.' => 'Una por línea, empezando por https://. Solo lo que hayas añadido tú: los módulos declaran lo suyo.',
     'Trusted proxies' => 'Proxies de confianza',
+    'Address of the admin panel' => 'Dirección del panel',
+    'Six to forty letters, numbers or hyphens, for example «panel-4k7x». The panel opens there and «/admin» answers «not found». Write it down before saving.' => 'De seis a cuarenta letras, cifras o guiones, por ejemplo «panel-4k7x». El panel se abre ahí y «/admin» responde «no encontrado». Apúntala antes de guardar.',
     'Addresses or ranges (10.0.0.0/8, 2001:db8::/32), one per line. Empty if the server is reached directly: then the address of the visitor is the one of the connection.' => 'Direcciones o rangos (10.0.0.0/8, 2001:db8::/32), uno por línea. Vacío si se llega al servidor directamente: entonces la dirección del visitante es la de la conexión.',
     'Header with the visitor address' => 'Cabecera con la dirección del visitante',
     'X-Forwarded-For' => 'X-Forwarded-For',

@@ -29,7 +29,10 @@ use Aifec\View\View;
  */
 final class App
 {
-    public const VERSION = '1.2.4';
+    public const VERSION = '1.2.5';
+
+    /** @var string|null la ruta propia del panel ya leída (null = sin leer) */
+    private $adminAlias = null;
 
     /** @var App|null la aplicación que atiende la petición en curso (para las funciones de plantilla) */
     private static $current;
@@ -881,6 +884,28 @@ final class App
     }
 
     /**
+     * La ruta propia del panel (ajuste security.admin_path) o '' si el panel sigue en «/admin». Solo vale con la forma segura:
+     * un valor mal escrito o reservado se ignora, así que un ajuste roto nunca deja el panel sin dirección.
+     */
+    public function adminAlias(): string
+    {
+        if ($this->adminAlias !== null) {
+            return $this->adminAlias;
+        }
+        $value = '';
+        try {
+            $value = strtolower(trim($this->settings()->str('security.admin_path', '')));
+        } catch (\Throwable $e) {
+            // Los ajustes aún no están disponibles (arranque, instalación): no se da por buena la ausencia.
+            return '';
+        }
+        $reserved = ['admin', 'api', 'assets', 'media', 'uploads', 'mcp', 'webmcp', 'cron', 'login', 'logout', 'carrito', 'cart', 'checkout', 'static', 'well-known'];
+        $this->adminAlias = preg_match('/^[a-z0-9][a-z0-9-]{4,38}[a-z0-9]$/', $value) === 1 && !in_array($value, $reserved, true) ? $value : '';
+
+        return $this->adminAlias;
+    }
+
+    /**
      * ¿Toca mirar si hay migraciones pendientes en este arranque?
      *
      * Mirarlo es recorrer la carpeta de migraciones de cada módulo: en el servidor costaba 10 ms por visita. Una
@@ -913,6 +938,7 @@ final class App
         $this->sessions = [];
         $this->cookies = [];
         $this->lang = '';
+        $this->adminAlias = null;
         // Una misma aplicación puede atender varias peticiones seguidas (pruebas, tareas): nada de la anterior se hereda.
         unset($this->services['auth']);
         if (isset($this->services['view'])) {
@@ -941,6 +967,18 @@ final class App
 
     private function dispatch(Request $request): Response
     {
+        // Panel con ruta propia (ajuste security.admin_path): «/<ruta>/…» se atiende como «/admin/…» y el «/admin» de siempre
+        // deja de existir. Todos los enlaces del panel salen ya con la ruta nueva (Urls::to).
+        $alias = $this->adminAlias();
+        if ($alias !== '') {
+            $own = '/' . $alias;
+            if ($request->path === $own || strpos($request->path, $own . '/') === 0) {
+                $request->path = '/admin' . substr($request->path, strlen($own));
+            } elseif ($request->path === '/admin' || strpos($request->path, '/admin/') === 0) {
+                throw HttpError::notFound();
+            }
+        }
+
         // Idioma: el principal no lleva prefijo; los demás van como primer tramo de la ruta.
         $path = $request->path;
         $this->lang = $this->defaultLang();
@@ -1162,7 +1200,7 @@ final class App
         try {
             $secure = $request->secure;
             foreach ($this->sessions as $guard => $session) {
-                $path = $guard === 'admin' ? $this->site->basePath . '/admin' : $this->cookiePath();
+                $path = $guard === 'admin' ? $this->site->basePath . '/' . ($this->adminAlias() !== '' ? $this->adminAlias() : 'admin') : $this->cookiePath();
                 // Lo pendiente se mira antes de guardar: al mirarlo se limpia la lista de claves ya consumidas.
                 $pending = $guard === 'customer' && $session->isStarted() && self::pendingInSession($session);
                 $session->commit($response, $path, $secure, $guard === 'admin' ? 'Strict' : 'Lax');

@@ -12,6 +12,13 @@ Una parte de la seguridad de AIFEC la hace el sistema solo, y otra depende de c�
 - «Mi cuenta» → «Verificación en dos pasos» añade un código de teléfono a la contraseña.
 - El panel limita los intentos de entrada: 5 fallos por cuenta o 20 por dirección IP en 15 minutos, y contesta «Demasiados intentos. Espera quince minutos y vuelve a probar.» con un `429`.
 
+**Un panel que no está donde lo buscan los bots**
+
+- «Ajustes» → «General» → «Seguridad» → «Dirección del panel»: escribe una ruta tuya (de seis a cuarenta letras, cifras o guiones, por ejemplo `panel-4k7x`). El panel se abre en `https://tu-tienda/panel-4k7x`, todos sus enlaces salen con esa ruta y `/admin` responde «no encontrado». Apúntala antes de guardar: si la pierdes, se recupera con `php aifec setting:set security.admin_path ""`.
+- «Seguridad» → «Passkeys»: añade una passkey (huella, cara, PIN o llave de seguridad) y la pantalla de acceso ofrece «Entrar con passkey», sin contraseña ni código. Una passkey no se puede suplantar con una página falsa. Solo se guarda la clave pública, y el contador de usos delata una clave copiada. Cuenta como segundo paso: no se pide el código de la aplicación.
+- «Seguridad» → «Auditoría de seguridad»: una nota de 0 a 100 con doce comprobaciones (HTTPS, ruta del panel, personas sin passkey ni verificación en dos pasos, modo de depuración, carpeta de datos fuera de la web, versión de PHP, `display_errors`, política de contenido, copia reciente, tareas, versión de AIFEC y correo). Cada punto dice qué pasa y qué hacer. Se pasa sola cada día y el Inicio avisa si hay algo en rojo; también se puede pasar con `php aifec security:audit`.
+- **Aviso de versión nueva:** una vez al día la tienda pregunta a GitHub cuál es la última release (`php aifec security:update-check` lo hace al momento). Si es mayor que la instalada, el Inicio lo avisa con el enlace a las notas. No instala nada. Se apaga en «Seguridad» → «Ajustes».
+
 **Formularios y peticiones**
 
 - Todo formulario con sesión lleva una ficha CSRF ligada a la sesión y al formulario. Vale dos horas: después sale «El formulario ha caducado. Recarga la página y vuelve a intentarlo.»

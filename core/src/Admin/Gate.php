@@ -47,7 +47,7 @@ final class Gate
                 return Response::json(['error' => ['status' => 419, 'message' => t('The form expired. Reload the page and try again.')]], 419);
             }
             Admin::flash($app, 'bad', t('The form expired. Try again.'));
-            $base = $app->site()->basePath . '/admin';
+            $base = $app->site()->basePath . '/' . ($app->adminAlias() !== '' ? $app->adminAlias() : 'admin');
             $from = parse_url((string) $request->header('referer', ''), PHP_URL_PATH);
 
             return Response::redirect(is_string($from) && strpos($from, $base) === 0 ? $from : $app->url()->plain('/admin'));

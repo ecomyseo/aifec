@@ -164,7 +164,7 @@ if (!function_exists('menuTabsSlugs')) {
             ['Inteligencia artificial', ['IA', 'Asistente', 'Auditoría AIFEC', 'Robots y asistentes', 'WebMCP']],
             ['Diseño', ['Temas', 'Portada', 'Logotipo e icono']],
             ['Ajustes', ['General', 'Formas de pago', 'Envío', 'Impuestos', 'Ventas', 'Catálogo', 'Contenido', 'Correo', 'Traducciones', 'Equipo', 'API y ERP', 'Todos los ajustes']],
-            ['Sistema', ['Módulos y plugins', 'Sitios y demostraciones', 'Migración', 'Tareas', 'Diagnóstico', 'Caché y mantenimiento', 'Copias de seguridad']],
+            ['Sistema', ['Módulos y plugins', 'Sitios y demostraciones', 'Migración', 'Seguridad', 'Tareas', 'Diagnóstico', 'Caché y mantenimiento', 'Copias de seguridad']],
         ];
     }
 
@@ -267,10 +267,10 @@ test('el menú con todos los módulos encendidos: el del encargo, grupo a grupo,
     foreach ($nav as $group) {
         $labels = array_merge($labels, $group[1]);
     }
-    same(57, count($labels), 'cincuenta y siete entradas');
+    same(58, count($labels), 'cincuenta y ocho entradas');
     check(count($labels) <= 60, 'dentro del presupuesto de 60');
     same($labels, array_values(array_unique($labels)), 'ningún nombre repetido');
-    same(57, count(array_unique(menuTabsNavLinks($home->body))), 'y cada entrada lleva a un sitio distinto');
+    same(58, count(array_unique(menuTabsNavLinks($home->body))), 'y cada entrada lleva a un sitio distinto');
     same(0, preg_match_all('#<div class="af-nav-sub">(?:(?!</div>).)*<details#s', $home->body), 'un solo nivel');
 });
 
@@ -356,6 +356,7 @@ test('cada conjunto pinta su barra de pestañas bajo el título, con la primera 
         'Correo: [Ajustes]|Plantillas|Registro de envíos',
         'Equipo: [Personas]|Papeles',
         'API y ERP: [Claves de la API]|Conexiones|Exportaciones|Importaciones|Pasadas|Ajustes',
+        'Seguridad: [Auditoría]|Passkeys|Ajustes',
         'Tareas: [En segundo plano]|Programadas',
         'Diagnóstico: [Diagnóstico]|Información del sistema|Registro|Registro de actividad',
     ];
@@ -374,7 +375,7 @@ test('cada conjunto pinta su barra de pestañas bajo el título, con la primera 
     }
     sort($expected);
     sort($bars);
-    same($expected, $bars, 'diecinueve conjuntos y solo esos');
+    same($expected, $bars, 'veinte conjuntos y solo esos');
 });
 
 test('la pestaña de la pantalla en la que se está va marcada, y su entrada del menú también', function (): void {
