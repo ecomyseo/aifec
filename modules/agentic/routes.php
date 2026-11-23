@@ -39,6 +39,7 @@ return static function (Router $r, App $app): void {
     $r->post('/ucp/v1/catalog/lookup', [UcpCatalog::class, 'lookup'])->middleware('ucp.on', 'commerce.api', 'api');
     $r->post('/ucp/v1/catalog/product', [UcpCatalog::class, 'lookup'])->middleware('ucp.on', 'commerce.api', 'api');
     $r->get('/acp/feed.jsonl', [Aifec\Modules\Agentic\AcpFeed::class, 'serve'])->middleware('acp.on', 'api');
+    $r->get('/acp/feed-google.tsv', [Aifec\Modules\Agentic\GoogleFeed::class, 'serve'])->middleware('api');
     foreach (['', '/acp/v1'] as $prefix) {
         $r->post($prefix . '/checkout_sessions', [AcpController::class, 'create'])->middleware('acp.on', 'api');
         $r->get($prefix . '/checkout_sessions/{id:chk_[a-f0-9]{32}}', [AcpController::class, 'show'])->middleware('acp.on', 'api');

@@ -11,6 +11,7 @@
 declare(strict_types=1);
 
 use Aifec\Kernel\App;
+use Aifec\Modules\Agentic\ExternalGuide;
 use Aifec\Modules\Agentic\Ucp;
 
 return [
@@ -28,6 +29,11 @@ return [
                     . '<p><a href="' . e($ucp) . '" target="_blank" rel="noopener">' . e($ucp) . '</a><br><a href="' . e($acp) . '" target="_blank" rel="noopener">' . e($acp) . '</a></p>'
                     . '<p>' . e(t('On Nginx, allow .well-known before rules that deny hidden paths. Use docs/04-ai-first/ucp-acp-nginx.conf and preserve the current PHP configuration.')) . '</p>'
                     . '<p>' . e(t('Public HTTP access has not been verified. Installing files does not confirm server routing.')) . '</p>';
+            }],
+        ]],
+        'agguide' => ['label' => 'Steps outside the shop', 'fields' => [
+            'agentic.external_guide' => ['type' => 'html', 'label' => 'Steps outside the shop', 'html' => static function ($values, App $app): string {
+                return ExternalGuide::html($app);
             }],
         ]],
         'agucp' => ['label' => 'UCP', 'fields' => [

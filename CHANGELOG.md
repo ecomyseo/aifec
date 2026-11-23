@@ -1,3 +1,28 @@
+# AIFEC 1.2.4
+
+## Catálogo para Google, Microsoft y Perplexity
+
+- Nuevo catálogo en el formato de Google Merchant Center (texto separado por tabuladores) en `/acp/feed-google.tsv`. Una línea por variante, `item_group_id` para agrupar las variantes de un producto y las 16 columnas que piden Google Merchant Center, Microsoft Merchant Center y Perplexity. Los tabuladores y saltos de línea de los textos se limpian para que no descuadren las columnas.
+- Prueba nueva en `modules/agentic/tests/HostedCommerceTest.php`: columnas exactas en todas las líneas, disponibilidad en el formato de Google, agrupación de variantes, imagen propia de la variante y aviso `identifier_exists=no` cuando faltan GTIN y MPN.
+
+## Guía de pasos fuera de la tienda
+
+- Pestaña nueva «Pasos fuera de la tienda» en los ajustes de UCP y agentes, y documento `docs/04-ai-first/10-pasos-fuera-de-la-tienda.md`. Explican, paso a paso, qué hacer en Google Merchant Center, Google Pay y UCP, ChatGPT (OpenAI), Claude y otros asistentes por conector, Microsoft Copilot, Perplexity y Redsys, con las direcciones de la propia tienda ya escritas.
+- Dice con claridad qué depende de cada plataforma: la aprobación y el momento en que empiezan a leer los ficheros no los decide la tienda.
+- Traducido al castellano en `modules/agentic/lang/es.php`.
+
+## Probado
+
+- `tests/run.php modules/agentic`: 33 correctas, 0 fallan (563 comprobaciones).
+- `tests/Privacy`: 8 correctas. `tests/Kernel`: 131 correctas. `tests/Admin`: 385 correctas.
+- En una instalación real, con una clave de prueba con el ámbito `orders:create` (borrada después): sesiones UCP y ACP creadas, consultadas, actualizadas, completadas con una credencial ficticia (la tienda responde `requires_escalation` y envía a su caja) y canceladas, sin pedidos ni cargos.
+
+## Qué no cambia
+
+- `is_eligible_checkout` sigue en `false` y `payment_handlers` vacío: el comprador termina en la caja de la tienda. El pago dentro del asistente necesita que la plataforma y un proveedor de pago compatible lo habiliten.
+
+---
+
 # AIFEC 1.2.3
 
 ## UCP

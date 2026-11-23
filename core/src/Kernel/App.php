@@ -29,7 +29,7 @@ use Aifec\View\View;
  */
 final class App
 {
-    public const VERSION = '1.2.3';
+    public const VERSION = '1.2.4';
 
     /** @var App|null la aplicación que atiende la petición en curso (para las funciones de plantilla) */
     private static $current;

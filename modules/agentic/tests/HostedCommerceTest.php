@@ -58,3 +58,40 @@ test('El feed ACP sirve el catálogo público y anuncia el pago en el comercio',
     same(false, $row['is_eligible_checkout']);
     check((bool) filter_var($row['image_url'], FILTER_VALIDATE_URL), 'la imagen es pública');
 });
+
+test('El feed de Google Merchant sirve una línea por variante con las columnas que piden Google, Microsoft y Perplexity', function (): void {
+    [$app] = ucpApp(['agentic.acp_enabled' => true]);
+    $simple = aifecProduct($app, ['name' => "Silla\tde roble", 'price' => 1200, 'images' => 2, 'stock' => 5]);
+    $baseImage = aifecMedia($app, 'Portada');
+    $variantImage = aifecMedia($app, 'Variante roja');
+    $vase = aifecProduct($app, ['name' => 'Jarrón', 'images' => [$baseImage, $variantImage], 'variants' => [
+        ['sku' => 'J-R', 'price' => 1999, 'stock' => 2, 'values' => ['color' => 'rojo'], 'media_id' => $variantImage],
+        ['sku' => 'J-A', 'price' => 2499, 'stock' => 0, 'values' => ['color' => 'azul']],
+    ]]);
+    $response = ucpCall($app, 'GET', '/acp/feed-google.tsv');
+    same(200, $response->status, 'el feed es público');
+    $response->drain();
+    $lines = explode("\n", rtrim($response->body, "\n"));
+    $header = explode("\t", array_shift($lines));
+    same(Aifec\Modules\Agentic\GoogleFeed::COLUMNS, $header, 'cabecera');
+    $rows = [];
+    foreach ($lines as $line) {
+        $cells = explode("\t", $line);
+        same(count($header), count($cells), 'todas las líneas tienen las 16 columnas: ' . $line);
+        $rows[$cells[0]] = array_combine($header, $cells);
+    }
+    same('Silla de roble', $rows[(string) $simple]['title'], 'un tabulador del nombre no descuadra las columnas');
+    same('in stock', $rows[(string) $simple]['availability']);
+    same('12.00 EUR', $rows[(string) $simple]['price']);
+    same('no', $rows[(string) $simple]['identifier_exists'], 'sin GTIN ni MPN se avisa');
+    same('new', $rows[(string) $simple]['condition']);
+    $variants = $app->service('catalog')->product($vase)['variants'];
+    $red = $rows[$vase . '-' . $variants[0]['id']];
+    $blue = $rows[$vase . '-' . $variants[1]['id']];
+    same((string) $vase, $red['item_group_id'], 'las variantes se agrupan');
+    same('out of stock', $blue['availability']);
+    check($red['image_link'] !== $blue['image_link'], 'la variante roja tiene su propia imagen');
+    foreach (['link', 'image_link'] as $column) {
+        check((bool) filter_var($red[$column], FILTER_VALIDATE_URL), $column . ' es una dirección pública');
+    }
+});
