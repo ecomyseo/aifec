@@ -11,8 +11,12 @@
 
 declare(strict_types=1);
 
-$providers = ['fake' => 'Simulated (no cost, for tests)', 'gemini' => 'Google Gemini', 'openai' => 'OpenAI-compatible'];
-$modelHint = 'Gemini models you can write: gemini-flash-latest, gemini-flash-lite-latest, gemini-3-flash-preview, gemini-3-pro-preview. Empty: gemini-flash-latest.';
+$providers = [
+    'fake' => 'Simulated (no cost, for tests)', 'gemini' => 'Google Gemini', 'anthropic' => 'Anthropic Claude', 'chatgpt' => 'OpenAI ChatGPT',
+    'grok' => 'xAI Grok', 'mistral' => 'Mistral AI', 'deepseek' => 'DeepSeek', 'groq' => 'Groq', 'openrouter' => 'OpenRouter',
+    'perplexity' => 'Perplexity', 'openai' => 'OpenAI-compatible (other)',
+];
+$modelHint = 'Write the model of the provider you chose. Gemini: gemini-flash-latest, gemini-flash-lite-latest, gemini-3-flash-preview, gemini-3-pro-preview (empty: gemini-flash-latest). Claude: claude-haiku-5-5, claude-sonnet-5-5, claude-opus-5-5 (empty: the one of the tier). The others need the model written, as the provider names it.';
 
 return [
     'title' => 'Artificial intelligence',
@@ -29,17 +33,17 @@ return [
             'ai.h_economy' => ['type' => 'heading', 'label' => 'Economy tier'],
             'ai.economy.provider' => ['type' => 'select', 'label' => 'Provider', 'options' => $providers, 'default' => 'gemini'],
             'ai.economy.model' => ['type' => 'text', 'label' => 'Model', 'hint' => $modelHint, 'default' => ''],
-            'ai.economy.base_url' => ['type' => 'url', 'label' => 'Base address (OpenAI-compatible only)', 'default' => ''],
+            'ai.economy.base_url' => ['type' => 'url', 'label' => 'Base address (only to change the one of the provider, or for OpenAI-compatible)', 'default' => ''],
             'ai.economy.key' => ['type' => 'secret', 'label' => 'API key'],
             'ai.h_standard' => ['type' => 'heading', 'label' => 'Standard tier'],
             'ai.standard.provider' => ['type' => 'select', 'label' => 'Provider', 'options' => $providers, 'default' => 'gemini'],
             'ai.standard.model' => ['type' => 'text', 'label' => 'Model', 'hint' => $modelHint, 'default' => ''],
-            'ai.standard.base_url' => ['type' => 'url', 'label' => 'Base address (OpenAI-compatible only)', 'default' => ''],
+            'ai.standard.base_url' => ['type' => 'url', 'label' => 'Base address (only to change the one of the provider, or for OpenAI-compatible)', 'default' => ''],
             'ai.standard.key' => ['type' => 'secret', 'label' => 'API key'],
             'ai.h_advanced' => ['type' => 'heading', 'label' => 'Advanced tier'],
             'ai.advanced.provider' => ['type' => 'select', 'label' => 'Provider', 'options' => $providers, 'default' => 'gemini'],
             'ai.advanced.model' => ['type' => 'text', 'label' => 'Model', 'hint' => $modelHint, 'default' => ''],
-            'ai.advanced.base_url' => ['type' => 'url', 'label' => 'Base address (OpenAI-compatible only)', 'default' => ''],
+            'ai.advanced.base_url' => ['type' => 'url', 'label' => 'Base address (only to change the one of the provider, or for OpenAI-compatible)', 'default' => ''],
             'ai.advanced.key' => ['type' => 'secret', 'label' => 'API key'],
         ]],
         'aispend' => ['label' => 'Spending', 'fields' => [

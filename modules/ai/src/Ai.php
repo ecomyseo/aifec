@@ -17,6 +17,7 @@ use Aifec\Ai\AiProvider;
 use Aifec\Ai\AiRequest;
 use Aifec\Ai\AiResult;
 use Aifec\Ai\AiTool;
+use Aifec\Ai\AnthropicProvider;
 use Aifec\Ai\FakeProvider;
 use Aifec\Ai\GeminiProvider;
 use Aifec\Ai\OpenAiCompatProvider;
@@ -42,6 +43,26 @@ final class Ai
 
     /** El modelo cuando el ajuste está vacío. */
     public const DEFAULT_MODEL = 'gemini-flash-latest';
+
+    /**
+     * Los proveedores que se pueden elegir. «openai» es cualquier servicio con la API de OpenAI y su propia dirección; los de
+     * SERVICES son los mismos con la dirección ya puesta (se puede cambiar escribiendo otra en los ajustes).
+     */
+    public const KINDS = ['fake', 'gemini', 'anthropic', 'chatgpt', 'grok', 'mistral', 'deepseek', 'groq', 'openrouter', 'perplexity', 'openai'];
+
+    /** @var array<string,string> proveedor => dirección base de su API (compatible con OpenAI) */
+    public const SERVICES = [
+        'chatgpt' => 'https://api.openai.com/v1',
+        'grok' => 'https://api.x.ai/v1',
+        'mistral' => 'https://api.mistral.ai/v1',
+        'deepseek' => 'https://api.deepseek.com/v1',
+        'groq' => 'https://api.groq.com/openai/v1',
+        'openrouter' => 'https://openrouter.ai/api/v1',
+        'perplexity' => 'https://api.perplexity.ai',
+    ];
+
+    /** @var array<string,string> el modelo de Claude de cada nivel cuando los ajustes lo dejan vacío */
+    public const CLAUDE_MODELS = ['economy' => 'claude-haiku-5-5', 'standard' => 'claude-sonnet-5-5', 'advanced' => 'claude-opus-5-5'];
 
     /** @var App */
     private $app;
@@ -290,10 +311,24 @@ final class Ai
             return $this->fakes[$tier];
         }
         $key = $this->app->secret('ai.' . $tier . '.key');
-        if ($kind === 'openai') {
+        if ($kind === 'anthropic') {
+            if ($key === '') {
+                throw new AiException('The ' . $tier . ' tier has no API key');
+            }
+
+            return new AnthropicProvider($this->app->http(), $key, $this->model($tier));
+        }
+        if ($kind === 'openai' || isset(self::SERVICES[$kind])) {
+            // Un servicio con nombre trae su dirección; la de los ajustes, si la hay, manda (un proxy propio, otra región).
             $base = $settings->str('ai.' . $tier . '.base_url');
+            if ($base === '' && isset(self::SERVICES[$kind])) {
+                $base = self::SERVICES[$kind];
+            }
             if ($base === '') {
                 throw new AiException('The ' . $tier . ' tier has no base address');
+            }
+            if ($kind !== 'openai' && $key === '') {
+                throw new AiException('The ' . $tier . ' tier has no API key');
             }
             $model = trim($settings->str('ai.' . $tier . '.model'));
             if ($model === '') {
@@ -313,6 +348,9 @@ final class Ai
     public function model(string $tier): string
     {
         $model = trim($this->app->settings()->str('ai.' . $this->tier($tier) . '.model'));
+        if ($model === '' && $this->kind($tier) === 'anthropic') {
+            return self::CLAUDE_MODELS[$this->tier($tier)];
+        }
 
         return $model !== '' ? $model : self::DEFAULT_MODEL;
     }
@@ -322,7 +360,7 @@ final class Ai
     {
         $kind = $this->app->settings()->str('ai.' . $this->tier($tier) . '.provider', 'gemini');
 
-        return in_array($kind, ['fake', 'gemini', 'openai'], true) ? $kind : 'gemini';
+        return in_array($kind, self::KINDS, true) ? $kind : 'gemini';
     }
 
     // ------------------------------------------------------------------ interior
