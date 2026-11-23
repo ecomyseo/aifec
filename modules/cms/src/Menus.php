@@ -202,10 +202,14 @@ final class Menus
             return rtrim(is_string($path) ? $path : $url, '/');
         };
         $current = $trim($here);
+        // Un enlace con ancla («/#servicios») lleva a un trozo de la página, no es la página en la que se está.
+        $isHere = static function (string $url) use ($trim, $current): bool {
+            return strpos($url, '#') === false && $trim($url) === $current;
+        };
         foreach ($tree as $i => $item) {
-            $tree[$i]['current'] = $trim((string) $item['url']) === $current;
+            $tree[$i]['current'] = $isHere((string) $item['url']);
             foreach ($item['children'] as $j => $child) {
-                $hit = $trim((string) $child['url']) === $current;
+                $hit = $isHere((string) $child['url']);
                 $tree[$i]['children'][$j]['current'] = $hit;
                 if ($hit) {
                     $tree[$i]['current'] = true;

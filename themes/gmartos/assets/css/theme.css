@@ -616,3 +616,9 @@ a.af-nav-link:hover{color:var(--accent)}
 /* Texto a todo el ancho */
 .af-post>*,.af-page>*{max-width:none}
 .af-post-image{margin-inline:0;text-align:center}.af-post-image img{display:block;margin-inline:auto}
+
+/* Pie: los enlaces largos (columna «Para asistentes de IA») se parten en vez de ensanchar la página en móvil */
+.af-footer .af-nav-link{white-space:normal;overflow-wrap:anywhere}
+.af-footer-grid>*{min-width:0}
+/* Bloque final de la ficha: titular blanco aunque falle la variable */
+.gm-cta h2{color:var(--on-dark,#fff)}
