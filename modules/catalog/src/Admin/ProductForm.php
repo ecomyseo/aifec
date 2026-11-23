@@ -15,6 +15,7 @@ use Aifec\Admin\Admin;
 use Aifec\Kernel\App;
 use Aifec\Kernel\Response;
 use Aifec\Modules\Catalog\Attributes;
+use Aifec\Modules\Catalog\PublicFiles;
 use Aifec\Modules\Catalog\Texts;
 
 /**
@@ -492,11 +493,29 @@ final class ProductForm
     private static function fileFields(App $app, ?int $id): array
     {
         $rows = [];
+        $names = [];
         if ($id !== null) {
-            foreach ($app->db()->select('SELECT id, name, version FROM {product_files} WHERE product_id = ? ORDER BY position, id', [$id]) as $row) {
-                $rows[] = ['id' => (string) $row['id'], 'name' => (string) $row['name'], 'version' => $row['version'] !== null ? (string) $row['version'] : ''];
+            foreach ($app->db()->select('SELECT id, name, version, path, bytes, public_token FROM {product_files} WHERE product_id = ? ORDER BY position, id', [$id]) as $row) {
+                $rows[] = ['id' => (string) $row['id'], 'name' => (string) $row['name'], 'version' => $row['version'] !== null ? (string) $row['version'] : '',
+                    'public' => PublicFiles::validToken($row['public_token'] !== null ? (string) $row['public_token'] : null) ? '1' : '0',
+                    'location' => PublicFiles::location($app, $row)];
+                $names[(string) $row['id']] = (string) $row['name'];
             }
         }
+        // Las filas llevan, además, si el fichero tiene dirección pública y dónde está: la ruta del servidor y, si es pública, su dirección
+        // con el botón de copiar.
+        $location = static function ($name, $fieldId, $value): string {
+            if (!is_array($value) || !isset($value['path'])) {
+                return '';
+            }
+            $html = '<div class="af-readonly af-small" id="' . e((string) $fieldId) . '"><div><strong>' . e(t('Stored at')) . '</strong><br><code>' . e((string) $value['path']) . '</code> · ' . e((string) $value['size']) . '</div>';
+            if ((string) $value['url'] !== '') {
+                $html .= '<div><strong>' . e(t('Public link')) . '</strong><br><code>' . e((string) $value['url']) . '</code> '
+                    . '<button type="button" class="af-btn af-btn-sm" data-af-copy="' . e((string) $value['url']) . '">' . e(t('Copy')) . '</button></div>';
+            }
+
+            return $html . '</div>';
+        };
 
         return [
             'files' => ['type' => 'repeater', 'label' => 'Files', 'store' => false, 'tab' => 'pdfiles', 'default' => $rows, 'add' => 'Add a file',
@@ -505,10 +524,17 @@ final class ProductForm
                     'id' => ['type' => 'hidden', 'rules' => 'int'],
                     'name' => ['label' => 'Name', 'rules' => 'max:191'],
                     'version' => ['label' => 'Version', 'rules' => 'max:40'],
+                    'public' => ['type' => 'select', 'label' => 'Public link', 'options' => ['0' => 'No', '1' => 'Yes'], 'rules' => 'max:1', 'translate' => true, 'width' => 'sm'],
+                    'location' => ['type' => 'readonly', 'label' => 'Stored at', 'store' => false, 'render' => $location],
                 ]],
             'new_file' => ['type' => 'file', 'label' => 'New file', 'store' => false, 'tab' => 'pdfiles', 'hint' => 'It is stored out of the public folder. One file each time you save.'],
             'new_file_name' => ['label' => 'Name of the new file', 'rules' => 'max:191', 'store' => false, 'tab' => 'pdfiles', 'hint' => 'Optional: the name of the file is used if it is empty.'],
             'new_file_version' => ['label' => 'Version of the new file', 'rules' => 'max:40', 'store' => false, 'width' => 'sm', 'tab' => 'pdfiles'],
+            'new_file_public' => ['type' => 'toggle', 'label' => 'Public link', 'store' => false, 'tab' => 'pdfiles', 'default' => false,
+                'hint' => 'A link with a random code that anybody can open, to announce updates to every customer. Without it the file is only delivered with the order link.'],
+            'new_file_replaces' => ['type' => 'select', 'label' => 'Replaces', 'store' => false, 'tab' => 'pdfiles', 'translate' => false, 'empty' => 'A new file',
+                'options' => $names, 'rules' => 'int',
+                'hint' => 'Choose a file to put the new one in its place: the public link of the old one keeps working.'],
         ];
     }
 

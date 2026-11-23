@@ -615,6 +615,14 @@ final class Form
     private function control(string $inputName, string $id, array $f, $value): string
     {
         $type = (string) $f['type'];
+        // Un subcampo de una fila (un repetidor) con su propio pintado, como el campo suelto de «render».
+        if (isset($f['render']) && $f['render'] instanceof \Closure) {
+            return (string) $f['render']($inputName, $id, $value, $this->app, []);
+        }
+        // Un subcampo oculto (el identificador de la fila) es un <input type="hidden">, no una caja con el valor a la vista.
+        if ($type === 'hidden') {
+            return '<input type="hidden" id="' . e($id) . '" name="' . e($inputName) . '" value="' . e(is_scalar($value) ? (string) $value : '') . '">';
+        }
         $extra = isset($f['attrs']) && is_array($f['attrs']) ? $f['attrs'] : [];
         $width = isset($f['width']) ? ' af-input-' . $f['width'] : '';
         $base = ['id' => $id, 'name' => $inputName];

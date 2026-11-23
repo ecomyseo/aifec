@@ -401,5 +401,11 @@ return [
     'Shipping costs and delivery times' => 'Gastos y plazos de envío',
     'Returns within {n} day|Returns within {n} days' => 'Devolución en {n} día|Devolución en {n} días',
     'Payment: {methods}' => 'Pago: {methods}',
+    'Public link' => 'Dirección pública',
+    'Stored at' => 'Guardado en',
+    'A link with a random code that anybody can open, to announce updates to every customer. Without it the file is only delivered with the order link.' => 'Una dirección con un código al azar que cualquiera puede abrir, para avisar de las actualizaciones a todos los clientes. Sin ella, el fichero solo se entrega con el enlace del pedido.',
+    'Replaces' => 'Sustituye a',
+    'A new file' => 'Un fichero nuevo',
+    'Choose a file to put the new one in its place: the public link of the old one keeps working.' => 'Elige un fichero para poner el nuevo en su lugar: la dirección pública del anterior sigue valiendo.',
     '{name}: {count} products at {shop}.' => '{name}: {count} productos en {shop}.',
 ];

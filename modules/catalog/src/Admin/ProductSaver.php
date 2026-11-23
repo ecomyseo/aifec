@@ -14,6 +14,7 @@ namespace Aifec\Modules\Catalog\Admin;
 use Aifec\Db\Db;
 use Aifec\Kernel\App;
 use Aifec\Media\MediaException;
+use Aifec\Modules\Catalog\PublicFiles;
 
 /**
  * Lo que el recurso «products» no guarda solo: textos sobrantes, categorías, etiquetas, imágenes, atributos, datos clave,
@@ -45,6 +46,9 @@ final class ProductSaver
 
     /** @var string[] ficheros privados quitados (se borran cuando todo se ha guardado) */
     private array $removed = [];
+
+    /** @var string[] códigos de las direcciones públicas de las filas quitadas (se borran sus carpetas cuando todo se ha guardado) */
+    private array $removedPublic = [];
 
     /** @var string[] avisos que no impiden guardar */
     private array $warnings = [];
@@ -88,6 +92,9 @@ final class ProductSaver
             throw $e;
         }
         $this->dropFiles($this->removed);
+        foreach ($this->removedPublic as $token) {
+            PublicFiles::remove($this->app, $token);
+        }
         $this->stock();
 
         return $this->warnings;
@@ -341,7 +348,7 @@ final class ProductSaver
             return;
         }
         $existing = [];
-        foreach ($this->db->select('SELECT id, name, path FROM {product_files} WHERE product_id = ?', [$this->id]) as $row) {
+        foreach ($this->db->select('SELECT id, name, path, public_token FROM {product_files} WHERE product_id = ?', [$this->id]) as $row) {
             $existing[(int) $row['id']] = $row;
         }
         $position = 0;
@@ -359,11 +366,20 @@ final class ProductSaver
                 'version' => $version !== '' ? $version : null,
                 'position' => $position++,
             ], ['id' => $fileId]);
+            // La dirección pública: sin el campo en el envío (un formulario antiguo) se queda como estaba; con él, se activa o se quita.
+            // La copia se renueva en cada guardado y el código se conserva mientras siga activa.
+            $wasPublic = PublicFiles::validToken($existing[$fileId]['public_token'] !== null ? (string) $existing[$fileId]['public_token'] : null);
+            $choice = is_array($row) && isset($row['public']) ? (string) $row['public'] : '';
+            $public = $choice === '1' ? true : ($choice === '0' ? false : $wasPublic);
+            if ($public || $wasPublic) {
+                PublicFiles::sync($this->app, $existing[$fileId], $public);
+            }
         }
         foreach ($existing as $fileId => $row) {
             if (!isset($kept[$fileId])) {
                 $this->db->delete('product_files', ['id' => $fileId]);
                 $this->removed[] = (string) $row['path'];
+                $this->removedPublic[] = $row['public_token'] !== null ? (string) $row['public_token'] : '';
             }
         }
 
@@ -386,7 +402,28 @@ final class ProductSaver
         $this->stored[] = (string) $stored['path'];
         $name = isset($this->values['new_file_name']) ? trim((string) $this->values['new_file_name']) : '';
         $version = isset($this->values['new_file_version']) ? trim((string) $this->values['new_file_version']) : '';
-        $this->db->insert('product_files', [
+        $public = !empty($this->values['new_file_public']) && (string) $this->values['new_file_public'] !== '0';
+        $replaces = isset($this->values['new_file_replaces']) ? (int) $this->values['new_file_replaces'] : 0;
+        if ($replaces > 0 && isset($kept[$replaces])) {
+            // Una versión nueva del mismo fichero: ocupa su fila (con su orden, su nombre y su dirección pública) y el fichero privado
+            // de antes se borra cuando todo se ha guardado. La copia pública se renueva dentro de su carpeta, con el mismo código.
+            $update = ['path' => (string) $stored['path'], 'bytes' => (int) $stored['bytes']];
+            if ($name !== '') {
+                $update['name'] = mb_substr($name, 0, 191, 'UTF-8');
+            }
+            if ($version !== '') {
+                $update['version'] = $version;
+            }
+            $this->removed[] = (string) $existing[$replaces]['path'];
+            $this->db->update('product_files', $update, ['id' => $replaces]);
+            $row = $this->db->row('SELECT id, name, path, public_token FROM {product_files} WHERE id = ?', [$replaces]);
+            if ($row !== null && (PublicFiles::validToken($row['public_token'] !== null ? (string) $row['public_token'] : null) || $public)) {
+                PublicFiles::sync($this->app, $row, true);
+            }
+
+            return;
+        }
+        $fileId = $this->db->insert('product_files', [
             'product_id' => $this->id,
             'variant_id' => null,
             'name' => mb_substr($name !== '' ? $name : (string) $stored['name'], 0, 191, 'UTF-8'),
@@ -396,6 +433,9 @@ final class ProductSaver
             'position' => $position,
             'created_at' => $this->app->clock()->sql(),
         ]);
+        if ($public) {
+            PublicFiles::sync($this->app, ['id' => $fileId, 'path' => (string) $stored['path'], 'name' => (string) $stored['name'], 'public_token' => null], true);
+        }
     }
 
     /**
@@ -486,6 +526,7 @@ final class ProductSaver
     {
         $db = $app->db();
         $paths = array_map('strval', $db->column('SELECT path FROM {product_files} WHERE product_id = ?', [$id]));
+        $tokens = array_map('strval', array_filter($db->column('SELECT public_token FROM {product_files} WHERE product_id = ?', [$id]), 'is_string'));
         $db->transaction(function (Db $db) use ($id): void {
             $variants = array_map('intval', $db->column('SELECT id FROM {variants} WHERE product_id = ?', [$id]));
             if ($variants !== []) {
@@ -499,6 +540,9 @@ final class ProductSaver
             $db->delete('product_i18n', ['product_id' => $id]);
         });
         $app->slugs()->remove('product', $id);
+        foreach ($tokens as $token) {
+            PublicFiles::remove($app, $token);
+        }
         if ($paths !== [] && $app->has('files')) {
             $files = $app->service('files');
             foreach ($paths as $path) {

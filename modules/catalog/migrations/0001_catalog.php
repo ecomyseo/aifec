@@ -267,6 +267,8 @@ return static function (Schema $schema, Db $db): void {
         $t->string('version', 40)->nullable();
         $t->integer('position')->default(0);
         $t->datetime('created_at');
+        // El código de la dirección pública (public/descargas/<código>/…); NULL = privado. La migración 0004 la añade a las instalaciones antiguas.
+        $t->string('public_token', 64)->nullable();
         $t->index(['product_id', 'position']);
     });
 

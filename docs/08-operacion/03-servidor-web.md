@@ -98,6 +98,24 @@ location ~ ^/(core|modules|plugins|themes|sites|demos|tests|docs)/ {
 
 También esta regla queda **sin probar** aquí.
 
+## Descargas públicas de los ficheros de producto (`/descargas/`)
+
+Un fichero descargable de un producto puede tener una **dirección pública** con un código al azar de 48 cifras: `https://tu-tienda/descargas/<código>/<nombre>`. Sirve para avisar de una actualización a todos los clientes. AIFEC copia el fichero en `public/descargas/<código>/`; sin código nadie la adivina y sin listados nadie la encuentra. En nginx:
+
+```nginx
+# Se actualiza en cada versión: sin caché larga, sin índice de carpeta y sin pasar por la caché de páginas ni por PHP.
+location ^~ /descargas/ {
+    autoindex off;
+    expires off;
+    add_header Cache-Control "no-cache, must-revalidate" always;
+    try_files $uri =404;
+}
+```
+
+- **Sin caché larga.** Si el servidor pone `expires max` a los `.zip` (Hestia lo hace), esta regla tiene que ir **antes** y con `^~`: así gana a la de las extensiones y el cliente siempre recibe la última versión.
+- **Sin listados.** `autoindex off` (es el valor de serie) y, en cada carpeta, un `index.php` que redirige a la de arriba: `/descargas/` y `/descargas/<código>/` no enseñan nada. En Apache, `public/descargas/.htaccess` lleva `Options -Indexes`.
+- **Fuera de la caché de páginas.** `^~ /descargas/` no llega a `index.php`, así que AIFEC no guarda ni sirve ninguna de estas direcciones desde su caché.
+
 ## HTTPS y proxies
 
 AIFEC da por segura una petición si PHP trae `HTTPS` activado, si llega por el puerto 443 o si el proxy manda `X-Forwarded-Proto: https`. Con HTTPS, las cookies llevan `Secure` y las respuestas llevan `Strict-Transport-Security`.
