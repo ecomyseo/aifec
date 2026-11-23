@@ -1135,7 +1135,7 @@ final class App
                 if ($this->view()->exists($template)) {
                     $html = $this->view()->render($template, ['status' => $status, 'title' => $title, 'message' => $message]);
 
-                    return Response::html($html, $status);
+                    return $this->noStore(Response::html($html, $status));
                 }
             } catch (\Throwable $e) {
                 // La página de error no puede fallar: se cae a la siguiente opción.
@@ -1144,7 +1144,17 @@ final class App
         }
         $safe = htmlspecialchars($message, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 
-        return Response::html('<!doctype html><meta charset="utf-8"><title>' . $status . ' ' . $title . '</title><h1>' . $status . ' ' . $title . '</h1><p>' . $safe . '</p>', $status);
+        return $this->noStore(Response::html('<!doctype html><meta charset="utf-8"><title>' . $status . ' ' . $title . '</title><h1>' . $status . ' ' . $title . '</h1><p>' . $safe . '</p>', $status));
+    }
+
+    /** Una página de error no se guarda en ningún intermediario (si quien la hizo no puso ya su propia política de caché). */
+    private function noStore(Response $response): Response
+    {
+        if (!isset($response->headers['Cache-Control'])) {
+            $response->headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0';
+        }
+
+        return $response;
     }
 
     /** Segundos que vive la marca «nc» si nadie consume lo pendiente (el visitante se fue a otra página). */

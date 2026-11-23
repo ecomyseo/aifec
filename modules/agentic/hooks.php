@@ -64,7 +64,10 @@ return static function (App $app): void {
     $app->middleware('acp.on', static function (Request $request, App $application, callable $next): Response {
         if (!AcpController::enabled($application)) {
             // 404 en JSON y diciendo por qué: quien llega aquí es un programa, y «not found» a secas parece una ruta que no existe.
-            return Response::json(['type' => 'invalid_request', 'code' => 'acp_disabled', 'message' => 'ACP is turned off on this shop. The owner can turn it on in Settings, UCP and agents.'], 404);
+            $off = Response::json(['type' => 'invalid_request', 'code' => 'acp_disabled', 'message' => 'ACP is turned off on this shop. The owner can turn it on in Settings, UCP and agents.'], 404);
+            $off->headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0';
+
+            return $off;
         }
 
         return $next($request);
@@ -72,7 +75,10 @@ return static function (App $app): void {
     // Con UCP apagado en los ajustes, sus direcciones dan 404 (en JSON: las usan programas).
     $app->middleware('ucp.on', static function (Request $request, App $application, callable $next): Response {
         if (!Ucp::enabled($application)) {
-            return Response::json(['error' => ['status' => 404, 'code' => 'ucp_disabled', 'message' => 'UCP is turned off on this shop. The owner can turn it on in Settings, UCP and agents.']], 404);
+            $off = Response::json(['error' => ['status' => 404, 'code' => 'ucp_disabled', 'message' => 'UCP is turned off on this shop. The owner can turn it on in Settings, UCP and agents.']], 404);
+            $off->headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0';
+
+            return $off;
         }
 
         return $next($request);

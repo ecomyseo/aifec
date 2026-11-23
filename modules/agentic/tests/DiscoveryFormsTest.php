@@ -172,3 +172,50 @@ test('cada dirección que anuncian el perfil, ACP, aifec.json, ard.json, el llms
     }
     same([], $broken, 'ninguna dirección anunciada da 404 ni error');
 });
+
+test('las cabeceras de caché de las fichas son coherentes y los 404 de «apagado» no se guardan', function (): void {
+    $app = discoveryApp();
+    // La ficha UCP vive cinco minutos en caché: sin «Expires: 0» ni «Pragma: no-cache» que la contradigan.
+    $profile = ucpCall($app, 'GET', '/.well-known/ucp');
+    contains('max-age=300', (string) $profile->headers['Cache-Control']);
+    check(!isset($profile->headers['Expires']) && !isset($profile->headers['Pragma']), 'sin Expires ni Pragma junto a max-age');
+    $acp = ucpCall($app, 'GET', '/.well-known/acp.json');
+    contains('max-age=3600', (string) $acp->headers['Cache-Control']);
+    check(!isset($acp->headers['Expires']) && !isset($acp->headers['Pragma']), 'ACP tampoco');
+
+    $noStore = 'no-store, no-cache, must-revalidate, max-age=0';
+    $off = discoveryApp(['agentic.ucp_enabled' => false, 'agentic.acp_enabled' => false]);
+    foreach (['/.well-known/ucp', '/.well-known/ucp.json', '/ucp/v1', '/.well-known/acp.json'] as $path) {
+        $r = ucpCall($off, 'GET', $path);
+        same(404, $r->status, $path);
+        same($noStore, $r->headers['Cache-Control'] ?? null, 'el 404 de ' . $path . ' no se guarda');
+    }
+    $mcpOff = discoveryApp(['mcp.enabled' => false]);
+    $card = ucpCall($mcpOff, 'GET', '/.well-known/mcp/server-card.json');
+    same(404, $card->status);
+    same($noStore, $card->headers['Cache-Control'] ?? null, 'el 404 del MCP apagado no se guarda');
+    same('mcp_disabled', ucpJson($card)['error']['code']);
+    // Y la página 404 de HTML (una dirección que no existe) tampoco.
+    $html = ucpCall($app, 'GET', '/esto-no-existe-' . '404');
+    same(404, $html->status);
+    contains('text/html', (string) $html->headers['Content-Type']);
+    same($noStore, $html->headers['Cache-Control'] ?? null, 'la 404 de HTML no se guarda');
+});
+
+test('la ficha de ACP dice cómo se autentica quien crea sesiones, y que la ficha y el feed no piden clave', function (): void {
+    $app = discoveryApp();
+    $auth = ucpJson(ucpCall($app, 'GET', '/.well-known/acp.json'))['authentication'];
+    same('bearer', $auth['type']);
+    same('Authorization', $auth['header']);
+    same(['acp', 'orders:create'], $auth['scopes']);
+    same(401, $auth['without_credentials']['status']);
+    same(['create', 'retrieve', 'update', 'complete', 'cancel'], $auth['required_for']);
+    same(['discovery', 'feed'], $auth['not_required_for']);
+    // Y es verdad: la ficha y el feed responden sin clave, y crear una sesión sin clave da 401.
+    same(200, ucpCall($app, 'GET', '/.well-known/acp.json')->status);
+    $feed = ucpCall($app, 'GET', '/acp/feed.jsonl');
+    $feed->drain();
+    same(200, $feed->status);
+    $create = ucpCall($app, 'POST', '/checkout_sessions', ['items' => [['id' => '1', 'quantity' => 1]]], ['api-version' => '2026-04-17']);
+    same(401, $create->status, 'sin clave, crear una sesión da 401');
+});

@@ -35,8 +35,20 @@ final class AcpController
     {
         $base = $this->app->url()->origin() . rtrim($this->app->url()->to('/', [], ''), '/');
         $discovery = \AifecCommerceAcp::discovery($base, $this->app->settings()->str('shop.currency', 'EUR'));
+        // Cómo se autentica quien crea y gestiona sesiones de compra. La ficha y el feed son públicos.
+        $discovery['authentication'] = [
+            'type' => 'bearer',
+            'scheme' => 'Bearer',
+            'header' => 'Authorization',
+            'alternative_header' => 'X-API-Key',
+            'scopes' => ['acp', 'orders:create'],
+            'required_for' => ['create', 'retrieve', 'update', 'complete', 'cancel'],
+            'not_required_for' => ['discovery', 'feed'],
+            'without_credentials' => ['status' => 401],
+        ];
         $response = Response::json($discovery);
         $response->headers['Cache-Control'] = 'public, max-age=3600';
+        unset($response->headers['Pragma'], $response->headers['Expires']);
         $response->headers['Access-Control-Allow-Origin'] = '*';
         $response->headers['X-Content-Type-Options'] = 'nosniff';
 

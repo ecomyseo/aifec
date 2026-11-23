@@ -53,6 +53,8 @@ final class UcpController
         }
         $response = Response::json(Ucp::profile($this->app));
         $response->headers['Cache-Control'] = 'public, max-age=300';
+        // Response::json trae Pragma y «Expires: 0» (anti-caché): contradicen al «max-age=300» de arriba.
+        unset($response->headers['Pragma'], $response->headers['Expires']);
         $response->headers['Access-Control-Allow-Origin'] = '*';
 
         return $response;

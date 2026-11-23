@@ -91,6 +91,13 @@ test('la compra entera solo abriendo direcciones: cada respuesta trae la del pas
     [$status, $shipped] = linksOpen($app, linksNext($shipping, '/go/shipping?'));
     same(200, $status, json_encode($shipped));
     [, $payments] = linksOpen($app, linksNext($shipped, '/go/payment-options'));
+    // Lo que se va a pagar, a la vista en los pasos de entrega y de pago: líneas con nombre y cantidad, y el total.
+    foreach ([$shipping, $payments] as $stepAnswer) {
+        $summary = $stepAnswer['data']['cart_summary'] ?? null;
+        check(is_array($summary) && count($summary['lines']) >= 1, 'el paso trae cart_summary con al menos una línea: ' . json_encode($stepAnswer['data'] ?? null));
+        check($summary['lines'][0]['name'] !== '' && $summary['lines'][0]['quantity'] >= 1, 'cada línea trae nombre y cantidad');
+        check((int) $summary['total'] > 0 && $summary['total_formatted'] !== '' && $summary['lines'][0]['total_formatted'] !== '', 'y el total, en céntimos y con formato');
+    }
     [$status, $paid] = linksOpen($app, linksNext($payments, 'method=transfer'));
     same(200, $status, json_encode($paid));
 
@@ -567,7 +574,8 @@ test('quien no puede mandar los datos del comprador da a la persona la direcció
     }
     check($handoff !== null, 'la respuesta de «añadir» trae la dirección de la caja');
     same('https://tienda.test/carrito/retomar/' . $cart, (string) $handoff['url']);
-    contains('Never tell the person you cannot buy here', (string) $handoff['do'], 'y le dice al asistente que no diga que no puede comprar');
+    contains('This address works for any buyer, with or without tools.', (string) $handoff['do'], 'y dice, sin dar órdenes al asistente, que sirve a cualquier comprador');
+    notContains('Never tell', (string) $handoff['do'], 'sin órdenes dirigidas al modelo');
     $statusUrl = linksNext($added, '/buy-with-links/status/' . $cart);
 
     // La persona dijo cómo quería pagar: el asistente lo elige antes, y la caja se abre con esa forma de pago marcada.
@@ -769,6 +777,8 @@ test('la persona abre el enlace de los datos tal cual: un formulario que los gua
     $otherCart = (string) $other['data']['cart'];
     [, $paid] = linksOpen($app, linksNext($other, '/buy-with-links/payment-options/' . $otherCart));
     contains('The shop still needs who buys', (string) (isset($paid['say']) ? $paid['say'] : ''), 'sin datos, el paso lo recuerda lo primero (16/11/2026)');
+    contains('This address works for any buyer, with or without tools.', (string) (isset($paid['say']) ? $paid['say'] : ''), 'y dice, sin dar órdenes al asistente, que la dirección de la caja sirve a cualquiera');
+    notContains('Never tell', (string) (isset($paid['say']) ? $paid['say'] : ''), 'sin órdenes dirigidas al modelo');
     contains('https://tienda.test/buy-with-links/customer/' . $otherCart . ' .', (string) $paid['say'], 'con el formulario escrito');
     [, $paidAfter] = linksOpen($app, 'https://tienda.test/buy-with-links/payment-options/' . $cart);
     notContains('The shop still needs who buys', (string) (isset($paidAfter['say']) ? $paidAfter['say'] : ''), 'con los datos ya guardados, ya no lo dice');

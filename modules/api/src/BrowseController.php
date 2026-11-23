@@ -83,7 +83,7 @@ final class BrowseController
 
     /** La caja para la persona: la salida de quien no puede (o no quiere) mandar los datos del comprador por el chat. */
     private const HANDOFF = 'The checkout for the person: this same cart, already filled, at the shop. Give them this address as it is if they prefer to finish there, or if you cannot get their details to the shop: '
-        . 'they type their name and address, choose delivery and payment and pay. Never tell the person you cannot buy here: this address always works. '
+        . 'they type their name and address, choose delivery and payment and pay. This address works for any buyer, with or without tools. '
         . 'It is the ONLY address that opens this cart in their browser: the checkout page of the shop on its own opens their own cart, which is not this one, so never send them to it instead';
 
     /**
@@ -173,6 +173,32 @@ final class BrowseController
         }
 
         return $this->go($request, ['step' => 'add']);
+    }
+
+    /**
+     * El carrito en pocas líneas: nombre, cantidad y total de cada una, y el total.
+     *
+     * @return array{lines:array<int,array<string,mixed>>,count:int,total:string,total_cents:int}|null null si el carrito no está disponible
+     */
+    private function cartSummary(): ?array
+    {
+        $view = Agent::tool($this->app, 'cart_view');
+        if (!is_array($view) || isset($view['error'])) {
+            return null;
+        }
+        $lines = [];
+        foreach (isset($view['lines']) && is_array($view['lines']) ? $view['lines'] : [] as $line) {
+            if (!is_array($line)) {
+                continue;
+            }
+            $name = (string) (isset($line['name']) ? $line['name'] : '');
+            $variant = (string) (isset($line['variant']) ? $line['variant'] : '');
+            $lines[] = ['name' => $variant !== '' ? $name . ' (' . $variant . ')' : $name, 'quantity' => (int) (isset($line['qty']) ? $line['qty'] : 0),
+                'total' => (string) (isset($line['total']) ? $line['total'] : ''), 'total_cents' => (int) (isset($line['total_cents']) ? $line['total_cents'] : 0)];
+        }
+
+        return ['lines' => $lines, 'count' => (int) (isset($view['count']) ? $view['count'] : 0), 'total' => (string) (isset($view['total']) ? $view['total'] : ''),
+            'total_cents' => (int) (isset($view['total_cents']) ? $view['total_cents'] : 0)];
     }
 
     /** ¿Se puede comprar ahora mismo? (lo que dice el catálogo: se vende, enseña su precio y no está agotado). */
@@ -527,6 +553,14 @@ final class BrowseController
                 $say = trim($say . ' ' . self::PAYMENT_CHOICE);
             }
 
+            if (($step === 'payment-options' || $step === 'shipping-options') && is_array($result)) {
+                // Lo que se va a pagar, a la vista en el propio paso: el asistente no tiene que pedir el carrito aparte para decírselo a la persona.
+                $summary = $this->cartSummary();
+                if ($summary !== null) {
+                    $result['cart_summary'] = $summary;
+                }
+            }
+
             return $this->answer($result, $this->afterTool($step, $raw, $result), $say);
         }
         if ($step === 'review') {
@@ -708,7 +742,7 @@ final class BrowseController
 
         return 'The shop still needs who buys (name, address, email and phone). You do not need any tool or permission for it: write this address in your answer, exactly as it is, and ask the person to open it: '
             . $this->url('customer', $raw) . ' . It is a form; what they type is saved in this cart. When they tell you it is done, open "See what is still missing" and go on to the review and the order with their code. '
-            . 'Or, if they prefer to finish at the shop, give them this address, which opens this same cart at the checkout: ' . $resume . ' . Never tell the person you cannot buy here.';
+            . 'Or, if they prefer to finish at the shop, give them this address, which opens this same cart at the checkout: ' . $resume . ' . This address works for any buyer, with or without tools.';
     }
 
     /** Lo que se le dice al asistente al añadir, con las dos direcciones escritas: la IA solo abre o copia lo que ha leído. */
