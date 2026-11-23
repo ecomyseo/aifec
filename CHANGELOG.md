@@ -1,3 +1,37 @@
+# AIFEC 1.2.6
+
+## Descubrimiento de UCP y ACP
+
+- El perfil UCP se sirve igual en `/.well-known/ucp`, `/.well-known/ucp.json`, con barra final, con la versión y en `/ucp/v1`, también con HEAD y OPTIONS (JSON, orígenes abiertos). Las direcciones `.well-known` se escriben en minúsculas.
+- Con UCP, ACP o MCP apagados, la respuesta es un 404 en JSON que dice por qué y no se guarda en caché; «Sistema → Diagnóstico» avisa cuando el módulo está activo y UCP o ACP siguen apagados. La página 404 de HTML tampoco se guarda.
+- La ficha de UCP y la de ACP salen sin `Expires` ni `Pragma` junto a `max-age`. `acp.json` declara su autenticación (bearer, cabecera `Authorization`, ámbitos `acp` y `orders:create`).
+- `buy-with-links`: sin órdenes dirigidas al modelo y con `cart_summary` (líneas y total) en los pasos de entrega y de pago; la búsqueda devuelve `buy_url` por producto.
+- Guía de nginx con `ucp.json` y con `if_not_empty` en `HTTP_AUTHORIZATION`. Catálogo para agentes (`ard.json` y `ai-catalog.json`) válido.
+- El script de cierre del ZIP incluye `protocol/`, `CHANGELOG.md` y `README.es.md` y se niega a sacar un paquete sin `protocol/Acp.php`.
+
+## WebMCP
+
+- Buscadores, fichas, tarjetas de producto, carrito, entrada de cliente y formulario de contacto de los ocho temas de serie llevan `toolname`; los nombres no se repiten en una página. El panel de WebMCP enseña qué plantillas marcan cada formulario.
+
+## Ficheros descargables con dirección pública
+
+- Cada fichero de un producto digital puede tener una dirección pública `public/descargas/<código de 48 cifras>/<nombre>`, para avisar de actualizaciones a todos los clientes. Interruptor «Dirección pública» con la ruta y la dirección completa con botón «Copiar», casilla en la subida y «Sustituye a» para subir una versión nueva sin perder la dirección. Sin listados. Columna `product_files.public_token` (migración 0004).
+
+## Inteligencia artificial
+
+- Nuevos proveedores en los ajustes: Anthropic Claude (proveedor propio con herramientas), ChatGPT, Grok, Mistral, DeepSeek, Groq, OpenRouter y Perplexity, además de Gemini y los compatibles con OpenAI.
+- El asistente de la tienda avisa de que es una inteligencia artificial.
+
+## Medición
+
+- Contenedor de Google Tag Manager listo para importar (`modules/datalayer/gtm/aifec-gtm-ga4.json`): etiqueta de Google, GA4 y los 15 eventos de la capa de datos, con consentimiento de estadísticas.
+
+## Probado
+
+- Pruebas en verde de `modules/agentic`, `modules/api`, `modules/mcp`, `modules/assistant`, `modules/webmcp`, `modules/catalog`, `modules/orders`, `modules/ai`, `modules/datalayer`, `tests/Ai` y `tests/Admin`, con mutaciones que reponen cada fallo.
+
+---
+
 # AIFEC 1.2.5
 
 ## Seguridad del panel
