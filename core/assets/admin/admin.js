@@ -714,6 +714,26 @@
     return false;
   });
 
+  // Un interruptor que pide confirmación solo al encenderlo (data-af-confirm-on lleva la pregunta): si se dice que no, sigue apagado.
+  on('click', 'input[data-af-confirm-on]', function (e, el) {
+    if (el.__afOk) {
+      el.__afOk = false;
+      return;
+    }
+    var text = el.getAttribute('data-af-confirm-on');
+    if (!text || !el.checked) {
+      return;
+    }
+    e.preventDefault();
+    confirmDialog(text).then(function (ok) {
+      if (ok) {
+        el.__afOk = true;
+        el.click();
+      }
+    });
+    return false;
+  });
+
   function confirmTextOf(form) {
     var text = form.getAttribute('data-af-confirm');
     if (text) {

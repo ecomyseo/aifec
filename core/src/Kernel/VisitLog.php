@@ -61,6 +61,50 @@ final class VisitLog
         'Google' => ['Google', 'Google', 'ai_user'],
     ];
 
+    /**
+     * Robots que solo abren un enlace para pintar su vista previa (al compartirlo en una red o en un mensaje): necesitan el HTML con
+     * las etiquetas og:, así que nunca reciben la versión en texto, diga lo que diga ningún ajuste. Fragmento del agente de usuario.
+     */
+    public const PREVIEW = [
+        'facebookexternalhit', 'facebot', 'Twitterbot', 'LinkedInBot', 'Slackbot', 'Slack-ImgProxy', 'WhatsApp', 'TelegramBot',
+        'Discordbot', 'Pinterestbot', 'SkypeUriPreview', 'vkShare', 'redditbot', 'Embedly', 'Mastodon', 'Signal-', 'Viber',
+    ];
+
+    /** ¿Es un robot de vista previa de enlaces? */
+    public static function isPreviewBot(string $userAgent): bool
+    {
+        foreach (self::PREVIEW as $needle) {
+            if ($userAgent !== '' && stripos($userAgent, $needle) !== false) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * La clase de robot («search», «ai_user», «ai_training»…) con la que se separa su copia en la caché de página, o '' si no es un
+     * robot o es de vista previa: esos reciben la misma página que una persona.
+     */
+    public static function textClass(string $userAgent): string
+    {
+        if ($userAgent === '' || self::isPreviewBot($userAgent)) {
+            return '';
+        }
+        $bot = self::bot($userAgent);
+
+        return $bot === null ? '' : $bot[2];
+    }
+
+    /** ¿Es esta respuesta la versión en texto de una página? (texto plano o Markdown con su canónica en la cabecera Link). */
+    public static function isTextVersion(Response $response): bool
+    {
+        $type = strtolower($response->contentType());
+
+        return $response->status === 200 && (strpos($type, 'text/plain') === 0 || strpos($type, 'text/markdown') === 0)
+            && isset($response->headers['Link']) && strpos($response->headers['Link'], 'rel="canonical"') !== false;
+    }
+
     /** Dominios de asistentes desde los que puede llegar una visita. */
     public const AI_REFERRERS = [
         'chatgpt.com' => 'ChatGPT', 'chat.openai.com' => 'ChatGPT', 'perplexity.ai' => 'Perplexity',
@@ -114,7 +158,7 @@ final class VisitLog
     }
 
     /** Apunta la visita si es de un robot conocido o llega de un asistente. Nunca lanza. */
-    public static function record(Site $site, Request $request, int $status, bool $cached, Clock $clock): void
+    public static function record(Site $site, Request $request, int $status, bool $cached, Clock $clock, bool $text = false): void
     {
         try {
             if ($request->method !== 'GET' || strpos($request->path, '/admin') === 0 || strpos($request->path, '/assets/') === 0) {
@@ -133,6 +177,8 @@ final class VisitLog
                 (string) $status,
                 $cached ? '1' : '0',
                 str_replace(["\t", "\n", "\r"], ' ', substr($request->rawPath, 0, 300)),
+                // Séptima columna: 1 si lo que recibió es la versión en texto (por «.md», por «Accept» o por servirse a su familia).
+                $text ? '1' : '0',
             ]);
             @file_put_contents($dir . '/visits-' . gmdate('Y-m-d', $clock->now()) . '.tsv', $line . "\n", FILE_APPEND | LOCK_EX);
         } catch (\Throwable $e) {

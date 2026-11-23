@@ -91,7 +91,8 @@ final class Bots
                     continue;
                 }
                 ++$lines;
-                $class = isset($memo[$visit['path']]) ? $memo[$visit['path']] : ($memo[$visit['path']] = self::pageClass($app, $visit['path']));
+                // Una visita que recibió la versión en texto cuenta como «text», sea por «.md», por «Accept» o por servirse a su familia.
+                $class = $visit['text'] ? 'text' : (isset($memo[$visit['path']]) ? $memo[$visit['path']] : ($memo[$visit['path']] = self::pageClass($app, $visit['path'])));
                 $day = gmdate('Y-m-d', $visit['at']);
                 $key = $day . '|' . $visit['kind'] . '|' . $visit['name'] . '|' . $class;
                 if (!isset($sums[$key])) {
@@ -142,7 +143,7 @@ final class Bots
     /**
      * Una línea del registro: instante, tipo, nombre y ruta. Una línea mal formada da null.
      *
-     * @return array{at:int,kind:string,name:string,path:string}|null
+     * @return array{at:int,kind:string,name:string,path:string,text:bool}|null
      */
     public static function parseLine(string $line): ?array
     {
@@ -156,7 +157,8 @@ final class Bots
         }
         $name = function_exists('mb_substr') ? mb_substr($name, 0, self::MAX_NAME, 'UTF-8') : substr($name, 0, self::MAX_NAME);
 
-        return ['at' => (int) $parts[0], 'kind' => $parts[1], 'name' => $name, 'path' => $parts[5]];
+        // La séptima columna (1 = recibió la versión en texto) no existe en los registros antiguos.
+        return ['at' => (int) $parts[0], 'kind' => $parts[1], 'name' => $name, 'path' => $parts[5], 'text' => isset($parts[6]) && $parts[6] === '1'];
     }
 
     /**

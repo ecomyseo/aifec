@@ -37,6 +37,13 @@ final class Llms
         $app = $s->app();
         $sections = [];
 
+        // Las páginas principales: la portada en texto, y el mapa con las versiones en texto de todas las páginas.
+        $main = [['title' => t('Home'), 'url' => Addresses::forPage($app, ['type' => 'home']), 'note' => '', 'ref' => ['type' => 'home', 'id' => 0]]];
+        if ($app->router()->has('semantic.md_sitemap')) {
+            $main[] = ['title' => t('Text versions of every page (sitemap)'), 'url' => $app->url()->abs('/sitemap-md.xml', [], ''), 'note' => '', 'ref' => null];
+        }
+        $sections[] = ['id' => 'main', 'title' => t('Main pages'), 'links' => $main];
+
         $catalog = $s->catalog();
         if ($catalog !== null) {
             $links = [];

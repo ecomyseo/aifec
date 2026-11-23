@@ -75,6 +75,8 @@ $af_totals = $report['totals'];
                             <th><?= e(t('Robot')) ?></th>
                             <th><?= e(t('Family')) ?></th>
                             <th class="af-right"><?= e(t('Visits (30 days)')) ?></th>
+                            <th class="af-right"><?= e(t('Served as .md')) ?></th>
+                            <th><?= e(t('Reads .md')) ?></th>
                             <th class="af-hide-sm"><?= e(t('Last visit')) ?></th>
                             <th class="af-hide-sm"><?= e(t('What it reads')) ?></th>
                         </tr>
@@ -91,6 +93,8 @@ $af_totals = $report['totals'];
                             <td><strong><?= e($af_bot['name']) ?></strong></td>
                             <td><?= e(isset($families[$af_bot['family']]) ? $families[$af_bot['family']] : $af_bot['family']) ?></td>
                             <td class="af-right af-num"><?= e((int) $af_bot['visits']) ?></td>
+                            <td class="af-right af-num af-nowrap"><?= e(rtrim(rtrim(number_format((float) $af_bot['md_pct'], 1, ',', ''), '0'), ',')) ?> %</td>
+                            <td><?= e($af_bot['reads_md'] ? t('Yes') : t('No')) ?></td>
                             <td class="af-hide-sm af-nowrap"><?= e($af_bot['last']) ?> UTC</td>
                             <td class="af-hide-sm af-small"><?= e(implode(' · ', $af_reads)) ?></td>
                         </tr>

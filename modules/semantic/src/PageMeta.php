@@ -20,6 +20,24 @@ use Aifec\Modules\Catalog\Front\ListingQuery;
  */
 final class PageMeta
 {
+    /** @var string la dirección de la versión en texto de la página que se está pintando (la lee el filtro «response») */
+    private static $markdown = '';
+
+    /** Empieza una petición: ninguna página pintada todavía. */
+    public static function reset(): void
+    {
+        self::$markdown = '';
+    }
+
+    /** La dirección de la versión en texto de la página pintada en esta petición, una sola vez ('' si no tiene). */
+    public static function takeMarkdown(): string
+    {
+        $md = self::$markdown;
+        self::$markdown = '';
+
+        return $md;
+    }
+
     /**
      * @param mixed $page
      *
@@ -74,6 +92,7 @@ final class PageMeta
         if (!isset($page['markdown']) || (string) $page['markdown'] === '') {
             $page['markdown'] = Addresses::forPage($app, $page);
         }
+        self::$markdown = (string) $page['markdown'];
 
         return $page;
     }

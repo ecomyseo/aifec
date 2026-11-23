@@ -257,7 +257,15 @@ final class Robots
             $lines[] = $extra;
         }
         $lines[] = '';
+        // Para los robots de IA: la guía en texto de la tienda y el mapa de las versiones en texto («.md») de cada página.
+        $router = $app->router();
+        if ($router->has('semantic.llms')) {
+            $lines[] = '# Text (Markdown) version of every page: add .md to its address. Guide for AI assistants: ' . $app->url()->abs('/llms.txt', [], '');
+        }
         $lines[] = 'Sitemap: ' . $app->url()->abs('/sitemap.xml', [], '');
+        if ($router->has('semantic.md_sitemap')) {
+            $lines[] = 'Sitemap: ' . $app->url()->abs('/sitemap-md.xml', [], '');
+        }
 
         return implode("\n", $lines) . "\n";
     }

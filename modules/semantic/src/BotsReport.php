@@ -125,6 +125,12 @@ final class BotsReport
         foreach ($bots as $index => $bot) {
             arsort($bot['reads']);
             $bots[$index]['reads'] = $bot['reads'];
+            // Las visitas que recibieron la versión en texto, da igual cómo (la dirección «.md», «Accept: text/markdown» o el servicio
+            // directo a su familia): todas se apuntan con la clase «text».
+            $text = isset($bot['reads']['text']) ? (int) $bot['reads']['text'] : 0;
+            $bots[$index]['md'] = $text;
+            $bots[$index]['md_pct'] = $bot['visits'] > 0 ? round(100 * $text / $bot['visits'], 1) : 0.0;
+            $bots[$index]['reads_md'] = $text > 0;
         }
 
         // Orígenes de IA: visitas llegadas desde cada asistente.

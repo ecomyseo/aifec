@@ -52,7 +52,7 @@ test('los ajustes del módulo tienen cuatro pestañas con las iniciales del mód
 
     $settings = $app->modules()->definition('semantic', 'settings');
     same('Data for machines', $settings['title']);
-    same(['smorg', 'smreturns', 'smtext', 'smfeeds'], array_keys($settings['tabs']));
+    same(['smorg', 'smreturns', 'smtext', 'smrobots', 'smfeeds'], array_keys($settings['tabs']));
     same('settings.edit', $settings['cap'], 'sin el módulo SEO, el permiso de ajustes generales');
     same(true, $app->settings()->bool('semantic.feeds.google'));
     same(true, $app->settings()->bool('semantic.feeds.products'));

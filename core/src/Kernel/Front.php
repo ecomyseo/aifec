@@ -62,14 +62,14 @@ final class Front
         $clock = new Clock();
         $cached = PageCache::serve($site, $raw, $clock);
         if ($cached !== null) {
-            VisitLog::record($site, $raw, 200, true, $clock);
+            VisitLog::record($site, $raw, 200, true, $clock, VisitLog::isTextVersion($cached));
 
             return $cached;
         }
 
         $app = new App($site, $root, ['public_dir' => $publicDir, 'public_base' => $publicBase, 'clock' => $clock]);
         $response = $app->handle($raw);
-        VisitLog::record($site, $raw, $response->status, false, $clock);
+        VisitLog::record($site, $raw, $response->status, false, $clock, VisitLog::isTextVersion($response));
 
         return $response;
     }

@@ -14,6 +14,7 @@ namespace Aifec\Modules\Semantic;
 use Aifec\Kernel\App;
 use Aifec\Kernel\Request;
 use Aifec\Kernel\Response;
+use Aifec\Kernel\VisitLog;
 
 /**
  * La versión en texto de cada página pública. El filtro «request.start» la sirve en dos casos:
@@ -36,12 +37,17 @@ final class TextVersion
      */
     public static function early($early, Request $request, App $app)
     {
+        PageMeta::reset();
         if ($early instanceof Response || !$app->has('semantic') || ($request->method !== 'GET' && $request->method !== 'HEAD')) {
             return $early;
         }
         $path = $request->path;
         $explicit = strlen($path) > 3 && strtolower(substr($path, -3)) === '.md';
-        if (!$explicit && (!$request->wantsMarkdown() || preg_match(self::SKIP, $path) === 1)) {
+        $byAccept = !$explicit && $request->wantsMarkdown();
+        // Un robot de una familia a la que los ajustes dan la versión en texto la recibe en la misma dirección (nunca uno de vista
+        // previa de enlaces, que necesita el HTML con las etiquetas og:).
+        $byRobot = !$explicit && !$byAccept && self::robotGetsText($request, $app);
+        if (!$explicit && (!($byAccept || $byRobot) || preg_match(self::SKIP, $path) === 1)) {
             return $early;
         }
         $hit = Addresses::resolve($app, $explicit ? substr($path, 0, -3) : $path, $explicit);
@@ -68,13 +74,57 @@ final class TextVersion
         // La dirección con «.md» se sirve como texto plano: el lector de páginas de Gemini da error con «text/markdown» aunque
         // la respuesta sea un 200, y un navegador la descarga en vez de enseñarla. Como «text/markdown» solo va a quien lo ha
         // pedido en su «Accept» (la dirección normal, negociada), que por eso lleva «Vary».
-        $response = Response::text($page['markdown'], 200, $explicit ? 'text/plain' : 'text/markdown');
+        $response = Response::text($page['markdown'], 200, $byAccept ? 'text/markdown' : 'text/plain');
         $response->headers['Link'] = '<' . $page['canonical'] . '>; rel="canonical"';
-        $response->headers['X-Robots-Tag'] = 'noindex';
-        if (!$explicit) {
-            $response->headers['Vary'] = 'Accept';
+        if ($explicit) {
+            // La dirección «.md» es otra dirección: que el buscador indexe la página (la canónica) y no el texto.
+            $response->headers['X-Robots-Tag'] = 'noindex';
+        } else {
+            // La misma dirección que la página: nada de «noindex» (sería quitar la página del buscador), y la copia depende de quién
+            // pregunta.
+            $response->headers['Vary'] = $byRobot ? 'User-Agent, Accept' : 'Accept';
         }
 
         return $response->cacheable($page['ttl'], $page['tags']);
+    }
+
+    /** Los ajustes: «semantic.text_for.<familia>» (training, assistant, seo, other, search); los buscadores, apagado de serie. */
+    public const SETTING = 'semantic.text_for.';
+
+    /** ¿Debe recibir este robot la versión en texto de la página que pide? */
+    public static function robotGetsText(Request $request, App $app): bool
+    {
+        $class = VisitLog::textClass($request->userAgent());
+        if ($class === '') {
+            return false;
+        }
+        $family = Bots::familyOf($class);
+
+        return $app->settings()->bool(self::SETTING . $family, $family !== 'search');
+    }
+
+    /**
+     * El filtro «response»: a cada página HTML que tiene versión en texto le añade «Link: <….md>; rel="alternate"; type="text/markdown"»
+     * y «Vary: Accept». Las que no la tienen (carrito, cuenta, pedido) no anuncian nada.
+     *
+     * @param mixed $response
+     *
+     * @return mixed
+     */
+    public static function link($response, Request $request, App $app)
+    {
+        $md = PageMeta::takeMarkdown();
+        if (!$response instanceof Response || $md === '' || $response->status !== 200 || strpos($response->contentType(), 'text/html') !== 0
+            || ($request->method !== 'GET' && $request->method !== 'HEAD')) {
+            return $response;
+        }
+        $link = '<' . $md . '>; rel="alternate"; type="text/markdown"';
+        $response->headers['Link'] = isset($response->headers['Link']) && $response->headers['Link'] !== '' ? $response->headers['Link'] . ', ' . $link : $link;
+        $vary = isset($response->headers['Vary']) ? $response->headers['Vary'] : '';
+        if (stripos($vary, 'accept') === false) {
+            $response->headers['Vary'] = $vary !== '' ? $vary . ', Accept' : 'Accept';
+        }
+
+        return $response;
     }
 }

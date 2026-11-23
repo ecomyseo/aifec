@@ -52,6 +52,16 @@ final class SemanticController
     }
 
     /**
+     * El mapa de las versiones en texto (/sitemap-md.xml).
+     *
+     * @param array<string,string> $params
+     */
+    public function mdSitemap(Request $request, array $params): Response
+    {
+        return Response::text(MdSitemap::xml($this->app), 200, 'application/xml')->cacheable(self::TTL, ['semantic', 'catalog', 'cms', 'settings']);
+    }
+
+    /**
      * @param array<string,string> $params
      */
     public function llmsFull(Request $request, array $params): Response

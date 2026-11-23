@@ -624,6 +624,10 @@ final class Form
             return '<input type="hidden" id="' . e($id) . '" name="' . e($inputName) . '" value="' . e(is_scalar($value) ? (string) $value : '') . '">';
         }
         $extra = isset($f['attrs']) && is_array($f['attrs']) ? $f['attrs'] : [];
+        if (isset($extra['data-af-confirm-on'])) {
+            // El aviso que sale al encender el interruptor (una sola pregunta, y si se dice que no, queda apagado).
+            $extra['data-af-confirm-on'] = t((string) $extra['data-af-confirm-on']);
+        }
         $width = isset($f['width']) ? ' af-input-' . $f['width'] : '';
         $base = ['id' => $id, 'name' => $inputName];
         if (isset($f['placeholder'])) {

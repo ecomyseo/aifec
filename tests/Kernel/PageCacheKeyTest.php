@@ -51,6 +51,10 @@ test('quien llega desde un asistente de IA no sale de la caché, por utm_source 
 
 test('un robot sale de la caché aunque traiga el origen de un asistente: no compra, y su visita la apunta el registro', function (): void {
     $plain = pageCacheKey('/producto/silla');
-    same($plain, pageCacheKey('/producto/silla?utm_source=chatgpt.com', ['user-agent' => 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.1; +https://openai.com/gptbot)']));
-    same($plain, pageCacheKey('/producto/silla', ['user-agent' => 'PerplexityBot/1.0', 'referer' => 'https://www.perplexity.ai/']));
+    // Un robot tiene su propia copia por clase de robot (puede recibir el texto en vez del HTML), pero el origen no la cambia.
+    $gpt = 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.1; +https://openai.com/gptbot)';
+    check(pageCacheKey('/producto/silla', ['user-agent' => $gpt]) !== null, 'sale de la caché');
+    same(pageCacheKey('/producto/silla', ['user-agent' => $gpt]), pageCacheKey('/producto/silla?utm_source=chatgpt.com', ['user-agent' => $gpt]));
+    check($plain !== pageCacheKey('/producto/silla', ['user-agent' => $gpt]), 'y no comparte copia con una persona');
+    check(pageCacheKey('/producto/silla', ['user-agent' => 'PerplexityBot/1.0', 'referer' => 'https://www.perplexity.ai/']) !== null, 'PerplexityBot también');
 });

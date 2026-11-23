@@ -83,6 +83,8 @@ test('quien llega desde un asistente a una página que ya está en la caché no 
 
     same(null, $copy('/?utm_source=chatgpt.com'), 'desde un asistente (utm_source), no hay copia: arranca la aplicación');
     same(null, $copy('/', ['referer' => 'https://www.perplexity.ai/search?q=silla']), 'desde un asistente (página de origen), tampoco');
+    // Un robot tiene su propia copia (por clase de robot: según los ajustes recibe el texto o el HTML), que se guarda con su primera visita.
+    $web->get('/', ['user-agent' => 'GPTBot/1.1']);
     check($copy('/?utm_source=chatgpt.com', ['user-agent' => 'GPTBot/1.1']) !== null, 'un robot sí recibe la copia: no compra');
 
     // Y al arrancar, la marca queda puesta aunque la página estuviera guardada.

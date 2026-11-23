@@ -84,6 +84,8 @@ return static function (App $app): void {
 
     // «<dirección>.md» y «Accept: text/markdown» en la dirección normal.
     $app->hooks()->filter('request.start', [TextVersion::class, 'early']);
+    // Y la cabecera «Link: <….md>; rel="alternate"; type="text/markdown"» en cada página que tiene versión en texto.
+    $app->hooks()->filter('response', [TextVersion::class, 'link']);
 
     // Los feeds: lo que cambia un precio, unas existencias o lo que cuelga del producto.
     $stale = static function (string $resource = '', $id = null) use ($app): void {

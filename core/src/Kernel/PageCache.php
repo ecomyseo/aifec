@@ -70,6 +70,12 @@ final class PageCache
             return null;
         }
         $variant = $request->wantsMarkdown() ? 'md' : ($request->wantsJson() ? 'json' : 'html');
+        // Un robot conocido (menos los de vista previa) puede recibir la versión en texto según los ajustes de su familia: su copia va
+        // aparte por clase de robot, y lo que lleva dentro (HTML o texto) lo decide la aplicación al guardarla.
+        $botClass = VisitLog::textClass($request->userAgent());
+        if ($botClass !== '') {
+            $variant .= '|bot:' . $botClass;
+        }
 
         return 'page:' . md5(strtolower($request->host) . '|' . $request->rawPath . '|' . $qs . '|' . $variant . '|' . ($request->secure ? 's' : 'p'));
     }
