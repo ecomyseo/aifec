@@ -2,7 +2,13 @@
 
 Tener los ficheros listos no basta: cada plataforma decide si los lee y casi todas piden un alta previa. Estas guías dicen qué hacer en su lado, por orden. Los nombres de los menús cambian de vez en cuando; si alguno no coincide, busca la misma idea.
 
-Cambia `TU-TIENDA` por la dirección de tu tienda. Las direcciones de abajo las genera AIFEC solas; en **Ajustes → Agentes** puedes comprobar que están activas.
+Cambia `TU-TIENDA` por la dirección de tu tienda. Las direcciones de abajo las genera AIFEC solas; en **Ajustes → Agentes** puedes comprobar que están activas. En el módulo `ecom_aifec` de PrestaShop el conector MCP es `https://TU-TIENDA/mcp-ia` (en la plataforma AIFEC es `https://TU-TIENDA/mcp`), y las mismas guías están en la pestaña «Pasos fuera de la tienda» de su configuración.
+
+**Dos cosas distintas, que no hay que mezclar.** *Llegar a la caja de la tienda*: el asistente busca, arma el carrito y entrega un enlace (`continue_url`); la persona paga en la caja de tu tienda, con tu pasarela. Esto funciona hoy en todas las tiendas con AIFEC y no necesita ningún alta. *Pagar dentro de ChatGPT o Gemini*: depende de programas de esas empresas (acceso limitado, lista de espera) y de que tu pasarela los admita; mientras no estés dentro, `is_eligible_checkout` es `false` y `payment_handlers` va vacío, a propósito. Que un asistente no cobre dentro de su chat no es un fallo de la tienda.
+
+**Antes de pedir el alta**, descarga tu fichero de productos y comprueba que tiene tantas filas como productos vendes, que ninguna fila se queda sin precio ni imagen y que, si faltan identificadores (GTIN o MPN), aparece `identifier_exists=no`. Si Google rechaza productos, abre Diagnósticos en Merchant Center, corrige el dato en la tienda y espera a la siguiente lectura diaria.
+
+Las condiciones de los programas de terceros (acceso anticipado, países, listas de espera, correos de soporte) cambian con frecuencia y esta guía las dio por buenas el 23/11/2026: compruébalas en la página oficial de cada programa antes de empezar.
 
 ## Google Merchant Center (fichas gratuitas y compras en Gemini)
 
