@@ -102,10 +102,10 @@ $gm_live = $gm_buy !== null && !empty($gm_buy['variants']);
             <?php elseif ($gm_variants && $gm_url !== '') : ?>
                 <a class="gm-add af-btn af-btn-primary af-btn-sm" href="<?= e($gm_url) ?>"><?= e(t('Choose options')) ?></a>
             <?php elseif ($gm_can_add) : ?>
-                <form class="gm-add-form" method="post" action="<?= e(gmartos_add_action()) ?>" data-af-cart-add>
-                    <input type="hidden" name="product_id" value="<?= e($gm_id) ?>">
-                    <input type="hidden" name="variant_id" value="0">
-                    <input type="hidden" name="qty" value="1">
+                <form class="gm-add-form" method="post" action="<?= e(gmartos_add_action()) ?>" data-af-cart-add<?= hook('webmcp.form', 'add_to_cart', ['n' => (int) $gm_id, 'name' => $gm_name]) ?>>
+                    <input type="hidden" name="product_id" value="<?= e($gm_id) ?>"<?= hook('webmcp.param', 'add_to_cart', 'product_id') ?>>
+                    <input type="hidden" name="variant_id" value="0"<?= hook('webmcp.param', 'add_to_cart', 'variant_id') ?>>
+                    <input type="hidden" name="qty" value="1"<?= hook('webmcp.param', 'add_to_cart', 'qty') ?>>
                     <button type="submit" class="gm-add af-btn af-btn-primary af-btn-sm" data-af-add><?= e(t('Add to cart')) ?></button>
                 </form>
             <?php endif; ?>

@@ -65,9 +65,9 @@ $af_search = $af_v['lines'] === [] && $af_app->router()->has('search') ? route('
         <p class="af-empty-title"><?= e(t('Your cart is empty')) ?></p>
         <p class="af-muted"><?= e(t('Browse the shop and add something you like.')) ?></p>
 <?php if ($af_search !== '') : ?>
-        <form class="af-cart-search" method="get" action="<?= e($af_search) ?>" role="search">
+        <form class="af-cart-search" method="get" action="<?= e($af_search) ?>" role="search"<?= hook('webmcp.form', 'search_products') ?>>
             <label class="af-sr" for="af-cart-q"><?= e(t('Search the shop')) ?></label>
-            <input id="af-cart-q" class="af-input" type="search" name="q" placeholder="<?= e(t('What are you looking for?')) ?>" autocomplete="off">
+            <input id="af-cart-q" class="af-input" type="search" name="q" placeholder="<?= e(t('What are you looking for?')) ?>" autocomplete="off"<?= hook('webmcp.param', 'search_products', 'q') ?>>
             <button type="submit" class="af-btn"><?= e(t('Search')) ?></button>
         </form>
 <?php endif; ?>

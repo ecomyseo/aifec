@@ -91,10 +91,10 @@ $ds_count = $ds_rating !== null && isset($ds_rating['count']) ? (int) $ds_rating
 <?php elseif ($ds_add_link) : ?>
     <a class="ds-add ds-add-options" href="<?= e($ds_url) ?>" aria-label="<?= e(t('Choose a format')) ?>"><?= despensa_svg('plus', 22) ?></a>
 <?php elseif ($ds_add_form) : ?>
-    <form class="ds-add-form" method="post" action="<?= e(despensa_add_action()) ?>" data-af-cart-add>
-        <input type="hidden" name="product_id" value="<?= e($ds_id) ?>">
-        <input type="hidden" name="variant_id" value="0">
-        <input type="hidden" name="qty" value="1">
+    <form class="ds-add-form" method="post" action="<?= e(despensa_add_action()) ?>" data-af-cart-add<?= hook('webmcp.form', 'add_to_cart', ['n' => (int) $ds_id, 'name' => $ds_name]) ?>>
+        <input type="hidden" name="product_id" value="<?= e($ds_id) ?>"<?= hook('webmcp.param', 'add_to_cart', 'product_id') ?>>
+        <input type="hidden" name="variant_id" value="0"<?= hook('webmcp.param', 'add_to_cart', 'variant_id') ?>>
+        <input type="hidden" name="qty" value="1"<?= hook('webmcp.param', 'add_to_cart', 'qty') ?>>
         <button type="submit" class="ds-add" data-af-add aria-label="<?= e(t('Add to cart')) ?>"><?= despensa_svg('plus', 22) ?></button>
     </form>
 <?php endif; ?>

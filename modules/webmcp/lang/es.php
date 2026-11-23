@@ -55,6 +55,10 @@ return [
     'The email to subscribe' => 'El correo que suscribir',
     'Send a message to the shop through the contact form.' => 'Enviar un mensaje a la tienda con el formulario de contacto.',
     'The name of the person writing' => 'El nombre de quien escribe',
+    'Add «{name}» to the cart. The price is always the shop\'s own.' => 'Añadir «{name}» al carrito. El precio es siempre el de la tienda.',
+    'Send 1 only if the person has said they accept the privacy policy' => 'Manda 1 solo si la persona ha dicho que acepta la política de privacidad',
+    'Anti-spam trap: always leave it empty' => 'Trampa contra el correo basura: déjalo siempre vacío',
+    'Filled in by the page: leave it empty' => 'Lo rellena la propia página: déjalo vacío',
     'The email where the shop will answer' => 'El correo donde contestará la tienda',
     'What the person wants to ask or say' => 'Lo que la persona quiere preguntar o decir',
 

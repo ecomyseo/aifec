@@ -75,9 +75,9 @@ foreach ($af_variants as $af_variant) {
 }
 $af_choose = $af_has && $af_app->router()->has('catalog.choose') ? route('catalog.choose') : '';
 ?>
-<form class="<?= e($af_form_class) ?>" method="post" action="<?= e($af_action) ?>" data-af-cart-add data-af-co>
-    <input type="hidden" name="product_id" value="<?= (int) $af_buy['product_id'] ?>">
-    <input type="hidden" name="variant_id" value="<?= $af_has ? (int) $af_initial['id'] : 0 ?>" data-af-variant-id>
+<form class="<?= e($af_form_class) ?>" method="post" action="<?= e($af_action) ?>" data-af-cart-add data-af-co<?= hook('webmcp.form', 'add_to_cart', ['n' => (int) $af_buy['product_id'], 'name' => $af_name]) ?>>
+    <input type="hidden" name="product_id" value="<?= (int) $af_buy['product_id'] ?>"<?= hook('webmcp.param', 'add_to_cart', 'product_id') ?>>
+    <input type="hidden" name="variant_id" value="<?= $af_has ? (int) $af_initial['id'] : 0 ?>" data-af-variant-id<?= hook('webmcp.param', 'add_to_cart', 'variant_id') ?>>
 <?php if ($af_has) : ?>
     <div class="af-co-options">
 <?php foreach ($af_buy['options'] as $af_option) : ?>
@@ -85,7 +85,7 @@ $af_choose = $af_has && $af_app->router()->has('catalog.choose') ? route('catalo
 <?php     /* Muchas opciones (las tallas de un zapato): un desplegable, que en una tarjeta ocupa una línea. */ ?>
         <label class="af-co-pick">
             <span><?= e((string) $af_option['name']) ?></span>
-            <select class="af-select" name="opt[<?= e((string) $af_option['code']) ?>]" data-af-option="<?= e((string) $af_option['code']) ?>">
+            <select class="af-select" name="opt[<?= e((string) $af_option['code']) ?>]" data-af-option="<?= e((string) $af_option['code']) ?>"<?= hook('webmcp.param', 'add_to_cart', 'opt') ?>>
 <?php     foreach ($af_option['values'] as $af_value) : ?>
 <?php       $af_code = (string) $af_value['code']; ?>
                 <option value="<?= e($af_code) ?>"<?= isset($af_initial['values'][$af_option['code']]) && (string) $af_initial['values'][$af_option['code']] === $af_code ? ' selected' : '' ?><?= empty($af_can[$af_option['code']][$af_code]) ? ' disabled' : '' ?>><?= e((string) $af_value['label']) ?></option>
@@ -93,7 +93,7 @@ $af_choose = $af_has && $af_app->router()->has('catalog.choose') ? route('catalo
             </select>
         </label>
 <?php   else : ?>
-        <?= $this->partial('catalog::front/partials/options', ['options' => [$af_option], 'selected' => $af_initial['values']]) ?>
+        <?= $this->partial('catalog::front/partials/options', ['options' => [$af_option], 'selected' => $af_initial['values'], 'tool' => 'add_to_cart']) ?>
 <?php   endif; ?>
 <?php endforeach; ?>
     </div>
@@ -101,7 +101,7 @@ $af_choose = $af_has && $af_app->router()->has('catalog.choose') ? route('catalo
     <p class="af-co-stock af-small" data-af-availability><?= e((string) $af_initial['stock_label']) ?></p>
 <?php endif; ?>
     <div class="af-co-row">
-        <?= $this->partial('partials/qty', ['name' => 'qty', 'value' => 1, 'min' => 1, 'max' => $af_max !== null && (int) $af_max > 0 ? (int) $af_max : null, 'of' => $af_name]) ?>
+        <?= $this->partial('partials/qty', ['name' => 'qty', 'value' => 1, 'min' => 1, 'max' => $af_max !== null && (int) $af_max > 0 ? (int) $af_max : null, 'of' => $af_name, 'tool' => 'add_to_cart']) ?>
         <button type="submit" class="af-co-add <?= e($af_button_class) ?>" data-af-add<?= $af_choose !== '' ? ' formaction="' . e($af_choose) . '"' : '' ?> aria-label="<?= e(t('Add {name} to the cart', ['name' => $af_name])) ?>"><?= $af_button ?></button>
     </div>
 </form>

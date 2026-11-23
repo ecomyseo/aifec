@@ -23,9 +23,9 @@ $this->layout('layout', ['page' => ['type' => 'error', 'title' => $af_title]]);
             <p class="af-muted"><?= e(t($af_message)) ?></p>
         <?php endif; ?>
         <?php if (app()->router()->has('search')) : ?>
-            <form class="af-error-search" role="search" action="<?= e(route('search')) ?>" method="get">
+            <form class="af-error-search" role="search" action="<?= e(route('search')) ?>" method="get"<?= hook('webmcp.form', 'search_products') ?>>
                 <label class="af-sr" for="af-q-error"><?= e(t('Search')) ?></label>
-                <input id="af-q-error" class="af-input" type="search" name="q" placeholder="<?= e(t('Search…')) ?>" autocomplete="off">
+                <input id="af-q-error" class="af-input" type="search" name="q" placeholder="<?= e(t('Search…')) ?>" autocomplete="off"<?= hook('webmcp.param', 'search_products', 'q') ?>>
                 <button type="submit" class="af-btn"><?= e(t('Search')) ?></button>
             </form>
         <?php endif; ?>

@@ -256,6 +256,9 @@ final class Forms
             return '';
         }
         $code = (string) $form['code'];
+        // Solo el formulario de contacto de serie es la herramienta «send_contact_message» de WebMCP: los que crea la tienda tienen
+        // sus propios campos y una herramienta con campos que no existen engañaría al agente.
+        $tool = $code === 'contact' ? 'send_contact_message' : '';
         $anchor = 'form-' . $code;
         $sent = $this->app->request()->get('enviado') === '1';
         $state = $this->app->hooks()->apply('cms.form.state', ['sent' => $sent, 'errors' => [], 'old' => []], $form, $this->app);
@@ -269,16 +272,16 @@ final class Forms
             return '<div class="af-alert af-alert-ok" role="status" id="' . e($anchor) . '">' . e(t($thanks)) . '</div>';
         }
 
-        $html = '<form class="af-form-block" method="post" id="' . e($anchor) . '" action="' . e($this->app->url()->to('/formulario/' . rawurlencode($code))) . '" data-af-form="' . e($code) . '">';
+        $html = '<form class="af-form-block" method="post" id="' . e($anchor) . '" action="' . e($this->app->url()->to('/formulario/' . rawurlencode($code))) . '" data-af-form="' . e($code) . '"' . ($tool !== '' ? $this->app->hooks()->render('webmcp.form', 'send_contact_message') : '') . '>';
         if ($errors !== []) {
             $html .= '<div class="af-alert af-alert-bad" role="alert">' . e(t('Check the highlighted fields.')) . '</div>';
         }
         foreach ($form['fields'] as $field) {
-            $html .= $this->field($anchor, $field, isset($old[$field['key']]) && is_scalar($old[$field['key']]) ? (string) $old[$field['key']] : '', isset($errors[$field['key']]) && is_string($errors[$field['key']]) ? $errors[$field['key']] : '');
+            $html .= $this->field($tool, $anchor, $field, isset($old[$field['key']]) && is_scalar($old[$field['key']]) ? (string) $old[$field['key']] : '', isset($errors[$field['key']]) && is_string($errors[$field['key']]) ? $errors[$field['key']] : '');
         }
         $html .= '<div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" aria-hidden="true"><label>' . e(t('Leave this field empty'))
-            . '<input type="text" name="' . e(Cms::FORM_TRAP) . '" tabindex="-1" autocomplete="off" value=""></label></div>'
-            . '<input type="hidden" name="' . e(Cms::FORM_STAMP) . '" value="">'
+            . '<input type="text" name="' . e(Cms::FORM_TRAP) . '" tabindex="-1" autocomplete="off" value=""' . ($tool !== '' ? $this->app->hooks()->render('webmcp.param', $tool, Cms::FORM_TRAP) : '') . '></label></div>'
+            . '<input type="hidden" name="' . e(Cms::FORM_STAMP) . '" value=""' . ($tool !== '' ? $this->app->hooks()->render('webmcp.param', $tool, Cms::FORM_STAMP) : '') . '>'
             . '<p><button class="af-btn af-btn-primary" type="submit">' . e(t('Send')) . '</button></p></form>';
 
         return $html;
@@ -287,7 +290,7 @@ final class Forms
     /**
      * @param array<string,mixed> $f
      */
-    private function field(string $anchor, array $f, string $value, string $error): string
+    private function field(string $tool, string $anchor, array $f, string $value, string $error): string
     {
         $key = (string) $f['key'];
         $type = (string) $f['type'];
@@ -296,7 +299,8 @@ final class Forms
         $required = !empty($f['required']);
         $label = e(t((string) $f['label'])) . ($required ? ' <span aria-hidden="true">*</span>' : '');
         $common = ' name="' . e($name) . '" id="' . e($id) . '"' . ($required ? ' required aria-required="true"' : '')
-            . ($error !== '' ? ' aria-invalid="true" aria-describedby="' . e($id) . '-error"' : '');
+            . ($error !== '' ? ' aria-invalid="true" aria-describedby="' . e($id) . '-error"' : '')
+            . ($tool !== '' ? $this->app->hooks()->render('webmcp.param', $tool, $name) : '');
         $message = $error !== '' ? '<p class="af-error" id="' . e($id) . '-error" role="alert">' . e($error) . '</p>' : '';
 
         if ($type === 'checkbox' || $type === 'consent') {

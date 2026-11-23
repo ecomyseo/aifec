@@ -44,9 +44,18 @@ final class Webmcp
     /** @var App */
     private $app;
 
+    /** @var array<string,int> los nombres de herramienta ya escritos en esta petición (no pueden repetirse en una página) */
+    private $used = [];
+
     public function __construct(App $app)
     {
         $this->app = $app;
+    }
+
+    /** Empieza una petición nueva: los nombres de herramienta ya escritos son los de la página anterior, no los de esta. */
+    public function reset(): void
+    {
+        $this->used = [];
     }
 
     /** ¿Está encendido? Con el ajuste apagado no hay guion, ni marcas, ni dirección. */
@@ -162,7 +171,12 @@ final class Webmcp
                     'q' => t('What to look for, in the customer\'s own words'),
                 ]];
             case 'add_to_cart':
-                return ['description' => t('Add this product to the cart. The price is always the shop\'s own.'), 'params' => [
+                // En un listado cada tarjeta es su propia herramienta: la descripción dice de qué producto.
+                $product = isset($vars['name']) ? trim((string) $vars['name']) : '';
+
+                return ['description' => $product !== ''
+                    ? t('Add «{name}» to the cart. The price is always the shop\'s own.', ['name' => $product])
+                    : t('Add this product to the cart. The price is always the shop\'s own.'), 'params' => [
                     'product_id' => t('The product number, already filled in'),
                     'variant_id' => t('The variant number, 0 when the product has no variants'),
                     'qty' => t('Units to add'),
@@ -197,10 +211,15 @@ final class Webmcp
                     'email' => t('The email to subscribe'),
                 ]];
             case 'send_contact_message':
+                // Los campos del formulario del módulo de contenido se llaman f[clave]; los dos últimos son la trampa contra robots y la marca
+                // de tiempo, que no se rellenan nunca.
                 return ['description' => t('Send a message to the shop through the contact form.'), 'params' => [
-                    'name' => t('The name of the person writing'),
-                    'email' => t('The email where the shop will answer'),
-                    'message' => t('What the person wants to ask or say'),
+                    'f[name]' => t('The name of the person writing'),
+                    'f[email]' => t('The email where the shop will answer'),
+                    'f[message]' => t('What the person wants to ask or say'),
+                    'f[consent]' => t('Send 1 only if the person has said they accept the privacy policy'),
+                    'website' => t('Anti-spam trap: always leave it empty'),
+                    '_mark' => t('Filled in by the page: leave it empty'),
                 ]];
         }
 
@@ -224,6 +243,16 @@ final class Webmcp
             return '';
         }
         $name = $form . (isset($vars['n']) ? '_' . (int) $vars['n'] : '');
+        // Un nombre no puede repetirse en una página (dos buscadores, el panel móvil y la cabecera): el segundo lleva «_2», el tercero «_3».
+        if (isset($this->used[$name])) {
+            $base = $name;
+            $count = 2;
+            while (isset($this->used[$base . '_' . $count])) {
+                ++$count;
+            }
+            $name = $base . '_' . $count;
+        }
+        $this->used[$name] = 1;
 
         return ' toolname="' . e($name) . '" tooldescription="' . e($info['description']) . '"';
     }
@@ -254,12 +283,15 @@ final class Webmcp
         $root = rtrim(str_replace('\\', '/', $this->app->root()), '/');
         $found = array_fill_keys(self::FORMS, []);
         $files = [];
-        foreach (['themes', 'modules'] as $base) {
+        // Plantillas de los temas, vistas de módulos y plugins, y el código de los módulos que pinta HTML (el formulario del bloque
+        // «form» del módulo de contenido es PHP, no una plantilla).
+        foreach (['themes' => ['templates'], 'modules' => ['views', 'src'], 'plugins' => ['views']] as $base => $subs) {
             $dirs = glob($root . '/' . $base . '/*', GLOB_ONLYDIR);
             foreach (is_array($dirs) ? $dirs : [] as $dir) {
-                $sub = $base === 'themes' ? 'templates' : 'views';
-                if (is_dir($dir . '/' . $sub)) {
-                    $files = array_merge($files, self::phpFiles($dir . '/' . $sub));
+                foreach ($subs as $sub) {
+                    if (is_dir($dir . '/' . $sub)) {
+                        $files = array_merge($files, self::phpFiles($dir . '/' . $sub));
+                    }
                 }
             }
         }

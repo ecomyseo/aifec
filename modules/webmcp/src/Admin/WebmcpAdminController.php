@@ -48,7 +48,7 @@ final class WebmcpAdminController
         $placement = $webmcp->placement();
         $forms = [];
         foreach (Webmcp::FORMS as $form) {
-            $info = $webmcp->describe($form, ['n' => 1, 'name' => '…']);
+            $info = $webmcp->describe($form, $form === 'update_cart_line' ? ['n' => 1, 'name' => '…'] : []);
             $forms[] = ['name' => $form, 'description' => $info !== null ? $info['description'] : '', 'fields' => $info !== null ? count($info['params']) : 0, 'templates' => $placement[$form]];
         }
 

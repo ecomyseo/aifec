@@ -114,11 +114,11 @@ $at_guide = hook('product.size_guide', $at_p);
                 <p class="af-small af-muted"><?= e($delivery) ?></p>
             <?php endif; ?>
             <?php if ($can_buy) : ?>
-                <form method="post" action="<?= e(route('cart.add')) ?>" data-af-cart-add>
-                    <input type="hidden" name="product_id" value="<?= e($at_p['id']) ?>">
-                    <input type="hidden" name="variant_id" value="<?= e($at_has_variants ? $initial['id'] : 0) ?>" data-af-variant-id>
+                <form method="post" action="<?= e(route('cart.add')) ?>" data-af-cart-add<?= hook('webmcp.form', 'add_to_cart') ?>>
+                    <input type="hidden" name="product_id" value="<?= e($at_p['id']) ?>"<?= hook('webmcp.param', 'add_to_cart', 'product_id') ?>>
+                    <input type="hidden" name="variant_id" value="<?= e($at_has_variants ? $initial['id'] : 0) ?>" data-af-variant-id<?= hook('webmcp.param', 'add_to_cart', 'variant_id') ?>>
                     <?php if ($at_has_variants) : ?>
-                        <?= $this->partial('catalog::front/partials/options', ['options' => $at_p['options'], 'selected' => $at_selected]) ?>
+                        <?= $this->partial('catalog::front/partials/options', ['options' => $at_p['options'], 'selected' => $at_selected, 'tool' => 'add_to_cart']) ?>
                         <script type="application/json" data-af-variants-data><?= json_html($variants_data) ?></script>
                     <?php endif; ?>
                     <?php if ($at_has_size || trim($at_guide) !== '') : ?>
@@ -128,7 +128,7 @@ $at_guide = hook('product.size_guide', $at_p);
                         </details>
                     <?php endif; ?>
                     <div class="at-buy-row af-row af-buy-row">
-                        <?= $this->partial('partials/qty', ['name' => 'qty', 'value' => $at_min, 'min' => $at_min, 'max' => $at_max]) ?>
+                        <?= $this->partial('partials/qty', ['name' => 'qty', 'value' => $at_min, 'min' => $at_min, 'max' => $at_max, 'tool' => 'add_to_cart']) ?>
                         <button type="submit" class="af-btn af-btn-primary af-btn-lg" data-af-add<?= ($at_has_variants && $choose_action !== '' ? ' formaction="' . e($choose_action) . '"' : '') ?><?= ($sold_out ? ' disabled' : '') ?>><?= e($sold_out && !$at_has_variants ? t('Sold out') : t('Add to cart')) ?></button>
                     </div>
                 </form>

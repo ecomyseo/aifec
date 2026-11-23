@@ -100,10 +100,10 @@ $tl_live = $tl_buy !== null && !empty($tl_buy['variants']);
         <?php elseif ($tl_variants && $tl_url !== '') : ?>
             <a class="tl-add-btn af-btn af-btn-sm" href="<?= e($tl_url) ?>"><?= e(t('Choose options')) ?></a>
         <?php elseif ($tl_can_add) : ?>
-            <form class="tl-add" method="post" action="<?= e(taller_add_action()) ?>" data-af-cart-add>
-                <input type="hidden" name="product_id" value="<?= e($tl_id) ?>">
-                <input type="hidden" name="variant_id" value="0">
-                <input type="hidden" name="qty" value="1">
+            <form class="tl-add" method="post" action="<?= e(taller_add_action()) ?>" data-af-cart-add<?= hook('webmcp.form', 'add_to_cart', ['n' => (int) $tl_id, 'name' => $tl_name]) ?>>
+                <input type="hidden" name="product_id" value="<?= e($tl_id) ?>"<?= hook('webmcp.param', 'add_to_cart', 'product_id') ?>>
+                <input type="hidden" name="variant_id" value="0"<?= hook('webmcp.param', 'add_to_cart', 'variant_id') ?>>
+                <input type="hidden" name="qty" value="1"<?= hook('webmcp.param', 'add_to_cart', 'qty') ?>>
                 <button type="submit" class="tl-add-btn af-btn af-btn-primary af-btn-sm" data-af-add><?= taller_svg('cart', 18) ?><span><?= e(t('Add')) ?></span></button>
             </form>
         <?php endif; ?>

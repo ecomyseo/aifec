@@ -63,7 +63,20 @@ use Aifec\Admin\Admin;
                 <td><code><?= e((string) $form['name']) ?></code></td>
                 <td class="af-hide-sm"><?= e((string) $form['description']) ?></td>
                 <td class="af-num"><?= (int) $form['fields'] ?></td>
-                <td><?= $form['templates'] !== [] ? Admin::badge(t('In {n} templates', ['n' => count($form['templates'])]), 'ok') : Admin::badge(t('Not in any template yet'), '') ?></td>
+                <td>
+<?php if ($form['templates'] !== []) : ?>
+                    <details>
+                        <summary><?= Admin::badge(t('In {n} templates', ['n' => count($form['templates'])]), 'ok') ?></summary>
+                        <ul class="af-small">
+<?php   foreach ($form['templates'] as $af_template) : ?>
+                            <li><code><?= e((string) $af_template) ?></code></li>
+<?php   endforeach; ?>
+                        </ul>
+                    </details>
+<?php else : ?>
+                    <?= Admin::badge(t('Not in any template yet'), '') ?>
+<?php endif; ?>
+                </td>
             </tr>
 <?php endforeach; ?>
         </tbody>

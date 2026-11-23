@@ -26,9 +26,9 @@ $tl_path = app()->request()->path;
         <?php endif; ?>
         <a class="tl-logo af-logo" href="<?= e(url('/')) ?>"><?= shop_logo() ?></a>
         <?php if (base_theme_can('search')) : ?>
-            <form class="tl-search af-hide-sm" role="search" action="<?= e(base_theme_link('search')) ?>" method="get">
+            <form class="tl-search af-hide-sm" role="search" action="<?= e(base_theme_link('search')) ?>" method="get"<?= hook('webmcp.form', 'search_products') ?>>
                 <label class="af-sr" for="tl-q-header"><?= e(t('Search')) ?></label>
-                <input id="tl-q-header" class="tl-search-input af-input" type="search" name="q" placeholder="<?= e(t('Search by product, brand or reference…')) ?>" autocomplete="off">
+                <input id="tl-q-header" class="tl-search-input af-input" type="search" name="q" placeholder="<?= e(t('Search by product, brand or reference…')) ?>" autocomplete="off"<?= hook('webmcp.param', 'search_products', 'q') ?>>
                 <button type="submit" class="tl-search-btn af-btn af-btn-primary"><?= taller_svg('search', 20) ?><span><?= e(t('Search')) ?></span></button>
             </form>
         <?php endif; ?>

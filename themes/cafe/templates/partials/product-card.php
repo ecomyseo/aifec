@@ -97,10 +97,10 @@ $cf_choose = $cf_add && !empty($cf_p['has_variants']) && $cf_url !== '';
         <?php if ($cf_choose) : ?>
             <a class="cf-add" href="<?= e($cf_url) ?>"><?= e(t('Choose')) ?><span class="af-sr">: <?= e($cf_name) ?></span></a>
         <?php elseif ($cf_add) : ?>
-            <form class="cf-add-form" method="post" action="<?= e(cafe_add_action()) ?>" data-af-cart-add>
-                <input type="hidden" name="product_id" value="<?= e($cf_id) ?>">
-                <input type="hidden" name="variant_id" value="0">
-                <input type="hidden" name="qty" value="1">
+            <form class="cf-add-form" method="post" action="<?= e(cafe_add_action()) ?>" data-af-cart-add<?= hook('webmcp.form', 'add_to_cart', ['n' => (int) $cf_id, 'name' => $cf_name]) ?>>
+                <input type="hidden" name="product_id" value="<?= e($cf_id) ?>"<?= hook('webmcp.param', 'add_to_cart', 'product_id') ?>>
+                <input type="hidden" name="variant_id" value="0"<?= hook('webmcp.param', 'add_to_cart', 'variant_id') ?>>
+                <input type="hidden" name="qty" value="1"<?= hook('webmcp.param', 'add_to_cart', 'qty') ?>>
                 <button type="submit" class="cf-add" data-af-add><?= cafe_svg('plus', 16) ?><?= e(t('Add')) ?><span class="af-sr">: <?= e($cf_name) ?></span></button>
             </form>
         <?php endif; ?>

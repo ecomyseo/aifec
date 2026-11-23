@@ -44,9 +44,9 @@ $af_cta = aifec_theme_cta();
             <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg>
         </button>
     </div>
-    <form class="af-drawer-body af-search-form" role="search" action="<?= e(route('search')) ?>" method="get">
+    <form class="af-drawer-body af-search-form" role="search" action="<?= e(route('search')) ?>" method="get"<?= hook('webmcp.form', 'search_products') ?>>
         <label class="af-sr" for="af-q-drawer"><?= e(t('Search')) ?></label>
-        <input id="af-q-drawer" class="af-input" type="search" name="q" placeholder="<?= e(t('Search…')) ?>" autocomplete="off">
+        <input id="af-q-drawer" class="af-input" type="search" name="q" placeholder="<?= e(t('Search…')) ?>" autocomplete="off"<?= hook('webmcp.param', 'search_products', 'q') ?>>
         <button type="submit" class="af-btn af-btn-primary"><?= e(t('Search')) ?></button>
     </form>
 </aside>

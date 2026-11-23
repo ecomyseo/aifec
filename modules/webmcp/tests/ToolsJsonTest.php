@@ -57,6 +57,34 @@ test('el esquema sale como JSON de verdad: sin propiedades es «{}», no «[]»'
     check(is_object($decoded->tools[0]->inputSchema->properties), 'properties es un objeto');
 });
 
+test('el esquema de TODAS las herramientas publicadas es válido: objeto, «required» dentro de «properties» y propiedades como objeto JSON', function (): void {
+    // Lighthouse (agentic browsing) lee /webmcp/tools.json: un «required» que nombra una propiedad que no existe, o unas «properties» que
+    // salen como lista, estropean el esquema de la herramienta entera (auditoría del 23/11/2026, 19 herramientas válidas).
+    $app = webmcpApp();
+    $raw = (new TestClient($app))->get('/webmcp/tools.json')->body;
+    $tools = json_decode($raw)->tools;
+    check(count($tools) >= 15, 'hay herramientas publicadas (' . count($tools) . ')');
+    $names = [];
+    foreach ($tools as $tool) {
+        $name = (string) $tool->name;
+        check(!isset($names[$name]), $name . ': el nombre no se repite');
+        $names[$name] = true;
+        $schema = $tool->inputSchema;
+        same('object', $schema->type, $name . ': type object');
+        check(isset($schema->properties) && is_object($schema->properties), $name . ': properties es un objeto JSON, no una lista');
+        $required = isset($schema->required) ? $schema->required : [];
+        check(is_array($required), $name . ': required es una lista');
+        foreach ($required as $field) {
+            check(is_string($field) && property_exists($schema->properties, $field), $name . ': required pide «' . (is_string($field) ? $field : '?') . '», que no está en properties');
+        }
+        foreach ($schema->properties as $field => $property) {
+            check(isset($property->type) || isset($property->enum), $name . '.' . $field . ': la propiedad dice su tipo');
+            check(!isset($property->required) || is_array($property->required), $name . '.' . $field . ': ningún required suelto fuera de su objeto');
+        }
+        check(isset($tool->annotations->readOnlyHint) && is_bool($tool->annotations->readOnlyHint), $name . ': readOnlyHint es verdadero o falso');
+    }
+});
+
 test('el esquema publicado es el de la tabla: mismas propiedades, mismas obligatorias, y el validador del módulo acepta lo que dice', function (): void {
     $app = webmcpApp();
     $web = new TestClient($app);

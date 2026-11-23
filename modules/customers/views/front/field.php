@@ -18,6 +18,7 @@
  * @var int         $max          largo máximo
  * @var int         $min          largo mínimo (contraseñas)
  * @var string      $hint         ayuda corta bajo el control
+ * @var string      $tool         herramienta WebMCP a la que pertenece el campo (la marca lleva la descripción del campo)
  */
 
 declare(strict_types=1);
@@ -28,7 +29,7 @@ $af_hint = isset($hint) ? (string) $hint : '';
 ?>
 <div class="af-field">
     <label for="<?= e($id) ?>"><?= e($label) ?></label>
-    <input id="<?= e($id) ?>" class="af-input" type="<?= e($af_type) ?>" name="<?= e($name) ?>" value="<?= e($af_value) ?>" autocomplete="<?= e(isset($autocomplete) ? $autocomplete : 'off') ?>"<?= !empty($required) ? ' required' : '' ?><?= !empty($max) ? ' maxlength="' . e((int) $max) . '"' : '' ?><?= !empty($min) ? ' minlength="' . e((int) $min) . '"' : '' ?><?= $af_hint !== '' ? ' aria-describedby="' . e($id) . '-hint"' : '' ?>>
+    <input id="<?= e($id) ?>" class="af-input" type="<?= e($af_type) ?>" name="<?= e($name) ?>"<?= isset($tool) && is_string($tool) && $tool !== '' ? hook('webmcp.param', $tool, (string) $name) : '' ?> value="<?= e($af_value) ?>" autocomplete="<?= e(isset($autocomplete) ? $autocomplete : 'off') ?>"<?= !empty($required) ? ' required' : '' ?><?= !empty($max) ? ' maxlength="' . e((int) $max) . '"' : '' ?><?= !empty($min) ? ' minlength="' . e((int) $min) . '"' : '' ?><?= $af_hint !== '' ? ' aria-describedby="' . e($id) . '-hint"' : '' ?>>
 <?php if ($af_hint !== '') : ?>
     <span class="af-hint" id="<?= e($id) ?>-hint"><?= e($af_hint) ?></span>
 <?php endif; ?>

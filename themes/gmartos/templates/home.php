@@ -78,10 +78,10 @@ $gm_name = gmartos_text('about_name', t('Gustavo Martos'));
         <h2 id="gm-discovery-title"><?= e(t('What does your shop need?')) ?></h2>
     </div>
     <div class="gm-discovery-box">
-        <form class="gm-search" role="search" action="<?= e(base_theme_link('search')) ?>" method="get">
+        <form class="gm-search" role="search" action="<?= e(base_theme_link('search')) ?>" method="get"<?= hook('webmcp.form', 'search_products') ?>>
             <?= gmartos_svg('search', 21) ?>
             <label class="af-sr" for="gm-q-home"><?= e(t('Search')) ?></label>
-            <input id="gm-q-home" type="search" name="q" placeholder="<?= e(t('Search a module or a need…')) ?>" autocomplete="off" required>
+            <input id="gm-q-home" type="search" name="q" placeholder="<?= e(t('Search a module or a need…')) ?>" autocomplete="off" required<?= hook('webmcp.param', 'search_products', 'q') ?>>
             <button type="submit" class="af-btn"><span><?= e(t('Search')) ?></span></button>
         </form>
         <?php if ($gm_chips !== []) : ?>

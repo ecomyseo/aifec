@@ -88,13 +88,13 @@ $mt_max = isset($mt_p['buy']['max_qty']) && (int) $mt_p['buy']['max_qty'] > 0 ? 
 <?php elseif ($mt_variants && $mt_url !== '') : ?>
 <p class="mt-card-buy"><a class="mt-card-pick" href="<?= e($mt_url) ?>"><span><?= e($mt_scale ? t('Choose measure') : t('Choose options')) ?></span><?php if ($mt_measures['count'] > 0) : ?> <small><?= e($mt_scale ? tn('{n} measure', '{n} measures', $mt_measures['count']) : tn('{n} option', '{n} options', $mt_measures['count'])) ?></small><?php endif; ?></a></p>
 <?php elseif ($mt_can_add) : ?>
-<form class="mt-card-buy" method="post" action="<?= e(metrica_add_action()) ?>" data-af-cart-add>
-<input type="hidden" name="product_id" value="<?= e($mt_id) ?>">
-<input type="hidden" name="variant_id" value="0">
+<form class="mt-card-buy" method="post" action="<?= e(metrica_add_action()) ?>" data-af-cart-add<?= hook('webmcp.form', 'add_to_cart', ['n' => (int) $mt_id, 'name' => $mt_name]) ?>>
+<input type="hidden" name="product_id" value="<?= e($mt_id) ?>"<?= hook('webmcp.param', 'add_to_cart', 'product_id') ?>>
+<input type="hidden" name="variant_id" value="0"<?= hook('webmcp.param', 'add_to_cart', 'variant_id') ?>>
 <?php if ((int) theme_option('card_qty', 1) === 1) : ?>
-<input class="mt-card-qty" type="number" name="qty" value="1" min="1"<?= ($mt_max > 0 ? ' max="' . e($mt_max) . '"' : '') ?> step="1" inputmode="numeric" aria-label="<?= e(t('Quantity of {name}', ['name' => $mt_name])) ?>">
+<input class="mt-card-qty" type="number" name="qty" value="1" min="1"<?= ($mt_max > 0 ? ' max="' . e($mt_max) . '"' : '') ?> step="1" inputmode="numeric" aria-label="<?= e(t('Quantity of {name}', ['name' => $mt_name])) ?>"<?= hook('webmcp.param', 'add_to_cart', 'qty') ?>>
 <?php else : ?>
-<input type="hidden" name="qty" value="1">
+<input type="hidden" name="qty" value="1"<?= hook('webmcp.param', 'add_to_cart', 'qty') ?>>
 <?php endif; ?>
 <button type="submit" class="mt-card-btn" data-af-add aria-label="<?= e(t('Add {name} to the cart', ['name' => $mt_name])) ?>"><?= e(t('Add')) ?></button>
 </form>

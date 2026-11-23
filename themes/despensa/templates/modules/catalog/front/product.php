@@ -140,15 +140,15 @@ foreach ([[t('GTIN'), $ds_p['gtin']], [t('MPN'), $ds_p['mpn']]] as $ds_ref) {
                 <?php endif; ?>
             </ul>
             <?php if ($can_buy) : ?>
-                <form class="ds-buy" method="post" action="<?= e(route('cart.add')) ?>" data-af-cart-add>
-                    <input type="hidden" name="product_id" value="<?= e($ds_p['id']) ?>">
-                    <input type="hidden" name="variant_id" value="<?= e($ds_has_variants ? $initial['id'] : 0) ?>" data-af-variant-id>
+                <form class="ds-buy" method="post" action="<?= e(route('cart.add')) ?>" data-af-cart-add<?= hook('webmcp.form', 'add_to_cart') ?>>
+                    <input type="hidden" name="product_id" value="<?= e($ds_p['id']) ?>"<?= hook('webmcp.param', 'add_to_cart', 'product_id') ?>>
+                    <input type="hidden" name="variant_id" value="<?= e($ds_has_variants ? $initial['id'] : 0) ?>" data-af-variant-id<?= hook('webmcp.param', 'add_to_cart', 'variant_id') ?>>
                     <?php if ($ds_has_variants) : ?>
-                        <?= $this->partial('catalog::front/partials/options', ['options' => $ds_p['options'], 'selected' => $ds_selected]) ?>
+                        <?= $this->partial('catalog::front/partials/options', ['options' => $ds_p['options'], 'selected' => $ds_selected, 'tool' => 'add_to_cart']) ?>
                         <script type="application/json" data-af-variants-data><?= json_html($variants_data) ?></script>
                     <?php endif; ?>
                     <div class="ds-buy-row af-row af-buy-row">
-                        <?= $this->partial('partials/qty', ['name' => 'qty', 'value' => $ds_min, 'min' => $ds_min, 'max' => $ds_max]) ?>
+                        <?= $this->partial('partials/qty', ['name' => 'qty', 'value' => $ds_min, 'min' => $ds_min, 'max' => $ds_max, 'tool' => 'add_to_cart']) ?>
                         <button type="submit" class="ds-buy-btn af-btn af-btn-primary af-btn-lg" data-af-add<?= $ds_has_variants && $choose_action !== '' ? ' formaction="' . e($choose_action) . '"' : '' ?><?= $sold_out ? ' disabled' : '' ?>><?= despensa_svg('basket', 22) ?><span><?= e($sold_out && !$ds_has_variants ? t('Sold out') : t('Add to cart')) ?></span></button>
                     </div>
                 </form>

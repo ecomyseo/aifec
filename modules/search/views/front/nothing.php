@@ -55,9 +55,9 @@ $this->layout('layout', ['page' => $page]);
             </div>
         </div>
     <?php endif; ?>
-    <form class="af-row" role="search" method="get" action="<?= e($action) ?>">
+    <form class="af-row" role="search" method="get" action="<?= e($action) ?>"<?= hook('webmcp.form', 'search_products') ?>>
         <label class="af-sr" for="af-search-q"><?= e(t('What are you looking for?')) ?></label>
-        <input id="af-search-q" class="af-input" type="search" name="q" value="<?= e($q) ?>" maxlength="<?= e((int) $max) ?>" placeholder="<?= e(t('What are you looking for?')) ?>" autocomplete="off" required>
+        <input id="af-search-q" class="af-input" type="search" name="q" value="<?= e($q) ?>" maxlength="<?= e((int) $max) ?>" placeholder="<?= e(t('What are you looking for?')) ?>" autocomplete="off" required<?= hook('webmcp.param', 'search_products', 'q') ?>>
         <button type="submit" class="af-btn af-btn-primary"><?= e(t('Search')) ?></button>
     </form>
     <p class="af-muted"><?= e(t('Check the spelling or try fewer or different words.')) ?></p>

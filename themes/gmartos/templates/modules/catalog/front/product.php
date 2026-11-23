@@ -110,15 +110,15 @@ $gm_cta_second = gmartos_link((string) theme_option('cta_link2', ''));
                 <p class="af-small af-muted"><?= e($delivery) ?></p>
             <?php endif; ?>
             <?php if ($can_buy) : ?>
-                <form method="post" action="<?= e(route('cart.add')) ?>" data-af-cart-add>
-                    <input type="hidden" name="product_id" value="<?= e($gm_p['id']) ?>">
-                    <input type="hidden" name="variant_id" value="<?= e($gm_has_variants ? $initial['id'] : 0) ?>" data-af-variant-id>
+                <form method="post" action="<?= e(route('cart.add')) ?>" data-af-cart-add<?= hook('webmcp.form', 'add_to_cart') ?>>
+                    <input type="hidden" name="product_id" value="<?= e($gm_p['id']) ?>"<?= hook('webmcp.param', 'add_to_cart', 'product_id') ?>>
+                    <input type="hidden" name="variant_id" value="<?= e($gm_has_variants ? $initial['id'] : 0) ?>" data-af-variant-id<?= hook('webmcp.param', 'add_to_cart', 'variant_id') ?>>
                     <?php if ($gm_has_variants) : ?>
-                        <?= $this->partial('catalog::front/partials/options', ['options' => $gm_p['options'], 'selected' => $gm_selected]) ?>
+                        <?= $this->partial('catalog::front/partials/options', ['options' => $gm_p['options'], 'selected' => $gm_selected, 'tool' => 'add_to_cart']) ?>
                         <script type="application/json" data-af-variants-data><?= json_html($variants_data) ?></script>
                     <?php endif; ?>
                     <div class="af-row af-buy-row gm-buy-row">
-                        <?= $this->partial('partials/qty', ['name' => 'qty', 'value' => $gm_min, 'min' => $gm_min, 'max' => $gm_max]) ?>
+                        <?= $this->partial('partials/qty', ['name' => 'qty', 'value' => $gm_min, 'min' => $gm_min, 'max' => $gm_max, 'tool' => 'add_to_cart']) ?>
                         <button type="submit" class="af-btn af-btn-primary gm-buy-btn" data-af-add<?= $gm_has_variants && $choose_action !== '' ? ' formaction="' . e($choose_action) . '"' : '' ?><?= $sold_out ? ' disabled' : '' ?>><?= e($sold_out && !$gm_has_variants ? t('Sold out') : t('Add to cart')) ?></button>
                     </div>
                 </form>

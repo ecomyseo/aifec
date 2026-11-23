@@ -26,12 +26,12 @@ $this->layout('layout', ['page' => $page]);
     <div class="af-grid af-cols-2">
         <section class="af-card" aria-labelledby="cu-login-title">
             <h2 id="cu-login-title"><?= e(t('I already have an account')) ?></h2>
-            <form method="post" action="<?= e(route('account.login')) ?>">
+            <form method="post" action="<?= e(route('account.login')) ?>"<?= hook('webmcp.form', 'sign_in') ?>>
 <?php if ($next !== '') : ?>
-                <input type="hidden" name="next" value="<?= e($next) ?>">
+                <input type="hidden" name="next" value="<?= e($next) ?>"<?= hook('webmcp.param', 'sign_in', 'next') ?>>
 <?php endif; ?>
-                <?= $this->partial('customers::front/field', ['id' => 'cu-login-email', 'name' => 'email', 'label' => t('Email'), 'type' => 'email', 'value' => $email, 'autocomplete' => 'username', 'required' => true, 'max' => 191]) ?>
-                <?= $this->partial('customers::front/field', ['id' => 'cu-login-password', 'name' => 'password', 'label' => t('Password'), 'type' => 'password', 'autocomplete' => 'current-password', 'required' => true]) ?>
+                <?= $this->partial('customers::front/field', ['tool' => 'sign_in', 'id' => 'cu-login-email', 'name' => 'email', 'label' => t('Email'), 'type' => 'email', 'value' => $email, 'autocomplete' => 'username', 'required' => true, 'max' => 191]) ?>
+                <?= $this->partial('customers::front/field', ['tool' => 'sign_in', 'id' => 'cu-login-password', 'name' => 'password', 'label' => t('Password'), 'type' => 'password', 'autocomplete' => 'current-password', 'required' => true]) ?>
                 <div class="af-row">
                     <button type="submit" class="af-btn af-btn-primary"><?= e(t('Sign in')) ?></button>
                     <a href="<?= e(route('account.recover')) ?>"><?= e(t('Forgot your password?')) ?></a>

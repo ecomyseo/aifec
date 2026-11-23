@@ -116,15 +116,15 @@ $tl_facts = array_slice(is_array($tl_p['facts']) ? $tl_p['facts'] : [], 0, 6);
                 <?php endif; ?>
             </div>
             <?php if ($can_buy) : ?>
-                <form class="tl-buyform" method="post" action="<?= e(route('cart.add')) ?>" data-af-cart-add>
-                    <input type="hidden" name="product_id" value="<?= e($tl_p['id']) ?>">
-                    <input type="hidden" name="variant_id" value="<?= e($tl_has_variants ? $initial['id'] : 0) ?>" data-af-variant-id>
+                <form class="tl-buyform" method="post" action="<?= e(route('cart.add')) ?>" data-af-cart-add<?= hook('webmcp.form', 'add_to_cart') ?>>
+                    <input type="hidden" name="product_id" value="<?= e($tl_p['id']) ?>"<?= hook('webmcp.param', 'add_to_cart', 'product_id') ?>>
+                    <input type="hidden" name="variant_id" value="<?= e($tl_has_variants ? $initial['id'] : 0) ?>" data-af-variant-id<?= hook('webmcp.param', 'add_to_cart', 'variant_id') ?>>
                     <?php if ($tl_has_variants) : ?>
-                        <?= $this->partial('catalog::front/partials/options', ['options' => $tl_p['options'], 'selected' => $tl_selected]) ?>
+                        <?= $this->partial('catalog::front/partials/options', ['options' => $tl_p['options'], 'selected' => $tl_selected, 'tool' => 'add_to_cart']) ?>
                         <script type="application/json" data-af-variants-data><?= json_html($variants_data) ?></script>
                     <?php endif; ?>
                     <div class="tl-buy-row af-row af-buy-row">
-                        <?= $this->partial('partials/qty', ['name' => 'qty', 'value' => $tl_min, 'min' => $tl_min, 'max' => $tl_max]) ?>
+                        <?= $this->partial('partials/qty', ['name' => 'qty', 'value' => $tl_min, 'min' => $tl_min, 'max' => $tl_max, 'tool' => 'add_to_cart']) ?>
                         <button type="submit" class="tl-buy-btn af-btn af-btn-primary af-btn-lg" data-af-add<?= $tl_has_variants && $choose_action !== '' ? ' formaction="' . e($choose_action) . '"' : '' ?><?= $sold_out ? ' disabled' : '' ?>><?= taller_svg('cart', 22) ?><span><?= e($sold_out && !$tl_has_variants ? t('Sold out') : t('Add to cart')) ?></span></button>
                     </div>
                 </form>

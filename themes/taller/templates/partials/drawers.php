@@ -40,9 +40,9 @@ $tl_legal = menu('legal');
         <p class="af-drawer-title"><?= e(t('Search')) ?></p>
         <button type="button" class="af-icon-btn" data-af-drawer-close aria-label="<?= e(t('Close')) ?>"><?= taller_svg('close') ?></button>
     </div>
-    <form class="af-drawer-body af-search-form" role="search" action="<?= e(base_theme_link('search')) ?>" method="get">
+    <form class="af-drawer-body af-search-form" role="search" action="<?= e(base_theme_link('search')) ?>" method="get"<?= hook('webmcp.form', 'search_products') ?>>
         <label class="af-sr" for="af-q-drawer"><?= e(t('Search')) ?></label>
-        <input id="af-q-drawer" class="af-input" type="search" name="q" placeholder="<?= e(t('Search by product, brand or reference…')) ?>" autocomplete="off">
+        <input id="af-q-drawer" class="af-input" type="search" name="q" placeholder="<?= e(t('Search by product, brand or reference…')) ?>" autocomplete="off"<?= hook('webmcp.param', 'search_products', 'q') ?>>
         <button type="submit" class="af-btn af-btn-primary"><?= e(t('Search')) ?></button>
     </form>
 </aside>

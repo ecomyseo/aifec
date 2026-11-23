@@ -21,6 +21,15 @@ return static function (App $app): void {
         return new Webmcp($application);
     });
 
+    // Cada petición empieza sin nombres de herramienta escritos (en una misma página no pueden repetirse, y la siguiente es otra).
+    $app->hooks()->filter('request.start', static function ($early) use ($app) {
+        /** @var Webmcp $webmcp */
+        $webmcp = $app->service('webmcp');
+        $webmcp->reset();
+
+        return $early;
+    }, 1);
+
     // Las plantillas piden la marca del formulario y la de cada campo con los huecos «webmcp.form» y «webmcp.param».
     $app->hooks()->slot('webmcp.form', static function (string $form = '', array $vars = []) use ($app): string {
         /** @var Webmcp $webmcp */

@@ -72,17 +72,17 @@ $ds_style = theme_option('header_style', 'centered') === 'classic' ? 'classic' :
             <?php endif; ?>
             <?php if (base_theme_can('search')) : ?>
                 <?php if ($ds_open_search) : ?>
-                    <form class="ds-search-bar af-search af-hide-sm" role="search" action="<?= e(base_theme_link('search')) ?>" method="get">
+                    <form class="ds-search-bar af-search af-hide-sm" role="search" action="<?= e(base_theme_link('search')) ?>" method="get"<?= hook('webmcp.form', 'search_products') ?>>
                         <label class="af-sr" for="af-q-header"><?= e(t('Search')) ?></label>
-                        <input id="af-q-header" class="ds-search-input af-input" type="search" name="q" placeholder="<?= e(t('Search…')) ?>" autocomplete="off">
+                        <input id="af-q-header" class="ds-search-input af-input" type="search" name="q" placeholder="<?= e(t('Search…')) ?>" autocomplete="off"<?= hook('webmcp.param', 'search_products', 'q') ?>>
                         <button type="submit" class="ds-tool" aria-label="<?= e(t('Search')) ?>"><?= despensa_svg('search') ?></button>
                     </form>
                 <?php else : ?>
                     <details class="ds-search af-hide-sm">
                         <summary class="ds-tool" aria-label="<?= e(t('Search')) ?>"><?= despensa_svg('search') ?></summary>
-                        <form class="ds-search-pop" role="search" action="<?= e(base_theme_link('search')) ?>" method="get">
+                        <form class="ds-search-pop" role="search" action="<?= e(base_theme_link('search')) ?>" method="get"<?= hook('webmcp.form', 'search_products') ?>>
                             <label class="af-sr" for="af-q-header"><?= e(t('Search')) ?></label>
-                            <input id="af-q-header" class="ds-search-input af-input" type="search" name="q" placeholder="<?= e(t('Search…')) ?>" autocomplete="off">
+                            <input id="af-q-header" class="ds-search-input af-input" type="search" name="q" placeholder="<?= e(t('Search…')) ?>" autocomplete="off"<?= hook('webmcp.param', 'search_products', 'q') ?>>
                             <button type="submit" class="af-btn af-btn-primary"><?= e(t('Search')) ?></button>
                         </form>
                     </details>
