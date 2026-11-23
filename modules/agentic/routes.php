@@ -21,6 +21,8 @@ return static function (Router $r, App $app): void {
     // UCP: el perfil de la tienda y la API de compra. Sin ficha csrf (la llaman plataformas, no formularios), con el límite de
     // uso de la API («api») y, con UCP apagado, 404 antes de gastar un uso («ucp.on»).
     $r->get('/.well-known/ucp', [UcpController::class, 'profile'])->middleware('ucp.on', 'api')->name('ucp.profile');
+    // La misma ficha con la extensión .json (algunos clientes y auditorías la piden así; ACP ya tiene las dos formas).
+    $r->get('/.well-known/ucp.json', [UcpController::class, 'profile'])->middleware('ucp.on', 'api')->name('ucp.profile.json');
     $r->get('/.well-known/ucp/{version:[0-9-]{10}}', [UcpController::class, 'profile'])->middleware('ucp.on', 'api');
     $r->get('/.well-known/acp.json', [AcpController::class, 'discovery'])->middleware('acp.on', 'api');
     $r->get('/.well-known/acp', [AcpController::class, 'discovery'])->middleware('acp.on', 'api');

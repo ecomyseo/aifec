@@ -121,7 +121,7 @@ final class Ucp
         if ($v !== self::VERSION) {
             $profile['signing_keys'] = $keys;
             unset($profile['ucp']['capabilities']['dev.ucp.shopping.catalog.search'], $profile['ucp']['capabilities']['dev.ucp.shopping.catalog.lookup']);
-        } elseif ($app->request()->attr('route') === 'ucp.profile' || $app->request()->path === '/ucp/v1') {
+        } elseif (in_array($app->request()->attr('route'), ['ucp.profile', 'ucp.profile.json'], true) || $app->request()->path === '/ucp/v1') {
             $profile['ucp']['supported_versions'] = ['2026-04-08' => $app->url()->abs('/.well-known/ucp/2026-04-08', [], '')];
         }
         return $profile;

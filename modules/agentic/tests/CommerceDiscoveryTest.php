@@ -34,6 +34,7 @@ test('Los documentos anuncian las puertas de compra de la propia tienda y los tr
     ]]);
     $product = aifecProduct($app, ['name' => 'Silla de roble', 'price' => 12345, 'stock' => 5, 'images' => 1]);
     $profile = ucpJson(ucpCall($app, 'GET', '/.well-known/ucp'));
+    same($profile, ucpJson(ucpCall($app, 'GET', '/.well-known/ucp.json')), '/.well-known/ucp.json es la misma ficha que /.well-known/ucp');
     $bindings = array_column($profile['ucp']['services']['dev.ucp.shopping'], 'endpoint', 'transport');
     same('https://tienda.test/ucp/v1', $bindings['rest']);
     same('https://tienda.test/ucp/mcp', $bindings['mcp']);

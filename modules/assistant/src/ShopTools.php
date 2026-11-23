@@ -1634,7 +1634,27 @@ final class ShopTools
             'availability' => $this->availability(isset($c['availability']) ? $c['availability'] : []),
             'brand' => (string) $brand,
             'has_variants' => !empty($c['has_variants']),
+            // Para quien solo abre direcciones: la que mete una unidad en un carrito nuevo. Un producto con opciones no la lleva (hay
+            // que elegir antes) ni uno agotado.
+            'buy_url' => $this->buyUrl($c),
         ];
+    }
+
+    /**
+     * @param array<string,mixed> $c una ProductCard o una ProductData
+     */
+    private function buyUrl(array $c): ?string
+    {
+        if (!class_exists('Aifec\\Modules\\Api\\BrowseController') || !\Aifec\Modules\Api\BrowseController::enabled($this->app)
+            || !empty($c['has_variants']) || !isset($c['id'])) {
+            return null;
+        }
+        $availability = isset($c['availability']) && is_array($c['availability']) ? $c['availability'] : [];
+        if (isset($availability['status']) && (string) $availability['status'] === 'out_of_stock') {
+            return null;
+        }
+
+        return \Aifec\Modules\Api\BrowseController::addUrl($this->app, (int) $c['id']);
     }
 
     /**

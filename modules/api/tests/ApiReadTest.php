@@ -215,6 +215,8 @@ test('búsqueda: hasta ocho productos con los datos que casan; sin palabras, 400
     same($ids['silla_roja'], $json['data'][0]['id']);
     same(5990, $json['data'][0]['price']);
     contains('59,90', $json['data'][0]['price_formatted']);
+    // Cada resultado sin opciones lleva la dirección que mete una unidad en un carrito nuevo (para quien solo abre direcciones).
+    same('https://tienda.test/buy-with-links/new/' . $ids['silla_roja'], $json['data'][0]['buy_url']);
     same('silla roja', $json['meta']['query']);
     check(count($json['data']) <= 8, 'como mucho ocho');
 
