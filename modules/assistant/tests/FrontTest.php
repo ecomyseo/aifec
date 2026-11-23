@@ -36,6 +36,10 @@ test('con el asistente encendido, la portada y la ficha de producto llevan el bo
         contains('aria-label="Abrir el asistente de la tienda"', $body);
         contains('role="dialog"', $body);
         contains('aria-labelledby="af-assistant-title"', $body);
+        contains('id="af-assistant-ai"', $body, 'el panel avisa de que es una inteligencia artificial');
+        contains('aria-describedby="af-assistant-ai"', $body);
+        contains('IA</strong>', $body);
+        contains('Estás hablando con una inteligencia artificial, no con una persona', $body, 'y lo dice en el idioma de la tienda');
         contains('role="log"', $body);
         contains('<label class="af-sr" for="af-assistant-input">Escribe tu mensaje</label>', $body);
         contains('data-af-assistant-url="/asistente/mensaje"', $body);

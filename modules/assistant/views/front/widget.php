@@ -51,13 +51,14 @@ $name = $assistant->name();
         <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M4 5h16v11H9.500L5 20v-4H4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span class="af-assistant-fab-label"><?= e($name !== '' ? $name : t('Assistant')) ?></span>
     </button>
-    <section class="af-assistant-panel" id="af-assistant-panel" role="dialog" aria-modal="false" aria-labelledby="af-assistant-title" hidden>
+    <section class="af-assistant-panel" id="af-assistant-panel" role="dialog" aria-modal="false" aria-labelledby="af-assistant-title" aria-describedby="af-assistant-ai" hidden>
         <header class="af-assistant-head">
             <h2 id="af-assistant-title" class="af-assistant-title"><?= e($name !== '' ? $name : t('Shop assistant')) ?></h2>
             <button type="button" class="af-assistant-close" data-af-assistant-close aria-label="<?= e(t('Close the assistant')) ?>">
                 <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
             </button>
         </header>
+        <p class="af-assistant-ai" id="af-assistant-ai"><strong class="af-assistant-ai-badge"><?= e(t('AI')) ?></strong> <?= e(t('You are chatting with an artificial intelligence, not a person. It can make mistakes: check the price and the details before you pay.')) ?></p>
         <div class="af-assistant-log" data-af-assistant-log role="log" aria-live="polite" aria-relevant="additions">
             <div class="af-assistant-msg is-bot"><p><?= e($assistant->intro()) ?></p></div>
         </div>

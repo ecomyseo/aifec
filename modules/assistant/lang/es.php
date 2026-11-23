@@ -99,6 +99,8 @@ return [
     'Open the shop assistant' => 'Abrir el asistente de la tienda',
     'Close the assistant' => 'Cerrar el asistente',
     'Shop assistant' => 'Asistente de la tienda',
+    'AI' => 'IA',
+    'You are chatting with an artificial intelligence, not a person. It can make mistakes: check the price and the details before you pay.' => 'Estás hablando con una inteligencia artificial, no con una persona. Puede equivocarse: comprueba el precio y los detalles antes de pagar.',
     'Write your message' => 'Escribe tu mensaje',
     'Send' => 'Enviar',
     'Add to cart' => 'Añadir al carrito',
