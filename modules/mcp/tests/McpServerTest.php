@@ -395,7 +395,7 @@ test('las IA encuentran el MCP: ficha del servidor en las direcciones de descubr
         check(preg_match('/^urn:air:[a-z0-9.-]+:[a-z0-9:_-]+$/', (string) ($entry['identifier'] ?? '')) === 1, 'identificador ARD: ' . json_encode($entry));
         check(trim((string) ($entry['displayName'] ?? '')) !== '', 'nombre ARD');
         check(preg_match('#^[a-z]+/[a-z0-9.+-]+$#', (string) ($entry['type'] ?? '')) === 1, 'tipo IANA: ' . ($entry['type'] ?? ''));
-        check(isset($entry['representativeQueries']) && count($entry['representativeQueries']) >= 1, 'consultas representativas');
+        check(isset($entry['representativeQueries']) && count($entry['representativeQueries']) >= 2 && count($entry['representativeQueries']) <= 5, 'de 2 a 5 consultas representativas: ' . json_encode($entry));
         check(isset($entry['url']) && !isset($entry['data']), 'una sola de url y data');
     }
     same($catalog, apiJson(apiCall($app, 'GET', '/.well-known/ard.json')));

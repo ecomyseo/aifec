@@ -67,6 +67,8 @@ return [
     'Create a cart and check out at {store} through an API' => 'Crear un carrito y comprar en {store} mediante una API',
     'Buy from {store} with the Universal Commerce Protocol' => 'Comprar en {store} con el Protocolo de Comercio Universal',
     'Buy from {store} with the Agentic Commerce Protocol' => 'Comprar en {store} con el Protocolo de Comercio Agéntico',
+    'Read the commerce profile of {store}: what it sells, how it delivers and how it is paid' => 'Leer el perfil de comercio de {store}: qué vende, cómo entrega y cómo se paga',
+    'Create a checkout session at {store} through an agent' => 'Crear una sesión de compra en {store} a través de un agente',
     'Model Context Protocol server of the shop: search the catalogue, build a cart and get a checkout link' => 'Servidor del Protocolo de Contexto de Modelos de la tienda: buscar en el catálogo, montar un carrito y obtener el enlace de compra',
     'Summary of the shop for language models: categories, best sellers, policies and the doors for agents' => 'Resumen de la tienda para modelos de lenguaje: categorías, más vendidos, políticas y puertas para agentes',
     'Description of the shop API: catalogue search, carts and checkout' => 'Descripción de la API de la tienda: búsqueda en el catálogo, carritos y compra',

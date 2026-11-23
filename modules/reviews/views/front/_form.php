@@ -23,15 +23,15 @@ $af_err = static function (string $key) use ($errors): string {
 };
 $af_rating = (int) $af_val('rating');
 ?>
-<form class="af-rv-form" id="af-rv-form" method="post" action="<?= e($action) ?>" data-af-review-form>
+<form class="af-rv-form" id="af-rv-form" method="post" action="<?= e($action) ?>" data-af-review-form<?= hook('webmcp.form', 'submit_review') ?>>
     <div hidden aria-hidden="true">
-        <label>Website <input type="text" name="website" value="" tabindex="-1" autocomplete="off"></label>
+        <label>Website <input type="text" name="website" value=""<?= hook('webmcp.param', 'submit_review', 'website') ?> tabindex="-1" autocomplete="off"></label>
     </div>
     <fieldset class="af-rv-rate">
         <legend><?= e(t('Your rating')) ?></legend>
         <div class="af-rv-stars">
 <?php for ($af_n = 1; $af_n <= 5; ++$af_n) : ?>
-            <span class="af-rv-star"><input type="radio" id="af-rv-star-<?= (int) $af_n ?>" name="rating" value="<?= (int) $af_n ?>" aria-label="<?= e(tn('{n} star', '{n} stars', $af_n)) ?>"<?= $af_rating === $af_n ? ' checked' : '' ?> required><label for="af-rv-star-<?= (int) $af_n ?>" title="<?= e(tn('{n} star', '{n} stars', $af_n)) ?>"><span aria-hidden="true">&#9733;</span></label></span>
+            <span class="af-rv-star"><input type="radio" id="af-rv-star-<?= (int) $af_n ?>" name="rating" value="<?= (int) $af_n ?>"<?= hook('webmcp.param', 'submit_review', 'rating') ?> aria-label="<?= e(tn('{n} star', '{n} stars', $af_n)) ?>"<?= $af_rating === $af_n ? ' checked' : '' ?> required><label for="af-rv-star-<?= (int) $af_n ?>" title="<?= e(tn('{n} star', '{n} stars', $af_n)) ?>"><span aria-hidden="true">&#9733;</span></label></span>
 <?php endfor; ?>
         </div>
 <?php if ($af_err('rating') !== '') : ?>
@@ -41,7 +41,7 @@ $af_rating = (int) $af_val('rating');
     <div class="af-rv-pair">
         <div class="af-field">
             <label for="af-rv-name"><?= e(t('Your name')) ?></label>
-            <input class="af-input" id="af-rv-name" type="text" name="name" value="<?= e($af_val('name')) ?>" maxlength="60" required autocomplete="given-name">
+            <input class="af-input" id="af-rv-name" type="text" name="name" value="<?= e($af_val('name')) ?>"<?= hook('webmcp.param', 'submit_review', 'name') ?> maxlength="60" required autocomplete="given-name">
 <?php if ($af_err('name') !== '') : ?>
             <p class="af-error" role="alert"><?= e($af_err('name')) ?></p>
 <?php endif; ?>
@@ -49,7 +49,7 @@ $af_rating = (int) $af_val('rating');
 <?php if (empty($locked)) : ?>
         <div class="af-field">
             <label for="af-rv-email"><?= e(t('Your email')) ?></label>
-            <input class="af-input" id="af-rv-email" type="email" name="email" value="<?= e($af_val('email')) ?>" maxlength="191" required autocomplete="email" aria-describedby="af-rv-email-hint">
+            <input class="af-input" id="af-rv-email" type="email" name="email" value="<?= e($af_val('email')) ?>"<?= hook('webmcp.param', 'submit_review', 'email') ?> maxlength="191" required autocomplete="email" aria-describedby="af-rv-email-hint">
             <p class="af-hint" id="af-rv-email-hint"><?= e(t('It is not shown. We use it to check that you bought the product.')) ?></p>
 <?php if ($af_err('email') !== '') : ?>
             <p class="af-error" role="alert"><?= e($af_err('email')) ?></p>
@@ -59,14 +59,14 @@ $af_rating = (int) $af_val('rating');
     </div>
     <div class="af-field">
         <label for="af-rv-title"><?= e(t('Title (optional)')) ?></label>
-        <input class="af-input" id="af-rv-title" type="text" name="title" value="<?= e($af_val('title')) ?>" maxlength="100">
+        <input class="af-input" id="af-rv-title" type="text" name="title" value="<?= e($af_val('title')) ?>"<?= hook('webmcp.param', 'submit_review', 'title') ?> maxlength="100">
 <?php if ($af_err('title') !== '') : ?>
         <p class="af-error" role="alert"><?= e($af_err('title')) ?></p>
 <?php endif; ?>
     </div>
     <div class="af-field">
         <label for="af-rv-body"><?= e(t('Your review')) ?></label>
-        <textarea class="af-textarea" id="af-rv-body" name="body" rows="3" minlength="10" maxlength="2000" required><?= e($af_val('body')) ?></textarea>
+        <textarea class="af-textarea" id="af-rv-body" name="body"<?= hook('webmcp.param', 'submit_review', 'body') ?> rows="3" minlength="10" maxlength="2000" required><?= e($af_val('body')) ?></textarea>
 <?php if ($af_err('body') !== '') : ?>
         <p class="af-error" role="alert"><?= e($af_err('body')) ?></p>
 <?php endif; ?>

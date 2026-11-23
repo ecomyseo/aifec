@@ -63,9 +63,9 @@ $name = $assistant->name();
             <div class="af-assistant-msg is-bot"><p><?= e($assistant->intro()) ?></p></div>
         </div>
         <div class="af-assistant-chips" data-af-assistant-chips></div>
-        <form class="af-assistant-form" data-af-assistant-form autocomplete="off">
+        <form class="af-assistant-form" data-af-assistant-form autocomplete="off"<?= hook('webmcp.form', 'ask_shop_assistant') ?>>
             <label class="af-sr" for="af-assistant-input"><?= e(t('Write your message')) ?></label>
-            <input type="text" id="af-assistant-input" class="af-input" name="message" maxlength="1000" placeholder="<?= e(t('Write your message')) ?>" enterkeyhint="send">
+            <input type="text" id="af-assistant-input" class="af-input" name="message"<?= hook('webmcp.param', 'ask_shop_assistant', 'message') ?> maxlength="1000" placeholder="<?= e(t('Write your message')) ?>" enterkeyhint="send">
             <button type="submit" class="af-btn af-btn-primary"><?= e(t('Send')) ?></button>
         </form>
     </section>

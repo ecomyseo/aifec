@@ -41,9 +41,9 @@ test('Webmcp::readOnly: lo que escribe o lo que guarda en la caja no es de solo 
     same(false, $webmcp->readOnly('search_products', true), 'si la tabla dice que escribe, escribe');
 });
 
-test('las excluidas son solo checkout_place y los formularios que sabe marcar son los ocho del catálogo de idioma', function (): void {
+test('las excluidas son solo checkout_place y los formularios que sabe marcar son los diez del catálogo de idioma', function (): void {
     same(['checkout_place'], Webmcp::EXCLUDED);
-    same(['search_products', 'add_to_cart', 'update_cart_line', 'apply_coupon', 'calculate_shipping', 'sign_in', 'subscribe_newsletter', 'send_contact_message'], Webmcp::FORMS);
+    same(['search_products', 'add_to_cart', 'update_cart_line', 'apply_coupon', 'calculate_shipping', 'sign_in', 'subscribe_newsletter', 'send_contact_message', 'submit_review', 'ask_shop_assistant'], Webmcp::FORMS);
     $app = webmcpApp();
     /** @var Webmcp $webmcp */
     $webmcp = $app->service('webmcp');

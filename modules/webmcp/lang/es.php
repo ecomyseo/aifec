@@ -90,4 +90,12 @@ return [
     'State' => 'Estado',
     'In {n} templates' => 'En {n} plantillas',
     'Not in any template yet' => 'Todavía en ninguna plantilla',
+    'Write a PUBLIC review of this product in the name of a real customer. Only use it when the person has asked to write a review and has said what to put in it: never invent a rating or a text. The shop checks the purchase with the email and may moderate it before publishing.' => 'Escribir una opinión PÚBLICA de este producto en nombre de un cliente real. Úsala solo cuando la persona haya pedido escribir una opinión y haya dicho qué poner: nunca inventes una nota ni un texto. La tienda comprueba la compra con el correo y puede moderarla antes de publicarla.',
+    'The stars the person gives, from 1 to 5' => 'Las estrellas que da la persona, de 1 a 5',
+    'The name that will be shown with the review' => 'El nombre que se verá con la opinión',
+    'The email of the purchase. It is not shown' => 'El correo de la compra. No se muestra',
+    'A short title, optional' => 'Un título corto, opcional',
+    'The review in the person\'s own words, at least 10 characters' => 'La opinión con las palabras de la persona, de 10 caracteres como mínimo',
+    'Ask the shop assistant (an artificial intelligence of the shop) a question about products, delivery or policies. Asking changes nothing: placing an order still needs the person to confirm it.' => 'Preguntar al asistente de la tienda (una inteligencia artificial de la tienda) por productos, entrega o condiciones. Preguntar no cambia nada: hacer un pedido sigue exigiendo que la persona lo confirme.',
+    'The question, in the customer\'s own words' => 'La pregunta, con las palabras del cliente',
 ];

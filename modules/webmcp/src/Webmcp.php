@@ -35,7 +35,7 @@ final class Webmcp
     /** Los formularios que la tienda sabe marcar. */
     public const FORMS = [
         'search_products', 'add_to_cart', 'update_cart_line', 'apply_coupon', 'calculate_shipping',
-        'sign_in', 'subscribe_newsletter', 'send_contact_message',
+        'sign_in', 'subscribe_newsletter', 'send_contact_message', 'submit_review', 'ask_shop_assistant',
     ];
 
     /** Las herramientas de la caja que solo leen. */
@@ -220,6 +220,23 @@ final class Webmcp
                     'f[consent]' => t('Send 1 only if the person has said they accept the privacy policy'),
                     'website' => t('Anti-spam trap: always leave it empty'),
                     '_mark' => t('Filled in by the page: leave it empty'),
+                ]];
+            case 'submit_review':
+                // Una opinión es PÚBLICA y la firma una persona: la herramienta solo vale cuando la persona ha pedido escribirla y ha dicho qué
+                // quiere decir. Se marca (y no se excluye) porque Chrome no ofrece forma de dejar fuera un formulario y el aviso se lo llevaría
+                // igual; el freno está en la descripción y en la tienda, que comprueba la compra por el correo y modera antes de publicar.
+                return ['description' => t('Write a PUBLIC review of this product in the name of a real customer. Only use it when the person has asked to write a review and has said what to put in it: never invent a rating or a text. The shop checks the purchase with the email and may moderate it before publishing.'), 'params' => [
+                    'rating' => t('The stars the person gives, from 1 to 5'),
+                    'name' => t('The name that will be shown with the review'),
+                    'email' => t('The email of the purchase. It is not shown'),
+                    'title' => t('A short title, optional'),
+                    'body' => t('The review in the person\'s own words, at least 10 characters'),
+                    'website' => t('Anti-spam trap: always leave it empty'),
+                ]];
+            case 'ask_shop_assistant':
+                // El asistente es una IA de la tienda: preguntarle no cambia nada. Hacer y confirmar un pedido sigue exigiendo a la persona.
+                return ['description' => t('Ask the shop assistant (an artificial intelligence of the shop) a question about products, delivery or policies. Asking changes nothing: placing an order still needs the person to confirm it.'), 'params' => [
+                    'message' => t('The question, in the customer\'s own words'),
                 ]];
         }
 

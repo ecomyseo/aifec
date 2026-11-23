@@ -208,4 +208,46 @@ test('el panel dice en qué plantillas está cada formulario, y los temas de ser
     same(200, $page->status);
     contains('themes/gmartos/templates/home.php', $page->body, 'el panel enseña las plantillas, no solo cuántas son');
     contains('modules/customers/views/front/login.php', $page->body);
+    check(in_array('modules/reviews/views/front/_form.php', $placement['submit_review'], true), 'submit_review en el formulario de la opinión');
+    check(in_array('modules/assistant/views/front/widget.php', $placement['ask_shop_assistant'], true), 'ask_shop_assistant en el widget del asistente');
+});
+
+/**
+ * Los formularios de una página sin «toolname» que la tienda deja fuera a propósito (id del formulario => motivo). El panel de filtros del
+ * listado solo cambia lo que se ve en pantalla (marca y desmarca criterios y recarga): un agente busca con search_products y con la API,
+ * y una herramienta con veinte casillas dependientes del listado confunde más que ayuda.
+ */
+const WEBMCP_EXCLUDED_FORMS = ['af-filters-form' => 'filtros del listado'];
+
+test('la opinión de la ficha es submit_review y el asistente es ask_shop_assistant, con sus campos reales y sin nombres repetidos en ningún tema', function (): void {
+    foreach (WEBMCP_THEMES as $theme) {
+        $app = webmcpApp(['theme.active' => $theme], ['reviews']);
+        $ids = assistantShop($app);
+        $web = new TestClient($app);
+        $product = $app->url()->entity('product', $ids['silla_roja']);
+        foreach (['/', '/categoria/sillas', $product] as $path) {
+            $r = $web->get($path);
+            same(200, $r->status, $theme . ' ' . $path);
+            same([], webmcpFormProblems($r->body), $theme . ' ' . $path . ': formularios marcados bien hechos y sin nombres repetidos');
+            $dom = new DOMDocument();
+            $before = libxml_use_internal_errors(true);
+            $dom->loadHTML('<?xml encoding="utf-8"?>' . $r->body);
+            libxml_clear_errors();
+            libxml_use_internal_errors($before);
+            foreach ((new DOMXPath($dom))->query('//form') ?: [] as $form) {
+                /** @var DOMElement $form */
+                check($form->hasAttribute('toolname') || isset(WEBMCP_EXCLUDED_FORMS[$form->getAttribute('id')]),
+                    $theme . ' ' . $path . ': un formulario sin toolname ni exclusión documentada: <form class="' . $form->getAttribute('class') . '" action="' . $form->getAttribute('action') . '">');
+            }
+            same(1, substr_count($r->body, 'toolname="ask_shop_assistant"'), $theme . ' ' . $path . ': el asistente es una herramienta');
+            check(preg_match('/name="message"[^>]*toolparamdescription="/', $r->body) === 1, $theme . ' ' . $path . ': message descrito');
+        }
+        $html = $web->get($product)->body;
+        same(1, substr_count($html, 'toolname="submit_review"'), $theme . ': la ficha tiene su submit_review, una sola vez');
+        contains('PÚBLICA', $html, $theme . ': la descripción dice que la opinión es pública');
+        foreach (['rating', 'name', 'email', 'body', 'website'] as $field) {
+            check(preg_match('/name="' . $field . '"[^>]*toolparamdescription="/', $html) === 1, $theme . ': ' . $field . ' de la opinión descrito');
+        }
+        same($html, (new TestClient($app))->get($product)->body, $theme . ': la ficha con opinión sigue siendo igual para todos');
+    }
 });

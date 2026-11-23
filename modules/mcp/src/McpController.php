@@ -265,12 +265,12 @@ final class McpController
         if ($this->app->modules()->isLoaded('agentic') && $settings->bool('agentic.ucp_enabled', false)) {
             $entries[] = ['identifier' => 'urn:air:' . $host . ':commerce:ucp', 'displayName' => $store . ' UCP', 'type' => 'application/json',
                 'url' => $url->abs('/.well-known/ucp', [], ''), 'description' => t('Universal Commerce Protocol profile of the shop'),
-                'representativeQueries' => [$q('Buy from {store} with the Universal Commerce Protocol')]];
+                'representativeQueries' => [$q('Buy from {store} with the Universal Commerce Protocol'), $q('Read the commerce profile of {store}: what it sells, how it delivers and how it is paid')]];
         }
         if ($this->app->modules()->isLoaded('agentic') && $settings->bool('agentic.acp_enabled', false)) {
             $entries[] = ['identifier' => 'urn:air:' . $host . ':commerce:acp', 'displayName' => $store . ' ACP', 'type' => 'application/json',
                 'url' => $url->abs('/.well-known/acp.json', [], ''), 'description' => t('Agentic Commerce Protocol profile of the shop'),
-                'representativeQueries' => [$q('Buy from {store} with the Agentic Commerce Protocol')]];
+                'representativeQueries' => [$q('Buy from {store} with the Agentic Commerce Protocol'), $q('Create a checkout session at {store} through an agent')]];
         }
         $response = Response::json(['version' => '1.0', 'entries' => $entries]);
         $response->headers['Cache-Control'] = 'public, max-age=300';
