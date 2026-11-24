@@ -196,6 +196,17 @@ final class ReadController
         $result = Agent::tool($this->app, 'search_products', $input);
         $items = isset($result['items']) && is_array($result['items']) ? $result['items'] : [];
         unset($result['items']);
+        // «total» cuenta todo lo que encaja; «data» lleva como mucho «limit» (cinco de serie, ocho como máximo). Se dice, para que
+        // nadie crea que faltan resultados: con «has_more» se pide más con «limit» (hasta 8) o se afina la búsqueda.
+        $total = isset($result['total']) ? (int) $result['total'] : count($items);
+        $result['limit'] = $input['limit'];
+        $result['limit_max'] = 8;
+        $result['returned'] = count($items);
+        $result['has_more'] = $total > count($items);
+        if ($result['has_more']) {
+            $result['note'] = (isset($result['note']) && is_string($result['note']) ? $result['note'] . ' ' : '')
+                . 'total counts everything that matches; data holds at most limit products (limit goes up to 8). Refine the search or ask with a bigger limit to see the rest.';
+        }
 
         return Agent::json($items, 200, $result);
     }

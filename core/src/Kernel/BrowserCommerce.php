@@ -15,6 +15,9 @@ final class BrowserCommerce
         $known = VisitLog::bot($agent);
         $automation = preg_match('/headless|playwright|puppeteer|selenium|browser-use/i', $agent) === 1 || $request->attr('ai_agent') !== null;
         $allowed = array_filter(array_map('trim', preg_split('/\R/', $app->settings()->str('api.browser_agents_allowed', '')) ?: []));
+        if (self::prefetch($request)) {
+            return true;
+        }
         if (in_array($agent, $allowed, true)) {
             return false;
         }
@@ -26,8 +29,25 @@ final class BrowserCommerce
         return $browser && (!$resume || !self::navigation($request));
     }
 
+    /** ¿Es una petición adelantada por el navegador (precarga), que nadie ha pedido todavía? Nunca crea un carrito. */
+    public static function prefetch(Request $request): bool
+    {
+        foreach (['sec-purpose', 'purpose', 'x-purpose', 'x-moz'] as $name) {
+            if (preg_match('/prefetch|prerender|preview/i', (string) $request->header($name, '')) === 1) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public static function crawler(string $agent): bool
     {
+        // Los robots de vista previa de enlaces (WhatsApp, Facebook, Slack…) abren cada dirección que se pega en un chat: no son
+        // personas ni asistentes, y una dirección que crea un carrito no se puede abrir por ellos.
+        if (VisitLog::isPreviewBot($agent)) {
+            return true;
+        }
         $known = VisitLog::bot($agent);
         return $known !== null ? $known[2] !== 'ai_user'
             : preg_match('/bot\b|spider|crawl|semrush|hreflang|ahrefs/i', $agent) === 1;

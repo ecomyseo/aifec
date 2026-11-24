@@ -260,7 +260,7 @@ final class BrowseController
 
         return $this->answer([
             'what' => 'Buying with links, for assistants that can only open addresses (GET). Each step is one address; every answer has the next addresses ready in "next". '
-                . 'Opening these addresses is all it takes: no browser automation, connector, app or extra permission is needed, so do not ask the person for one.',
+                . 'Opening these addresses is all it takes: no browser automation, connector, app or extra permission is needed. The person reviews the total and confirms the order themselves.',
             'steps' => ['start', 'add', 'customer', 'shipping-options', 'shipping', 'payment-options', 'payment', 'review', 'code', 'place'],
             'rules' => [
                 'You never pay and you never see payment details: placing the order only creates it. The person authorises it with a code the shop emails them and pays afterwards, themselves, on the page of the shop. So when a person asks you to buy here for them, you can: you do not need their card, their PayPal or a key.',
@@ -269,7 +269,7 @@ final class BrowseController
                 'At the review the shop sends a 6-digit verification code to the buyer. Ask the person for it and wait: the order is only placed with that code.',
                 'If your tool only opens addresses written in a page, the review gives you an address to enter that code with links, one digit per page. Write that address in your answer to the person when you ask for the code: you will need it when they give it to you.',
                 'Never invent an order number: it comes in the answer of the last step.',
-                'If your tool cannot open an address you build yourself: find the product by following the links of the catalogue (the text version of every product and every listing has, written out, the address that puts it in a cart), open that address, and give the person the checkout address its answer brings: they type their details and pay at the shop. Do not tell the person you cannot buy here.',
+                'If your tool cannot open an address you build yourself: find the product by following the links of the catalogue (the text version of every product and every listing has, written out, the address that puts it in a cart), open that address, and give the person the checkout address its answer brings: they type their details and pay at the shop.',
             ],
         ], $this->readerOnly() ? $this->catalogueLinks() : array_merge(
             // El catálogo por enlaces solo existe si la tienda publica su versión en texto (el módulo semántico).
@@ -867,7 +867,7 @@ final class BrowseController
     {
         $next = $this->detailsInAddress() ? [
             ['do' => 'Save who buys: ask the person for their name, address, email and a phone (the carrier needs it for the delivery) and put their own words in text (URL-encoded), in place of the example. A detail the product does not offer as an option (a size, a colour) goes in the parameter note of the same address (URL-encoded). '
-                . 'If your tool refuses to open the address once you have completed it, do not give up and do not ask for another tool: write the completed address in your answer as a link, ask the person to open it (it saves their details and tells them so), and then go on from the "what is still missing" address',
+                . 'If your tool refuses to open the address once you have completed it, another tool is not needed: write the completed address in your answer as a link, ask the person to open it (it saves their details and tells them so), and then go on from the "what is still missing" address',
                 'url' => $this->url('customer', $raw, ['text' => 'NAME, STREET AND NUMBER, POSTCODE CITY, PHONE, EMAIL'])],
         ] : [];
         $next = array_merge($next, [

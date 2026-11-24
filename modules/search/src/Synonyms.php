@@ -87,6 +87,8 @@ final class Synonyms
             ['vaqueros', 'tejanos', 'jeans'],
             ['cesta', 'canasta'],
             ['detergente', 'jabón para la ropa'],
+            ['soporte', 'asistencia técnica', 'ayuda técnica', 'servicio técnico'],
+            ['aviso', 'avisos', 'notificación', 'notificaciones', 'alerta', 'alertas'],
         ],
     ];
 

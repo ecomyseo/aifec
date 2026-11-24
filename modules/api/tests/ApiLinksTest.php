@@ -560,7 +560,7 @@ test('del llms.txt al carrito sin montar ninguna dirección: la ficha y el lista
 
     // La guía también lo cuenta y da el catálogo por enlaces.
     [, $rules] = linksOpen($app, $guide);
-    contains('Do not tell the person you cannot buy here', (string) json_encode($rules['data']['rules']));
+    notContains('cannot buy here', (string) json_encode($rules['data']['rules']));
     same('https://tienda.test/llms.txt', linksNext($rules, '/llms.txt'));
 });
 
@@ -656,7 +656,7 @@ test('la segunda salida: el asistente escribe la dirección con los datos, la ab
     contains('and a phone (the carrier needs it', (string) json_encode($added['next']), 'y pide el teléfono: el transporte lo exige (16/11/2026)');
     // Junto a la propia dirección, qué hacer si la herramienta se niega a abrirla: ChatGPT, al no poder, pedía otra
     // herramienta o mandaba a la persona a la caja sin intentar esta salida (3 de 9 clientes, 16/11/2026).
-    contains('do not give up and do not ask for another tool: write the completed address in your answer as a link', (string) json_encode($added['next']));
+    contains('another tool is not needed: write the completed address in your answer as a link', (string) json_encode($added['next']));
     $statusUrl = linksNext($added, '/buy-with-links/status/' . $cart);
 
     // La persona pulsa en su navegador el enlace que le ha escrito el asistente (él no puede abrirlo): una página normal, sin

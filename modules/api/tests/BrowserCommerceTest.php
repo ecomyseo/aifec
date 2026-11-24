@@ -28,6 +28,27 @@ test('Un navegador sin permiso no crea carritos aunque envíe cabeceras de naveg
     same($before + 1, (int) $app->db()->value('SELECT COUNT(*) FROM {carts}'));
 });
 
+test('Los robots de vista previa y las precargas no crean carritos por GET en /buy-with-links (new, add, start)', function (): void {
+    // Auditoría externa del 24/11/2026: una dirección que crea un carrito la abren solos los chats al pegarla (WhatsApp, Facebook,
+    // Slack…) y el navegador al adelantarla.
+    $app = apiApp();
+    $product = assistantShop($app)['silla_roja'];
+    $client = new TestClient($app);
+    $before = (int) $app->db()->value('SELECT COUNT(*) FROM {carts}');
+    $previews = ['facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)', 'WhatsApp/2.23.20.0 A', 'Slackbot-LinkExpanding 1.0',
+        'Twitterbot/1.0', 'TelegramBot (like TwitterBot)', 'Discordbot/2.0', 'LinkedInBot/1.0', 'SkypeUriPreview Preview/0.5', 'Mastodon/4.2'];
+    foreach ($previews as $agent) {
+        foreach (['/buy-with-links/start', '/buy-with-links/new/' . $product, '/buy-with-links/add?product_id=' . $product . '&qty=1'] as $path) {
+            $status = $client->get($path, ['user-agent' => $agent])->status;
+            same(403, $status, $agent . ' ' . $path);
+        }
+    }
+    $prefetch = ['user-agent' => 'Mozilla/5.0 Chrome/149.0', 'sec-purpose' => 'prefetch;prerender', 'sec-fetch-user' => '?1', 'sec-fetch-dest' => 'document', 'sec-fetch-mode' => 'navigate'];
+    $app->settings()->set('api.browser_agents_allowed', 'Mozilla/5.0 Chrome/149.0');
+    same(403, $client->get('/buy-with-links/start', $prefetch)->status, 'una precarga no crea carritos ni con el navegador permitido');
+    same($before, (int) $app->db()->value('SELECT COUNT(*) FROM {carts}'), 'ningún carrito nuevo');
+});
+
 test('Los rastreadores no crean carritos por las rutas directas ni por MCP', function (): void {
     $app = apiApp([], ['mcp']);
     $product = assistantShop($app)['silla_roja'];
