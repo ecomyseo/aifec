@@ -18,6 +18,7 @@ return [
     'tabs' => [
         'coidentity' => ['label' => 'Identity', 'fields' => [
             'store.name' => ['type' => 'text', 'label' => 'Shop name', 'rules' => 'required|max:120', 'default' => 'AIFEC'],
+            'store.brand' => ['type' => 'text', 'label' => 'Default brand of the shop', 'hint' => 'Used in the product feeds, the product data and Google when a product has no brand of its own.', 'rules' => 'max:120', 'default' => ''],
             'store.logo' => ['type' => 'image', 'label' => 'Logo', 'default' => 0, 'hint' => 'Shown in the header instead of the shop name. Leave it empty to show the name.'],
             'store.icon' => ['type' => 'image', 'label' => 'Site icon', 'default' => 0, 'hint' => 'The small icon of the browser tab. Square, 180 px or more.'],
             'store.legal_name' => ['type' => 'text', 'label' => 'Legal name', 'rules' => 'max:160', 'default' => '', 'hint' => 'The one printed on invoices and legal pages.'],

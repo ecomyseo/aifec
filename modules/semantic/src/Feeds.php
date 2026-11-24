@@ -311,7 +311,7 @@ final class Feeds
             $compare = $s->grossCompare($price);
             $gtin = $variant !== null && isset($variant['gtin']) && trim((string) $variant['gtin']) !== '' ? trim((string) $variant['gtin']) : (isset($p['gtin']) ? trim((string) $p['gtin']) : '');
             $mpn = isset($p['mpn']) ? trim((string) $p['mpn']) : '';
-            $brand = isset($p['brand']['name']) ? (string) $p['brand']['name'] : '';
+            $brand = $s->brand($p);
             $label = $variant !== null && isset($variant['label']) ? trim((string) $variant['label']) : '';
 
             $item = [
@@ -472,7 +472,8 @@ final class Feeds
                 $vPrice = isset($variant['price']) && is_array($variant['price']) ? $variant['price'] : [];
                 $variants[] = [
                     'id' => (int) $variant['id'],
-                    'sku' => isset($variant['sku']) ? (string) $variant['sku'] : '',
+                    'sku' => $s->sku($p, $variant)[0],
+                    'sku_source' => $s->sku($p, $variant)[1],
                     'gtin' => isset($variant['gtin']) ? (string) $variant['gtin'] : '',
                     'label' => isset($variant['label']) ? (string) $variant['label'] : '',
                     'values' => isset($variant['values']) && is_array($variant['values']) ? $variant['values'] : new \stdClass(),
@@ -503,14 +504,15 @@ final class Feeds
         return [
             'id' => (int) $p['id'],
             'kind' => isset($p['kind']) ? (string) $p['kind'] : 'physical',
-            'sku' => isset($p['sku']) && $p['sku'] !== null ? (string) $p['sku'] : '',
+            'sku' => $s->sku($p)[0],
+            'sku_source' => $s->sku($p)[1],
             'gtin' => isset($p['gtin']) && $p['gtin'] !== null ? (string) $p['gtin'] : '',
             'mpn' => isset($p['mpn']) && $p['mpn'] !== null ? (string) $p['mpn'] : '',
             'name' => $s->line((string) $p['name']),
             'url' => isset($p['url_abs']) ? (string) $p['url_abs'] : '',
             'summary' => $s->plain(isset($p['summary']) ? (string) $p['summary'] : ''),
             'description' => $s->plain(isset($p['description']) ? (string) $p['description'] : ''),
-            'brand' => isset($p['brand']['name']) ? (string) $p['brand']['name'] : '',
+            'brand' => $s->brand($p),
             'categories' => $categories,
             'category_path' => $s->categoryPath($p),
             'images' => $s->images($p),
@@ -654,7 +656,8 @@ final class Feeds
             $variants[] = JsonLd::clean([
                 'id' => (int) $p['id'] . '-' . (int) $variant['id'],
                 'title' => isset($variant['label']) && trim((string) $variant['label']) !== '' ? $name . ' - ' . trim((string) $variant['label']) : $name,
-                'sku' => isset($variant['sku']) && $variant['sku'] !== null ? (string) $variant['sku'] : '',
+                'sku' => $s->sku($p, $variant)[0],
+                'sku_source' => $s->sku($p, $variant)[1],
                 'gtin' => isset($variant['gtin']) && $variant['gtin'] !== null ? (string) $variant['gtin'] : '',
                 'price' => $s->decimal($vCompare !== null ? $vCompare : $s->gross($vPrice)) . ' ' . $currency,
                 'sale_price' => $vCompare !== null ? $s->decimal($s->gross($vPrice)) . ' ' . $currency : '',
@@ -678,7 +681,7 @@ final class Feeds
             'inventory_quantity' => isset($availability['qty']) ? (int) $availability['qty'] : null,
             'image_link' => $images !== [] ? $images[0] : '',
             'additional_image_link' => array_slice($images, 1, 10),
-            'brand' => isset($p['brand']['name']) ? (string) $p['brand']['name'] : '',
+            'brand' => $s->brand($p),
             'gtin' => isset($p['gtin']) && $p['gtin'] !== null ? trim((string) $p['gtin']) : '',
             'mpn' => isset($p['mpn']) && $p['mpn'] !== null ? trim((string) $p['mpn']) : '',
             'product_category' => $s->categoryPath($p),

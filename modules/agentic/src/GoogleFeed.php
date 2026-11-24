@@ -120,7 +120,7 @@ final class GoogleFeed
                             'availability' => self::availability(empty($offer['available']) ? 'out_of_stock' : (isset($offer['stock']) && $offer['stock'] <= 0 ? 'backorder' : 'in_stock')),
                             'price' => self::price($semantic->decimal($regular !== null && $regular > $amount ? $regular : $amount), $currency),
                             'sale_price' => $regular !== null && $regular > $amount ? self::price($semantic->decimal($amount), $currency) : '',
-                            'brand' => (string) ($product['brand']['name'] ?? ''),
+                            'brand' => $semantic->brand($product),
                             'gtin' => $gtin,
                             'mpn' => $mpn,
                             'condition' => in_array($condition, ['new', 'used', 'refurbished'], true) ? $condition : 'new',

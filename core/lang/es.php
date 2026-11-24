@@ -237,6 +237,8 @@ return [
     'Settings saved' => 'Ajustes guardados',
     'Shop identity, languages, currency, addresses and performance' => 'Identidad de la tienda, idiomas, moneda, direcciones y rendimiento',
     'Shop name' => 'Nombre de la tienda',
+    'Default brand of the shop' => 'Marca por defecto de la tienda',
+    'Used in the product feeds, the product data and Google when a product has no brand of its own.' => 'Se usa en los feeds de producto, en los datos del producto y en Google cuando un producto no tiene marca propia.',
     'Logo' => 'Logotipo',
     'Site icon' => 'Icono del sitio',
     'Shown in the header instead of the shop name. Leave it empty to show the name.' => 'Se enseña en la cabecera en lugar del nombre de la tienda. Déjalo vacío para enseñar el nombre.',

@@ -77,7 +77,7 @@ final class AcpFeed
                             'sale_price' => $regular !== null && $regular > $amount ? $semantic->decimal($amount) . ' ' . $semantic->currency() : '',
                             'availability' => empty($offer['available']) ? 'out_of_stock' : (isset($offer['stock']) && $offer['stock'] <= 0 ? 'backorder' : 'in_stock'),
                             'seller_name' => $app->settings()->str('store.name', $app->request()->host),
-                            'brand' => (string) ($product['brand']['name'] ?? ''),
+                            'brand' => $semantic->brand($product),
                             'gtin' => (string) ($variant['gtin'] ?? $product['gtin'] ?? ''),
                             'mpn' => (string) ($product['mpn'] ?? ''),
                             'condition' => (string) ($product['condition'] ?? ''),

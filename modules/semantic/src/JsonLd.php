@@ -153,7 +153,8 @@ final class JsonLd
             $description = $s->plain(isset($p['summary']) ? (string) $p['summary'] : '', 5000);
         }
         $sku = isset($p['sku']) && $p['sku'] !== null ? trim((string) $p['sku']) : '';
-        $brand = isset($p['brand']['name']) ? ['@type' => 'Brand', 'name' => (string) $p['brand']['name']] : [];
+        $brandName = $s->brand($p);
+        $brand = $brandName !== '' ? ['@type' => 'Brand', 'name' => $brandName] : [];
         $rating = [];
         if (isset($p['rating']['count']) && (int) $p['rating']['count'] > 0) {
             $rating = [

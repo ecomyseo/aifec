@@ -109,6 +109,42 @@ class Semantic
         return $name !== '' ? $name : 'AIFEC';
     }
 
+    /**
+     * La marca de un producto: la suya, o la marca por defecto de la tienda («store.brand») cuando no tiene. Vacía si no hay ninguna.
+     *
+     * @param array<string,mixed> $product
+     */
+    public function brand(array $product): string
+    {
+        $own = isset($product['brand']['name']) ? trim((string) $product['brand']['name']) : '';
+        if ($own !== '') {
+            return $own;
+        }
+
+        return trim((string) preg_replace('/\s+/u', ' ', $this->app->settings()->str('store.brand', '')));
+    }
+
+    /**
+     * El SKU de un producto o de una variante: el del catálogo, y si no tiene, un identificador estable (el id del producto, o
+     * «id-variante»). El segundo valor dice de dónde sale: «catalog» o «product_id» (generado, no escrito por el comerciante).
+     *
+     * @param array<string,mixed>      $product
+     * @param array<string,mixed>|null $variant
+     *
+     * @return array{0:string,1:string}
+     */
+    public function sku(array $product, ?array $variant = null): array
+    {
+        $source = $variant !== null ? $variant : $product;
+        $own = isset($source['sku']) && $source['sku'] !== null ? trim((string) $source['sku']) : '';
+        if ($own !== '') {
+            return [$own, 'catalog'];
+        }
+        $id = (string) (int) $product['id'];
+
+        return [$variant !== null && isset($variant['id']) ? $id . '-' . (int) $variant['id'] : $id, 'product_id'];
+    }
+
     /** País de la tienda (dos letras): el de los impuestos, y ES si no hay o no es válido. */
     public function country(): string
     {
