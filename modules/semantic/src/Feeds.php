@@ -242,9 +242,12 @@ final class Feeds
         }
         // La misma regla en los cinco feeds (FeedEligibility): sin imagen, gratuito (salvo ajuste) o sin poder comprarse, no entra.
         // Verificación del 24/11/2026: products.json llevaba 149 productos y los otros cuatro, 142 (los siete de más eran gratuitos).
-        if (($key === 'openai' || $key === 'products') && $s->app()->has('catalog')
-            && FeedEligibility::reason($s->app(), $s, $s->app()->service('catalog'), $product) !== '') {
-            return 0;
+        // El feed público (products.json) conserva el producto cuyo precio no se enseña (sale sin precio): es lo único que no cuenta.
+        if (($key === 'openai' || $key === 'products') && $s->app()->has('catalog')) {
+            $reason = FeedEligibility::reason($s->app(), $s, $s->app()->service('catalog'), $product);
+            if ($reason !== '' && !($key === 'products' && $reason === 'price_hidden')) {
+                return 0;
+            }
         }
         $items = $key === 'google' ? self::googleItems($s, $product) : [$key === 'openai' ? self::openaiItem($s, $product) : self::publicItem($s, $product)];
         $count = 0;
