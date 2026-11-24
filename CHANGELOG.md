@@ -1,3 +1,28 @@
+# AIFEC 1.3.1
+
+## Compra con enlaces
+
+- La guía de `/buy-with-links` habla en tono informativo: basta con abrir las direcciones, no hace falta conector y la persona revisa el total y confirma. Fuera las frases que decían qué ocultar a la persona. Una prueba falla si reaparecen.
+- Los robots de vista previa de enlaces (WhatsApp, Facebook, Slack, Telegram, Discord…) y las precargas del navegador ya no crean carritos por `new`, `add` ni `start`: contestan 403.
+
+## Búsqueda de la API
+
+- `/api/v1/search` dice en `meta` cuántos devuelve (`returned`), el límite (`limit`, `limit_max`) y si hay más (`has_more`, con una nota), para que `total` y `data` no parezcan descuadrados.
+- Sinónimos de serie en castellano: soporte = asistencia técnica; aviso = notificación = alerta.
+
+## Feeds
+
+- Orden de consola `php aifec feeds:excluded`: lista por identificador los productos que no entran en los feeds ACP y Google, con su motivo. El diagnóstico enseña hasta 40 por identificador. Todo sale de la misma regla (`FeedEligibility`).
+
+## Desistimiento en la caja (plugin GM legal texts per product)
+
+- El texto de la casilla depende de lo que lleva el carrito: descarga, servicio (pago a prorrata si se desiste tras empezar) o las dos cosas. Sin descargas ni servicios no sale.
+- La casilla va encima del botón de pagar (hueco nuevo `checkout.review.before_pay`).
+- Sin marcar, la descarga queda retenida los 14 días del plazo y después se entrega sola (ajuste «Días que se retiene una descarga»).
+- El pedido guarda el texto exacto que vio el cliente, el tipo y la fecha, sin su IP, y el correo de confirmación lo confirma con la fecha.
+
+---
+
 # AIFEC 1.3.0
 
 ## Licencia y origen
