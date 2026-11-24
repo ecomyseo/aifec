@@ -13,7 +13,7 @@ El paquete descargable contiene el sistema y su instalador web. No contiene una 
 
 No necesitas Composer, Node ni una consola para completar el asistente web. Con MySQL o MariaDB debes crear antes una base vacía desde el panel del alojamiento; con SQLite no hace falta ese paso. El correo y los pagos externos se configuran después y no se activan automáticamente.
 
-AIFEC se publica con la licencia Apache 2.0 (el archivo `LICENSE.md` del paquete). El código está en https://github.com/ecomyseo/aifec.
+AIFEC se publica con la licencia GNU AGPL v3 con términos adicionales de origen (el archivo `LICENSE.md` del paquete; hasta la 1.2.6 fue Apache 2.0). El código está en https://github.com/ecomyseo/aifec.
 
 ## Antes de empezar
 

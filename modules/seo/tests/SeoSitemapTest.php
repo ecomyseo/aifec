@@ -102,6 +102,17 @@ test('un borrador, un producto oculto y un contenido «no indexar» no salen en 
     same(404, $web->get('/sitemap-posts-1.xml')->status, 'la única entrada es «no indexar»: no hay mapa');
 });
 
+test('las páginas de contenido llamadas «Carrito», «Finalizar compra» o «Mi cuenta» no salen en el mapa: son privadas', function (): void {
+    // Auditoría del 24/11/2026: WooCommerce deja esas tres como páginas y salían en sitemap-pages aunque se sirven con «noindex».
+    $app = seoApp(['seo', 'cms', 'media']);
+    cmsInsertPage($app, ['title' => 'Carrito', 'slug' => 'carrito']);
+    cmsInsertPage($app, ['title' => 'Finalizar compra', 'slug' => 'finalizar-compra']);
+    cmsInsertPage($app, ['title' => 'Mi cuenta', 'slug' => 'mi-cuenta']);
+    cmsInsertPage($app, ['title' => 'Quiénes somos', 'slug' => 'quienes-somos']);
+    $locs = seoLocs((new TestClient($app))->get('/sitemap-pages-1.xml')->body);
+    same(['https://tienda.test/', 'https://tienda.test/quienes-somos'], $locs, 'solo la portada y la página pública');
+});
+
 test('cada dirección lleva su fecha de modificación', function (): void {
     $app = seoApp(['seo', 'catalog', 'media']);
     aifecProduct($app, ['name' => 'Silla', 'slug' => 'silla']);

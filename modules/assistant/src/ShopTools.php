@@ -1811,6 +1811,8 @@ final class ShopTools
                     'title' => (string) $page['title'],
                     'url' => (string) (isset($page['url_abs']) ? $page['url_abs'] : ''),
                     'text' => self::plain((string) (isset($page['html']) ? $page['html'] : ''), 600),
+                    // El texto entero, para sacar de él lo que importa a una pregunta (devoluciones dentro de las condiciones).
+                    'full' => self::plain((string) (isset($page['html']) ? $page['html'] : ''), 40000),
                 ];
             }
         }
@@ -1841,10 +1843,28 @@ final class ShopTools
             $parts[] = $policy;
         }
         if ($parts === [] && $page !== null && $page['text'] !== '') {
-            $parts[] = $page['text'];
+            // Sin página de devoluciones, las condiciones generales: de ellas solo lo que habla de devolver, desistir o reembolsar, y no su
+            // principio (auditoría del 24/11/2026: «returns» devolvía la presentación de las condiciones, cortada a media palabra).
+            $parts[] = $page['code'] === 'terms' && !empty($page['full']) ? self::aboutReturns((string) $page['full'], $page['text']) : $page['text'];
         }
 
         return Prompt::truncate(trim(implode(' ', $parts)), 600);
+    }
+
+    /**
+     * Las líneas de un texto largo que hablan de devoluciones, desistimiento o reembolsos (hasta 600 caracteres). Si no hay ninguna, el
+     * texto de reserva.
+     */
+    private static function aboutReturns(string $full, string $fallback): string
+    {
+        $picked = [];
+        foreach (preg_split('/\n+/u', $full) ?: [] as $line) {
+            if (preg_match('/desisti|devoluci|devolver|reembols|return|refund|withdraw/iu', $line) === 1) {
+                $picked[] = trim($line);
+            }
+        }
+
+        return $picked === [] ? $fallback : implode(' ', $picked);
     }
 
     /** ¿Está activo el módulo de devoluciones? */

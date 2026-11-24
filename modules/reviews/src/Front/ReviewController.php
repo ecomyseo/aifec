@@ -50,6 +50,22 @@ final class ReviewController
     }
 
     /**
+     * GET /valoracion/{productId}: la dirección a la que envía el formulario de la ficha, abierta a mano. Lleva a la ficha.
+     * Auditoría del 24/11/2026: 112 respuestas 405 en un día de gmartos.es, de robots que seguían la acción del formulario.
+     *
+     * @param array<string,string> $params productId
+     */
+    public function toProduct(Request $request, array $params): Response
+    {
+        $product = $this->app->service('catalog')->product((int) $params['productId']);
+        if ($product === null) {
+            throw HttpError::notFound();
+        }
+
+        return Response::redirect((string) $product['url'], 301);
+    }
+
+    /**
      * POST /valoracion/{productId}: la opinión desde la ficha.
      *
      * @param array<string,string> $params productId

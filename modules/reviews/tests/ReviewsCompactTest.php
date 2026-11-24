@@ -265,6 +265,18 @@ test('un envío desde otra web sigue cortándose con 403', function (): void {
     same(0, count(reviewsRows($app)));
 });
 
+test('abrir a mano la dirección de envío de la opinión lleva a la ficha, y no da 405', function (): void {
+    // Auditoría del 24/11/2026: robots que seguían la acción del formulario recibían 405 (112 en un día).
+    $app = reviewsApp();
+    $p = aifecProduct($app, ['name' => 'Silla', 'slug' => 'silla']);
+    $web = new TestClient($app);
+    $r = $web->get('/valoracion/' . $p);
+    same(301, $r->status);
+    same('/producto/silla', $r->headers['Location'] ?? '');
+    same(404, $web->get('/valoracion/999999')->status, 'un producto que no existe no redirige a nada');
+    same(0, count(reviewsRows($app)), 'y no guarda nada');
+});
+
 test('nombre y correo van en una fila (dos columnas), el título es una línea sin pista y el texto tiene tres filas', function (): void {
     $app = reviewsApp();
     $p = aifecProduct($app);

@@ -38,6 +38,28 @@ test('el panel dice que es AIFEC, su versión, su autor y su licencia', function
     contains('AGPL-3.0', $page->body);
 });
 
+test('ningún documento ni README dice que la licencia vigente es la Apache 2.0', function (): void {
+    // Auditoría del 24/11/2026: cuatro documentos (docs y protocolo) seguían diciendo «se publica con la licencia Apache 2.0».
+    $root = dirname(__DIR__, 2);
+    $files = array_merge(glob($root . '/*.md') ?: [], glob($root . '/protocol/*.md') ?: []);
+    $iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($root . '/docs', \FilesystemIterator::SKIP_DOTS));
+    foreach ($iterator as $file) {
+        if ($file->isFile() && $file->getExtension() === 'md') {
+            $files[] = $file->getPathname();
+        }
+    }
+    check(count($files) > 20, 'se han leído los documentos: ' . count($files));
+    foreach ($files as $path) {
+        if (basename($path) === 'CHANGELOG.md' || strpos($path, 'LICENSE') !== false) {
+            continue;
+        }
+        $text = (string) file_get_contents($path);
+        foreach (['se publica con la licencia Apache', 'se publica con la licencia **Apache', 'Licensed under the [Apache', 'con la [licencia Apache'] as $bad) {
+            notContains($bad, $text, basename($path) . ' no dice «' . $bad . '»');
+        }
+    }
+});
+
 test('la licencia es la AGPL-3.0 con sus términos adicionales, con el NOTICE y la Apache de las versiones anteriores', function (): void {
     $root = Autoload::root();
     $license = (string) file_get_contents($root . '/LICENSE.md');

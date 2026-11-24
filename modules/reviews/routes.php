@@ -17,6 +17,8 @@ use Aifec\Modules\Reviews\Front\ReviewController;
 return static function (Router $r, App $app): void {
     // La tienda: solo desde la propia web (intermediario csrf). La página del enlace del correo es un GET sin caché.
     $r->post('/valoracion/{productId:\d+}', [ReviewController::class, 'submit'])->middleware('csrf')->name('reviews.submit');
+    // Quien abre esa dirección a mano (un robot que sigue la acción del formulario) va a la ficha, y no a un 405.
+    $r->get('/valoracion/{productId:\d+}', [ReviewController::class, 'toProduct']);
     $r->get('/valorar/{token}', [ReviewController::class, 'page'])->name('reviews.request');
     $r->post('/valorar/{token}', [ReviewController::class, 'submitRequest'])->middleware('csrf');
 

@@ -240,6 +240,12 @@ final class Feeds
         if ($key === 'openai' && !empty($product['price']['hidden'])) {
             return 0;
         }
+        // La misma regla que Google y ACP (FeedEligibility): sin imagen, gratuito (salvo ajuste) o sin poder comprarse, no entra. Auditoría
+        // del 24/11/2026: openai.json llevaba 149 productos y los otros dos feeds, 140.
+        if ($key === 'openai' && $s->app()->has('catalog')
+            && FeedEligibility::reason($s->app(), $s, $s->app()->service('catalog'), $product) !== '') {
+            return 0;
+        }
         $items = $key === 'google' ? self::googleItems($s, $product) : [$key === 'openai' ? self::openaiItem($s, $product) : self::publicItem($s, $product)];
         $count = 0;
         foreach ($items as $item) {

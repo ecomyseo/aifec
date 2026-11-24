@@ -81,4 +81,4 @@ UCP and ACP let an AI platform pay inside its own interface, after the store is 
 - AIFEC: https://github.com/ecomyseo/aifec — modules `api` (REST and buying with links), `mcp`, `semantic` (`llms.txt`, `.md` pages) and `agentic` (UCP).
 - Live demo: https://aifec.dev/
 
-Licensed under the [Apache License 2.0](../LICENSE.md).
+Licensed under the [AIFEC license](../LICENSE.md) (AGPL v3 with additional origin terms; Apache 2.0 up to 1.2.6).

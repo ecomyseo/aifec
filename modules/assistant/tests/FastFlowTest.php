@@ -517,6 +517,24 @@ test('store_info devuelve el texto de la página de devoluciones (600 caracteres
     contains('Puedes devolver tu pedido', $r['pages'][0]['text']);
 });
 
+test('sin página de devoluciones, store_info saca de las condiciones lo que habla de devolver y no su principio', function (): void {
+    // Auditoría del 24/11/2026: «returns» devolvía la presentación de las condiciones generales, cortada a media palabra.
+    $app = assistantApp([], ['modules' => ['cms']]);
+    assistantShop($app);
+    $blocks = array_merge(
+        fastBlocks('Estas condiciones regulan la compra de software, módulos y servicios técnicos. ' . str_repeat('Texto de presentación. ', 40)),
+        fastBlocks('Titular de la tienda: Ana Ruiz, Calle de Ejemplo 1.'),
+        fastBlocks('Desistimiento: tienes 14 días para desistir de un servicio no iniciado y te devolvemos el importe.')
+    );
+    $page = cmsInsertPage($app, ['title' => 'Condiciones', 'status' => 'published', 'blocks' => $blocks]);
+    $app->settings()->set('cms.legal', ['terms' => $page]);
+
+    $r = $app->service('tools')->call('store_info', ['topic' => 'returns']);
+
+    contains('tienes 14 días para desistir', $r['returns'], 'lo que habla de devolver');
+    notContains('Estas condiciones regulan', $r['returns'], 'y no el principio de las condiciones');
+});
+
 test('sin plazo y sin ajustes, el texto de la página de devoluciones es lo que se dice; con el asistente por reglas sale con su enlace; sin página, «no lo sé»', function (): void {
     $app = assistantApp([], ['modules' => ['cms']]);
     assistantShop($app);

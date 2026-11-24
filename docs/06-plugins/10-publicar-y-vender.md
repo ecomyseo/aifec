@@ -86,7 +86,7 @@ Con `--keep-data` se quedan las tablas, los ajustes y el registro de migraciones
 
 ## Licencia
 
-AIFEC se publica con la licencia **Apache 2.0** (el `LICENSE.md` del proyecto, desde el 17/11/2026): se puede usar, cambiar, redistribuir y vender, también dentro de un producto cerrado, conservando el aviso de copyright y la licencia, y diciendo qué ficheros se han cambiado.
+AIFEC se publica con la licencia **GNU AGPL v3 con términos adicionales de origen** (el `LICENSE.md` del proyecto, desde la 1.3.0; hasta la 1.2.6 fue Apache 2.0): se puede usar, cambiar, redistribuir y vender, siempre que se mantenga el aviso visible «Creado con AIFEC», la autoría de Ecom Experts y la marca del generador, y que las versiones modificadas se publiquen con la misma licencia. Hay una licencia comercial aparte para quien no pueda cumplirlo.
 
 La licencia de **tu** plugin es tuya: el sistema no la comprueba ni la exige. El generador (`plugin:create --license=…`) la escribe en la cabecera `@license` de cada fichero, y si no la pasas pone «See LICENSE». Si publicas el plugin con un código distinto, ponle tu `LICENSE.md` dentro de la carpeta y la misma línea en las cabeceras.
 

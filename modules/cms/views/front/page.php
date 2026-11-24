@@ -21,13 +21,11 @@ $af_html = (string) $content['html'];
 ?>
 <div class="af-container af-section">
     <article class="af-page af-page-<?= e($template) ?>">
-        <?php if (!$af_landing) : ?>
-            <?php if (!empty($content['parent_id']) && count($crumbs) > 2) : ?>
-                <?= $this->partial('partials/breadcrumbs', ['crumbs' => $crumbs]) ?>
-            <?php endif; ?>
-            <h1 class="af-title"><?= e($content['title']) ?></h1>
-        <?php elseif (stripos($af_html, '<h1') === false) : ?>
-            <h1 class="af-sr"><?= e($content['title']) ?></h1>
+        <?php if (!$af_landing && !empty($content['parent_id']) && count($crumbs) > 2) : ?>
+            <?= $this->partial('partials/breadcrumbs', ['crumbs' => $crumbs]) ?>
+        <?php endif; ?>
+        <?php if (stripos($af_html, '<h1') === false) : ?>
+            <h1 class="<?= $af_landing ? 'af-sr' : 'af-title' ?>"><?= e($content['title']) ?></h1>
         <?php endif; ?>
         <div class="af-prose<?= $af_wide ? ' af-prose-wide' : '' ?>"<?= $af_wide ? ' style="max-width:none"' : '' ?>>
             <?= $af_html ?>

@@ -250,9 +250,36 @@ final class Sitemap
      *
      * @param array<string,string> $versions idioma => dirección completa
      */
+    /**
+     * ¿Es una dirección privada (carrito, caja, cuenta, buscador), que el robots.txt cierra y la página marca «noindex»? Una página de
+     * contenido con ese nombre (WooCommerce deja «Carrito», «Finalizar compra» y «Mi cuenta» como páginas) no va en el mapa.
+     * Auditoría del 24/11/2026: salían tres páginas «noindex» en sitemap-pages.
+     *
+     * @param array<string,string> $versions
+     */
+    private function isPrivate(array $versions): bool
+    {
+        $closed = [];
+        foreach (Robots::disallowed($this->app) as $path) {
+            if (strpos($path, '*') === false) {
+                $closed[] = rtrim($path, '/');
+            }
+        }
+        foreach ($versions as $href) {
+            $path = rtrim((string) parse_url((string) $href, PHP_URL_PATH), '/');
+            foreach ($closed as $one) {
+                if ($one !== '' && ($path === $one || strpos($path, $one . '/') === 0)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     private function entry(array $versions, string $lastmod): string
     {
-        if ($versions === []) {
+        if ($versions === [] || $this->isPrivate($versions)) {
             return '';
         }
         $links = '';

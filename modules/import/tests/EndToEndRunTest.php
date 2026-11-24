@@ -222,11 +222,14 @@ e2eTest('después de escribir: el buscador reindexado, los contadores recalculad
     same([5, 1], [(int) $mesa['rating_sum'], (int) $mesa['rating_count']], 'la valoración de la mesa recalculada: una opinión de 5 estrellas');
     $silla = $app->db()->row("SELECT rating_count FROM {products} WHERE sku = 'SILLA-NORDICA'");
     same(0, (int) $silla['rating_count'], 'y la de la silla, con su opinión sin aprobar, a cero');
-    foreach (['products', 'openai'] as $key) {
-        $file = \Aifec\Modules\Semantic\Feeds::path($app, $key);
-        check(is_file($file), 'el feed ' . $key . ' está hecho');
-        contains('Mantel de lino', (string) file_get_contents($file), 'y lleva los productos importados');
-    }
+    $file = \Aifec\Modules\Semantic\Feeds::path($app, 'products');
+    check(is_file($file), 'el feed products está hecho');
+    contains('Mantel de lino', (string) file_get_contents($file), 'y lleva los productos importados');
+    // El de OpenAI (como el de Google y el de ACP) exige imagen: sin imágenes importadas no lleva productos (auditoría del 24/11/2026,
+    // cuando openai.json llevaba 149 y los otros dos 140).
+    $openai = \Aifec\Modules\Semantic\Feeds::path($app, 'openai');
+    check(is_file($openai), 'el feed openai está hecho');
+    notContains('Mantel de lino', (string) file_get_contents($openai), 'pero sin imagen no entra');
     check(is_file(\Aifec\Modules\Semantic\Feeds::path($app, 'google')), 'el feed de Google también está hecho (sin imágenes importadas no lleva productos: Google los exige)');
     $web = new TestClient($app);
     $r = $web->get('/llms.txt');

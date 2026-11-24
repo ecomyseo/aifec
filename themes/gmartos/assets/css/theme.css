@@ -621,4 +621,4 @@ a.af-nav-link:hover{color:var(--accent)}
 .af-footer .af-nav-link{white-space:normal;overflow-wrap:anywhere}
 .af-footer-grid>*{min-width:0}
 /* Bloque final de la ficha: titular blanco aunque falle la variable */
-.gm-cta h2{color:var(--on-dark,#fff)}
+.gm-cta h2{color:var(--on-dark)}

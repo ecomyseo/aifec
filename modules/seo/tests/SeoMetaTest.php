@@ -23,6 +23,15 @@ test('el título de un producto sale de la plantilla «{name} | {shop}»', funct
     contains('<meta property="og:title" content="Silla Ergo | Muebles Ana">', $r->body);
 });
 
+test('toda página lleva la tarjeta de Twitter y, sin imagen propia, no se inventa og:image si la tienda no tiene logo ni icono', function (): void {
+    // Auditoría del 24/11/2026: 70 páginas sin twitter:card ni og:image. La tarjeta va siempre; la imagen de la tienda, si existe.
+    $app = seoApp(['seo', 'catalog', 'media'], ['store.name' => 'Muebles Ana']);
+    aifecProduct($app, ['name' => 'Silla Ergo', 'slug' => 'silla-ergo']);
+    $body = (new TestClient($app))->get('/producto/silla-ergo')->body;
+    contains('<meta name="twitter:card" content="summary">', $body, 'sin imagen: tarjeta pequeña');
+    notContains('og:image', $body, 'y sin logo ni icono no hay imagen que poner');
+});
+
 test('una plantilla no pisa un meta título escrito a mano', function (): void {
     $app = seoApp(['seo', 'catalog', 'media'], ['store.name' => 'Muebles Ana', 'seo.title.product' => '{name} | {shop}']);
     aifecProduct($app, ['name' => 'Silla Ergo', 'slug' => 'silla-ergo', 'meta_title' => 'La mejor silla de oficina']);

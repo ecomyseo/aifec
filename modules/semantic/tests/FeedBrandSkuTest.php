@@ -9,6 +9,7 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/helpers.php';
 require_once __DIR__ . '/../../agentic/tests/UcpKit.php';
 require_once __DIR__ . '/../../cms/tests/helpers.php';
 require_once dirname(__DIR__, 3) . '/tests/Install/support.php';
@@ -84,8 +85,11 @@ test('con la marca por defecto, los productos sin marca la llevan en products.js
     contains('Casa Ejemplo', $tsv, 'feed de Google en TSV');
 
     // La ficha del producto (datos estructurados) lo lleva también.
-    $page = (new TestClient($app))->get('/p/mesa-sin')->body;
-    check(strpos($page, 'Casa Ejemplo') !== false || strpos(brandBody($app, '/feeds/products.json'), 'Casa Ejemplo') !== false, 'la marca llega a los datos del producto');
+    $page = (new TestClient($app))->get('/producto/mesa-sin')->body;
+    $product = semanticFind(semanticLd($page), 'Product');
+    check($product !== null, 'la ficha lleva datos de producto');
+    same('Casa Ejemplo', $product['brand']['name'] ?? '', 'la marca por defecto llega a los datos de la ficha');
+    same((string) $shop['sin'], (string) ($product['sku'] ?? ''), 'y el SKU de recambio');
 });
 
 test('sin marca por defecto, un producto sin marca sigue saliendo sin marca', function (): void {
@@ -106,6 +110,21 @@ test('el SKU cae en el id del producto, marcado como generado, y el que existe s
     $con = brandFind($products, 'Silla con marca y SKU');
     same('SIL-001', $con['sku']);
     same('catalog', $con['sku_source'], 'el del catálogo se marca como tal');
+});
+
+test('openai.json aplica la misma regla que Google y ACP: sin imagen o gratuito no entra', function (): void {
+    $shop = brandShop();
+    $app = $shop['app'];
+    aifecProduct($app, ['name' => 'Sin imagen', 'slug' => 'sin-imagen', 'price' => 5000, 'images' => 0, 'stock' => 5]);
+    aifecProduct($app, ['name' => 'Gratuito', 'slug' => 'gratuito', 'price' => 0, 'images' => 2, 'stock' => 5]);
+    $openai = json_decode(brandBody($app, '/feeds/openai.json'), true);
+    $titles = array_column(is_array($openai) ? $openai['products'] : [], 'title');
+    sort($titles);
+    same(['Mesa sin marca ni SKU', 'Silla con marca y SKU'], $titles, 'solo los dos con imagen y precio');
+    same(2, $openai['count']);
+    $acp = array_filter(explode("\n", brandBody($app, '/acp/feed.jsonl')));
+    same(2, count($acp), 'y el feed ACP lleva los mismos');
+    same(2, \Aifec\Modules\Semantic\FeedEligibility::report($app)['eligible'], 'y el recuento también');
 });
 
 test('el ajuste está en Identidad y la marca por defecto se aplica sin tocar la del producto', function (): void {

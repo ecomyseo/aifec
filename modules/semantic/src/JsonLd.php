@@ -152,7 +152,8 @@ final class JsonLd
         if ($description === '') {
             $description = $s->plain(isset($p['summary']) ? (string) $p['summary'] : '', 5000);
         }
-        $sku = isset($p['sku']) && $p['sku'] !== null ? trim((string) $p['sku']) : '';
+        // Sin SKU en el catálogo, el identificador del producto (el mismo que lleva products.json con sku_source = product_id).
+        $sku = $s->sku($p)[0];
         $brandName = $s->brand($p);
         $brand = $brandName !== '' ? ['@type' => 'Brand', 'name' => $brandName] : [];
         $rating = [];

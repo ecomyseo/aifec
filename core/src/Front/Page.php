@@ -111,9 +111,13 @@ final class Page
         if ($page['description'] !== '') {
             $html .= '<meta property="og:description" content="' . e($page['description']) . "\">\n";
         }
-        if ($page['image'] !== '') {
-            $html .= '<meta property="og:image" content="' . e($page['image']) . "\">\n<meta name=\"twitter:card\" content=\"summary_large_image\">\n";
+        // Sin imagen propia, la de la tienda (logo o icono) para que un enlace compartido no salga sin imagen; la tarjeta de Twitter
+        // va siempre (auditoría del 24/11/2026: 70 páginas sin og:image ni twitter:card).
+        $image = $page['image'] !== '' ? (string) $page['image'] : self::fallbackImage($app);
+        if ($image !== '') {
+            $html .= '<meta property="og:image" content="' . e($image) . "\">\n";
         }
+        $html .= '<meta name="twitter:card" content="' . ($image !== '' && $page['image'] !== '' ? 'summary_large_image' : 'summary') . "\">\n";
         foreach ((array) $page['jsonld'] as $data) {
             if (is_array($data) && $data !== []) {
                 $html .= '<script type="application/ld+json">' . json_html($data) . "</script>\n";
@@ -138,6 +142,19 @@ final class Page
     }
 
     /** Dirección del icono del sitio: el elegido en los ajustes («store.icon») o, si no hay, uno dibujado con la inicial de la tienda. */
+    /** La imagen de la tienda para compartir cuando una página no trae la suya: el logo o, si no hay, el icono. Vacía si no hay ninguno. */
+    public static function fallbackImage(App $app): string
+    {
+        foreach (['store.logo', 'store.icon'] as $key) {
+            $image = self::media($app, $key);
+            if ($image !== null && !empty($image['url'])) {
+                return (string) $image['url'];
+            }
+        }
+
+        return '';
+    }
+
     public static function iconUrl(App $app): string
     {
         $image = self::media($app, 'store.icon');

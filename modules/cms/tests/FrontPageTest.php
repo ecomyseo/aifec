@@ -57,6 +57,17 @@ test('una página publicada se ve con el tema: un solo h1, su contenido, su can�
     notContains('af-breadcrumbs', $r->body, 'sin página madre no hay migas');
 });
 
+test('una página cuyo contenido ya trae su h1 no pone otro: una sola h1 por página', function (): void {
+    // Auditoría del 24/11/2026: 14 páginas de gmartos.es (importadas de WordPress) llevaban dos h1, la de la plantilla y la del contenido.
+    $app = cmsApp();
+    cmsInsertPage($app, ['title' => 'Servicios', 'slug' => 'servicios', 'blocks' => [['type' => 'html', 'attrs' => ['html' => '<h1>Servicios de desarrollo</h1><p>Texto.</p>']]]]);
+    $r = (new TestClient($app))->get('/servicios');
+    same(200, $r->status);
+    same(1, substr_count($r->body, '<h1'), 'una sola h1');
+    contains('<h1>Servicios de desarrollo</h1>', $r->body, 'la del contenido');
+    notContains('<h1 class="af-title">Servicios</h1>', $r->body, 'y no la de la plantilla');
+});
+
 test('la caché de página guarda la página: copia a la segunda y vuelve a generarse tras guardarla en el panel', function (): void {
     $app = cmsApp();
     $id = cmsInsertPage($app, ['title' => 'Quiénes somos']);
