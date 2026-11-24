@@ -199,7 +199,7 @@ final class Robots
             // fichero, no podía leer ni la portada ni una ficha de una tienda en pruebas y contestaba «la tienda me bloquea»
             // (16/11/2026). Se cierra, como en una tienda abierta, bloqueando a los asistentes en los ajustes.
             // Y los robots que la tienda deja pasar aunque esté oculta (seo.noindex_allow): el buscador de ChatGPT, sin el que su
-            // herramienta web no abría la tienda (16/11/2026: abría gmartos.es y de aifec.gmartos.es no pedía ni una página).
+            // herramienta web no abría la tienda (16/11/2026: abría gmartos.es y de la tienda de pruebas no pedía ni una página).
             $readers = array_values(array_unique(array_merge(self::personReaders(), self::hiddenAllowed($app))));
             if ($readers !== [] && !self::blocked($app)['assistant']) {
                 $out .= "\n# Assistants reading one page for a person, right now: allowed (nothing is indexed)\n";
