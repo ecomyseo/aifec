@@ -16,7 +16,7 @@ return [
         'system' => false,
         'description' => 'Sent to the customer once, when the order is paid, with the legal texts of what they bought',
         'sample' => [
-            'number' => '2026-000123', 'name' => 'Ana Ruiz', 'waiver' => 'yes',
+            'number' => '2026-000123', 'name' => 'Ana Ruiz', 'waiver' => 'yes', 'waiver_lines' => ['On 2026-11-24 10:00 UTC you ticked the box:', '«I ask for the download to start now.»'],
             'blocks' => [['id' => 1, 'title' => 'Guarantee', 'kind' => 'guarantee', 'paragraphs' => ['Two years of legal guarantee.']]],
         ],
     ],

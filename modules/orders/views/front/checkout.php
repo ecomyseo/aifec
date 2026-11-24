@@ -15,7 +15,7 @@
  * y no se guarda en ninguna caché. El total del botón de pagar es el del resumen, y el formulario lo lleva escondido
  * (expected_total) para que no se cobre uno distinto del que se enseñó.
  *
- * Huecos: checkout.before, checkout.review.after y checkout.after.
+ * Huecos: checkout.before, checkout.review.before_pay (encima del botón de pagar), checkout.review.after y checkout.after.
  *
  * @author    Ecom Experts <ecomyseo@gmail.com>
  * @copyright 2026 Ecom Experts
@@ -159,6 +159,7 @@ $af_summary_total = '<strong data-af-checkout-total>' . e($c['view']['total_form
                     <input id="af-co-marketing" type="checkbox" name="marketing" value="1"<?= !empty($af_state['marketing']) ? ' checked' : '' ?>>
                     <span><?= e(t('Send me news and offers by email (optional)')) ?></span>
                 </label>
+                <?= hook('checkout.review.before_pay', $c['summary']) ?>
                 <div class="af-stack af-co-pay">
                     <button type="submit" class="af-btn af-btn-primary af-btn-block af-btn-lg" data-af-checkout-submit data-total="<?= e((int) $c['expected_total']) ?>"<?= $c['blocked'] ? ' disabled' : '' ?>><?= e($c['button']) ?></button>
                     <button type="submit" class="af-btn af-btn-block" formaction="<?= e($c['urls']['update']) ?>" formnovalidate data-af-update-button><?= e(t('Update')) ?></button>

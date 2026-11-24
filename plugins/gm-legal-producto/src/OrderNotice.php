@@ -40,7 +40,7 @@ final class OrderNotice
         $rows = self::mailRows($order, $app);
         $db = $app->db();
         $orderId = (int) $order['id'];
-        $state = $db->row('SELECT waiver, mailed_at FROM {gm_legal_orders} WHERE order_id = ?', [$orderId]);
+        $state = $db->row('SELECT waiver, mailed_at, kind, text, created_at FROM {gm_legal_orders} WHERE order_id = ?', [$orderId]);
         if ($rows === [] && $state === null) {
             return $blocks;
         }
@@ -52,14 +52,53 @@ final class OrderNotice
         foreach (Blocks::view($rows) as $block) {
             $blocks[] = ['title' => $block['title'], 'lines' => $block['paragraphs']];
         }
-        $waiver = $state !== null && $state['waiver'] !== null ? ((int) $state['waiver'] === 1 ? 'yes' : 'no') : '';
-        if ($waiver === 'yes') {
-            $blocks[] = ['title' => t('Right of withdrawal'), 'lines' => [t('You asked for the download to start now and you accepted that you lose your right of withdrawal once it starts.')]];
-        } elseif ($waiver === 'no') {
-            $blocks[] = ['title' => t('Right of withdrawal'), 'lines' => [t('You did not waive your right of withdrawal, so you keep it.')]];
+        $lines = self::waiverLines($app, $state);
+        if ($lines !== []) {
+            $blocks[] = ['title' => t('Right of withdrawal'), 'lines' => $lines];
         }
 
         return $blocks;
+    }
+
+    /**
+     * La confirmación de lo que el cliente contestó a la casilla, con la fecha y el texto exacto que vio: lo que el vendedor tiene que
+     * confirmarle por escrito. Vacío si no se le preguntó nada.
+     *
+     * @param array<string,mixed>|null $state la fila de gm_legal_orders (waiver, kind, text, created_at)
+     *
+     * @return string[]
+     */
+    public static function waiverLines(App $app, ?array $state): array
+    {
+        if ($state === null || !isset($state['waiver']) || $state['waiver'] === null) {
+            return [];
+        }
+        $kind = isset($state['kind']) && is_string($state['kind']) && $state['kind'] !== '' ? $state['kind'] : Checkout::DOWNLOAD;
+        $text = isset($state['text']) && is_string($state['text']) && $state['text'] !== '' ? $state['text'] : Checkout::text($app, $kind);
+        $date = substr((string) ($state['created_at'] ?? ''), 0, 16) . ' UTC';
+        $download = $kind === Checkout::DOWNLOAD || $kind === Checkout::BOTH;
+        $service = $kind === Checkout::SERVICE || $kind === Checkout::BOTH;
+        $lines = [];
+        if ((int) $state['waiver'] === 1) {
+            $lines[] = t('On {date} you ticked the box:', ['date' => $date]);
+            $lines[] = '«' . $text . '»';
+            if ($download) {
+                $lines[] = t('So the download starts now and you lose your right of withdrawal on it once it starts.');
+            }
+            if ($service) {
+                $lines[] = t('So the service starts now and, if you withdraw after it has started, you will pay the proportional part of what has been provided.');
+            }
+
+            return $lines;
+        }
+        $lines[] = t('On {date} you did not tick the box:', ['date' => $date]);
+        $lines[] = '«' . $text . '»';
+        $lines[] = t('You did not waive your right of withdrawal, so you keep it.');
+        if ($download) {
+            $lines[] = t('The download is held while your right of withdrawal lasts. It is released on {date}, or earlier if you write to the shop and ask for it to start now.', ['date' => date('Y-m-d', DownloadGate::releaseAt($app, (string) ($state['created_at'] ?? '')))]);
+        }
+
+        return $lines;
     }
 
     /**
@@ -105,7 +144,7 @@ final class OrderNotice
         }));
         $db = $app->db();
         $orderId = (int) $order['id'];
-        $state = $db->row('SELECT waiver, mailed_at FROM {gm_legal_orders} WHERE order_id = ?', [$orderId]);
+        $state = $db->row('SELECT waiver, mailed_at, kind, text, created_at FROM {gm_legal_orders} WHERE order_id = ?', [$orderId]);
         if ($rows === [] && $state === null) {
             return;
         }
@@ -121,11 +160,13 @@ final class OrderNotice
             $billing = isset($order['billing']) && is_array($order['billing']) ? $order['billing'] : [];
             $name = trim((isset($billing['first_name']) ? (string) $billing['first_name'] : '') . ' ' . (isset($billing['last_name']) ? (string) $billing['last_name'] : ''));
             $waiver = $state !== null && $state['waiver'] !== null ? ((int) $state['waiver'] === 1 ? 'yes' : 'no') : '';
+            $waiverLines = self::waiverLines($app, $state);
             $sent = (int) $app->service('mailer')->queue('legal_notice', (string) $order['email'], [
                 'number' => (string) $order['number'],
                 'name' => $name !== '' ? $name : (string) $order['email'],
                 'blocks' => Blocks::view($rows),
                 'waiver' => $waiver,
+                'waiver_lines' => $waiverLines,
             ], ['locale' => (string) $order['lang'], 'to_name' => $name, 'related' => 'order:' . $orderId]);
         } catch (\Throwable $e) {
             $app->log()->exception($e, 'gm-legal-producto.mail');

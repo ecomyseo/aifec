@@ -28,7 +28,7 @@ Si sustituyes una de estas plantillas, **conserva sus huecos** con los mismos ar
 |---|---|
 | `catalog::front/product` | `product.gallery.before`, `product.gallery.after`, `product.summary.before`, `product.price.after`, `product.buy.after`, `product.summary.after`, `product.tabs`, `product.bottom`. Todos reciben el producto (`$product`, un ProductData). **Las insignias de la ficha («Nuevo», «−15 %») salen en `product.gallery.before`, que tu plantilla tiene que pintar DENTRO del contenedor de la foto principal** (así quedan sobre la foto y nunca encima del título); `product.summary.before` queda libre para los plugins. Bajo el botón de compra, la pieza común `catalog::front/partials/trust` pinta el envío, la devolución y el pago con los datos de la tienda, y al final de la ficha salen los relacionados («También te puede interesar») con la tarjeta de tu tema. |
 | `orders::front/cart` | `cart.before`, `cart.lines.after`, `cart.totals.after`, `cart.after`. Todos reciben el carrito (`$cart`). |
-| `orders::front/checkout` | `checkout.before`, `checkout.review.after`, `checkout.after`. Reciben el resumen del carrito (`$c['summary']`). |
+| `orders::front/checkout` | `checkout.before`, `checkout.review.before_pay` (encima del botón de pagar), `checkout.review.after`, `checkout.after`. Reciben el resumen del carrito (`$c['summary']`). |
 | `orders::front/order` | `order.thanks`, con el pedido y un booleano (`$order`, `$v['first']`). |
 | `customers::front/account` | `account.dashboard`, con el cliente (`$customer`). |
 

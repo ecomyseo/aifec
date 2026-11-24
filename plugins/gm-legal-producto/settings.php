@@ -23,6 +23,7 @@ return [
         'gplwaiver' => ['label' => 'Withdrawal waiver', 'fields' => [
             'gm_legal_producto.waiver_enabled' => ['type' => 'toggle', 'label' => 'Ask about the waiver when the cart has digital products', 'default' => true],
             'gm_legal_producto.waiver_text' => ['type' => 'textarea', 'label' => 'Text of the box', 'hint' => 'Empty: the standard wording.', 'default' => '', 'rules' => 'max:600'],
+            'gm_legal_producto.hold_days' => ['type' => 'number', 'label' => 'Days a download is held when the box is not ticked', 'hint' => 'The legal withdrawal period: 14. After it the download is released by itself.', 'default' => 14, 'rules' => 'int|min:0|max:60', 'width' => 'sm'],
             'gm_legal_producto.version' => ['type' => 'text', 'label' => 'Version of the texts', 'hint' => 'For example 1.1 · 2026-11-13. It is saved with each answer.', 'default' => '', 'rules' => 'max:40', 'width' => 'md'],
         ]],
     ],

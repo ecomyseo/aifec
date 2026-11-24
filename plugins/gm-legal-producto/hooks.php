@@ -37,6 +37,10 @@ return static function (App $app): void {
     $hooks->slot('checkout.review.after', static function ($summary) use ($app): string {
         return Checkout::slot($app, $summary);
     });
+    // La casilla va ENCIMA del botón de pagar, no debajo.
+    $hooks->slot('checkout.review.before_pay', static function ($summary) use ($app): string {
+        return Checkout::waiverSlot($app, $summary);
+    });
     $hooks->on('order.placed', static function ($order) use ($app): void {
         Checkout::placed($order, $app);
     });

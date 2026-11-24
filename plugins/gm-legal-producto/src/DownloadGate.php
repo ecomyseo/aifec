@@ -39,11 +39,26 @@ final class DownloadGate
         if (!is_array($order) || !isset($order['id']) || !$app->settings()->bool('gm_legal_producto.waiver_enabled', true)) {
             return $open;
         }
-        $waiver = $app->db()->value('SELECT waiver FROM {gm_legal_orders} WHERE order_id = ?', [(int) $order['id']]);
-        if ($waiver === null || (int) $waiver === 1) {
+        $row = $app->db()->row('SELECT waiver, created_at FROM {gm_legal_orders} WHERE order_id = ?', [(int) $order['id']]);
+        if ($row === null || $row['waiver'] === null || (int) $row['waiver'] === 1) {
+            return $open;
+        }
+        // Sin la petición de empezar ya, el cliente conserva el desistimiento: la descarga queda retenida hasta que pasan los días
+        // de plazo (14 de serie) desde el pedido, y entonces se entrega sola.
+        $release = self::releaseAt($app, (string) $row['created_at']);
+        if ($app->clock()->now() >= $release) {
             return $open;
         }
 
-        return ['allowed' => false, 'reason' => t('The download is held until you accept that you lose your right of withdrawal. Write to the shop and we will release it.')];
+        return ['allowed' => false, 'reason' => t('The download is held while your right of withdrawal lasts. It is released on {date}, or earlier if you write to the shop and ask for it to start now.', ['date' => date('Y-m-d', $release)])];
+    }
+
+    /** El momento (marca de tiempo) en que acaba el plazo de desistimiento de un pedido hecho en esa fecha. */
+    public static function releaseAt(App $app, string $createdAt): int
+    {
+        $days = max(0, min(60, (int) $app->settings()->get('gm_legal_producto.hold_days', 14)));
+        $start = strtotime($createdAt . ' UTC');
+
+        return ($start === false ? $app->clock()->now() : $start) + $days * 86400;
     }
 }

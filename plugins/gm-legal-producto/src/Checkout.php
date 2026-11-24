@@ -14,48 +14,78 @@ namespace Gm\LegalProducto;
 use Aifec\Kernel\App;
 
 /**
- * La caja: los textos legales de lo que hay en el carrito y, si hay contenido digital, la casilla de la renuncia al desistimiento.
+ * La caja: los textos legales de lo que hay en el carrito y, si hay contenido digital o servicios, la casilla de la petición de que
+ * empiecen ya (con su pérdida o su pago proporcional del desistimiento), justo encima del botón de pagar.
  *
- * La casilla NO impide comprar: es una petición del cliente («quiero la descarga ya y pierdo el desistimiento»). Se guarda lo que
- * decidió, marcada o no, con `customers->consent(…, 'withdrawal_waiver', …)`: la prueba de que se le preguntó y qué contestó.
+ * La casilla NO impide comprar: es una petición del cliente. Se guarda lo que decidió, marcada o no, con el texto exacto que vio, el tipo
+ * de pedido y la fecha: la prueba de que se le preguntó y qué contestó. No se guarda su IP.
  */
 final class Checkout
 {
     public const FIELD = 'gm_legal_waiver';
 
+    /** Lo que hay en el carrito que lleva desistimiento especial: 'download', 'service', 'both' o '' si nada. */
+    public const DOWNLOAD = 'download';
+    public const SERVICE = 'service';
+    public const BOTH = 'both';
+
     /**
-     * El hueco «checkout.review.after»: los textos legales del carrito y la casilla de la renuncia.
+     * El hueco «checkout.review.after»: los textos legales del carrito.
      *
      * @param mixed $summary el carrito con precios
      */
     public static function slot(App $app, $summary): string
     {
-        $lines = is_array($summary) && isset($summary['lines']) && is_array($summary['lines']) ? $summary['lines'] : [];
-        $productIds = [];
-        foreach ($lines as $line) {
-            if (is_array($line) && isset($line['product_id'])) {
-                $productIds[] = (int) $line['product_id'];
-            }
-        }
-        if ($productIds === []) {
+        $productIds = self::productIds($summary);
+        if ($productIds === [] || !$app->settings()->bool('gm_legal_producto.checkout_blocks', true)) {
             return '';
         }
-        $settings = $app->settings();
-        $blocks = $settings->bool('gm_legal_producto.checkout_blocks', true) ? Blocks::view((new Blocks($app))->forProducts($productIds)) : [];
-        $waiver = $settings->bool('gm_legal_producto.waiver_enabled', true) && self::hasDigital($app, $productIds);
-        if ($blocks === [] && !$waiver) {
+        $blocks = Blocks::view((new Blocks($app))->forProducts($productIds));
+        if ($blocks === []) {
             return '';
         }
-        $text = trim($settings->str('gm_legal_producto.waiver_text', ''));
 
-        return $app->view()->render('gm-legal-producto::front/checkout', [
-            'blocks' => $blocks, 'waiver' => $waiver, 'field' => self::FIELD,
-            'waiver_text' => $text !== '' ? $text : t('I ask for the download to start now and I understand that, once it starts, I lose my right of withdrawal.'),
-        ]);
+        return $app->view()->render('gm-legal-producto::front/checkout', ['blocks' => $blocks, 'waiver' => false, 'field' => self::FIELD, 'waiver_text' => '']);
     }
 
     /**
-     * La acción «order.placed»: si el pedido lleva contenido digital, apunta qué contestó el cliente a la casilla.
+     * El hueco «checkout.review.before_pay»: la casilla, encima del botón de pagar. Solo si el carrito lleva una descarga o un servicio.
+     *
+     * @param mixed $summary el carrito con precios
+     */
+    public static function waiverSlot(App $app, $summary): string
+    {
+        if (!$app->settings()->bool('gm_legal_producto.waiver_enabled', true)) {
+            return '';
+        }
+        $kind = self::kindOf($app, self::productIds($summary));
+        if ($kind === '') {
+            return '';
+        }
+
+        return $app->view()->render('gm-legal-producto::front/checkout', ['blocks' => [], 'waiver' => true, 'field' => self::FIELD, 'waiver_text' => self::text($app, $kind)]);
+    }
+
+    /**
+     * El texto de la casilla según lo que lleva el carrito. El del comerciante (ajuste) vale para las descargas; los servicios y la mezcla
+     * llevan el suyo, porque la ley dice cosas distintas: una descarga empezada pierde el desistimiento y un servicio empezado se paga a
+     * prorrata.
+     */
+    public static function text(App $app, string $kind): string
+    {
+        if ($kind === self::SERVICE) {
+            return t('I ask for the service to start now. If I withdraw after it has started, I will pay the proportional part of what has been provided.');
+        }
+        if ($kind === self::BOTH) {
+            return t('I ask for the download and the service to start now. I understand that, once the download starts, I lose my right of withdrawal on it and that, if I withdraw from the service after it has started, I will pay the proportional part of what has been provided.');
+        }
+        $custom = trim($app->settings()->str('gm_legal_producto.waiver_text', ''));
+
+        return $custom !== '' ? $custom : t('I ask for the download to start now and I understand that, once it starts, I lose my right of withdrawal.');
+    }
+
+    /**
+     * La acción «order.placed»: apunta qué contestó el cliente a la casilla, con el texto que vio. Sin su IP.
      *
      * @param mixed $order
      */
@@ -64,36 +94,61 @@ final class Checkout
         if (!is_array($order) || !isset($order['id']) || !$app->settings()->bool('gm_legal_producto.waiver_enabled', true)) {
             return;
         }
-        $digital = false;
+        $productIds = [];
         foreach (isset($order['items']) && is_array($order['items']) ? $order['items'] : [] as $item) {
-            if (is_array($item) && isset($item['kind']) && $item['kind'] === 'product' && !empty($item['is_digital'])) {
-                $digital = true;
+            if (is_array($item) && isset($item['kind'], $item['product_id']) && $item['kind'] === 'product') {
+                $productIds[] = (int) $item['product_id'];
             }
         }
-        if (!$digital) {
+        $kind = self::kindOf($app, $productIds);
+        if ($kind === '') {
             return;
         }
         $granted = $app->request()->bool(self::FIELD);
         $version = trim($app->settings()->str('gm_legal_producto.version', ''));
-        $customerId = isset($order['customer_id']) && $order['customer_id'] !== null ? (int) $order['customer_id'] : null;
-        $app->service('customers')->consent($customerId, (string) $order['email'], 'withdrawal_waiver', $granted, $version, 'order:' . (string) $order['number']);
-        $app->db()->upsert('gm_legal_orders', ['order_id' => (int) $order['id'], 'waiver' => $granted ? 1 : 0, 'version' => substr($version, 0, 40), 'created_at' => $app->clock()->sql()], ['order_id']);
+        $app->db()->upsert('gm_legal_orders', [
+            'order_id' => (int) $order['id'], 'waiver' => $granted ? 1 : 0, 'version' => substr($version, 0, 40),
+            'kind' => $kind, 'text' => self::text($app, $kind), 'created_at' => $app->clock()->sql(),
+        ], ['order_id']);
     }
 
     /**
-     * ¿Alguno de estos productos es digital?
+     * ¿Qué lleva el carrito o el pedido: una descarga, un servicio, las dos cosas o nada que pida la casilla?
      *
      * @param int[] $productIds
      */
-    private static function hasDigital(App $app, array $productIds): bool
+    public static function kindOf(App $app, array $productIds): string
     {
+        $download = false;
+        $service = false;
         foreach (array_unique($productIds) as $id) {
-            $product = $app->service('catalog')->product($id, null, true);
-            if (is_array($product) && isset($product['kind']) && $product['kind'] === 'digital') {
-                return true;
+            $product = $app->service('catalog')->product((int) $id, null, true);
+            $kind = is_array($product) && isset($product['kind']) ? (string) $product['kind'] : '';
+            $download = $download || $kind === 'digital';
+            $service = $service || $kind === 'service';
+        }
+        if ($download && $service) {
+            return self::BOTH;
+        }
+
+        return $download ? self::DOWNLOAD : ($service ? self::SERVICE : '');
+    }
+
+    /**
+     * @param mixed $summary el carrito con precios
+     *
+     * @return int[]
+     */
+    private static function productIds($summary): array
+    {
+        $lines = is_array($summary) && isset($summary['lines']) && is_array($summary['lines']) ? $summary['lines'] : [];
+        $productIds = [];
+        foreach ($lines as $line) {
+            if (is_array($line) && isset($line['product_id'])) {
+                $productIds[] = (int) $line['product_id'];
             }
         }
 
-        return false;
+        return $productIds;
     }
 }

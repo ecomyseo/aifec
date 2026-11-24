@@ -184,19 +184,21 @@ test('marcar la casilla guarda la renuncia con su versión y desmarcarla no impi
     $web = new TestClient($app);
     frontAdd($web, $digital, 1);
     [$number] = gmLegPlace($app, $web, true, ['gm_legal_waiver' => '1']);
-    $row = $app->db()->row("SELECT * FROM {consents} WHERE kind = 'withdrawal_waiver' AND context = ?", ['order:' . $number]);
-    check($row !== null, 'queda el consentimiento');
-    same(1, (int) $row['granted']);
+    $row = $app->db()->row('SELECT * FROM {gm_legal_orders} WHERE order_id = (SELECT id FROM {orders} WHERE number = ?)', [$number]);
+    check($row !== null, 'queda el consentimiento en el pedido');
+    same(1, (int) $row['waiver']);
     same('1.1', (string) $row['version']);
-    same('ana@cliente.test', (string) $row['email']);
-    same(1, (int) $app->db()->value('SELECT waiver FROM {gm_legal_orders} WHERE order_id = (SELECT id FROM {orders} WHERE number = ?)', [$number]));
+    same('download', (string) $row['kind']);
+    same('Pido que la descarga empiece ya y entiendo que, una vez empiece, pierdo mi derecho de desistimiento.', (string) $row['text'], 'con el texto exacto que vio');
+    check(strtotime((string) $row['created_at'] . ' UTC') > 0, 'y la fecha y la hora');
+    same(0, aifecOrderCount($app, 'consents', "kind = 'withdrawal_waiver'"), 'sin copia en la tabla de consentimientos: allí iría la IP');
 
     $web2 = new TestClient($app);
     frontAdd($web2, $digital, 1);
     [$number2] = gmLegPlace($app, $web2, true, ['email' => 'luis@cliente.test']);
-    $row2 = $app->db()->row("SELECT * FROM {consents} WHERE kind = 'withdrawal_waiver' AND context = ?", ['order:' . $number2]);
+    $row2 = $app->db()->row('SELECT * FROM {gm_legal_orders} WHERE order_id = (SELECT id FROM {orders} WHERE number = ?)', [$number2]);
     check($row2 !== null, 'también queda lo que contestó');
-    same(0, (int) $row2['granted']);
+    same(0, (int) $row2['waiver']);
     check($app->service('orders')->findByNumber($number2) !== null, 'el pedido se hizo igualmente');
 });
 
@@ -364,7 +366,7 @@ test('sin aceptar la renuncia la descarga no sale: la dirección directa contest
     $url = $downloads->renew((int) $row['id'], $orderId);
     $r = $web->get((string) preg_replace('#^https://tienda\.test#', '', (string) $url));
     same(403, $r->status);
-    contains('La descarga queda retenida hasta que aceptes que pierdes tu derecho de desistimiento', $r->body);
+    contains('La descarga queda retenida mientras dure tu derecho de desistimiento. Se libera el ', $r->body);
     same(0, (int) $app->db()->value('SELECT downloads FROM {order_downloads}'));
 });
 
@@ -381,7 +383,7 @@ test('la página del pedido enseña el motivo de la descarga retenida en lugar d
     [$app, $orderId, $token, $web] = gmLegDigitalOrder();
     $page = $web->get(gmLegOrderPath($app, $orderId));
     same(200, $page->status);
-    contains('La descarga queda retenida hasta que aceptes que pierdes tu derecho de desistimiento. Escribe a la tienda y la liberaremos.', $page->body);
+    contains('La descarga queda retenida mientras dure tu derecho de desistimiento. Se libera el ', $page->body);
     notContains('>Descargar<', $page->body);
     notContains('Esta descarga ya no está disponible.', $page->body);
 });
@@ -454,3 +456,87 @@ function gmLegOrderPath(App $app, int $orderId): string
 
     return '/pedido/' . $order['number'] . '/' . $orders->viewTokenOf((string) $order['number']);
 }
+
+// ------------------------------------------------------------------ auditoría del 24/11/2026: el desistimiento en la caja
+
+test('el texto de la casilla depende de lo que lleva el carrito: descarga, servicio o las dos cosas; con lo físico no sale', function (): void {
+    $app = gmLegShop();
+    $web = new TestClient($app);
+    $service = aifecProduct($app, ['name' => 'Instalación', 'kind' => 'service', 'price' => 9000]);
+    frontAdd($web, $service, 1);
+    $page = $web->get('/finalizar-compra')->body;
+    contains('name="gm_legal_waiver"', $page);
+    contains('Pido que el servicio empiece ya. Si desisto después de que haya empezado, pagaré la parte proporcional de lo prestado.', $page);
+    notContains('Pido que la descarga empiece ya', $page);
+
+    $app2 = gmLegShop();
+    $web2 = new TestClient($app2);
+    $download = aifecProduct($app2, ['name' => 'Programa', 'kind' => 'digital', 'price' => 5000]);
+    $service2 = aifecProduct($app2, ['name' => 'Instalación', 'kind' => 'service', 'price' => 9000]);
+    frontAdd($web2, $download, 1);
+    frontAdd($web2, $service2, 1);
+    $page2 = $web2->get('/finalizar-compra')->body;
+    contains('Pido que la descarga y el servicio empiecen ya.', $page2);
+    contains('pagaré la parte proporcional de lo prestado', $page2);
+    same(1, substr_count($page2, 'name="gm_legal_waiver"'), 'una sola casilla');
+
+    $app3 = gmLegShop();
+    $web3 = new TestClient($app3);
+    frontAdd($web3, frontProduct($app3), 1);
+    notContains('gm_legal_waiver', $web3->get('/finalizar-compra')->body, 'un carrito sin descarga ni servicio no pregunta');
+});
+
+test('la casilla está ENCIMA del botón de pagar, no debajo', function (): void {
+    $app = gmLegShop();
+    $web = new TestClient($app);
+    frontAdd($web, aifecProduct($app, ['name' => 'Programa', 'kind' => 'digital', 'price' => 5000]), 1);
+    $page = $web->get('/finalizar-compra')->body;
+    $box = strpos($page, 'name="gm_legal_waiver"');
+    $button = strpos($page, 'data-af-checkout-submit');
+    check($box !== false && $button !== false, 'están las dos cosas');
+    check($box < $button, 'la casilla va antes del botón de pagar');
+    $form = strpos($page, '<form');
+    $close = strpos($page, '</form>', (int) $box);
+    check($form !== false && $close !== false && $form < $box && $box < $close, 'y dentro del formulario');
+});
+
+test('el pedido guarda el texto exacto, el tipo y la fecha, sin la IP, y el correo lo confirma con fecha', function (): void {
+    $app = gmLegShop();
+    $service = aifecProduct($app, ['name' => 'Instalación', 'kind' => 'service', 'price' => 9000, 'manage_stock' => 0]);
+    $web = new TestClient($app);
+    frontAdd($web, $service, 1);
+    [$number] = gmLegPlace($app, $web, true, ['gm_legal_waiver' => '1']);
+    $row = $app->db()->row('SELECT * FROM {gm_legal_orders} WHERE order_id = (SELECT id FROM {orders} WHERE number = ?)', [$number]);
+    same('service', (string) $row['kind']);
+    contains('pagaré la parte proporcional', (string) $row['text']);
+    foreach (array_keys($row) as $column) {
+        notContains('ip', strtolower((string) $column), 'no hay columna de IP');
+    }
+    $mails = aifecOrderMails($app, 'order_confirmed');
+    $html = (string) $mails[count($mails) - 1]['html'];
+    contains('marcaste la casilla:', $html);
+    contains(substr((string) $row['created_at'], 0, 10), $html, 'con la fecha');
+    contains('Pido que el servicio empiece ya.', $html, 'y el texto que marcó');
+    contains('pagarás la parte proporcional', $html, 'y lo que implica');
+
+    $web2 = new TestClient($app);
+    frontAdd($web2, $service, 1);
+    gmLegPlace($app, $web2, true, ['email' => 'luis@cliente.test']);
+    $mails2 = aifecOrderMails($app, 'order_confirmed');
+    $html2 = (string) $mails2[count($mails2) - 1]['html'];
+    contains('no marcaste la casilla:', $html2, 'sin marcar, también lo confirma');
+    contains('conservas', $html2);
+});
+
+test('sin marcar, la descarga queda retenida los 14 días del desistimiento y pasados se entrega sola', function (): void {
+    [$app, $orderId, , $web] = gmLegDigitalOrder();
+    $downloads = $app->service('orders')->downloads();
+    $row = $downloads->forOrder($orderId)[0];
+    same(true, $row['blocked'], 'el primer día está retenida');
+    $app->clock()->advance(13 * 86400);
+    $url = $downloads->renew((int) $row['id'], $orderId);
+    same(403, $web->get((string) preg_replace('#^https://tienda\.test#', '', (string) $url))->status, 'al día 13 sigue retenida');
+    $app->clock()->advance(2 * 86400);
+    $url2 = $downloads->renew((int) $row['id'], $orderId);
+    same(200, $web->get((string) preg_replace('#^https://tienda\.test#', '', (string) $url2))->status, 'pasados los 14 días se entrega');
+});
