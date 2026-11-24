@@ -22,7 +22,7 @@ test('cada tema de serie lleva el aviso «Creado con AIFEC» y la marca del gene
         $web = new TestClient($app);
         foreach (['/', '/carrito'] as $path) {
             $r = $web->get($path);
-            contains('<a href="https://aifec.gmartos.es" rel="noopener"', $r->body, $theme . ' ' . $path . ': el aviso de origen');
+            contains('<a href="https://aifec.dev" rel="noopener"', $r->body, $theme . ' ' . $path . ': el aviso de origen');
             contains('Creado con AIFEC', $r->body, $theme . ' ' . $path . ': en castellano');
             contains('<meta name="generator" content="AIFEC ' . App::VERSION . '">', $r->body, $theme . ' ' . $path . ': el generador');
         }
@@ -63,5 +63,5 @@ test('/.well-known/aifec.json declara el generador, el autor y la licencia', fun
     same(App::VERSION, $doc['generator']['version']);
     same('Ecom Experts', $doc['generator']['author']);
     contains('AGPL-3.0', $doc['generator']['license']);
-    same('https://aifec.gmartos.es', $doc['generator']['url']);
+    same('https://aifec.dev', $doc['generator']['url']);
 });

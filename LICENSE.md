@@ -15,7 +15,7 @@ ADDITIONAL TERMS (GNU AGPL v3, section 7)
    these legal notices visible and legible, and must not remove, hide or alter them:
 
      a) In the storefront, the line "Created with AIFEC" linking to
-        https://aifec.gmartos.es (added by the core at the end of every page).
+        https://aifec.dev (added by the core at the end of every page).
      b) In the admin panel, the line with the AIFEC name and version, the author
         "Ecom Experts" and the license.
      c) In the source files and in the NOTICE file, the copyright notice

@@ -8,7 +8,7 @@ Ningún pedido real se ha confirmado en producción. Las pruebas con clave se hi
 
 | Sitio | UCP | ACP | Feed ACP | Feed Google Merchant | MCP |
 |---|---|---|---|---|---|
-| https://aifec.gmartos.es (plataforma) | `/.well-known/ucp` | `/.well-known/acp.json` | `/acp/feed.jsonl` | `/acp/feed-google.tsv` | `/.well-known/mcp/server-card.json` |
+| https://aifec.dev (plataforma) | `/.well-known/ucp` | `/.well-known/acp.json` | `/acp/feed.jsonl` | `/acp/feed-google.tsv` | `/.well-known/mcp/server-card.json` |
 | https://detodounpoco.gmartos.es (plataforma) | igual | igual | igual | igual | igual |
 | https://themes.gmartos.es/deporte (módulo PrestaShop, demo) | igual | igual | igual | igual | igual |
 | https://www.drogueriaelbarco.com (módulo PrestaShop, producción) | igual | igual | igual | igual | igual |
@@ -17,7 +17,7 @@ La demo de PrestaShop tenía solo MCP y se actualizó el 23/11/2026 a la misma v
 
 `payment_handlers` va vacío y `is_eligible_checkout` en `false` **por política**: el comprador termina en la caja de la tienda (`continue_url`), no dentro del asistente.
 
-## 2. Plataforma AIFEC (aifec.gmartos.es), con clave de pruebas (permiso `orders:create`)
+## 2. Plataforma AIFEC (aifec.dev), con clave de pruebas (permiso `orders:create`)
 
 **ACP** (cabeceras `API-Version: 2026-04-17` e `Idempotency-Key`):
 - Crear sesión → 201, `requires_escalation`, `continue_url` a la caja de la tienda, total 794,90 € (790 € más 4,90 € de envío).

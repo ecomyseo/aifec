@@ -18,7 +18,7 @@ namespace Aifec\Kernel;
  *
  *   return ['sites' => [
  *       ['id' => 'main',      'host' => '*',                'path' => ''],
- *       ['id' => 'demo-moda', 'host' => 'aifec.gmartos.es', 'path' => '/demos/moda'],
+ *       ['id' => 'demo-moda', 'host' => 'aifec.dev', 'path' => '/demos/moda'],
  *   ]];
  *
  * Gana el dominio exacto sobre «*» y, dentro de eso, el prefijo de ruta más largo.

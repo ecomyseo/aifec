@@ -73,7 +73,7 @@ final class Urls
         return $this->origin() . $this->to($path, $query, $lang);
     }
 
-    /** «https://aifec.gmartos.es» (sin la subcarpeta del sitio). */
+    /** «https://aifec.dev» (sin la subcarpeta del sitio). */
     public function origin(): string
     {
         $url = (string) $this->app->site()->get('url', '');

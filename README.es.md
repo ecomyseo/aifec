@@ -5,7 +5,7 @@
 [![Licencia: AGPL v3](https://img.shields.io/badge/licencia-AGPL%20v3%20%2B%20t%C3%A9rminos-blue.svg)](LICENSE.md)
 [![PHP 7.4–8.4](https://img.shields.io/badge/PHP-7.4%E2%80%938.4-777bb4.svg)](docs/08-operacion/01-requisitos.md)
 [![Registro MCP](https://img.shields.io/badge/Registro%20MCP-es.gmartos.aifec%2Fshop-black.svg)](https://registry.modelcontextprotocol.io/v0.1/servers?search=es.gmartos.aifec)
-[![Demo en directo](https://img.shields.io/badge/demo-aifec.gmartos.es-1c3a2f.svg)](https://aifec.gmartos.es/)
+[![Demo en directo](https://img.shields.io/badge/demo-aifec.dev-1c3a2f.svg)](https://aifec.dev/)
 
 **Una forma abierta y práctica de que los asistentes de IA compren en tiendas independientes: hoy, con cualquier modelo, y siempre con una persona al mando.**
 
@@ -29,14 +29,14 @@ La tienda de demostración tiene productos y marcas ficticios, y solo pagos de p
 
 | Qué | Dirección |
 |---|---|
-| Tienda | https://aifec.gmartos.es/ |
-| Compra con enlaces (por aquí empieza un asistente) | https://aifec.gmartos.es/buy-with-links |
-| Servidor MCP (HTTP en streaming, sin clave) | https://aifec.gmartos.es/mcp |
-| Ficha del servidor MCP | https://aifec.gmartos.es/.well-known/mcp/server-card.json |
-| Guía para modelos de lenguaje | https://aifec.gmartos.es/llms.txt |
-| API REST y OpenAPI | https://aifec.gmartos.es/api · https://aifec.gmartos.es/openapi.json |
+| Tienda | https://aifec.dev/ |
+| Compra con enlaces (por aquí empieza un asistente) | https://aifec.dev/buy-with-links |
+| Servidor MCP (HTTP en streaming, sin clave) | https://aifec.dev/mcp |
+| Ficha del servidor MCP | https://aifec.dev/.well-known/mcp/server-card.json |
+| Guía para modelos de lenguaje | https://aifec.dev/llms.txt |
+| API REST y OpenAPI | https://aifec.dev/api · https://aifec.dev/openapi.json |
 
-Pruébalo: pídele a tu asistente *«Búscame en aifec.gmartos.es un mueble de baño estrecho y alto de menos de 50 € y déjamelo listo para comprar»*.
+Pruébalo: pídele a tu asistente *«Búscame en aifec.dev un mueble de baño estrecho y alto de menos de 50 € y déjamelo listo para comprar»*.
 
 ## Cómo compra un asistente
 
@@ -114,6 +114,6 @@ Software libre bajo la [GNU AGPL v3 con términos adicionales](LICENSE.md): pued
 
 ## Contacto
 
-Ecom Experts — ecomyseo@gmail.com · https://aifec.gmartos.es/
+Ecom Experts — ecomyseo@gmail.com · https://aifec.dev/
 
 Si trabajas en comercio con agentes, en MCP o en una plataforma de tiendas y quieres hablar de esto, escríbenos: te enseñamos una demo de 20 minutos.

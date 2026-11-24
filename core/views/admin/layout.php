@@ -84,7 +84,7 @@ $messages = isset($flashes['messages']) && is_array($flashes['messages']) ? $fla
                 <?php endif; ?>
             <?php endforeach; ?>
         </nav>
-        <p class="af-small af-muted af-side-origin">AIFEC <?= e(\Aifec\Kernel\App::VERSION) ?> · <a href="https://aifec.gmartos.es" rel="noopener">Ecom Experts</a> · AGPL-3.0</p>
+        <p class="af-small af-muted af-side-origin">AIFEC <?= e(\Aifec\Kernel\App::VERSION) ?> · <a href="https://aifec.dev" rel="noopener">Ecom Experts</a> · AGPL-3.0</p>
     </aside>
     <div class="af-main">
         <header class="af-top">

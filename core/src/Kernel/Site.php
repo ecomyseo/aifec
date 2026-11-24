@@ -84,7 +84,7 @@ final class Site
         return substr(md5($this->id), 0, 6);
     }
 
-    /** Dirección pública del sitio sin barra final: «https://aifec.gmartos.es/demos/moda». */
+    /** Dirección pública del sitio sin barra final: «https://aifec.dev/demos/moda». */
     public function url(): string
     {
         $url = (string) $this->get('url', '');

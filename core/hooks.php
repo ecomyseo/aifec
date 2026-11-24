@@ -25,7 +25,7 @@ return static function (App $app): void {
     });
     $app->hooks()->slot('body.end', static function () use ($app): string {
         return '<p class="af-powered" style="margin:0;padding:.75rem 1rem;text-align:center;font-size:.75rem;opacity:.75">'
-            . '<a href="https://aifec.gmartos.es" rel="noopener" style="color:inherit">' . e(t('Created with AIFEC')) . '</a></p>';
+            . '<a href="https://aifec.dev" rel="noopener" style="color:inherit">' . e(t('Created with AIFEC')) . '</a></p>';
     });
 
     // Activar o desactivar la minificación vuelve a publicar los recursos (con otra huella) y vacía la caché de páginas: el cambio se

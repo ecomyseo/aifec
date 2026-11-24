@@ -5,7 +5,7 @@
 [![License: AGPL v3](https://img.shields.io/badge/license-AGPL%20v3%20%2B%20terms-blue.svg)](LICENSE.md)
 [![PHP 7.4–8.4](https://img.shields.io/badge/PHP-7.4%E2%80%938.4-777bb4.svg)](docs/08-operacion/01-requisitos.md)
 [![MCP Registry](https://img.shields.io/badge/MCP%20Registry-es.gmartos.aifec%2Fshop-black.svg)](https://registry.modelcontextprotocol.io/v0.1/servers?search=es.gmartos.aifec)
-[![Live demo](https://img.shields.io/badge/demo-aifec.gmartos.es-1c3a2f.svg)](https://aifec.gmartos.es/)
+[![Live demo](https://img.shields.io/badge/demo-aifec.dev-1c3a2f.svg)](https://aifec.dev/)
 
 **An open, practical way for AI assistants to buy from independent online stores — today, with any LLM, and with a person always in control.**
 
@@ -29,14 +29,14 @@ The demo store has fictional products and brands, and only test payments.
 
 | What | Address |
 |---|---|
-| Store | https://aifec.gmartos.es/ |
-| Buying with links (start here as an assistant) | https://aifec.gmartos.es/buy-with-links |
-| MCP server (Streamable HTTP, no key) | https://aifec.gmartos.es/mcp |
-| MCP server card | https://aifec.gmartos.es/.well-known/mcp/server-card.json |
-| Guide for language models | https://aifec.gmartos.es/llms.txt |
-| REST API and OpenAPI | https://aifec.gmartos.es/api · https://aifec.gmartos.es/openapi.json |
+| Store | https://aifec.dev/ |
+| Buying with links (start here as an assistant) | https://aifec.dev/buy-with-links |
+| MCP server (Streamable HTTP, no key) | https://aifec.dev/mcp |
+| MCP server card | https://aifec.dev/.well-known/mcp/server-card.json |
+| Guide for language models | https://aifec.dev/llms.txt |
+| REST API and OpenAPI | https://aifec.dev/api · https://aifec.dev/openapi.json |
 
-Try it: ask your assistant *“Find me a tall, narrow bathroom cabinet under 50 € at aifec.gmartos.es and leave it ready to buy.”*
+Try it: ask your assistant *“Find me a tall, narrow bathroom cabinet under 50 € at aifec.dev and leave it ready to buy.”*
 
 ## How an assistant buys
 
@@ -112,6 +112,6 @@ Free software under the [GNU AGPL v3 with additional terms](LICENSE.md): you can
 
 ## Contact
 
-Ecom Experts — ecomyseo@gmail.com · https://aifec.gmartos.es/
+Ecom Experts — ecomyseo@gmail.com · https://aifec.dev/
 
 If you work on agentic commerce, MCP or a store platform and want to talk about this, write to us: we are happy to give a 20-minute demo.

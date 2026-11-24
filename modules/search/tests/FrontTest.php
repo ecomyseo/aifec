@@ -20,7 +20,7 @@ function searchCheckPage(string $html, string $label): void
     preg_match_all('#(?:href|src|action)="(?:https?:)?//([^/"?\#]+)#i', $html, $hosts);
     foreach ($hosts[1] as $host) {
         // La única dirección de fuera es el aviso de origen que exige la licencia («Creado con AIFEC»).
-        if ($host === 'aifec.gmartos.es') {
+        if ($host === 'aifec.dev') {
             continue;
         }
         same('tienda.test', $host, $label . ': dirección de otro dominio');

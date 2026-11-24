@@ -79,6 +79,6 @@ UCP y ACP permiten que una plataforma de IA cobre dentro de su propia pantalla, 
 ## Implementación de referencia
 
 - AIFEC: https://github.com/ecomyseo/aifec. Módulos `api` (REST y compra con enlaces), `mcp`, `semantic` (`llms.txt` y páginas `.md`) y `agentic` (UCP).
-- Demo en directo: https://aifec.gmartos.es/
+- Demo en directo: https://aifec.dev/
 
 Con la [licencia Apache 2.0](../LICENSE.md).
