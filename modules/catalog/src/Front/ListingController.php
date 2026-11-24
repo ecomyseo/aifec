@@ -201,7 +201,7 @@ final class ListingController
             $plain = trim((string) preg_replace('/\s+/u', ' ', html_entity_decode(strip_tags((string) $ctx['description']), ENT_QUOTES | ENT_HTML5, 'UTF-8')));
             $description = $plain !== ''
                 ? \Aifec\Util\Str::limit($plain, 155)
-                : t('{name}: {count} products at {shop}.', ['name' => (string) $ctx['title'], 'count' => (int) $result['total'], 'shop' => $app->settings()->str('store.name', 'AIFEC')]);
+                : t('{name}: {count} products at {shop}. Compare prices and options and buy online.', ['name' => (string) $ctx['title'], 'count' => (int) $result['total'], 'shop' => $app->settings()->str('store.name', 'AIFEC')]);
         }
         $robots = $filtered || $ctx['kind'] === 'search' ? 'noindex, follow' : '';
         $canonical = $app->url()->origin() . $query->url($base, $query->page, $filtered);

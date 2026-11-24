@@ -412,7 +412,7 @@ return [
     '{n} blocks added, {r} to review' => '{n} bloques añadidos, {r} por revisar',
 
     // ------------------------------------------------------------------ la tienda: blog, entradas y formularios del contenido
-    'News and articles from {shop}' => 'Novedades y artículos de {shop}',
+    'News and articles from {shop}: guides, tips and updates from the blog.' => 'Novedades y artículos de {shop}: guías, consejos y noticias del blog.',
     'Posts filed under {name}' => 'Entradas archivadas en {name}',
     'There are no posts here yet.' => 'Todavía no hay entradas aquí.',
     'Subscribe to the news feed' => 'Suscribirse al canal de novedades',

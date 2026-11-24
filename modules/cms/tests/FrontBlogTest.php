@@ -113,6 +113,16 @@ test('un blog sin entradas se ve y lo dice; un borrador y una entrada programada
     contains('Programada', $web->get('/blog')->body);
 });
 
+test('el índice del blog lleva una descripción de entre 50 y 170 caracteres', function (): void {
+    // Verificación del 24/11/2026: «Novedades y artículos de Ecom Experts» (37 caracteres) se quedaba corta para los buscadores.
+    $app = cmsApp();
+    cmsInsertPost($app, ['title' => 'Una entrada']);
+    $body = (new TestClient($app))->get('/blog')->body;
+    preg_match('/<meta name="description" content="([^"]*)"/u', $body, $m);
+    $length = mb_strlen(html_entity_decode((string) ($m[1] ?? '')), 'UTF-8');
+    check($length >= 50 && $length <= 170, 'la descripción tiene ' . $length . ' caracteres');
+});
+
 test('una entrada lleva una sola h1, la de su título: las del contenido pasan a h2', function (): void {
     // Auditoría del 24/11/2026: entradas importadas con una o varias h1 dentro del texto, además de la del título.
     $app = cmsApp();

@@ -123,7 +123,7 @@ final class PageController
         $meta = [
             'type' => 'blog',
             'title' => $result['page'] > 1 ? $title . ' · ' . t('Page') . ' ' . $result['page'] : $title,
-            'description' => t('News and articles from {shop}', ['shop' => $shop]),
+            'description' => t('News and articles from {shop}: guides, tips and updates from the blog.', ['shop' => $shop]),
             'canonical' => $this->app->url()->origin() . $this->pageUrl($base, $result['page']),
             'breadcrumbs' => Support::crumbs($this->app, [['name' => $title, 'url' => '']]),
         ];
