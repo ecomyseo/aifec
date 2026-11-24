@@ -95,6 +95,15 @@ aifec        la consola:  php aifec help
 
 Un módulo, un plugin y un tema se declaran con ficheros pequeños (`module.json`, `hooks.php`, `routes.php`, `admin.php`, `settings.php`, `theme.json`); el panel se construye a partir de esas declaraciones.
 
+## Fábricas de temas y de plugins
+
+Dos repositorios públicos aparte construyen y comprueban temas y plugins para AIFEC, con sus propias puertas (estructura, contrato, cabeceras, sin claves ni datos personales, pruebas contra una instalación real de AIFEC) y un skill para asistentes de IA:
+
+- [aifec-fabrica-temas](https://github.com/ecomyseo/aifec-fabrica-temas): la fábrica de temas.
+- [aifec-fabrica-plugins](https://github.com/ecomyseo/aifec-fabrica-plugins): la fábrica de plugins.
+
+Los dos tienen la misma licencia que AIFEC (GNU AGPL v3 con los términos de origen) y se mantienen al día con este repositorio.
+
 ## Pruebas
 
 ```
