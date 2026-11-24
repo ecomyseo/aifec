@@ -44,7 +44,8 @@ $af_tags = isset($post['tags']) && is_array($post['tags']) ? $post['tags'] : [];
             </figure>
         <?php endif; ?>
         <div class="af-prose">
-            <?= $html ?>
+            <?php // La h1 de la entrada es su título: las que trae el contenido (importado de otro sistema) pasan a h2. ?>
+            <?= preg_replace('#<(/?)h1\b([^>]*)>#i', '<$1h2$2>', (string) $html) ?>
         </div>
         <?php if ($af_categories !== [] || $af_tags !== []) : ?>
             <p class="af-small af-row">

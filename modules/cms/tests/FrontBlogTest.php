@@ -113,6 +113,17 @@ test('un blog sin entradas se ve y lo dice; un borrador y una entrada programada
     contains('Programada', $web->get('/blog')->body);
 });
 
+test('una entrada lleva una sola h1, la de su título: las del contenido pasan a h2', function (): void {
+    // Auditoría del 24/11/2026: entradas importadas con una o varias h1 dentro del texto, además de la del título.
+    $app = cmsApp();
+    cmsInsertPost($app, ['title' => 'Mi entrada', 'slug' => 'mi-entrada', 'blocks' => [['type' => 'html', 'attrs' => ['html' => '<h1>Un título del contenido</h1><p>a</p><h1>Otro</h1>']]]]);
+    $body = (new TestClient($app))->get('/blog/mi-entrada')->body;
+    same(1, substr_count($body, '<h1'), 'una sola h1');
+    contains('<h1 class="af-title">Mi entrada</h1>', $body);
+    contains('<h2>Un título del contenido</h2>', $body);
+    contains('<h2>Otro</h2>', $body);
+});
+
 test('una entrada se ve con su fecha, su autora, sus minutos de lectura, sus categorías y etiquetas y sus datos de cabecera', function (): void {
     $app = cmsApp();
     $autora = aifecAdmin($app, 'admin', 'lucia@ejemplo.test', 'Lucía Gómez');
