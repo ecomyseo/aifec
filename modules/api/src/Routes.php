@@ -118,6 +118,9 @@ final class Routes
             // Con un trozo al azar al final: la dirección de «volver a comprar» de un carrito viejo no puede ser una que el lector
             // del asistente ya tenga guardada (17/11/2026: la caché de Claude devolvía otra vez el carrito viejo).
             self::row('api.links.new.fresh', 'GET', '/buy-with-links/new/{a:[0-9]{1,9}}/{b:[0-9]{1,9}}/{n:[a-z0-9]{6,20}}', 'links', [BrowseController::class, 'addNew'], 'Buying with links: puts one unit of this product (or option, 0 for none) in a new cart; the last part only makes the address new', 'checkout', [], [], ['root' => true]),
+            // Los datos de quien compra se mandan como formulario (POST): en el cuerpo y no en la dirección, que se guarda en historiales y registros.
+            self::row('api.links.customer.post', 'POST', '/buy-with-links/{step:customer}', 'links', [BrowseController::class, 'go'], 'Buying with links: saves who buys, sent as a form (POST) so the details never travel in the address', 'checkout', [], [], ['root' => true]),
+            self::row('api.links.customer.post.path', 'POST', '/buy-with-links/{step:customer}/{cart:[a-f0-9]{48}}', 'links', [BrowseController::class, 'go'], 'Buying with links: saves who buys in this cart, sent as a form (POST)', 'checkout', [], [], ['root' => true]),
             self::row('api.links.step', 'GET', '/buy-with-links/{step:[a-z-]{3,20}}', 'links', [BrowseController::class, 'go'], 'One step of buying with links: start, add, cart, customer, shipping-options, shipping, payment-options, payment, status, review, code or place. Every answer has the next addresses ready', 'checkout', [], [], ['root' => true]),
         ];
 

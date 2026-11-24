@@ -100,7 +100,6 @@ final class BrowseController
         . 'Once they have, this page of the shop shows what is still missing and the next steps (delivery, payment, the review and the order, which the person confirms with a code the shop emails them): {STATUS} . '
         . 'The carrier needs the phone. In the same form the person can write a note for the shop: a size or a colour the product does not offer as an option. '
         . 'The way that works with any tool is that form: a page of the shop where the person types those details, and the shop keeps them in this cart. '
-        . 'An assistant that can open addresses it completes can instead send the person\'s own words in the "Save who buys" address of "next". '
         . 'To finish at the shop instead, this address opens this same cart, already filled, at the checkout: {RESUME} . '
         . 'None of this needs an app, a tool or a permission. Paying is always done by the person, on the payment page of the shop (card, PayPal…): '
         . 'no assistant ever sees or types payment details, and nothing is charged before the person pays there. What is in the cart and its price are in this answer.';
@@ -128,6 +127,9 @@ final class BrowseController
 
     /** @var bool|null si la tienda es de demostración o cobra solo en modo de prueba (se mira una vez por petición) */
     private $demoShop = null;
+
+    /** @var bool se han descartado datos personales escritos en la dirección de esta petición */
+    private $withheld = false;
 
     /** @var bool la respuesta va en JSON (lo pide el programa); si no, como página de texto */
     private $json = false;
@@ -278,8 +280,8 @@ final class BrowseController
             // WORDS, los datos) los abría tal cual y era un tropiezo («added: false», 17/11/2026, R38).
             [
                 ['do' => 'Start: get a cart', 'url' => $this->url('start')],
-                ['do' => 'Or everything in one address, for assistants that only open addresses exactly as written (the person writes it: the product id, units and their own details)',
-                    'url' => $this->url('add', '', ['product_id' => 'ID', 'qty' => '1', 'text' => 'NAME, STREET AND NUMBER, POSTCODE CITY, PHONE, EMAIL'])],
+                ['do' => 'Put a product in a new cart in one address (replace ID). The buyer\'s details are never written in an address: the person types them in the form of the shop that this answer gives',
+                    'url' => $this->url('add', '', ['product_id' => 'ID', 'qty' => '1'])],
                 ['do' => 'Find products first (replace WORDS)', 'url' => $this->app->url()->abs(Routes::PREFIX . '/search', [], '') . '?q=WORDS'],
             ]
         ));
@@ -404,6 +406,11 @@ final class BrowseController
         }
         Carts::openToken($this->app, $raw);
         $input = $this->input($request);
+        // Los datos de quien compra no viajan por una dirección (historiales, registros del servidor, analítica y cachés los guardan):
+        // salvo que la tienda lo encienda, se descartan y la persona los escribe en el formulario de la tienda.
+        if (!$this->detailsInAddress() && $request->method !== 'POST') {
+            $input = $this->withoutPersonal($input);
+        }
         if ($inPath) {
             // Los valores que vienen como trozos de la ruta valen lo mismo que sus parámetros.
             foreach (isset(self::PATH[$step]) ? self::PATH[$step] : [] as $i => $name) {
@@ -480,6 +487,15 @@ final class BrowseController
             }
 
             return $this->answer(['cart' => $raw] + $result, $this->afterCart($raw), $this->afterAdd($raw), $this->cartForPerson($raw));
+        }
+        if ($step === 'customer' && $this->withheld && array_intersect_key($input, array_flip(self::TOOLS['customer'][1])) === []) {
+            // Venían datos de quien compra escritos en la dirección y se han descartado: no es un error, es el camino de la persona (el
+            // formulario de la tienda), con el aviso de por qué.
+            return $this->answer(['cart' => $raw, 'saved' => false], [
+                ['do' => 'The form for the person: they type who receives it, and the shop keeps it in this cart', 'url' => $this->url('customer', $raw)],
+                ['do' => 'What is still missing, and the next steps, once the person has filled the form', 'url' => $this->statusUrl($raw)],
+                ['do' => 'See the cart', 'url' => $this->url('cart', $raw)],
+            ]);
         }
         if ($step === 'customer' && !$this->json && array_intersect_key($input, array_flip(self::TOOLS['customer'][1])) === []) {
             // La PERSONA abre la dirección de los datos tal cual, sin datos: le sale un formulario que los guarda en ESTE carrito.
@@ -713,7 +729,9 @@ final class BrowseController
     private function input(Request $request): array
     {
         $input = [];
-        foreach ($request->query as $name => $value) {
+        // Lo que llega en el cuerpo de un POST (el formulario de la persona) vale como la consulta, y no queda en ninguna dirección.
+        $values = $request->method === 'POST' ? array_merge($request->query, $request->post) : $request->query;
+        foreach ($values as $name => $value) {
             if ($name === 'cart' || $name === 'format' || !is_string($name) || !is_scalar($value)) {
                 continue;
             }
@@ -847,16 +865,18 @@ final class BrowseController
      */
     private function afterCart(string $raw): array
     {
-        $next = [
+        $next = $this->detailsInAddress() ? [
             ['do' => 'Save who buys: ask the person for their name, address, email and a phone (the carrier needs it for the delivery) and put their own words in text (URL-encoded), in place of the example. A detail the product does not offer as an option (a size, a colour) goes in the parameter note of the same address (URL-encoded). '
                 . 'If your tool refuses to open the address once you have completed it, do not give up and do not ask for another tool: write the completed address in your answer as a link, ask the person to open it (it saves their details and tells them so), and then go on from the "what is still missing" address',
                 'url' => $this->url('customer', $raw, ['text' => 'NAME, STREET AND NUMBER, POSTCODE CITY, PHONE, EMAIL'])],
+        ] : [];
+        $next = array_merge($next, [
             // Para el asistente que no puede abrir direcciones que completa él: un enlace ya escrito que abre un formulario
             // para la persona. Ella escribe sus datos, se guardan en este carrito y el asistente sigue y hace el pedido.
             ['do' => 'If you cannot open addresses you complete yourself: write THIS address, as it is, in your answer and ask the person to open it. It is a form where they write their name, address, phone and email; '
                 . 'the shop saves them in this cart. When they tell you it is done, open "What is still missing" and go on to the delivery, the payment and the order: you still place it with their code',
                 'url' => $this->url('customer', $raw)],
-        ];
+        ]);
         if ($this->readerOnly()) {
             // El lector de una IA de chat (Claude-User, ChatGPT-User, el de Gemini) no abre direcciones que completa él: el
             // ejemplo de los datos solo le servía para abrirlo tal cual, recibir «saved: false» y dar un tropiezo antes del
@@ -1078,6 +1098,49 @@ final class BrowseController
         return new Response($html, 200, ['Content-Type' => 'text/html; charset=UTF-8', 'Cache-Control' => 'no-store, private', 'X-Robots-Tag' => 'noindex', 'Referrer-Policy' => 'no-referrer']);
     }
 
+    /** Campos de la dirección que llevan datos de quien compra. «note» (una talla, un color) no es personal y sigue valiendo. */
+    private const PERSONAL = ['text', 'email', 'first_name', 'last_name', 'company', 'vat_id', 'phone', 'line1', 'line2', 'postcode', 'city', 'region', 'country'];
+
+    /** ¿La tienda deja escribir los datos del comprador en la dirección? De serie no (ajuste «api.links.details_in_address»). */
+    private function detailsInAddress(): bool
+    {
+        return $this->app->settings()->bool('api.links.details_in_address', false);
+    }
+
+    /**
+     * Quita de lo recibido los datos de quien compra. Una talla o un color que venga en «text» pasa a «note»; lo demás de «text» se
+     * descarta si trae datos personales (o si no se puede saber qué trae). Anota que se ha descartado algo para decírselo a quien lo abre.
+     *
+     * @param array<string,mixed> $input
+     *
+     * @return array<string,mixed>
+     */
+    private function withoutPersonal(array $input): array
+    {
+        $input = self::optionsToNote($input);
+        foreach (self::PERSONAL as $key) {
+            if (!isset($input[$key]) || trim((string) $input[$key]) === '') {
+                unset($input[$key]);
+                continue;
+            }
+            if ($key === 'text' && self::isTemplate((string) $input[$key])) {
+                continue; // el ejemplo tal cual: no lleva datos de nadie y tiene su propia respuesta
+            }
+            if ($key === 'text') {
+                // Una talla o un color solos no son datos de nadie (ya pasaron a «note»): se descarta el resto sin alarmar.
+                $found = \Aifec\Assistant\CustomerData::extract((string) $input[$key]);
+                if (array_intersect_key($found, ['email' => 1, 'phone' => 1, 'tax_id' => 1, 'postcode' => 1, 'address' => 1]) === []) {
+                    unset($input[$key]);
+                    continue;
+                }
+            }
+            $this->withheld = true;
+            unset($input[$key]);
+        }
+
+        return $input;
+    }
+
     /** ¿Es el ejemplo de la dirección de los datos tal cual («NAME, STREET AND NUMBER…»), sin los datos de nadie? */
     private static function isTemplate(string $text): bool
     {
@@ -1170,6 +1233,11 @@ final class BrowseController
     private function answer(array $data, array $next, string $say = '', string $person = ''): Response
     {
         $payload = ['data' => Present::amounts($data), 'next' => $next];
+        if ($this->withheld) {
+            $notice = t('This shop does not take personal details written in an address: addresses are kept in histories and server records. The person types them in the form of the shop (see "next").');
+            $payload['notice'] = $notice;
+            $say = trim($notice . ' ' . $say);
+        }
         if ($say !== '') {
             $payload['say'] = $say;
         }
@@ -1236,7 +1304,7 @@ final class BrowseController
             . 'input{width:100%;padding:.6rem;font-size:1rem;box-sizing:border-box}button{margin-top:1.2rem;padding:.8rem 1.2rem;font-size:1rem}</style></head><body>'
             . '<h1>' . $h(t('Your details for the order')) . '</h1>'
             . '<p>' . $h(t('Your assistant has prepared your cart. Write who receives it: the shop saves it in that cart and you go back to your assistant to finish.')) . '</p>'
-            . '<form method="get" action="' . $h($action) . '">';
+            . '<form method="post" action="' . $h($action) . '">';
         foreach ($fields as $name => $info) {
             $html .= '<label for="af-' . $h($name) . '">' . $h($info[0]) . '</label>'
                 . '<input id="af-' . $h($name) . '" name="' . $h($name) . '" type="' . $h($info[2]) . '" autocomplete="' . $h($info[1]) . '" required>';
@@ -1304,12 +1372,14 @@ final class BrowseController
 
     private function page(string $markdown): Response
     {
+        $markdown = $this->localise($markdown);
         if ($this->base() === self::ALIAS) {
             // Fuera de /api/ la página es HTML, con enlaces de verdad: es lo único que abren algunos lectores de páginas.
             return new Response($this->html($markdown), 200, [
                 'Content-Type' => 'text/html; charset=UTF-8',
                 'Cache-Control' => self::NO_SHARED_CACHE,
                 'X-Robots-Tag' => 'noindex',
+                'Referrer-Policy' => 'no-referrer',
             ]);
         }
         // Las mismas cabeceras que las fichas .md de la tienda, que los lectores de páginas de los asistentes sí abren
@@ -1367,8 +1437,35 @@ final class BrowseController
             $out[] = '</ul>';
         }
 
-        return "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Buying with links</title>\n</head>\n<body>\n<main>\n"
+        return "<!doctype html>\n<html lang=\"" . htmlspecialchars($this->app->lang(), ENT_QUOTES, 'UTF-8') . "\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>" . htmlspecialchars($this->localise('Buying with links'), ENT_QUOTES, 'UTF-8') . "</title>\n</head>\n<body>\n<main>\n"
             . implode("\n", $out) . "\n</main>\n</body>\n</html>\n";
+    }
+
+    /**
+     * El texto de la página en el idioma de la tienda. Hay castellano además del inglés (modules/api/lang/links-es.php, trozo a trozo);
+     * en otro idioma sale en inglés. El JSON de los programas no pasa por aquí.
+     */
+    private function localise(string $text): string
+    {
+        if ($this->app->lang() !== 'es') {
+            return $text;
+        }
+        static $map = null;
+        if ($map === null) {
+            $loaded = require dirname(__DIR__) . '/lang/links-es.php';
+            $map = [];
+            foreach (is_array($loaded) ? $loaded : [] as $from => $to) {
+                $map[(string) $from] = (string) $to;
+                // Dentro del bloque JSON de la página las comillas van escapadas: el mismo trozo, tal como se escribe allí.
+                $flags = JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES;
+                $jsonFrom = substr((string) json_encode((string) $from, $flags), 1, -1);
+                if ($jsonFrom !== (string) $from) {
+                    $map[$jsonFrom] = substr((string) json_encode((string) $to, $flags), 1, -1);
+                }
+            }
+        }
+
+        return strtr($text, $map);
     }
 
     /** El JSON ni se guarda en caché ni se indexa ni deja rastro en el Referer. */

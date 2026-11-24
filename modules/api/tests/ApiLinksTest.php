@@ -15,6 +15,19 @@ require_once __DIR__ . '/helpers.php';
 require_once __DIR__ . '/../../orders/tests/FrontKit.php';
 
 /**
+ * La tienda de estas pruebas deja escribir los datos del comprador en la dirección (ajuste «api.links.details_in_address»): es el flujo
+ * de los asistentes que solo abren direcciones, que sigue existiendo cuando la tienda lo enciende. Con el ajuste de serie (apagado) lo
+ * prueba ApiLinksPrivacyTest.
+ *
+ * @param array<string,mixed> $ajustes
+ * @param string[]            $modulos
+ */
+function linksApp(array $ajustes = [], array $modulos = []): \Aifec\Kernel\App
+{
+    return apiApp($ajustes + ['api.links.details_in_address' => true], $modulos);
+}
+
+/**
  * Abre una dirección de las que da la tienda (con su dominio), como lo haría un asistente: un GET sin cabeceras ni cuerpo.
  *
  * @return array{0:int,1:array<string,mixed>,2:\Aifec\Kernel\Response}
@@ -59,7 +72,7 @@ function linksCode(\Aifec\Kernel\App $app): string
 }
 
 test('la compra entera solo abriendo direcciones: cada respuesta trae la del paso siguiente, y el pedido solo se hace con el código del comprador', function (): void {
-    $app = apiApp();
+    $app = linksApp();
     $app->settings()->set('api.browser_agents_allowed', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/140.0 Safari/537.36');
     $ids = assistantShop($app);
 
@@ -177,7 +190,7 @@ test('la compra entera solo abriendo direcciones: cada respuesta trae la del pas
 });
 
 test('los enlaces no se saltan nada: sin carrito, con un carrito inventado, un paso que no existe, un número mal escrito y con el ajuste apagado', function (): void {
-    $app = apiApp();
+    $app = linksApp();
     $ids = assistantShop($app);
     [$status, $none] = linksOpen($app, 'https://tienda.test/api/v1/go/cart');
     same(401, $status);
@@ -195,7 +208,7 @@ test('los enlaces no se saltan nada: sin carrito, con un carrito inventado, un p
     [$status] = linksOpen($app, 'https://tienda.test/api/v1/go/review?cart=' . $cart);
     same(422, $status, 'revisar un carrito vacío');
 
-    $off = apiApp(['api.links' => false]);
+    $off = linksApp(['api.links' => false]);
     assistantShop($off);
     same(404, linksOpen($off, 'https://tienda.test/api/v1/go')[0], 'apagado, la guía no existe');
     same(404, linksOpen($off, 'https://tienda.test/api/v1/go/start')[0], 'ni se puede empezar');
@@ -204,7 +217,7 @@ test('los enlaces no se saltan nada: sin carrito, con un carrito inventado, un p
 
 test('con «solo con clave» o apagado, los enlaces llegan hasta la revisión pero no hacen pedidos', function (): void {
     foreach (['key' => 401, 'off' => 403] as $mode => $expected) {
-        $app = apiApp(['api.agent_orders' => $mode]);
+        $app = linksApp(['api.agent_orders' => $mode]);
         $ids = assistantShop($app);
         $token = apiCart($app, [[$ids['silla_roja'], 0, 1]]);
         $review = apiBuy($app, $token);
@@ -218,7 +231,7 @@ test('con «solo con clave» o apagado, los enlaces llegan hasta la revisión pe
 });
 
 test('el documento OpenAPI y el llms.txt cuentan la compra con enlaces', function (): void {
-    $app = apiApp();
+    $app = linksApp();
     assistantShop($app);
     $doc = apiJson(apiCall($app, 'GET', '/api/openapi.json'));
     check(isset($doc['paths']['/go']['get']), 'la guía está en el documento');
@@ -228,7 +241,7 @@ test('el documento OpenAPI y el llms.txt cuentan la compra con enlaces', functio
 });
 
 test('sin pedir JSON, cada paso es una página de texto que un lector de páginas sabe abrir: con lo que hay que hacer, la respuesta y las direcciones siguientes', function (): void {
-    $app = apiApp();
+    $app = linksApp();
     $ids = assistantShop($app);
 
     [$status, , $response] = linksOpen($app, 'https://tienda.test/api/v1/go', false);
@@ -263,7 +276,7 @@ test('sin pedir JSON, cada paso es una página de texto que un lector de página
 });
 
 test('la compra con enlaces existe también fuera de /api/, y por esa entrada las direcciones siguientes siguen fuera de /api/', function (): void {
-    $app = apiApp();
+    $app = linksApp();
     $ids = assistantShop($app);
     [$status, , $guide] = linksOpen($app, 'https://tienda.test/buy-with-links', false);
     same(200, $status);
@@ -282,15 +295,15 @@ test('la compra con enlaces existe también fuera de /api/, y por esa entrada la
     notContains('&amp;', $added->body);
     $doc = apiJson(apiCall($app, 'GET', '/api/openapi.json'));
     check(!isset($doc['paths']['/buy-with-links']), 'el documento OpenAPI es de /api/v1: la entrada de fuera no sale ahí');
-    same(404, linksOpen(apiApp(['api.links' => false]), 'https://tienda.test/buy-with-links/start')[0], 'apagada, tampoco existe por aquí');
+    same(404, linksOpen(linksApp(['api.links' => false]), 'https://tienda.test/buy-with-links/start')[0], 'apagada, tampoco existe por aquí');
 });
 
 test('el robots.txt de una tienda cerrada a los buscadores deja pasar a la compra con enlaces, y solo a ella', function (): void {
-    $closed = apiApp(['seo.noindex_site' => true], ['seo']);
+    $closed = linksApp(['seo.noindex_site' => true], ['seo']);
     assistantShop($closed);
     $robots = \Aifec\Modules\Seo\Robots::build($closed);
     check(strpos($robots, "User-agent: *\nAllow: /buy-with-links\nAllow: /*buy-with-links\nDisallow: /\n") === 0, 'los lectores de páginas de los asistentes obedecen este fichero: ' . $robots);
-    $off = apiApp(['seo.noindex_site' => true, 'api.links' => false], ['seo']);
+    $off = linksApp(['seo.noindex_site' => true, 'api.links' => false], ['seo']);
     assistantShop($off);
     check(strpos(\Aifec\Modules\Seo\Robots::build($off), "User-agent: *\nDisallow: /\n") === 0, 'con la compra con enlaces apagada, la regla general no abre nada');
 });
@@ -298,7 +311,7 @@ test('el robots.txt de una tienda cerrada a los buscadores deja pasar a la compr
 test('una tienda cerrada a los buscadores no está cerrada al lector que abre una página para una persona: sin eso Claude no puede leer ni la ficha', function (): void {
     // 16/11/2026: en la tienda de pruebas (cerrada a los buscadores) Claude contestó «la lectura directa está bloqueada por su
     // robots.txt» a una clienta que le pedía un producto. Su lector (Claude-User) obedece el fichero, y decía «Disallow: /».
-    $closed = apiApp(['seo.noindex_site' => true], ['seo']);
+    $closed = linksApp(['seo.noindex_site' => true], ['seo']);
     assistantShop($closed);
     $robots = \Aifec\Modules\Seo\Robots::build($closed);
 
@@ -320,13 +333,13 @@ test('una tienda cerrada a los buscadores no está cerrada al lector que abre un
     notContains('Sitemap:', $robots, 'y no se anuncia el mapa del sitio');
 
     // Bloqueando los asistentes en los ajustes, tampoco entran ellos.
-    $shut = apiApp(['seo.noindex_site' => true, 'seo.bots.assistant' => 'disallow'], ['seo']);
+    $shut = linksApp(['seo.noindex_site' => true, 'seo.bots.assistant' => 'disallow'], ['seo']);
     assistantShop($shut);
     same("User-agent: *\nAllow: /buy-with-links\nAllow: /*buy-with-links\nDisallow: /\n", \Aifec\Modules\Seo\Robots::build($shut));
 });
 
 test('para el asistente que solo abre direcciones literales: una sola dirección escrita por la persona crea el carrito, añade el producto y guarda sus datos; las siguientes vienen ya hechas', function (): void {
-    $app = apiApp();
+    $app = linksApp();
     $ids = assistantShop($app);
     [$status, $first] = linksOpen($app, 'https://tienda.test/buy-with-links/add?product_id=' . $ids['silla_roja'] . '&qty=1&text=' . rawurlencode(CHAT_DATA));
     same(200, $status, json_encode($first));
@@ -387,7 +400,7 @@ test('para el asistente que solo abre direcciones literales: una sola dirección
 });
 
 test('para el lector que no monta direcciones: el código se teclea con enlaces, un dígito por página, y la dirección del sexto ya es la del pedido', function (): void {
-    $app = apiApp();
+    $app = linksApp();
     $ids = assistantShop($app);
     [, $first] = linksOpen($app, 'https://tienda.test/buy-with-links/add?product_id=' . $ids['silla_roja'] . '&qty=1&text=' . rawurlencode(CHAT_DATA));
     $cart = (string) $first['data']['cart'];
@@ -448,8 +461,8 @@ test('para el lector que no monta direcciones: el código se teclea con enlaces,
 
     // Como página de texto (lo que lee el asistente): las diez direcciones van escritas y la guía cuenta el paso.
     [, , $guide] = linksOpen($app, 'https://tienda.test/buy-with-links', false);
-    contains('one digit per page', $guide->body);
-    contains('Write that address in your answer to the person', $guide->body, 'y pide al asistente que guarde la dirección del teclado');
+    contains('una cifra por página', $guide->body);
+    contains('Escribe esa dirección en tu respuesta a la persona', $guide->body, 'y pide al asistente que guarde la dirección del teclado');
     // La revisión también se lo dice, junto a la dirección: ChatGPT la perdía de un turno a otro (16/11/2026).
     $padEntry = null;
     foreach ($review['next'] as $entry) {
@@ -468,7 +481,7 @@ test('para el lector que no monta direcciones: el código se teclea con enlaces,
  */
 
 test('del llms.txt al carrito sin montar ninguna dirección: la ficha y el listado en texto traen escrita la de «añadir», y el llms.txt lo dice lo primero', function (): void {
-    $app = apiApp([], ['semantic']);
+    $app = linksApp([], ['semantic']);
     $ids = assistantShop($app);
     $web = new TestClient($app);
 
@@ -552,7 +565,7 @@ test('del llms.txt al carrito sin montar ninguna dirección: la ficha y el lista
 });
 
 test('sin el módulo de datos semánticos la guía no ofrece un catálogo por enlaces que no existe', function (): void {
-    $app = apiApp();
+    $app = linksApp();
     assistantShop($app);
     [, $rules] = linksOpen($app, 'https://tienda.test/buy-with-links');
     foreach ($rules['next'] as $entry) {
@@ -561,7 +574,7 @@ test('sin el módulo de datos semánticos la guía no ofrece un catálogo por en
 });
 
 test('quien no puede mandar los datos del comprador da a la persona la dirección de la caja: ella termina allí y el asistente recoge el número de pedido', function (): void {
-    $app = apiApp();
+    $app = linksApp();
     $ids = assistantShop($app);
 
     [, $added] = linksOpen($app, 'https://tienda.test/buy-with-links/add?product_id=' . $ids['mesa'] . '&qty=1');
@@ -633,7 +646,7 @@ test('quien no puede mandar los datos del comprador da a la persona la direcció
 });
 
 test('la segunda salida: el asistente escribe la dirección con los datos, la abre la PERSONA, y él sigue por el estado hasta el pedido sin montar ninguna', function (): void {
-    $app = apiApp();
+    $app = linksApp();
     $ids = assistantShop($app);
 
     [, $added] = linksOpen($app, 'https://tienda.test/buy-with-links/add?product_id=' . $ids['silla_roja'] . '&qty=1');
@@ -653,7 +666,7 @@ test('la segunda salida: el asistente escribe la dirección con los datos, la ab
     same(200, $status);
     contains('text/html', (string) $page->headers['Content-Type']);
     contains('<strong>Si eres la persona que compra:</strong> Tus datos están guardados. Vuelve a tu asistente y dile que continúe.', $page->body, 'le dice, en su idioma, que ya está');
-    check(strpos($page->body, 'Si eres la persona que compra') < strpos($page->body, 'Answer of the shop'), 'y es lo primero de la página');
+    check(strpos($page->body, 'Si eres la persona que compra') < strpos($page->body, 'Respuesta de la tienda'), 'y es lo primero de la página');
     notContains('ana@correo.test', $page->body, 'sus datos vuelven tapados');
 
     // Con datos a medias (otro carrito, solo el nombre), la página no dice que estén guardados: dice que falta algo.
@@ -692,7 +705,7 @@ test('la segunda salida: el asistente escribe la dirección con los datos, la ab
 });
 
 test('la persona abre el enlace de los datos tal cual: un formulario que los guarda en el carrito que preparó su asistente', function (): void {
-    $app = apiApp();
+    $app = linksApp();
     $ids = assistantShop($app);
     [, $added] = linksOpen($app, 'https://tienda.test/buy-with-links/add?product_id=' . $ids['silla_roja'] . '&qty=1');
     $cart = (string) $added['data']['cart'];
@@ -707,7 +720,7 @@ test('la persona abre el enlace de los datos tal cual: un formulario que los gua
     [$status, , $page] = linksOpen($app, $formUrl, false);
     same(200, $status);
     contains('text/html', (string) $page->headers['Content-Type']);
-    contains('<form method="get" action="https://tienda.test/buy-with-links/customer/' . $cart . '">', $page->body, 'el formulario vuelve a la misma dirección');
+    contains('<form method="post" action="https://tienda.test/buy-with-links/customer/' . $cart . '">', $page->body, 'el formulario vuelve a la misma dirección y lo manda por POST: sus datos no van en la dirección');
     foreach (['first_name', 'last_name', 'line1', 'postcode', 'city', 'phone', 'email'] as $field) {
         contains('name="' . $field . '"', $page->body, 'pide ' . $field);
     }
@@ -718,7 +731,7 @@ test('la persona abre el enlace de los datos tal cual: un formulario que los gua
         ['user-agent' => 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; Claude-User/1.0; +Claude-User@anthropic.com', 'accept' => 'text/html']);
     same(200, $reader->status);
     notContains('<form', $reader->body, 'al lector, sin formulario');
-    contains('This address is a form for the PERSON', $reader->body);
+    contains('Esta dirección es un formulario para la PERSONA', $reader->body);
     contains('/buy-with-links/customer/' . $cart, $reader->body, 'con la dirección que tiene que darle, escrita');
     // La de «lo que falta», nueva en cada respuesta para el lector: su caché le devolvía la página vieja, sin los datos que la
     // persona acababa de guardar (17/11/2026, R42).
@@ -789,7 +802,7 @@ test('la persona abre el enlace de los datos tal cual: un formulario que los gua
 });
 
 test('el enlace de la caja con el carrito, abierto por el lector de una IA: dice que es para la persona, sin redirigir ni poner el carrito', function (): void {
-    $app = apiApp();
+    $app = linksApp();
     $ids = assistantShop($app);
     [, $added] = linksOpen($app, 'https://tienda.test/buy-with-links/add?product_id=' . $ids['silla_roja'] . '&qty=1');
     $resume = (string) parse_url(linksNext($added, '/carrito/retomar/'), PHP_URL_PATH);
@@ -801,7 +814,7 @@ test('el enlace de la caja con el carrito, abierto por el lector de una IA: dice
     same(302, $person->status, 'la persona sí va a la caja');
 
     // Y el robots.txt se lo deja abrir a los lectores de los asistentes, aunque el resto del carrito siga cerrado.
-    $seo = apiApp(['seo.noindex_site' => true], ['seo']);
+    $seo = linksApp(['seo.noindex_site' => true], ['seo']);
     $robots = apiCall($seo, 'GET', '/robots.txt')->body;
     contains("Allow: /\nAllow: /carrito/retomar/\n", $robots, 'el grupo de los lectores abre el enlace de retomar');
     contains("Disallow: /carrito\n", $robots, 'el carrito sigue cerrado');
@@ -810,7 +823,7 @@ test('el enlace de la caja con el carrito, abierto por el lector de una IA: dice
 test('el lector que solo abre direcciones escritas: el ejemplo de los datos abierto tal cual le lleva al formulario, y tiene ya escrita la que añade otro producto al MISMO carrito', function (): void {
     // 16/11/2026, Claude-User: abría «customer/…?text=NAME, STREET AND NUMBER…» tal cual (no puede abrir la que completa él),
     // recibía un 422 «no he encontrado ningún dato personal» y no podía meter el colorante en el carrito del kit de velas.
-    $app = apiApp();
+    $app = linksApp();
     $ids = assistantShop($app);
     [$status, $first] = linksOpen($app, 'https://tienda.test/buy-with-links/add?product_id=' . $ids['silla_roja'] . '&qty=1');
     same(200, $status, json_encode($first));
@@ -852,7 +865,7 @@ test('el lector que solo abre direcciones escritas: el ejemplo de los datos abie
 test('«add» sin producto o con el ejemplo «ID», y el buscador con «WORDS»: el catálogo por enlaces, sin error y sin crear carritos', function (): void {
     // 17/11/2026, Claude-User: abría «/buy-with-links/add» a secas y «/api/v1/search?q=WORDS» tal cual (no puede completar
     // direcciones) y recibía un 422 y una búsqueda vacía.
-    $app = apiApp();
+    $app = linksApp();
     $ids = assistantShop($app);
     $before = (int) $app->db()->value('SELECT COUNT(*) FROM {carts}');
     [$status, $bare] = linksOpen($app, 'https://tienda.test/buy-with-links/add');
@@ -878,7 +891,7 @@ test('«add» sin producto o con el ejemplo «ID», y el buscador con «WORDS»:
 });
 
 test('el navegador autorizado va a la caja con el producto y el asistente identificado recibe la página de pasos', function (): void {
-    $app = apiApp();
+    $app = linksApp();
     $app->settings()->set('api.browser_agents_allowed', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/140.0 Safari/537.36');
     $ids = assistantShop($app);
     $add = '/buy-with-links/add?product_id=' . $ids['silla_roja'] . '&qty=1';
@@ -897,25 +910,25 @@ test('el navegador autorizado va a la caja con el producto y el asistente identi
     contains('/buy-with-links/customer/', $bot->body, 'con el formulario para la persona');
     // Las dos formas de seguir: la caja con este carrito LO PRIMERO (vale con cualquier asistente) y el formulario para preparar
     // el pedido. Antes se obligaba al pedido y las IA que no recorren varios pasos no tenían nada que dar (17/11/2026).
-    contains('There are two ways to go on, and both are right', $bot->body);
+    contains('Hay dos formas de seguir, y las dos valen', $bot->body);
     $caja = strpos($bot->body, '/carrito/retomar/');
     $form = strpos($bot->body, '/buy-with-links/customer/');
     check($caja !== false && $form !== false && $caja < $form, 'la caja, antes que el formulario');
     $section = (string) substr($bot->body, (int) strpos($bot->body, '<h2>'));
-    $cajaNext = strpos($section, 'The checkout for the person');
-    $formNext = strpos($section, 'If you cannot open addresses you complete yourself');
+    $cajaNext = strpos($section, 'La caja para la persona');
+    $formNext = strpos($section, 'Si no puedes abrir direcciones que completas tú');
     check($cajaNext !== false && $formNext !== false && $cajaNext < $formNext, 'y en las siguientes direcciones, la caja la primera');
     // En una demostración se le dice que es de pruebas y que seguir está bien: Gemini y Claude no seguían porque «recordaban»
     // que era una tienda de pruebas (17/11/2026). Una tienda que cobra de verdad no se presenta así.
-    contains('This is a demo shop', $bot->body, 'con la pasarela en modo de prueba, se lo dice');
-    $live = apiApp();
+    contains('Esta es una tienda de demostración', $bot->body, 'con la pasarela en modo de prueba, se lo dice');
+    $live = linksApp();
     $liveIds = assistantShop($live);
     $live->service('payments')->get('gw')->test = false;
     $liveBot = apiCall($live, 'GET', '/buy-with-links/add?product_id=' . $liveIds['silla_roja'] . '&qty=1', null,
         ['user-agent' => 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; Claude-User/1.0', 'accept' => 'text/html']);
-    contains('There are two ways to go on', $liveBot->body);
-    notContains('This is a demo shop', $liveBot->body, 'una tienda que cobra de verdad no se presenta como demostración');
-    $demo = apiApp();
+    contains('Hay dos formas de seguir', $liveBot->body);
+    notContains('Esta es una tienda de demostración', $liveBot->body, 'una tienda que cobra de verdad no se presenta como demostración');
+    $demo = linksApp();
     $demo->site()->config['demo'] = true; // lo que la instalación escribe en el config.php de una demostración
     $demoIds = assistantShop($demo);
     $gw = $demo->service('payments')->get('gw');
@@ -924,11 +937,11 @@ test('el navegador autorizado va a la caja con el producto y el asistente identi
     }
     $demoBot = apiCall($demo, 'GET', '/buy-with-links/add?product_id=' . $demoIds['silla_roja'] . '&qty=1', null,
         ['user-agent' => 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; Claude-User/1.0', 'accept' => 'text/html']);
-    contains('This is a demo shop: its payments are in test mode and nothing is ever charged', $demoBot->body, 'una demostración se lo dice al asistente');
+    contains('Esta es una tienda de demostración: sus pagos están en modo de prueba y nunca se cobra nada', $demoBot->body, 'una demostración se lo dice al asistente');
 });
 
 test('lo que la ficha no ofrece como opción (la talla) viaja en la nota del pedido junto a los datos', function (): void {
-    $app = apiApp();
+    $app = linksApp();
     $ids = assistantShop($app);
     [, $added] = linksOpen($app, 'https://tienda.test/buy-with-links/add?product_id=' . $ids['silla_roja'] . '&qty=1');
     $cart = (string) $added['data']['cart'];
