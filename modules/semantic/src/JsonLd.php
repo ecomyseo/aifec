@@ -88,7 +88,7 @@ final class JsonLd
     private static function organization(Semantic $s): array
     {
         $settings = $s->app()->settings();
-        $address = $s->line($settings->str('store.address'));
+        $address = \Aifec\Front\StoreAddress::postal($s->app());
 
         return self::clean([
             '@context' => self::CONTEXT,
@@ -101,7 +101,7 @@ final class JsonLd
             'email' => trim($settings->str('store.email')),
             'telephone' => $s->line($settings->str('store.phone')),
             'vatID' => $s->line($settings->str('store.vat_id')),
-            'address' => $address !== '' ? ['@type' => 'PostalAddress', 'streetAddress' => $address, 'addressCountry' => $s->country()] : [],
+            'address' => $address !== [] ? ['@type' => 'PostalAddress'] + $address : [],
             'sameAs' => $s->socialProfiles(),
         ]);
     }

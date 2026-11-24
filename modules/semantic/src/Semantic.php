@@ -186,7 +186,8 @@ class Semantic
         }
         $contact = [];
         foreach (['store.email', 'store.phone', 'store.address'] as $key) {
-            $value = $this->line($settings->str($key));
+            // La dirección sale de los campos (calle, código postal, localidad…) en una línea con comas; con solo texto libre, ese texto.
+            $value = $key === 'store.address' ? \Aifec\Front\StoreAddress::oneLine($this->app) : $this->line($settings->str($key));
             if ($value !== '') {
                 $contact[] = $value;
             }

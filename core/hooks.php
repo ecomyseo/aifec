@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 use Aifec\Admin\Gate;
 use Aifec\Kernel\App;
+use Aifec\Front\StoreAddress;
 use Aifec\Kernel\AssetServer;
 
 return static function (App $app): void {
@@ -26,6 +27,13 @@ return static function (App $app): void {
     $app->hooks()->slot('body.end', static function () use ($app): string {
         return '<p class="af-powered" style="margin:0;padding:.75rem 1rem;text-align:center;font-size:.75rem;opacity:.75">'
             . '<a href="https://aifec.dev" rel="noopener" style="color:inherit">' . e(t('Created with AIFEC')) . '</a></p>';
+    });
+
+    // La dirección de la tienda se escribe en campos: de ahí sale el texto libre que leen las facturas, los correos y los pies.
+    $app->hooks()->on('settings.saved', static function (string $module, array $keys, App $application): void {
+        if (array_intersect($keys, array_values(StoreAddress::FIELDS)) !== []) {
+            StoreAddress::sync($application);
+        }
     });
 
     // Activar o desactivar la minificación vuelve a publicar los recursos (con otra huella) y vacía la caché de páginas: el cambio se
