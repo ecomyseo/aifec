@@ -78,6 +78,13 @@ final class Llms
                         'shown' => count($links), 'total' => $total,
                         'full' => $app->url()->abs('/llms-full.txt', [], ''), 'api' => $app->url()->abs('/api/v1/products', [], ''),
                     ]);
+                    // Y cuántos de ellos están en los feeds de producto: los que no tienen imagen o son gratuitos se quedan fuera.
+                    $feeds = FeedEligibility::report($app);
+                    if ($feeds['total'] > 0 && $feeds['eligible'] < $feeds['total']) {
+                        $intro .= ' ' . t('{eligible} of the {total} are in the product feeds; the rest have no image, do not show a price or are free.', [
+                            'eligible' => $feeds['eligible'], 'total' => $feeds['total'],
+                        ]);
+                    }
                 }
                 $sections[] = ['id' => 'products', 'title' => t('Products'), 'intro' => $intro, 'links' => $links];
             }

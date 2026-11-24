@@ -304,7 +304,7 @@ final class Feeds
             if ($mine !== '') {
                 $gallery = array_merge([$mine], array_values(array_diff($images, [$mine])));
             }
-            if ($gross <= 0 || $gallery === []) {
+            if (!FeedEligibility::priceAllowed($s->app(), $gross) || $gallery === []) {
                 continue;
             }
             $currency = isset($price['currency']) && $price['currency'] !== '' ? (string) $price['currency'] : $s->currency();

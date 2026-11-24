@@ -125,6 +125,18 @@ final class SemanticController
     }
 
     /**
+     * Cuántos productos tiene la tienda y cuántos están en los feeds (los demás, con su motivo, en «Sistema → Diagnóstico»).
+     *
+     * @return array{products:int,in_feeds:int}
+     */
+    private function catalogCounts(): array
+    {
+        $report = FeedEligibility::report($this->app);
+
+        return ['products' => $report['total'], 'in_feeds' => $report['eligible']];
+    }
+
+    /**
      * El documento que dice qué ofrece la tienda a las máquinas: versión, nombre, idiomas, moneda y las puertas activas.
      *
      * @param array<string,string> $params
@@ -142,6 +154,7 @@ final class SemanticController
             'languages' => $this->app->languages(),
             'default_language' => $this->app->defaultLang(),
             'currency' => $s->currency(),
+            'catalog' => $this->catalogCounts(),
             'gates' => $this->app->hooks()->apply('semantic.gates', $s->gates()),
         ];
         $json = json_encode($document, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_PRETTY_PRINT);

@@ -60,6 +60,8 @@ return [
             'semantic.openai.enable_search' => ['type' => 'toggle', 'label' => 'Let assistants show the products in their answers', 'default' => true],
             'semantic.openai.enable_checkout' => ['type' => 'toggle', 'label' => 'Let assistants start the purchase', 'default' => false,
                 'hint' => 'Activate after OpenAI enables checkout for your integration. ACP checkout and the terms and privacy pages must be active.'],
+            'semantic.feeds.include_free' => ['type' => 'toggle', 'label' => 'Include free products in the product feeds', 'default' => false,
+                'hint' => 'Google Merchant and ACP ask for a price above zero, so free products are left out. Turn it on only if the channel accepts them.'],
             'semantic.feeds.google_category' => ['type' => 'text', 'label' => 'Google product category', 'hint' => 'Optional. The same one for the whole shop, for example 436.', 'default' => '', 'rules' => 'max:200', 'width' => 'md'],
         ]],
     ],

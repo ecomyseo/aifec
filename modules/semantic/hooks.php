@@ -14,6 +14,7 @@ use Aifec\Modules\Semantic\AuditAdmin;
 use Aifec\Modules\Semantic\AuditJobs;
 use Aifec\Modules\Semantic\AuditService;
 use Aifec\Modules\Semantic\BotsAttribution;
+use Aifec\Modules\Semantic\FeedEligibility;
 use Aifec\Modules\Semantic\PageMeta;
 use Aifec\Modules\Semantic\Semantic;
 use Aifec\Modules\Semantic\SemanticJobs;
@@ -80,6 +81,39 @@ return static function (App $app): void {
 
         return '<nav class="af-footer-col af-footer-ai" aria-label="' . e(t('For AI assistants')) . '"><p class="af-footer-title">'
             . e(t('For AI assistants')) . '</p><ul class="af-nav-list">' . $items . '</ul></nav>';
+    });
+
+    // «Sistema → Diagnóstico»: cuántos productos entran en los feeds y por qué los demás no (sin imagen, sin precio visible, gratis).
+    $app->hooks()->filter('doctor.checks', static function ($checks) {
+        $checks = is_array($checks) ? $checks : [];
+        $checks[] = ['id' => 'semantic.feeds', 'group' => 'shop', 'label' => t('Products in the product feeds'), 'run' => static function (App $application): array {
+            $report = FeedEligibility::report($application);
+            if ($report['total'] === 0) {
+                return ['status' => 'ok', 'detail' => t('There are no products yet.')];
+            }
+            if ($report['excluded'] === []) {
+                return ['status' => 'ok', 'detail' => t('All {n} products are in the product feeds.', ['n' => $report['total']])];
+            }
+            $list = [];
+            $fixable = false;
+            foreach ($report['excluded'] as $i => $row) {
+                $fixable = $fixable || $row['reason'] !== 'free';
+                if ($i < 6) {
+                    $list[] = '#' . $row['id'] . ' ' . $row['name'] . ' (' . FeedEligibility::label($row['reason']) . ')';
+                }
+            }
+
+            return [
+                'status' => $fixable ? 'warn' : 'ok',
+                'detail' => t('{eligible} of {total} products are in the product feeds. Left out: {list}', [
+                    'eligible' => $report['eligible'], 'total' => $report['total'],
+                    'list' => implode('; ', $list) . (count($report['excluded']) > 6 ? '…' : ''),
+                ]),
+                'fix_url' => $application->url()->plain('/admin/r/products'),
+            ];
+        }];
+
+        return $checks;
     });
 
     // «<dirección>.md» y «Accept: text/markdown» en la dirección normal.

@@ -72,7 +72,7 @@ test('el llms.txt lleva como mucho los 30 productos más vendidos', function ():
     contains('[Producto 35](', $body);
     contains('[Producto 6](', $body);
     notContains('[Producto 5](', $body);
-    contains("## Productos\n\nLos 30 más vendidos de 35 productos. La lista entera: https://tienda.test/llms-full.txt y la API https://tienda.test/api/v1/products.\n\n- [Producto 35](", $body, 'dice que es una muestra y dónde está el resto');
+    contains("## Productos\n\nLos 30 más vendidos de 35 productos. La lista entera: https://tienda.test/llms-full.txt y la API https://tienda.test/api/v1/products. 0 de los 35 están en los feeds de producto; el resto no tiene imagen, no enseña el precio o es gratuito.\n\n- [Producto 35](", $body, 'dice que es una muestra y dónde está el resto');
 });
 
 test('el enlace al servidor MCP dice qué es: no es una página para leer', function (): void {

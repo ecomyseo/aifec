@@ -14,6 +14,7 @@ namespace Aifec\Modules\Agentic;
 use Aifec\Kernel\App;
 use Aifec\Kernel\Request;
 use Aifec\Kernel\Response;
+use Aifec\Modules\Semantic\FeedEligibility;
 use Aifec\Modules\Semantic\Semantic;
 
 final class GoogleFeed
@@ -65,10 +66,11 @@ final class GoogleFeed
     {
         $app = $this->app;
         require_once $app->root() . '/modules/semantic/src/Semantic.php';
+        require_once $app->root() . '/modules/semantic/src/FeedEligibility.php';
         $semantic = new Semantic($app);
         $catalog = $app->service('catalog');
 
-        return Response::stream(static function (callable $write) use ($semantic, $catalog): void {
+        return Response::stream(static function (callable $write) use ($app, $semantic, $catalog): void {
             $write(implode("\t", self::COLUMNS) . "\n");
             $page = 1;
             do {
@@ -89,7 +91,7 @@ final class GoogleFeed
                         }
                         $price = $catalog->price($offer);
                         $amount = $semantic->gross($price);
-                        if ($amount <= 0) {
+                        if (!FeedEligibility::priceAllowed($app, $amount)) {
                             continue;
                         }
                         $title = (string) $product['name'];

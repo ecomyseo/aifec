@@ -7,6 +7,7 @@ namespace Aifec\Modules\Agentic;
 use Aifec\Kernel\App;
 use Aifec\Kernel\Request;
 use Aifec\Kernel\Response;
+use Aifec\Modules\Semantic\FeedEligibility;
 use Aifec\Modules\Semantic\Semantic;
 
 final class AcpFeed
@@ -36,6 +37,7 @@ final class AcpFeed
     {
         $app = $this->app;
         require_once $app->root() . '/modules/semantic/src/Semantic.php';
+        require_once $app->root() . '/modules/semantic/src/FeedEligibility.php';
         $semantic = new Semantic($app);
         $catalog = $app->service('catalog');
         $policies = self::checkoutPolicies($app);
@@ -59,7 +61,7 @@ final class AcpFeed
                         }
                         $price = $catalog->price($offer);
                         $amount = $semantic->gross($price);
-                        if ($amount <= 0) {
+                        if (!FeedEligibility::priceAllowed($app, $amount)) {
                             continue;
                         }
                         $title = (string) $product['name'];
