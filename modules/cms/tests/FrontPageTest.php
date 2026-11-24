@@ -68,6 +68,16 @@ test('una página cuyo contenido ya trae su h1 no pone otro: una sola h1 por pá
     notContains('<h1 class="af-title">Servicios</h1>', $r->body, 'y no la de la plantilla');
 });
 
+test('un contenido con varias h1 deja la primera y pasa las demás a h2', function (): void {
+    $app = cmsApp();
+    cmsInsertPage($app, ['title' => 'Licencia', 'slug' => 'licencia', 'blocks' => [['type' => 'html', 'attrs' => ['html' => '<h1>Primera</h1><p>a</p><h1 class="x">Segunda</h1><p>b</p><h1>Tercera</h1>']]]]);
+    $body = (new TestClient($app))->get('/licencia')->body;
+    same(1, substr_count($body, '<h1'), 'una sola h1');
+    contains('<h1>Primera</h1>', $body);
+    contains('<h2 class="x">Segunda</h2>', $body, 'las demás, h2 con sus atributos');
+    contains('<h2>Tercera</h2>', $body);
+});
+
 test('la caché de página guarda la página: copia a la segunda y vuelve a generarse tras guardarla en el panel', function (): void {
     $app = cmsApp();
     $id = cmsInsertPage($app, ['title' => 'Quiénes somos']);

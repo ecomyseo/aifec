@@ -18,6 +18,15 @@ $this->layout('layout', ['page' => $page]);
 $af_landing = $template === 'landing';
 $af_wide = $template === 'wide' || $af_landing;
 $af_html = (string) $content['html'];
+// Una sola h1 por página: si el contenido trae varias (importado de otro sistema), la primera se queda y las demás pasan a h2.
+$af_h1 = 0;
+$af_html = (string) preg_replace_callback('#<(/?)h1\b([^>]*)>#i', static function (array $m) use (&$af_h1): string {
+    if ($m[1] === '') {
+        ++$af_h1;
+    }
+
+    return $af_h1 > 1 ? '<' . $m[1] . 'h2' . $m[2] . '>' : $m[0];
+}, $af_html);
 ?>
 <div class="af-container af-section">
     <article class="af-page af-page-<?= e($template) ?>">
