@@ -1,3 +1,36 @@
+# AIFEC 1.3.0
+
+## Licencia y origen
+
+- **AIFEC pasa de Apache 2.0 a GNU AGPL v3 con términos adicionales de origen** (`LICENSE.md`): hay que conservar el aviso visible «Creado con AIFEC», la autoría de Ecom Experts y la marca del generador; los nombres AIFEC y Ecom Experts no se licencian para versiones modificadas; hay una licencia comercial aparte. Las versiones hasta la 1.2.6 siguen siendo Apache 2.0 (`LICENSES/Apache-2.0.txt`). Ficheros nuevos: `NOTICE` y `CONTRIBUTING.md`.
+- La tienda lleva «Creado con AIFEC» al final de cada página, el panel dice versión, autor y licencia, y `<meta name="generator">` y `/.well-known/aifec.json` declaran el origen.
+- Dominio principal del proyecto: `aifec.dev`.
+
+## Privacidad en la compra con enlaces
+
+- Los datos de quien compra (nombre, dirección, teléfono y correo) **ya no se leen de una dirección web**: quedan en historiales y registros. De serie se descartan y se manda a la persona al formulario de la tienda, que ahora envía por POST. Ajuste «Permitir los datos del comprador escritos en la dirección» (apagado de serie) para recuperar el comportamiento anterior.
+- La guía de `/buy-with-links` sale en el idioma de la tienda (antes siempre en inglés).
+
+## Feeds y datos estructurados
+
+- Una sola regla decide qué productos entran en los feeds (ACP, Google, OpenAI) con su motivo (sin imagen, precio oculto, gratuito, no comprable); se cuenta en `llms.txt`, `/.well-known/aifec.json` y «Sistema → Diagnóstico». Ajuste para incluir productos gratuitos (apagado de serie).
+- La dirección de la tienda se escribe en campos (calle, código postal, localidad, provincia, país) y de ahí salen Organization (JSON-LD), `llms.txt` e `index.md`. Con solo el texto libre de antes, todo sigue igual.
+
+## Robots y textos
+
+- Cabecera `Link` con la versión en texto (`.md`) de cada página; ajustes por familia de robot para recibir el texto en la misma dirección (buscadores apagado de serie; los de vista previa de enlaces siempre reciben HTML); `sitemap-md.xml`; el panel de robots enseña el porcentaje servido como `.md`.
+
+## Rendimiento y WebMCP
+
+- Minificado de JavaScript y CSS con dos interruptores en Ajustes → General → Rendimiento (encendidos de serie).
+- WebMCP: `submit_review` y `ask_shop_assistant`; los filtros del listado quedan excluidos a propósito.
+
+## Probado
+
+- Pruebas en verde de `modules/api`, `modules/semantic`, `modules/agentic`, `modules/mcp`, `modules/webmcp`, `modules/assistant`, `modules/reviews`, `tests/Kernel`, `tests/Front` y `tests/Admin`, con mutaciones que reponen cada fallo.
+
+---
+
 # AIFEC 1.2.6
 
 ## Descubrimiento de UCP y ACP
