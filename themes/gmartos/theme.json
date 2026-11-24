@@ -70,6 +70,7 @@
             "support_link_text": {"type": "text", "label": "Second card link text", "default": ""},
             "support_link": {"type": "text", "label": "Second card link (empty: no link)", "default": ""},
             "about_show": {"type": "toggle", "label": "Show the presentation block", "default": 1},
+            "about_kicker_show": {"type": "toggle", "label": "Show the line above the presentation title", "default": 1},
             "about_title": {"type": "text", "label": "Presentation title (| breaks the line)", "default": ""},
             "about_text": {"type": "text", "label": "Presentation text", "default": ""},
             "about_name": {"type": "text", "label": "Presentation name", "default": ""},

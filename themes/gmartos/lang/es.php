@@ -137,6 +137,7 @@ return [
     'See support packs' => 'Ver packs de soporte',
     'Segoe UI' => 'Segoe UI',
     'Show the announcement strip' => 'Enseñar la franja de aviso',
+    'Show the line above the presentation title' => 'Enseñar la frase sobre el título de la presentación',
     'Show the connected-nodes diagram' => 'Enseñar el diagrama de nodos conectados',
     'Show the dark call to action under the product' => 'Enseñar la llamada a la acción oscura bajo el producto',
     'Show the presentation block' => 'Enseñar el bloque de presentación',

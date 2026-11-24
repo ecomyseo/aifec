@@ -127,13 +127,21 @@ final class SemanticController
     /**
      * Cuántos productos tiene la tienda y cuántos están en los feeds (los demás, con su motivo, en «Sistema → Diagnóstico»).
      *
-     * @return array{products:int,in_feeds:int}
+     * @return array{products:int,in_feeds:int,excluded:array<int,array{id:int,reason:string}>,reasons:array<string,int>}
      */
     private function catalogCounts(): array
     {
         $report = FeedEligibility::report($this->app);
+        // Los que no entran en los feeds, por identificador y con su motivo (el mismo dato que «php aifec feeds:excluded»), sin nombres.
+        $excluded = [];
+        $reasons = [];
+        foreach ($report['excluded'] as $row) {
+            $excluded[] = ['id' => $row['id'], 'reason' => $row['reason']];
+            $reasons[$row['reason']] = (isset($reasons[$row['reason']]) ? $reasons[$row['reason']] : 0) + 1;
+        }
+        ksort($reasons);
 
-        return ['products' => $report['total'], 'in_feeds' => $report['eligible']];
+        return ['products' => $report['total'], 'in_feeds' => $report['eligible'], 'excluded' => $excluded, 'reasons' => $reasons];
     }
 
     /**

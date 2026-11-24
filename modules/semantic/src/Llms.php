@@ -207,6 +207,12 @@ final class Llms
     public static function build(Semantic $s): string
     {
         $lines = ['# ' . TextPages::esc($s, $s->shop()), '', '> ' . TextPages::esc($s, $s->summary())];
+        // Quién está detrás de la tienda: la razón social y el NIF de Ajustes → General (si están vacíos, no sale nada).
+        $owner = $s->owner();
+        if ($owner !== '') {
+            $lines[] = '';
+            $lines[] = '**' . TextPages::esc($s, t('Owner')) . ':** ' . TextPages::esc($s, $owner);
+        }
         // El servidor MCP, lo primero tras el resumen: estaba al final de la lista y las IA no lo veían (17/11/2026).
         $gates = $s->gates();
         if (isset($gates['mcp'])) {

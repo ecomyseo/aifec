@@ -115,7 +115,16 @@ test('/.well-known/aifec.json cuenta los productos y los que están en los feeds
     $shop = eligibilityShop();
     $app = $shop['app'];
     $doc = json_decode(ucpCall($app, 'GET', '/.well-known/aifec.json')->body, true);
-    same(['products' => 3, 'in_feeds' => 1], $doc['catalog']);
+    same(3, $doc['catalog']['products']);
+    same(1, $doc['catalog']['in_feeds']);
+    // Y por qué se quedan fuera, producto a producto y en total (el mismo dato que «feeds:excluded»), sin nombres.
+    $byId = [];
+    foreach ($doc['catalog']['excluded'] as $row) {
+        $byId[$row['id']] = $row['reason'];
+    }
+    same(['no_image', 'free'], [$byId[$shop['sin_imagen']] ?? '', $byId[$shop['gratis']] ?? ''], 'cada uno con su motivo');
+    same(['free' => 1, 'no_image' => 1], $doc['catalog']['reasons']);
+    notContains('Ampliación de módulo', (string) json_encode($doc['catalog']), 'sin los nombres');
     $checks = $app->hooks()->apply('doctor.checks', [], $app);
     $found = null;
     foreach (is_array($checks) ? $checks : [] as $one) {

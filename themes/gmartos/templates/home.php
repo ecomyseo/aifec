@@ -149,7 +149,9 @@ $gm_name = gmartos_text('about_name', t('Gustavo Martos'));
 <?php if ((int) theme_option('about_show', 1) === 1) : ?>
 <section class="af-container gm-about" aria-labelledby="gm-about-title">
     <div>
+        <?php if ((int) theme_option('about_kicker_show', 1) === 1) : ?>
         <p class="gm-kicker"><?= e(t('Same contact. New identity.')) ?></p>
+        <?php endif; ?>
         <h2 id="gm-about-title"><?= gmartos_lines(gmartos_text('about_title', t('A new brand.|The same person behind it.'))) ?></h2>
     </div>
     <div class="gm-about-copy">

@@ -263,6 +263,22 @@ class Semantic
     }
 
     /**
+     * El titular de la tienda en una línea: «razón social, NIF …» con lo que haya en Ajustes → General (store.legal_name y
+     * store.vat_id). Vacío si no hay ni nombre ni NIF.
+     */
+    public function owner(): string
+    {
+        $settings = $this->app->settings();
+        $name = $this->line($settings->str('store.legal_name', ''));
+        $vat = $this->line($settings->str('store.vat_id', ''));
+        if ($name === '' && $vat === '') {
+            return '';
+        }
+
+        return trim($name . ($vat !== '' ? ($name !== '' ? ', ' : '') . t('Tax ID') . ' ' . $vat : ''));
+    }
+
+    /**
      * El MPN que sale en los feeds de producto: el del catálogo y, si no tiene, el SKU (el del catálogo o el de recambio con el id del
      * producto). Con marca y MPN, Google y los asistentes tienen un identificador y no hace falta decir «identifier_exists = no».
      *

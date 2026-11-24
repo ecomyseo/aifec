@@ -83,7 +83,8 @@ test('El feed de Google Merchant sirve una línea por variante con las columnas 
     same('Silla de roble', $rows[(string) $simple]['title'], 'un tabulador del nombre no descuadra las columnas');
     same('in stock', $rows[(string) $simple]['availability']);
     same('12.00 EUR', $rows[(string) $simple]['price']);
-    same('no', $rows[(string) $simple]['identifier_exists'], 'sin GTIN ni MPN se avisa');
+    same('', $rows[(string) $simple]['identifier_exists'], 'sin GTIN ni MPN propios, el MPN de recambio (SKU o id) ya es el identificador');
+    same((string) $simple, $rows[(string) $simple]['mpn'], 'el MPN es el id del producto cuando no hay SKU');
     same('new', $rows[(string) $simple]['condition']);
     $variants = $app->service('catalog')->product($vase)['variants'];
     $red = $rows[$vase . '-' . $variants[0]['id']];

@@ -100,6 +100,7 @@ return [
     'by mail' => 'por correo',
     '{days} to withdraw; nothing has to be sent back.' => '{days} para desistir; no hay que mandar nada de vuelta.',
     'Conditions:' => 'Condiciones:',
+    'Owner' => 'Titular',
     'Download or service: nothing is sent back' => 'Descarga o servicio: no se manda nada de vuelta',
     'in a physical shop' => 'en una tienda física',
     'at a drop-off point' => 'en un punto de entrega',

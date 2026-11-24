@@ -445,6 +445,17 @@ test('la portada: titular con su raya, diagrama, buscador con atajos, tarjetas d
     notContains('gm-diagram', $mine);
     notContains('gm-service', $mine);
     notContains('gm-about', $mine);
+    // La frase «Mismo contacto. Nueva identidad.» se apaga desde las opciones del tema (verificación del 24/11/2026), sin perder el bloque.
+    $kicker = gmApp(['about_kicker_show' => 0], ['catalog', 'media', 'orders']);
+    gmSeed($kicker);
+    gmShopRoutes($kicker);
+    $without = (new TestClient($kicker))->get('/')->body;
+    contains('gm-about', $without, 'el bloque de presentación sigue');
+    notContains('Mismo contacto. Nueva identidad.', $without, 'sin la frase');
+    $default = gmApp([], ['catalog', 'media', 'orders']);
+    gmSeed($default);
+    gmShopRoutes($default);
+    contains('Mismo contacto. Nueva identidad.', (new TestClient($default))->get('/')->body, 'por defecto la frase sale como siempre');
     $empty = (new TestClient(gmApp([], ['media'])))->get('/')->body;
     contains('af-empty', $empty, 'sin secciones, el aviso amable');
     notContains('gm-discovery', $empty, 'sin ruta de búsqueda no hay buscador');
