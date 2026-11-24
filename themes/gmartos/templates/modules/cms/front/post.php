@@ -45,7 +45,7 @@ $gm_tags = isset($post['tags']) && is_array($post['tags']) ? $post['tags'] : [];
             </figure>
         <?php endif; ?>
         <div class="af-prose gm-reading-content">
-            <?= $html ?>
+            <?= preg_replace('#<(/?)h1\b([^>]*)>#i', '<$1h2$2>', (string) $html) ?>
         </div>
         <?php if ($gm_categories !== [] || $gm_tags !== []) : ?>
             <p class="af-small gm-chips">
