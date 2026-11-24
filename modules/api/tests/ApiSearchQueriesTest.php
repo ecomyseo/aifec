@@ -81,7 +81,7 @@ test('una coincidencia solo por la descripción larga con varias palabras no se 
     same('Pasarela de pago con tarjeta', $names[0] ?? '', 'lo que lo lleva en el nombre sigue siendo la respuesta');
     $only = apiApp();
     aifecProduct($only, ['name' => 'Diagnóstico de tienda', 'price' => 5000, 'images' => 1, 'stock' => 9,
-        'summary' => 'Revisión completa de tu tienda.', 'description' => 'Incluye una compra de prueba hasta la pasarela de pago, sin pagar.']);
+        'summary' => 'Revisión completa de tu tienda: velocidad, errores y una compra de prueba hasta el pago.', 'description' => 'Incluye una compra de prueba hasta la pasarela de pago, sin pagar.']);
     searchService($only)->reindexNow();
     $meta = apiJson(apiCall($only, 'GET', '/api/v1/search?q=' . rawurlencode('pasarela de pago')))['meta'];
     check($meta['answer_kind'] !== 'exact', 'solo por la descripción no es exacta: ' . $meta['answer_kind']);

@@ -500,9 +500,11 @@ final class Search
             $score = 0.0;
             $presence = 0.0;
             $strong = false;
+            $allStrong = true;
             foreach ($plan as $alts) {
                 $best = 0.0;
                 $bestPresence = 0.0;
+                $groupStrong = false;
                 foreach ($alts as $ai => $alt) {
                     if (!isset($alt['docs'][$docId])) {
                         continue;
@@ -512,6 +514,7 @@ final class Search
                     foreach ($alt['terms'] as $pair) {
                         $tf = $post[$pair[0]][$docId];
                         $strong = $strong || self::inStrongField($tf, $weights);
+                        $groupStrong = $groupStrong || self::inStrongField($tf, $weights);
                         $sum += self::termScore($tf, $row['len'], $stats['avg'], $weights, (float) $pair[1]);
                         $seen += min(self::presence($tf, $weights, (float) $pair[1]), (float) $pair[1] * $reference);
                     }
@@ -523,12 +526,14 @@ final class Search
                 }
                 $score += $best;
                 $presence += $bestPresence;
+                $allStrong = $allStrong && $groupStrong;
             }
             $isExact = $exactTid > 0 && isset($post[$exactTid][$docId]) && $post[$exactTid][$docId][$refIndex] > 0;
             $ranked[] = [
                 'doc' => (int) $docId, 'id' => $row['entity_id'], 'raw' => $score, 'presence' => $presence,
                 'adj' => $row['in_stock'] ? $score : $score * self::STOCK_FACTOR,
                 'sales' => $row['sales'], 'exact' => $isExact, 'strong' => $strong || $isExact, 'in_stock' => (bool) $row['in_stock'],
+                'all_strong' => $allStrong,
             ];
         }
         // Lo que solo casa por la descripción larga no se mezcla con lo que casa de verdad (13/11/2026: «perfume» traía un
@@ -540,7 +545,11 @@ final class Search
         // «weak»: nada casa por un campo de peso (solo por la descripción larga). Lo usa quien pregunta para no darlo por una respuesta
         // exacta cuando la consulta traía varias palabras (verificación del 24/11/2026: «pasarela de pago» traía una ficha que dice
         // «pasarela de pago» en medio de su descripción).
-        $weak = $strongOnes === [] && $ranked !== [];
+        // Y con varias palabras, «weak» también es que ninguna ficha las tenga TODAS en un campo de peso (una de ellas solo está en la
+        // descripción larga).
+        $weak = $ranked !== [] && array_filter($ranked, static function (array $item): bool {
+            return $item['all_strong'];
+        }) === [];
         if ($strongOnes !== []) {
             $ranked = $strongOnes;
         }
