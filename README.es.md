@@ -2,7 +2,7 @@
 
 [English](README.md) · **Español**
 
-[![Licencia: Apache 2.0](https://img.shields.io/badge/licencia-Apache%202.0-blue.svg)](LICENSE.md)
+[![Licencia: AGPL v3](https://img.shields.io/badge/licencia-AGPL%20v3%20%2B%20t%C3%A9rminos-blue.svg)](LICENSE.md)
 [![PHP 7.4–8.4](https://img.shields.io/badge/PHP-7.4%E2%80%938.4-777bb4.svg)](docs/08-operacion/01-requisitos.md)
 [![Registro MCP](https://img.shields.io/badge/Registro%20MCP-es.gmartos.aifec%2Fshop-black.svg)](https://registry.modelcontextprotocol.io/v0.1/servers?search=es.gmartos.aifec)
 [![Demo en directo](https://img.shields.io/badge/demo-aifec.gmartos.es-1c3a2f.svg)](https://aifec.gmartos.es/)
@@ -110,7 +110,7 @@ El código y sus textos fuente están en inglés, con la traducción castellana 
 
 ## Licencia
 
-[Licencia Apache 2.0](LICENSE.md). Copyright 2026 Ecom Experts.
+Software libre bajo la [GNU AGPL v3 con términos adicionales](LICENSE.md): puedes usarlo, estudiarlo, cambiarlo y compartirlo, y debes conservar el aviso visible «Creado con AIFEC», los avisos de autoría y la marca del generador (términos adicionales de `LICENSE.md` y fichero `NOTICE`). Una versión modificada que se ofrezca por red debe publicar su código. Los nombres AIFEC y Ecom Experts no se licencian para versiones modificadas. Hay una licencia comercial sin estos términos disponible en Ecom Experts. Las versiones hasta la 1.2.6 se distribuyeron bajo Apache 2.0 ([LICENSES/Apache-2.0.txt](LICENSES/Apache-2.0.txt)). Copyright 2026 Ecom Experts.
 
 ## Contacto
 

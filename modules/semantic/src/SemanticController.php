@@ -134,6 +134,8 @@ final class SemanticController
         $s = $this->semantic();
         $document = [
             'version' => '1.0',
+            // El origen del sistema: una marca que permite saber qué lo genera y quién es su autor.
+            'generator' => ['name' => 'AIFEC', 'version' => App::VERSION, 'url' => 'https://aifec.gmartos.es', 'author' => 'Ecom Experts', 'license' => 'AGPL-3.0-or-later with additional terms (LICENSE.md)'],
             'name' => $s->shop(),
             'url' => $s->siteUrl(),
             'description' => $s->summary(),
