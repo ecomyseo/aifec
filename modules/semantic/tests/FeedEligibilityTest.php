@@ -128,4 +128,24 @@ test('/.well-known/aifec.json cuenta los productos y los que están en los feeds
     same('warn', $result['status'], 'avisa: hay uno que se arregla (sin imagen)');
     contains('Ampliación de módulo', $result['detail'], 'dice cuál');
     contains('1 de 3', $result['detail'], 'y cuántos están en los feeds');
+    contains('#' . $shop['sin_imagen'], $result['detail'], 'y por su ID');
+});
+
+test('feeds:excluded lista por ID los productos que no entran en los feeds con su motivo, y cuenta lo mismo que llms.txt y aifec.json', function (): void {
+    $shop = eligibilityShop();
+    $app = $shop['app'];
+    $io = new \Aifec\Cli\Console(false);
+    $commands = $io->commands($app);
+    check(isset($commands['feeds:excluded']), 'la orden existe');
+    same(0, $commands['feeds:excluded']['run']($app, [], $io));
+    $out = $io->output;
+    contains((string) $shop['sin_imagen'], $out, 'el ID del producto sin imagen');
+    contains('no_image', $out, 'su motivo');
+    contains((string) $shop['gratis'], $out, 'el ID del gratuito');
+    contains('free', $out, 'su motivo');
+    notContains('Silla de roble', $out, 'el que entra en los feeds no sale');
+    contains('1 of 3 products are in the feeds, 2 left out', $out, 'el recuento sale de la misma regla');
+    $doc = json_decode(ucpCall($app, 'GET', '/.well-known/aifec.json')->body, true);
+    same(1, $doc['catalog']['in_feeds'], 'aifec.json cuenta igual');
+    same(1, count(array_filter(explode("\n", eligibilityBody($app, '/acp/feed.jsonl')))), 'y el feed lleva el mismo número');
 });

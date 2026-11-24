@@ -51,7 +51,7 @@ return [
     'the product does not show its price' => 'el producto no enseña su precio',
     'it has no image' => 'no tiene imagen',
     'it is free (the feeds ask for a price above zero)' => 'es gratuito (los feeds piden un precio mayor que cero)',
-    'it cannot be bought' => 'no se puede comprar',
+    'it cannot be bought (out of stock or unavailable)' => 'no se puede comprar (sin existencias o no disponible)',
     '{eligible} of the {total} are in the product feeds; the rest have no image, do not show a price or are free.' => '{eligible} de los {total} están en los feeds de producto; el resto no tiene imagen, no enseña el precio o es gratuito.',
     'Robots and agents' => 'Robots y agentes',
     'Serve the text version (.md) to: AI training' => 'Servir la versión en texto (.md) a: entrenamiento de IA',

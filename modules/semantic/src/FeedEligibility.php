@@ -119,6 +119,6 @@ final class FeedEligibility
                 return t('it is free (the feeds ask for a price above zero)');
         }
 
-        return t('it cannot be bought');
+        return t('it cannot be bought (out of stock or unavailable)');
     }
 }

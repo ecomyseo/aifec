@@ -98,7 +98,7 @@ return static function (App $app): void {
             $fixable = false;
             foreach ($report['excluded'] as $i => $row) {
                 $fixable = $fixable || $row['reason'] !== 'free';
-                if ($i < 6) {
+                if ($i < 40) {
                     $list[] = '#' . $row['id'] . ' ' . $row['name'] . ' (' . FeedEligibility::label($row['reason']) . ')';
                 }
             }
@@ -107,7 +107,7 @@ return static function (App $app): void {
                 'status' => $fixable ? 'warn' : 'ok',
                 'detail' => t('{eligible} of {total} products are in the product feeds. Left out: {list}', [
                     'eligible' => $report['eligible'], 'total' => $report['total'],
-                    'list' => implode('; ', $list) . (count($report['excluded']) > 6 ? '…' : ''),
+                    'list' => implode('; ', $list) . (count($report['excluded']) > 40 ? '…' : ''),
                 ]),
                 'fix_url' => $application->url()->plain('/admin/r/products'),
             ];
