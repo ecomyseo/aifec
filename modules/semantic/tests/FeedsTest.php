@@ -71,7 +71,8 @@ test('google.xml es RSS válido con un item por variante activa, con el precio c
     same('21.99 EUR', $blue['price']);
     $stool = $byId[(string) ((int) $app->db()->value('SELECT id FROM {products} WHERE id <> ? ORDER BY id DESC', [$id]))];
     same('9.99 EUR', $stool['price']);
-    same('no', $stool['identifier_exists'], 'sin código de barras ni referencia, Google lo pide así');
+    check(!isset($stool['identifier_exists']), 'con el MPN de recambio (el SKU o el id) ya no hace falta decir «identifier_exists = no»');
+    same((string) ((int) $app->db()->value('SELECT id FROM {products} WHERE id <> ? ORDER BY id DESC', [$id])), $stool['mpn'], 'el MPN es el id del producto cuando no hay SKU');
     check(!isset($stool['item_group_id']), 'un producto simple no lleva grupo');
 });
 
@@ -86,10 +87,10 @@ test('google.xml no incluye borradores, ocultos, productos sin precio ni product
     semanticBuildFeeds($app);
     $titles = array_column(semanticGoogleItems(semanticFeed($app, 'google.xml')), 'title');
     same(['Bueno'], $titles);
-    // products.json sí lleva el que no tiene imagen: solo google.xml la exige.
+    // Los cinco feeds llevan lo mismo (FeedEligibility): el que no tiene imagen o es gratuito tampoco está en products.json.
     $names = array_column(json_decode(semanticFeed($app, 'products.json'), true)['products'], 'name');
     sort($names);
-    same(['Bueno', 'Sin imagen', 'Sin precio'], $names);
+    same(['Bueno'], $names);
 });
 
 test('una oferta sale como precio normal y precio de oferta, y el de antes se calcula con impuestos', function (): void {

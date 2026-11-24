@@ -31,7 +31,10 @@ final class Page
     private const PRIVATE_TYPES = ['cart', 'checkout', 'account', 'order', 'search', 'error'];
 
     /** Parámetros de seguimiento que no forman parte de la dirección canónica. */
-    private const TRACKING = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'utm_id', 'gclid', 'fbclid', 'msclkid', 'ttclid', 'mc_cid', 'mc_eid', 'srsltid'];
+    private const TRACKING = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'utm_id', 'gclid', 'fbclid', 'msclkid', 'ttclid', 'mc_cid', 'mc_eid', 'srsltid',
+        // Los parámetros con los que un robot o un guion esquivan la caché: no son otra página (verificación del 24/11/2026: la portada
+        // copiaba «?v=232354» en su canónica).
+        'v', 'ver', 'version', '_', 'ts', 'nocache', 'cachebust', 'cb', 'rnd'];
 
     /**
      * @param array<string,mixed> $page
@@ -56,7 +59,9 @@ final class Page
         if ($page['canonical'] === '') {
             $query = array_diff_key($request->query, array_flip(self::TRACKING));
             ksort($query);
-            $page['canonical'] = $app->url()->origin() . $app->url()->to($request->path, [], null) . ($query !== [] ? '?' . http_build_query($query) : '');
+            // La portada es una sola dirección: su canónica nunca lleva parámetros.
+            $page['canonical'] = $app->url()->origin() . $app->url()->to($request->path, [], null)
+                . ($query !== [] && $page['type'] !== 'home' ? '?' . http_build_query($query) : '');
         }
         if ($page['robots'] === '') {
             $private = in_array($page['type'], self::PRIVATE_TYPES, true);

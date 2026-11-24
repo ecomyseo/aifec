@@ -41,7 +41,7 @@ $af_live = $af_buy !== null && !empty($af_buy['variants']);
     <div class="af-product-card-link">
 <?php endif; ?>
         <span class="af-product-card-media">
-            <?= image_tag($af_image, 'card', ['class' => 'af-product-card-img', 'alt' => '']) ?>
+            <?= image_tag($af_image, 'card', ['class' => 'af-product-card-img', 'alt' => $af_name]) ?>
             <?= $this->partial('partials/badges', ['product' => $af_p, 'tag' => 'span']) ?>
         </span>
         <span class="af-product-card-body">

@@ -79,7 +79,7 @@ final class AcpFeed
                             'seller_name' => $app->settings()->str('store.name', $app->request()->host),
                             'brand' => $semantic->brand($product),
                             'gtin' => (string) ($variant['gtin'] ?? $product['gtin'] ?? ''),
-                            'mpn' => (string) ($product['mpn'] ?? ''),
+                            'mpn' => $semantic->mpn($product, $id ? $variant : null),
                             'condition' => (string) ($product['condition'] ?? ''),
                             'product_category' => $semantic->categoryPath($product),
                             'group_id' => $id ? (string) $product['id'] : '',

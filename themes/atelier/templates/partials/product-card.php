@@ -57,7 +57,7 @@ foreach (isset($at_p['swatches']) && is_array($at_p['swatches']) ? array_slice(a
 <?php endif; ?>
         <figure class="at-card-fig">
             <div class="at-card-media af-product-card-media">
-                <?= image_tag($at_image, 'card', ['class' => 'at-card-img af-product-card-img', 'alt' => '']) ?>
+                <?= image_tag($at_image, 'card', ['class' => 'at-card-img af-product-card-img', 'alt' => $at_name]) ?>
                 <?php if ($at_second !== null) : ?>
                     <?= image_tag($at_second, 'card', ['class' => 'at-card-alt', 'alt' => '']) ?>
                 <?php endif; ?>

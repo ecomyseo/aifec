@@ -224,7 +224,7 @@ e2eTest('después de escribir: el buscador reindexado, los contadores recalculad
     same(0, (int) $silla['rating_count'], 'y la de la silla, con su opinión sin aprobar, a cero');
     $file = \Aifec\Modules\Semantic\Feeds::path($app, 'products');
     check(is_file($file), 'el feed products está hecho');
-    contains('Mantel de lino', (string) file_get_contents($file), 'y lleva los productos importados');
+    notContains('Mantel de lino', (string) file_get_contents($file), 'pero sin imagen no entra (la misma regla en los cinco feeds)');
     // El de OpenAI (como el de Google y el de ACP) exige imagen: sin imágenes importadas no lleva productos (auditoría del 24/11/2026,
     // cuando openai.json llevaba 149 y los otros dos 140).
     $openai = \Aifec\Modules\Semantic\Feeds::path($app, 'openai');

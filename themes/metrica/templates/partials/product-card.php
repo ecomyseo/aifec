@@ -50,9 +50,9 @@ $mt_max = isset($mt_p['buy']['max_qty']) && (int) $mt_p['buy']['max_qty'] > 0 ? 
 ?>
 <article class="af-product-card mt-card<?= ($mt_out ? ' is-out' : '') ?>">
 <?php if ($mt_url !== '') : ?>
-<a class="mt-card-shot" href="<?= e($mt_url) ?>" tabindex="-1" aria-hidden="true"><?= image_tag($mt_image, 'card', ['class' => 'mt-card-img', 'alt' => '']) ?></a>
+<a class="mt-card-shot" href="<?= e($mt_url) ?>" tabindex="-1" aria-hidden="true"><?= image_tag($mt_image, 'card', ['class' => 'mt-card-img', 'alt' => $mt_name]) ?></a>
 <?php else : ?>
-<span class="mt-card-shot"><?= image_tag($mt_image, 'card', ['class' => 'mt-card-img', 'alt' => '']) ?></span>
+<span class="mt-card-shot"><?= image_tag($mt_image, 'card', ['class' => 'mt-card-img', 'alt' => $mt_name]) ?></span>
 <?php endif; ?>
 <div class="mt-card-label">
 <?php if ($mt_line !== '') : ?>

@@ -127,6 +127,47 @@ test('openai.json aplica la misma regla que Google y ACP: sin imagen o gratuito 
     same(2, \Aifec\Modules\Semantic\FeedEligibility::report($app)['eligible'], 'y el recuento también');
 });
 
+test('los cinco feeds llevan los mismos productos y todos con MPN (el SKU de recambio si no hay otro)', function (): void {
+    // Verificación del 24/11/2026: products.json llevaba 149 y los otros cuatro 142; y el MPN/SKU no salía en google.xml, openai.json
+    // ni en los dos feeds de ACP.
+    $shop = brandShop();
+    $app = $shop['app'];
+    aifecProduct($app, ['name' => 'Gratuito', 'slug' => 'gratuito', 'price' => 0, 'images' => 2, 'stock' => 5]);
+    aifecProduct($app, ['name' => 'Sin imagen', 'slug' => 'sin-imagen', 'price' => 5000, 'images' => 0, 'stock' => 5]);
+    $products = json_decode(brandBody($app, '/feeds/products.json'), true);
+    $google = brandBody($app, '/feeds/google.xml');
+    $openai = json_decode(brandBody($app, '/feeds/openai.json'), true);
+    $acp = array_map(static function (string $line): array {
+        return (array) json_decode($line, true);
+    }, array_filter(explode("\n", brandBody($app, '/acp/feed.jsonl'))));
+    $tsv = array_values(array_filter(explode("\n", brandBody($app, '/acp/feed-google.tsv'))));
+    $header = explode("\t", $tsv[0]);
+    $mpnColumn = array_search('mpn', $header, true);
+    check($mpnColumn !== false, 'el TSV tiene la columna mpn');
+    $counts = [
+        'products.json' => count($products['products']), 'google.xml' => substr_count($google, '<item>'), 'openai.json' => count($openai['products']),
+        'acp' => count($acp), 'tsv' => count($tsv) - 1,
+    ];
+    same(['products.json' => 2, 'google.xml' => 2, 'openai.json' => 2, 'acp' => 2, 'tsv' => 2], $counts, 'los cinco cuentan lo mismo');
+    same(2, substr_count($google, '<g:mpn>'), 'google.xml: MPN en todos');
+    $expected = ['SIL-001', (string) $shop['sin']];
+    sort($expected);
+    $mpnOf = static function (array $values) use ($expected): array {
+        $values = array_map('strval', $values);
+        sort($values);
+
+        return $values;
+    };
+    same($expected, $mpnOf(array_column($openai['products'], 'mpn')), 'openai.json: el SKU, o el id si no hay');
+    same($expected, $mpnOf(array_column($acp, 'mpn')), 'acp/feed.jsonl');
+    $mpns = [];
+    foreach (array_slice($tsv, 1) as $row) {
+        $cells = explode("\t", $row);
+        $mpns[] = $cells[$mpnColumn];
+    }
+    same($expected, $mpnOf($mpns), 'acp/feed-google.tsv');
+});
+
 test('el ajuste está en Identidad y la marca por defecto se aplica sin tocar la del producto', function (): void {
     $fields = [];
     foreach ((array) (require dirname(__DIR__, 3) . '/core/settings.php')['tabs'] as $tab) {

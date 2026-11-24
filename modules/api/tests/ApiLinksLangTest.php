@@ -50,6 +50,20 @@ test('en una tienda en castellano la guía sale en castellano, con lang="es", y 
     contains('Poner un producto en un carrito nuevo', $guide);
 });
 
+test('la respuesta de añadir al carrito sale entera en castellano, también las frases con direcciones dentro; el JSON no se traduce', function (): void {
+    // Verificación del 24/11/2026: /buy-with-links/add mezclaba castellano e inglés («where they type their name…»).
+    $app = apiApp();
+    $id = assistantShop($app)['silla_roja'];
+    foreach (['Claude-User/1.0', 'ChatGPT-User/1.0'] as $agent) {
+        $r = langOpen($app, '/buy-with-links/add?product_id=' . $id . '&qty=1', ['user-agent' => $agent]);
+        same(200, $r->status, $agent);
+        contains('El producto está en el carrito.', $r->body, $agent);
+        foreach (['where they type', 'If you can open several addresses', 'The product is in the cart', 'this page shows what is still missing', 'the person types who receives it'] as $english) {
+            notContains($english, $r->body, $agent . ': frase sin traducir «' . $english . '»');
+        }
+    }
+});
+
 test('en una tienda en inglés la guía sale en inglés, con lang="en", y el JSON de los programas nunca se traduce', function (): void {
     $app = apiApp(['i18n.languages' => ['en']]);
     $r = langOpen($app, '/buy-with-links');

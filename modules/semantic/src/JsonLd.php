@@ -398,14 +398,23 @@ final class JsonLd
         $returns = $s->returns();
         if ($returns !== null) {
             $methods = ['mail' => 'ReturnByMail', 'store' => 'ReturnInStore', 'kiosk' => 'ReturnAtKiosk'];
-            $offer['hasMerchantReturnPolicy'] = [
+            $method = $s->returnMethodFor($product, $returns);
+            $policy = [
                 '@type' => 'MerchantReturnPolicy',
                 'applicableCountry' => $returns['country'],
                 'returnPolicyCategory' => self::CONTEXT . '/MerchantReturnFiniteReturnWindow',
                 'merchantReturnDays' => $returns['days'],
-                'returnMethod' => self::CONTEXT . '/' . $methods[$returns['method']],
-                'returnFees' => self::CONTEXT . '/' . ($returns['payer'] === 'merchant' ? 'FreeReturn' : 'ReturnShippingFees'),
             ];
+            // Una descarga o un servicio no vuelven por correo ni se pagan los portes: sin método ni gastos de devolución.
+            if ($method !== 'none') {
+                $policy['returnMethod'] = self::CONTEXT . '/' . $methods[$method];
+                $policy['returnFees'] = self::CONTEXT . '/' . ($returns['payer'] === 'merchant' ? 'FreeReturn' : 'ReturnShippingFees');
+            }
+            $link = $s->returnLink();
+            if ($link !== '') {
+                $policy['merchantReturnLink'] = $link;
+            }
+            $offer['hasMerchantReturnPolicy'] = $policy;
         }
 
         return $offer;

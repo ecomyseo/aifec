@@ -537,6 +537,10 @@ final class Search
         $strongOnes = array_values(array_filter($ranked, static function (array $item): bool {
             return $item['strong'];
         }));
+        // «weak»: nada casa por un campo de peso (solo por la descripción larga). Lo usa quien pregunta para no darlo por una respuesta
+        // exacta cuando la consulta traía varias palabras (verificación del 24/11/2026: «pasarela de pago» traía una ficha que dice
+        // «pasarela de pago» en medio de su descripción).
+        $weak = $strongOnes === [] && $ranked !== [];
         if ($strongOnes !== []) {
             $ranked = $strongOnes;
         }
@@ -587,7 +591,7 @@ final class Search
         $ids = $this->learnedOrder($ids, $q, $lang, $type, $ranked);
         // «terms»: cuántas palabras con significado traía la consulta. Con «relaxed» (se casó quitando una) dice cuánto de lo
         // pedido quedó sin encontrar: una de dos es la mitad.
-        $result = ['ids' => $ids, 'total' => count($ranked), 'corrected' => $corrected, 'confident' => $confident, 'relaxed' => $relaxed, 'terms' => count($groups)];
+        $result = ['ids' => $ids, 'total' => count($ranked), 'corrected' => $corrected, 'confident' => $confident, 'relaxed' => $relaxed, 'terms' => count($groups), 'weak' => $weak];
         if ($explain) {
             $result['explain'] = [];
             foreach ($ranked as $item) {

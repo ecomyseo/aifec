@@ -107,7 +107,7 @@ final class GoogleFeed
                             }
                         }
                         $gtin = (string) ($variant['gtin'] ?? $product['gtin'] ?? '');
-                        $mpn = (string) ($product['mpn'] ?? '');
+                        $mpn = $semantic->mpn($product, $id ? $variant : null);
                         $condition = (string) ($product['condition'] ?? '');
                         $currency = $semantic->currency();
                         $write(self::line([

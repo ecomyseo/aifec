@@ -255,9 +255,18 @@ final class TextPages
         }
         $returns = $s->returns();
         if ($returns !== null) {
-            $methods = ['mail' => t('by mail'), 'store' => t('in a physical shop'), 'kiosk' => t('at a drop-off point')];
-            $policies[] = '**' . t('Returns') . ':** ' . tn('{n} day', '{n} days', $returns['days']) . ', '
-                . ($returns['payer'] === 'merchant' ? t('free of charge') : t('the customer pays the return')) . ', ' . $methods[$returns['method']] . '.';
+            $method = $s->returnMethodFor($p, $returns);
+            $link = $s->returnLink();
+            if ($method === 'none') {
+                // Descarga o servicio: no hay nada que mandar de vuelta; el plazo es el de desistimiento y manda la página legal.
+                $policies[] = '**' . t('Returns') . ':** ' . t('{days} to withdraw; nothing has to be sent back.', ['days' => tn('{n} day', '{n} days', $returns['days'])])
+                    . ($link !== '' ? ' ' . t('Conditions:') . ' ' . $link : '');
+            } else {
+                $methods = ['mail' => t('by mail'), 'store' => t('in a physical shop'), 'kiosk' => t('at a drop-off point')];
+                $policies[] = '**' . t('Returns') . ':** ' . tn('{n} day', '{n} days', $returns['days']) . ', '
+                    . ($returns['payer'] === 'merchant' ? t('free of charge') : t('the customer pays the return')) . ', ' . $methods[$method] . '.'
+                    . ($link !== '' ? ' ' . t('Conditions:') . ' ' . $link : '');
+            }
         }
         if ($policies !== []) {
             array_push($out, '', '## ' . t('Shipping and returns'));

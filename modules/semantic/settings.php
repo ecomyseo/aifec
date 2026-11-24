@@ -34,7 +34,7 @@ return [
         'smreturns' => ['label' => 'Returns', 'fields' => [
             'semantic.returns.days' => ['type' => 'number', 'label' => 'Days to return a product', 'hint' => '0 = no return policy is published.', 'default' => 0, 'rules' => 'between:0,365', 'width' => 'sm'],
             'semantic.returns.payer' => ['type' => 'select', 'label' => 'Who pays the return', 'options' => ['customer' => 'The customer', 'merchant' => 'The shop'], 'default' => 'customer', 'width' => 'md'],
-            'semantic.returns.method' => ['type' => 'select', 'label' => 'How the product comes back', 'options' => ['mail' => 'By mail', 'store' => 'In a physical shop', 'kiosk' => 'At a drop-off point'], 'default' => 'mail', 'width' => 'md'],
+            'semantic.returns.method' => ['type' => 'select', 'label' => 'How the product comes back', 'options' => ['mail' => 'By mail', 'store' => 'In a physical shop', 'kiosk' => 'At a drop-off point', 'none' => 'Download or service: nothing is sent back'], 'default' => 'mail', 'width' => 'md'],
         ]],
         'smtext' => ['label' => 'Text versions', 'fields' => [
             'semantic.summary' => ['type' => 'textarea', 'label' => 'Summary of the shop', 'hint' => 'The first paragraph of llms.txt. Empty = it is made from the shop data.', 'rows' => 4, 'default' => '', 'rules' => 'max:1000'],

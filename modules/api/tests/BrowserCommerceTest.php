@@ -13,7 +13,9 @@ test('Un navegador sin permiso no crea carritos aunque envíe cabeceras de naveg
     $before = (int) $app->db()->value('SELECT COUNT(*) FROM {carts}');
     same(403, $client->get('/buy-with-links/start', $headers)->status);
     $fallback = $client->get('/buy-with-links/new/' . $products['silla_roja'], $headers + ['accept' => 'text/html']);
-    check($fallback->isRedirect(), 'la navegación humana pasa a la ficha normal');
+    same(200, $fallback->status, 'la navegación humana ve una página, no un 403');
+    contains('<form method="post" action="/carrito/add">', $fallback->body, 'con el botón de añadir al carrito (un POST de la tienda)');
+    contains('Añadir al carrito', $fallback->body);
     same($before, (int) $app->db()->value('SELECT COUNT(*) FROM {carts}'), 'las dos rutas no crean carritos');
     same(403, $client->post('/api/v1/carts', [], $headers)->status, 'la API anónima respeta el bloqueo');
     same(403, $client->post('/api/v1/carts', [], $headers + ['origin' => 'https://tienda.test'])->status, 'el navegador de la tienda también necesita permiso para usar la API');
@@ -26,6 +28,29 @@ test('Un navegador sin permiso no crea carritos aunque envíe cabeceras de naveg
     same($before + 1, (int) $app->db()->value('SELECT COUNT(*) FROM {carts}'));
     same(403, $client->send('HEAD', '/buy-with-links/start', [], $headers)->status);
     same($before + 1, (int) $app->db()->value('SELECT COUNT(*) FROM {carts}'));
+});
+
+test('un navegador de persona ve el producto con un botón «Añadir al carrito» y no un 403; los robots, las vistas previas y los programas siguen sin él', function (): void {
+    // Verificación del 24/11/2026: /buy-with-links/new/ID daba 403 a un navegador de persona.
+    $app = apiApp();
+    $product = assistantShop($app)['silla_roja'];
+    $client = new TestClient($app);
+    $before = (int) $app->db()->value('SELECT COUNT(*) FROM {carts}');
+    foreach (['Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131.0 Safari/537.36', 'Mozilla/5.0 (compatible; revision)'] as $agent) {
+        foreach (['/buy-with-links/new/' . $product, '/buy-with-links/add?product_id=' . $product . '&qty=1'] as $path) {
+            $r = $client->get($path, ['user-agent' => $agent]);
+            same(200, $r->status, $agent . ' ' . $path);
+            contains('name="product_id" value="' . $product . '"', $r->body);
+            contains('action="/carrito/add"', $r->body);
+            contains('noindex', (string) ($r->headers['X-Robots-Tag'] ?? ''), 'la página no se indexa');
+        }
+    }
+    same($before, (int) $app->db()->value('SELECT COUNT(*) FROM {carts}'), 'abrir la página no crea ningún carrito');
+    foreach (['facebookexternalhit/1.1', 'Mozilla/5.0 HeadlessChrome/131', 'Mozilla/5.0 (compatible; SemrushBot/7)'] as $agent) {
+        same(403, $client->get('/buy-with-links/new/' . $product, ['user-agent' => $agent])->status, $agent . ' sigue sin poder');
+    }
+    same(403, $client->send('HEAD', '/buy-with-links/new/' . $product, [], ['user-agent' => 'Mozilla/5.0 Chrome/131'])->status, 'HEAD tampoco');
+    same(403, $client->get('/buy-with-links/start', ['user-agent' => 'Mozilla/5.0 Chrome/131'])->status, 'start sigue cerrado a un navegador');
 });
 
 test('Los robots de vista previa y las precargas no crean carritos por GET en /buy-with-links (new, add, start)', function (): void {

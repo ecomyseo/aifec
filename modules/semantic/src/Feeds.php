@@ -240,9 +240,9 @@ final class Feeds
         if ($key === 'openai' && !empty($product['price']['hidden'])) {
             return 0;
         }
-        // La misma regla que Google y ACP (FeedEligibility): sin imagen, gratuito (salvo ajuste) o sin poder comprarse, no entra. Auditoría
-        // del 24/11/2026: openai.json llevaba 149 productos y los otros dos feeds, 140.
-        if ($key === 'openai' && $s->app()->has('catalog')
+        // La misma regla en los cinco feeds (FeedEligibility): sin imagen, gratuito (salvo ajuste) o sin poder comprarse, no entra.
+        // Verificación del 24/11/2026: products.json llevaba 149 productos y los otros cuatro, 142 (los siete de más eran gratuitos).
+        if (($key === 'openai' || $key === 'products') && $s->app()->has('catalog')
             && FeedEligibility::reason($s->app(), $s, $s->app()->service('catalog'), $product) !== '') {
             return 0;
         }
@@ -316,7 +316,7 @@ final class Feeds
             $currency = isset($price['currency']) && $price['currency'] !== '' ? (string) $price['currency'] : $s->currency();
             $compare = $s->grossCompare($price);
             $gtin = $variant !== null && isset($variant['gtin']) && trim((string) $variant['gtin']) !== '' ? trim((string) $variant['gtin']) : (isset($p['gtin']) ? trim((string) $p['gtin']) : '');
-            $mpn = isset($p['mpn']) ? trim((string) $p['mpn']) : '';
+            $mpn = $s->mpn($p, $variant);
             $brand = $s->brand($p);
             $label = $variant !== null && isset($variant['label']) ? trim((string) $variant['label']) : '';
 
@@ -623,6 +623,30 @@ final class Feeds
     // ------------------------------------------------------------------ openai.json
 
     /**
+     * La política de devoluciones de un producto en openai.json: sin método ni quién paga si es una descarga o un servicio.
+     *
+     * @param array<string,mixed> $p
+     * @param array<string,mixed> $returns
+     *
+     * @return array<string,mixed>
+     */
+    private static function returnPolicy(Semantic $s, array $p, array $returns): array
+    {
+        $method = $s->returnMethodFor($p, $returns);
+        $out = ['days' => $returns['days'], 'country' => $returns['country']];
+        if ($method !== 'none') {
+            $out['fees_paid_by'] = $returns['payer'];
+            $out['method'] = $method;
+        }
+        $link = $s->returnLink();
+        if ($link !== '') {
+            $out['url'] = $link;
+        }
+
+        return $out;
+    }
+
+    /**
      * El producto en el formato de compra en asistentes: identificador, título, descripción, enlace, precio, disponibilidad,
      * inventario, imágenes, marca, códigos, categoría, variantes, devoluciones, valoraciones y los dos indicadores de los ajustes.
      *
@@ -689,11 +713,11 @@ final class Feeds
             'additional_image_link' => array_slice($images, 1, 10),
             'brand' => $s->brand($p),
             'gtin' => isset($p['gtin']) && $p['gtin'] !== null ? trim((string) $p['gtin']) : '',
-            'mpn' => isset($p['mpn']) && $p['mpn'] !== null ? trim((string) $p['mpn']) : '',
+            'mpn' => $s->mpn($p),
             'product_category' => $s->categoryPath($p),
             'item_group_id' => $variants !== [] ? (string) (int) $p['id'] : '',
             'variants' => $variants,
-            'return_policy' => $returns !== null ? ['days' => $returns['days'], 'fees_paid_by' => $returns['payer'], 'method' => $returns['method'], 'country' => $returns['country']] : null,
+            'return_policy' => $returns !== null ? self::returnPolicy($s, $p, $returns) : null,
             'review_count' => isset($p['rating']['count']) && (int) $p['rating']['count'] > 0 ? (int) $p['rating']['count'] : null,
             'star_rating' => isset($p['rating']['count']) && (int) $p['rating']['count'] > 0 ? round((float) $p['rating']['average'], 2) : null,
             'enable_search' => $settings->bool('semantic.openai.enable_search', true),

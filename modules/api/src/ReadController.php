@@ -196,6 +196,21 @@ final class ReadController
         $result = Agent::tool($this->app, 'search_products', $input);
         $items = isset($result['items']) && is_array($result['items']) ? $result['items'] : [];
         unset($result['items']);
+        // Con dos palabras o más que solo casan por la descripción larga (ninguna por el nombre, la marca, la categoría…), el resultado no es
+        // una respuesta exacta: es lo más parecido (verificación del 24/11/2026: «pasarela de pago» salía «exact» con una ficha que lo dice
+        // a mitad de su descripción).
+        if (($result['answer_kind'] ?? '') === 'exact' && $items !== [] && $this->app->has('search')) {
+            $found = $this->app->service('search')->query($q, ['lang' => $this->app->lang(), 'limit' => 200]);
+            if (is_array($found) && !empty($found['weak']) && isset($found['terms']) && (int) $found['terms'] >= 2) {
+                $result['answer_kind'] = 'related';
+                $result['note'] = 'These are the closest products: none of them has the words of the search in its name, brand or category, only in its long description.';
+                foreach ($items as $i => $one) {
+                    if (is_array($one)) {
+                        $items[$i]['answer_kind'] = 'related';
+                    }
+                }
+            }
+        }
         // «total» cuenta todo lo que encaja; «data» lleva como mucho «limit» (cinco de serie, ocho como máximo). Se dice, para que
         // nadie crea que faltan resultados: con «has_more» se pide más con «limit» (hasta 8) o se afina la búsqueda.
         $total = isset($result['total']) ? (int) $result['total'] : count($items);
@@ -203,9 +218,13 @@ final class ReadController
         $result['limit_max'] = 8;
         $result['returned'] = count($items);
         $result['has_more'] = $total > count($items);
+        // Las notas salen en el idioma de la tienda (verificación del 24/11/2026: salían en inglés).
+        if (isset($result['note']) && is_string($result['note'])) {
+            $result['note'] = t($result['note']);
+        }
         if ($result['has_more']) {
             $result['note'] = (isset($result['note']) && is_string($result['note']) ? $result['note'] . ' ' : '')
-                . 'total counts everything that matches; data holds at most limit products (limit goes up to 8). Refine the search or ask with a bigger limit to see the rest.';
+                . t('The total counts everything that matches; data holds at most limit products (limit goes up to 8). Refine the search or ask with a bigger limit to see the rest.');
         }
 
         return Agent::json($items, 200, $result);

@@ -69,6 +69,27 @@ test('«horas soporte» devuelve los packs de horas antes que los productos que 
     same($packs, $top, 'los dos packs van primero: ' . implode(',', $found));
 });
 
+test('una coincidencia solo por la descripción larga con varias palabras no se da por exacta, y las notas salen en castellano', function (): void {
+    // Verificación del 24/11/2026: «pasarela de pago» devolvía «exact» con una ficha que lo dice a mitad de su descripción; y las notas
+    // salían en inglés.
+    $app = apiApp();
+    aifecProduct($app, ['name' => 'Diagnóstico de tienda', 'price' => 5000, 'images' => 1, 'stock' => 9,
+        'summary' => 'Revisión completa de tu tienda.', 'description' => 'Incluye una compra de prueba hasta la pasarela de pago, sin pagar.']);
+    aifecProduct($app, ['name' => 'Pasarela de pago con tarjeta', 'price' => 9000, 'images' => 1, 'stock' => 9, 'summary' => 'Cobra con tarjeta.']);
+    searchService($app)->reindexNow();
+    $names = array_column(apiJson(apiCall($app, 'GET', '/api/v1/search?q=' . rawurlencode('pasarela de pago')))['data'], 'name');
+    same('Pasarela de pago con tarjeta', $names[0] ?? '', 'lo que lo lleva en el nombre sigue siendo la respuesta');
+    $only = apiApp();
+    aifecProduct($only, ['name' => 'Diagnóstico de tienda', 'price' => 5000, 'images' => 1, 'stock' => 9,
+        'summary' => 'Revisión completa de tu tienda.', 'description' => 'Incluye una compra de prueba hasta la pasarela de pago, sin pagar.']);
+    searchService($only)->reindexNow();
+    $meta = apiJson(apiCall($only, 'GET', '/api/v1/search?q=' . rawurlencode('pasarela de pago')))['meta'];
+    check($meta['answer_kind'] !== 'exact', 'solo por la descripción no es exacta: ' . $meta['answer_kind']);
+    $none = apiJson(apiCall($only, 'GET', '/api/v1/search?q=zzzqqq'))['meta'];
+    same('Nada del catálogo coincide con esta búsqueda.', $none['note'] ?? '', 'la nota, en castellano');
+    notContains('Nothing in the catalogue', (string) json_encode($none));
+});
+
 test('el total y los datos cuadran, o la respuesta dice que están limitados y a cuánto', function (): void {
     $app = apiApp();
     apiSearchShop($app);
@@ -79,7 +100,7 @@ test('el total y los datos cuadran, o la respuesta dice que están limitados y a
     same(5, $json['meta']['returned'], 'y cuántos devuelve');
     same(8, $json['meta']['limit_max'], 'y el tope que se puede pedir');
     same(true, $json['meta']['has_more'], 'y que hay más');
-    contains('limit', $json['meta']['note'], 'con una frase que lo explica');
+    contains('límite', $json['meta']['note'], 'con una frase que lo explica');
     $all = apiJson(apiCall($app, 'GET', '/api/v1/search?q=transportista&limit=8'));
     same(7, count($all['data']), 'con limit=8 caben los siete');
     same(7, $all['meta']['total']);

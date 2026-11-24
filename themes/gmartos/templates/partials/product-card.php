@@ -41,7 +41,7 @@ $gm_live = $gm_buy !== null && !empty($gm_buy['variants']);
 <?php if ($gm_home) : ?>
 <article class="gm-card gm-card-home af-product-card<?= $gm_out ? ' is-out' : '' ?>">
     <span class="af-product-card-media">
-        <?= image_tag($gm_image, 'card', ['class' => 'gm-card-img af-product-card-img', 'alt' => '']) ?>
+        <?= image_tag($gm_image, 'card', ['class' => 'gm-card-img af-product-card-img', 'alt' => $gm_name]) ?>
     </span>
     <div class="af-product-card-body">
         <?php if ($gm_show_brand) : ?>
@@ -63,7 +63,7 @@ $gm_live = $gm_buy !== null && !empty($gm_buy['variants']);
 <article class="gm-card af-product-card<?= $gm_out ? ' is-out' : '' ?>"<?= $gm_buy !== null ? ' data-af-card data-af-card-url="' . e($gm_url) . '"' . ($gm_live ? ' data-af-variants' : '') : '' ?>>
     <figure class="gm-card-fig">
         <a class="af-product-card-media" href="<?= e($gm_url !== '' ? $gm_url : '#') ?>" tabindex="-1" aria-hidden="true">
-            <?= image_tag($gm_image, 'card', ['class' => 'gm-card-img af-product-card-img', 'alt' => '']) ?>
+            <?= image_tag($gm_image, 'card', ['class' => 'gm-card-img af-product-card-img', 'alt' => $gm_name]) ?>
         </a>
         <?= $this->partial('partials/badges', ['product' => $gm_p, 'tag' => 'ul', 'item' => 'li', 'sale_label' => t('Sale')]) ?>
     </figure>

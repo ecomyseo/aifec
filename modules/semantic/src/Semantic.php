@@ -257,9 +257,52 @@ class Semantic
         return [
             'days' => min(365, $days),
             'payer' => $payer === 'merchant' ? 'merchant' : 'customer',
-            'method' => in_array($method, ['mail', 'store', 'kiosk'], true) ? $method : 'mail',
+            'method' => in_array($method, ['mail', 'store', 'kiosk', 'none'], true) ? $method : 'mail',
             'country' => $this->country(),
         ];
+    }
+
+    /**
+     * El MPN que sale en los feeds de producto: el del catálogo y, si no tiene, el SKU (el del catálogo o el de recambio con el id del
+     * producto). Con marca y MPN, Google y los asistentes tienen un identificador y no hace falta decir «identifier_exists = no».
+     *
+     * @param array<string,mixed>      $product
+     * @param array<string,mixed>|null $variant
+     */
+    public function mpn(array $product, ?array $variant = null): string
+    {
+        $own = isset($product['mpn']) && $product['mpn'] !== null ? trim((string) $product['mpn']) : '';
+
+        return $own !== '' ? $own : $this->sku($product, $variant)[0];
+    }
+
+    /**
+     * Cómo vuelve este producto: «mail», «store» o «kiosk» según los ajustes, o «none» cuando no hay nada que devolver por correo ni en
+     * tienda: una descarga o un servicio (su plazo es el de desistimiento) o una tienda que lo ha dicho así en los ajustes.
+     *
+     * @param array<string,mixed>                                       $product
+     * @param array{days:int,payer:string,method:string,country:string} $returns
+     */
+    public function returnMethodFor(array $product, array $returns): string
+    {
+        $kind = isset($product['kind']) ? (string) $product['kind'] : '';
+
+        return ($kind === 'digital' || $kind === 'service') ? 'none' : $returns['method'];
+    }
+
+    /**
+     * La dirección de la página legal «Envíos y devoluciones» (la de Contenido → Textos legales), o '' si no hay.
+     */
+    public function returnLink(): string
+    {
+        if (!$this->app->has('cms')) {
+            return '';
+        }
+        $map = $this->app->settings()->arr('cms.legal');
+        $id = isset($map['shipping-returns']) ? (int) $map['shipping-returns'] : 0;
+        $page = $id > 0 ? $this->app->service('cms')->page($id) : null;
+
+        return is_array($page) && !empty($page['url_abs']) ? (string) $page['url_abs'] : '';
     }
 
     /**

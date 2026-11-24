@@ -50,7 +50,7 @@ $ds_count = $ds_rating !== null && isset($ds_rating['count']) ? (int) $ds_rating
 ?>
 <article class="ds-card af-product-card<?= $ds_portrait ? ' ds-ratio-portrait' : '' ?><?= $ds_out ? ' is-out' : '' ?><?= $ds_add_link || $ds_add_form ? ' ds-has-add' : '' ?>" data-tone="<?= e($ds_info['tone']) ?>"<?= $ds_buy !== null ? ' data-af-card data-af-card-url="' . e($ds_url) . '"' . ($ds_live ? ' data-af-variants' : '') : '' ?>>
     <figure class="ds-card-media af-product-card-media">
-        <?= image_tag($ds_image, 'card', ['class' => 'ds-card-img af-product-card-img', 'alt' => '']) ?>
+        <?= image_tag($ds_image, 'card', ['class' => 'ds-card-img af-product-card-img', 'alt' => $ds_name]) ?>
         <?php $ds_badge_items = trim($this->partial('partials/badges', ['product' => $ds_p, 'tag' => 'none', 'item' => 'li'])); ?>
         <?php if ($ds_badge_items !== '') : ?>
             <ul class="ds-badges af-badges"><?= $ds_badge_items ?></ul>

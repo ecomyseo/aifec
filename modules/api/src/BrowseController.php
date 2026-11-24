@@ -311,12 +311,13 @@ final class BrowseController
         $step = isset($params['step']) ? (string) $params['step'] : '';
         if (\Aifec\Kernel\BrowserCommerce::blocked($this->app, $request)) {
             $product = $params['a'] ?? $request->get('product_id');
-            if ($step === 'add' && !$this->json && is_scalar($product) && (int) $product > 0 && \Aifec\Kernel\BrowserCommerce::navigation($request)) {
-                $item = $this->app->service('catalog')->product((int) $product);
-                if ($item !== null && !empty($item['url_abs'])) {
-                    $response = Response::redirect((string) $item['url_abs']);
-                    $response->headers['Cache-Control'] = 'no-store, private';
-                    return $response;
+            // Una persona con su navegador no recibe un 403: ve el producto y un botón «Añadir al carrito» (un POST de la propia tienda).
+            // La dirección GET sigue siendo para los asistentes; esta página no crea ningún carrito (verificación del 24/11/2026).
+            if ($step === 'add' && !$this->json && is_scalar($product) && (int) $product > 0 && \Aifec\Kernel\BrowserCommerce::person($request)) {
+                $variant = $params['b'] ?? $request->get('variant_id');
+                $page = $this->addButtonPage((int) $product, is_scalar($variant) ? (int) $variant : 0);
+                if ($page !== null) {
+                    return $page;
                 }
             }
             $response = $this->json ? Response::json(['error' => 'browser_blocked'], 403)
@@ -770,7 +771,13 @@ final class BrowseController
 
         // Al lector que no completa direcciones (Claude-User, ChatGPT-User, el de Gemini), las dos formas de seguir, sin la
         // dirección que hay que completar (ver afterCart()).
-        $text = strtr($this->readerOnly() ? self::AFTER_ADD_READER : self::AFTER_ADD,
+        // Las frases llevan marcadores ({FORM}, {STATUS}, {RESUME}): se traducen ANTES de poner las direcciones, o la traducción no las
+        // reconoce y sale medio castellano y medio inglés (verificación del 24/11/2026). El JSON de los programas no se traduce.
+        $template = $this->readerOnly() ? self::AFTER_ADD_READER : self::AFTER_ADD;
+        if (!$this->json) {
+            $template = $this->localise($template);
+        }
+        $text = strtr($template,
             ['{FORM}' => $this->url('customer', $raw), '{STATUS}' => $this->statusUrl($raw), '{RESUME}' => $resume]);
 
         return $this->demoShop() ? $text . ' ' . self::DEMO_NOTE : $text;
@@ -1323,6 +1330,46 @@ final class BrowseController
         return new Response($html, 200, [
             'Content-Type' => 'text/html; charset=UTF-8',
             'Cache-Control' => 'no-store',
+            'X-Robots-Tag' => 'noindex',
+            'Referrer-Policy' => 'no-referrer',
+        ]);
+    }
+
+    /**
+     * La página para una persona que abre «/buy-with-links/new/ID» con su navegador: el producto y un botón «Añadir al carrito» que manda un
+     * POST a la propia tienda (el mismo que el de la ficha). Un producto que pide elegir opciones lleva a su ficha.
+     */
+    private function addButtonPage(int $productId, int $variantId): ?Response
+    {
+        $item = $this->app->service('catalog')->product($productId);
+        if ($item === null || empty($item['url_abs'])) {
+            return null;
+        }
+        $h = static function (string $text): string {
+            return htmlspecialchars($text, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+        };
+        $name = (string) ($item['name'] ?? '');
+        $needsOptions = !empty($item['has_variants']) && $variantId < 1;
+        $html = '<!doctype html><html lang="' . $h($this->app->lang()) . '"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">'
+            . '<meta name="robots" content="noindex"><title>' . $h($name) . '</title>'
+            . '<style>body{font-family:system-ui,sans-serif;max-width:32rem;margin:2rem auto;padding:0 1rem;line-height:1.5}'
+            . 'button,a.b{display:inline-block;margin-top:1.2rem;padding:.8rem 1.2rem;font-size:1rem}</style></head><body>'
+            . '<h1>' . $h($name) . '</h1>'
+            . '<p>' . $h(t('This address is for shopping assistants. You can add the product to your cart here, or see it in the shop.')) . '</p>';
+        if ($needsOptions || !$this->app->router()->has('cart.add')) {
+            $html .= '<a class="b" href="' . $h((string) $item['url_abs']) . '">' . $h(t('See the product and choose its options')) . '</a>';
+        } else {
+            $html .= '<form method="post" action="' . $h($this->app->url()->route('cart.add')) . '">'
+                . '<input type="hidden" name="product_id" value="' . $productId . '"><input type="hidden" name="qty" value="1">'
+                . ($variantId > 0 ? '<input type="hidden" name="variant_id" value="' . $variantId . '">' : '')
+                . '<button type="submit">' . $h(t('Add to cart')) . '</button></form>'
+                . '<p><a href="' . $h((string) $item['url_abs']) . '">' . $h(t('See the product in the shop')) . '</a></p>';
+        }
+        $html .= '</body></html>';
+
+        return new Response($html, 200, [
+            'Content-Type' => 'text/html; charset=UTF-8',
+            'Cache-Control' => 'no-store, private',
             'X-Robots-Tag' => 'noindex',
             'Referrer-Policy' => 'no-referrer',
         ]);

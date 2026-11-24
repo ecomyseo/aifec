@@ -51,7 +51,7 @@ $tl_live = $tl_buy !== null && !empty($tl_buy['variants']);
     <div class="tl-card-link af-product-card-link">
 <?php endif; ?>
         <div class="tl-card-media af-product-card-media">
-            <?= image_tag($tl_image, 'card', ['class' => 'tl-card-img af-product-card-img', 'alt' => '']) ?>
+            <?= image_tag($tl_image, 'card', ['class' => 'tl-card-img af-product-card-img', 'alt' => $tl_name]) ?>
             <?= $this->partial('partials/badges', ['product' => $tl_p, 'tag' => 'p', 'class' => 'tl-card-badges']) ?>
             <?php if ($tl_deal && $tl_percent > 0) : ?>
                 <strong class="tl-deal-off"><span class="af-sr"><?= e(t('Discount')) ?> </span><?= e('−' . $tl_percent . "\u{a0}%") ?></strong>

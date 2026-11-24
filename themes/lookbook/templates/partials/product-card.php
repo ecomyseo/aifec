@@ -63,9 +63,9 @@ $lb_tones = array_slice($lb_tones, 0, 5);
 ?>
 <article class="af-product-card lb-look<?= e($lb_shape) ?><?= in_array('out', $lb_have, true) ? ' is-out' : '' ?>">
     <figure class="lb-look-shot">
-        <?= image_tag($lb_image, 'card', ['class' => 'lb-look-img', 'alt' => '']) ?>
+        <?= image_tag($lb_image, 'card', ['class' => 'lb-look-img', 'alt' => $lb_name]) ?>
         <?php if ($lb_back !== null) : ?>
-            <?= image_tag($lb_back, 'card', ['class' => 'lb-look-img lb-look-back', 'alt' => '']) ?>
+            <?= image_tag($lb_back, 'card', ['class' => 'lb-look-img lb-look-back', 'alt' => $lb_name]) ?>
         <?php endif; ?>
     </figure>
     <?php if ($lb_show_brand) : ?>

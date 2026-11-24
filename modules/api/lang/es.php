@@ -170,6 +170,13 @@ return [
     'If you are the person who is buying, open this address in your browser: your cart is ready at the checkout of the shop.' => 'Si eres la persona que compra, abre esta dirección en tu navegador: tu carrito está listo en la caja de la tienda.',
     'MCP server, for assistants with connectors' => 'Servidor MCP, para los asistentes con conectores',
     'The same search, cart and checkout as MCP tools, without a key.' => 'La misma búsqueda, el mismo carrito y la misma caja como herramientas MCP, sin clave.',
+    'Nothing in the catalogue matches this search.' => 'Nada del catálogo coincide con esta búsqueda.',
+    'The total counts everything that matches; data holds at most limit products (limit goes up to 8). Refine the search or ask with a bigger limit to see the rest.' => 'El total cuenta todo lo que coincide; «data» lleva como mucho «limit» productos (el límite llega a 8). Afina la búsqueda o pide un límite mayor para ver el resto.',
+    'This address is for shopping assistants. You can add the product to your cart here, or see it in the shop.' => 'Esta dirección es para asistentes de compra. Aquí puedes añadir el producto a tu carrito o verlo en la tienda.',
+    'See the product and choose its options' => 'Ver el producto y elegir sus opciones',
+    'Add to cart' => 'Añadir al carrito',
+    'See the product in the shop' => 'Ver el producto en la tienda',
+    'These are the closest products: none of them has the words of the search in its name, brand or category, only in its long description.' => 'Son los productos más parecidos: ninguno lleva las palabras de la búsqueda en su nombre, su marca ni su categoría, solo en su descripción larga.',
     'Guide for AI assistants (llms.txt)' => 'Guía para asistentes de IA (llms.txt)',
     'This shop described for language models: what it sells and how a purchase works here.' => 'Esta tienda descrita para los modelos de lenguaje: qué vende y cómo funciona aquí una compra.',
 ];

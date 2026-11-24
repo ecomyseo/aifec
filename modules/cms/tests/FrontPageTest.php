@@ -68,6 +68,18 @@ test('una página cuyo contenido ya trae su h1 no pone otro: una sola h1 por pá
     notContains('<h1 class="af-title">Servicios</h1>', $r->body, 'y no la de la plantilla');
 });
 
+test('la canónica de la portada nunca copia los parámetros de la petición (ni «?v=…»)', function (): void {
+    // Verificación del 24/11/2026: la portada de gmartos.es decía canonical «https://gmartos.es/?v=232354».
+    $app = cmsApp();
+    cmsInsertPage($app, ['title' => 'Inicio', 'is_home' => 1]);
+    $web = new TestClient($app);
+    foreach (['/?v=232354', '/?utm_source=x&v=2', '/?x=1&ver=3&_=9'] as $path) {
+        $body = $web->get($path)->body;
+        contains('<link rel="canonical" href="https://tienda.test/">', $body, $path);
+        contains('<meta property="og:url" content="https://tienda.test/">', $body, 'og:url de ' . $path);
+    }
+});
+
 test('un contenido con varias h1 deja la primera y pasa las demás a h2', function (): void {
     $app = cmsApp();
     cmsInsertPage($app, ['title' => 'Licencia', 'slug' => 'licencia', 'blocks' => [['type' => 'html', 'attrs' => ['html' => '<h1>Primera</h1><p>a</p><h1 class="x">Segunda</h1><p>b</p><h1>Tercera</h1>']]]]);

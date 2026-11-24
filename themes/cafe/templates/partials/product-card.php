@@ -55,7 +55,7 @@ $cf_choose = $cf_add && !empty($cf_p['has_variants']) && $cf_url !== '';
 ?>
 <article class="af-product-card cf-card<?php if ($cf_out) : ?> is-out<?php endif; ?>"<?php if ($cf_sys !== []) : ?> data-cf-sys="<?= e(implode(' ', $cf_sys)) ?>"<?php endif; ?>>
     <figure class="cf-shot">
-        <?= image_tag($cf_image, 'card', ['class' => 'cf-shot-img', 'alt' => '']) ?>
+        <?= image_tag($cf_image, 'card', ['class' => 'cf-shot-img', 'alt' => $cf_name]) ?>
         <?php if ($cf_ribbon !== '') : ?>
             <figcaption class="cf-ribbon" data-cf-ribbon data-cf-yes="<?= e(t('Fits your coffee maker')) ?>" data-cf-no="<?= e(t('Does not fit your coffee maker')) ?>"><?= e($cf_ribbon) ?></figcaption>
         <?php endif; ?>

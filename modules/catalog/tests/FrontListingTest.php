@@ -112,6 +112,31 @@ test('categoría: sus productos y los de sus hijas, un solo h1, la descripción 
     same(['Silla Roja', 'Silla Azul'], frontCardNames($web->get('/categoria/muebles/sillas')->body), 'la hija solo lleva los suyos');
 });
 
+test('las imágenes de las tarjetas de producto llevan el nombre del producto como alt (no vacío)', function (): void {
+    // Verificación del 24/11/2026: 9 de 11 imágenes de la categoría SEO de gmartos.es tenían alt vacío.
+    $app = catalogApp([], ['catalog', 'media']);
+    $cat = aifecCategory($app, 'Muebles');
+    aifecProduct($app, ['name' => 'Silla Roja', 'slug' => 'silla-roja', 'categories' => [$cat], 'images' => 1, 'price' => 5000]);
+    aifecProduct($app, ['name' => 'Mesa Roble', 'slug' => 'mesa-roble', 'categories' => [$cat], 'images' => 1, 'price' => 9000]);
+    $body = (new TestClient($app))->get('/categoria/muebles')->body;
+    preg_match_all('#<img\b[^>]*>#', $body, $imgs);
+    $cards = array_values(array_filter($imgs[0], static function (string $img): bool {
+        return strpos($img, 'af-product-card-img') !== false;
+    }));
+    same(2, count($cards), 'dos tarjetas con imagen');
+    contains('alt="Silla Roja"', implode('', $cards));
+    contains('alt="Mesa Roble"', implode('', $cards));
+    notContains('alt=""', implode('', $cards), 'ninguna con alt vacío');
+    // Y ningún tema deja la imagen de su tarjeta con alt vacío (salvo la segunda, la del cambio al pasar el ratón).
+    foreach (glob(dirname(__DIR__, 3) . '/themes/*/templates/partials/product-card.php') ?: [] as $file) {
+        foreach (explode("\n", (string) file_get_contents($file)) as $line) {
+            if (strpos($line, 'image_tag(') !== false && strpos($line, "'alt' => ''") !== false && strpos($line, 'card-alt') === false) {
+                check(false, basename(dirname($file, 3)) . ': la imagen de la tarjeta lleva alt vacío');
+            }
+        }
+    }
+});
+
 test('cada filtro por dirección: f[color][], min, max, stock y sale', function (): void {
     $app = catalogApp([], ['catalog', 'media']);
     frontListingShop($app);

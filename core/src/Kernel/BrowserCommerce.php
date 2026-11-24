@@ -53,6 +53,23 @@ final class BrowserCommerce
             : preg_match('/bot\b|spider|crawl|semrush|hreflang|ahrefs/i', $agent) === 1;
     }
 
+    /**
+     * ¿Es una persona con su navegador (no un robot, una vista previa, una precarga ni un programa)? No hace falta que traiga las cabeceras
+     * «Sec-Fetch»: lo que importa es que NO es nada de lo demás. Solo para enseñarle una página con un botón; nunca crea un carrito.
+     */
+    public static function person(Request $request): bool
+    {
+        $agent = $request->userAgent();
+
+        return $request->method === 'GET'
+            && stripos($agent, 'Mozilla/') === 0
+            && VisitLog::bot($agent) === null
+            && !self::crawler($agent)
+            && !self::prefetch($request)
+            && preg_match('/headless|playwright|puppeteer|selenium|browser-use/i', $agent) !== 1
+            && $request->attr('ai_agent') === null;
+    }
+
     /** Solo para continuar en caja o abrir una ficha. Nunca autoriza crear un carrito. */
     public static function navigation(Request $request): bool
     {
