@@ -571,6 +571,10 @@ final class ShopTools
             $item = $this->card($card);
             $full = isset($products[$id]) && is_array($products[$id]) ? $products[$id] : null;
             if ($full !== null) {
+                // Y sin el desglose del precio (una tarjeta de búsqueda trae solo el importe): se toma de la ficha entera.
+                if ($item['price_detail'] === null && isset($full['price']) && is_array($full['price'])) {
+                    $item['price_detail'] = \Aifec\Modules\Catalog\PriceDetail::of($this->app, $full['price']);
+                }
                 // La tarjeta de un listado puede venir sin la segunda foto y sin las opciones: se toman de la ficha entera.
                 if ($item['option_values'] === []) {
                     $item['option_values'] = self::cardOptions($full);
@@ -1631,6 +1635,7 @@ final class ShopTools
             'compare_price_cents' => $compare,
             'from' => !empty($price['from']),
             'tax_included' => !empty($price['with_tax']),
+            'price_detail' => \Aifec\Modules\Catalog\PriceDetail::of($this->app, $price),
             'availability' => $this->availability(isset($c['availability']) ? $c['availability'] : []),
             'brand' => (string) $brand,
             'has_variants' => !empty($c['has_variants']),

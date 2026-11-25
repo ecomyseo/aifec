@@ -67,8 +67,43 @@ final class SemanticController
     public function llmsFull(Request $request, array $params): Response
     {
         $kb = $this->app->settings()->int('semantic.llms_full_kb', self::FULL_KB);
+        $max = ($kb > 0 ? $kb : self::FULL_KB) * 1024;
+        // Por páginas de unos 60 KB: la primera, sin pedir nada; «?page=N», otra; «?all=1», todo de una vez (hasta el tope de los ajustes).
+        $all = $request->get('all');
+        if (!(is_scalar($all) && in_array((string) $all, ['1', 'true', 'yes'], true))) {
+            $param = $request->get('page');
+            $page = is_scalar($param) && ctype_digit((string) $param) ? (int) $param : 0;
+            if ($param !== null && $page < 1) {
+                throw HttpError::notFound();
+            }
+            $app = $this->app;
+            $result = Llms::fullPage($this->semantic(), $max, Llms::FULL_PAGE_BYTES, max(1, $page), static function (int $n) use ($app): string {
+                return $app->url()->abs('/llms-full.txt', $n > 1 ? ['page' => $n] : [], '');
+            });
+            if ($result === null) {
+                throw HttpError::notFound();
+            }
+            $response = Response::text($result['text'], 200, 'text/plain')->cacheable(self::TTL, ['semantic', 'catalog', 'cms', 'settings']);
+            if ($result['pages'] > 1) {
+                $links = [];
+                $url = static function (int $n) use ($app): string {
+                    return $app->url()->abs('/llms-full.txt', $n > 1 ? ['page' => $n] : [], '');
+                };
+                if ($result['page'] < $result['pages']) {
+                    $links[] = '<' . $url($result['page'] + 1) . '>; rel="next"';
+                }
+                if ($result['page'] > 1) {
+                    $links[] = '<' . $url($result['page'] - 1) . '>; rel="prev"';
+                }
+                $links[] = '<' . $url(1) . '>; rel="first"';
+                $links[] = '<' . $url($result['pages']) . '>; rel="last"';
+                $response->header('Link', implode(', ', $links))->header('X-Total-Pages', (string) $result['pages']);
+            }
 
-        return Response::text(Llms::buildFull($this->semantic(), ($kb > 0 ? $kb : self::FULL_KB) * 1024), 200, 'text/plain')->cacheable(self::TTL, ['semantic', 'catalog', 'cms', 'settings']);
+            return $response;
+        }
+
+        return Response::text(Llms::buildFull($this->semantic(), $max), 200, 'text/plain')->cacheable(self::TTL, ['semantic', 'catalog', 'cms', 'settings']);
     }
 
     /**
@@ -103,6 +138,11 @@ final class SemanticController
                 throw HttpError::notFound();
             }
         }
+        // Un feed JSON grande se reparte en páginas (FeedParts): sin pedir nada, la primera; «?page=N», la que sea; «?all=1», el feed entero.
+        $paged = $this->pagedFeed($request, $key, $path);
+        if ($paged !== null) {
+            return $paged;
+        }
         $size = (int) filesize($path);
         $time = (int) filemtime($path);
         $etag = '"' . md5($key . '|' . $size . '|' . $time) . '"';
@@ -120,6 +160,92 @@ final class SemanticController
         foreach ($headers as $name => $value) {
             $response->headers[$name] = $value;
         }
+
+        return $response;
+    }
+
+    /**
+     * La página de un feed troceado que toca servir, o null si se sirve el fichero entero (feed pequeño, «?all=1» o sin trocear todavía).
+     */
+    private function pagedFeed(Request $request, string $key, string $path): ?Response
+    {
+        if (!isset(Feeds::PAGED[$key])) {
+            return null;
+        }
+        $all = $request->get('all');
+        if (is_scalar($all) && in_array((string) $all, ['1', 'true', 'yes'], true)) {
+            return null;
+        }
+        $param = $request->get('page');
+        $page = is_scalar($param) && ctype_digit((string) $param) ? (int) $param : 0;
+        if ($param !== null && $page < 1) {
+            throw HttpError::notFound();
+        }
+        if ($page === 0 && (int) filesize($path) <= Feeds::SINGLE_MAX_BYTES) {
+            return null;
+        }
+        $page = max(1, $page);
+        $partPath = Feeds::partPath($this->app, $key, $page);
+        if (!is_file($partPath)) {
+            if ($page > 1) {
+                throw HttpError::notFound();
+            }
+            // Un feed hecho por una versión anterior, sin páginas: se sirve entero y se rehace en segundo plano para la próxima.
+            if ($this->app->has('jobs')) {
+                $this->app->service('jobs')->push('semantic.feeds', [], ['unique' => 'semantic.feeds']);
+            }
+
+            return null;
+        }
+        $size = (int) filesize($partPath);
+        $time = (int) filemtime($partPath);
+        $etag = '"' . md5($key . '|p' . $page . '|' . $size . '|' . $time) . '"';
+        $headers = ['ETag' => $etag, 'Last-Modified' => gmdate('D, d M Y H:i:s', $time) . ' GMT', 'Cache-Control' => 'public, max-age=300'];
+        $sent = $request->header('if-none-match');
+        if ($sent !== null && in_array($etag, array_map('trim', explode(',', $sent)), true)) {
+            return new Response('', 304, $headers);
+        }
+        $links = [];
+        $meta = json_decode((string) file_get_contents($partPath), true);
+        $pagination = is_array($meta) && isset($meta['pagination']) && is_array($meta['pagination']) ? $meta['pagination'] : [];
+        foreach (['next', 'prev', 'first', 'last', 'index'] as $rel) {
+            if (isset($pagination[$rel]) && is_string($pagination[$rel])) {
+                $links[] = '<' . $pagination[$rel] . '>; rel="' . ($rel === 'index' ? 'index' : $rel) . '"';
+            }
+        }
+        if ($links !== []) {
+            $headers['Link'] = implode(', ', $links);
+        }
+        if (isset($pagination['pages'])) {
+            $headers['X-Total-Pages'] = (string) (int) $pagination['pages'];
+        }
+        $response = Response::file($partPath, Feeds::FILES[$key], 'application/json; charset=UTF-8', true);
+        foreach ($headers as $name => $value) {
+            $response->headers[$name] = $value;
+        }
+
+        return $response;
+    }
+
+    /**
+     * El índice de los feeds: cada uno con sus bytes, sus productos y, los JSON, las páginas en que se reparten.
+     *
+     * @param array<string,string> $params
+     */
+    public function feedsIndex(Request $request, array $params): Response
+    {
+        $path = Feeds::indexPath($this->app);
+        if (!is_file($path)) {
+            // Feeds de una versión anterior (sin índice) o sin generar: se rehacen y mientras tanto se pide esperar.
+            if ($this->app->has('jobs')) {
+                $this->app->service('jobs')->push('semantic.feeds', [], ['unique' => 'semantic.feeds']);
+            }
+
+            return Response::text('The feeds index is being built. Try again in a moment.', 503, 'text/plain')->header('Retry-After', '300')->header('Cache-Control', 'no-store');
+        }
+        $response = Response::file($path, 'index.json', 'application/json; charset=UTF-8', true);
+        $response->headers['Cache-Control'] = 'public, max-age=300';
+        $response->headers['Access-Control-Allow-Origin'] = '*';
 
         return $response;
     }
@@ -165,6 +291,10 @@ final class SemanticController
             'catalog' => $this->catalogCounts(),
             'gates' => $this->app->hooks()->apply('semantic.gates', $s->gates()),
         ];
+        // El pago: qué formas tiene encendidas la caja y que lo hace la persona en ella (sin ningún dato de las pasarelas).
+        if (class_exists('Aifec\\Modules\\Orders\\PaymentSummary')) {
+            $document['payment'] = \Aifec\Modules\Orders\PaymentSummary::declaration($this->app);
+        }
         $json = json_encode($document, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_PRETTY_PRINT);
 
         return Response::text($json === false ? '{}' : $json, 200, 'application/json')

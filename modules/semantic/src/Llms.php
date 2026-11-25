@@ -125,6 +125,10 @@ final class Llms
         foreach (isset($gates['feeds']) && is_array($gates['feeds']) ? $gates['feeds'] : [] as $key => $url) {
             $links[] = ['title' => $labels[$key], 'url' => (string) $url, 'note' => '', 'ref' => null];
         }
+        if (isset($gates['feeds_index'])) {
+            $links[] = ['title' => t('Index of the product feeds, with their pages'), 'url' => (string) $gates['feeds_index'],
+                'note' => t('The JSON feeds come in pages small enough to read in one go: open ?page=1 and follow pagination.next; ?all=1 is the whole feed. llms-full.txt and the ACP feed (?page=2) are paged the same way.'), 'ref' => null];
+        }
         if (isset($gates['api'])) {
             $links[] = ['title' => t('Public API (OpenAPI)'), 'url' => (string) $gates['api'], 'note' => '', 'ref' => null];
         }
@@ -225,14 +229,21 @@ final class Llms
         return implode("\n", array_merge($lines, self::renderSections(self::sections($s), $s))) . "\n";
     }
 
+    /** Lo que cabe en una página de /llms-full.txt (bytes): un lector de páginas corta hacia los 100.000 caracteres. */
+    public const FULL_PAGE_BYTES = 60000;
+
     /**
-     * El contenido de /llms-full.txt: lo mismo que el llms.txt con el texto de cada página enlazada, sin pasar de $maxBytes. No se
-     * corta una página por la mitad: cuando la siguiente ya no cabe, se termina.
+     * El resumen de arriba y el texto de cada página enlazada, por separado. Se para cuando la siguiente página ya no cabe en $maxBytes
+     * (con la nota de corte): no se corta una página por la mitad.
+     *
+     * @return array{head:string,chunks:string[],cut:bool,note:string}
      */
-    public static function buildFull(Semantic $s, int $maxBytes): string
+    private static function fullParts(Semantic $s, int $maxBytes): array
     {
-        $text = self::build($s);
+        $head = self::build($s);
         $note = "\n" . t('(The list is cut here: llms-full.txt has a size limit.)') . "\n";
+        $chunks = [];
+        $used = strlen($head);
         $cut = false;
         $done = [];
         foreach (self::sections($s) as $section) {
@@ -249,17 +260,69 @@ final class Llms
                 // El título de la página ya está en su encabezado: dentro de este fichero cada página baja un nivel.
                 $body = preg_replace('/^(#{1,5}) /m', '#$1 ', rtrim($page['markdown']));
                 $chunk = "\n---\n\n" . $body . "\n";
-                if (strlen($text) + strlen($chunk) + strlen($note) > $maxBytes) {
+                if ($used + strlen($chunk) + strlen($note) > $maxBytes) {
                     $cut = true;
                     break 2;
                 }
-                $text .= $chunk;
+                $chunks[] = $chunk;
+                $used += strlen($chunk);
             }
         }
-        if ($cut && strlen($text) + strlen($note) <= $maxBytes) {
-            $text .= $note;
+
+        return ['head' => $head, 'chunks' => $chunks, 'cut' => $cut, 'note' => $note];
+    }
+
+    /**
+     * El contenido de /llms-full.txt entero: lo mismo que el llms.txt con el texto de cada página enlazada, sin pasar de $maxBytes. No se
+     * corta una página por la mitad: cuando la siguiente ya no cabe, se termina.
+     */
+    public static function buildFull(Semantic $s, int $maxBytes): string
+    {
+        $parts = self::fullParts($s, $maxBytes);
+        $text = $parts['head'] . implode('', $parts['chunks']);
+        if ($parts['cut'] && strlen($text) + strlen($parts['note']) <= $maxBytes) {
+            $text .= $parts['note'];
         }
 
         return strlen($text) > $maxBytes ? (string) mb_strcut($text, 0, $maxBytes, 'UTF-8') : $text;
+    }
+
+    /**
+     * Una página de /llms-full.txt: el mismo contenido repartido en páginas de unos $pageBytes (una página de la tienda nunca se parte),
+     * cada una con la dirección de la siguiente y de la anterior para el que no ve más que lo que le cabe.
+     *
+     * @param callable(int):string $urlFor la dirección pública de una página
+     *
+     * @return array{text:string,page:int,pages:int}|null null si esa página no existe
+     */
+    public static function fullPage(Semantic $s, int $maxBytes, int $pageBytes, int $page, callable $urlFor): ?array
+    {
+        $parts = self::fullParts($s, $maxBytes);
+        $pages = [[$parts['head']]];
+        $size = strlen($parts['head']);
+        foreach ($parts['chunks'] as $chunk) {
+            if ($size > 0 && $size + strlen($chunk) > $pageBytes) {
+                $pages[] = [];
+                $size = 0;
+            }
+            $pages[count($pages) - 1][] = $chunk;
+            $size += strlen($chunk);
+        }
+        $total = count($pages);
+        if ($page < 1 || $page > $total) {
+            return null;
+        }
+        $text = '';
+        if ($page > 1) {
+            $text .= t('(llms-full.txt, page {n} of {pages}. Previous page: {url})', ['n' => $page, 'pages' => $total, 'url' => $urlFor($page - 1)]) . "\n";
+        }
+        $text .= implode('', $pages[$page - 1]);
+        if ($page < $total) {
+            $text .= "\n---\n\n" . t('Continues on page {n} of {pages}: {url}', ['n' => $page + 1, 'pages' => $total, 'url' => $urlFor($page + 1)]) . "\n";
+        } elseif ($parts['cut']) {
+            $text .= $parts['note'];
+        }
+
+        return ['text' => $text, 'page' => $page, 'pages' => $total];
     }
 }

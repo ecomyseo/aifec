@@ -23,6 +23,7 @@ return static function (Router $r, App $app): void {
     $r->get('/llms.txt', [SemanticController::class, 'llms'])->name('semantic.llms');
     $r->get('/llms-full.txt', [SemanticController::class, 'llmsFull'])->name('semantic.llms_full');
     $r->get('/sitemap-md.xml', [SemanticController::class, 'mdSitemap'])->name('semantic.md_sitemap');
+    $r->get('/feeds/index.json', [SemanticController::class, 'feedsIndex'])->name('semantic.feeds_index');
     $r->get('/feeds/{file:google\.xml|products\.json|openai\.json}', [SemanticController::class, 'feed'])->name('semantic.feed');
     $r->get('/.well-known/aifec.json', [SemanticController::class, 'wellKnown'])->name('semantic.well_known');
 

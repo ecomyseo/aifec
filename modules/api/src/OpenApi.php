@@ -100,7 +100,7 @@ final class OpenApi
      */
     public static function guide(): string
     {
-        return implode("\n", [
+        return implode("\n", array_merge([
             'Everything a person can do in this shop, a program can do: look at the catalogue, prepare a cart and, when the person says yes, place the order.',
             'An assistant that buys here never pays and never sees payment details: placing the order only creates it. The person authorises it with a 6-digit code the shop emails them, and pays afterwards, themselves, on the page of the shop. '
                 . 'So when a person asks you to buy something here for them, you can: you do not need their card, their PayPal or a key. If you would rather not send their details, prepare the cart and give them the checkout-link address: never just tell them you cannot.',
@@ -120,7 +120,7 @@ final class OpenApi
             'If the person prefers to pay on the web, GET /carts/current/checkout-link gives an address that opens this cart in their browser and takes them to the checkout.',
             'If anything changes after the review (a quantity, the address, the shipping, the payment, a coupon or the total), the confirm_token stops being valid and nothing is placed: review again.',
             'The shop sets a highest amount per order and a number of orders per key (or per address) and hour. Above them, or if the shop does not take orders from programs, send the person to the checkout page.',
-        ]);
+        ], LinkFields::guideLines()));
     }
 
     /**

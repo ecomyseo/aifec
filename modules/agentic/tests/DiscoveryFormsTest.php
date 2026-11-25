@@ -111,7 +111,8 @@ test('el perfil UCP cumple lo que exige la especificación (ucp.dev, 2026-08-25)
     // «ucp.version, ucp.services y ucp.payment_handlers son obligatorios; los registros han de estar aunque vayan vacíos».
     check(isset($profile['ucp']['services']) && $profile['ucp']['services'] !== [], 'services');
     check(array_key_exists('payment_handlers', $profile['ucp']), 'payment_handlers presente aunque esté vacío');
-    contains('"payment_handlers":{}', $raw, 'y como objeto, no como lista');
+    // Con formas de pago encendidas lleva el manejador de la caja de la tienda; vacío, un objeto vacío y no una lista (ver PaymentDeclarationTest).
+    contains('"payment_handlers":{"dev.aifec.shop_checkout":[{', $raw, 'como objeto con el manejador de la tienda, no como lista');
     foreach ($profile['ucp']['services']['dev.ucp.shopping'] as $binding) {
         foreach (['version', 'spec', 'transport'] as $field) {
             check(isset($binding[$field]) && $binding[$field] !== '', 'cada servicio lleva «' . $field . '»');

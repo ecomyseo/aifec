@@ -12,6 +12,7 @@ declare(strict_types=1);
 use Aifec\Kernel\App;
 use Aifec\Modules\Api\BrowseController;
 use Aifec\Modules\Api\Gate;
+use Aifec\Modules\Api\LinkFields;
 
 return static function (App $app): void {
     // Los dos intermediarios: «api.gate» para /api/v1 (clave, límite de uso, CORS, errores en JSON) y «api.on» para lo demás.
@@ -33,6 +34,10 @@ return static function (App $app): void {
             // Lo primero: es el camino de casi todas las IA de chat (solo abren direcciones, y solo las que han leído escritas).
             $links[] = ['title' => t('Buying with links, for assistants that can only open addresses'), 'url' => $url->abs(BrowseController::ALIAS, [], ''),
                 'note' => t('You can buy here for the person, and you never pay nor see payment details: they pay afterwards on the page of the shop. Follow a category below to the product: its text page has, written out, the address that puts it in a cart, and every answer brings the addresses of the next step.'), 'ref' => null];
+        }
+        if (BrowseController::enabled($app)) {
+            // Cada campo de cada paso con su tipo, si es obligatorio y un ejemplo inventado, y los errores: está en la propia página.
+            $links[] = ['title' => t('Fields of each step of buying with links, and the errors'), 'url' => $url->abs(BrowseController::ALIAS, [], ''), 'note' => LinkFields::compact(), 'ref' => null];
         }
         $links[] = ['title' => t('Buying through the API, step by step'), 'url' => $url->abs('/api', [], ''), 'note' => t('Search, cart, contact, shipping, payment, review and place the order. The person always confirms the total.'), 'ref' => null];
         $links[] = ['title' => t('OpenAPI description of the buying API'), 'url' => $url->abs('/api/openapi.json', [], ''), 'note' => t('Every address with its parameters. Placing an order needs the code the shop emails to the buyer, or a key with the scope orders:create.'), 'ref' => null];

@@ -150,7 +150,25 @@ final class Ucp
      */
     public static function handlers(App $app)
     {
-        return new \stdClass();
+        // Ningún cobro por la API: el pago lo hace la persona en la caja de la tienda. Lo que sí se dice es con qué formas de
+        // pago cuenta esa caja y cómo se llega a ella, para que un agente no tenga que adivinarlo (25/11/2026). Un agente que no
+        // conozca este manejador lo ignora y sigue por continue_url.
+        if (!class_exists('Aifec\\Modules\\Orders\\PaymentSummary')) {
+            return new \stdClass();
+        }
+        $declaration = \Aifec\Modules\Orders\PaymentSummary::declaration($app);
+        if ($declaration['methods'] === []) {
+            return new \stdClass();
+        }
+        $document = $app->url()->abs('/.well-known/aifec.json', [], '');
+
+        return [\Aifec\Modules\Orders\PaymentSummary::HANDLER => [[
+            'id' => 'shop_checkout',
+            'version' => self::version($app),
+            'spec' => $document,
+            'schema' => $document,
+            'config' => $declaration,
+        ]]];
     }
 
     /**

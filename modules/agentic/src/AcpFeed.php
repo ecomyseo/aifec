@@ -42,10 +42,43 @@ final class AcpFeed
         $catalog = $app->service('catalog');
         $policies = self::checkoutPolicies($app);
         $search = $app->settings()->bool('semantic.openai.enable_search', true);
-        return Response::stream(static function (callable $write) use ($app, $semantic, $catalog, $policies, $search): void {
-            $page = 1;
+        // Sin pedir nada, el feed entero (es lo que lee OpenAI). Con «?page=N» (y «?per_page=», de 1 a 96, 20 si falta) solo esa tanda de productos,
+        // con «Link: rel=next» y el total de páginas: es lo que cabe en un lector de páginas con límite de tamaño.
+        $only = 0;
+        $perPage = 96;
+        $headers = ['Content-Type' => 'application/x-ndjson; charset=utf-8', 'Cache-Control' => 'public, max-age=300'];
+        $param = $request->get('page');
+        if ($param !== null) {
+            if (!is_scalar($param) || !ctype_digit((string) $param) || (int) $param < 1) {
+                throw \Aifec\Kernel\HttpError::notFound();
+            }
+            $only = (int) $param;
+            $per = $request->get('per_page');
+            $perPage = is_scalar($per) && ctype_digit((string) $per) && (int) $per >= 1 ? min(96, (int) $per) : 20;
+            $probe = $catalog->listing(['sort' => 'newest', 'page' => 1, 'per_page' => $perPage]);
+            $pages = max(1, (int) ($probe['pages'] ?? 1));
+            if ($only > $pages) {
+                throw \Aifec\Kernel\HttpError::notFound();
+            }
+            $url = static function (int $n) use ($app, $perPage): string {
+                return $app->url()->abs('/acp/feed.jsonl', ['page' => $n, 'per_page' => $perPage], '');
+            };
+            $links = [];
+            if ($only < $pages) {
+                $links[] = '<' . $url($only + 1) . '>; rel="next"';
+            }
+            if ($only > 1) {
+                $links[] = '<' . $url($only - 1) . '>; rel="prev"';
+            }
+            $links[] = '<' . $url(1) . '>; rel="first"';
+            $links[] = '<' . $url($pages) . '>; rel="last"';
+            $headers['Link'] = implode(', ', $links);
+            $headers['X-Total-Pages'] = (string) $pages;
+        }
+        return Response::stream(static function (callable $write) use ($app, $semantic, $catalog, $policies, $search, $only, $perPage): void {
+            $page = $only > 0 ? $only : 1;
             do {
-                $listing = $catalog->listing(['sort' => 'newest', 'page' => $page, 'per_page' => 96]);
+                $listing = $catalog->listing(['sort' => 'newest', 'page' => $page, 'per_page' => $perPage]);
                 $ids = array_map('intval', array_column($listing['items'], 'id'));
                 foreach ($catalog->products($ids) as $product) {
                     $images = $semantic->images($product, 11);
@@ -91,7 +124,7 @@ final class AcpFeed
                         $write(json_encode(array_filter($row, static function ($value) { return $value !== '' && $value !== []; }), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_INVALID_UTF8_SUBSTITUTE) . "\n");
                     }
                 }
-            } while ($page++ < (int) ($listing['pages'] ?? 1));
-        }, ['Content-Type' => 'application/x-ndjson; charset=utf-8', 'Cache-Control' => 'public, max-age=300']);
+            } while ($only === 0 && $page++ < (int) ($listing['pages'] ?? 1));
+        }, $headers);
     }
 }

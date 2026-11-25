@@ -257,6 +257,11 @@ final class McpController
                 'url' => $url->abs('/llms.txt', [], ''), 'description' => t('Summary of the shop for language models: categories, best sellers, policies and the doors for agents'),
                 'representativeQueries' => [$q('What does {store} sell?'), $q('Read the policies and how to buy at {store}')]];
         }
+        if ($this->app->router()->has('semantic.feeds_index') && is_file($this->app->site()->path('feeds', true) . '/index.json')) {
+            $entries[] = ['identifier' => 'urn:air:' . $host . ':feeds:index', 'displayName' => $store . ' ' . t('product feeds'), 'type' => 'application/json',
+                'url' => $url->abs('/feeds/index.json', [], ''), 'description' => t('Index of the product feeds with the pages each JSON feed is split into: every page is small enough to read in one go'),
+                'representativeQueries' => [$q('List all the products of {store} page by page')]];
+        }
         if ($this->app->modules()->isLoaded('api')) {
             $entries[] = ['identifier' => 'urn:air:' . $host . ':api:openapi', 'displayName' => $store . ' API', 'type' => 'application/vnd.oai.openapi+json',
                 'url' => $url->abs('/api/openapi.json', [], ''), 'description' => t('Description of the shop API: catalogue search, carts and checkout'),

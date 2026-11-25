@@ -408,4 +408,7 @@ return [
     'A new file' => 'Un fichero nuevo',
     'Choose a file to put the new one in its place: the public link of the old one keeps working.' => 'Elige un fichero para poner el nuevo en su lugar: la dirección pública del anterior sigue valiendo.',
     '{name}: {count} products at {shop}. Compare prices and options and buy online.' => '{name}: {count} productos en {shop}. Compara precios y opciones y compra en línea.',
+    'Base {net} · {name} {rate} % {tax} · Total with {name} {gross} ({country})' => 'Base {net} · {name} {rate} % {tax} · Total con {name} {gross} ({country})',
+    '{gross}, no {name} applied ({rate} %, {country})' => '{gross}, sin {name} ({rate} %, {country})',
+    'Tax' => 'Impuesto',
 ];

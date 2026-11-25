@@ -169,6 +169,12 @@ final class TextPages
         $line = '**' . t('Availability') . ':** ' . self::esc($s, isset($availability['label']) ? (string) $availability['label'] : '');
         // Un producto cuyo precio no se enseña (show_price = false) tampoco lo dice aquí.
         $out[] = !empty($price['hidden']) ? $line : '**' . t('Price') . ':** ' . self::priceText($s, $price) . ' · ' . $line;
+        // La base sin impuestos y el total con ellos, con el tipo y el país: una empresa compra por la base, un particular por el total.
+        $detail = empty($price['from']) ? \Aifec\Modules\Catalog\PriceDetail::of($s->app(), $price) : null;
+        if ($detail !== null && $detail['gross'] > 0) {
+            $out[] = '';
+            $out[] = \Aifec\Modules\Catalog\PriceDetail::line($s->app(), $detail);
+        }
         $out[] = '';
         $out[] = '**' . t('Link') . ':** [' . $url . '](' . $url . ')';
         if (isset($p['rating']['count']) && (int) $p['rating']['count'] > 0) {

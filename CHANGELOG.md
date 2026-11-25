@@ -1,3 +1,13 @@
+# Sin publicar (compra por agentes)
+
+- **robots.txt:** las rutas de los protocolos (UCP, ACP, MCP, la API, la compra con enlaces y `/.well-known/`) llevan su `Allow` en todos los grupos, así que una regla que cierra `?q=` no las bloquea (RFC 9309); señal `Content-Signal` según los ajustes de robots; `Google-Extended` y `Applebot-Extended` siguen el ajuste de entrenamiento.
+- **Pago declarado:** el perfil de UCP (`payment_handlers`), el descubrimiento de ACP y `/.well-known/aifec.json` dicen qué formas de pago tiene encendidas la caja y que paga siempre la persona en ella, sin ningún dato de las pasarelas.
+- **Feeds y llms-full.txt en páginas:** los feeds JSON (`openai.json`, `products.json`) se reparten en páginas de menos de 80 KB con `?page=N`, cabecera `Link` y `/feeds/index.json`; el feed entero con `?all=1` y `google.xml` no se trocea. `llms-full.txt` y el feed de ACP (`?page=`) también. Se anuncian en llms.txt, `aifec.json` y `ard.json`.
+- **Precio doble:** base sin impuestos y total con ellos, con divisa, tipo y país, en la ficha, en la versión en texto, en la API, en MCP y en los feeds.
+- **Datos mercantiles:** el NIF-IVA se valida con formato VIES y sale así en `Organization`; entidad de resolución extrajudicial de litigios y hoja de reclamaciones en las páginas legales (la plataforma ODR europea cerró en julio de 2025: no se enlaza); el teléfono se valida.
+- **Compra con enlaces documentada:** cada campo de cada paso (tipo, obligatorio, ejemplo con datos inventados) y los códigos de error, en la propia página, en OpenAPI y en llms.txt.
+- **Panel:** una columna lateral con su propio formulario («Proponer con IA») ya no rompe Guardar, Guardar y cerrar y Borrar.
+
 # AIFEC 1.3.2
 
 ## Seguridad (auditoría del 25/11/2026)

@@ -38,6 +38,12 @@ final class Feeds
     /** @var array<string,string> clave => nombre del fichero */
     public const FILES = ['google' => 'google.xml', 'products' => 'products.json', 'openai' => 'openai.json'];
 
+    /** Los feeds que se trocean en páginas: clave => nombre del fichero sin extensión (openai.p1.json, products.p1.json…). */
+    public const PAGED = ['openai' => 'openai', 'products' => 'products'];
+
+    /** Una página es lo que cabe en un lector de páginas: el feed entero solo se manda de golpe si cabe en una. */
+    public const SINGLE_MAX_BYTES = 80000;
+
     private const JSON_FLAGS = JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_INVALID_UTF8_SUBSTITUTE | JSON_PARTIAL_OUTPUT_ON_ERROR;
 
     /** Propiedades de variante que Google conoce. */
@@ -147,6 +153,15 @@ final class Feeds
         $counts = array_fill_keys($keys, 0);
         $siteUrl = $s->siteUrl();
         $generated = $s->iso($app->clock()->sql());
+        $jsonHead = '"generated_at":' . json_encode($generated) . ',"shop":' . json_encode($s->shop(), self::JSON_FLAGS) . ',"url":' . json_encode($siteUrl, self::JSON_FLAGS)
+            . ',"currency":' . json_encode($s->currency());
+        // Los dos feeds JSON, además de enteros, se escriben troceados en páginas pequeñas (FeedParts) para quien los lee con un límite de tamaño.
+        $parts = [];
+        foreach ($keys as $key) {
+            if (isset(self::PAGED[$key])) {
+                $parts[$key] = new FeedParts($app->site()->path('feeds', true), self::PAGED[$key]);
+            }
+        }
         try {
             foreach ($keys as $key) {
                 $final = self::path($app, $key);
@@ -159,15 +174,14 @@ final class Feeds
                     fwrite($handle, '<?xml version="1.0" encoding="UTF-8"?>' . "\n" . '<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">' . "\n<channel>\n"
                         . '<title>' . self::xml($s->shop()) . "</title>\n<link>" . self::xml($siteUrl) . "</link>\n<description>" . self::xml($s->summary()) . "</description>\n");
                 } else {
-                    fwrite($handle, '{"generated_at":' . json_encode($generated) . ',"shop":' . json_encode($s->shop(), self::JSON_FLAGS) . ',"url":' . json_encode($siteUrl, self::JSON_FLAGS)
-                        . ',"currency":' . json_encode($s->currency()) . ',"products":[');
+                    fwrite($handle, '{' . $jsonHead . ',"products":[');
                 }
             }
 
             foreach (self::batches($catalog) as $batch) {
                 foreach ($batch as $product) {
                     foreach ($keys as $key) {
-                        $counts[$key] += self::write($s, $key, $writers[$key]['handle'], $product, $counts[$key]);
+                        $counts[$key] += self::write($s, $key, $writers[$key]['handle'], $product, $counts[$key], isset($parts[$key]) ? $parts[$key] : null);
                     }
                 }
             }
@@ -180,7 +194,11 @@ final class Feeds
                     throw new \RuntimeException('Cannot replace the feed ' . self::FILES[$key]);
                 }
             }
+            self::finishParts($s, $parts, $keys, $counts, $jsonHead, $generated);
         } catch (\Throwable $e) {
+            foreach ($parts as $part) {
+                $part->abort();
+            }
             foreach ($writers as $writer) {
                 if (is_resource($writer['handle'])) {
                     fclose($writer['handle']);
@@ -194,6 +212,67 @@ final class Feeds
         }
 
         return $counts;
+    }
+
+    /** La dirección pública de un feed, o de una de sus páginas. */
+    public static function url(App $app, string $key, int $page = 0): string
+    {
+        return $app->url()->abs('/feeds/' . self::FILES[$key], $page > 0 ? ['page' => $page] : [], '');
+    }
+
+    /** La dirección del índice de feeds. */
+    public static function indexUrl(App $app): string
+    {
+        return $app->url()->abs('/feeds/index.json', [], '');
+    }
+
+    /** Dónde está la página N de un feed troceado. */
+    public static function partPath(App $app, string $key, int $page): string
+    {
+        return $app->site()->path('feeds', true) . '/' . FeedParts::file(self::PAGED[$key], $page);
+    }
+
+    /** Dónde está el índice (lo que mide cada feed y cada página), escrito en la última generación. */
+    public static function indexPath(App $app): string
+    {
+        return $app->site()->path('feeds', true) . '/index.json';
+    }
+
+    /**
+     * Compone las páginas de los feeds troceados y escribe el índice.
+     *
+     * @param array<string,FeedParts> $parts
+     * @param string[]                $keys
+     * @param array<string,int>       $counts
+     */
+    private static function finishParts(Semantic $s, array $parts, array $keys, array $counts, string $jsonHead, string $generated): void
+    {
+        $app = $s->app();
+        $index = ['generated_at' => $generated, 'note' => 'Each JSON feed is also split into pages small enough for a reader with a size limit: open ?page=1, then follow pagination.next. The whole feed is the same address with ?all=1.', 'feeds' => []];
+        foreach ($keys as $key) {
+            $path = self::path($app, $key);
+            $entry = ['file' => self::FILES[$key], 'url' => self::url($app, $key), 'items' => $counts[$key], 'bytes' => is_file($path) ? (int) filesize($path) : 0,
+                'format' => $key === 'google' ? 'xml' : 'json', 'complete' => true];
+            if (isset($parts[$key])) {
+                $meta = $parts[$key]->finish($jsonHead, static function (int $page) use ($app, $key): string {
+                    return self::url($app, $key, $page);
+                }, self::url($app, $key) . '?all=1', self::indexUrl($app));
+                $entry['pages'] = count($meta);
+                $entry['paged_by_default'] = $entry['bytes'] > self::SINGLE_MAX_BYTES;
+                $entry['all_url'] = self::url($app, $key) . '?all=1';
+                $entry['parts'] = [];
+                foreach ($meta as $part) {
+                    $entry['parts'][] = ['page' => $part['page'], 'url' => self::url($app, $key, $part['page']), 'items' => $part['items'], 'bytes' => $part['bytes']];
+                }
+            } else {
+                $entry['note'] = 'Complete file, for Google Merchant Center: it is not split.';
+            }
+            $index['feeds'][$key] = $entry;
+        }
+        $tmp = self::indexPath($app) . '.tmp';
+        if (file_put_contents($tmp, (string) json_encode($index, self::JSON_FLAGS | JSON_PRETTY_PRINT)) === false || !rename($tmp, self::indexPath($app))) {
+            throw new \RuntimeException('Cannot write the feeds index');
+        }
     }
 
     /**
@@ -233,7 +312,7 @@ final class Feeds
      * @param resource            $handle
      * @param array<string,mixed> $product
      */
-    private static function write(Semantic $s, string $key, $handle, array $product, int $written): int
+    private static function write(Semantic $s, string $key, $handle, array $product, int $written, ?FeedParts $parts = null): int
     {
         // Un producto cuyo precio no se enseña (disponibilidad con show_price = false) no entra en el feed de OpenAI, que exige precio;
         // el de Google ya lo deja fuera por no tener importe, y el público lo lleva sin precio.
@@ -264,6 +343,9 @@ final class Feeds
                     continue;
                 }
                 fwrite($handle, ($written + $count > 0 ? ',' : '') . "\n" . $json);
+                if ($parts !== null) {
+                    $parts->add($json);
+                }
             }
             ++$count;
         }
@@ -560,6 +642,8 @@ final class Feeds
             'net' => isset($price['net']) ? (int) $price['net'] : null,
             'tax' => isset($price['tax']) ? (int) $price['tax'] : null,
             'tax_rate' => isset($price['tax_rate']) ? (int) $price['tax_rate'] : null,
+            // La base sin impuestos y el total con ellos, con la divisa, el tipo en % y el país del tipo.
+            'detail' => \Aifec\Modules\Catalog\PriceDetail::of($s->app(), $price),
             'compare' => $compare,
             'on_sale' => $compare !== null,
             'sale_until' => $compare !== null ? $s->iso(isset($price['sale_until']) ? (string) $price['sale_until'] : null) : '',

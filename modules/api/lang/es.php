@@ -149,6 +149,7 @@ return [
     'If anything changes after the review, the confirm_token stops being valid and nothing is placed: review again.' => 'Si algo cambia después de la revisión, el confirm_token deja de valer y no se hace nada: hay que revisar otra vez.',
     'Example' => 'Ejemplo',
     'How an assistant buys here' => 'Cómo compra aquí un asistente',
+    'Fields of each step of buying with links, and the errors' => 'Los campos de cada paso de la compra con enlaces, y los errores',
     'Buying through the API, step by step' => 'Comprar por la API, paso a paso',
     'Search, cart, contact, shipping, payment, review and place the order. The person always confirms the total.' => 'Buscar, carrito, contacto, envío, pago, revisión y hacer el pedido. La persona siempre confirma el total.',
     'OpenAPI description of the buying API' => 'Descripción OpenAPI de la API de compra',

@@ -341,6 +341,10 @@ class Semantic
         }
         if ($feeds !== []) {
             $gates['feeds'] = $feeds;
+            // El índice de los feeds: cada uno con sus bytes y, los JSON, las páginas pequeñas en que se reparten.
+            if (is_file(Feeds::indexPath($this->app))) {
+                $gates['feeds_index'] = Feeds::indexUrl($this->app);
+            }
         }
         if ($this->app->modules()->isLoaded('api')) {
             $gates['api'] = $url->abs('/api/openapi.json', [], '');

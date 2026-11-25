@@ -80,6 +80,16 @@ final class Painters
         if ($phone !== '') {
             $rows[] = [t('Phone'), '<a href="tel:' . e((string) preg_replace('/[^0-9+]/', '', $phone)) . '">' . e($phone) . '</a>'];
         }
+        $adrName = trim($settings->str('store.adr_name', ''));
+        $adrUrl = trim($settings->str('store.adr_url', ''));
+        if ($adrName !== '' || $adrUrl !== '') {
+            $label = $adrName !== '' ? $adrName : $adrUrl;
+            $rows[] = [t('Out-of-court dispute resolution'), $adrUrl !== '' ? '<a href="' . e($adrUrl) . '" rel="noopener">' . e($label) . '</a>' : e($label)];
+        }
+        $complaints = trim($settings->str('store.complaints_url', ''));
+        if ($complaints !== '') {
+            $rows[] = [t('Complaint form'), '<a href="' . e($complaints) . '" rel="noopener">' . e(t('Ask for the complaint form')) . '</a>'];
+        }
         if (!empty($attrs['contact'])) {
             $url = $this->contactPage();
             if ($url !== '') {

@@ -132,6 +132,10 @@ return [
     'Sitemap' => 'Mapa del sitio',
     'What this shop offers to machines' => 'Qué ofrece esta tienda a las máquinas',
     '(The list is cut here: llms-full.txt has a size limit.)' => '(La lista se corta aquí: llms-full.txt tiene un tamaño máximo.)',
+    '(llms-full.txt, page {n} of {pages}. Previous page: {url})' => '(llms-full.txt, página {n} de {pages}. Página anterior: {url})',
+    'Continues on page {n} of {pages}: {url}' => 'Sigue en la página {n} de {pages}: {url}',
+    'Index of the product feeds, with their pages' => 'Índice de los feeds de producto, con sus páginas',
+    'The JSON feeds come in pages small enough to read in one go: open ?page=1 and follow pagination.next; ?all=1 is the whole feed. llms-full.txt and the ACP feed (?page=2) are paged the same way.' => 'Los feeds JSON vienen en páginas lo bastante pequeñas para leerlas de una vez: abre ?page=1 y sigue pagination.next; ?all=1 es el feed entero. llms-full.txt y el feed de ACP (?page=2) se reparten igual.',
 
     // ------------------------------------------------------------------ auditoría AIFEC: panel, menú y permisos
     'See the AIFEC audit and the bots and assistants' => 'Ver la auditoría AIFEC y los robots y asistentes',
@@ -259,4 +263,8 @@ return [
     'How an assistant buys here' => 'Cómo compra aquí un asistente',
     'MCP server' => 'Servidor MCP',
     'API for programs' => 'API para programas',
+    'Price breakdown' => 'Desglose del precio',
+    'Base {net} · {name} {rate} % {tax} · Total with {name} {gross} ({country})' => 'Base {net} · {name} {rate} % {tax} · Total con {name} {gross} ({country})',
+    '{gross}, no {name} applied ({rate} %, {country})' => '{gross}, sin {name} ({rate} %, {country})',
+    'Tax' => 'Impuesto',
 ];

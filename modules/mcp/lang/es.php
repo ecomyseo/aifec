@@ -74,4 +74,7 @@ return [
     'Description of the shop API: catalogue search, carts and checkout' => 'Descripción de la API de la tienda: búsqueda en el catálogo, carritos y compra',
     'Universal Commerce Protocol profile of the shop' => 'Perfil del Protocolo de Comercio Universal de la tienda',
     'Agentic Commerce Protocol profile of the shop' => 'Perfil del Protocolo de Comercio Agéntico de la tienda',
+    'product feeds' => 'feeds de producto',
+    'Index of the product feeds with the pages each JSON feed is split into: every page is small enough to read in one go' => 'Índice de los feeds de producto con las páginas en que se reparte cada feed JSON: cada página es lo bastante pequeña para leerla de una vez',
+    'List all the products of {store} page by page' => 'Lista todos los productos de {store} página a página',
 ];

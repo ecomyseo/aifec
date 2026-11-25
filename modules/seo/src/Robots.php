@@ -39,6 +39,12 @@ final class Robots
     private const EXTRA_MAX_LINES = 100;
 
     /**
+     * Señales de robots.txt que no son un rastreador con visitas propias (nunca salen en el registro de visitas), pero que el
+     * comerciante gobierna con la familia «entrenamiento»: Google-Extended (Gemini) y Applebot-Extended.
+     */
+    private const TRAINING_TOKENS = ['Google-Extended', 'Applebot-Extended'];
+
+    /**
      * Los agentes de cada familia: familia => lista de nombres tal como van en «User-agent».
      *
      * @return array<string,string[]>
@@ -144,6 +150,58 @@ final class Robots
     }
 
     /**
+     * Las rutas de los protocolos de compra y lectura para agentes (UCP, ACP, MCP, la API, la compra con enlaces y los ficheros
+     * de descubrimiento). Un lector que obedece robots.txt las tiene que poder abrir aunque otra regla del grupo cierre «?q=»:
+     * en RFC 9309 gana la regla más larga y, a igual longitud, la que permite, así que cada «Allow» va con su prefijo completo.
+     * Solo salen las de los módulos que están cargados y encendidos.
+     *
+     * @return string[] líneas «Allow: …» sin salto de línea
+     */
+    public static function protocolAllow(App $app): array
+    {
+        $settings = $app->settings();
+        $url = $app->url();
+        $paths = [];
+        // UCP y ACP vienen apagados de serie: solo se anuncian las rutas del que está encendido.
+        if ($app->modules()->isLoaded('agentic')) {
+            if ($settings->bool('agentic.ucp_enabled', false)) {
+                array_push($paths, '/.well-known/', '/ucp/');
+            }
+            if ($settings->bool('agentic.acp_enabled', false)) {
+                array_push($paths, '/.well-known/', '/acp/', '/checkout_sessions');
+            }
+        }
+        if ($app->modules()->isLoaded('api') && $settings->bool('api.enabled', true)) {
+            $paths[] = '/.well-known/';
+            $paths[] = '/api/v1/';
+            if ($settings->bool('api.links', true)) {
+                $paths[] = '/buy-with-links';
+            }
+        }
+        if ($app->modules()->isLoaded('mcp') && $settings->bool('mcp.enabled', true)) {
+            $paths[] = '/.well-known/';
+            $paths[] = '/mcp';
+        }
+        $out = [];
+        foreach (array_values(array_unique($paths)) as $path) {
+            $out[] = 'Allow: ' . $url->plain($path);
+        }
+
+        return $out;
+    }
+
+    /**
+     * La señal «Content-Signal» (contentsignals.org) con lo que el comerciante tiene decidido en los ajustes de robots:
+     * search = buscadores, ai-input = asistentes que leen una página para contestar, ai-train = entrenamiento de modelos.
+     */
+    public static function contentSignal(App $app): string
+    {
+        $blocked = self::blocked($app);
+
+        return 'Content-Signal: search=' . ($blocked['search'] ? 'no' : 'yes') . ', ai-input=' . ($blocked['assistant'] ? 'no' : 'yes') . ', ai-train=' . ($blocked['training'] ? 'no' : 'yes');
+    }
+
+    /**
      * El enlace que abre en la caja el carrito que preparó un asistente (/carrito/retomar/…) sí lo puede abrir el lector de un
      * asistente: lo comprueba antes de dárselo a la persona, y con «Disallow: /carrito» ChatGPT concluía que la tienda no le
      * dejaba entrar y abandonaba la compra (16/11/2026). Esa dirección, abierta por un lector, solo contesta que es para la persona.
@@ -159,7 +217,7 @@ final class Robots
         // «?text=» y caían en los «Disallow: /*?q=» del grupo (16/11/2026: Claude decía que /api/v1/search estaba bloqueado).
         return 'Allow: ' . $app->url()->plain('/' . ($word !== '' ? $word : 'carrito') . '/retomar/') . "\n"
             . 'Allow: ' . $app->url()->plain('/api/v1/search') . "\n"
-            . 'Allow: ' . $app->url()->plain('/buy-with-links') . "\n";
+            . ($app->settings()->bool('api.links', true) ? 'Allow: ' . $app->url()->plain('/buy-with-links') . "\n" : '');
     }
 
     /** El fichero entero. Con el sitio cerrado a los buscadores solo dice que no entre nadie. */
@@ -222,6 +280,11 @@ final class Robots
         }
 
         $lines[] = 'User-agent: *';
+        $lines[] = self::contentSignal($app);
+        $protocolAllow = self::protocolAllow($app);
+        foreach ($protocolAllow as $allowLine) {
+            $lines[] = $allowLine;
+        }
         foreach ($rules as $rule) {
             $lines[] = $rule;
         }
@@ -230,18 +293,25 @@ final class Robots
         $agents = self::agents();
         $names = ['search' => 'Search engines', 'assistant' => 'AI assistants', 'training' => 'AI training'];
         foreach (self::FAMILIES as $family) {
-            if ($agents[$family] === []) {
+            if ($agents[$family] === [] && $family !== 'training') {
                 continue;
             }
             $lines[] = '';
             $lines[] = '# ' . $names[$family] . ': ' . ($blocked[$family] ? 'blocked' : 'allowed');
-            foreach ($agents[$family] as $agent) {
+            $listed = $agents[$family];
+            if ($family === 'training') {
+                $listed = array_values(array_unique(array_merge($listed, self::TRAINING_TOKENS)));
+            }
+            foreach ($listed as $agent) {
                 $lines[] = 'User-agent: ' . $agent;
             }
             if ($blocked[$family]) {
                 $lines[] = 'Disallow: /';
             } else {
                 $lines[] = 'Allow: /';
+                foreach ($protocolAllow as $allowLine) {
+                    $lines[] = $allowLine;
+                }
                 if ($family === 'assistant' && self::resumeAllow($app) !== '') {
                     $lines[] = trim(self::resumeAllow($app));
                 }

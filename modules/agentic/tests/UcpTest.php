@@ -24,7 +24,8 @@ test('UCP: el perfil anuncia la API y la entrega con pago en tienda; apagado, 40
     same('rest', $p['services']['dev.ucp.shopping'][0]['transport'], 'por REST');
     check(isset($p['capabilities']['dev.ucp.shopping.checkout'][0]['version']), 'la compra');
     same('dev.ucp.shopping.checkout', $p['capabilities']['dev.ucp.shopping.fulfillment'][0]['extends'], 'la entrega amplía la compra');
-    contains('"payment_handlers":{}', $r->body, 'el perfil no anuncia cobro desde la API');
+    contains('"agent_pays":false', $r->body, 'el perfil dice que el agente no cobra: paga la persona en la caja');
+    contains('"payment_handlers":{"dev.aifec.shop_checkout":[{', $r->body, 'y declara las formas de pago de la caja');
 
     [$apagado] = ucpApp(['agentic.ucp_enabled' => false]);
     same(404, ucpCall($apagado, 'GET', '/.well-known/ucp')->status, 'UCP apagado: el perfil da 404');

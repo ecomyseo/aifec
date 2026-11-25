@@ -139,7 +139,7 @@ PHP;
     // Medido + 10 %: [ficheros del arranque, ficheros de la petición entera].
     // Medido el 13/11/2026 (igual en PHP 7.4, 8.3 y 8.4): el arranque 35 ficheros; el resumen del carrito 38 en total y la
     // ficha 85 (con sus clases y plantillas). El tope es lo medido + 10 %.
-    $budgets = ['/carrito/summary.json' => [39, 42], '/producto/silla-ergo-pro' => [39, 94]];
+    $budgets = ['/carrito/summary.json' => [39, 42], '/producto/silla-ergo-pro' => [39, 95]];
     $over = [];
     foreach ($budgets as $uri => $max) {
         $cmd = escapeshellarg(PHP_BINARY) . ' ' . escapeshellarg($dir . '/child.php') . ' ' . escapeshellarg($app->root()) . ' ' . escapeshellarg($dir . '/site.json') . ' ' . escapeshellarg($uri);

@@ -104,6 +104,11 @@ final class Routes
             self::row('api.go.step', 'GET', '/go/{step:[a-z-]{3,20}}', 'links', [BrowseController::class, 'go'], 'One step of buying with links: start, add, cart, customer, shipping-options, shipping, payment-options, payment, status, review, code or place. Every answer has the next addresses ready', 'checkout', [
                 'cart' => 'The cart, as the step start gives it (every step but start)', 'product_id' => 'add: the product', 'variant_id' => 'add: the variant, for a product with variants', 'qty' => 'add: units',
                 'text' => 'customer: what the person wrote about themselves, in any order', 'carrier_id' => 'shipping: the id from shipping-options', 'method' => 'payment: the id from payment-options',
+                // Y los campos separados del paso customer, cada uno con su tipo, si es obligatorio y un ejemplo inventado.
+                'email' => LinkFields::query()['email'], 'first_name' => LinkFields::query()['first_name'], 'last_name' => LinkFields::query()['last_name'],
+                'company' => LinkFields::query()['company'], 'vat_id' => LinkFields::query()['vat_id'], 'phone' => LinkFields::query()['phone'],
+                'line1' => LinkFields::query()['line1'], 'line2' => LinkFields::query()['line2'], 'postcode' => LinkFields::query()['postcode'],
+                'city' => LinkFields::query()['city'], 'region' => LinkFields::query()['region'], 'country' => LinkFields::query()['country'], 'note' => LinkFields::query()['note'],
                 'confirm_token' => 'place: the confirm_token of the review', 'buyer_confirmed' => 'place: true, the person has seen the total and said yes', 'buyer_code' => 'place: the 6-digit code the shop sent to the buyer',
                 'digits' => 'code: the digits of that code entered so far, for tools that only open addresses written in a page',
             ], []),

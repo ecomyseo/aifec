@@ -126,6 +126,7 @@ final class Present
             'compare_price_formatted' => $compare !== null ? $money->money($compare, $currency) : null,
             'from' => !empty($price['from']),
             'tax_included' => !empty($price['with_tax']),
+            'price_detail' => \Aifec\Modules\Catalog\PriceDetail::of($app, $price),
             'availability' => [
                 'status' => (string) (isset($availability['status']) ? $availability['status'] : ''),
                 'label' => (string) (isset($availability['label']) ? $availability['label'] : ''),
@@ -187,6 +188,7 @@ final class Present
                 'gross' => (int) (isset($price['gross']) ? $price['gross'] : 0),
                 'tax_rate' => (int) (isset($price['tax_rate']) ? $price['tax_rate'] : 0),
                 'tax_name' => (string) (isset($price['tax_name']) ? $price['tax_name'] : ''),
+                'detail' => \Aifec\Modules\Catalog\PriceDetail::of($app, $price),
                 'on_sale' => !empty($price['on_sale']),
                 'discount_percent' => isset($price['discount_percent']) && $price['discount_percent'] !== null ? (int) $price['discount_percent'] : null,
                 'sale_until' => isset($price['sale_until']) && $price['sale_until'] !== null ? (string) $price['sale_until'] : null,

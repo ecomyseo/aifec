@@ -68,7 +68,9 @@ test('un producto próximamente se ve con su etiqueta, su insignia y su formular
     $form = $app->hooks()->render('product.buy.after', $data);
     contains('action="/proximamente/avisame"', $form);
     contains('name="product_id" value="' . $soon . '"', $form);
-    same('', $app->hooks()->render('product.price.after', aifecCatalog($app)->product($normal)));
+    $normalSlot = $app->hooks()->render('product.price.after', aifecCatalog($app)->product($normal));
+    notContains('af-badge', $normalSlot, 'un producto normal no lleva la insignia');
+    notContains('Próximamente', $normalSlot);
     same('', $app->hooks()->render('product.buy.after', aifecCatalog($app)->product($normal)));
 
     $web = new TestClient($app);

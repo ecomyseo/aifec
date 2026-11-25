@@ -176,6 +176,11 @@ final class Validator
                 // Un código interno (de un atributo, de un tipo): como un slug, pero también con guiones bajos, que es como llegan
                 // los de una importación («alto_tacon»); sin esto, un atributo importado no se podía volver a guardar.
                 return preg_match('/^[a-z0-9]+(?:[-_][a-z0-9]+)*$/', (string) $value) === 1 ? null : t('Use only lowercase letters, numbers, hyphens and underscores');
+            case 'vat':
+                // NIF-IVA con formato VIES; el argumento es el campo del formulario que dice el país de la tienda (sin él, España).
+                $country = $arg !== '' && isset($input[$arg]) && is_string($input[$arg]) && trim($input[$arg]) !== '' ? (string) $input[$arg] : 'ES';
+
+                return \Aifec\Geo\VatId::valid((string) $value, $country) ? null : t('Enter a valid tax ID with its country letters, for example ES12345678Z');
             case 'phone':
                 $digits = preg_replace('/[\s().-]+/', '', (string) $value);
 

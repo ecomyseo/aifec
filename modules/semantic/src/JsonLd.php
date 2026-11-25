@@ -100,10 +100,20 @@ final class JsonLd
             'logo' => $s->logoUrl(),
             'email' => trim($settings->str('store.email')),
             'telephone' => $s->line($settings->str('store.phone')),
-            'vatID' => $s->line($settings->str('store.vat_id')),
+            'vatID' => self::vatId($s),
             'address' => $address !== [] ? ['@type' => 'PostalAddress'] + $address : [],
             'sameAs' => $s->socialProfiles(),
         ]);
+    }
+
+    /** El NIF-IVA como lo lee VIES («ESB12345674») si tiene esa forma; si no, tal como lo escribió el titular. */
+    private static function vatId(Semantic $s): string
+    {
+        $settings = $s->app()->settings();
+        $typed = $s->line($settings->str('store.vat_id'));
+        $vies = \Aifec\Geo\VatId::vies($typed, $settings->str('store.address_country', ''));
+
+        return $vies !== null ? $vies : $typed;
     }
 
     /**

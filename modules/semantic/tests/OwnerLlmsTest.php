@@ -34,5 +34,5 @@ test('la razón social y el NIF salen también en los datos de la organización'
     $app = semanticApp(['semantic', 'catalog', 'media'], ['store.legal_name' => 'Ana Ruiz Pérez', 'store.vat_id' => '12345678Z']);
     $org = semanticFind(semanticLd((new TestClient($app))->get('/')->body), 'Organization');
     same('Ana Ruiz Pérez', $org['legalName'] ?? '');
-    same('12345678Z', $org['vatID'] ?? '');
+    same('ES12345678Z', $org['vatID'] ?? '', 'Organization lleva el NIF-IVA con el formato de VIES');
 });

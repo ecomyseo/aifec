@@ -46,6 +46,13 @@ final class AcpController
             'not_required_for' => ['discovery', 'feed'],
             'without_credentials' => ['status' => 401],
         ];
+        // Con qué formas de pago cuenta la caja y que el pago lo hace la persona en ella (nunca el agente).
+        if (class_exists('Aifec\\Modules\\Orders\\PaymentSummary')) {
+            $payment = \Aifec\Modules\Orders\PaymentSummary::declaration($this->app);
+            if ($payment['methods'] !== []) {
+                $discovery['payment'] = $payment;
+            }
+        }
         $response = Response::json($discovery);
         $response->headers['Cache-Control'] = 'public, max-age=3600';
         unset($response->headers['Pragma'], $response->headers['Expires']);

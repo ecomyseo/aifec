@@ -70,6 +70,19 @@ return static function (App $app): void {
         // La pieza «partials/badges» es del tema (el tema base la trae y los demás la heredan).
         return $product['badge_list'] === [] || !$app->view()->exists('partials/badges') ? '' : $app->view()->render('partials/badges', ['product' => $product, 'tag' => 'p', 'class' => 'af-product-badges']);
     }, 5);
+    // Debajo del precio de la ficha: la base sin impuestos, el tipo y el total con ellos (en todos los temas, que ponen este hueco).
+    // Un producto con variantes de precios distintos cambia el precio al elegir: la línea solo sale cuando el precio es uno.
+    $app->hooks()->slot('product.price.after', static function ($product = null) use ($app): string {
+        if (!is_array($product) || !isset($product['price']) || !is_array($product['price']) || !empty($product['price']['from'])) {
+            return '';
+        }
+        $detail = \Aifec\Modules\Catalog\PriceDetail::of($app, $product['price']);
+        if ($detail === null || $detail['gross'] <= 0) {
+            return '';
+        }
+
+        return '<p class="af-small af-muted" data-af-price-detail>' . e(\Aifec\Modules\Catalog\PriceDetail::line($app, $detail)) . '</p>';
+    }, 5);
     $app->hooks()->filter('home.sections', [HomeSections::class, 'add'], 20);
     $app->hooks()->filter('menu.items', [MenuItems::class, 'add'], 20);
 

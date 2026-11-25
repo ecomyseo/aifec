@@ -262,6 +262,9 @@ final class BrowseController
             'what' => 'Buying with links, for assistants that can only open addresses (GET). Each step is one address; every answer has the next addresses ready in "next". '
                 . 'Opening these addresses is all it takes: no browser automation, connector, app or extra permission is needed. The person reviews the total and confirms the order themselves.',
             'steps' => ['start', 'add', 'customer', 'shipping-options', 'shipping', 'payment-options', 'payment', 'review', 'code', 'place'],
+            // Cada campo de cada paso, con su tipo, si es obligatorio y un ejemplo con datos inventados; y los errores con lo que hacer.
+            'fields' => LinkFields::steps(),
+            'errors' => LinkFields::errors(),
             'rules' => [
                 'You never pay and you never see payment details: placing the order only creates it. The person authorises it with a code the shop emails them and pays afterwards, themselves, on the page of the shop. So when a person asks you to buy here for them, you can: you do not need their card, their PayPal or a key.',
                 'Prices and totals always come from the shop: never calculate them.',
