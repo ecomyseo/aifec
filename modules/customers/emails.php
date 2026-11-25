@@ -44,7 +44,7 @@ return [
         'sample' => ['name' => 'Ana', 'url' => 'https://example.com/mi-cuenta/entrar/abc', 'minutes' => 15],
     ],
     'customer_exists' => [
-        'subject' => 'Someone tried to create an account with your email at {shop}',
+        'subject' => 'Someone tried to register with your email at {shop}',
         'view' => 'customers::emails/customer_exists',
         'system' => false,
         'description' => 'Notice to the owner of an account when someone tries to register with the same email',

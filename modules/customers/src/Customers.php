@@ -984,7 +984,7 @@ final class Customers
         }
 
         // Sin decir si el correo existe (nadie puede averiguar quién es cliente), pero con qué hacer (14/11/2026: «no dice nada»).
-        throw new \InvalidArgumentException('We could not create the account with those details. If you have an account with that email, we have written to it so you can sign in or reset your password.');
+        throw new \InvalidArgumentException('If that email has a record with us (an account or an earlier purchase), we have written to it. Press «Claim my record» in that message, choose a password and you will see your orders.');
     }
 
     // ------------------------------------------------------------------ correo y enlaces

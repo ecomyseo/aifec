@@ -108,8 +108,8 @@ test('registro con un correo que ya es de una cuenta: el mismo mensaje neutro y 
     $web = new TestClient($app);
     $r = $web->post('/mi-cuenta/registro', ['first_name' => 'Otra', 'email' => 'ana@cliente.test', 'password' => 'otra-clave-22', 'accept_privacy' => 'on']);
     same(200, $r->status);
-    contains('No hemos podido crear la cuenta con esos datos', $r->body);
-    contains('Si ya tienes una cuenta con ese correo, te hemos escrito', $r->body, 'dice qué hacer, sin decir si existe');
+    contains('Reclamar mi ficha', $r->body);
+    contains('ya tiene una ficha con nosotros', $r->body, 'dice qué hacer, sin decir si existe');
     notContains('ya existe', $r->body);
     notContains('ya tiene una cuenta', $r->body);
     same(1, customersFrontRows($app, 'customers'), 'no hay una segunda cuenta');
