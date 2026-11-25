@@ -174,23 +174,26 @@ test('restablecer: enlace de un solo uso que caduca a la hora, y respuesta idén
     same(false, $service->resetPassword('no-existe-esta-ficha-' . str_repeat('a', 30), 'clave-larga-1'));
 });
 
-test('restablecer no sirve para un invitado ni para una cuenta apagada, y manda pocos correos seguidos', function (): void {
+test('restablecer no sirve para una cuenta apagada; a un invitado le sirve para reclamar su ficha; y manda pocos correos seguidos', function (): void {
     [$app, $transport] = customersTestApp();
     $service = customersService($app);
     customersMakeGuest($app, 'invitado@cliente.test');
     customersMakeAccount($app, 'apagada@cliente.test', 'clave-larga-1', ['active' => 0]);
-    $service->requestReset('invitado@cliente.test');
     $service->requestReset('apagada@cliente.test');
     same(0, count($transport->sent));
+    $service->requestReset('invitado@cliente.test');
+    same(1, count($transport->sent), 'el invitado recibe el enlace: así reclama su ficha');
+    $service->requestMagicLink('invitado@cliente.test');
+    same(1, count($transport->sent), 'pero el enlace de entrada sigue siendo solo para cuentas');
 
     customersMakeAccount($app, 'ana@cliente.test');
     for ($i = 0; $i < 6; ++$i) {
         $service->requestReset('ana@cliente.test');
     }
-    same(3, count($transport->sent), 'como mucho tres en diez minutos');
+    same(4, count($transport->sent), 'como mucho tres en diez minutos');
     $app->clock()->advance(601);
     $service->requestReset('ana@cliente.test');
-    same(4, count($transport->sent));
+    same(5, count($transport->sent));
 });
 
 test('el enlace de entrada entra una vez, caduca a los 15 minutos y se apaga con el ajuste', function (): void {

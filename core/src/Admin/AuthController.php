@@ -166,7 +166,9 @@ final class AuthController
         $email = strtolower(trim($request->str('email')));
         $user = $email !== '' ? $app->db()->row('SELECT id, email, name, locale, role FROM {users} WHERE email = ? AND active = 1', [$email]) : null;
         $recent = (int) $app->db()->value("SELECT COUNT(*) FROM {tokens} WHERE kind = 'admin_reset' AND subject = ? AND created_at >= ?", [$email, $app->clock()->sql($app->clock()->now() - 600)]);
-        if ($user !== null && !$app->auth()->isPublicDemoIdentity($user) && $recent < 3 && $app->has('mailer')) {
+        // El enlace del correo lleva SIEMPRE el dominio configurado, nunca el de la cabecera Host: sin «url» en el sitio, no se envía.
+        $origin = $app->url()->trustedOrigin();
+        if ($user !== null && $origin !== null && !$app->auth()->isPublicDemoIdentity($user) && $recent < 3 && $app->has('mailer')) {
             $token = Random::token(32);
             $app->db()->insert('tokens', [
                 'kind' => 'admin_reset', 'subject' => $email, 'hash' => hash('sha256', $token), 'data' => (string) $user['id'],
@@ -174,7 +176,7 @@ final class AuthController
             ]);
             $app->service('mailer')->queue('admin_reset', (string) $user['email'], [
                 'name' => (string) $user['name'],
-                'url' => $app->url()->origin() . $app->url()->plain('/admin/reset/' . $token),
+                'url' => $origin . $app->url()->plain('/admin/reset/' . $token),
                 'minutes' => 60,
             ], ['locale' => (string) $user['locale'], 'to_name' => (string) $user['name'], 'now' => true]);
         }

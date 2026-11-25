@@ -77,6 +77,22 @@ test('con un comodín final gana el prefijo más largo y un * en el destino reci
     same(404, $web->get('/otro/blog-viejo/x')->status, 'el comodín solo vale como prefijo');
 });
 
+test('un comodín nunca deja una barra invertida que haga saltar a otra web', function (): void {
+    $app = cmsApp();
+    cmsAddRedirect($app, ['source' => 'viejo/*', 'target' => '*']);
+    cmsAddRedirect($app, ['source' => 'otro/*', 'target' => '/nuevo/*']);
+    $web = new TestClient($app);
+    foreach (['/viejo/%5Csitio.example/x', '/viejo//%5Csitio.example', '/otro/%5C%5Csitio.example', '/viejo/%09%5Csitio.example'] as $uri) {
+        $r = $web->get($uri);
+        $location = (string) ($r->headers['Location'] ?? '');
+        check(strpos($location, '\\') === false && strpos($location, '//') !== 0, 'sin barra invertida ni «//» delante: ' . $uri . ' → ' . $location);
+        check(preg_match('#^/[^/\\\\]#', $location) === 1 || $r->status === 404, 'o va a una ruta del sitio o no redirige: ' . $uri . ' → ' . $location);
+    }
+    $app2 = cmsApp();
+    same('/evil.example', $app2->url()->to('/\\evil.example'), 'una ruta que empieza por barra invertida se queda en el sitio');
+    same('/a/b', $app2->url()->to('\\a\\b'));
+});
+
 test('una redirección en pausa no se aplica y la dirección se apunta como no encontrada', function (): void {
     $app = cmsApp();
     $id = cmsAddRedirect($app, ['source' => 'pausada', 'target' => '/otra', 'active' => 0]);

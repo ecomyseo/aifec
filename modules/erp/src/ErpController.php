@@ -529,7 +529,8 @@ final class ErpController
             ]);
         }
         $table = null;
-        if ($preview && $profile !== null && $direction === 'export') {
+        // La vista previa enseña filas reales (clientes, pedidos): solo a quien puede editar el perfil, no basta con esconder el botón.
+        if ($preview && $canEdit && $profile !== null && $direction === 'export') {
             $table = $this->erp()->exporter()->preview((int) $profile['id']);
         }
         $runs = $profile === null ? [] : $this->app->db()->select('SELECT * FROM {erp_export_runs} WHERE profile_id = ? ORDER BY id DESC LIMIT 10', [(int) $profile['id']]);

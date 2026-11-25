@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 return [
     'admin_reset' => [
+        'sensitive' => true,
         'subject' => 'Choose a new password for {shop}',
         'view' => 'mail::emails/admin_reset',
         'system' => true,

@@ -170,10 +170,49 @@ final class I18nCheck
     }
 
     /**
+     * Si el código de un catálogo es solo «return [ 'texto' => 'traducción', … ];» (con su «declare(strict_types=1);» y sus comentarios):
+     * ninguna variable, llamada, clase ni sentencia más.
+     */
+    public static function isPlainCatalogue(string $code): bool
+    {
+        $allowed = [T_OPEN_TAG, T_WHITESPACE, T_COMMENT, T_DOC_COMMENT, T_DECLARE, T_RETURN, T_CONSTANT_ENCAPSED_STRING, T_DOUBLE_ARROW, T_LNUMBER, T_ARRAY];
+        $single = ['[' => true, ']' => true, ',' => true, '(' => true, ')' => true, ';' => true, '=' => true, '.' => true];
+        $tokens = token_get_all($code);
+        $returns = 0;
+        foreach ($tokens as $token) {
+            if (is_string($token)) {
+                if (!isset($single[$token])) {
+                    return false;
+                }
+                continue;
+            }
+            if ($token[0] === T_STRING) {
+                if (strtolower($token[1]) !== 'strict_types') {
+                    return false;
+                }
+                continue;
+            }
+            if (!in_array($token[0], $allowed, true)) {
+                return false;
+            }
+            if ($token[0] === T_RETURN) {
+                ++$returns;
+            }
+        }
+
+        return $returns === 1;
+    }
+
+    /**
      * @return array<mixed,mixed>
      */
     private static function load(string $file): array
     {
+        // Un catálogo es una lista de textos y nada más: no se ejecuta un fichero que traiga otra cosa (el catálogo de un plugin
+        // que aún no se ha comprobado se lee durante su validación).
+        if (!self::isPlainCatalogue((string) @file_get_contents($file))) {
+            throw new \InvalidArgumentException('The translation file is not a plain list of texts');
+        }
         $data = require $file;
 
         return is_array($data) ? $data : [];

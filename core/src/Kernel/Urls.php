@@ -38,7 +38,8 @@ final class Urls
         if ($lang !== '' && $lang !== $this->app->defaultLang()) {
             $prefix .= '/' . $lang;
         }
-        $path = '/' . ltrim($path, '/');
+        // Una barra invertida al principio la leen los navegadores como otra barra («/\\sitio.example» sería otra web).
+        $path = '/' . ltrim(str_replace('\\', '/', $path), '/');
         if ($path === '/admin' || strpos($path, '/admin/') === 0) {
             $alias = $this->app->adminAlias();
             if ($alias !== '') {
@@ -86,6 +87,24 @@ final class Urls
         $request = $this->app->request();
 
         return $request->scheme() . '://' . $request->host;
+    }
+
+    /**
+     * El origen que la tienda ha configurado («url» del sitio), o null si no hay. Nunca sale de la cabecera Host: lo usan los
+     * enlaces con una credencial que se mandan por correo, donde quien llama a la página decidiría el dominio del enlace.
+     */
+    public function trustedOrigin(): ?string
+    {
+        $url = (string) $this->app->site()->get('url', '');
+        if ($url === '') {
+            return null;
+        }
+        $parts = parse_url($url);
+        if (!is_array($parts) || !isset($parts['host']) || $parts['host'] === '') {
+            return null;
+        }
+
+        return (isset($parts['scheme']) ? $parts['scheme'] : 'https') . '://' . $parts['host'] . (isset($parts['port']) ? ':' . $parts['port'] : '');
     }
 
     /**

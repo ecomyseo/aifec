@@ -107,7 +107,8 @@ final class Robots
             $word = trim($settings->str($key, $default), '/');
             $words[] = $word !== '' ? $word : $default;
         }
-        $paths = [$url->plain('/admin')];
+        // El panel va con su dirección de serie, nunca con la que la tienda haya escondido: robots.txt lo lee cualquiera.
+        $paths = [$app->site()->basePath . '/admin'];
         foreach ($words as $word) {
             foreach ($app->languages() as $lang) {
                 $paths[] = $url->to('/' . $word, [], $lang);

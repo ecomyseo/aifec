@@ -67,7 +67,7 @@ final class SvgSanitizer
             }
         }
         $root = $loaded ? $doc->documentElement : null;
-        if ($root === null || strtolower($root->localName) !== 'svg') {
+        if ($root === null || strtolower($root->localName) !== 'svg' || $root->namespaceURI !== 'http://www.w3.org/2000/svg') {
             throw new MediaException('Not a well-formed SVG document');
         }
 
@@ -147,7 +147,7 @@ final class SvgSanitizer
                 }
             } elseif ($local === 'style') {
                 $attr->value = self::cleanCss($value);
-            } elseif (preg_match('/(?:javascript|vbscript)\s*:/i', $value) === 1) {
+            } elseif (preg_match('/(?:javascript|vbscript)\s*:/i', self::flat($value)) === 1) {
                 $remove[] = $attr;
             } elseif (preg_match('/url\s*\(/i', $value) === 1 && self::cleanCss($value) !== $value) {
                 $remove[] = $attr;
@@ -156,6 +156,14 @@ final class SvgSanitizer
         foreach ($remove as $attr) {
             $el->removeAttributeNode($attr);
         }
+    }
+
+    /** El valor sin espacios ni caracteres de control: un navegador ignora los tabuladores y saltos de línea dentro de «java\tscript:». */
+    private static function flat(string $value): string
+    {
+        $flat = preg_replace('/[\x00-\x20\x7f]+/', '', $value);
+
+        return is_string($flat) ? $flat : '';
     }
 
     /** Solo anclas internas (`#id`) e imágenes incrustadas (`data:image/…`). */
@@ -187,6 +195,9 @@ final class SvgSanitizer
         $css = (string) preg_replace('/@import\b[^;{]*;?/i', '', $css);
         $css = (string) preg_replace('/expression\s*\(/i', 'blocked(', $css);
         $css = (string) preg_replace('/(?:javascript|vbscript)\s*:/i', 'blocked:', $css);
+        if (preg_match('/(?:javascript|vbscript):/i', self::flat($css)) === 1) {
+            return '';
+        }
         $result = preg_replace_callback(
             '/url\s*\(\s*(["\']?)(.*?)\1\s*\)/is',
             static function (array $m): string {

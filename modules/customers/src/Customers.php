@@ -221,16 +221,9 @@ final class Customers
             }
         }
         if ($id === 0 && $existing !== null) {
-            if ((int) $existing['guest'] === 0) {
-                $this->refuseExisting($existing);
-            }
-            $update = $cols + ['password' => $hash, 'guest' => 0, 'email_verified_at' => null, 'updated_at' => $now];
-            if ($marketing) {
-                $update['marketing'] = 1;
-                $update['marketing_at'] = $now;
-            }
-            $db->update('customers', $update, ['id' => (int) $existing['id']]);
-            $id = (int) $existing['id'];
+            // Un invitado (alguien que ya compró con ese correo) tampoco se toma: sin demostrar que el correo es suyo, nadie le pone
+            // contraseña ni sesión a su ficha, que lleva sus pedidos y sus datos. La reclama desde «he olvidado mi contraseña».
+            $this->refuseExisting($existing);
         }
         if ($marketing) {
             $this->recordConsent($id, $email, 'marketing', true, '', 'register');
@@ -539,7 +532,7 @@ final class Customers
     /** Siempre contesta igual, exista o no la cuenta. Si existe, manda «customer_reset» con un enlace de un solo uso (1 hora). */
     public function requestReset(string $email): void
     {
-        $row = $this->accountForMail($email, 'customer_reset');
+        $row = $this->accountForMail($email, 'customer_reset', true);
         if ($row === null) {
             return;
         }
@@ -564,7 +557,7 @@ final class Customers
             return false;
         }
         $customer = $this->raw((int) $row['data']);
-        if ($customer === null || (int) $customer['guest'] === 1 || (int) $customer['active'] !== 1 || (string) $customer['email'] !== (string) $row['subject']) {
+        if ($customer === null || (int) $customer['active'] !== 1 || (string) $customer['email'] !== (string) $row['subject']) {
             return false;
         }
         if (!$this->consumeToken((int) $row['id'])) {
@@ -573,8 +566,8 @@ final class Customers
         $db = $this->app->db();
         $id = (int) $customer['id'];
         $now = $this->app->clock()->sql();
-        // Elegir la contraseña desde el enlace del correo demuestra que el correo es suyo.
-        $update = ['password' => Passwords::hash($password), 'updated_at' => $now];
+        // Elegir la contraseña desde el enlace del correo demuestra que el correo es suyo: un invitado se convierte en cuenta.
+        $update = ['password' => Passwords::hash($password), 'guest' => 0, 'updated_at' => $now];
         if ((string) $customer['email_verified_at'] === '') {
             $update['email_verified_at'] = $now;
         }
@@ -953,14 +946,14 @@ final class Customers
      *
      * @return array<string,mixed>|null
      */
-    private function accountForMail(string $email, string $kind): ?array
+    private function accountForMail(string $email, string $kind, bool $allowGuest = false): ?array
     {
         $email = Rules::email($email);
         if ($email === '' || !$this->app->has('mailer')) {
             return null;
         }
         $row = $this->rawByEmail($email);
-        if ($row === null || (int) $row['guest'] === 1 || (int) $row['active'] !== 1) {
+        if ($row === null || ((int) $row['guest'] === 1 && !$allowGuest) || (int) $row['active'] !== 1) {
             return null;
         }
 

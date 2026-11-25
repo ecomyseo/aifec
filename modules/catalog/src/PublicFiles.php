@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Aifec\Modules\Catalog;
 
 use Aifec\Kernel\App;
+use Aifec\Media\SvgSanitizer;
 
 /**
  * La dirección PÚBLICA de un fichero descargable de un producto (como los medios de WordPress, pero que no se puede adivinar ni
@@ -31,6 +32,9 @@ final class PublicFiles
 
     /** Un nombre o un trozo de nombre que un servidor podría ejecutar. */
     private const CODE = '/^(?:php\d*|phtml|phar|pht|phps|phpt|shtml?|cgi|pl|py|asp|aspx|jsp)$/i';
+
+    /** Lo que un navegador abre como página y ejecuta en el origen de la tienda: la copia pública lo lleva con «.txt» detrás. */
+    private const ACTIVE = '/^(?:x?html?|xht|xml|xsl|xslt|js|mjs|hta)$/i';
 
     /** @return string la carpeta de descargas públicas, sin barra final */
     public static function baseDir(App $app): string
@@ -67,7 +71,7 @@ final class PublicFiles
             $name = substr($name, 0, 90) . ($ext !== '' && strlen($ext) <= 8 ? '.' . $ext : '');
         }
         foreach (array_slice(explode('.', $name), 1) as $part) {
-            if (preg_match(self::CODE, $part) === 1) {
+            if (preg_match(self::CODE, $part) === 1 || preg_match(self::ACTIVE, $part) === 1) {
                 $name .= '.txt';
                 break;
             }
@@ -134,7 +138,17 @@ final class PublicFiles
         $name = $existing !== null ? $existing : self::sanitize((string) preg_replace('/^[0-9a-f]{16}-/', '', basename(str_replace('\\', '/', (string) $row['path']))));
         $target = $dir . '/' . $name;
         $part = $target . '.part';
-        if (!@copy($source, $part) || !@rename($part, $target)) {
+        $copied = @copy($source, $part);
+        if ($copied && strtolower((string) pathinfo($target, PATHINFO_EXTENSION)) === 'svg') {
+            // Un SVG se abre como página en el origen de la tienda: se publica solo el SVG ya limpio de guiones.
+            try {
+                $clean = SvgSanitizer::clean((string) file_get_contents($part));
+                $copied = file_put_contents($part, $clean) !== false;
+            } catch (\Throwable $e) {
+                $copied = false;
+            }
+        }
+        if (!$copied || !@rename($part, $target)) {
             @unlink($part);
             if ($created) {
                 self::remove($app, $token);
@@ -217,8 +231,11 @@ final class PublicFiles
             return false;
         }
         self::writeIndex($base);
-        if (!is_file($base . '/.htaccess')) {
-            @file_put_contents($base . '/.htaccess', "# AIFEC: las descargas públicas no se listan.\nOptions -Indexes\n");
+        $rules = "# AIFEC: las descargas públicas no se listan, no se interpretan y se bajan como fichero.\nOptions -Indexes\n"
+            . "<IfModule mod_headers.c>\nHeader set X-Content-Type-Options \"nosniff\"\nHeader set Content-Security-Policy \"default-src 'none'; sandbox\"\n"
+            . "<FilesMatch \"(?i)\\.(svgz?|x?html?|xht|xml|js|mjs)$\">\nHeader set Content-Disposition \"attachment\"\n</FilesMatch>\n</IfModule>\n";
+        if (!is_file($base . '/.htaccess') || strpos((string) @file_get_contents($base . '/.htaccess'), 'nosniff') === false) {
+            @file_put_contents($base . '/.htaccess', $rules);
         }
 
         return true;

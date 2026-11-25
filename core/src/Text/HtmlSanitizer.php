@@ -303,6 +303,9 @@ final class HtmlSanitizer
         return $html . $extra;
     }
 
+    /** Los únicos atributos «data-» que pasan: describen el contenido y ningún guion de la tienda los lee para actuar. */
+    private const DATA_ATTRS = ['data-id', 'data-align', 'data-lang', 'data-language', 'data-caption', 'data-width', 'data-height', 'data-ratio', 'data-columns', 'data-object-fit', 'data-aspect-ratio'];
+
     /**
      * @return string|null el valor limpio, o null si el atributo se descarta
      */
@@ -331,8 +334,9 @@ final class HtmlSanitizer
         if (preg_match('/^aria-[a-z0-9_.-]+$/', $name) === 1) {
             return $value;
         }
-        // Los «data-» no pueden llevar el nombre de un manejador ni de un motor que ejecuta código.
-        if (preg_match('/^data-[a-z0-9_.-]+$/', $name) === 1 && preg_match('/^data-(on|hx-)/', $name) !== 1) {
+        // Los «data-» son la entrada de los guiones de la tienda (el consentimiento activa los «data-src», los menús y las ventanas
+        // leen los suyos): un texto del editor no puede traer los que quiera. Solo una lista corta de datos inertes.
+        if (in_array($name, self::DATA_ATTRS, true)) {
             return $value;
         }
 

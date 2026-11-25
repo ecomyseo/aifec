@@ -98,27 +98,31 @@ test('un correo que ya es de una cuenta da un mensaje neutro, no crea filas y av
     contains('/mi-cuenta', customersMailText($transport));
 });
 
-test('un correo de invitado pasa a cuenta en la misma fila, conserva sus pedidos y queda sin verificar', function (): void {
+test('registrarse con el correo de un invitado NO toma su ficha: la reclama quien demuestra que el correo es suyo', function (): void {
     [$app, $transport] = customersTestApp();
     $service = customersService($app);
-    $guest = customersMakeGuest($app, 'bea@cliente.test', ['orders_count' => 3, 'total_spent' => 12345, 'email_verified_at' => $app->clock()->sql()]);
+    $guest = customersMakeGuest($app, 'bea@cliente.test', ['orders_count' => 3, 'total_spent' => 12345]);
 
-    $id = $service->register(['email' => 'bea@cliente.test', 'password' => 'clave-larga-1', 'first_name' => 'bea', 'last_name' => 'lopez']);
-    same($guest, $id, 'misma fila');
-    $row = customersRow($app, $id);
+    throws(function () use ($service): void {
+        $service->register(['email' => 'bea@cliente.test', 'password' => 'clave-del-atacante-1', 'first_name' => 'bea', 'last_name' => 'lopez']);
+    }, \InvalidArgumentException::class, 'sin demostrar el correo, no se crea cuenta sobre la ficha de un invitado');
+    $row = customersRow($app, $guest);
+    same(1, (int) $row['guest'], 'sigue siendo un invitado');
+    same(null, $row['password'], 'sin contraseña: la del que se registró no se guarda');
+    same(3, (int) $row['orders_count']);
+    same(1, customersCount($app, 'customers'));
+
+    // El dueño del correo la reclama con el enlace de «he olvidado mi contraseña», en la misma fila y con sus pedidos.
+    $service->requestReset('bea@cliente.test');
+    $token = customersMailToken($transport);
+    same(true, $service->resetPassword($token, 'clave-de-bea-2026'));
+    $row = customersRow($app, $guest);
     same(0, (int) $row['guest']);
     same(3, (int) $row['orders_count']);
     same(12345, (int) $row['total_spent']);
-    same('Bea', $row['first_name']);
-    same(null, $row['email_verified_at'], 'sin verificar aunque el invitado lo estuviera');
-    same(false, $service->isVerified($id));
+    same(true, $service->isVerified($guest), 'elegir la contraseña desde el correo lo verifica');
+    check(Passwords::verify('clave-de-bea-2026', (string) $row['password']));
     same(1, customersCount($app, 'customers'));
-
-    // Hasta que pulse el enlace del correo.
-    $token = customersMailToken($transport);
-    same(true, $service->verify($token));
-    same(true, $service->isVerified($id));
-    check(Passwords::verify('clave-larga-1', (string) customersRow($app, $id)['password']));
 });
 
 test('ensureGuest reutiliza filas, devuelve la cuenta sin iniciar sesión y completa sin borrar', function (): void {

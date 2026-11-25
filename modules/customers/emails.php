@@ -12,6 +12,7 @@ declare(strict_types=1);
 // Las que permiten recuperar el acceso (verificar, nueva contraseña, enlace de entrada) son del sistema: salen aunque el correo esté retenido.
 return [
     'customer_welcome' => [
+        'sensitive' => true,
         'subject' => 'Welcome to {shop}',
         'view' => 'customers::emails/customer_welcome',
         'system' => false,
@@ -19,6 +20,7 @@ return [
         'sample' => ['name' => 'Ana', 'verify_url' => 'https://example.com/mi-cuenta/verificar/abc', 'account_url' => 'https://example.com/mi-cuenta', 'days' => 7],
     ],
     'customer_verify' => [
+        'sensitive' => true,
         'subject' => 'Confirm your email address for {shop}',
         'view' => 'customers::emails/customer_verify',
         'system' => true,
@@ -26,6 +28,7 @@ return [
         'sample' => ['name' => 'Ana', 'url' => 'https://example.com/mi-cuenta/verificar/abc', 'days' => 7],
     ],
     'customer_reset' => [
+        'sensitive' => true,
         'subject' => 'Choose a new password for {shop}',
         'view' => 'customers::emails/customer_reset',
         'system' => true,
@@ -33,6 +36,7 @@ return [
         'sample' => ['name' => 'Ana', 'url' => 'https://example.com/mi-cuenta/restablecer/abc', 'minutes' => 60],
     ],
     'customer_magic_link' => [
+        'sensitive' => true,
         'subject' => 'Your sign-in link for {shop}',
         'view' => 'customers::emails/customer_magic_link',
         'system' => true,

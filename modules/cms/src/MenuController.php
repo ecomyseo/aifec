@@ -139,6 +139,10 @@ final class MenuController
         if (!in_array($type, Menus::TYPES, true)) {
             throw HttpError::badRequest('Unknown type');
         }
+        // Los nombres de productos y categorías sin publicar son del catálogo: hace falta poder verlo.
+        if (in_array($type, ['product', 'category'], true)) {
+            $this->app->auth()->requireCap('catalog.view');
+        }
 
         return Response::json(['items' => $this->menus()->search($type, $request->str('q'))]);
     }

@@ -84,6 +84,7 @@ final class ProfileForm
         $fields['dest_user'] = ['label' => 'User', 'rules' => 'nullable|max:120', 'tab' => 'erpdest', 'show_if' => ['destination' => ['ftp', 'ftps']], 'width' => 'md'];
         $fields['ftp_password'] = ['type' => 'secret', 'label' => 'Password', 'store' => false, 'tab' => 'erpdest', 'show_if' => ['destination' => ['ftp', 'ftps']], 'width' => 'md', 'hint' => 'Empty = it does not change.'];
         $fields['dest_path'] = ['label' => 'Folder on the server', 'rules' => 'nullable|max:191', 'tab' => 'erpdest', 'show_if' => ['destination' => ['ftp', 'ftps']], 'width' => 'md'];
+        $fields['dest_fingerprint'] = ['label' => 'Certificate fingerprint (SHA-256)', 'rules' => 'nullable|max:120', 'tab' => 'erpdest', 'show_if' => ['destination' => 'ftps'], 'width' => 'md', 'hint' => 'Optional. Empty = the certificate must be signed by a known authority. Write it to trust a self-signed one.'];
         $fields['dest_passive'] = ['type' => 'toggle', 'label' => 'Passive mode', 'default' => 1, 'tab' => 'erpdest', 'show_if' => ['destination' => ['ftp', 'ftps']]];
         $fields['dest_url'] = ['label' => 'Address (https)', 'rules' => 'nullable|max:255', 'tab' => 'erpdest', 'show_if' => ['destination' => $import ? 'url' : 'post']];
         if (!$import) {

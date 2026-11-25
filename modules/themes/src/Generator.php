@@ -54,7 +54,10 @@ final class Generator
         if (!$this->themes->exists($parent)) {
             throw new ThemeException('The parent theme does not exist');
         }
-        $name = isset($spec['name']) && is_scalar($spec['name']) ? trim((string) $spec['name']) : '';
+        $name = isset($spec['name']) && is_scalar($spec['name']) ? (string) $spec['name'] : '';
+        // El nombre acaba dentro de comentarios de PHP y de CSS y de un README: sin asteriscos, barras ni comillas, y sin controles.
+        $name = trim((string) preg_replace('/[\x00-\x1f\x7f*\/\\<>"\'`$]+/u', ' ', $name));
+        $name = trim((string) preg_replace('/\s+/u', ' ', $name));
         if ($name === '') {
             $name = ucwords(str_replace('-', ' ', $slug));
         }
@@ -194,7 +197,7 @@ final class Generator
             }
             $vars .= $fields[$key]['var'] . ':' . $value . ';';
         }
-        $css = "/*\n * " . str_replace('*/', '', $name) . " — hoja de estilos del tema hijo de " . $parent . ".\n"
+        $css = "/*\n * " . $name . " — hoja de estilos del tema hijo de " . $parent . ".\n"
             . " * Se carga ENCIMA de la del padre: escribe aquí solo lo que cambia.\n"
             . " * Autor: Ecom Experts · 2026 · Ver LICENSE.md\n */\n\n";
         $css .= "/* Variables cambiadas respecto al padre (con especificidad cero: el personalizador siempre manda). */\n";
@@ -209,7 +212,7 @@ final class Generator
 
     private function lang(string $name, bool $columns): string
     {
-        $head = "<?php\n/**\n * AIFEC — catálogo castellano del tema " . str_replace('*/', '', $name) . ".\n"
+        $head = "<?php\n/**\n * AIFEC — catálogo castellano del tema " . $name . ".\n"
             . " * La clave es la cadena inglesa tal como está en el código; no se toca. El valor es la traducción.\n *\n"
             . " * @author    Ecom Experts <ecomyseo@gmail.com>\n * @copyright 2026 Ecom Experts\n * @license   Ver LICENSE.md\n */\n\n"
             . "declare(strict_types=1);\n\n";

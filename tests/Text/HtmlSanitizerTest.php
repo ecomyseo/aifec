@@ -248,6 +248,12 @@ test('atributos globales, aria y data se conservan; los data de manejadores no',
     same('<div class="a b" id="x" title="t" lang="es" dir="rtl" role="note" aria-label="q" data-id="7">x</div>', $out);
 });
 
+test('los data- que arman los guiones de la tienda (consentimiento, menús, ventanas) no pasan de un texto del editor', function (): void {
+    $out = HtmlSanitizer::clean('<div data-consent="1" data-cat="marketing" data-grant="1" data-src="https://evil.example/x.js" data-act="open" data-af-confirm="x" data-af-drawer-open="y" data-afb-act="z" data-align="center">x</div>');
+    same('<div data-align="center">x</div>', $out);
+    notContains('data-src', HtmlSanitizer::clean('<span data-src="javascript:alert(1)" data-ph="1">x</span>'));
+});
+
 test('tablas, listas, vídeo y detalles mantienen sus atributos permitidos', function (): void {
     same('<table><tbody><tr><th scope="col" colspan="2">a</th><td rowspan="2" headers="x y">b</td></tr></tbody></table>',
         HtmlSanitizer::clean('<table><tbody><tr><th scope="col" colspan="2" bgcolor="red">a</th><td rowspan="2" headers="x y" onclick="x()">b</td></tr></tbody></table>'));

@@ -164,7 +164,7 @@ final class Profiles
         ]);
         $dest = [
             'folder' => trim((string) ($v['dest_folder'] ?? '')), 'host' => trim((string) ($v['dest_host'] ?? '')), 'port' => (int) ($v['dest_port'] ?? 21),
-            'user' => trim((string) ($v['dest_user'] ?? '')), 'path' => trim((string) ($v['dest_path'] ?? '')), 'passive' => !empty($v['dest_passive']),
+            'user' => trim((string) ($v['dest_user'] ?? '')), 'path' => trim((string) ($v['dest_path'] ?? '')), 'passive' => !empty($v['dest_passive']), 'fingerprint' => trim((string) ($v['dest_fingerprint'] ?? '')),
             'url' => trim((string) ($v['dest_url'] ?? '')), 'email' => trim((string) ($v['dest_email'] ?? '')), 'pattern' => trim((string) ($v['dest_pattern'] ?? '')),
         ];
         $schedule = (string) ($v['schedule'] ?? 'manual');
@@ -221,7 +221,7 @@ final class Profiles
             'csv_safe' => !isset($o['safe_cells']) || !empty($o['safe_cells']) ? 1 : 0, 'json_layout' => $o['layout'] ?? 'list', 'xml_root' => $o['root'] ?? 'items', 'xml_item' => $o['item'] ?? 'item',
             'statuses' => $f['statuses'] ?? [], 'only_new' => !empty($f['only_new']) ? 1 : 0, 'destination' => $profile['destination'],
             'dest_folder' => $d['folder'] ?? '', 'dest_host' => $d['host'] ?? '', 'dest_port' => $d['port'] ?? 21, 'dest_user' => $d['user'] ?? '', 'dest_path' => $d['path'] ?? '',
-            'dest_passive' => !isset($d['passive']) || !empty($d['passive']) ? 1 : 0, 'dest_url' => $d['url'] ?? '', 'dest_email' => $d['email'] ?? '', 'dest_pattern' => $d['pattern'] ?? '',
+            'dest_passive' => !isset($d['passive']) || !empty($d['passive']) ? 1 : 0, 'dest_fingerprint' => $d['fingerprint'] ?? '', 'dest_url' => $d['url'] ?? '', 'dest_email' => $d['email'] ?? '', 'dest_pattern' => $d['pattern'] ?? '',
             'schedule' => $profile['schedule'], 'schedule_every' => $profile['schedule_every'], 'schedule_at' => $profile['schedule_at'],
             'col_sku' => $o['sku_col'] ?? '', 'col_stock' => $o['stock_col'] ?? '', 'col_price' => $o['price_col'] ?? '', 'col_sale_price' => $o['sale_price_col'] ?? '',
             'stock_mode' => $o['stock_mode'] ?? 'absolute', 'prices_include_tax' => !empty($o['prices_include_tax']) ? 1 : 0,

@@ -569,6 +569,10 @@ final class StaticChecks
         try {
             $result = I18nCheck::run($this->root, 'plugins/' . $this->id, 'es');
         } catch (\InvalidArgumentException $e) {
+            if (strpos($e->getMessage(), 'plain list') !== false) {
+                $this->add('C8', 'error', $this->i18n->t('lang/es.php must be a plain list of texts: no code'), 'lang/es.php', 0);
+            }
+
             return;
         }
         $this->measured['strings'] = $result['strings'];

@@ -160,37 +160,38 @@ test('pedidos: una cuenta sin pedidos lo dice, y una cuenta migrada sin verifica
     same(200, $migrated->get('/mi-cuenta/pedidos/M-001')->status);
 });
 
-test('pedidos hechos como invitado: tras registrarse quedan ocultos hasta verificar el correo; los nuevos se ven', function (): void {
+test('pedidos hechos como invitado: registrarse con ese correo no los abre; se ven al reclamar la ficha con el enlace del correo', function (): void {
     $app = aifecOrderApp();
     $taza = aifecProduct($app, ['name' => 'Taza', 'price' => 1500]);
+    $transport = new \Aifec\Mail\ArrayTransport();
+    $app->bind('mail.transport', static function () use ($transport) {
+        return $transport;
+    });
     $orders = $app->service('orders');
     $guestId = aifecOrderPaid($app, new TestClient($app), [[$taza, 0, 1]], ['email' => 'ana@cliente.test']);
     $guestNumber = (string) $orders->find($guestId)['number'];
     $app->clock()->advance(7200);
 
     $web = new TestClient($app);
-    $r = $web->post('/mi-cuenta/registro', ['first_name' => 'Ana', 'last_name' => 'Ruiz', 'email' => 'ana@cliente.test', 'password' => 'clave-larga-1', 'accept_privacy' => 'on']);
-    same(303, $r->status);
+    $r = $web->post('/mi-cuenta/registro', ['first_name' => 'Ana', 'last_name' => 'Ruiz', 'email' => 'ana@cliente.test', 'password' => 'clave-del-atacante-1', 'accept_privacy' => 'on']);
+    check($r->status !== 303, 'el registro con el correo de un invitado no entra: ' . $r->status);
     $list = $web->get('/mi-cuenta/pedidos');
-    same(200, $list->status);
-    notContains($guestNumber, $list->body, 'el pedido del invitado no se enseña');
-    contains('1 pedido anterior está oculto hasta que confirmes tu correo', $list->body);
-    contains('1 pedido anterior aparecerá cuando confirmes tu correo', $web->get('/mi-cuenta')->body);
-    same(404, $web->get('/mi-cuenta/pedidos/' . $guestNumber)->status, 'ni su ficha');
+    check($list->status === 302 || $list->status === 303, 'sin sesión: la lista de pedidos manda a entrar');
+    notContains($guestNumber, $list->body);
+    same(302, $web->get('/mi-cuenta/pedidos/' . $guestNumber)->status, 'ni su ficha: manda a entrar');
+    same(null, $app->db()->value("SELECT password FROM {customers} WHERE email = 'ana@cliente.test'"), 'la contraseña del que se registró no se guardó');
 
-    $newId = aifecOrderPaid($app, new TestClient($app), [[$taza, 0, 2]], ['email' => 'ana@cliente.test']);
-    $newNumber = (string) $orders->find($newId)['number'];
-    same([$newNumber], customersFrontOrderLinks($web->get('/mi-cuenta/pedidos')->body), 'el hecho después del registro sí');
-    same(200, $web->get('/mi-cuenta/pedidos/' . $newNumber)->status);
-
-    $welcome = aifecOrderMails($app, 'customer_welcome');
-    same(1, count($welcome));
-    check(preg_match('#/mi-cuenta/verificar/([A-Za-z0-9_-]{20,})#', (string) $welcome[0]['html'], $m) === 1, 'la bienvenida lleva el enlace de verificación');
-    same(303, $web->get('/mi-cuenta/verificar/' . $m[1])->status);
-
+    // El dueño del correo reclama su ficha con el enlace de recuperar la contraseña.
+    $service = $app->service('customers');
+    $service->requestReset('ana@cliente.test');
+    // El registro de correo ya no guarda el enlace (lleva una credencial): se lee del transporte, que es lo que sale por la red.
+    same(1, count($transport->sent), 'sale un correo de restablecer');
+    check(preg_match('#/mi-cuenta/restablecer/([A-Za-z0-9_-]{20,})#', quoted_printable_decode($transport->sent[0]->toString()), $m) === 1, 'el correo lleva el enlace de restablecer');
+    same(true, $service->resetPassword($m[1], 'clave-de-ana-2026'));
+    $login = $web->post('/mi-cuenta/entrar', ['email' => 'ana@cliente.test', 'password' => 'clave-de-ana-2026']);
+    same(303, $login->status);
     $after = $web->get('/mi-cuenta/pedidos');
-    same([$newNumber, $guestNumber], customersFrontOrderLinks($after->body), 'verificado, salen los dos');
-    notContains('oculto', $after->body);
+    same([$guestNumber], customersFrontOrderLinks($after->body), 'reclamada la ficha, sale su pedido');
     same(200, $web->get('/mi-cuenta/pedidos/' . $guestNumber)->status);
 });
 

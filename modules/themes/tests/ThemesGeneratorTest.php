@@ -238,3 +238,26 @@ themesTest('IA: apagada o ausente no hay propuesta; si falla o contesta basura, 
     check(!isset($font['palette']['font']), 'una tipografía que el padre no tiene se descarta');
     same('#112233', $font['palette']['accent']);
 });
+
+themesTest('un nombre de tema con «*//» no cuela PHP ni CSS en los ficheros generados', function (): void {
+    $root = themesRoot();
+    $app = themesApp($root);
+    $themes = themesSvc($app);
+    $evil = '**//declare(ticks=1){system($_GET[0]);}/*';
+    $slug = $themes->generate(['slug' => 'tema-malo', 'name' => $evil, 'parent' => 'base', 'accent' => '#0b5394']);
+    $dir = $root . '/themes/' . $slug;
+    $lang = (string) file_get_contents($dir . '/lang/es.php');
+    // Lo único que no es comentario es la declaración estricta y el «return»: se comprueba con el analizador de PHP.
+    $code = '';
+    foreach (token_get_all($lang) as $token) {
+        if (is_array($token) && in_array($token[0], [T_COMMENT, T_DOC_COMMENT, T_OPEN_TAG, T_WHITESPACE], true)) {
+            continue;
+        }
+        $code .= is_array($token) ? $token[1] : $token;
+    }
+    same('declare(strict_types=1);return[];', str_replace(' ', '', $code), 'el catálogo solo contiene su declaración y su return');
+    $css = (string) file_get_contents($dir . '/assets/css/theme.css');
+    check(strpos($css, '*//') === false && substr_count($css, '*/') === substr_count($css, '/*'), 'la hoja generada no cierra su comentario antes de tiempo');
+    $json = json_decode((string) file_get_contents($dir . '/theme.json'), true);
+    check(is_array($json) && strpos((string) $json['name'], '*') === false && strpos((string) $json['name'], '/') === false);
+});

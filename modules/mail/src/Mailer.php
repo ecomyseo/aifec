@@ -110,6 +110,8 @@ final class Mailer
                 'subject' => (string) $def['subject'],
                 'view' => (string) $def['view'],
                 'system' => !empty($def['system']),
+                // Lleva una credencial (enlace de un solo uso, código, clave): tras enviarse no se guarda su contenido en el registro.
+                'sensitive' => !empty($def['sensitive']),
                 'description' => isset($def['description']) ? (string) $def['description'] : '',
                 'sample' => isset($def['sample']) && is_array($def['sample']) ? $def['sample'] : [],
                 // Texto de serie de la entrada y de la despedida, en inglés y con {variables}, si la plantilla los declara.
@@ -297,6 +299,7 @@ final class Mailer
                 continue;
             }
             $db->run("UPDATE {mail_messages} SET status = 'sent', sent_at = ?, error = NULL WHERE id = ? AND status = 'pending'", [$this->app->clock()->sql(), $id]);
+            $this->redactIfSensitive($id);
 
             return;
         }
@@ -764,12 +767,45 @@ final class Mailer
                 'error' => $this->cleanError($e->getMessage()),
                 'data' => $this->encode($envelope),
             ], ['id' => $id]);
+            if ($final) {
+                $this->redactIfSensitive($id);
+            }
 
             return 'failed';
         }
         $db->update('mail_messages', ['status' => 'sent', 'sent_at' => $this->app->clock()->sql(), 'error' => null], ['id' => $id]);
+        $this->redactIfSensitive($id);
 
         return 'sent';
+    }
+
+    /** Si la plantilla del mensaje lleva una credencial. */
+    public function isSensitive(string $template): bool
+    {
+        $templates = $this->templates();
+
+        return isset($templates[$template]) && !empty($templates[$template]['sensitive']);
+    }
+
+    /**
+     * Un mensaje con una credencial (enlace de un solo uso, código, clave) ya enviado, o fallado del todo, deja de guardar sus
+     * datos y su contenido: el registro lo ve quien tiene «mail.view», y una copia de la base de datos también. Se conserva el
+     * resto (destinatario, asunto, estado, fechas). Nunca rompe a quien llama.
+     */
+    private function redactIfSensitive(int $id): void
+    {
+        try {
+            $row = $this->app->db()->row('SELECT template, data FROM {mail_messages} WHERE id = ?', [$id]);
+            if ($row === null || !$this->isSensitive((string) $row['template'])) {
+                return;
+            }
+            $envelope = $this->envelope($row);
+            $envelope['data'] = [];
+            $envelope['attachments'] = [];
+            $this->app->db()->update('mail_messages', ['data' => $this->encode($envelope), 'html' => '', 'text_body' => ''], ['id' => $id]);
+        } catch (\Throwable $e) {
+            $this->app->log()->exception($e, 'mail');
+        }
     }
 
     /**

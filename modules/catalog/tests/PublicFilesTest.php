@@ -73,6 +73,33 @@ test('activar la dirección pública copia el fichero a descargas/<código>/ con
     same($expected, $names, 'en descargas solo hay el index.php, el .htaccess y las carpetas con código');
 });
 
+test('un SVG con guiones se publica limpio, una página HTML se publica como texto y las descargas van con nosniff y como adjunto', function (): void {
+    $evil = '<svg xmlns="http://www.w3.org/2000/svg" onload="alert(1)"><script>alert(2)</script><rect width="1" height="1"/></svg>';
+    [$app, , , $row] = pfShop(true, 'logo.svg', $evil);
+    $dir = $app->publicDir() . '/descargas/' . (string) $row['public_token'];
+    $names = pfFiles($dir);
+    same(['logo.svg'], $names);
+    $copy = (string) file_get_contents($dir . '/logo.svg');
+    notContains('<script', $copy);
+    notContains('onload', $copy);
+    contains('<rect', $copy);
+
+    same('pagina.html.txt', PublicFiles::sanitize('pagina.html'));
+    same('x.xhtml.txt', PublicFiles::sanitize('x.xhtml'));
+    same('a.js.txt', PublicFiles::sanitize('a.js'));
+    same('manual.pdf', PublicFiles::sanitize('manual.pdf'));
+    $htaccess = (string) file_get_contents($app->publicDir() . '/descargas/.htaccess');
+    contains('nosniff', $htaccess);
+    contains('Content-Disposition', $htaccess);
+    contains('Options -Indexes', $htaccess);
+});
+
+test('un SVG que no es un SVG no se publica', function (): void {
+    [$app, , , $row] = pfShop(true, 'raro.svg', '<html><body onload="alert(1)">hola</body></html>');
+    $token = isset($row['public_token']) ? (string) $row['public_token'] : '';
+    check($token === '' || pfFiles($app->publicDir() . '/descargas/' . $token) === [], 'no queda copia pública de un SVG inválido');
+});
+
 test('dos activaciones dan códigos distintos e impredecibles', function (): void {
     [, , , $one] = pfShop();
     [, , , $two] = pfShop();

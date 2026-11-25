@@ -61,6 +61,24 @@ final class ProposalsController
         $this->app->auth()->requireCap('ai.use');
     }
 
+    /** El permiso de editar lo que la propuesta toca: usar la IA no da derecho a escribir en el catálogo ni en los contenidos. */
+    private function entityCap(string $entity): string
+    {
+        if ($entity === 'product' || $entity === 'media') {
+            return 'catalog.edit';
+        }
+        if ($entity === 'page' || $entity === 'post') {
+            return 'content.edit';
+        }
+
+        return 'ai.use';
+    }
+
+    private function canTouch(string $entity): bool
+    {
+        return $this->app->auth()->can($this->entityCap($entity));
+    }
+
     // ------------------------------------------------------------------ bandeja
 
     /** @param array<string,string> $params */
@@ -127,6 +145,7 @@ The AI proposes and you approve: nothing it writes reaches the shop until you pr
     {
         $this->canUse();
         $proposal = $this->proposal((int) $params['id']);
+        $this->app->auth()->requireCap($this->entityCap((string) $proposal['entity']));
         try {
             $this->proposals()->edit((int) $proposal['id'], $request->str('text'));
             Admin::audit($this->app, 'edit', 'ai_proposal', (string) $proposal['id'], 'Proposal edited');
@@ -143,6 +162,7 @@ The AI proposes and you approve: nothing it writes reaches the shop until you pr
     {
         $this->canUse();
         $proposal = $this->proposal((int) $params['id']);
+        $this->app->auth()->requireCap($this->entityCap((string) $proposal['entity']));
         $id = (int) $proposal['id'];
         $edited = $request->input('text') !== null ? $request->str('text') : null;
         try {
@@ -194,7 +214,9 @@ The AI proposes and you approve: nothing it writes reaches the shop until you pr
         foreach ($ids as $id) {
             if ($action === 'approve') {
                 try {
-                    $result = $this->proposals()->approve($id);
+                    $target = $this->proposals()->find($id);
+                    // Una propuesta de algo que esta persona no puede editar se queda pendiente para quien sí pueda.
+                    $result = $target !== null && !$this->canTouch((string) $target['entity']) ? Proposals::NOBODY_APPLIES : $this->proposals()->approve($id);
                 } catch (\InvalidArgumentException $e) {
                     $result = Proposals::NOBODY_APPLIES;
                 }
@@ -233,6 +255,7 @@ The AI proposes and you approve: nothing it writes reaches the shop until you pr
         // Una página de contenido: su título o su descripción para buscadores (14/11/2026).
         $pageId = $request->int('page_id');
         if ($pageId > 0 && in_array($task, Generators::PAGE_TASKS, true)) {
+            $app->auth()->requireCap('content.edit');
             $back = Admin::resourceUrl($app, 'pages', $pageId);
             try {
                 $created = (new Generators($app))->run($task, $pageId, ['lang' => $request->str('lang')]);
@@ -250,6 +273,7 @@ The AI proposes and you approve: nothing it writes reaches the shop until you pr
 
             return Response::redirect($app->url()->plain('/admin/ai/proposals/' . $created));
         }
+        $app->auth()->requireCap('catalog.edit');
         $back = $productId > 0 ? Admin::resourceUrl($app, 'products', $productId) : $app->url()->plain('/admin/ai/proposals');
         if (!in_array($task, Generators::TASKS, true) || $productId <= 0) {
             Admin::flash($app, 'bad', t('Choose what the AI should write.'));

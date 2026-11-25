@@ -390,7 +390,8 @@ test('integración: pedir un enlace de acceso deja un admin_reset enviado con el
     check($row !== null, 'hay un mensaje admin_reset');
     same('sent', $row['status']);
     same('ana@tienda.test', $row['to_email']);
-    contains('/admin/reset/', (string) $row['html']);
+    same('', (string) $row['html'], 'el enlace no se queda en el registro');
+    notContains('/admin/reset/', (string) $row['data']);
     same(1, count($transport->sent));
     contains('/admin/reset/', quoted_printable_decode($transport->sent[0]->toString()));
 

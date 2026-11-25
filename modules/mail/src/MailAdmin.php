@@ -72,6 +72,12 @@ final class MailAdmin
             . (isset($row['related']) && (string) $row['related'] !== '' ? '<dt>' . e(t('Related to')) . '</dt><dd class="af-mono">' . e((string) $row['related']) . '</dd>' : '')
             . '</dl></div></div>';
 
+        $sensitive = $mailer->isSensitive((string) $row['template']);
+        if ($sensitive) {
+            $out .= '<div class="af-card"><div class="af-empty"><p>' . e(t('This message carries a one-use link, code or key, so its data and content are not shown or kept in the log.')) . '</p></div></div>';
+
+            return $out;
+        }
         if ($envelope['data'] !== []) {
             $json = json_encode($envelope['data'], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PARTIAL_OUTPUT_ON_ERROR);
             $out .= '<div class="af-card"><div class="af-card-head"><h2>' . e(t('Data')) . '</h2></div><div class="af-card-body"><pre class="af-mono af-small">'

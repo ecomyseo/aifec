@@ -29,7 +29,7 @@ use Aifec\View\View;
  */
 final class App
 {
-    public const VERSION = '1.3.1';
+    public const VERSION = '1.3.2';
 
     /** @var string|null la ruta propia del panel ya leída (null = sin leer) */
     private $adminAlias = null;

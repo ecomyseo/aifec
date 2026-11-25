@@ -33,12 +33,11 @@ test('el registro se abre con permiso, da 403 sin él y lista los mensajes', fun
 test('la ficha enseña el cuerpo en un iframe aislado y escapado, con sus botones', function (): void {
     [$app] = mailTestApp(['mail.mode' => 'live']);
     $mailer = mailTestService($app);
-    $id = $mailer->queue('admin_reset', 'ana@cliente.test', ['name' => '<script>alert(1)</script> & Co', 'url' => 'https://tienda.test/admin/reset/zzz', 'minutes' => 30], ['now' => true]);
+    $id = $mailer->queue('plain_test', 'ana@cliente.test', ['name' => '<script>alert(1)</script> & Co', 'url' => 'https://tienda.test/admin/reset/zzz', 'minutes' => 30], ['now' => true]);
     $web = adminClient($app);
     $r = $web->get('/admin/r/mail/' . $id);
     same(200, $r->status);
     contains('<iframe sandbox srcdoc="', $r->body);
-    contains('/admin/reset/zzz', $r->body);
     notContains('<script>alert(1)</script>', $r->body, 'ningún script suelto en la ficha');
     contains('&amp;lt;script&amp;gt;', $r->body, 'el srcdoc va escapado dos veces: como atributo y como contenido');
     contains('/admin/mail/' . $id . '/resend', $r->body);

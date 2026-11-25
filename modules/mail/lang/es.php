@@ -55,6 +55,7 @@ return [
     'Message' => 'Mensaje',
     'Plain text version' => 'Versión en texto',
     'The content of this message was emptied to save space.' => 'El contenido de este mensaje se vació para ahorrar espacio.',
+    'This message carries a one-use link, code or key, so its data and content are not shown or kept in the log.' => 'Este mensaje lleva un enlace de un solo uso, un código o una clave, así que sus datos y su contenido ni se muestran ni se guardan en el registro.',
     'Resend' => 'Reenviar',
     'Release' => 'Liberar',
     'Queued again. It will go out within a minute.' => 'Puesto otra vez en cola. Saldrá en menos de un minuto.',

@@ -1,3 +1,17 @@
+# AIFEC 1.3.2
+
+## Seguridad (auditoría del 25/11/2026)
+
+- Los correos con una credencial (restablecer contraseña, enlace de entrada, verificar correo, código del comprador, claves de licencia) no guardan su contenido en el registro de correo una vez enviados, y el enlace de restablecer del panel lleva siempre el dominio configurado, nunca la cabecera Host.
+- Registrarse con el correo de un invitado ya no se queda con su ficha: se reclama con «he olvidado mi contraseña».
+- El generador de temas limpia el nombre antes de escribirlo en PHP y CSS; el saneador de HTML solo deja pasar una lista corta de `data-*`; el SVG exige su espacio de nombres y no deja pasar `java<TAB>script:`; las descargas públicas se publican sin guiones activos.
+- El FTPS del ERP comprueba el certificado (autoridad conocida o huella fijada en el perfil); el FTP sin cifrar se rotula como tal.
+- Un `lang/es.php` de un plugin con código no se ejecuta al validarlo.
+- La IA exige además el permiso de lo que escribe (`catalog.edit`, `content.edit`); la vista previa del ERP y la búsqueda de menús respetan sus permisos.
+- Ninguna dirección deja una barra invertida que lea el navegador como otra web (redirecciones, selector de idioma); `robots.txt` ya no publica la dirección escondida del panel; «Compra con enlaces» solo acepta un `cart` con forma de carrito.
+
+---
+
 # AIFEC 1.3.1
 
 ## Compra con enlaces

@@ -358,6 +358,10 @@ final class BrowseController
         if ($raw === '') {
             throw new HttpError(401, 'Add the cart to the address as ?cart=… (' . $this->url('start') . ' gives you one)');
         }
+        if (!Carts::valid($raw)) {
+            // Lo que llega en «cart» se vuelve a escribir en las direcciones de la respuesta: solo con la forma de un carrito de verdad.
+            throw new HttpError(401, 'The cart in the address is not valid (' . $this->url('start') . ' gives you one)');
+        }
         $placed = $this->placed($raw);
         if ($placed !== null && $this->app->clock()->now() - (int) strtotime((string) $placed['placed_at'] . ' UTC') > self::OLD_CART) {
             // Un carrito que se hizo pedido hace horas es una dirección de OTRA conversación (17/11/2026: Claude, con memoria,

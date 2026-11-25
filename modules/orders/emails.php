@@ -67,6 +67,7 @@ return [
     // El código con el que la persona confirma un pedido que le prepara un asistente (BuyerCode). De sistema: es una
     // comprobación de seguridad que la propia persona está esperando, así que sale aunque el correo esté retenido.
     'buyer_code' => [
+        'sensitive' => true,
         'subject' => '{code} is your code to confirm the order - {shop}',
         'view' => 'orders::emails/buyer_code',
         'system' => true,

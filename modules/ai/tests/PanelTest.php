@@ -170,6 +170,34 @@ test('sin el permiso «ai.use» ninguna acción de propuestas, lotes ni propuest
     same('Vieja', (string) $app->db()->value('SELECT meta_title FROM {product_i18n} WHERE product_id = ?', [$p]));
 });
 
+test('usar la IA no da derecho a escribir en el catálogo: sin «catalog.edit» no se aprueba, ni se edita, ni se propone sobre un producto', function (): void {
+    $app = aiApp();
+    $p = aiProduct($app, ['name' => 'Mesa', 'meta_title' => 'Vieja']);
+    $id = $app->service('ai')->propose('product', $p, 'meta_title', 'es', 'Nueva');
+    $user = adminClient($app, 'support');
+    $app->db()->update('roles', ['caps' => json_encode(['dashboard.view', 'ai.view', 'ai.use'])], ['code' => 'support']);
+    $app->auth()->reset();
+    $user->get('/admin');
+    $token = static function () use ($user): string {
+        $user->get('/admin/ai/usage');
+
+        return aifecToken($user);
+    };
+    foreach (['approve', 'save'] as $action) {
+        same(403, $user->post('/admin/ai/proposals/' . $id . '/' . $action, ['_token' => $token(), 'text' => 'Hackeada'])->status, $action);
+    }
+    $user->post('/admin/ai/proposals/bulk', ['_token' => $token(), 'action' => 'approve', 'ids' => [$id]]);
+    same(403, $user->post('/admin/ai/propose', ['_token' => $token(), 'product_id' => $p, 'task' => 'summary'])->status);
+    same('pending', aiRows($app, 'ai_proposals')[0]['status'], 'la propuesta sigue pendiente');
+    same('Vieja', (string) $app->db()->value('SELECT meta_title FROM {product_i18n} WHERE product_id = ?', [$p]), 'el producto no se tocó');
+    // Con «catalog.edit» sí.
+    $app->db()->update('roles', ['caps' => json_encode(['dashboard.view', 'ai.view', 'ai.use', 'catalog.edit'])], ['code' => 'support']);
+    $app->auth()->reset();
+    $user->get('/admin');
+    same(302, $user->post('/admin/ai/proposals/' . $id . '/approve', ['_token' => $token()])->status);
+    same('Nueva', (string) $app->db()->value('SELECT meta_title FROM {product_i18n} WHERE product_id = ?', [$p]));
+});
+
 test('la ficha de producto lleva la tarjeta «Proponer con IA» con sus botones; con la IA apagada lo dice y enlaza a los ajustes', function (): void {
     $app = aiApp([], ['es', 'en']);
     $p = aiProduct($app, ['name' => 'Silla']);

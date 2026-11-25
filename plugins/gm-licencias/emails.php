@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 return [
     'license_issued' => [
+        'sensitive' => true,
         'subject' => 'Your licences for order {number} - {shop}',
         'view' => 'gm-licencias::emails/license_issued',
         'system' => false,

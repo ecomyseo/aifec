@@ -118,3 +118,15 @@ test('lo que no es un SVG bien formado lanza MediaException', function (): void 
         }, MediaException::class, 'entrada «' . $bad . '»');
     }
 });
+
+test('la raíz tiene que estar en el espacio de nombres SVG y un «java<TAB>script:» no pasa en ningún atributo', function (): void {
+    throws(function (): void {
+        SvgSanitizer::clean('<svg><rect width="1" height="1"/></svg>');
+    }, MediaException::class, 'un «svg» sin su espacio de nombres no es un SVG');
+    throws(function (): void {
+        SvgSanitizer::clean('<svg xmlns="http://www.w3.org/1999/xhtml"><script>alert(1)</script></svg>');
+    }, MediaException::class, 'una raíz «svg» de otro espacio de nombres tampoco');
+    $out = SvgSanitizer::clean("<svg xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"1\" height=\"1\" fill=\"java\tscript:alert(1)\" data-x=\"java&#10;script:alert(2)\" style=\"fill:red\"/></svg>");
+    notContains('script:', preg_replace('/[\x00-\x20]+/', '', $out), 'ni con tabuladores ni con saltos de línea dentro');
+    contains('<rect', $out);
+});

@@ -203,6 +203,7 @@ return [
     'A task reads the whole history of orders or customers without a date or id limit' => 'Una tarea recorre todo el histórico de pedidos o clientes sin límite de fecha ni de identificador',
     'Creates the table «{table}» without declaring it in contract.tables' => 'Crea la tabla «{table}» sin declararla en contract.tables',
     'Text without Spanish translation: «{text}»' => 'Texto sin traducción al castellano: «{text}»',
+    'lang/es.php must be a plain list of texts: no code' => 'lang/es.php tiene que ser una lista de textos y nada de código',
     'And {count} more texts without translation' => 'Y {count} textos más sin traducir',
 
     // Validador: pruebas que ejecutan el plugin

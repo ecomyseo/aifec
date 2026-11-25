@@ -55,7 +55,8 @@ final class Redirects
                 if (strpos($path, $prefix) === 0 && strlen($prefix) > $best) {
                     $best = strlen($prefix);
                     $hit = $row;
-                    $tail = (string) substr($path, strlen($prefix));
+                    // La cola de un comodín nunca lleva barras invertidas ni caracteres de control: «/\\sitio.example» se leería como otra web.
+                    $tail = (string) preg_replace('#[\\\\\x00-\x1f\x7f]+#', '', (string) substr($path, strlen($prefix)));
                 }
             }
         }
@@ -97,7 +98,7 @@ final class Redirects
     {
         $target = trim(str_replace('*', $tail, $target));
         $safe = UrlFilter::safe($target);
-        if ($safe === null) {
+        if ($safe === null || preg_match('#[\\\\\x00-\x1f\x7f]#', $safe) === 1) {
             return '';
         }
         if (preg_match('#^https?://#i', $safe) === 1) {

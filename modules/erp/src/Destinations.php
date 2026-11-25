@@ -50,7 +50,7 @@ final class Destinations
         }
         $ftp = $app->service('erp.ftp');
         if ($ftp instanceof FtpTransport && $ftp->available(false)) {
-            $out['ftp'] = 'FTP server';
+            $out['ftp'] = 'FTP server (not encrypted)';
         }
         if ($ftp instanceof FtpTransport && $ftp->available(true)) {
             $out['ftps'] = 'FTPS server (FTP over TLS)';
@@ -235,7 +235,7 @@ final class Destinations
         return [
             'host' => $host, 'port' => (int) ($dest['port'] ?? 21) > 0 ? (int) ($dest['port'] ?? 21) : 21, 'user' => (string) ($dest['user'] ?? ''),
             'password' => $this->app->secret('erp.ftp.' . (int) $profile['id']), 'secure' => (string) $profile['destination'] === 'ftps',
-            'passive' => !isset($dest['passive']) || !empty($dest['passive']),
+            'passive' => !isset($dest['passive']) || !empty($dest['passive']), 'fingerprint' => (string) ($dest['fingerprint'] ?? ''),
         ];
     }
 
