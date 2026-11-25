@@ -474,8 +474,9 @@ final class Form
             $html .= '<div class="af-alert af-alert-bad" role="alert">' . e(tn('There is {n} field to review', 'There are {n} fields to review', count($errors))) . '</div>';
         }
         $body = $this->renderFields($values, $errors, $active, $perTab);
+        $outside = '';
         if ((string) $o['side'] !== '') {
-            $html .= '<div class="af-grid"><div class="af-col-8">' . $body . '</div><div class="af-col-4 af-stack">' . $o['side'] . '</div></div>';
+            $html .= '<div class="af-grid"><div class="af-col-8">' . $body . '</div><div class="af-col-4 af-stack">' . self::hoistForms((string) $o['side'], $outside) . '</div></div>';
         } else {
             $html .= $body;
         }
@@ -488,7 +489,26 @@ final class Form
             $html .= '<button type="submit" class="af-btn af-btn-danger" formaction="' . e($o['delete']) . '" data-af-confirm="' . e(t('Delete this? It cannot be undone.')) . '">' . Admin::icon('trash') . e(t('Delete')) . '</button>';
         }
 
-        return $html . '</div></form>';
+        return $html . '</div></form>' . $outside;
+    }
+
+    /**
+     * Un <form> dentro de otro no existe en HTML: el navegador ignora el de dentro y su </form> cierra el de guardado antes de
+     * tiempo, y Guardar, «Guardar y cerrar» y Borrar se quedan sin formulario (25/11/2026, tarjeta «Proponer con IA»).
+     * Cada formulario de la columna lateral se saca: sus controles se quedan donde están, apuntando con form="id" a un <form>
+     * vacío que se pinta DESPUÉS del de guardado ($outside).
+     */
+    private static function hoistForms(string $side, string &$outside): string
+    {
+        static $count = 0;
+
+        return (string) preg_replace_callback('#<form\b([^>]*)>(.*?)</form>#s', static function (array $m) use (&$outside, &$count): string {
+            $count++;
+            $id = 'af-side-form-' . $count;
+            $outside .= '<form id="' . $id . '"' . $m[1] . '></form>';
+
+            return (string) preg_replace('#<(input|select|textarea|button)\b(?![^>]*\sform=)#', '<$1 form="' . $id . '"', $m[2]);
+        }, $side);
     }
 
     /**
