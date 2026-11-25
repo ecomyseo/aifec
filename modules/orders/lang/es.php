@@ -733,5 +733,7 @@ return [
     'You can download the invoice from the order page and from your account.' => 'Puedes descargar la factura desde la página del pedido y desde tu cuenta.',
     'We issue the invoices with our management system (ERP) and send them to you by email.' => 'Las facturas las emitimos con nuestro programa de gestión (ERP) y te las enviamos por correo.',
     'Your invoice is attached to this email.' => 'Tu factura va adjunta a este correo.',
+    'No payment needed' => 'No hay nada que pagar',
+    'There is nothing to pay for this order.' => 'Este pedido no tiene importe a pagar.',
     'The coupon {codes} is still applied.|The coupons {codes} are still applied.' => 'El cupón {codes} sigue aplicado.|Los cupones {codes} siguen aplicados.',
 ];

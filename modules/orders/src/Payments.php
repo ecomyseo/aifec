@@ -68,6 +68,9 @@ final class Payments
     public function get(string $code): ?PaymentMethod
     {
         $code = self::normalize($code);
+        if ($code === FreePayment::CODE) {
+            return $this->free();
+        }
 
         if (!isset($this->methods[$code]) || !$this->allowedHere($code, $this->methods[$code])) {
             return null;
@@ -95,6 +98,10 @@ final class Payments
      */
     public function available(array $context): array
     {
+        // Con cero que pagar ninguna pasarela sirve (rechazan los importes de cero): solo «sin pago».
+        if ($this->free()->available($context)) {
+            return [$this->free()];
+        }
         $wanted = [];
         foreach ($this->methods as $code => $method) {
             if (!$this->allowedHere((string) $code, $method)) {
@@ -143,6 +150,18 @@ final class Payments
         }
 
         return $codes;
+    }
+
+    /** @var FreePayment|null */
+    private $free;
+
+    private function free(): FreePayment
+    {
+        if ($this->free === null) {
+            $this->free = new FreePayment();
+        }
+
+        return $this->free;
     }
 
     private static function normalize(string $code): string
