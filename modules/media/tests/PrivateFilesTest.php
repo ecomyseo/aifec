@@ -135,3 +135,20 @@ test('PrivateFiles.delete() borra el fichero y no falla con uno que no existe', 
     $files->delete('../x');
     check(true);
 });
+
+test('una descarga cuyo nombre acaba en un número («Versión 1.0.0») se baja con la extensión de lo que es', function (): void {
+    $app = mediaApp();
+    $files = mediaPrivate($app);
+    $zip = tmpDir('media-zip') . '/modulo.zip';
+    $archive = new ZipArchive();
+    check($archive->open($zip, ZipArchive::CREATE) === true, 'se crea el zip de pruebas');
+    $archive->addFromString('modulo/uno.txt', 'hola');
+    $archive->close();
+    $stored = $files->store($zip, 'modulo.zip', 'products');
+
+    foreach (['Versión 1.0.0' => 'Versión 1.0.0.zip', 'Versión 1' => 'Versión 1.zip', 'modulo.zip' => 'modulo.zip', 'guia.pdf' => 'guia.pdf'] as $asked => $expected) {
+        $response = $files->response($stored['path'], $asked);
+        contains('filename="' . $expected . '"', $response->headers['Content-Disposition'], $asked);
+        same('application/zip', $response->headers['Content-Type']);
+    }
+});

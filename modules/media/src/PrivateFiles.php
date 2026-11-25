@@ -134,7 +134,27 @@ final class PrivateFiles
             throw HttpError::notFound();
         }
 
-        return Response::file($path, $downloadName, Mime::fromContent($path));
+        $mime = Mime::fromContent($path);
+
+        return Response::file($path, self::withExtension($downloadName, $mime), $mime);
+    }
+
+    /**
+     * Un nombre que acaba en un número («Versión 1.0.0», lo que dejan algunas importaciones) o sin punto se baja sin
+     * extensión y no se abre como lo que es: se le pone la que corresponde al contenido. Uno que ya la lleva se respeta.
+     */
+    public static function withExtension(string $name, string $mime): string
+    {
+        $extension = Mime::extension($mime);
+        if ($extension === null) {
+            return $name;
+        }
+        $current = pathinfo($name, PATHINFO_EXTENSION);
+        if ($current !== '' && !ctype_digit($current)) {
+            return $name;
+        }
+
+        return rtrim($name, '. ') . '.' . $extension;
     }
 
     /** Borra el fichero si existe. */
