@@ -182,12 +182,12 @@ final class TextGuard
 
     /**
      * Arregla lo que estropea un texto al pasar de mano en mano: caracteres de control (salvo saltos de línea y tabuladores) y texto
-     * en UTF-8 leído como Latin-1 («camiÃ³n» → «camión»).
+     * en UTF-8 interpretado como Latin-1.
      */
     public static function repair(string $text): string
     {
         $text = (string) preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/u', '', $text);
-        if (preg_match('/Ã[\x{0080}-\x{00BF}]|Â[\x{00A0}-\x{00BF}]/u', $text) === 1) {
+        if (preg_match('/\x{00C3}[\x{0080}-\x{00BF}]|\x{00C2}[\x{00A0}-\x{00BF}]/u', $text) === 1) {
             $back = @mb_convert_encoding($text, 'ISO-8859-1', 'UTF-8');
             if (is_string($back) && preg_match('//u', $back) === 1) {
                 $text = $back;
