@@ -217,7 +217,11 @@ test('el panel dice en qué plantillas está cada formulario, y los temas de ser
  * listado solo cambia lo que se ve en pantalla (marca y desmarca criterios y recarga): un agente busca con search_products y con la API,
  * y una herramienta con veinte casillas dependientes del listado confunde más que ayuda.
  */
-const WEBMCP_EXCLUDED_FORMS = ['af-filters-form' => 'filtros del listado'];
+const WEBMCP_EXCLUDED_FORMS = [
+    'af-filters-form' => 'filtros del listado',
+    'af-assistant-budget-preference' => 'solo el cliente puede decidir que se guarde un presupuesto en su cuenta',
+    'af-assistant-personal-rating' => 'la valoración es la experiencia personal del cliente',
+];
 
 test('la opinión de la ficha es submit_review y el asistente es ask_shop_assistant, con sus campos reales y sin nombres repetidos en ningún tema', function (): void {
     foreach (WEBMCP_THEMES as $theme) {

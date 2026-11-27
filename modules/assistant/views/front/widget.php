@@ -71,7 +71,7 @@ $name = $assistant->name();
         <header class="af-assistant-head">
             <h2 id="af-assistant-title" class="af-assistant-title"><?= e($name !== '' ? $name : t('Shop assistant')) ?></h2>
             <details class="af-assistant-menu">
-                <summary aria-label="<?= e(t('Chat options')) ?>">⋯</summary>
+                <summary><?= e(t('Options')) ?></summary>
                 <button type="button" data-af-layout="normal"><?= e(t('Compact chat')) ?></button>
                 <button type="button" data-af-layout="large"><?= e(t('Large chat')) ?></button>
                 <button type="button" data-af-layout="side"><?= e(t('Dock at the side')) ?></button>
@@ -80,7 +80,7 @@ $name = $assistant->name();
                 <?php if (is_string($photoRoute) && $photoRoute !== '' && $app->router()->has($photoRoute)) : ?><a href="<?= e($url->route($photoRoute)) ?>"><?= e(t('Search by photo')) ?></a><?php endif; ?>
                 <button type="button" data-af-assistant-chip="<?= e(t('Help me choose a gift')) ?>"><?= e(t('Help me choose a gift')) ?></button>
                 <?php if ($app->settings()->str('search.sector') === 'fashion') : ?><button type="button" data-af-assistant-chip="<?= e(t('Style advisor')) ?>"><?= e(t('Style advisor')) ?></button><?php endif; ?>
-                <form data-af-budget hidden>
+                <form id="af-assistant-budget-preference" data-af-budget hidden>
                     <label><?= e(t('Maximum price per product')) ?> (<?= e($app->settings()->str('shop.currency', 'EUR')) ?>)
                         <input type="number" name="budget" min="0.01" max="1000000" step="0.01" required>
                     </label>
@@ -109,7 +109,7 @@ $name = $assistant->name();
             <button type="submit" class="af-btn af-btn-primary"><?= e(t('Send')) ?></button>
         </form>
     </section>
-    <form class="af-assistant-survey" data-af-assistant-survey hidden>
+    <form id="af-assistant-personal-rating" class="af-assistant-survey" data-af-assistant-survey hidden>
         <fieldset><legend><?= e(t('Was the conversation helpful?')) ?></legend>
             <label><?= e(t('Reason (optional)')) ?>
                 <select name="reason"><option value="">—</option>

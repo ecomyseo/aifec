@@ -34,6 +34,31 @@ test('una errata corta solicita aclaración y el botón consulta el producto ele
     check(in_array($ids['silla_roja'], array_column($r['cards'], 'id'), true));
 });
 
+test('un título literal que habla de transporte o pedidos se busca sin abrir un pedido ni cotizar un envío', function (): void {
+    $app = assistantApp();
+    $name = 'Enviar instrucciones al cambiar un pedido de estado';
+    $id = aifecProduct($app, ['name' => $name]);
+    $web = new TestClient($app);
+    foreach (['Busco ', 'Do you have '] as $prefix) {
+        $r = assistantSay($web, $prefix . $name . '?');
+        same([$id], array_column($r['cards'], 'id'));
+        contains($name, $r['text']);
+    }
+    same([], assistantCartLines($app, $web));
+});
+
+test('la búsqueda literal de un título digital de farmacia se distingue de una consulta sobre medicación', function (): void {
+    $app = assistantApp();
+    $name = 'Programa para organizar el catálogo de medicamentos de farmacia';
+    $id = aifecProduct($app, ['name' => $name, 'kind' => 'digital']);
+    $web = new TestClient($app);
+    $r = assistantSay($web, 'Busco ' . $name);
+    same([$id], array_column($r['cards'], 'id'));
+    $r = assistantSay($web, '¿Qué medicamentos puedo usar durante el embarazo?');
+    same([], $r['cards']);
+    contains('farmacéutico', $r['text']);
+});
+
 test('el chat usa los vectores nativos cuando el proveedor simulado ya calculó su significado', function (): void {
     $app = assistantApp(['ai.enabled' => true, 'search.vectors' => true], ['modules' => ['ai','jobs']]);
     $app->boot();

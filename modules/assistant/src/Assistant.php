@@ -356,6 +356,13 @@ final class Assistant
 
         // Un fichero o un trozo de código pegado no es una pregunta: no se guarda entero, no se busca nada y no se le pregunta al modelo.
         if (SensitiveQuestion::matches($message)) {
+            // Buscar un título digital exacto no solicita instrucciones clínicas. Una pregunta adicional ya no coincide.
+            $digital = ProductQuestion::namedListing($this->app, $message, true);
+            if ($digital !== null) {
+                $messageId = $this->conversations->addMessage($conversationId, 'user', '[digital catalogue enquiry]');
+                $this->save($conversationId, $messageId, '', $state, $digital, $turn, array_column($digital->cards, 'id'), $lang);
+                return $this->finish($digital, $lang, $state)->toArray();
+            }
             $messageId = $this->conversations->addMessage($conversationId, 'user', '[sensitive question]');
             $answer = new Answer();
             $answer->actions[] = ['type' => 'private_turn'];
@@ -403,6 +410,13 @@ final class Assistant
             'refine' => $kind === 'refine' ? Need::query($need) : '',
         ];
 
+        if (!$busy && !$confirmed && $this->app->has('catalog')) {
+            $exact = ProductQuestion::namedListing($this->app, $message);
+            if ($exact !== null) {
+                $this->save($conversationId, $messageId, $message, $state, $exact, $turn, array_column($exact->cards, 'id'), $lang);
+                return $this->finish($exact, $lang, $state)->toArray();
+            }
+        }
         $guided = !$busy && !$confirmed ? ChoiceGuide::answer($this->app, $message, $state) : null;
         if ($guided !== null) {
             $this->save($conversationId, $messageId, '', $state, $guided, $turn, array_column($guided->cards, 'id'), $lang);

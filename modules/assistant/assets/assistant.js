@@ -711,6 +711,25 @@
     window.AifecDataEvent(event);
   }
 
+  var backgroundItems = [];
+  function updateModal(open) {
+    var box = root(), panel = part('.af-assistant-panel');
+    backgroundItems.forEach(function (node) { node.removeAttribute('inert'); });
+    backgroundItems = [];
+    if (!box || !panel || !open) { return; }
+    var modal = box.getAttribute('data-layout') !== 'side' || window.innerWidth < 900;
+    panel.setAttribute('aria-modal', modal ? 'true' : 'false');
+    if (!modal) { return; }
+    for (var node = box; node && node !== document.body; node = node.parentElement) {
+      Array.prototype.forEach.call(node.parentElement.children, function (other) {
+        if (other !== node && !other.hasAttribute('inert') && !/^(SCRIPT|STYLE|LINK|TEMPLATE)$/.test(other.tagName)) {
+          other.setAttribute('inert', '');
+          backgroundItems.push(other);
+        }
+      });
+    }
+  }
+
   function openPanel() {
     var box = root();
     var panel = part('.af-assistant-panel');
@@ -722,7 +741,7 @@
     if (panel.hidden) { analytics({event: 'chat_open'}); }
     panel.hidden = false;
     unread(0);
-    panel.setAttribute('aria-modal', box.getAttribute('data-layout') === 'side' && window.innerWidth >= 900 ? 'false' : 'true');
+    updateModal(true);
     var notice = part('[data-af-assistant-resume]');
     if (notice) { notice.hidden = true; }
     if (typeof panel.showPopover === 'function') {
@@ -764,6 +783,7 @@
       panel.hidePopover();
     }
     panel.hidden = true;
+    updateModal(false);
     box.classList.remove('is-open');
     document.documentElement.classList.remove('af-chat-docked');
     box.removeAttribute('data-layout');
@@ -802,7 +822,7 @@
     if (layout) {
       var mode = layout.getAttribute('data-af-layout');
       root().setAttribute('data-layout', mode);
-      part('.af-assistant-panel').setAttribute('aria-modal', mode === 'side' && window.innerWidth >= 900 ? 'false' : 'true');
+      updateModal(true);
       document.documentElement.classList.toggle('af-chat-docked', mode === 'side');
       try { sessionStorage.setItem('af-chat-docked', mode === 'side' ? '1' : '0'); } catch (e) { /* opcional */ }
       part('.af-assistant-menu').open = false;
@@ -933,6 +953,7 @@
         document.documentElement.classList.add('af-chat-docked');
       }
     } catch (e) { /* opcional */ }
+    window.addEventListener('resize', function () { if (box.classList.contains('is-open')) { updateModal(true); } });
     var viewport = window.visualViewport;
     if (viewport) {
       var fitKeyboard = function () {

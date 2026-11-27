@@ -971,23 +971,26 @@ final class RuleBrain
     {
         $result = $this->runner->run('store_info', ['topic' => 'all']);
         $text = isset($result['returns']) ? trim((string) $result['returns']) : '';
+        $sections = [];
+        $normal = self::norm($question);
         foreach ([
             'reembols|refund' => 'reembols|refund',
             'quien paga|cuanto cuesta|coste|cost|who pays' => 'coste|cuesta|paga|cargo|cost|pays|charge',
-            'plazo|cuantos dias|how long|time limit' => 'plazo|dias|days|within',
+            'plazo|puedo devolv|cuantos dias|how long|time limit|can i return' => 'plazo|dias|days|within',
             'como|tramita|solicita|how do|how to' => 'solicita|tramita|formulario|escribe|request|form|contact',
         ] as $intent => $evidence) {
-            if (!preg_match('/(?:' . $intent . ')/', self::norm($question))) { continue; }
-            $lines = [];
+            if (preg_match('/(?:' . $intent . ')/', $normal)) { $sections[] = $evidence; }
+        }
+        if ($sections) {
             $published = $text;
             foreach ($result['pages'] ?? [] as $policyPage) {
                 if (($policyPage['topic'] ?? '') === 'returns') { $published .= "\n" . ($policyPage['text'] ?? ''); }
             }
+            $lines = [];
             foreach (preg_split('/(?<=[.!?])\s+|\R/u', $published) ?: [] as $line) {
-                if (preg_match('/(?:' . $evidence . ')/', self::norm($line))) { $lines[] = trim($line); }
+                if (preg_match('/(?:' . implode('|', $sections) . ')/', self::norm($line))) { $lines[] = trim($line); }
             }
-            if ($lines) { $text = implode(' ', array_slice(array_unique($lines), 0, 3)); }
-            break;
+            if ($lines) { $text = implode(' ', array_slice(array_unique($lines), 0, 4)); }
         }
         $link = '';
         foreach (isset($result['pages']) && is_array($result['pages']) ? $result['pages'] : [] as $page) {

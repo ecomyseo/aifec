@@ -81,8 +81,20 @@ with tempfile.TemporaryDirectory(prefix="aifec-ui-") as temp:
             page.locator(".af-assistant-msg.is-bot").nth(1).wait_for()
             assert not page.evaluate("document.documentElement.scrollWidth > innerWidth")
             assert field.evaluate("x => x.getBoundingClientRect().right <= innerWidth")
+            assert page.locator("main").evaluate("node => node.closest('[inert]') !== null")
+            field.focus()
+            for _ in range(13):
+                page.keyboard.press("Tab")
+                assert panel.evaluate("node => node.contains(document.activeElement)")
+            field.focus()
             assert page.evaluate("document.documentElement.classList.contains('af-assistant-lock')")
             page.screenshot(path=str(evidence / "chat-movil.png"))
+            lighthouse_source = os.environ.get("AIFEC_LIGHTHOUSE_GATHER")
+            if lighthouse_source:
+                shutil.copyfile(lighthouse_source, site / "public" / "audit-lighthouse.js")
+                page.add_script_tag(url=base + "/audit-lighthouse.js")
+                artifact = page.evaluate("() => window.aifecLighthouseGather()")
+                (evidence / "lighthouse-accessibility-artifact.json").write_text(json.dumps(artifact, ensure_ascii=False), encoding="utf-8")
             axe_source = os.environ.get("AIFEC_AXE_JS")
             if axe_source:
                 audit_path = site / "public" / "audit-wcag.js"

@@ -24,6 +24,24 @@ final class ProductQuestion
         'care' => 'cuidados?|lavado|lavar|limpiar|care|wash|clean',
     ];
 
+    /** Los títulos largos del catálogo pueden mencionar pedidos, transporte o pagos sin solicitar esas operaciones. */
+    public static function namedListing(App $app, string $message, bool $digitalOnly = false): ?Answer
+    {
+        if (!preg_match('/^[¿¡\s]*(?:busco|muéstrame|me enseñas|estoy buscando|do you have|do you sell|where can i find|i am looking for|show me)\s+(.+?)\s*[?!.]*$/iu', trim($message), $m)) { return null; }
+        $name = trim($m[1]);
+        if (str_word_count(RuleBrain::norm($name)) < 6) { return null; }
+        $kind = $digitalOnly ? " AND p.kind = 'digital'" : '';
+        $rows = $app->db()->column("SELECT DISTINCT p.id FROM {product_i18n} i JOIN {products} p ON p.id = i.product_id WHERE i.name = ? AND i.lang IN (?, ?) AND p.status = 'published' AND p.visibility IN ('everywhere','search','catalog') $kind LIMIT 2", [$name, $app->i18n()->lang(), $app->defaultLang()]);
+        if (count($rows) !== 1) { return null; }
+        $items = (new ShopTools($app))->cardsFor($rows);
+        if (!$items) { return null; }
+        $answer = new Answer();
+        $answer->text = t('I found the product you named: {name}.', ['name' => $items[0]['name']]);
+        $answer->addCard($items[0]);
+        $answer->suggestions = [t('More information')];
+        return $answer;
+    }
+
     public static function topic(App $app, string $message): string
     {
         $n = RuleBrain::norm($message);

@@ -494,6 +494,8 @@ return [
     'Chat appearance' => 'Diseño del chat',
     'Square corners' => 'Esquinas rectas',
     'Compact' => 'Compacto',
+    'I found the product you named: {name}.' => 'He encontrado el producto que buscas: {name}.',
+    'Options' => 'Opciones',
     'Public WhatsApp contact number' => 'Número público de contacto por WhatsApp',
     'Include the international prefix. This number is shown only when the shop WhatsApp provider is configured.' => 'Incluye el prefijo internacional. El número se muestra cuando esté configurado el proveedor de WhatsApp de la tienda.',
     'Search by photo' => 'Buscar por foto',
