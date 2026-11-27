@@ -40,7 +40,7 @@ final class NotifyController
     {
         $productId = $request->int('product_id');
         $product = $this->app->service('catalog')->product($productId, $this->app->lang());
-        if ($product === null || !Soon::isSoon($this->app, $productId)) {
+        if ($product === null || !Soon::canSubscribe($this->app, $product)) {
             throw HttpError::notFound();
         }
         // Los robots rellenan todo lo que ven: se les contesta «gracias» y no se guarda nada.

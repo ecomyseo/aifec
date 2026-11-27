@@ -69,6 +69,14 @@ test('un rango: «entre 50 y 100», con decimales y en cualquier orden', functio
     same([5000, 10000], askPrice($app, 'silla más de 50 menos de 100'), 'dos límites sueltos son un solo rango');
 });
 
+test('el presupuesto aproximado exige moneda y respeta ambos extremos en céntimos', function (): void {
+    $app = searchApp();
+    askShop($app);
+    same([3000, 4600], askPrice($app, 'silla de unos 40 €'));
+    same([3001, 4601], askPrice($app, 'silla en torno a 40,01 euros'));
+    same(null, askPrice($app, 'talla de unos 40'));
+});
+
 test('un número sin «menos de» ni «más de» no es un precio', function (): void {
     $app = searchApp();
     askShop($app);

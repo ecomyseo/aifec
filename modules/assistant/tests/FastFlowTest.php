@@ -236,7 +236,7 @@ test('con la IA vacía en medio de la compra tampoco hay callejón, y con el ped
     check(chatAction($r, 'confirm_order') !== null, 'con su tarjeta');
 });
 
-test('el tope de 12 segundos: pasado, la tienda contesta por reglas con lo que haya y se apunta lo que tardó', function (): void {
+test('el tope de ocho segundos: pasado, la tienda contesta por reglas con lo que haya y se apunta lo que tardó', function (): void {
     $app = assistantApp();
     assistantShop($app);
     $timer = assistantTimer($app);
@@ -253,23 +253,26 @@ test('el tope de 12 segundos: pasado, la tienda contesta por reglas con lo que h
     check($r['cards'] !== [], 'con sus fichas');
     $row = assistantRows($app, 'conversation_messages', "role = 'assistant'")[0];
     same(13000, (int) $row['ai_ms']);
-    same(1, (int) $row['rounds']);
+    same(0, (int) $row['rounds'], 'no ejecuta herramientas de la respuesta tardía');
+    same(8.0, (float) $ai->asked[0]['request']['timeout']);
+    same(false, $ai->asked[0]['request']['retry']);
 });
 
-test('con tiempo de sobra el tope de 12 segundos no estorba: la IA contesta con sus tres rondas', function (): void {
+test('con tiempo de sobra el tope de ocho segundos no estorba: la IA contesta con sus tres rondas', function (): void {
     $app = assistantApp();
     assistantShop($app);
     $timer = assistantTimer($app);
     $ai = assistantAi($app);
     $ai->timer = $timer;
-    $ai->delays = [3000, 3000, 3000];
+    $ai->delays = [2000, 2000, 2000];
     $ai->script(assistantTool('list_categories', []), assistantTool('list_categories', []), assistantText('Hay sillas, mesas y lámparas.'));
     $web = new TestClient($app);
 
     $r = assistantSay($web, '¿Qué categorías tenéis?');
 
     same('Hay sillas, mesas y lámparas.', $r['text']);
-    same(9000, (int) assistantRows($app, 'conversation_messages', "role = 'assistant'")[0]['ai_ms']);
+    same(6000, (int) assistantRows($app, 'conversation_messages', "role = 'assistant'")[0]['ai_ms']);
+    same(4.0, (float) $ai->asked[2]['request']['timeout']);
 });
 
 // ------------------------------------------------------------------ lo que se pide antes de tiempo
@@ -405,6 +408,15 @@ test('a quien escribe en inglés se le contesta en inglés, también los botones
     $es = assistantSay($web, 'Quiero saber cuánto cuesta el envío');
     contains('¿Cuál es tu código postal?', $es['text'], 'otra vez en castellano');
     same([], chatAction($es, 'labels')['labels'], 'y se quitan las etiquetas en inglés');
+});
+
+test('los botones breves cambian el idioma incluso después de hablar en el otro idioma', function (): void {
+    $app = chatApp();
+    assistantShop($app);
+    $web = new TestClient($app);
+    assistantSay($web, 'I would like information about shipping');
+    contains('código postal', assistantSay($web, 'Gastos de envío')['text']);
+    contains('postcode', strtolower(assistantSay($web, 'Shipping costs')['text']));
 });
 
 test('el botón «Confirmar pedido» también contesta en el idioma de la conversación', function (): void {

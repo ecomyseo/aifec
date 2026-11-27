@@ -44,6 +44,9 @@ final class Answer
     /** @var bool el mensaje del cliente se queda sin respuesta (para el panel) */
     public $unanswered = false;
 
+    /** @var bool la última búsqueda no devolvió ningún producto */
+    public $emptySearch = false;
+
     /** @var array<int,array<string,mixed>> las herramientas que se usaron: name, ok, input (sin correos) */
     public $toolLog = [];
 
@@ -113,12 +116,14 @@ final class Answer
         $options = [];
         foreach (isset($item['option_values']) && is_array($item['option_values']) ? $item['option_values'] : [] as $option) {
             if (is_array($option) && isset($option['name'], $option['values']) && is_array($option['values']) && $option['values'] !== []) {
-                $options[] = ['name' => (string) $option['name'], 'values' => array_values(array_map('strval', $option['values']))];
+                $options[] = ['name' => (string) $option['name'], 'values' => array_values(array_map('strval', $option['values']))] + (!empty($option['swatches']) ? ['swatches' => $option['swatches']] : []);
             }
         }
         $this->cards[] = [
             'id' => (int) $item['id'],
             'name' => (string) $item['name'],
+            'featured' => isset($item['featured_rank']),
+            'matched_attributes' => $item['matched_attributes'] ?? [],
             'url' => (string) (isset($item['url']) ? $item['url'] : ''),
             'image' => (string) (isset($item['image']) ? $item['image'] : ''),
             // La tarjeta enseña dos fotos arriba y, debajo, el nombre, el precio y lo que se puede elegir (tallas, colores).
@@ -148,6 +153,9 @@ final class Answer
         return false;
     }
 
+    /** @var bool El motor de reglas ha resuelto una consulta al fallar o tardar el proveedor. */
+    public $fallbackNotice = false;
+
     /**
      * Las cuatro piezas de la respuesta, tal como salen hacia el navegador.
      *
@@ -160,6 +168,6 @@ final class Answer
             'cards' => $this->cards,
             'actions' => $this->actions,
             'suggestions' => array_slice(array_values(array_unique($this->suggestions)), 0, $this->pick !== null ? VariantPick::MAX_CHIPS : self::MAX_SUGGESTIONS),
-        ];
+        ] + ($this->fallbackNotice ? ['notice' => t('Answered with the shop’s catalogue tools.')] : []);
     }
 }

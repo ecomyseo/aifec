@@ -73,6 +73,14 @@ final class Ai
     /** @var int la última fila de ai_usage que escribió esta clase */
     private $lastUsageId = 0;
 
+    /** Contabilidad local a esta instancia: también incluye las herramientas de búsqueda llamadas dentro de un turno. */
+    private $meter = ['calls' => 0, 'cost' => 0, 'unpriced' => 0];
+
+    public function usageMeter(): array
+    {
+        return $this->meter;
+    }
+
     /** @var Proposals|null */
     private $proposals;
 
@@ -463,6 +471,11 @@ final class Ai
         $cost = max(0, $in) * max(0, $settings->int('ai.' . $tier . '.price_in', 0))
             + max(0, $out) * max(0, $settings->int('ai.' . $tier . '.price_out', 0));
         try {
+            ++$this->meter['calls'];
+            $this->meter['cost'] += $cost;
+            if ($provider !== 'fake' && (($in > 0 && !$settings->int('ai.' . $tier . '.price_in')) || ($out > 0 && !$settings->int('ai.' . $tier . '.price_out')))) {
+                ++$this->meter['unpriced'];
+            }
             return $this->app->db()->insert('ai_usage', [
                 'day' => Usage::day($this->app),
                 'task' => substr($task, 0, 80),

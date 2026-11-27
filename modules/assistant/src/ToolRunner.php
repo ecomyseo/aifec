@@ -409,6 +409,9 @@ final class ToolRunner
      */
     private function execute(string $name, array $input): array
     {
+        if ($name === 'checkout_set_customer' && CheckoutDialog::browsing($this->message(), RuleBrain::norm($this->message()))) {
+            return ['error' => t('Please enter the delivery details separately when you are ready to order.')];
+        }
         if ($name === 'search_products' && isset($this->context['refine']) && is_string($this->context['refine']) && $this->context['refine'] !== ''
             && isset($input['query']) && is_string($input['query']) && RuleBrain::norm($input['query']) === RuleBrain::norm($this->message())) {
             // Un mensaje que afina («soy hombre») no se busca tal cual: se busca la necesidad en curso con lo que acaba de decir.
@@ -498,11 +501,24 @@ final class ToolRunner
         $this->collectNumbers($result);
         if ($name === 'search_products') {
             $result = $this->afterSearch($result, isset($input['query']) ? (string) $input['query'] : '');
+            $first = $result['items'][0] ?? [];
+            if (!empty($this->context['on_fact']) && !empty($first['name']) && is_string($first['price'] ?? null)
+                && in_array($result['answer_kind'] ?? '', ['exact', 'corrected'], true)) {
+                $fact = t('Catalogue price for {name}: {price}.', ['name' => $first['name'], 'price' => $first['price']]);
+                if (SensitiveQuestion::withoutClaims($fact) === $fact) {
+                    ($this->context['on_fact'])($fact);
+                    $this->context['on_fact'] = null;
+                }
+            }
         } elseif ($name === 'get_product') {
             $this->see($result);
             $this->noteItem($result);
             if (!isset($result['error']) && isset($result['id']) && (int) $result['id'] > 0) {
                 $this->talked[(int) $result['id']] = $result;
+            }
+        } elseif ($name === 'shipping_quote') {
+            foreach ($result['complements'] ?? [] as $card) {
+                $this->see($card);
             }
         } elseif ($name === 'compare_products') {
             foreach (isset($result['products']) && is_array($result['products']) ? $result['products'] : [] as $row) {
@@ -539,6 +555,7 @@ final class ToolRunner
             if ($name === 'cart_add') {
                 $this->answer->cartAdded = true;
                 $this->noteAdded($result);
+                $this->commerceEvent('add_to_cart', $result);
             } else {
                 $this->writeLog[] = ['name' => $name, 'label' => '', 'qty' => 0, 'total' => isset($result['cart']['total']) ? (string) $result['cart']['total'] : ''];
             }
@@ -568,6 +585,7 @@ final class ToolRunner
             } elseif ($turn !== null && $turn->armed() && is_array($turn->card)) {
                 // La tarjeta con el resumen y el botón «Confirmar pedido»: el modelo no la escribe, la pone el motor.
                 $this->action($turn->card);
+                $this->commerceEvent('begin_checkout', []);
                 if ($this->answer->suggestions === []) {
                     $this->answer->suggestions[] = t('Yes, I confirm');
                 }
@@ -697,6 +715,31 @@ final class ToolRunner
      *
      * @param array<string,mixed> $result lo que devolvió cart_add
      */
+    private function commerceEvent(string $name, array $result): void
+    {
+        $app = $this->app;
+        if (!$app->has('datalayer') || !$app->has('consent') || !$app->service('consent')->allows('statistics')) { return; }
+        $layer = $app->service('datalayer');
+        if (!$layer->config()->enabled()) { return; }
+        $summary = $app->service('cart')->summary();
+        $event = $layer->builder()->beginCheckout($summary);
+        $data = $event['ecommerce'];
+        if ($name === 'add_to_cart') {
+            $line = $summary['lines'][$result['key'] ?? ''] ?? null;
+            if (!$line || $line['qty'] < 1) { return; }
+            $qty = (int) $result['qty'];
+            $amount = $layer->config()->withTax() ? $line['gross'] : $line['net'];
+            $cents = (int) round($qty * $amount / $line['qty']);
+            $data = ['currency' => $summary['currency'], 'value' => $cents / 100,
+                'items' => [['item_id' => (string) $result['product_id'], 'item_name' => $line['name'],
+                    'item_variant' => $line['variant_label'] ?? '', 'price' => round($amount / $line['qty']) / 100, 'quantity' => $qty]]];
+        } else {
+            $id = (int) ($this->context['conversation_id'] ?? 0);
+            if (!$id || !$app->db()->run('UPDATE {conversations} SET measured_checkout = 1 WHERE id = ? AND measured_checkout = 0', [$id])) { return; }
+        }
+        $this->answer->actions[] = ['type' => 'analytics', 'event' => ['event' => $name, 'ecommerce' => $data]];
+    }
+
     private function noteAdded(array $result): void
     {
         $product = (int) (isset($result['product_id']) ? $result['product_id'] : 0);
@@ -821,6 +864,7 @@ final class ToolRunner
         if ($kind === 'exact') {
             $this->hits += count($items);
         }
+        $this->answer->emptySearch = $kind === 'none';
         $this->lastSearch = ['kind' => $kind, 'items' => $kind === 'none' || $kind === 'shop' ? [] : array_values(array_filter($items, 'is_array'))];
         $this->searchLog[] = ['query' => RuleBrain::norm($query), 'kind' => $kind, 'items' => $this->lastSearch['items']];
 

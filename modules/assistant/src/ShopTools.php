@@ -163,6 +163,10 @@ final class ShopTools
      */
     public function searchProducts(array $in, array $ctx): array
     {
+        $budget = (int) ($ctx['saved_budget'] ?? 0);
+        if (!empty($ctx['conversation_id']) && $budget > 0) {
+            $in['max_price_cents'] = !empty($in['max_price_cents']) ? min($budget, (int) $in['max_price_cents']) : $budget;
+        }
         $out = $this->findProducts($in, $ctx);
         $q = isset($in['query']) ? trim((string) $in['query']) : '';
         // Lo que el buscador encuentra sin que ningún nombre lleve lo pedido lo mira la IA (FitCheck): un guiso no es «aceite de
@@ -207,6 +211,26 @@ final class ShopTools
         }
         $limit = isset($in['limit']) ? max(1, min(8, (int) $in['limit'])) : 5;
         $asked = null;
+        // Las referencias técnicas del título (DIN 934, por ejemplo) pueden parecer medidas
+        // al analizador. La ruta canónica permite comprobar el nombre completo con una lectura indexada.
+        if ($category === 0 && $q !== '' && preg_match('/\d/', $q) && str_word_count($q) >= 3 && $app->has('catalog')) {
+            $slug = \Aifec\Util\Str::slug($q);
+            $prefix = \Aifec\Modules\Catalog\Admin\TaxonomySlugs::prefix($app, 'product');
+            $match = $app->slugs()->resolve($app->lang(), $prefix . '/' . $slug);
+            if ($match !== null && $match['type'] === 'product' && $match['canonical']) {
+                $cards = $this->listCards([(int) $match['entity_id']]);
+                foreach ($cards as $card) {
+                    if (\Aifec\Util\Str::slug((string) $card['name']) !== $slug) {
+                        continue;
+                    }
+                    $items = $this->items([$card], [], 'exact');
+                    if ($items !== [] && (empty($in['max_price_cents']) || $items[0]['price_cents'] <= (int) $in['max_price_cents'])
+                        && (empty($in['in_stock_only']) || !empty($items[0]['available']))) {
+                        return ['query' => $q, 'total' => 1, 'items' => $items, 'answer_kind' => 'exact'];
+                    }
+                }
+            }
+        }
         if ($q !== '' && $app->has('search') && method_exists($app->service('search'), 'ask')) {
             // Se busca como busca la tienda: Search::ask() entiende la frase, el idioma, las erratas, «barato» y «menos de 80». Primero
             // solo con reglas (rápido); si no acierta, otra vez con la IA del buscador antes de decir que no hay nada.
@@ -376,7 +400,7 @@ final class ShopTools
     private function askStages(string $q, array $in, int $limit, bool $savedOnly = false): array
     {
         $cheap = self::wantsCheapest($q);
-        $fetch = $cheap ? max($limit, 12) : $limit;
+        $fetch = $cheap || $this->featuredRanks() !== [] ? max($limit, 24) : $limit;
         $out = $this->searchWithAsk($q, $in, $fetch, false);
         if ($out['answer_kind'] !== 'exact' && $out['answer_kind'] !== 'shop' && $this->aiReady()) {
             // $savedOnly: el modelo del asistente ya entiende la frase; del buscador solo se aprovecha lo que su IA tenga guardado.
@@ -420,10 +444,27 @@ final class ShopTools
                 }
             }
 
-            return $a[0] <=> $b[0];
+            $featured = ($a[1]['featured_rank'] ?? PHP_INT_MAX) <=> ($b[1]['featured_rank'] ?? PHP_INT_MAX);
+            return $featured !== 0 ? $featured : $a[0] <=> $b[0];
         });
 
         return array_column($rows, 1);
+    }
+
+    /** Posiciones elegidas por la tienda para las coincidencias entre los candidatos del buscador. */
+    private function featuredRanks(): array
+    {
+        $ranks = [];
+        foreach (explode(',', $this->app->settings()->str('assistant.featured_ids')) as $value) {
+            $value = trim($value);
+            if (ctype_digit($value) && (int) $value > 0 && !isset($ranks[(int) $value])) {
+                $ranks[(int) $value] = count($ranks);
+                if (count($ranks) === 10) {
+                    break;
+                }
+            }
+        }
+        return $ranks;
     }
 
     /** ¿Pide lo más barato? («barata», «el más barato», «cheapest»): el orden por precio manda. */
@@ -565,10 +606,14 @@ final class ShopTools
         }
         $products = $this->app->service('catalog')->products($ids, $this->app->lang());
         $products = is_array($products) ? $products : [];
+        $featured = $this->featuredRanks();
         $items = [];
         foreach ($cards as $card) {
             $id = (int) $card['id'];
             $item = $this->card($card);
+            if ($kind === 'exact' && isset($featured[$id])) {
+                $item['featured_rank'] = $featured[$id];
+            }
             $full = isset($products[$id]) && is_array($products[$id]) ? $products[$id] : null;
             if ($full !== null) {
                 // Y sin el desglose del precio (una tarjeta de búsqueda trae solo el importe): se toma de la ficha entera.
@@ -590,6 +635,9 @@ final class ShopTools
             $item['summary'] = self::cut($summary, 160);
             $item['options'] = $this->optionNames($full);
             $lines = isset($extra[$id]['matches']) && is_array($extra[$id]['matches']) ? $this->matchLines($extra[$id]['matches']) : [];
+            if ($lines !== []) {
+                $item['matched_attributes'] = $lines;
+            }
             $item['matches'] = $lines !== [] ? $lines : $this->matches($full);
             // Sus categorías: con ellas el asistente ofrece botones para afinar («Para hombre», «Zapatos»).
             $categories = [];
@@ -851,7 +899,7 @@ final class ShopTools
     {
         $text = trim($text);
 
-        return mb_strlen($text, 'UTF-8') > $max ? rtrim(mb_substr($text, 0, $max - 1, 'UTF-8')) . '…' : $text;
+        return mb_strlen($text, 'UTF-8') > $max ? Prompt::truncate($text, $max - 1) . '…' : $text;
     }
 
     /**
@@ -944,6 +992,24 @@ final class ShopTools
                 }
             }
             $facts[$id] = $data;
+            $unit = [];
+            if (!empty($p['pack_units']) && empty($card['from']) && !empty($p['availability']['show_price'])) {
+                $count = (int) $p['pack_units'];
+                $amount = (int) round($card['price_cents'] / $count);
+                $unit['unit_price_cents'] = $amount;
+                $unit['per_unit'] = t('{price} per unit', ['price' => $this->fmt($amount, $card['currency'])]);
+                $singleId = (int) $p['pack_single_id'];
+                $single = $singleId && $singleId !== $id ? ($found[$singleId] ?? $this->app->service('catalog')->product($singleId, $this->app->lang())) : null;
+                if ($single && empty($single['price']['from']) && !empty($single['availability']['show_price'])
+                    && empty($single['has_variants']) && (int) ($single['pack_units'] ?? 1) === 1
+                    && $single['price']['currency'] === $card['currency']) {
+                    $saving = (int) $single['price']['amount'] * $count - $card['price_cents'];
+                    if ($saving > 0) {
+                        $unit['pack_saving_cents'] = $saving;
+                        $unit['pack_saving'] = t('Save {amount} compared with buying {n} individually.', ['amount' => $this->fmt($saving, $card['currency']), 'n' => $count]);
+                    }
+                }
+            }
             $rows[] = [
                 'id' => $id,
                 'name' => $card['name'],
@@ -953,7 +1019,7 @@ final class ShopTools
                 'availability' => $card['availability']['label'],
                 'summary' => self::plain((string) (isset($p['summary']) ? $p['summary'] : ''), 160),
                 'attributes' => array_slice($data, 0, 6, true),
-            ];
+            ] + $unit;
         }
         if (count($rows) < 2) {
             return ['error' => t('I need at least two products of the shop to compare')];
@@ -1153,7 +1219,8 @@ final class ShopTools
         $package = ['weight' => 1000, 'items_total' => 2000, 'qty' => 1, 'needs_shipping' => true];
         $options = [];
         try {
-            foreach ($app->service('shipping')->options($package, $destination) as $option) {
+            $eligible = $app->service('shipping')->options($package, $destination);
+            foreach ($eligible as $option) {
                 if (is_array($option) && isset($option['price'])) {
                     $options[] = ['name' => (string) (isset($option['name']) ? $option['name'] : ''), 'delay' => (string) (isset($option['delay']) ? $option['delay'] : ''),
                         'from' => $this->fmt((int) $option['price']), 'from_cents' => (int) $option['price']];
@@ -1168,8 +1235,9 @@ final class ShopTools
         $out = ['destination' => $country === 'ES' ? 'Spain (peninsula)' : $country, 'options' => $options,
             'note' => 'Prices for a usual parcel; the exact price depends on the cart and the postcode: use shipping_quote.'];
         try {
-            $free = $app->db()->value('SELECT MIN(free_from) FROM {carriers} WHERE active = 1 AND free_from IS NOT NULL AND free_from > 0');
-            if ($free !== null) {
+            $gap = $this->freeShippingGap($eligible, $package, $destination);
+            if ($gap !== null && $gap > 0) {
+                $free = $package['items_total'] + $gap;
                 $out['free_from'] = $this->fmt((int) $free);
                 $out['free_from_cents'] = (int) $free;
             }
@@ -1178,6 +1246,87 @@ final class ShopTools
         }
 
         return $out;
+    }
+
+    private function freeShippingGap(array $eligible, array $package, array $destination): ?int
+    {
+        $ids = [];
+        foreach ($eligible as $option) {
+            if (!empty($option['needs_address']) && isset($option['carrier_id'], $option['price'])) {
+                if ((int) $option['price'] === 0) { return 0; }
+                $ids[] = (int) $option['carrier_id'];
+            }
+        }
+        if ($ids === []) { return null; }
+        $marks = implode(',', array_fill(0, count($ids), '?'));
+        $thresholds = $this->app->db()->column("SELECT DISTINCT free_from FROM {carriers} WHERE id IN ($marks) AND free_from > ? ORDER BY free_from", array_merge($ids, [$package['items_total']]));
+        foreach ($thresholds as $threshold) {
+            $probe = $package;
+            $probe['items_total'] = (int) $threshold;
+            foreach ($this->app->service('shipping')->options($probe, $destination) as $option) {
+                if (!empty($option['needs_address']) && isset($option['price']) && (int) $option['price'] === 0) {
+                    return (int) $threshold - (int) $package['items_total'];
+                }
+            }
+        }
+        return null;
+    }
+
+    /** Recupera los párrafos publicados para este destino y distingue el porte de las posibles tasas en destino. */
+    private function destinationNotice(string $country, string $postcode): string
+    {
+        $zone = $country === 'ES' ? \Aifec\Geo\Spain::zone($postcode) : '';
+        $terms = [\Aifec\Geo\Countries::name($country, $this->app->i18n()->lang())];
+        $lines = [];
+        if ($zone === 'canarias') {
+            $terms = ['Canarias', 'Canary Islands', 'IGIC'];
+            $lines[] = t('For the Canary Islands, check whether IGIC or clearance fees are payable at delivery.');
+        } elseif ($zone === 'ceuta' || $zone === 'melilla') {
+            $terms = [$zone, 'IPSI'];
+            $lines[] = t('For Ceuta and Melilla, check whether IPSI or clearance fees are payable at delivery.');
+        } elseif (\Aifec\Geo\Countries::isEu($this->app->settings()->str('tax.base_country', 'ES')) && !\Aifec\Geo\Countries::isEu($country)) {
+            $lines[] = t('Customs or import charges may be payable separately at the destination.');
+        }
+        $page = $this->legalPage(['shipping-returns']);
+        if ($page) {
+            foreach (preg_split('/(?<=[.!?])\s+|\R/u', $page['full']) ?: [] as $sentence) {
+                if (mb_strlen($sentence) > 450) { continue; }
+                foreach ($terms as $term) {
+                    if ($term !== '' && strpos(' ' . RuleBrain::norm($sentence) . ' ', ' ' . RuleBrain::norm($term) . ' ') !== false) {
+                        $lines[] = $sentence;
+                        if ($page['url'] !== '') { $lines[] = '[' . $page['title'] . '](' . $page['url'] . ')'; }
+                        break 2;
+                    }
+                }
+            }
+        }
+        return implode("\n", $lines);
+    }
+
+    /** Una unidad comprable que da un porte gratuito al recalcular peso, cantidad e importe. */
+    private function shippingComplements(int $gap, array $package, array $destination, array $exclude): array
+    {
+        $catalog = $this->app->service('catalog');
+        $list = $catalog->listing(['price_min' => $gap, 'sort' => 'price_asc', 'in_stock' => true, 'per_page' => 8]);
+        $ids = [];
+        foreach ($list['items'] as $card) {
+            $id = (int) $card['id'];
+            if (in_array($id, $exclude, true) || !empty($card['has_variants'])) { continue; }
+            $item = $catalog->purchasable($id, 0, $this->app->lang());
+            if (!$item || empty($item['available']) || !empty($item['variant_id']) || (int) $item['min_qty'] > 1 || (int) $item['unit_price'] < $gap) { continue; }
+            $future = $package;
+            $future['qty']++;
+            $future['items_total'] += (int) $item['unit_price'];
+            $future['weight'] += (int) $item['weight'];
+            foreach ($this->app->service('shipping')->options($future, $destination) as $rate) {
+                if (!empty($rate['needs_address']) && (int) $rate['price'] === 0) {
+                    $ids[] = $id;
+                    break;
+                }
+            }
+            if (count($ids) >= 2) { break; }
+        }
+        return $this->cardsFor($ids);
     }
 
     public function shippingQuote(array $in, array $ctx): array
@@ -1234,7 +1383,8 @@ final class ShopTools
         }
 
         $options = [];
-        foreach ($app->service('shipping')->options($package, $destination) as $option) {
+        $eligible = $app->service('shipping')->options($package, $destination);
+        foreach ($eligible as $option) {
             if (!is_array($option) || !isset($option['price'])) {
                 continue;
             }
@@ -1246,8 +1396,32 @@ final class ShopTools
                 'price_cents' => $price,
                 'free' => !empty($option['free']) || $price === 0,
             ];
+            if (!empty($ctx['conversation_id']) && !empty($option['needs_address'])
+                && isset($option['min_days'], $option['max_days']) && $option['min_days'] >= 0 && $option['max_days'] >= $option['min_days']) {
+                $timezone = $app->site()->timezone();
+                $today = (new \DateTimeImmutable('@' . $app->clock()->now()))->setTimezone(new \DateTimeZone($timezone));
+                $dates = [];
+                foreach (array_unique([(int) $option['min_days'], (int) $option['max_days']]) as $days) {
+                    $date = $today->modify('+' . $days . ' days');
+                    $dates[] = $app->i18n()->date($date->getTimestamp(), 'medium', $timezone);
+                }
+                $options[count($options) - 1]['estimated_dates'] = implode(' – ', $dates);
+            }
         }
         $out = ['destination' => $destination, 'needs_shipping' => true, 'options' => $options];
+        if (!empty($ctx['conversation_id']) && $options) {
+            $notice = $this->destinationNotice($country, $postcode);
+            if ($notice !== '') { $out['destination_notice'] = $notice; }
+        }
+        $gap = $this->freeShippingGap($eligible, $package, $destination);
+        if ($gap !== null) {
+            $out['free_shipping_gap_cents'] = $gap;
+            $out['free_shipping_gap'] = $this->fmt($gap);
+            if ($gap > 0 && !empty($ctx['conversation_id'])) {
+                $exclude = isset($summary['lines']) ? array_column($summary['lines'], 'product_id') : [(int) ($in['product_id'] ?? 0)];
+                $out['complements'] = $this->shippingComplements($gap, $package, $destination, array_map('intval', $exclude));
+            }
+        }
         if ($options === []) {
             $out['note'] = 'The shop does not deliver to this destination.';
         }
@@ -1701,13 +1875,16 @@ final class ShopTools
         foreach (array_slice($options, 0, 3) as $option) {
             $code = isset($option['code']) ? (string) $option['code'] : '';
             $labels = [];
+            $swatches = [];
             foreach (isset($option['values']) && is_array($option['values']) ? $option['values'] : [] as $value) {
                 if (is_array($value) && isset($value['code'], $value['label']) && isset($can[$code][(string) $value['code']])) {
-                    $labels[] = mb_substr((string) $value['label'], 0, 24, 'UTF-8');
+                    $label = mb_substr((string) $value['label'], 0, 24, 'UTF-8');
+                    $labels[] = $label;
+                    if (preg_match('/^#[0-9a-f]{6}$/iD', (string) ($value['color'] ?? ''))) { $swatches[$label] = $value['color']; }
                 }
             }
             if ($labels !== []) {
-                $out[] = ['name' => mb_substr((string) (isset($option['name']) ? $option['name'] : ''), 0, 30, 'UTF-8'), 'values' => array_slice($labels, 0, 20)];
+                $out[] = ['name' => mb_substr((string) (isset($option['name']) ? $option['name'] : ''), 0, 30, 'UTF-8'), 'values' => array_slice($labels, 0, 20)] + ($swatches ? ['swatches' => $swatches] : []);
             }
         }
 
@@ -1897,6 +2074,10 @@ final class ShopTools
             }
         }
 
+        $number = trim($this->app->settings()->str('assistant.whatsapp_number'));
+        if ($this->app->has('orders') && preg_match('/^\+[1-9][0-9]{6,14}$/D', $number) && \Aifec\Modules\Orders\Checkout\BuyerCode::whatsappOn($this->app)) {
+            $contact['whatsapp'] = 'https://wa.me/' . substr($number, 1);
+        }
         return $contact;
     }
 
@@ -2014,6 +2195,7 @@ final class ShopTools
     /** HTML a texto plano de $max caracteres como mucho: sin etiquetas, con los saltos de párrafo. */
     public static function plain(string $html, int $max): string
     {
+        $html = (string) preg_replace('#<(button|script|style|nav|select)\b[^>]*>.*?</\1\s*>#is', ' ', $html);
         $text = preg_replace('#<(?:br|/p|/li|/h[1-6]|/div|/tr)\b[^>]*>#i', "\n", $html);
         $text = html_entity_decode(strip_tags($text === null ? $html : $text), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
         $text = preg_replace('/[ \t\x{00A0}]+/u', ' ', $text);

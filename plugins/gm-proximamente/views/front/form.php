@@ -13,7 +13,7 @@
 declare(strict_types=1);
 
 ?>
-<form class="af-card af-stack gm-soon-form" method="post" action="<?= e(route('gm.soon.notify')) ?>">
+<form id="gm-soon-form-<?= (int) $product_id ?>" class="af-card af-stack gm-soon-form" method="post" action="<?= e(route('gm.soon.notify')) ?>">
     <input type="hidden" name="product_id" value="<?= e($product_id) ?>">
     <p><strong><?= e(t('Tell me when it is available')) ?></strong></p>
     <p class="af-small af-muted"><?= e($intro) ?></p>

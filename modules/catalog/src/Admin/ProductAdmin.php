@@ -181,6 +181,11 @@ final class ProductAdmin
                 $values[$field] = $default;
             }
         }
+        foreach (['pack_units', 'pack_single_id', 'replenishment_days'] as $field) {
+            if (!isset($values[$field]) || $values[$field] === '') {
+                $values[$field] = (int) ($current[$field] ?? 0);
+            }
+        }
         $errors = [];
         $price = (int) $values['price'];
         if (isset($values['sale_price']) && $values['sale_price'] !== null && (int) $values['sale_price'] >= $price) {

@@ -73,6 +73,7 @@ final class Understand
         }
         $this->rangePrice($st);
         $this->measures($st);
+        $this->approximatePrice($st);
         $this->limitPrice($st);
         $this->flags($st);
         $this->without($st);
@@ -431,6 +432,27 @@ final class Understand
             $src = $this->take($st, $from, $i + 2 - $from);
             $st['numbers'][] = ['code' => (string) $pick['code'], 'name' => (string) $pick['name'], 'unit' => (string) $pick['unit'], 'op' => $op, 'value' => $value, 'src' => $src];
             $i += 1;
+        }
+    }
+
+    /** Un presupuesto aproximado con moneda expresa admite del 75 % al 115 % del importe. */
+    private function approximatePrice(array &$st): void
+    {
+        $count = count($st['eff']);
+        for ($i = 0; $i < $count; ++$i) {
+            $length = $this->phraseAt($st, 'approximate', $i);
+            $amount = $i + $length;
+            if ($length === 0 || !$this->numberAt($st, $amount) || !$this->currencyAfter($st, $amount + 1)) {
+                continue;
+            }
+            $cents = self::cents($st['orig'][$st['eff'][$amount]['src'][0]]['s']);
+            if ($cents !== null) {
+                $src = $this->take($st, $i, $length + 2);
+                $st['price']['min'] = intdiv($cents * 75 + 99, 100);
+                $st['price']['max'] = intdiv($cents * 115, 100);
+                $st['price']['src'] = array_merge($st['price']['src'], $src);
+                return;
+            }
         }
     }
 

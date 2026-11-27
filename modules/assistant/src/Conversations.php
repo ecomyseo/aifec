@@ -113,6 +113,9 @@ final class Conversations
             'tools' => $tools === [] ? null : (string) json_encode($tools, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_INVALID_UTF8_SUBSTITUTE),
             'created_at' => $now,
         ];
+        if ($role === 'user') {
+            $row['empty_search'] = 0;
+        }
         if ($timing !== []) {
             $row['ai_ms'] = isset($timing['ai_ms']) ? max(0, (int) $timing['ai_ms']) : null;
             $row['tools_ms'] = isset($timing['tools_ms']) ? max(0, (int) $timing['tools_ms']) : 0;
@@ -125,6 +128,19 @@ final class Conversations
         );
 
         return $id;
+    }
+
+    /** Conversaciones cuyo último turno de los últimos siete días terminó sin productos. */
+    public function weeklySearches(): array
+    {
+        $db = $this->app->db();
+        $since = $this->app->clock()->sql($this->app->clock()->now() - 7 * 86400);
+        $last = "SELECT MAX(id) FROM {conversation_messages} WHERE role = 'user' AND created_at >= ? GROUP BY conversation_id";
+        $scope = " FROM {conversation_messages} WHERE id IN ($last) AND empty_search IS NOT NULL";
+        $counts = $db->row('SELECT COUNT(*) AS n, SUM(empty_search) AS misses' . $scope, [$since]);
+        $phrases = $db->select('SELECT phrase, COUNT(*) AS n' . $scope . ' AND empty_search = 1 GROUP BY phrase ORDER BY n DESC, phrase LIMIT 20', [$since]);
+
+        return ['total' => (int) $counts['n'], 'misses' => (int) $counts['misses'], 'phrases' => $phrases];
     }
 
     /** Marca un mensaje del cliente como «no supe contestarlo», con su texto normalizado para agrupar. */
@@ -188,13 +204,25 @@ final class Conversations
             return false;
         }
 
-        return $this->app->db()->update('conversations', ['order_id' => $orderId], ['id' => (int) $conversation['id']]) > 0;
+        $this->recordOrder((int) $conversation['id'], $orderId);
+        return true;
+    }
+
+    public function recordOrder(int $conversationId, int $orderId): void
+    {
+        $this->app->db()->transaction(static function ($db) use ($conversationId, $orderId): void {
+            $db->insertIgnore('assistant_orders', ['order_id' => $orderId, 'conversation_id' => $conversationId]);
+            $db->update('conversations', ['order_id' => $orderId], ['id' => $conversationId]);
+        });
     }
 
     /** Un pedido que acabó fallido (el cobro no arrancó) deja de contar como el desenlace de la conversación. */
     public function unmarkOrder(int $conversationId, int $orderId): void
     {
-        $this->app->db()->run('UPDATE {conversations} SET order_id = NULL WHERE id = ? AND order_id = ?', [$conversationId, $orderId]);
+        $this->app->db()->transaction(static function ($db) use ($conversationId, $orderId): void {
+            $db->delete('assistant_orders', ['conversation_id' => $conversationId, 'order_id' => $orderId]);
+            $db->run('UPDATE {conversations} SET order_id = (SELECT MAX(order_id) FROM {assistant_orders} WHERE conversation_id = ?) WHERE id = ? AND order_id = ?', [$conversationId, $conversationId, $orderId]);
+        });
     }
 
     /**
@@ -209,6 +237,7 @@ final class Conversations
         }
         $cutoff = $this->app->clock()->sql($this->app->clock()->now() - $days * 86400);
         $db = $this->app->db();
+        $db->run('DELETE FROM {assistant_orders} WHERE conversation_id IN (SELECT id FROM {conversations} WHERE last_at < ?)', [$cutoff]);
         $messages = $db->run('DELETE FROM {conversation_messages} WHERE conversation_id IN (SELECT id FROM {conversations} WHERE last_at < ?)', [$cutoff]);
         $conversations = $db->run('DELETE FROM {conversations} WHERE last_at < ?', [$cutoff]);
 

@@ -60,6 +60,11 @@ final class Soon
     /**
      * @return array{soon:bool,release_at:string}
      */
+    public static function canSubscribe(App $app, array $product): bool
+    {
+        return ($product['availability']['status'] ?? '') === 'out_of_stock' || self::isSoon($app, (int) $product['id']);
+    }
+
     public function state(int $productId): array
     {
         $row = $this->app->db()->row('SELECT soon, release_at FROM {gm_soon_products} WHERE product_id = ?', [$productId]);
@@ -93,6 +98,16 @@ final class Soon
             $this->set((int) $productId, false);
         }
 
+        // También se atienden las reposiciones normales de productos con una solicitud vigente.
+        $since = $this->app->clock()->sql($this->app->clock()->now() - self::REQUEST_DAYS * 86400);
+        $waiting = $this->app->db()->column('SELECT DISTINCT product_id FROM {gm_soon_requests} WHERE notified_at IS NULL AND created_at >= ?', [$since]);
+        foreach (array_chunk($waiting, 50) as $ids) {
+            foreach ($this->app->service('catalog')->cards(array_map('intval', $ids)) as $item) {
+                if (in_array($item['availability']['status'] ?? '', ['in_stock', 'low_stock'], true) && !self::isSoon($this->app, (int) $item['id'])) {
+                    $this->release((int) $item['id']);
+                }
+            }
+        }
         return count($due);
     }
 

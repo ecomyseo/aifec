@@ -63,7 +63,7 @@ final class OrderPrestep
         }
         $notes = [];
         $saved = false;
-        if (self::hasData($message)) {
+        if (self::hasData($message) && !CheckoutDialog::browsing($message, RuleBrain::norm($message))) {
             $status = $this->runner->run('checkout_status', []);
             if (isset($status['error'])) {
                 // Sin nada en el carrito no hay pedido en el que guardar los datos.

@@ -21,6 +21,30 @@ $tz = $app->site()->timezone();
 
 // Las pestañas las pinta el panel (el menú las declara): esta pantalla ya no lleva su propia barra.
 ?>
+<section>
+    <h2><?= e(t('Searches in the last seven days')) ?></h2>
+<?php if ($weekly['total'] > 0) : ?>
+    <p><?= e(t('{misses} of {total} conversations ended with no products found ({percent}%).', [
+        'misses' => $weekly['misses'], 'total' => $weekly['total'],
+        'percent' => round(100 * $weekly['misses'] / $weekly['total'], 1),
+    ])) ?></p>
+<?php if ($weekly['phrases'] !== []) : ?>
+    <ul><?php foreach ($weekly['phrases'] as $row) : ?><li><?= e((string) $row['phrase']) ?> (<?= (int) $row['n'] ?>)</li><?php endforeach; ?></ul>
+<?php endif; ?>
+<?php else : ?>
+    <p><?= e(t('No measured conversations in this period.')) ?></p>
+<?php endif; ?>
+</section>
+<?php if ($learning !== []) : ?>
+<section>
+    <h2><?= e(t('Search terms followed by a purchase')) ?></h2>
+    <p><?= e(t('Review these possible spelling matches before adding a synonym.')) ?></p>
+    <ul><?php foreach ($learning as $candidate) : ?><li>
+        <?= e($candidate['source']) ?> → <?= e($candidate['terms']) ?> (<?= (int) $candidate['count'] ?>)
+        <?php if ($app->auth()->can('search.edit')) : ?><a href="<?= e(\Aifec\Admin\Admin::resourceUrl($app, 'synonyms', 'new', ['source' => $candidate['source'], 'terms' => $candidate['terms'], 'lang' => $candidate['lang']])) ?>"><?= e(t('Review synonym')) ?></a><?php endif; ?>
+    </li><?php endforeach; ?></ul>
+</section>
+<?php endif; ?>
 <?php if ($groups === []) : ?>
 <div class="af-empty">
     <h3><?= e(t('Nothing unanswered')) ?></h3>

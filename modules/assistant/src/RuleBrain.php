@@ -189,8 +189,83 @@ final class RuleBrain
         }
     }
 
+    /** Las decisiones de la persona sobre su dirección se resuelven en la tienda. */
+    public function accountCheckout(string $message, bool $offer = false): bool
+    {
+        $n = self::norm($message);
+        if ($this->dialog->answerAddress($n) || $this->dialog->cancelled($n)) {
+            $this->inOrder = true;
+            return true;
+        }
+        return $offer && !$this->dialog->active() && $this->dialog->available()
+            && preg_match(self::RE_PLACE, $n) === 1 && self::catalogueRequest($n) === null
+            && $this->dialog->start();
+    }
+
+    public function answerShippingAndReturns(string $message): bool
+    {
+        $n = self::norm($message);
+        $shipping = '(?:envios?|entregas?|portes?|shipping|delivery)';
+        $returns = '(?:devoluci\w*|devolver\w*|returns?|refunds?)';
+        if (!preg_match('/\b(?:' . $shipping . ' (?:y|e|and) (?:las? |los? )?' . $returns . '|' . $returns . ' (?:y|and) (?:el |los? )?' . $shipping . ')\b/', $n)) {
+            return false;
+        }
+        $this->returns();
+        $policy = $this->answer->text;
+        if (!$this->answerDestination($message)) {
+            $postal = $this->postcodeOf(CustomerData::extract($message), $n);
+            if ($postal !== '') {
+                $this->shipping($postal);
+            } else {
+                $this->say(t('What is your postcode? I will quote the shipping for you.'));
+                $this->answer->expect = 'postcode';
+            }
+        }
+        $this->answer->text .= "\n\n" . $policy;
+        return true;
+    }
+
+    /** La misma cotización con IA y por reglas. El destino solicitado nunca se escribe en el pedido. */
+    public function answerDestination(string $message): bool
+    {
+        $normal = self::norm($message);
+        if (preg_match('/\b(?:hacer efecto|surtir efecto|take effect|start working)\b/', $normal)
+            && preg_match('/\b(?:tarda|tardan|tiempo|cuanto|long|when|time)\b/', $normal)) {
+            $this->say(t('Which product do you mean? I can check what its product page says about using it.'));
+            return true;
+        }
+        $waiting = ($this->state['expect'] ?? '') === 'postcode';
+        $destination = QuoteDestination::named($normal, $waiting, app()->i18n()->lang());
+        if ($destination === null && $waiting && isset($this->state['quote_destination'])
+            && preg_match('/^[A-Z0-9 -]{3,12}$/iD', trim($message)) && preg_match('/[0-9]/', $message)) {
+            $destination = $this->state['quote_destination'];
+        }
+        if ($destination === null) {
+            $saved = QuoteDestination::savedFor($normal);
+            if ($saved === null) { return false; }
+            $this->shipping($saved['postcode'], $saved['country']);
+            $this->answer->text = str_replace($saved['postcode'], t('your saved delivery address'), $this->answer->text)
+                . "\n" . t('To check another address, tell me its country and postcode.');
+            $this->answer->actions[] = ['type' => 'private_turn'];
+            return true;
+        }
+        $postcode = QuoteDestination::postcode($message, $destination);
+        if ($postcode === '') {
+            $this->say(t('What is the destination postcode for {place}? I will use it for this shipping quote.', ['place' => $destination['name']]));
+            $this->answer->expect = 'postcode';
+            $this->answer->remember['quote_destination'] = $destination;
+        } else {
+            $this->shipping($postcode, $destination['country']);
+        }
+        return true;
+    }
+
     private function route(string $message): void
     {
+        if ($this->answerShippingAndReturns($message)) { return; }
+        if ($this->answerDestination($message)) {
+            return;
+        }
         $data = CustomerData::extract($message);
         $email = isset($data['email']) ? (string) $data['email'] : '';
         $n = self::norm($email !== '' ? str_ireplace($email, ' ', $message) : $message);
@@ -205,8 +280,18 @@ final class RuleBrain
             return;
         }
 
+        if (preg_match('/\b(?:no me (?:estas )?ayuda(?:s|ndo)|no me sirve tu respuesta|not helping|this is frustrating)\b/', $n) === 1) {
+            $this->contact();
+            $this->answer->text = t('I am sorry this has been frustrating.') . ' ' . $this->answer->text;
+            return;
+        }
+        if (preg_match('/\b(?:quien (?:gano|ganara)|who (?:won|will win)|resultado del partido|weather forecast|pronostico del tiempo)\b/', $n) === 1) {
+            $this->say(t('I can help you with this shop, its products, shipping and orders.'));
+            $this->chips(['returns', 'payment', 'order']);
+            return;
+        }
         // Un pedido empezado en el chat: dejarlo y volver a él se atienden antes que nada.
-        if ($this->dialog->cancelled($n)) {
+        if ($this->accountCheckout($message)) {
             $this->inOrder = true;
 
             return;
@@ -262,6 +347,23 @@ final class RuleBrain
             return;
         }
 
+        // Una consulta que nombra un artículo puede contener «buy» u «order» sin confirmar un carrito.
+        $catalogueQuery = self::catalogueRequest($n);
+        if ($catalogueQuery !== null && !$this->dialog->active()) {
+            $this->search($message, 'busco ' . $catalogueQuery);
+            return;
+        }
+
+        if (preg_match('/\b(?:cuando (?:me )?llegaria|when (?:will|would) (?:it|my order|the order) arrive)\b/', $n) === 1) {
+            $postcode = $this->postcodeOf($data, $n);
+            if ($postcode !== '') {
+                $this->shipping($postcode);
+            } else {
+                $this->say(t('What is your postcode? I will quote the shipping for you.'));
+                $this->answer->expect = 'postcode';
+            }
+            return;
+        }
         // La compra dentro del chat: los datos, el envío y el pago de un pedido empezado, o empezar uno.
         if ($this->dialog->active() && $this->dialog->handle($message, $n, $data, self::isQuestion($message, $n))) {
             $this->inOrder = true;
@@ -297,7 +399,7 @@ final class RuleBrain
         }
         if (preg_match(self::RE_RETURNS, $n) === 1 && $this->postcodeOf($data, $n) === '') {
             // «¿Puedo devolverla? ¿Quién paga el envío de vuelta?»: es una pregunta de devoluciones, aunque diga «envío».
-            $this->returns();
+            $this->returns($message);
 
             return;
         }
@@ -586,6 +688,8 @@ final class RuleBrain
         $names = [];
         foreach (isset($result['products']) && is_array($result['products']) ? $result['products'] : [] as $row) {
             $lines[] = '• ' . (string) $row['name'] . ' — ' . (string) $row['price'] . ((string) $row['availability'] !== '' ? ' (' . (string) $row['availability'] . ')' : '');
+            if (isset($row['per_unit'])) { $lines[] = $row['per_unit']; }
+            if (isset($row['pack_saving'])) { $lines[] = $row['pack_saving']; }
             $names[(int) $row['id']] = (string) $row['name'];
         }
         foreach (isset($result['differences']) && is_array($result['differences']) ? $result['differences'] : [] as $difference) {
@@ -666,6 +770,36 @@ final class RuleBrain
         return preg_match(self::RE_CONTACT, $n) === 1 && preg_match('/\bpara (?:una |un |mi )?persona\b/', $n) !== 1;
     }
 
+    /** Separa la petición de consulta del nombre, conservando cantidades, tallas y presupuesto para el buscador. */
+    private static function catalogueRequest(string $text): ?string
+    {
+        $original = $text;
+        // Un inciso sobre la ortografía termina al empezar la petición concreta de catálogo.
+        if (preg_match('/\b(?:mal escrito|escrib\w* mal|faltas de ortografia|misspell\w*|spelt wrong|spelled wrong)\b.{0,60}?\b(teneis|vendeis|busco|do you sell|do you have|i am looking for)\s+(.+)$/', $text, $asked)) {
+            $text = $asked[1] . ' ' . $asked[2];
+        }
+        $text = preg_replace('/^(?:(?:por favor|porfa|oye|hola|please|hey|en (?:vuestro|el) catalogo|estoy mirando opciones|no quiero comprar nada)\s+)+/', '', $text);
+        $prefixes = [
+            'do you sell|vendeis|venden|vendes|teneis disponible|hay existencias de|hay stock de|hay unidades de',
+            '(?:me |nos )?(?:ensenas|mostrais|muestras)|(?:puedes |podrias )?(?:ensenarme|mostrarme)(?: (?:una |la )?ficha de)?',
+            'busca(?:me)?|(?:querria|quisiera) (?:ver|comprar)|donde (?:puedo )?(?:encontrar|encuentro)|(?:me )?ayudas a (?:buscar|encontrar)',
+            '(?:solo )?(?:te )?pregunto por|(?:necesito|quisiera) informacion (?:de|sobre)|(?:estoy )?buscando algo concreto',
+            '(?:can|could|would) you (?:show me|find|check (?:the )?(?:price|availability) (?:of|for))',
+            '(?:where can i|help me) find|find (?:this |the )?product(?: for me)?|(?:i want to|can i|could i) (?:buy|order)',
+        ];
+        if ($text !== $original) {
+            $prefixes[] = 'hay|teneis|busco';
+        }
+        if (preg_match('/^(?:' . implode('|', $prefixes) . ')\s+(.+)$/', $text, $match) !== 1) {
+            return null;
+        }
+        $name = trim((string) preg_replace('/\s+(?:porfa|por favor|please|here)$/', '', $match[1]));
+        if ($name === '' || preg_match('/^(?:it|this|that|now|lo|esto|eso|el pedido|mi pedido|the order|my order)$/', $name) === 1) {
+            return null;
+        }
+        return $name;
+    }
+
     /**
      * Lo que se busca en un mensaje ya normalizado: sin «busco», «quiero», artículos ni «por favor», y el precio máximo si lo dice
      * («por menos de 60 €»).
@@ -683,7 +817,8 @@ final class RuleBrain
             $max = $cents > 0 ? $cents : null;
             $n = trim(str_replace($m[0], ' ', $n));
         }
-        $n = trim((string) preg_replace('/\s*€\s*/', ' ', $n));
+        $n = trim(str_replace('€', ' eur ', $n));
+        $n = trim((string) preg_replace('/\s+/', ' ', $n));
 
         $triggered = false;
         $lead = '/^(?:(?:hola|buenas|buenos dias|buenas tardes|por favor|oye|hey)\s+)*(?:(?:quisiera|quiero|busco|buscar|buscando|necesito|queria|estoy buscando|andaba buscando|tenei?s|tienen|tienes|teneis|hay|me gustaria|muestrame|ensename|recomiendame|recomienda|dame|cuanto (?:cuesta|vale|valen|cuestan)|precio de(?:l| la| los| las)?|how much (?:is|are|does)|price of|i want|i need|i am looking for|im looking for|looking for|do you have|have you got|show me|search for|search|find me|find)\s+)+/';
@@ -739,9 +874,13 @@ final class RuleBrain
     }
 
     /** Cuánto cuesta enviar a un código postal: el carrito si lo hay y, si no, el primer producto que se enseñó. */
-    private function shipping(string $postcode): void
+    private function shipping(string $postcode, string $country = ''): void
     {
-        $result = $this->runner->run('shipping_quote', ['postcode' => $postcode]);
+        $destination = ['postcode' => $postcode];
+        if ($country !== '') {
+            $destination['country'] = $country;
+        }
+        $result = $this->runner->run('shipping_quote', $destination);
         if (isset($result['need']) && $result['need'] === 'product') {
             $cards = $this->stateCards();
             if ($cards === []) {
@@ -750,7 +889,7 @@ final class RuleBrain
 
                 return;
             }
-            $result = $this->runner->run('shipping_quote', ['postcode' => $postcode, 'product_id' => (int) $cards[0]['id']]);
+            $result = $this->runner->run('shipping_quote', $destination + ['product_id' => (int) $cards[0]['id']]);
         }
         if (isset($result['error'])) {
             $this->say((string) $result['error']);
@@ -772,7 +911,18 @@ final class RuleBrain
         foreach ($options as $option) {
             $price = !empty($option['free']) ? t('Free') : (string) $option['price'];
             $delay = (string) $option['delay'] !== '' ? ' (' . (string) $option['delay'] . ')' : '';
-            $lines[] = '• ' . (string) $option['name'] . ': ' . $price . $delay;
+            $estimate = isset($option['estimated_dates']) ? ' · ' . t('Estimated arrival: {dates}', ['dates' => $option['estimated_dates']]) : '';
+            $lines[] = '• ' . (string) $option['name'] . ': ' . $price . $delay . $estimate;
+        }
+        if (!empty($result['destination_notice'])) { $lines[] = $result['destination_notice']; }
+        if (($result['free_shipping_gap_cents'] ?? 0) > 0) {
+            $lines[] = t('Add {amount} in products to reach the free delivery threshold for this destination.', ['amount' => $result['free_shipping_gap']]);
+            if (!empty($result['complements'])) {
+                $lines[] = t('Adding one of these items would qualify this parcel for free delivery.');
+                foreach ($result['complements'] as $card) {
+                    $this->answer->addCard($card);
+                }
+            }
         }
         $this->say(implode("\n", $lines));
         $this->chips(['cart', 'checkout']);
@@ -817,10 +967,28 @@ final class RuleBrain
         $this->chips(['add', 'shipping', 'cart']);
     }
 
-    private function returns(): void
+    private function returns(string $question = ''): void
     {
         $result = $this->runner->run('store_info', ['topic' => 'all']);
         $text = isset($result['returns']) ? trim((string) $result['returns']) : '';
+        foreach ([
+            'reembols|refund' => 'reembols|refund',
+            'quien paga|cuanto cuesta|coste|cost|who pays' => 'coste|cuesta|paga|cargo|cost|pays|charge',
+            'plazo|cuantos dias|how long|time limit' => 'plazo|dias|days|within',
+            'como|tramita|solicita|how do|how to' => 'solicita|tramita|formulario|escribe|request|form|contact',
+        ] as $intent => $evidence) {
+            if (!preg_match('/(?:' . $intent . ')/', self::norm($question))) { continue; }
+            $lines = [];
+            $published = $text;
+            foreach ($result['pages'] ?? [] as $policyPage) {
+                if (($policyPage['topic'] ?? '') === 'returns') { $published .= "\n" . ($policyPage['text'] ?? ''); }
+            }
+            foreach (preg_split('/(?<=[.!?])\s+|\R/u', $published) ?: [] as $line) {
+                if (preg_match('/(?:' . $evidence . ')/', self::norm($line))) { $lines[] = trim($line); }
+            }
+            if ($lines) { $text = implode(' ', array_slice(array_unique($lines), 0, 3)); }
+            break;
+        }
         $link = '';
         foreach (isset($result['pages']) && is_array($result['pages']) ? $result['pages'] : [] as $page) {
             if (is_array($page) && isset($page['topic'], $page['url']) && $page['topic'] === 'returns' && (string) $page['url'] !== '') {
@@ -875,6 +1043,7 @@ final class RuleBrain
         if (isset($contact['phone'])) {
             $lines[] = t('Phone: {value}', ['value' => (string) $contact['phone']]);
         }
+        if (!empty($contact['whatsapp'])) { $lines[] = '[WhatsApp](' . $contact['whatsapp'] . ')'; }
         if (isset($contact['address'])) {
             $lines[] = t('Address: {value}', ['value' => (string) $contact['address']]);
         }

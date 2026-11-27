@@ -59,8 +59,12 @@ final class VariantPick
             return null;
         }
         $sold = [];
+        $choices = [];
         foreach (isset($need['options']) && is_array($need['options']) ? $need['options'] : [] as $option) {
             foreach (is_array($option) && isset($option['values']) && is_array($option['values']) ? $option['values'] : [] as $value) {
+                if (is_array($value) && !empty($value['label']) && !empty($option['name'])) {
+                    $choices[RuleBrain::norm($option['name'])][] = mb_substr((string) $value['label'], 0, 40, 'UTF-8');
+                }
                 if (is_array($value) && isset($value['label']) && empty($value['available'])) {
                     $sold[] = mb_substr((string) $value['label'], 0, 40, 'UTF-8');
                 }
@@ -73,6 +77,7 @@ final class VariantPick
             'q' => max(1, min(99, $qty)),
             'v' => $variants,
             's' => array_slice(array_values(array_unique($sold)), 0, 20),
+            'choices' => $choices,
         ];
     }
 
@@ -114,7 +119,17 @@ final class VariantPick
      */
     public static function resolve(array $pick, string $message): array
     {
-        $n = ' ' . RuleBrain::norm($message) . ' ';
+        $normal = RuleBrain::norm($message);
+        foreach ($pick['choices'] ?? [] as $dimension => $values) {
+            if (!preg_match('/(?:^| )' . preg_quote($dimension, '/') . ' ([a-z0-9]{2,})$/D', $normal, $tail)) { continue; }
+            $matches = [];
+            foreach ($values as $value) {
+                $label = RuleBrain::norm($value);
+                if (strpos($label, $tail[1]) === 0) { $matches[$label] = true; }
+            }
+            if (count($matches) === 1) { $normal = substr($normal, 0, -strlen($tail[1])) . key($matches); }
+        }
+        $n = ' ' . $normal . ' ';
         $variants = isset($pick['v']) && is_array($pick['v']) ? $pick['v'] : [];
         $best = 0;
         $scores = [];

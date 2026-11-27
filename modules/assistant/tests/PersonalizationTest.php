@@ -14,16 +14,16 @@ use Aifec\Modules\Assistant\Tools;
 
 require_once __DIR__ . '/helpers.php';
 
-test('el nombre personalizado aparece escapado y mantiene la identificación como IA', function (): void {
+test('el nombre personalizado aparece escapado y presenta el modo de reglas', function (): void {
     $app = assistantApp(['assistant.name' => 'Lúa & <ayuda>', 'assistant.greeting' => 'Bienvenido a nuestra tienda.']);
     $web = new TestClient($app);
     $page = $web->get('/');
     contains('Lúa &amp; &lt;ayuda&gt;', $page->body);
-    contains('Soy Lúa &amp; &lt;ayuda&gt;, el asistente de IA de Muebles Ejemplo.', $page->body);
+    contains('Soy Lúa &amp; &lt;ayuda&gt;, el asistente de compras de Muebles Ejemplo.', $page->body);
     contains('Bienvenido a nuestra tienda.', $page->body);
     notContains('data-t-bot="Lúa & <ayuda>"', $page->body);
     $app->settings()->set('assistant.name', '');
-    contains('Soy el asistente de IA de Muebles Ejemplo.', $app->service('assistant')->intro());
+    contains('Soy el asistente de compras de Muebles Ejemplo.', $app->service('assistant')->intro());
 });
 
 test('las instrucciones del comercio llegan al modelo sin sustituir las guardas de compra y privacidad', function (): void {

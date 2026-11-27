@@ -32,18 +32,21 @@ final class RateLimiter
     {
         $k = self::key($key);
         $now = $this->clock->now();
-        $row = $this->db->row('SELECT hits, window_start FROM {rate_limits} WHERE k = ?', [$k]);
-        if ($row === null || (int) $row['window_start'] + $windowSeconds <= $now) {
-            $this->db->upsert('rate_limits', ['k' => $k, 'hits' => 1, 'window_start' => $now], ['k']);
-
-            return $max >= 1;
-        }
-        if ((int) $row['hits'] >= $max) {
+        if ($max < 1) {
             return false;
         }
-        $this->db->run('UPDATE {rate_limits} SET hits = hits + 1 WHERE k = ?', [$k]);
-
-        return true;
+        $cutoff = $now - $windowSeconds;
+        if ($this->db->run('UPDATE {rate_limits} SET hits = hits + 1 WHERE k = ? AND window_start > ? AND hits < ?', [$k, $cutoff, $max]) > 0) {
+            return true;
+        }
+        if ($this->db->run('UPDATE {rate_limits} SET hits = 1, window_start = ? WHERE k = ? AND window_start <= ?', [$now, $k, $cutoff]) > 0) {
+            return true;
+        }
+        if ($this->db->insertIgnore('rate_limits', ['k' => $k, 'hits' => 1, 'window_start' => $now])) {
+            return true;
+        }
+        // Otra petición pudo abrir o renovar la ventana entre nuestras operaciones.
+        return $this->db->run('UPDATE {rate_limits} SET hits = hits + 1 WHERE k = ? AND window_start > ? AND hits < ?', [$k, $cutoff, $max]) > 0;
     }
 
     /** Usos que quedan en la ventana actual, sin apuntar ninguno. */
@@ -55,6 +58,16 @@ final class RateLimiter
         }
 
         return max(0, $max - (int) $row['hits']);
+    }
+
+    /** Segundos hasta que una ventana agotada vuelve a admitir peticiones. */
+    public function retryAfter(string $key, int $max, int $windowSeconds): int
+    {
+        $row = $this->db->row('SELECT hits, window_start FROM {rate_limits} WHERE k = ?', [self::key($key)]);
+        if ($row === null || (int) $row['hits'] < $max) {
+            return 0;
+        }
+        return max(0, (int) $row['window_start'] + $windowSeconds - $this->clock->now());
     }
 
     public function clear(string $key): void

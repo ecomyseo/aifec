@@ -1,0 +1,113 @@
+<?php
+/** AIFEC — apartados verificables de una ficha y aclaración cuando hay más de un producto posible. */
+declare(strict_types=1);
+namespace Aifec\Modules\Assistant;
+
+use Aifec\Kernel\App;
+
+final class ProductQuestion
+{
+    private const TOPICS = [
+        'ingredients' => ['ingredientes?|ingredients?|composicion|inci', 'Ingredients'],
+        'material' => ['material(?:es)?|materials?|composicion textil|fabric composition', 'Material'],
+        'usage' => ['como (?:se )?(?:usa|aplica|utiliza)|modo de (?:uso|empleo)|how (?:do i|to) (?:use|apply)|instructions for use', 'How to use'],
+        'contents' => ['que (?:incluye|trae|contiene) (?:este|esta|el|la)|what (?:is included|comes in)', 'Package contents'],
+        'size' => ['que medidas|cuanto mide|dimensions|measurements', 'Measurements'],
+        'care' => ['como (?:se )?(?:lava|limpia|cuida)|cuidados|how (?:do i|to) (?:wash|clean)|care instructions', 'Care'],
+    ];
+    private const LABELS = [
+        'ingredients' => 'ingredientes?|ingredients?|composicion|inci',
+        'material' => 'material(?:es)?|materials?|tejido|fabric|composicion textil',
+        'usage' => 'uso|empleo|aplicar|aplicacion|instrucciones|how to use|directions|apply|instructions',
+        'contents' => 'incluye|contenido|contiene|incluido|includes|contents|contains',
+        'size' => 'medidas?|dimensiones|ancho|largo|alto|width|length|height|dimensions|measurements',
+        'care' => 'cuidados?|lavado|lavar|limpiar|care|wash|clean',
+    ];
+
+    public static function topic(App $app, string $message): string
+    {
+        $n = RuleBrain::norm($message);
+        if (preg_match('/\b(?:que|which|what) (?:productos|articulos|products|items)\b/', $n)
+            || preg_match('/^(?:busco|quiero comprar|estoy buscando|i am looking for|show me)\b/', $n)) { return ''; }
+        if ($app->settings()->str('search.sector') === 'fashion' && preg_match('/\b(?:es (?:de )?(?:piel|cuero)|is (?:it|this) leather)\b/', $n)) { return 'material'; }
+        foreach (self::TOPICS as $key => $entry) {
+            if (preg_match('/\b(?:' . $entry[0] . ')\b/', $n)) { return $key; }
+        }
+        return '';
+    }
+
+    public static function answer(App $app, string $message, array $state): ?Answer
+    {
+        $page = (int) ($state['linked_product'] ?? $state['page_product'] ?? 0);
+        if ($page) {
+            $product = $app->service('catalog')->product($page, $app->i18n()->lang());
+            foreach ($product['faqs'] ?? [] as $faq) {
+                if (RuleBrain::norm($faq['question']) === RuleBrain::norm($message)) {
+                    $answer = new Answer();
+                    $answer->text = trim(html_entity_decode(strip_tags($faq['answer']), ENT_QUOTES, 'UTF-8'));
+                    return $answer;
+                }
+            }
+        }
+        $topic = self::topic($app, $message);
+        if ($topic === '') { return null; }
+        $n = ' ' . RuleBrain::norm($message) . ' ';
+        $cards = $state['cards'] ?? [];
+        $explicit = '';
+        if (preg_match('/^(?:ingredientes?|ingredients?|material(?:es)?|cuidados?|care|medidas|measurements|modo de uso|how to use|contenido del paquete|package contents)\s*(?:[·:]|\b(?:de|del|of|for)\b)\s*(.+)$/iu', preg_replace('/^[\s¿¡]+|[\s?!]+$/u', '', $message), $m)) {
+            $explicit = trim($m[1]);
+        }
+        $id = (int) ($state['linked_product'] ?? 0);
+        if (!$id) {
+            foreach ($cards as $card) {
+                if (!empty($card['n']) && strpos($n, ' ' . RuleBrain::norm($card['n']) . ' ') !== false) {
+                    $id = (int) $card['id'];
+                    break;
+                }
+            }
+        }
+        if (!$id && $explicit !== '') {
+            $matches = $app->db()->column("SELECT DISTINCT i.product_id FROM {product_i18n} i JOIN {products} p ON p.id = i.product_id WHERE i.name = ? AND p.status = 'published' LIMIT 2", [$explicit]);
+            if (count($matches) === 1) { $id = (int) $matches[0]; }
+            elseif (preg_match('/^(?:est[ea]|this|el producto|the product)\b/', RuleBrain::norm($explicit)) !== 1) {
+                $state['page_product'] = 0;
+                if (count($cards) === 1) { $cards = []; }
+            }
+        }
+        if (!$id && !empty($state['page_product'])) { $id = (int) $state['page_product']; }
+        if (!$id && count($cards) === 1) { $id = (int) $cards[0]['id']; }
+        if (!$id && !$cards) { return null; }
+        $answer = new Answer();
+        $label = t(self::TOPICS[$topic][1]);
+        if (!$id) {
+            $answer->text = t('Which product should I check?');
+            foreach (array_slice($cards, 0, 4) as $card) {
+                $answer->suggestions[] = $label . ' · ' . $card['n'];
+            }
+            return $answer;
+        }
+        $shop = new ShopTools($app);
+        $raw = $app->service('catalog')->product($id, $app->i18n()->lang());
+        if (!$raw) { return null; }
+        $lines = [];
+        $match = '/\b(?:' . self::LABELS[$topic] . ')\b/';
+        foreach (array_merge($raw['facts'] ?? [], $raw['attributes'] ?? []) as $fact) {
+            $name = (string) ($fact['label'] ?? $fact['name'] ?? '');
+            if (preg_match($match, RuleBrain::norm($name))) {
+                $lines[] = trim(strip_tags($name . ': ' . $fact['value']));
+            }
+        }
+        if (!$lines) {
+            $plain = html_entity_decode(strip_tags(preg_replace('~</(?:p|li|h[1-6]|div)>|<br\s*/?>~i', "\n", ($raw['summary'] ?? '') . "\n" . ($raw['description'] ?? ''))), ENT_QUOTES, 'UTF-8');
+            foreach (preg_split('/(?<=[.!?])\s+|\R/u', $plain) ?: [] as $line) {
+                $line = trim($line);
+                if ($line !== '' && preg_match($match, RuleBrain::norm($line))) { $lines[] = $line; }
+            }
+        }
+        $lines = array_values(array_unique($lines));
+        $answer->text = $lines ? $raw['name'] . "\n" . implode("\n", array_slice($lines, 0, 3))
+            : t('The product page does not specify this. The shop team can check it for you.');
+        foreach ($shop->cardsFor([$id]) as $card) { $answer->addCard($card); }
+        return $answer;
+    }
+}

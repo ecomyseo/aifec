@@ -34,6 +34,7 @@ return [
                 'hint' => 'From 0 to 1. Below it the shop says it found nothing instead of showing weak results.'],
         ]],
         'srwords' => ['label' => 'Understanding', 'fields' => [
+            'search.sector' => ['type' => 'select', 'label' => 'Shop sector', 'default' => '', 'options' => \Aifec\Modules\Search\Synonyms::SECTORS, 'rules' => 'nullable|in:beauty,fashion,food,hardware'],
             'search.synonyms' => ['type' => 'textarea', 'label' => 'Words that mean the same', 'rows' => 5, 'default' => '', 'rules' => 'nullable|max:2000',
                 'hint' => 'One group per line: «cheap = bargain, steal». Customers can use any of them to say the first one.'],
             'search.default_synonyms' => ['type' => 'toggle', 'label' => 'Common shop synonyms', 'default' => true,

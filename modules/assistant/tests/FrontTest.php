@@ -36,17 +36,17 @@ test('con el asistente encendido, la portada y la ficha de producto llevan el bo
         contains('aria-label="Abrir el asistente de la tienda"', $body);
         contains('role="dialog"', $body);
         contains('aria-labelledby="af-assistant-title"', $body);
-        contains('id="af-assistant-ai"', $body, 'el panel avisa de que es una inteligencia artificial');
+        contains('id="af-assistant-ai"', $body, 'el aviso está asociado a la ventana');
         contains('aria-describedby="af-assistant-ai"', $body);
-        contains('IA</strong>', $body);
-        contains('Estás hablando con una inteligencia artificial, no con una persona', $body, 'y lo dice en el idioma de la tienda');
+        notContains('IA</strong>', $body);
+        contains('Revisa los detalles del producto', $body);
         contains('role="log"', $body);
         contains('<label class="af-sr" for="af-assistant-input">Escribe tu mensaje</label>', $body);
         contains('data-af-assistant-url="/asistente/mensaje"', $body);
-        contains('Soy el asistente de IA de Muebles Ejemplo.', $body, 'se presenta como una IA y con el nombre de la tienda');
+        contains('Soy el asistente de compras de Muebles Ejemplo.', $body, 'se presenta como una IA y con el nombre de la tienda');
         contains('Solo hablo de la tienda.', $body);
         contains('assistant.css', $body);
-        check(preg_match('#<script src="[^"]*assistant\.js" defer></script>#', $body) === 1, 'el guion va con defer');
+        check(preg_match('#<script src="[^"]*launcher\.js" defer></script>#', $body) === 1, 'el guion va con defer');
         contains('maxlength="1000"', $body, 'el campo ya limita el mensaje');
         notContains('href=""', $body);
     }
@@ -117,7 +117,7 @@ test('el guion no lleva cadenas visibles: cada texto que pinta llega en un atrib
     $names = array_values(array_unique($used[1]));
     sort($names);
     // «invoice» y «taxid» (P093): la tarjeta del resumen dice a quién se factura («Factura a: Berg Studio SL · NIF …»).
-    same(['accept', 'add', 'busy', 'checkout', 'confirm', 'deliver', 'error', 'from', 'invoice', 'options', 'pay', 'payment', 'shipping', 'subscriptions', 'summary', 'taxid', 'terms', 'total', 'view', 'vieworder'], $names, 'los textos que usa el guion');
+    same(['accept', 'add', 'busy', 'checkout', 'confirm', 'deliver', 'discount', 'error', 'featured', 'from', 'invoice', 'options', 'pay', 'payment', 'rating', 'retry', 'shipping', 'subscriptions', 'summary', 'taxid', 'terms', 'total', 'view', 'vieworder'], $names, 'los textos que usa el guion');
     foreach ($names as $name) {
         check(preg_match('/data-t-' . $name . '="[^"]+"/', $body) === 1, 'el HTML trae data-t-' . $name);
     }
@@ -135,7 +135,7 @@ test('el guion no lleva cadenas visibles: cada texto que pinta llega en un atrib
     contains('/^(https?:\\/\\/|\\/(?!\\/))/i', $js, 'solo http(s) o rutas de la propia web');
 });
 
-test('el guion va por delegación sobre document y no pide nada al servidor hasta que se escribe o se pulsa «añadir»', function (): void {
+test('el panel carga las sugerencias al abrir y usa un único POST para los mensajes del cliente', function (): void {
     $js = assistantAsset('assistant.js');
 
     foreach (['click', 'submit', 'keydown'] as $event) {
@@ -143,7 +143,9 @@ test('el guion va por delegación sobre document y no pide nada al servidor hast
     }
     $before = substr($js, 0, (int) strpos($js, 'function send('));
     notContains('fetch(', $before, 'ninguna petición antes de send()');
-    check(substr_count($js, 'window.fetch(') === 1, 'un solo sitio habla con el servidor');
+    same(2, substr_count($js, 'window.fetch('), 'una petición de bienvenida y la comunicación del chat');
+    contains('log = saved;', $js);
+    contains('if (!log.length && data.suggestions)', $js);
     contains("'X-Requested-With': 'fetch'", $js);
     contains("cache: 'no-store'", $js, 'las peticiones no se cachean');
     contains("credentials: 'same-origin'", $js);
@@ -177,7 +179,7 @@ test('con otro idioma de la tienda: la presentación, la ruta con su prefijo y l
     $web = new TestClient($app);
 
     $es = $web->get('/')->body;
-    contains('Soy el asistente de IA de Muebles Ejemplo', $es);
+    contains('Soy el asistente de compras de Muebles Ejemplo', $es);
     $en = $web->get('/en/')->body;
     check(strpos($en, 'data-af-assistant') !== false, 'también en la versión inglesa');
     $url = $app->url()->route('assistant.message', [], 'en');

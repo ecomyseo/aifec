@@ -260,3 +260,19 @@ test('Conversations::phrase normaliza para agrupar: minúsculas, sin correos ni 
     same(160, mb_strlen(Conversations::phrase(str_repeat('á', 400)), 'UTF-8'));
     same('', Conversations::phrase("   \t "));
 });
+
+test('el informe semanal cuenta conversaciones y descarta búsquedas después resueltas', function (): void {
+    $app = assistantApp();
+    assistantShop($app);
+    $store = $app->service('assistant')->conversations();
+    $first = new TestClient($app);
+    assistantSay($first, 'Busco xilozumprato');
+    $week = $store->weeklySearches();
+    same(1, $week['total']);
+    same(1, $week['misses']);
+    contains('xilozumprato', $week['phrases'][0]['phrase']);
+    assistantSay($first, '¿Qué horario tenéis?');
+    same(0, $store->weeklySearches()['misses']);
+    $app->clock()->advance(8 * 86400);
+    same(0, $store->weeklySearches()['total']);
+});

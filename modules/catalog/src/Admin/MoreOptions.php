@@ -42,7 +42,7 @@ final class MoreOptions
         return [
             'pdmain' => ['visibility', 'featured', 'brand_id', 'family_id', 'kind'],
             'pdprice' => ['sale_price', 'sale_from', 'sale_to', 'cost', 'tax_class_id'],
-            'pdstock' => ['gtin', 'mpn', 'stock_alert', 'backorders', 'min_qty', 'max_qty', 'length', 'width', 'height', 'delivery_min_days', 'delivery_max_days'],
+            'pdstock' => ['gtin', 'mpn', 'pack_units', 'pack_single_id', 'replenishment_days', 'stock_alert', 'backorders', 'min_qty', 'max_qty', 'length', 'width', 'height', 'delivery_min_days', 'delivery_max_days'],
             'pdcats' => ['main_category'],
             'pdseo' => $seo,
         ];

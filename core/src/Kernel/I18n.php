@@ -32,6 +32,16 @@ final class I18n
     /** @var array<string,array<string,string>> idioma => catálogo ya cargado */
     private $catalogs = [];
 
+    /** @var array<string,array<string,string>> variantes de redacción acotadas a la operación actual */
+    private $overrides = [];
+
+    public function swapOverrides(string $lang, array $messages): array
+    {
+        $previous = $this->overrides[$lang] ?? [];
+        $this->overrides[$lang] = $messages;
+        return $previous;
+    }
+
     /** @var array<string,bool> textos sin traducción vistos en esta petición */
     private $missing = [];
 
@@ -157,7 +167,9 @@ final class I18n
     {
         $lang = $locale !== null ? strtolower(substr($locale, 0, 2)) : $this->lang();
         $catalog = $this->catalog($lang);
-        if (isset($catalog[$text]) && $catalog[$text] !== '') {
+        if (isset($this->overrides[$lang][$text])) {
+            $out = $this->overrides[$lang][$text];
+        } elseif (isset($catalog[$text]) && $catalog[$text] !== '') {
             $out = $catalog[$text];
         } else {
             $out = $text;

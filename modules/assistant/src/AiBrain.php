@@ -166,6 +166,7 @@ final class AiBrain
         $lines[] = 'In the steps of a purchase (adding to the cart, the cart, shipping, payment, the order) be brief: one or two short sentences that say what you did or what you need next, and do not repeat what the cards and buttons already show (prices, the cart, the order summary).';
         $lines[] = 'Tone: ' . $tone . '. ' . $answerIn . '. Length: in at most ' . self::WORDS_SHORT . ' words in the steps of a purchase; up to ' . self::WORDS_LONG . ' words when you describe a product or advise on what to choose (the Shop note says the limit of each answer). Short sentences. Plain text: you may use **bold** and a list with "- " (at most one short list), nothing else.';
 
+        if ($this->app->settings()->str('assistant.address') === 'formal') { $lines[] = 'In Spanish address the customer as usted.'; }
         $preferences = mb_substr(trim($this->app->settings()->str('assistant.instructions')), 0, 2000);
         if ($this->app->has('subscriptions') && $this->app->service('subscriptions')->available()) {
             $lines[] = 'For monthly services, subscription plans or recurring payments, call list_subscription_plans. Its prices are base prices before billing-address tax adjustments: always say that and never present them as the final monthly charge. Use its plan_id only to read a selected plan. The person must use the confirmation_url to review the exact monthly amount and explicitly authorise recurring payments. You cannot subscribe, renew, cancel or charge on their behalf, even if they write yes in the chat.';
@@ -226,12 +227,15 @@ final class AiBrain
             // Los pasos con herramientas, con el modelo rápido; la respuesta final, con el de calidad solo si se ha pedido.
             $tier = $high && ($direct ? !$allow : $rounds !== []) ? 'standard' : 'economy';
             $started = $this->timer->ms();
+            $timeout = $deadline > 0 ? max(0.001, ($deadline - $started) / 1000) : Assistant::BUDGET_MS / 1000;
             try {
                 /** @var AiResult $result */
                 $result = $allow
                     ? $ai->ask('assistant.reply', [
                         'system' => $system,
                         'messages' => $this->build($messages, $rounds, $runner),
+                        'timeout' => $timeout,
+                        'retry' => false,
                         'tools' => $tools,
                         'max_tokens' => self::MAX_TOKENS,
                         'temperature' => 0.3,
@@ -243,6 +247,8 @@ final class AiBrain
                     : $ai->ask('assistant.reply', [
                         'system' => $system,
                         'messages' => $this->closing($messages, $rounds, $runner),
+                        'timeout' => $timeout,
+                        'retry' => false,
                         'schema' => self::closingSchema(),
                         'max_tokens' => self::MAX_TOKENS,
                         'temperature' => 0.3,
@@ -265,6 +271,10 @@ final class AiBrain
                 return;
             }
             $answer->aiMs += max(0, $this->timer->ms() - $started);
+            if ($deadline > 0 && $this->timer->ms() >= $deadline) {
+                $ended = 'timeout';
+                break;
+            }
             if (!$allow) {
                 $text = $this->closed($result, $runner);
                 if ($text === '') {

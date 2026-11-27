@@ -11,6 +11,12 @@
 declare(strict_types=1);
 
 return [
+    'Shop sector' => 'Sector de la tienda',
+    'All shop sectors' => 'Todos los sectores',
+    'Beauty and personal care' => 'Belleza y cuidado personal',
+    'Clothing and accessories' => 'Ropa y complementos',
+    'Food and drink' => 'Alimentación y bebidas',
+    'Tools and hardware' => 'Herramientas y ferretería',
     'Own search engine that understands phrases, tolerates typos and suggests while typing' => 'Buscador propio que entiende frases, tolera erratas y sugiere mientras se escribe',
 
     // La tienda
@@ -108,6 +114,7 @@ return [
     // Las palabras que entiende: cada lista, separada por comas; las frases con espacios valen. Se comparan sin tildes ni mayúsculas.
     'less than, under, below, up to, at most, no more than, cheaper than, maximum' => 'menos de, por menos de, por debajo de, hasta, como máximo, máximo, no más de, inferior a, a menos de, menor que',
     'more than, over, above, from, at least, minimum, starting at' => 'más de, por más de, por encima de, desde, a partir de, como mínimo, mínimo, superior a, mayor que, no menos de',
+    'about, around, approximately, roughly' => 'de unos, de unas, alrededor de, en torno a, aproximadamente, más o menos, unos, unas',
     'between' => 'entre',
     'and' => 'y, e',
     'euros, euro, eur, €' => 'euros, euro, eur, €',

@@ -107,6 +107,35 @@ final class CheckoutDialog
         return true;
     }
 
+    public function answerAddress(string $n): bool
+    {
+        $id = (int) ($this->flow['offered_address'] ?? 0);
+        if (!$this->active() || !$id) {
+            return false;
+        }
+        $other = in_array($n, ['otra', 'otra direccion', 'usar otra direccion', 'a otra direccion', 'use another address', 'another address', 'no'], true);
+        $yes = in_array($n, ['si', 'si a esa direccion', 'si usa esa direccion', 'a esa direccion', 'yes', 'yes use that address', 'use that address'], true);
+        if (!$other && !$yes) {
+            return false;
+        }
+        $status = $this->runner->run('checkout_status', []);
+        if (!in_array($id, array_map('intval', array_column($status['saved_addresses'] ?? [], 'id')), true)) {
+            $this->setFlow('offered_address', 0);
+            $this->step([], true);
+            return true;
+        }
+        $set = $this->runner->run('checkout_set_customer', ['address_id' => $other ? 0 : $id]);
+        $this->setFlow('offered_address', 0);
+        if ($other || isset($set['error'])) {
+            $this->say(t('Write your new delivery address, including the street, postcode and city.'));
+            $this->answer->expect = 'customer';
+        } else {
+            $this->step([t('I will use your saved delivery address.')]);
+        }
+        $this->answer->actions[] = ['type' => 'private_turn'];
+        return true;
+    }
+
     /** «Continuar con mi pedido»: vuelve a lo que falta. */
     public function resumes(string $n): bool
     {
@@ -155,6 +184,14 @@ final class CheckoutDialog
         $this->setFlow('active', 1);
         $this->setFlow('ship', 0);
         $this->setFlow('pay', 0);
+        if (!empty($status['needs_shipping']) && !empty($status['saved_addresses'])) {
+            $saved = $status['saved_addresses'][0];
+            $this->setFlow('offered_address', (int) $saved['id']);
+            $this->say(t('Use your saved delivery address in {city}?', ['city' => $saved['city']]));
+            $this->answer->actions[] = ['type' => 'private_turn'];
+            $this->answer->suggestions = [t('Yes, use that address'), t('Use another address')];
+            return true;
+        }
         $this->step([], true);
 
         return true;
@@ -186,7 +223,7 @@ final class CheckoutDialog
         $beforeShipping = !$needDetails && isset($status['shipping']) && is_array($status['shipping']) ? $status['shipping'] : null;
         $hasData = isset($data['email']) || isset($data['phone']) || isset($data['postcode']) || isset($data['tax_id']) || isset($data['address']);
 
-        if (($needDetails && !$question) || $hasData) {
+        if (!$question && !self::browsing($message, $n) && ($needDetails || $hasData)) {
             $set = $this->runner->run('checkout_set_customer', ['text' => $message]);
             $absent = isset($status['missing_fields']) && is_array($status['missing_fields']) ? $status['missing_fields'] : [];
             if (isset($set['error']) && in_array('name', $absent, true)) {
@@ -260,6 +297,12 @@ final class CheckoutDialog
     }
 
     /** Un mensaje que no era de la compra, con un pedido a medias: se ofrece volver a él. */
+    public static function browsing(string $message, string $normal): bool
+    {
+        return RuleBrain::isQuestion($message, $normal)
+            || preg_match('/^(?:mas informacion|more info(?:rmation)?|material(?:es)?|ingredients?|ingredientes|ver (?:mi |el )?carrito|seguir mirando|view my cart|keep browsing|vivo en|i live in|gastos de envio|shipping costs?)\b/', $normal) === 1;
+    }
+
     public function nudge(): void
     {
         if ($this->active()) {

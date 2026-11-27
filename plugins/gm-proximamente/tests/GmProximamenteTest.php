@@ -196,6 +196,24 @@ test('al pasar a disponible se encola un solo aviso por petición de los último
     same(2, count(aifecOrderMails($app, 'soon_available')));
 });
 
+test('el aviso de reposición requiere consentimiento y solo se encola cuando vuelve a haber existencias', function (): void {
+    $app = gmSoonShop();
+    $id = aifecProduct($app, ['name' => 'Mesa auxiliar', 'stock' => 0, 'manage_stock' => 1]);
+    $web = new TestClient($app);
+    $form = ['product_id' => $id, 'email' => 'comprador@ejemplo.test'];
+    contains('gm-soon-form-' . $id, $web->get($app->url()->entity('product', $id))->body);
+    same(422, $web->post('/proximamente/avisame', $form)->status);
+    same(200, $web->post('/proximamente/avisame', $form + ['consent' => '1'])->status);
+    $service = new Soon($app);
+    $service->releaseDue();
+    same(0, count(aifecOrderMails($app, 'soon_available')));
+    $app->db()->update('products', ['stock' => 4], ['id' => $id]);
+    $app->invalidate(['catalog', 'product:' . $id]);
+    $service->releaseDue();
+    $service->releaseDue();
+    same(1, count(aifecOrderMails($app, 'soon_available')));
+});
+
 test('la fecha de salida pasa el producto a disponible en la tarea y avisa a quien lo pidió', function (): void {
     $app = gmSoonShop();
     $id = aifecProduct($app, ['name' => 'Lámpara', 'stock' => 20]);

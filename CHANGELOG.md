@@ -1,4 +1,8 @@
-# Sin publicar (compra por agentes)
+# AIFEC 1.4.0
+
+El asistente de compras incorpora consultas sobre fichas y destinos, búsqueda guiada, cupones autorizados por la tienda, relevo humano con consentimiento y evaluación reproducible con el catálogo de cada sitio. El panel muestra las consultas sin resultados, las valoraciones, los costes medidos y los ingresos asistidos por moneda. La conversación admite vistas de móvil y escritorio, consulta por cuenta y un reinicio independiente del carrito.
+
+## Compra por agentes
 
 - **robots.txt:** las rutas de los protocolos (UCP, ACP, MCP, la API, la compra con enlaces y `/.well-known/`) llevan su `Allow` en todos los grupos, así que una regla que cierra `?q=` no las bloquea (RFC 9309); señal `Content-Signal` según los ajustes de robots; `Google-Extended` y `Applebot-Extended` siguen el ajuste de entrenamiento.
 - **Pago declarado:** el perfil de UCP (`payment_handlers`), el descubrimiento de ACP y `/.well-known/aifec.json` dicen qué formas de pago tiene encendidas la caja y que paga siempre la persona en ella, sin ningún dato de las pasarelas.

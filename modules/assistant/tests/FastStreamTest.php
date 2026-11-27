@@ -215,7 +215,7 @@ test('el guion pasa node --check, pinta el texto del asistente con el conversor,
     contains('payload.stream = 1', $js);
     contains("action.type === 'labels'", $js, 'las etiquetas traducidas');
     contains('canStream()', $js, 'si el navegador no puede, se pide la respuesta entera');
-    same(1, substr_count($js, 'window.fetch('), 'sigue habiendo un solo sitio que habla con el servidor');
+    same(2, substr_count($js, 'window.fetch('), 'la bienvenida es GET y los mensajes salen por el POST habitual');
     check(preg_match('/slice\(0, 8\)/', $js) === 1, 'hasta ocho botones cuando hay que elegir una opción');
 });
 

@@ -41,6 +41,10 @@ final class Lang
         'from' => 'From',
         'error' => 'Something went wrong. Please try again.',
         'busy' => 'The assistant is writing',
+        'featured' => 'Shop pick',
+        'discount' => '{percent}% off',
+        'rating' => '{score}/5 ({count} reviews)',
+        'retry' => 'Try again in {seconds} seconds.',
     ];
 
     /** Palabras de función inglesas que no se escriben igual en castellano. */
@@ -68,14 +72,34 @@ final class Lang
     /**
      * El idioma de un mensaje: «en» o el de la tienda; null si no se puede decir (pocas palabras o ni una pista).
      */
-    public static function detect(string $message, string $shop): ?string
+    public static function detect(string $message, string $shop, ?\Aifec\Kernel\I18n $i18n = null): ?string
     {
         $n = RuleBrain::norm($message);
         $n = preg_replace('/\S*@\S*/', ' ', $n);
         $words = $n === null || trim($n) === '' ? [] : preg_split('/[\s]+/', trim($n));
         $words = is_array($words) ? $words : [];
+        // A button can be pressed after the conversation has switched language.
+        if ($i18n !== null && count($words) <= 8) {
+            $locale = $shop === 'en' ? 'es' : $shop;
+            foreach (['Shipping costs', 'Go to checkout', 'Show my cart', 'Keep browsing', 'See sizes', 'See options',
+                'Something cheaper', 'Similar ones', 'Returns and refunds', 'Payment methods', 'Where is my order?',
+                'Add the first one to the cart', 'Place my order here', 'Yes, I confirm', 'Cancel', 'Continue my order'] as $source) {
+                $english = RuleBrain::norm($source);
+                if ($n === $english) {
+                    return 'en';
+                }
+                if ($n === RuleBrain::norm($i18n->t($source, [], $locale))) {
+                    return $locale;
+                }
+            }
+        }
         if (count($words) < self::MIN_WORDS) {
-            return null;
+            // Los botones y saludos inequívocos cambian el idioma incluso siendo una sola palabra.
+            $short = ['hello' => 'en', 'thanks' => 'en', 'thank you' => 'en', 'more information' => 'en',
+                'returns and refunds' => 'en', 'payment methods' => 'en', 'view my cart' => 'en',
+                'hola' => 'es', 'gracias' => 'es', 'más información' => 'es', 'mas informacion' => 'es',
+                'devoluciones y reembolsos' => 'es', 'formas de pago' => 'es', 'ver mi carrito' => 'es'];
+            return $short[trim($n)] ?? null;
         }
         $en = 0;
         $es = 0;
@@ -96,7 +120,7 @@ final class Lang
             return 'en';
         }
         if ($es >= 1 && $es > $en) {
-            return $shop;
+            return $shop === 'en' ? 'es' : $shop;
         }
 
         return null;

@@ -77,7 +77,13 @@ final class Pages
             return '';
         }
 
-        return $this->block([$this->builder->beginCheckout($summary)]);
+        $event = $this->builder->beginCheckout($summary);
+        if ($this->app->has('assistant') && $this->app->has('consent') && $this->app->service('consent')->allows('statistics')) {
+            $conversations = $this->app->service('assistant')->conversations();
+            $token = (string) $this->app->request()->cookie($conversations->cookieName(), '');
+            if ($token !== '' && $conversations->findByToken($token) !== null) { $event['source'] = 'assistant'; }
+        }
+        return $this->block([$event]);
     }
 
     /**

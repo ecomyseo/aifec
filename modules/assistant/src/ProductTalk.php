@@ -26,6 +26,43 @@ namespace Aifec\Modules\Assistant;
  */
 final class ProductTalk
 {
+    /** Resuelve enlaces en el registro de rutas del propio comercio. Nunca se consulta una URL por red. */
+    public static function linkedProduct(\Aifec\Kernel\App $app, string $url): int
+    {
+        if ($url === '' || strlen($url) > 1500 || strpos($url, '\\') !== false || strpos($url, '//') === 0) {
+            return 0;
+        }
+        $parts = parse_url($url);
+        if (!is_array($parts) || isset($parts['user']) || empty($parts['path'])) {
+            return 0;
+        }
+        if (isset($parts['scheme']) || isset($parts['host'])) {
+            $origin = parse_url($app->url()->origin());
+            foreach (['scheme', 'host', 'port'] as $part) {
+                if (strtolower((string) ($parts[$part] ?? '')) !== strtolower((string) ($origin[$part] ?? ''))) {
+                    return 0;
+                }
+            }
+        }
+        $path = $parts['path'];
+        $base = rtrim($app->site()->basePath, '/');
+        if (strpos($path, $base . '/') !== 0) {
+            return 0;
+        }
+        $path = trim(substr($path, strlen($base)), '/');
+        $lang = $app->defaultLang();
+        $first = explode('/', $path, 2);
+        if (isset($first[1]) && in_array($first[0], $app->languages(), true)) {
+            $lang = $first[0];
+            $path = $first[1];
+        }
+        $slug = $app->slugs()->resolve($lang, $path);
+        if ($slug === null && $lang !== $app->defaultLang()) {
+            $slug = $app->slugs()->resolve($app->defaultLang(), $path);
+        }
+        return $slug !== null && $slug['type'] === 'product' ? (int) $slug['entity_id'] : 0;
+    }
+
     /** Las palabras con las que se pregunta por un producto (texto ya normalizado). */
     private const RE_ASK = '/\b(?:habl(?:ame|anos|as|es|a|ar|arme|e)|cuentame|cuentanos|me cuentas|explicame|explicanos|informacion|info|detalles|caracteristicas|especificaciones|ficha tecnica|que es|que son|que tal es|que tal|para que sirve|para que vale|como es|como son|ver tallas|ver opciones|ver colores|ver medidas|tell me about|tell me more|more about|what is|what are|details|features|specs|see sizes|see options)\b/';
 
@@ -89,6 +126,12 @@ final class ProductTalk
      */
     public static function target(string $message, array $state, callable $search): int
     {
+        if (!empty($state['linked_product'])) {
+            return (int) $state['linked_product'];
+        }
+        if (!empty($state['page_product']) && (self::nameWords($message) === [] || preg_match('/\b(?:est[ea]|this)\s+(?:producto|articulo|pack|crema|serum|modelo|product|item|model|cream)\b/', RuleBrain::norm($message)))) {
+            return (int) $state['page_product'];
+        }
         $cards = [];
         foreach (isset($state['cards']) && is_array($state['cards']) ? $state['cards'] : [] as $card) {
             if (is_array($card) && isset($card['id'], $card['n'])) {
@@ -256,7 +299,15 @@ final class ProductTalk
                 if ($sentence === '' || $norm === '' || isset($seen[$norm])) {
                     continue;
                 }
-                $count = count(explode(' ', $norm));
+                if (preg_match('/^(?:\d+|anadir al carrito|comprar ahora|add to cart|buy now|ver carrito|view cart)$/', $norm) === 1) {
+                    continue;
+                }
+                $tokens = preg_split('/\s+/u', $sentence, -1, PREG_SPLIT_NO_EMPTY) ?: [];
+                $count = count($tokens);
+                if ($out === [] && $count > self::MAX_SENTENCE_WORDS) {
+                    $out[] = implode(' ', array_slice($tokens, 0, self::MAX_SENTENCE_WORDS)) . '…';
+                    break 2;
+                }
                 if ($out !== [] && $words + $count > self::MAX_SENTENCE_WORDS) {
                     break 2;
                 }

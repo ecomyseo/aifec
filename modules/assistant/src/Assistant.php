@@ -48,7 +48,7 @@ final class Assistant
     public const MAX_MESSAGE = Conversations::MAX_MESSAGE;
 
     /** Lo más que puede tardar un mensaje en contestarse, en milisegundos: pasado, se contesta con lo que haya o por reglas. */
-    public const BUDGET_MS = 12000;
+    public const BUDGET_MS = 8000;
 
     /** Productos ya enseñados que se recuerdan en la conversación. */
     private const SHOWN = 12;
@@ -87,13 +87,38 @@ final class Assistant
         return mb_substr(trim($this->app->settings()->str('assistant.name')), 0, 60);
     }
 
-    /** El mensaje fijo con el que el asistente se presenta: siempre dice que es una IA. */
+    public function aiAvailable(): bool
+    {
+        return (new AiBrain($this->app, $this->tools(), $this->timer))->available();
+    }
+
+    /** Presentación según el modo realmente disponible en la tienda. */
     public function intro(): string
     {
+        $previous = $this->formalWording();
+        try { return $this->presentation(); }
+        finally { if ($previous !== null) { $this->app->i18n()->swapOverrides('es', $previous); } }
+    }
+
+    private function formalWording(): ?array
+    {
+        if ($this->app->i18n()->lang() !== 'es' || $this->app->settings()->str('assistant.address') !== 'formal') { return null; }
+        return $this->app->i18n()->swapOverrides('es', require __DIR__ . '/formal.php');
+    }
+
+    private function presentation(): string
+    {
         $shop = trim($this->app->settings()->str('store.name', 'AIFEC'));
-        $text = t('I am the AI assistant of {shop}. I can help you find products, compare them, quote the shipping and take you to checkout. I only talk about the shop.', ['shop' => $shop]);
-        if ($this->name() !== '') {
-            $text = t('I am {assistant}, the AI assistant of {shop}. I can help you find products, compare them, quote the shipping and take you to checkout. I only talk about the shop.', ['assistant' => $this->name(), 'shop' => $shop]);
+        $ai = $this->aiAvailable();
+        $name = $this->name();
+        if ($name === '') {
+            $text = $ai
+                ? t('I am the AI assistant of {shop}. I can help you find products, compare them, quote the shipping and take you to checkout. I only talk about the shop.', ['shop' => $shop])
+                : t('I am the shopping assistant of {shop}. I can help you find products, compare them and check delivery options. I only talk about the shop.', ['shop' => $shop]);
+        } else {
+            $text = $ai
+                ? t('I am {assistant}, the AI assistant of {shop}. I can help you find products, compare them, quote the shipping and take you to checkout. I only talk about the shop.', ['assistant' => $name, 'shop' => $shop])
+                : t('I am {assistant}, the shopping assistant of {shop}. How can I help you?', ['assistant' => $name, 'shop' => $shop]);
         }
         $extra = trim($this->app->settings()->str('assistant.greeting'));
 
@@ -115,7 +140,7 @@ final class Assistant
      *
      * @throws \InvalidArgumentException si la conversación no existe
      */
-    public function reply(int $conversationId, string $message, ?callable $onStatus = null): array
+    public function reply(int $conversationId, string $message, ?callable $onStatus = null, string $page = '', ?callable $onFact = null): array
     {
         $conversation = $this->conversations->find($conversationId);
         if ($conversation === null) {
@@ -127,10 +152,25 @@ final class Assistant
         $secrets = false;
         $message = Masker::secrets($message, $secrets);
         $state = $this->conversations->state($conversation);
+        unset($state['linked_product'], $state['page_product']);
+        if ($page !== '' || ProductTalk::asks(RuleBrain::norm($message)) || SensitiveQuestion::matches($message) || ProductQuestion::topic($this->app, $message) !== '') {
+            if (preg_match('~https?://[^\s<>]+~iu', $message, $link)) {
+                $state['linked_product'] = ProductTalk::linkedProduct($this->app, rtrim($link[0], '.,?!);'));
+            } elseif ($page !== '') {
+                $state['page_product'] = ProductTalk::linkedProduct($this->app, $page);
+            }
+        }
         // De un fichero o un trozo de código pegado no se deduce en qué idioma habla el cliente.
-        $lang = Noise::looks($message) ? null : Lang::detect($message, $this->app->lang());
+        $pageLang = $this->app->lang();
+        $previousPage = $state['page_lang'] ?? $conversation['lang'];
+        if ($previousPage !== $pageLang) {
+            unset($state['lang']);
+        }
+        $lang = Noise::looks($message) ? null : Lang::detect($message, $pageLang, $this->app->i18n());
         if ($lang === null) {
-            $lang = isset($state['lang']) && is_string($state['lang']) && $state['lang'] !== '' ? $state['lang'] : $this->app->lang();
+            $short = str_word_count(RuleBrain::norm($message)) < 5;
+            $neutral = !empty($state['flow']['active']) && OrderPrestep::hasData($message);
+            $lang = ($short || $neutral) && !empty($state['lang']) ? (string) $state['lang'] : $pageLang;
         }
         $i18n = $this->app->i18n();
         $keep = $i18n->locale();
@@ -138,10 +178,26 @@ final class Assistant
             // Las cadenas fuente son inglesas: para contestar en inglés basta con no traducirlas.
             $i18n->setLocale($lang);
         }
+        $ai = $this->app->has('ai') ? $this->app->service('ai') : null;
+        $before = is_object($ai) && method_exists($ai, 'usageMeter') ? $ai->usageMeter() : null;
+        $wording = $this->formalWording();
         try {
-            return $this->converse($conversationId, $conversation, $message, $state, $lang, $onStatus, $secrets === true);
+            $reply = $this->converse($conversationId, $conversation, $message, $state, $lang, $onStatus, $secrets === true, $onFact, $page);
+            if ($secrets || !empty($state['flow']['active']) || OrderPrestep::hasData($message) || Masker::forStorage($message) !== $message) {
+                $reply['private_history'] = true;
+            }
+            return $reply;
         } finally {
+            if ($wording !== null) { $i18n->swapOverrides('es', $wording); }
             $i18n->setLocale($keep);
+            if ($before !== null) {
+                $after = $ai->usageMeter();
+                if ($after['calls'] > $before['calls']) {
+                    $this->app->db()->run('UPDATE {conversations} SET ai_cost_micro = COALESCE(ai_cost_micro, 0) + ?, ai_unpriced = ai_unpriced + ? WHERE id = ?', [
+                        $after['cost'] - $before['cost'], $after['unpriced'] - $before['unpriced'], $conversationId,
+                    ]);
+                }
+            }
         }
     }
 
@@ -223,6 +279,12 @@ final class Assistant
                 // Añadir no es querer pagar: no se piden datos; se ofrece ir a la caja, ver el carrito o seguir mirando.
                 $answer->suggestions = Replies::afterAdd();
             }
+            PurchaseSuggestions::afterAdd($this->app, $answer, $state);
+            if ($answer->cards !== []) {
+                $state['cards'] = array_map(static function (array $card): array {
+                    return ['id' => (int) $card['id'], 'n' => (string) $card['name'], 'p' => (int) $card['price_cents'], 'v' => (int) $card['has_variants']];
+                }, $answer->cards);
+            }
             $this->conversations->addMessage($conversationId, 'assistant', $answer->text, $answer->toolLog);
             $changes = ['cart_added' => $answer->cartAdded ? true : (bool) $conversation['cart_added']];
             if (isset($state['await'])) {
@@ -259,7 +321,7 @@ final class Assistant
      *
      * @return array{text:string,cards:array<int,array<string,mixed>>,actions:array<int,array<string,mixed>>,suggestions:string[]}
      */
-    private function converse(int $conversationId, array $conversation, string $message, array $state, string $lang, ?callable $onStatus, bool $secrets = false): array
+    private function converse(int $conversationId, array $conversation, string $message, array $state, string $lang, ?callable $onStatus, bool $secrets = false, ?callable $onFact = null, string $page = ''): array
     {
         if ($message === '') {
             $empty = new Answer();
@@ -269,8 +331,8 @@ final class Assistant
         }
 
         // Una conversación no es infinita: pasado el tope, se manda al cliente a escribir a la tienda.
-        $max = max(1, $this->app->settings()->int('assistant.max_messages', 30));
-        if ((int) $conversation['messages'] >= $max) {
+        $max = $this->app->settings()->int('assistant.max_messages', 0);
+        if ($max > 0 && (int) $conversation['messages'] >= $max) {
             $limit = new Answer();
             $limit->text = t('We have been talking for a while and I cannot go on in this conversation. Please write to the shop and a person will help you.');
 
@@ -293,6 +355,16 @@ final class Assistant
         }
 
         // Un fichero o un trozo de código pegado no es una pregunta: no se guarda entero, no se busca nada y no se le pregunta al modelo.
+        if (SensitiveQuestion::matches($message)) {
+            $messageId = $this->conversations->addMessage($conversationId, 'user', '[sensitive question]');
+            $answer = new Answer();
+            $answer->actions[] = ['type' => 'private_turn'];
+            $answer->text = t('For advice about your health or whether a product is suitable for you, please speak to a doctor or pharmacist.');
+            $this->save($conversationId, $messageId, '', $state, $answer, $turn, [], $lang);
+            $notice = SensitiveQuestion::catalogueNotice($this->app, $message, (int) ($state['linked_product'] ?? $state['page_product'] ?? 0));
+            if ($notice !== '') { $answer->text .= "\n" . $notice; }
+            return $this->finish($answer, $lang, $state)->toArray();
+        }
         $noise = Noise::looks($message);
         $messageId = $this->conversations->addMessage($conversationId, 'user', Masker::forStorage($noise ? mb_substr($message, 0, self::NOISE_KEPT, 'UTF-8') . '…' : $message));
         if ($noise) {
@@ -325,9 +397,74 @@ final class Assistant
             'message' => $message,
             // Lo que no nombra ningún producto («soy hombre», «otra cosa», un botón) no se busca tal cual: lo que afina se busca con la
             // necesidad en curso.
+            'on_fact' => $onFact,
+            'saved_budget' => ChatPreferences::budget($this->app),
             'own_words' => !in_array($kind, ['refine', 'reset', 'browse', 'chip'], true),
             'refine' => $kind === 'refine' ? Need::query($need) : '',
         ];
+
+        $guided = !$busy && !$confirmed ? ChoiceGuide::answer($this->app, $message, $state) : null;
+        if ($guided !== null) {
+            $this->save($conversationId, $messageId, '', $state, $guided, $turn, array_column($guided->cards, 'id'), $lang);
+            return $this->finish($guided, $lang, $state)->toArray();
+        }
+        if (!$busy && !$confirmed && $this->app->has('search')) {
+            [$word, , $explicit] = RuleBrain::searchQuery(RuleBrain::norm($message));
+            $choices = $explicit ? $this->app->service('search')->spellingChoices($word, $this->app->i18n()->lang()) : [];
+            if ($choices) {
+                $answer = new Answer();
+                $answer->text = t('Did you mean one of these catalogue terms?');
+                foreach ($choices as $choice) { $answer->suggestions[] = t('Search for {term}', ['term' => $choice]); }
+                $this->save($conversationId, $messageId, '', $state, $answer, $turn, [], $lang);
+                return $this->finish($answer, $lang, $state)->toArray();
+            }
+        }
+        $orders = AccountOrders::answer($this->app, $message);
+        if ($orders !== null) {
+            $record = new Answer();
+            $record->text = '[account order enquiry]';
+            $this->save($conversationId, $messageId, '', $state, $record, $turn, [], $lang);
+            return $this->finish($orders, $lang, $state)->toArray();
+        }
+        $handoff = HumanHandoff::handle($this->app, $conversation, $messageId, $message, $state);
+        if ($handoff !== null) {
+            $record = clone $handoff;
+            $record->text = '[shop team contact]';
+            $this->save($conversationId, $messageId, '', $state, $record, $turn, [], $lang);
+            return $this->finish($handoff, $lang, $state)->toArray();
+        }
+
+        if (!$busy && $this->app->settings()->bool('assistant.replenishment', false) && $this->app->has('orders')
+            && PurchaseSuggestions::repeatRequest($message)) {
+            $answer = PurchaseSuggestions::repeatOrder($this->app);
+            // El historial de compras pertenece a la cuenta, no a la cookie de conversación del navegador.
+            $record = new Answer();
+            $record->text = '[replenishment request]';
+            $this->save($conversationId, $messageId, '', $state, $record, $turn, [], $lang);
+            return $this->finish($answer, $lang, $state)->toArray();
+        }
+
+        if (!$confirmed && empty($state['pick'])) {
+            $facts = ProductMentions::answer($this->app, $message, $state);
+            if ($facts === null) { $facts = ProductQuestion::answer($this->app, $message, $state); }
+            if ($facts !== null) {
+                $this->save($conversationId, $messageId, '', $state, $facts, $turn, array_column($facts->cards, 'id'), $lang);
+                return $this->finish($facts, $lang, $state)->toArray();
+            }
+        }
+        if (!$busy && !$confirmed) {
+            $guide = MerchantGuide::answer($this->app, $message, $state, $lang, $page);
+            if ($guide !== null) {
+                $this->save($conversationId, $messageId, $message, $state, $guide, $turn, array_column($guide->cards, 'id'), $lang);
+                return $this->finish($guide, $lang, $state)->toArray();
+            }
+        }
+
+        if (MerchantOffers::requested($message) && $this->app->has('catalog')) {
+            $answer = MerchantOffers::answer($this->app);
+            $this->save($conversationId, $messageId, $message, $state, $answer, $turn, array_column($answer->cards, 'id'), $lang);
+            return $this->finish($answer, $lang, $state)->toArray();
+        }
 
         if ($confirmed) {
             // La persona ha confirmado: el pedido lo hace el motor, sin preguntarle nada a la IA.
@@ -355,7 +492,12 @@ final class Assistant
             $answer->aiMs = 0;
             try {
                 $rules = new RuleBrain($runner, $answer, $state);
-                if (isset($state['pick']) && $rules->answerPick($message)) {
+                $account = $this->app->has('customers') && $this->app->service('customers')->current() !== null;
+                if ($rules->accountCheckout($message, $account) || $rules->answerShippingAndReturns($message) || $rules->answerDestination($message)) {
+                    $answer->aiMs = null;
+                    $answer->toolsMs = $runner->toolsMs;
+                    $done = true;
+                } elseif (isset($state['pick']) && $rules->answerPick($message)) {
                     // Lo que acaba de elegir («en negro», el botón de un color) se añade sin preguntarle nada a la IA.
                     $answer->mode = 'ai';
                     $answer->aiMs = null;
@@ -447,7 +589,9 @@ final class Assistant
         $seen = $runner->seenIds();
         if (!$done) {
             $turnInfo = ['kind' => $kind, 'need' => $need, 'chip' => $chip];
+            $attempted = $answer->aiMs !== null;
             $answer = $this->fallback($answer, $runner, $message, $state, $context, $turn, $onStatus, $seen, $turnInfo, $advice);
+            $answer->fallbackNotice = $attempted;
         } elseif ($answer->mode === 'ai') {
             // Los botones salen de la respuesta: los que propuso el modelo y pasaron la validación, o los que tocan según lo enseñado.
             $advice->suggest();
@@ -648,6 +792,7 @@ final class Assistant
         $fresh->ended = $old->ended;
         $fresh->prefsUsed = $old->prefsUsed;
         $fresh->wrote = $old->wrote;
+        $fresh->emptySearch = $old->emptySearch;
         $fresh->cartAdded = $old->cartAdded;
         $fresh->addressChanged = $old->addressChanged;
         $fresh->actions = array_values(array_filter($old->actions, static function (array $action): bool {
@@ -706,7 +851,7 @@ final class Assistant
         $result = (new ToolRunner($this->app, $tools, $context, $answer, $this->timer))->run('checkout_place', []);
         OrderReply::placed($answer, $result, $turn);
         if (is_array($turn->placed) && !isset($result['error'])) {
-            $this->conversations->update((int) $context['conversation_id'], ['order_id' => (int) $turn->placed['id']]);
+            $this->conversations->recordOrder((int) $context['conversation_id'], (int) $turn->placed['id']);
         } elseif (isset($result['failed_order_id'])) {
             $this->conversations->unmarkOrder((int) $context['conversation_id'], (int) $result['failed_order_id']);
         }
@@ -722,6 +867,30 @@ final class Assistant
      */
     private function finish(Answer $answer, string $lang, array $state): Answer
     {
+        if ($answer->cards !== [] && $this->app->has('catalog')) {
+            $products = $this->app->service('catalog')->cards(array_column($answer->cards, 'id'));
+            $byId = array_column($products, null, 'id');
+            foreach ($answer->cards as &$card) {
+                $product = $byId[$card['id']] ?? [];
+                if (!empty($card['url']) && ($card['status'] ?? '') === 'out_of_stock') {
+                    $target = $this->app->hooks()->apply('assistant.stock_signup_anchor', '', (int) $card['id']);
+                    if (is_string($target) && preg_match('/^[a-z][a-z0-9_-]{0,80}$/iD', $target)) {
+                        $card['stock_signup'] = $card['url'] . '#' . $target;
+                        $card['stock_signup_label'] = t('Notify me when available');
+                    }
+                }
+                $card['delivery'] = \Aifec\Modules\Catalog\Front\Support::delivery($product['availability']['delivery_days'] ?? null);
+                $price = $product['price'] ?? [];
+                $compare = (int) ($price['compare'] ?? 0);
+                if ($compare > $card['price_cents'] && !empty($card['compare_price'])) {
+                    $card['discount_percent'] = (int) round(100 * ($compare - $card['price_cents']) / $compare);
+                }
+                if ($this->app->has('reviews') && !empty($product['rating']['count'])) {
+                    $card['rating'] = $product['rating'];
+                }
+            }
+            unset($card);
+        }
         $base = $this->app->lang();
         $before = isset($state['lang']) && is_string($state['lang']) && $state['lang'] !== '' ? $state['lang'] : $base;
         if ($lang !== $base || $before !== $base) {
@@ -746,22 +915,34 @@ final class Assistant
      */
     private function save(int $conversationId, int $messageId, string $message, array $state, Answer $answer, CheckoutTurn $turn, array $seen, string $lang): void
     {
+        PurchaseSuggestions::afterAdd($this->app, $answer, $state);
+        $publicText = SensitiveQuestion::withoutClaims($answer->text);
+        if ($publicText === '' && trim($answer->text) !== '') {
+            $publicText = t('I can tell you what the product page lists. For health advice, consult a healthcare professional.');
+        }
+        $answer->text = $publicText;
         $this->conversations->addMessage($conversationId, 'assistant', Masker::text($answer->text, $turn->personal), $answer->toolLog, [
             'ai_ms' => $answer->aiMs,
             'tools_ms' => $answer->toolsMs,
             'rounds' => $answer->rounds,
         ]);
+        SearchEvidence::capture($this->app, $messageId, $message, $answer->toolLog, $lang);
+        if ($answer->emptySearch && $answer->cards === [] && $message !== '') {
+            $this->app->db()->update('conversation_messages', [
+                'empty_search' => 1, 'phrase' => Conversations::phrase(Masker::forStorage($message)),
+            ], ['id' => $messageId, 'role' => 'user']);
+        }
         if ($answer->unanswered) {
             $this->conversations->markUnanswered($messageId, $conversationId, $message);
         }
 
-        $next = [];
+        $next = ['page_lang' => $this->app->lang()];
         if ($answer->expect !== '') {
             $next['expect'] = $answer->expect;
         }
         $next += $answer->remember;
         // La necesidad en curso y las categorías de la tienda siguen de un mensaje al siguiente aunque esta respuesta no las tocara.
-        foreach (['need', 'cats'] as $key) {
+        foreach (['need', 'cats', 'cross_sell_shown', 'choice_guide'] as $key) {
             if (!array_key_exists($key, $answer->remember) && isset($state[$key]) && is_array($state[$key])) {
                 $next[$key] = $state[$key];
             }

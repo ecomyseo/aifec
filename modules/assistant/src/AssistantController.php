@@ -21,8 +21,8 @@ use Aifec\Kernel\Response;
  * POST /asistente/mensaje (ruta «assistant.message», intermediario «csrf»): el mensaje de un cliente o el botón «añadir» de una ficha.
  *
  * La conversación se identifica con una cookie propia del sitio que se pone al primer mensaje; sin cookie (o con una que ya no
- * no existe) se abre otra. Límites: 20 mensajes cada 10 minutos por conversación y 60 por dirección IP (para que borrar la cookie
- * no sirva de nada). Con el ajuste «assistant.enabled» apagado la ruta no existe (404). La respuesta es JSON y no se guarda
+ * existe) se abre otra. Los límites por IP admiten ajustes por minuto, por día y una pausa entre ráfagas.
+ * Con «assistant.enabled» apagado la ruta devuelve 404. La respuesta es JSON y no se guarda
  * en ninguna caché.
  *
  * Con «stream=1» la respuesta llega por partes (application/x-ndjson, una línea JSON cada vez): {"status": "Buscando en la tienda…"}
@@ -32,14 +32,9 @@ use Aifec\Kernel\Response;
  */
 final class AssistantController
 {
-    /** Mensajes por visitante en la ventana. */
-    public const PER_VISITOR = 20;
-
-    /** Mensajes por dirección IP en la misma ventana. */
-    public const PER_IP = 60;
-
-    /** Ventana de los límites, en segundos. */
-    public const WINDOW = 600;
+    public const PER_MINUTE = 20;
+    public const PER_DAY = 300;
+    public const COOLDOWN = 180;
 
     /** @var App */
     private $app;
@@ -76,22 +71,17 @@ final class AssistantController
         $token = (string) $request->cookie($conversations->cookieName(), '');
         $conversation = $token !== '' ? $conversations->findByToken($token) : null;
 
-        $limiter = new RateLimiter($app->db(), $app->clock());
-        if (!$limiter->hit('assistant:ip:' . $request->ip, self::PER_IP, self::WINDOW)) {
-            return $this->tooMany();
+        $limited = $this->limit($request);
+        if ($limited !== null) {
+            return $limited;
         }
-        $newToken = null;
         if ($conversation !== null) {
-            if (!$limiter->hit(self::visitorKey((string) $conversation['token_hash']), self::PER_VISITOR, self::WINDOW)) {
-                return $this->tooMany();
-            }
             $id = (int) $conversation['id'];
         } else {
             // El primer mensaje abre la conversación y pone la cookie. Ya cuenta como uno de los 20 del visitante.
             $created = $conversations->create($app->lang());
             $id = $created['id'];
             $app->setCookie($conversations->cookieName(), $created['token'], 1);
-            $limiter->hit(self::visitorKey(hash('sha256', $created['token'])), self::PER_VISITOR, self::WINDOW);
         }
 
         if ($add !== []) {
@@ -101,11 +91,14 @@ final class AssistantController
             return Response::json($assistant->addToCart($id, $productId, $variant, $qty));
         }
 
+        $page = $request->str('page_path');
         if ($request->bool('stream')) {
-            return $this->stream($assistant, $id, $text);
+            return $this->stream($assistant, $id, $text, $page);
         }
 
-        return Response::json($assistant->reply($id, $text));
+        $reply = $assistant->reply($id, $text, null, $page);
+        if ($request->bool('criteria')) { $reply['preferences'] = ChatPreferences::read($app, $request, $id); }
+        return Response::json($reply);
     }
 
     /**
@@ -118,7 +111,7 @@ final class AssistantController
      * vacío, sin un error en ningún sitio. Por eso el carrito se abre ANTES de la primera línea (Cart::ensure) y, si al acabar
      * sigue vacío, se quita de la base de datos.
      */
-    private function stream(Assistant $assistant, int $id, string $text): Response
+    private function stream(Assistant $assistant, int $id, string $text, string $page): Response
     {
         $app = $this->app;
         $cart = $app->has('cart') ? $app->service('cart') : null;
@@ -128,14 +121,17 @@ final class AssistantController
             $opened = true;
         }
 
-        $writer = static function (callable $emit) use ($app, $assistant, $id, $text, $cart, $opened): void {
+        $writer = static function (callable $emit) use ($app, $assistant, $id, $text, $page, $cart, $opened): void {
             $line = static function (array $data) use ($emit): void {
                 $emit((string) json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PARTIAL_OUTPUT_ON_ERROR) . "\n");
             };
             try {
                 $done = $assistant->reply($id, $text, static function (string $status) use ($line): void {
                     $line(['status' => $status]);
-                });
+                }, $page, $app->request()->bool('progress') ? static function (string $fact) use ($line): void {
+                    $line(['fact' => $fact]);
+                } : null);
+                if ($app->request()->bool('criteria')) { $done['preferences'] = ChatPreferences::read($app, $app->request(), $id); }
                 $line(['done' => $done]);
             } catch (\Throwable $e) {
                 try {
@@ -188,30 +184,130 @@ final class AssistantController
         $conversation = $token !== '' ? $conversations->findByToken($token) : null;
         $nothing = Response::json(['error' => t('There is nothing to confirm. Ask me to review your order first.')], 409);
 
-        $limiter = new RateLimiter($app->db(), $app->clock());
-        if (!$limiter->hit('assistant:ip:' . $request->ip, self::PER_IP, self::WINDOW)) {
-            return $this->tooMany();
+        $limited = $this->limit($request);
+        if ($limited !== null) {
+            return $limited;
         }
         if ($conversation === null) {
             return $nothing;
-        }
-        if (!$limiter->hit(self::visitorKey((string) $conversation['token_hash']), self::PER_VISITOR, self::WINDOW)) {
-            return $this->tooMany();
         }
         $answer = $assistant->confirm((int) $conversation['id']);
 
         return $answer === null ? $nothing : Response::json($answer);
     }
 
-    private static function visitorKey(string $tokenHash): string
+    public function starters(Request $request, array $params): Response
     {
-        return 'assistant:c:' . substr($tokenHash, 0, 32);
+        if (!$this->app->settings()->bool('assistant.enabled', true)) {
+            throw HttpError::notFound();
+        }
+        $catalog = $this->app->service('catalog');
+        $labels = [];
+        $sale = $catalog->listing(['lang' => $this->app->lang(), 'on_sale' => true, 'per_page' => 1]);
+        if (!empty($sale['items'])) {
+            $labels[] = t('Special offers');
+        }
+        $categories = $catalog->tree();
+        if (count($categories) === 1 && !empty($categories[0]['children'])) {
+            $categories = $categories[0]['children'];
+        }
+        foreach (array_slice($categories, 0, 2) as $category) {
+            $labels[] = t('Show me {category}', ['category' => $category['name']]);
+        }
+        $path = $request->str('page_path');
+        if ($path !== '' && $path[0] === '/') {
+            $phrases = $this->app->db()->column("SELECT phrases FROM {assistant_guides} WHERE active = 1 AND kind = 'faq' AND lang = ? AND page_path = ? ORDER BY id LIMIT 3", [$this->app->lang(), rtrim($path, '/') ?: '/']);
+            foreach ($phrases as $entry) { $labels[] = trim(strtok($entry, "\r\n")); }
+        }
+        $pageId = ProductTalk::linkedProduct($this->app, $request->str('page_path'));
+        if ($pageId > 0) {
+            $page = $catalog->product($pageId, $this->app->lang());
+            foreach (array_slice($page['faqs'] ?? [], 0, 3) as $faq) { $labels[] = $faq['question']; }
+        }
+        $labels[] = t('Shipping and returns');
+        $labels[] = t('Where is my order?');
+        return Response::json(['suggestions' => $labels, 'preferences' => ChatPreferences::read($this->app, $request)]);
     }
 
-    private function tooMany(): Response
+    public function preferences(Request $request, array $params): Response
     {
-        $response = Response::json(['error' => t('You are writing too fast. Wait a moment and try again.')], 429);
-        $response->headers['Retry-After'] = (string) self::WINDOW;
+        if (!$this->app->settings()->bool('assistant.enabled', true)) { throw HttpError::notFound(); }
+        return Response::json(['preferences' => ChatPreferences::edit($this->app, $request)]);
+    }
+
+    public function window(Request $request, array $params): Response
+    {
+        $app = $this->app;
+        if (!$app->settings()->bool('assistant.enabled', true)) { throw HttpError::notFound(); }
+        $html = $app->view()->render('assistant::front/window', ['assistant' => $app->service('assistant')]);
+        return Response::html($html);
+    }
+
+    public function rate(Request $request, array $params): Response
+    {
+        $app = $this->app;
+        if (!$app->settings()->bool('assistant.enabled', true)) { throw HttpError::notFound(); }
+        $conversations = $app->service('assistant')->conversations();
+        $row = $conversations->findByToken((string) $request->cookie($conversations->cookieName(), ''));
+        if ($row === null) { throw HttpError::notFound(); }
+        $vote = $request->str('vote');
+        $reason = $request->str('reason');
+        if (!in_array($vote, ['up', 'down'], true) || !in_array($reason, ['', 'products', 'clarity', 'speed'], true)) {
+            throw HttpError::badRequest();
+        }
+        $app->db()->update('conversations', ['vote' => $vote === 'up' ? 1 : -1, 'vote_reason' => $reason ?: null], ['id' => (int) $row['id']]);
+        return Response::json(['rated' => true]);
+    }
+
+    public function restart(Request $request, array $params): Response
+    {
+        $app = $this->app;
+        if (!$app->settings()->bool('assistant.enabled', true)) {
+            throw HttpError::notFound();
+        }
+        $conversations = $app->service('assistant')->conversations();
+        $name = $conversations->cookieName();
+        $token = (string) $request->cookie($name, '');
+        if ($token !== '') {
+            // Revocar también las copias de la cookie. El siguiente mensaje abre una conversación limpia.
+            $app->db()->run('UPDATE {conversations} SET token_hash = ?, state = NULL, handoff_status = ?, handoff_reply = NULL, handoff_summary = NULL WHERE token_hash = ?', [
+                hash('sha256', \Aifec\Security\Random::token(32)), '', hash('sha256', $token),
+            ]);
+        }
+        $app->forgetCookie($name);
+        return Response::json(['restarted' => true]);
+    }
+
+    private function limit(Request $request): ?Response
+    {
+        $app = $this->app;
+        $limiter = new RateLimiter($app->db(), $app->clock());
+        $key = 'assistant:ip:' . $request->ip;
+        $cooldown = max(1, $app->settings()->int('assistant.cooldown_seconds', self::COOLDOWN));
+        $retry = $limiter->retryAfter($key . ':pause', 1, $cooldown);
+        if ($retry > 0) {
+            return $this->tooMany($retry);
+        }
+        $perDay = max(1, $app->settings()->int('assistant.messages_per_day', self::PER_DAY));
+        $retry = $limiter->retryAfter($key . ':day', $perDay, 86400);
+        if ($retry > 0) {
+            return $this->tooMany($retry);
+        }
+        $perMinute = max(1, $app->settings()->int('assistant.messages_per_minute', self::PER_MINUTE));
+        if (!$limiter->hit($key . ':minute', $perMinute, 60)) {
+            $limiter->hit($key . ':pause', 1, $cooldown);
+            return $this->tooMany($cooldown);
+        }
+        if (!$limiter->hit($key . ':day', $perDay, 86400)) {
+            return $this->tooMany(max(1, $limiter->retryAfter($key . ':day', $perDay, 86400)));
+        }
+        return null;
+    }
+
+    private function tooMany(int $seconds): Response
+    {
+        $response = Response::json(['error' => t('You are writing too fast. Wait a moment and try again.'), 'retry_after' => $seconds], 429);
+        $response->headers['Retry-After'] = (string) $seconds;
 
         return $response;
     }

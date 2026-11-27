@@ -42,4 +42,15 @@ if ((int) $timing['n'] > 0) : ?>
     'n' => (int) $timing['n'],
 ])) ?></p>
 <?php endif; ?>
+<?php if ($commercial['total'] > 0) : ?>
+<section class="af-card" data-assistant-commercial>
+    <h2><?= e(t('Commercial results, last seven days')) ?></h2>
+    <dl class="af-kv">
+        <dt><?= e(t('Paid conversions')) ?></dt><dd><?= (int) $commercial['converted'] ?> / <?= (int) $commercial['total'] ?> (<?= e(app()->i18n()->number(100 * $commercial['converted'] / $commercial['total'], 1)) ?> %)</dd>
+        <dt><?= e(t('Assisted revenue after refunds')) ?></dt><dd><?= e(implode(' · ', $commercial['revenue']) ?: '—') ?></dd>
+        <dt><?= e(t('Helpful ratings')) ?></dt><dd><?= (int) $commercial['positive'] ?> / <?= (int) $commercial['votes'] ?></dd>
+        <dt><?= e(t('Estimated AI cost per measured conversation (cents)')) ?></dt><dd><?= e($commercial['cost']) ?></dd>
+    </dl>
+</section>
+<?php endif; ?>
 <?= $table ?>

@@ -5,24 +5,20 @@
  * con textContent (nunca como HTML) y las direcciones se comprueban antes de usarse.
  * Autor: Ecom Experts · 2026 · Ver LICENSE.md
  */
-/*
- * El texto con formato de las respuestas: un subconjunto mínimo (**negrita**, listas con "- " o "* ", saltos de línea). parse() es una
- * función pura que devuelve bloques de datos; la ventana los convierte en nodos con textContent, nunca con HTML. Cualquier otra marca
- * se queda como texto. Los enlaces solo salen de las acciones del servidor, no del texto.
- */
+/* El formato se representa mediante nodos de texto. */
 (function (root) {
   'use strict';
 
   function inline(text) {
     var parts = [];
-    var re = /\*\*([^*\n]+)\*\*/g;
+    var re = /\*\*([^*\n]+)\*\*|\[([^\]\n]+)\]\((https?:\/\/[^\s()<>"']+|\/(?!\/)[^\s()<>"'\\]*)\)/gi;
     var last = 0;
     var match;
     while ((match = re.exec(text)) !== null) {
       if (match.index > last) {
         parts.push({bold: false, text: text.slice(last, match.index)});
       }
-      parts.push({bold: true, text: match[1]});
+      parts.push(match[1] ? {bold: true, text: match[1]} : {bold: false, text: match[2], href: match[3]});
       last = match.index + match[0].length;
     }
     if (last < text.length) {
@@ -75,11 +71,12 @@
     return;
   }
 
-  var STORE_KEY = 'af-assistant-log';
+  var STORE_KEY = 'af-assistant-public-log';
   var MAX_LOG = 40;
   var FOCUSABLE = 'a[href],button:not([disabled]),input:not([disabled]):not([type="hidden"]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
   var busy = false;
   var restored = false;
+  var askedForRating = false;
   var log = [];
   // Los textos ya traducidos que manda el servidor cuando la conversación va en otro idioma que la página.
   var labels = {};
@@ -122,6 +119,7 @@
   /** Solo se enlaza a direcciones de la propia web o http(s): nunca «javascript:» ni nada parecido. */
   function safeUrl(value) {
     var url = String(value || '');
+    if (/[\\\x00-\x20\x7f]/.test(url)) { return ''; }
     return /^(https?:\/\/|\/(?!\/))/i.test(url) ? url : '';
   }
 
@@ -162,7 +160,14 @@
     }
     var fill = function (node, parts) {
       parts.forEach(function (part) {
-        node.appendChild(part.bold ? el('strong', '', part.text) : document.createTextNode(part.text));
+        if (part.href && safeUrl(part.href)) {
+          var link = el('a', '', part.text);
+          link.href = part.href;
+          link.rel = 'noopener noreferrer';
+          node.appendChild(link);
+        } else {
+          node.appendChild(part.bold ? el('strong', '', part.text) : document.createTextNode(part.text));
+        }
       });
     };
     blocks.forEach(function (block) {
@@ -204,8 +209,8 @@
   }
 
   function card(data) {
-    // Lo primero y lo más grande, las fotos (dos si el producto las tiene); debajo, el nombre, el precio y lo que se puede elegir.
     var box = el('article', 'af-assistant-card');
+    box.setAttribute('data-chat-product', data.id);
     var link = safeUrl(data.url);
     var photos = el(link ? 'a' : 'div', 'af-assistant-card-photos');
     if (link) {
@@ -229,7 +234,6 @@
     }
     box.appendChild(photos);
     var body = el('div', 'af-assistant-card-body');
-    // El nombre lleva a la ficha: así la tarjeta solo necesita UN botón (añadir, o elegir opciones si las tiene).
     if (link) {
       var title = el('a', 'af-assistant-card-name', data.name);
       title.setAttribute('href', link);
@@ -237,23 +241,46 @@
     } else {
       body.appendChild(el('div', 'af-assistant-card-name', data.name));
     }
+    if (data.featured) {
+      body.appendChild(el('span', 'af-assistant-card-featured', text('featured')));
+    }
     var price = el('div', 'af-assistant-card-price');
     price.appendChild(el('span', 'af-assistant-card-now', (data.from ? text('from') + ' ' : '') + data.price));
     if (data.compare_price) {
       price.appendChild(el('span', 'af-assistant-card-old', data.compare_price));
     }
+    if (data.discount_percent > 0) {
+      price.appendChild(el('span', 'af-assistant-card-discount', text('discount').replace('{percent}', String(data.discount_percent))));
+    }
     body.appendChild(price);
-    // Las tallas, los colores… que se pueden comprar ahora: «Talla: 39, 40, 42».
+    if (data.rating && data.rating.count > 0) {
+      body.appendChild(el('span', 'af-assistant-card-rating', text('rating').replace('{score}', data.rating.average).replace('{count}', data.rating.count)));
+    }
     var options = data.options && data.options.length ? data.options : [];
     for (var o = 0; o < options.length; o++) {
       if (!options[o] || !options[o].values || !options[o].values.length) { continue; }
       var line = el('div', 'af-assistant-card-opts');
       line.appendChild(el('span', 'af-assistant-card-opt', String(options[o].name || '') + ':'));
-      line.appendChild(document.createTextNode(' ' + options[o].values.join(', ')));
+      var swatches = options[o].swatches || {};
+      options[o].values.forEach(function (value, index) {
+        line.appendChild(document.createTextNode(index ? ', ' : ' '));
+        if (/^#[0-9a-f]{6}$/i.test(swatches[value] || '')) {
+          var dot = el('span', 'af-assistant-swatch');
+          dot.setAttribute('aria-hidden', 'true');
+          dot.style.backgroundColor = swatches[value];
+          line.appendChild(dot);
+        }
+        line.appendChild(document.createTextNode(value));
+      });
       body.appendChild(line);
     }
-    // De la disponibilidad solo se dice lo que impide comprar: lo demás sobra en la tarjeta.
-    if (data.availability && data.status === 'out_of_stock') {
+    if (Array.isArray(data.matched_attributes) && data.matched_attributes.length) {
+      body.appendChild(el('div', 'af-assistant-card-fit', data.matched_attributes.join(' \u00b7 ')));
+    }
+    if (data.delivery && data.status !== 'out_of_stock') {
+      body.appendChild(el('div', 'af-assistant-card-delivery', data.delivery));
+    }
+    if (data.availability) {
       body.appendChild(el('div', 'af-assistant-card-av', data.availability));
     }
     var actions = el('div', 'af-assistant-card-actions');
@@ -266,6 +293,11 @@
       var pick = el('a', 'af-btn af-btn-primary', data.has_variants ? text('options') : text('view'));
       pick.setAttribute('href', link);
       actions.appendChild(pick);
+    }
+    if (data.stock_signup && safeUrl(data.stock_signup)) {
+      var notify = el('a', 'af-btn', data.stock_signup_label);
+      notify.href = safeUrl(data.stock_signup);
+      actions.appendChild(notify);
     }
     body.appendChild(actions);
     box.appendChild(body);
@@ -310,7 +342,6 @@
       address.appendChild(document.createTextNode(where.join(', ')));
       box.appendChild(address);
     }
-    // A quién se factura, si hay empresa o NIF: la empresa (o la persona) y su NIF tal como se dio.
     if (data.company || data.vat_id) {
       var who = [data.company || data.name || ''];
       if (data.vat_id) {
@@ -389,6 +420,7 @@
       bubble('is-bot', data.text);
     }
     var area = part('[data-af-assistant-log]');
+    if (area && data.notice) { area.appendChild(el('small', 'af-assistant-mode', data.notice)); }
     if (area && data.cards && data.cards.length) {
       var list = el('div', 'af-assistant-cards');
       data.cards.forEach(function (item) {
@@ -465,6 +497,7 @@
     var decoder = new window.TextDecoder('utf-8');
     var buffer = '';
     var finalData = null;
+    var hasFact = false;
     var take = function (line) {
       var item = null;
       try {
@@ -472,7 +505,10 @@
       } catch (e) {
         return;
       }
-      if (item && item.status) {
+      if (item && item.fact) {
+        hasFact = true;
+        setBusy(wait, item.fact);
+      } else if (item && item.status && !hasFact) {
         setBusy(wait, item.status);
       } else if (item && item.done) {
         finalData = item.done;
@@ -497,6 +533,26 @@
     return pump();
   }
 
+  function cooldown(seconds, draft) {
+    var input = part('#af-assistant-input');
+    var submit = part('[data-af-assistant-form] button');
+    if (!input || !submit) { return; }
+    if (draft && !input.value) { input.value = draft; }
+    var notice = bubble('is-bot', '');
+    var until = Date.now() + seconds * 1000;
+    var tick = function () {
+      var left = Math.max(0, Math.ceil((until - Date.now()) / 1000));
+      input.disabled = submit.disabled = left > 0;
+      if (left === 0) {
+        notice.remove();
+        return;
+      }
+      notice.textContent = text('retry').replace('{seconds}', String(left));
+      window.setTimeout(tick, 1000);
+    };
+    tick();
+  }
+
   function send(payload, shown, urlAttribute) {
     var box = root();
     var url = box ? box.getAttribute(urlAttribute || 'data-af-assistant-url') : '';
@@ -506,7 +562,6 @@
     busy = true;
     if (shown) {
       bubble('is-user', shown);
-      log.push({u: shown});
     }
     chips([]);
     var wait = bubble('is-busy', text('busy') + '\u2026');
@@ -519,6 +574,7 @@
     var streaming = !!payload.message && canStream();
     if (streaming) {
       payload.stream = 1;
+      payload.progress = 1;
     }
     window.fetch(url, {
       method: 'POST',
@@ -539,14 +595,59 @@
     }).then(function (result) {
       done();
       if (!result.ok || result.data.error) {
+        if (result.data.retry_after > 0) {
+          cooldown(result.data.retry_after, payload.message);
+          return;
+        }
+        if (payload.vote) { part('[data-af-survey-status]').textContent = text('error'); return; }
         bubble('is-bot', result.data.error || text('error'));
         return;
       }
+      if (result.data.preferences) {
+        preferences(result.data.preferences);
+        delete result.data.preferences;
+        if (payload.save_budget || payload.remove) { return; }
+      }
+      if (result.data.rated) {
+        var survey = part('[data-af-assistant-survey]');
+        survey.hidden = true;
+        part('[data-af-assistant-open]').focus();
+        return;
+      }
+      if (result.data.restarted) {
+        askedForRating = false;
+        log = [];
+        labels = {};
+        chips([]);
+        starterChips();
+        remember();
+        var area = part('[data-af-assistant-log]');
+        while (area && area.children.length > 1) { area.removeChild(area.lastChild); }
+        var input = part('#af-assistant-input');
+        if (input) { input.value = ''; input.focus(); }
+        return;
+      }
+      if (payload.message) { analytics({event: 'chat_message'}); }
+      (result.data.actions || []).forEach(function (action) {
+        if (action.type === 'analytics') { analytics(action.event); }
+      });
       render(result.data);
-      log.push({b: result.data});
+      if (part('.af-assistant-panel').hidden && result.data.text) {
+        unread(1 + (parseInt(part('[data-af-unread]').textContent, 10) || 0));
+      }
+      var privateTurn = result.data.private_history || (result.data.actions || []).some(function (action) {
+        return ['private_turn', 'confirm_order', 'order', 'pay'].indexOf(action.type) >= 0;
+      });
+      if (!privateTurn) {
+        if (shown) {
+          log.push({u: shown});
+        }
+        log.push({b: result.data});
+      }
       remember();
     }, function () {
       done();
+      if (payload.vote) { part('[data-af-survey-status]').textContent = text('error'); return; }
       bubble('is-bot', text('error'));
     });
   }
@@ -554,11 +655,61 @@
   function submitMessage(value) {
     var message = String(value || '').replace(/^\s+|\s+$/g, '');
     if (message) {
-      send({message: message}, message);
+      send({message: message, page_path: location.pathname, criteria: 1}, message);
     }
   }
 
   // ------------------------------------------------------------------ abrir y cerrar
+
+  function preferences(data) {
+    if (!data) { return; }
+    var box = part('[data-af-criteria]');
+    box.textContent = '';
+    Object.keys(data.chips || {}).forEach(function (key) {
+      var button = el('button', 'af-assistant-chip', data.chips[key] + ' \u00d7');
+      button.type = 'button';
+      button.setAttribute('data-af-remove-pref', key);
+      button.setAttribute('aria-label', text('remove-pref') + ' ' + data.chips[key]);
+      box.appendChild(button);
+    });
+    box.hidden = !box.childElementCount;
+    var form = part('[data-af-budget]');
+    form.hidden = !data.signed_in;
+    form.elements.budget.value = data.budget ? String(data.budget / 100) : '';
+  }
+
+  function starterChips() {
+    var url = root().getAttribute('data-af-starters');
+    if (!url) { return; }
+    url += (url.indexOf('?') < 0 ? '?' : '&') + 'page_path=' + encodeURIComponent(location.pathname);
+    window.fetch(url, {credentials: 'same-origin', cache: 'no-store'}).then(function (res) {
+      return res.ok ? res.json() : {};
+    }).then(function (data) {
+      if (!busy) {
+        preferences(data.preferences);
+        if (!log.length && data.suggestions) { chips(data.suggestions); }
+      }
+    }).catch(function () { /* Las preguntas libres siguen disponibles. */ });
+  }
+
+  function unread(n) {
+    var badge = part('[data-af-unread]');
+    if (!badge) { return; }
+    var label = badge.getAttribute('data-label').replace('{count}', String(n));
+    badge.textContent = n ? String(n) : '';
+    badge.hidden = !n;
+    var button = part('[data-af-assistant-open]');
+    if (!button.dataset.originalLabel) { button.dataset.originalLabel = button.getAttribute('aria-label'); }
+    button.setAttribute('aria-label', button.dataset.originalLabel + (n ? '. ' + label : ''));
+    try { sessionStorage.setItem('af-chat-unread', String(n)); } catch (e) { /* opcional */ }
+  }
+
+  function analytics(event) {
+    var consent = window.AifecConsent;
+    if (!window.AifecDataEvent || !consent || typeof consent.letters !== 'function' || consent.letters().indexOf('s') < 0) { return; }
+    event.source = 'assistant';
+    window.AifecDataEvent(event);
+  }
 
   function openPanel() {
     var box = root();
@@ -567,7 +718,17 @@
     if (!box || !panel) {
       return;
     }
+    part('[data-af-assistant-survey]').hidden = true;
+    if (panel.hidden) { analytics({event: 'chat_open'}); }
     panel.hidden = false;
+    unread(0);
+    panel.setAttribute('aria-modal', box.getAttribute('data-layout') === 'side' && window.innerWidth >= 900 ? 'false' : 'true');
+    var notice = part('[data-af-assistant-resume]');
+    if (notice) { notice.hidden = true; }
+    if (typeof panel.showPopover === 'function') {
+      panel.setAttribute('popover', 'manual');
+      panel.showPopover();
+    }
     box.classList.add('is-open');
     document.documentElement.classList.add('af-assistant-lock');
     if (button) {
@@ -584,6 +745,7 @@
         }
       });
       log = saved;
+      starterChips();
     }
     var input = part('#af-assistant-input');
     if (input) {
@@ -598,8 +760,18 @@
     if (!box || !panel || panel.hidden) {
       return;
     }
+    if (panel.hasAttribute('popover') && typeof panel.hidePopover === 'function') {
+      panel.hidePopover();
+    }
     panel.hidden = true;
     box.classList.remove('is-open');
+    document.documentElement.classList.remove('af-chat-docked');
+    box.removeAttribute('data-layout');
+    try { sessionStorage.removeItem('af-chat-docked'); } catch (e) { /* opcional */ }
+    if (!askedForRating && log.length && !busy) {
+      askedForRating = true;
+      part('[data-af-assistant-survey]').hidden = false;
+    }
     document.documentElement.classList.remove('af-assistant-lock');
     if (button) {
       button.setAttribute('aria-expanded', 'false');
@@ -608,6 +780,8 @@
   }
 
   document.addEventListener('click', function (event) {
+    var link = closest(event.target, '[data-chat-product] a[href]');
+    if (link) { analytics({event: 'chat_product_click', item_id: closest(link, '[data-chat-product]').getAttribute('data-chat-product')}); }
     var open = closest(event.target, '[data-af-assistant-open]');
     if (open) {
       event.preventDefault();
@@ -619,9 +793,56 @@
       closePanel();
       return;
     }
+    var remove = closest(event.target, '[data-af-remove-pref]');
+    if (remove) {
+      send({remove: remove.getAttribute('data-af-remove-pref')}, '', 'data-af-preferences-url');
+      return;
+    }
+    var layout = closest(event.target, '[data-af-layout]');
+    if (layout) {
+      var mode = layout.getAttribute('data-af-layout');
+      root().setAttribute('data-layout', mode);
+      part('.af-assistant-panel').setAttribute('aria-modal', mode === 'side' && window.innerWidth >= 900 ? 'false' : 'true');
+      document.documentElement.classList.toggle('af-chat-docked', mode === 'side');
+      try { sessionStorage.setItem('af-chat-docked', mode === 'side' ? '1' : '0'); } catch (e) { /* opcional */ }
+      part('.af-assistant-menu').open = false;
+      part('#af-assistant-input').focus();
+      return;
+    }
+    var separate = closest(event.target, 'a[data-af-chat-window]');
+    if (separate) {
+      var popup = window.open('about:blank', '_blank', 'popup,width=580,height=780');
+      if (popup) {
+        event.preventDefault();
+        try { popup.sessionStorage.setItem(STORE_KEY, JSON.stringify(log.slice(-MAX_LOG))); } catch (e) { /* opcional */ }
+        part('.af-assistant-menu').open = false;
+        popup.opener = null;
+        popup.location.replace(separate.href);
+      }
+      return;
+    }
+    if (closest(event.target, '[data-af-assistant-rate]')) {
+      closePanel();
+      var survey = part('[data-af-assistant-survey]');
+      survey.hidden = false;
+      survey.querySelector('select').focus();
+      return;
+    }
+    if (closest(event.target, '[data-af-survey-close]')) {
+      part('[data-af-assistant-survey]').hidden = true;
+      part('[data-af-assistant-open]').focus();
+      return;
+    }
+    if (closest(event.target, '[data-af-assistant-restart]')) {
+      var menu = part('.af-assistant-menu');
+      if (menu) { menu.open = false; }
+      send({}, '', 'data-af-assistant-restart-url');
+      return;
+    }
     var chip = closest(event.target, '[data-af-assistant-chip]');
     if (chip) {
       event.preventDefault();
+      part('.af-assistant-menu').open = false;
       submitMessage(chip.getAttribute('data-af-assistant-chip'));
       return;
     }
@@ -645,6 +866,20 @@
   });
 
   document.addEventListener('submit', function (event) {
+    var budget = closest(event.target, '[data-af-budget]');
+    if (budget) {
+      event.preventDefault();
+      send({save_budget: 1, max_price: Math.round(Number(budget.elements.budget.value) * 100)}, '', 'data-af-preferences-url');
+      return;
+    }
+    var survey = closest(event.target, '[data-af-assistant-survey]');
+    if (survey) {
+      event.preventDefault();
+      if (event.submitter && event.submitter.name === 'vote') {
+        send({vote: event.submitter.value, reason: survey.elements.reason.value}, '', 'data-af-assistant-rate-url');
+      }
+      return;
+    }
     var form = closest(event.target, '[data-af-assistant-form]');
     if (!form) {
       return;
@@ -668,7 +903,7 @@
       closePanel();
       return;
     }
-    if (event.key === 'Tab') {
+    if (event.key === 'Tab' && panel.getAttribute('aria-modal') === 'true') {
       // El foco no sale de la ventana mientras está abierta.
       var items = Array.prototype.filter.call(panel.querySelectorAll(FOCUSABLE), function (node) {
         return !!(node.offsetWidth || node.offsetHeight || node.getClientRects().length);
@@ -692,5 +927,21 @@
   var box = root();
   if (box) {
     box.hidden = false;
+    try {
+      if (sessionStorage.getItem('af-chat-docked') === '1') {
+        box.setAttribute('data-layout', 'side');
+        document.documentElement.classList.add('af-chat-docked');
+      }
+    } catch (e) { /* opcional */ }
+    var viewport = window.visualViewport;
+    if (viewport) {
+      var fitKeyboard = function () {
+        box.style.setProperty('--as-visible-height', Math.round(viewport.height) + 'px');
+        box.style.setProperty('--as-visible-top', Math.round(viewport.offsetTop) + 'px');
+      };
+      fitKeyboard();
+      viewport.addEventListener('resize', fitKeyboard);
+      viewport.addEventListener('scroll', fitKeyboard);
+    }
   }
 }(typeof window !== 'undefined' ? window : null, typeof document !== 'undefined' ? document : null));

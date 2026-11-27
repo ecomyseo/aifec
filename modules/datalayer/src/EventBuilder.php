@@ -179,6 +179,7 @@ final class EventBuilder
         if (!empty($mark['ai_source'])) {
             $event['ai_source'] = (string) $mark['ai_source'];
         }
+        if (!empty($mark['assistant'])) { $event['source'] = 'assistant'; }
         $events = [$event];
         if (!empty($mark['assistant'])) {
             $events[] = [

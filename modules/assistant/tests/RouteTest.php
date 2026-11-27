@@ -84,7 +84,7 @@ test('un envío desde otra web se rechaza con 403 y no abre ninguna conversació
     $web->headers = $headers;
 });
 
-test('el mensaje 21 en 10 minutos recibe un 429 con Retry-After y no se guarda; pasada la ventana vuelve a contestar', function (): void {
+test('el mensaje 21 en un minuto recibe un 429 con Retry-After y no se guarda; pasada la ventana vuelve a contestar', function (): void {
     $app = assistantApp();
     assistantShop($app);
     $web = new TestClient($app);
@@ -94,7 +94,7 @@ test('el mensaje 21 en 10 minutos recibe un 429 con Retry-After y no se guarda; 
     }
     $r = $web->postJson('/asistente/mensaje', ['message' => 'Uno más']);
     same(429, $r->status);
-    same('600', $r->headers['Retry-After']);
+    same('180', $r->headers['Retry-After']);
     contains('demasiado deprisa', $web->json()['error']);
     same(20, count(assistantRows($app, 'conversation_messages', "role = 'user'")), 'el mensaje rechazado no se guarda');
 
@@ -107,13 +107,13 @@ test('borrar la cookie no sirve para saltarse el límite: hay otro por direcció
     assistantShop($app);
 
     $status = 0;
-    for ($i = 1; $i <= 61; ++$i) {
+    for ($i = 1; $i <= 21; ++$i) {
         $status = (new TestClient($app))->postJson('/asistente/mensaje', ['message' => 'Hola'])->status;
-        if ($i <= 60) {
+        if ($i <= 20) {
             same(200, $status, 'visitante ' . $i);
         }
     }
-    same(429, $status, 'el 61 desde la misma dirección');
+    same(429, $status, 'el 21 desde la misma dirección');
 });
 
 test('un mensaje larguísimo se recorta a 1.000 caracteres y uno vacío o sin cuerpo es un 400 que no abre conversación', function (): void {

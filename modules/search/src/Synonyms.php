@@ -28,6 +28,8 @@ final class Synonyms
     /** @var App */
     private $app;
 
+    public const SECTORS = ['' => 'All shop sectors', 'beauty' => 'Beauty and personal care', 'fashion' => 'Clothing and accessories', 'food' => 'Food and drink', 'hardware' => 'Tools and hardware'];
+
     public function __construct(App $app)
     {
         $this->app = $app;
@@ -41,7 +43,8 @@ final class Synonyms
     public function rules(string $lang): array
     {
         $cache = $this->app->cache();
-        $key = 'search:syn:' . $lang;
+        $sector = $this->app->settings()->str('search.sector');
+        $key = 'search:syn:' . $lang . ':' . $sector;
         $hit = $cache->get($key);
         if (is_array($hit)) {
             return $hit;
@@ -49,7 +52,7 @@ final class Synonyms
         $rules = [];
         $db = $this->app->db();
         if ($db->tableExists('synonyms')) {
-            foreach ($db->select("SELECT mode, source, terms FROM {synonyms} WHERE lang = ? OR lang = '' ORDER BY id", [$lang]) as $row) {
+            foreach ($db->select("SELECT mode, source, terms FROM {synonyms} WHERE (lang = ? OR lang = '') AND (sector = '' OR sector = ?) ORDER BY id", [$lang, $sector]) as $row) {
                 $terms = self::split((string) $row['terms']);
                 $mode = (string) $row['mode'] === 'oneway' ? 'oneway' : 'equal';
                 $source = isset($row['source']) && $row['source'] !== null ? trim((string) $row['source']) : '';

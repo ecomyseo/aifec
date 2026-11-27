@@ -42,7 +42,7 @@ final class AssistantAdminController
         $app->auth()->requireCap('assistant.view');
         $table = new Table($app, $this->listConfig());
 
-        return Admin::page($app, 'assistant::admin/list', ['tabs' => $this->tabs('list'), 'table' => $table->render($request), 'timing' => $this->timing()], [
+        return Admin::page($app, 'assistant::admin/list', ['tabs' => $this->tabs('list'), 'table' => $table->render($request), 'timing' => $this->timing(), 'commercial' => \Aifec\Modules\Assistant\CommerceReport::week($app)], [
             'title' => t('Assistant'),
             'active' => '/admin/assistant',
             'help' => Admin::helpText("«Assistant» is the chat that answers your customers in the shop. «AI» drafts texts for you to approve and «Copilot» does tasks in this panel.\nEach row is a visitor who wrote to the assistant. The list shows no personal data: open a conversation to read it.\nThe outcome says how far the conversation went: the cart, the checkout or an order, with its amount.\nThe simple mode is the assistant without the AI: it answers with fixed rules and the shop data."),
@@ -52,6 +52,23 @@ final class AssistantAdminController
     /**
      * @param array<string,string> $params id
      */
+    public function answerRequest(Request $request, array $params): Response
+    {
+        $app = $this->app;
+        $app->auth()->requireCap('assistant.reply');
+        $app->auth()->requireCap('assistant.view');
+        $text = trim($request->str('reply'));
+        if ($text === '' || mb_strlen($text, 'UTF-8') > 1500) {
+            throw HttpError::badRequest();
+        }
+        $id = (int) $params['id'];
+        $count = $app->db()->run("UPDATE {conversations} SET handoff_reply = ?, handoff_status = 'replied', last_at = ? WHERE id = ? AND handoff_status = 'pending' AND handoff_request = ?", [
+            \Aifec\Modules\Assistant\Masker::secrets($text), $app->clock()->sql(), $id, $request->int('request_id'),
+        ]);
+        if (!$count) { throw new HttpError(409); }
+        return Response::redirect($app->url()->plain('/admin/assistant/' . $id), 303);
+    }
+
     public function show(Request $request, array $params): Response
     {
         $app = $this->app;
@@ -92,7 +109,7 @@ final class AssistantAdminController
             "SELECT phrase, COUNT(*) AS n, MAX(created_at) AS last_at, MAX(conversation_id) AS conversation_id FROM {conversation_messages} WHERE unanswered = 1 AND role = 'user' AND phrase IS NOT NULL GROUP BY phrase ORDER BY n DESC, last_at DESC LIMIT 100"
         );
 
-        return Admin::page($app, 'assistant::admin/unanswered', ['tabs' => $this->tabs('unanswered'), 'groups' => $groups], [
+        return Admin::page($app, 'assistant::admin/unanswered', ['tabs' => $this->tabs('unanswered'), 'groups' => $groups, 'weekly' => $app->service('assistant')->conversations()->weeklySearches(), 'learning' => \Aifec\Modules\Assistant\SearchEvidence::suggestions($app)], [
             'title' => t('Unanswered questions'),
             'active' => '/admin/assistant/unanswered',
             'help' => Admin::helpText("«Assistant» is the chat that answers your customers in the shop. «AI» drafts texts for you to approve and «Copilot» does tasks in this panel.\nThese are the questions the assistant could not answer, grouped when they are the same. Emails and long numbers are hidden.\nThe ones that repeat tell you what content is missing from the shop: a product, a policy or a page.\nThey are deleted with their conversations after the days set in the settings."),
@@ -166,16 +183,16 @@ final class AssistantAdminController
 
         return [
             'from' => '{conversations} c' . ($orders ? ' LEFT JOIN {orders} o ON o.id = c.order_id' : ''),
-            'select' => 'c.id, c.started_at, c.last_at, c.messages, c.unanswered, c.mode, c.lang, c.cart_added, c.checkout, c.order_id'
+            'select' => 'c.handoff_status, c.id, c.started_at, c.last_at, c.messages, c.unanswered, c.mode, c.lang, c.cart_added, c.checkout, c.order_id'
                 . ($orders ? ', o.total AS order_total, o.currency AS order_currency' : ', NULL AS order_total, NULL AS order_currency'),
             'key' => 'id',
             'key_sql' => 'c.id',
             'search' => [],
             'filters' => [
                 'outcome' => ['label' => 'Outcome', 'options' => [
-                    'order' => 'Ended in an order', 'checkout' => 'Went to the checkout', 'cart' => 'Added to the cart', 'unanswered' => 'Has unanswered questions',
+                    'handoff' => 'Customer requests', 'order' => 'Ended in an order', 'checkout' => 'Went to the checkout', 'cart' => 'Added to the cart', 'unanswered' => 'Has unanswered questions',
                 ], 'sql' => [
-                    'order' => 'c.order_id IS NOT NULL', 'checkout' => 'c.checkout = 1', 'cart' => 'c.cart_added = 1', 'unanswered' => 'c.unanswered > 0',
+                    'handoff' => "c.handoff_status = 'pending'", 'order' => 'c.order_id IS NOT NULL', 'checkout' => 'c.checkout = 1', 'cart' => 'c.cart_added = 1', 'unanswered' => 'c.unanswered > 0',
                 ]],
                 'mode' => ['label' => 'Mode', 'column' => 'c.mode', 'options' => ['ai' => 'With AI', 'rules' => 'Simple mode']],
                 'from' => ['label' => 'From', 'type' => 'date_from', 'column' => 'c.started_at'],
@@ -192,6 +209,7 @@ final class AssistantAdminController
                 'messages' => ['label' => 'Messages', 'type' => 'int', 'sort' => 'c.messages'],
                 'mode' => ['label' => 'Mode', 'type' => 'badge', 'map' => ['ai' => ['With AI', 'info'], 'rules' => ['Simple mode', '']], 'hide_sm' => true],
                 'outcome' => ['label' => 'Outcome', 'render' => static function (array $row, App $application): string {
+                    if ($row['handoff_status'] === 'pending') { return Admin::badge(t('Customer requests'), 'warn'); }
                     if ($row['order_id'] !== null && $row['order_id'] !== '') {
                         $amount = $row['order_total'] !== null && $row['order_total'] !== ''
                             ? ' ' . e($application->i18n()->money((int) $row['order_total'], (string) $row['order_currency']))

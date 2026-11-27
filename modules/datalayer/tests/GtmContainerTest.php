@@ -78,6 +78,7 @@ test('cada evento que la capa de datos de AIFEC empuja al navegador tiene su act
 
     // Lo que empuja AIFEC: el guion del navegador y el constructor de eventos del servidor (menos el reembolso, que va por el servidor).
     $source = (string) file_get_contents(dirname(__DIR__) . '/assets/datalayer.js') . (string) file_get_contents(dirname(__DIR__) . '/src/EventBuilder.php');
+    $source .= (string) file_get_contents(dirname(__DIR__, 2) . '/assistant/assets/assistant.js');
     preg_match_all("/event(?:'\\s*=>|:)\\s*'([a-z_]+)'/", $source, $m);
     $pushed = array_values(array_diff(array_unique($m[1]), ['refund', 'gtm.js']));
     foreach (['login', 'sign_up'] as $viaCookie) {

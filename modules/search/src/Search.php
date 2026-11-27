@@ -879,6 +879,29 @@ final class Search
         return $a[0] === $b[0] && Fuzzy::distance($a, $b) <= $max;
     }
 
+    public function spellingChoices(string $word, string $lang): array
+    {
+        $length = mb_strlen($word, 'UTF-8');
+        if ($length < 3 || $length > 50 || !preg_match('/^\p{L}+$/uD', $word)) { return []; }
+        $result = $this->query($word, ['lang' => $lang, 'limit' => 1]);
+        if (empty($result['corrected'])) { return []; }
+        $tokens = $this->analyzer($lang)->tokens($word);
+        if (count($tokens) !== 1) { return []; }
+        $stem = $tokens[0];
+        $size = mb_strlen($stem, 'UTF-8');
+        $best = $size <= 6 ? 1 : 2;
+        $rows = $this->app->db()->select('SELECT term, surface FROM {search_terms} WHERE lang = ? AND df > 0 AND len BETWEEN ? AND ? ORDER BY df DESC, term', [$lang, max(1, $size - $best), $size + $best]);
+        $choices = [];
+        foreach ($rows as $row) {
+            if (!preg_match('/^\p{L}+$/uD', $row['surface'])) { continue; }
+            $distance = min(Fuzzy::distance($stem, $row['term'], $best), Fuzzy::distance($word, mb_strtolower($row['surface'], 'UTF-8'), $best));
+            if ($distance > $best) { continue; }
+            if ($distance < $best) { $best = $distance; $choices = []; }
+            $choices[$row['surface']] = true;
+        }
+        return $length < 6 || count($choices) > 1 ? array_slice(array_keys($choices), 0, 4) : [];
+    }
+
     private function closest(string $lang, string $stem): ?array
     {
         $forms = [$stem];

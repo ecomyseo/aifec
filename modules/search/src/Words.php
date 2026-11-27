@@ -149,6 +149,8 @@ final class Words
                 return $i18n->t('less than, under, below, up to, at most, no more than, cheaper than, maximum', [], $lang);
             case 'min':
                 return $i18n->t('more than, over, above, from, at least, minimum, starting at', [], $lang);
+            case 'approximate':
+                return $i18n->t('about, around, approximately, roughly', [], $lang);
             case 'between':
                 return $i18n->t('between', [], $lang);
             case 'and':

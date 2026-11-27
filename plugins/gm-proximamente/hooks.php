@@ -17,6 +17,9 @@ use Gm\Proximamente\Soon;
 
 return static function (App $app): void {
     $hooks = $app->hooks();
+    $hooks->filter('assistant.stock_signup_anchor', static function ($anchor, $id) {
+        return $anchor ?: 'gm-soon-form-' . (int) $id;
+    });
 
     // La disponibilidad: filtro sellado, entra con la capacidad «pricing» que el comerciante concede. Con ella el producto no se
     // puede comprar de verdad (purchasable = false: ni botón, ni carrito, ni caja) y no enseña precio (show_price = false). Sin ella,
@@ -46,7 +49,7 @@ return static function (App $app): void {
         return $app->view()->render('gm-proximamente::front/badge', ['label' => $label !== '' ? $label : t('Coming soon')]);
     });
     $hooks->slot('product.buy.after', static function ($product) use ($app): string {
-        if (!is_array($product) || !isset($product['id']) || !Soon::isSoon($app, (int) $product['id'])) {
+        if (!is_array($product) || !isset($product['id']) || !Soon::canSubscribe($app, $product)) {
             return '';
         }
         $intro = trim($app->settings()->str('gm_proximamente.intro', ''));

@@ -938,7 +938,10 @@ test('la hoja del asistente va dentro de la página (data-af-css) y el peso de a
     contains("ThemeVars::styleTag(\$app, 'm', 'assistant', 'assistant.css')", (string) file_get_contents(dirname(__DIR__) . '/views/front/widget.php'));
     check(preg_match('/data-af-css="[^"]*assistant\.css[^"]*"|<link rel="stylesheet" href="[^"]*assistant\.css"/', $body) === 1, 'con su dirección');
     $dir = dirname(__DIR__) . '/assets/';
-    check(filesize($dir . 'assistant.js') <= 25000, 'assistant.js: ' . filesize($dir . 'assistant.js') . ' bytes (presupuesto 25 000)');
+    // Solo se descarga el lanzador antes de abrir el chat. El panel completo se solicita al primer clic.
+    check(filesize($dir . 'launcher.js') <= 2500, 'el lanzador inicial pesa como máximo 2,5 kB');
+    check(preg_match('/<script[^>]+src="[^"]*launcher\.js/', $body) === 1);
+    check(preg_match('/<script[^>]+src="[^"]*assistant\.js/', $body) === 0);
     check(filesize($dir . 'assistant.css') <= 8000, 'assistant.css: ' . filesize($dir . 'assistant.css') . ' bytes (presupuesto 8 000)');
 });
 

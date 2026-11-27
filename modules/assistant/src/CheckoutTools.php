@@ -293,7 +293,7 @@ final class CheckoutTools
             // «lucia navarro» después de «Lucía Navarro Sanz»: se conserva el nombre más completo.
             unset($fields['first_name'], $fields['last_name']);
         }
-        if (isset($in['address_id']) && (int) $in['address_id'] > 0) {
+        if (isset($in['address_id']) && is_int($in['address_id']) && $in['address_id'] >= 0) {
             $fields['address_id'] = (int) $in['address_id'];
         }
         if (isset($in['note']) && trim((string) $in['note']) !== '') {

@@ -279,7 +279,7 @@ test('la tarjeta del chat trae dos fotos y lo que se puede elegir: los colores q
     same([], $card['options'], 'sin opciones, lista vacía');
 });
 
-test('la tarjeta del chat pinta las fotos arriba y debajo el nombre, el precio y las opciones; de la disponibilidad, solo «agotado»', function (): void {
+test('la tarjeta del chat pinta las fotos arriba y debajo el nombre, el precio y las opciones; muestra la disponibilidad del catálogo', function (): void {
     $js = (string) file_get_contents(dirname(__DIR__) . '/assets/assistant.js');
     $photos = strpos($js, "'af-assistant-card-photos'");
     $name = strpos($js, "'af-assistant-card-name'");
@@ -289,7 +289,7 @@ test('la tarjeta del chat pinta las fotos arriba y debajo el nombre, el precio y
     check($photos !== false && $name !== false && $price !== false && $opts !== false && $actions !== false, 'las cinco piezas');
     check($photos < $name && $name < $price && $price < $opts && $opts < $actions, 'en ese orden: fotos, nombre, precio, opciones y botón');
     contains('[safeUrl(data.image), safeUrl(data.image2)]', $js, 'las dos fotos pasan por el filtro de direcciones');
-    contains("data.availability && data.status === 'out_of_stock'", $js, 'la disponibilidad solo se dice si impide comprar');
+    contains("if (data.availability)", $js, 'se muestra la disponibilidad cuando la informa el catálogo');
     $css = (string) file_get_contents(dirname(__DIR__) . '/assets/assistant.css');
     contains('.af-assistant-card-photos{display:grid;grid-auto-flow:column', $css, 'las fotos, una al lado de la otra');
     check(preg_match('/\.af-assistant-card-now\{[^}]*font-size:1\.3rem[^}]*font-weight:800/', $css) === 1, 'el precio, lo más destacado del texto');

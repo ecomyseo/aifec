@@ -61,6 +61,11 @@ final class OrderMarks
         }
         $attribution = isset($order['attribution']) && is_array($order['attribution']) ? $order['attribution'] : [];
         $assistant = (string) $order['source'] === 'assistant' || (isset($attribution['channel']) && (string) $attribution['channel'] === 'assistant');
+        if (!$assistant && strpos($letters, 's') !== false && $this->app->has('assistant')) {
+            $conversations = $this->app->service('assistant')->conversations();
+            $token = (string) $request->cookie($conversations->cookieName(), '');
+            $assistant = $token !== '' && $conversations->findByToken($token) !== null;
+        }
         $source = isset($attribution['source']) && is_string($attribution['source']) ? substr(trim($attribution['source']), 0, 40) : '';
         $db->insert('datalayer_orders', [
             'order_id' => (int) $order['id'],

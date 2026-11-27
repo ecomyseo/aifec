@@ -22,3 +22,36 @@ test('store_info de envíos: los transportistas con su precio desde, y el envío
     contains('60,00', (string) $r['shipping']['free_from']);
     check(isset($app->service('tools')->call('store_info', ['topic' => 'all'])['shipping']), 'y también en la ficha entera de la tienda');
 });
+
+test('el destino expresado conserva la zona y evita cotizar Canarias con un código peninsular', function (): void {
+    foreach ([false, true] as $enabled) {
+        $app = assistantApp();
+        assistantShop($app);
+        $fake = assistantAi($app);
+        $fake->on = $enabled;
+        $web = new TestClient($app);
+        $reply = assistantSay($web, 'Vivo en Canarias. ¿Enviáis aquí?');
+        contains('código postal', $reply['text']);
+        contains('canarias', strtolower($reply['text']));
+        contains('código postal', assistantSay($web, '28001')['text']);
+        $valid = assistantSay($web, '35001');
+        notContains('¿Cuál es el código postal', $valid['text']);
+        same([], $fake->asked);
+    }
+    $uk = \Aifec\Modules\Assistant\QuoteDestination::named('do you ship to the uk', false);
+    same('GB', $uk['country']);
+    same('SW1A 1AA', \Aifec\Modules\Assistant\QuoteDestination::postcode('SW1A 1AA', $uk));
+});
+
+test('el tiempo para hacer efecto no inicia una cotización de transporte', function (): void {
+    foreach ([false, true] as $enabled) {
+        $app = assistantApp();
+        $fake = assistantAi($app);
+        $fake->on = $enabled;
+        $answer = assistantSay(new TestClient($app), '¿Cuánto tarda en hacer efecto?');
+        contains('indicaciones de uso', $answer['text']);
+        notContains('postal', $answer['text']);
+        same([], $answer['cards']);
+        same([], $fake->asked);
+    }
+});

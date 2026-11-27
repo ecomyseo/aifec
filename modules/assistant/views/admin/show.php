@@ -31,6 +31,23 @@ $outcome = ($conversation['order_id'] !== null && $conversation['order_id'] !== 
 
 ?><div class="af-grid">
     <div class="af-col-8">
+<?php if (in_array($conversation['handoff_status'], ['pending', 'replied'], true)) : ?>
+        <section class="af-card">
+            <h2><?= e(t('Customer requests')) ?></h2>
+            <p><?= e((string) $conversation['handoff_summary']) ?></p>
+<?php if ($conversation['handoff_status'] === 'pending' && $app->auth()->can('assistant.reply')) : ?>
+            <form method="post" action="<?= e($app->url()->plain('/admin/assistant/' . (int) $conversation['id'] . '/reply')) ?>">
+                <?= Admin::tokenField($app) ?>
+                <input type="hidden" name="request_id" value="<?= (int) $conversation['handoff_request'] ?>">
+                <label for="af-human-reply"><?= e(t('Answer as the shop team')) ?></label>
+                <textarea class="af-input" id="af-human-reply" name="reply" required maxlength="1500"></textarea>
+                <button class="af-btn" type="submit"><?= e(t('Send reply')) ?></button>
+            </form>
+<?php elseif ($conversation['handoff_status'] === 'replied') : ?>
+            <p><?= nl2br(e((string) $conversation['handoff_reply'])) ?></p>
+<?php endif; ?>
+        </section>
+<?php endif; ?>
         <section class="af-card">
             <div class="af-card-head"><h2><?= e(t('Messages')) ?></h2></div>
             <div class="af-card-body af-stack">
@@ -69,6 +86,10 @@ $outcome = ($conversation['order_id'] !== null && $conversation['order_id'] !== 
                     <dt><?= e(t('Last message')) ?></dt><dd><?= e($when((string) $conversation['last_at'])) ?></dd>
                     <dt><?= e(t('Messages')) ?></dt><dd><?= (int) $conversation['messages'] ?></dd>
                     <dt><?= e(t('Mode')) ?></dt><dd><?= e((string) $conversation['mode'] === 'ai' ? t('With AI') : t('Simple mode')) ?></dd>
+                    <dt><?= e(t('Estimated AI cost')) ?></dt><dd><?= e(!empty($conversation['ai_unpriced']) ? t('Some provider prices are missing') : ($conversation['ai_cost_micro'] === null ? t('No measurements yet') : \Aifec\Modules\Ai\Usage::amount($app, (int) $conversation['ai_cost_micro']))) ?></dd>
+<?php if ($conversation['vote'] !== null) : ?>
+                    <dt><?= e(t('Rating')) ?></dt><dd><?= (int) $conversation['vote'] === 1 ? '👍' : '👎' ?> <?= e(t(['products' => 'Product suggestions', 'clarity' => 'Clarity', 'speed' => 'Response time'][$conversation['vote_reason'] ?? ''] ?? '')) ?></dd>
+<?php endif; ?>
                     <dt><?= e(t('Outcome')) ?></dt><dd><?= $outcome ?></dd>
 <?php if ($conversation['order_id'] !== null && $conversation['order_id'] !== '' && $app->auth()->can('orders.view')) : ?>
                     <dt><?= e(t('Order')) ?></dt><dd><a href="<?= e($app->url()->plain('/admin/orders/' . (int) $conversation['order_id'])) ?>">#<?= (int) $conversation['order_id'] ?></a></dd>

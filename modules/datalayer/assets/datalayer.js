@@ -119,6 +119,7 @@
     o = card(t);
     emit({ event: 'select_item', ecommerce: { items: [o] } });
   });
+  w.AifecDataEvent = emit;
   d.addEventListener('submit', function (e) {
     var f = e.target.closest ? e.target.closest('form') : null, q, i, k;
     if (!f) { return; }

@@ -263,6 +263,10 @@ final class ProductData
         ];
 
         // Las insignias de la ficha: las del catálogo y las que añada o quite un plugin (filtro product.badges).
+        if (!empty($row['pack_units'])) {
+            $data['pack_units'] = (int) $row['pack_units'];
+            $data['pack_single_id'] = (int) $row['pack_single_id'];
+        }
         $data['badge_list'] = $this->badges($row, $price, $availability, $data, 'page', $lang);
 
         // Datos que añaden los plugins, ya tipados. Se ven tal como los deja el filtro.
@@ -327,6 +331,9 @@ final class ProductData
             'has_variants' => $hasVariants,
             'buy' => null,
         ];
+        if (!empty($availability['delivery_days'])) {
+            $card['availability']['delivery_days'] = $availability['delivery_days'];
+        }
         if (self::cardOptions($this->app)) {
             $card['buy'] = $this->buy($b, $row, $variants, $price, $availability, $lang, $now);
         }

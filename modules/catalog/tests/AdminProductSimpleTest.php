@@ -135,7 +135,7 @@ test('ningún campo desaparece: la lista de antes y la de ahora son la misma y c
     $app = prodApp();
     $web = adminClient($app);
     $now = array_keys(ProductForm::definition($app, null)['fields']);
-    $before = SIMPLE_FIELDS_BEFORE;
+    $before = array_merge(SIMPLE_FIELDS_BEFORE, ['pack_units', 'pack_single_id', 'replenishment_days']);
     sort($now);
     sort($before);
     same($before, $now, 'los mismos campos que antes de plegar');

@@ -51,20 +51,6 @@ a.af-assistant-card-name:hover{text-decoration:underline}
 .af-assistant-card-actions .af-btn{flex:1 1 auto;justify-content:center;min-height:44px;padding:.4rem .9rem}
 
 /* El resumen del pedido con su botón de confirmar, y los botones de pago. */
-.af-assistant-order{display:grid;gap:.35rem;align-self:stretch;padding:.75rem;border:1px solid var(--line,#ddd);border-radius:var(--radius,10px);background:var(--surface,#fff)}
-.af-assistant-order-title{font-weight:700}
-.af-assistant-order-row{display:flex;justify-content:space-between;gap:.75rem;overflow-wrap:anywhere}
-.af-assistant-order-amount{flex:none;font-weight:600;text-align:right}
-.af-assistant-order-row.is-total{padding-top:.35rem;border-top:1px solid var(--line,#ddd);font-weight:700}
-.af-assistant-order-where{overflow-wrap:anywhere}
-.af-assistant-order-terms{margin:0;color:var(--muted,#555);font-size:.85rem}
-.af-assistant-order-terms a{color:inherit;text-decoration:underline}
-.af-assistant-confirm{min-height:44px;margin-top:.25rem}
-.af-assistant-confirm[disabled]{opacity:.5;cursor:not-allowed}
-.af-assistant-payform{display:contents}
-.af-assistant-log>.af-btn{align-self:flex-start;min-height:44px;display:inline-flex;align-items:center}
-.af-assistant-payform .af-btn{align-self:flex-start;min-height:44px}
-
 /* Respuestas rápidas y formulario. */
 .af-assistant-chips{display:flex;flex-wrap:wrap;gap:.4rem;padding:0 1rem .5rem}
 .af-assistant-chips:empty{display:none}
@@ -87,4 +73,16 @@ html.af-assistant-lock{overflow:hidden}
   .af-assistant-panel{animation:af-assistant-in .15s ease-out}
   @keyframes af-assistant-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 }
+.af-assistant[data-side="left"] .af-assistant-fab{right:auto;left:1rem}
+.af-assistant-fab{bottom:clamp(.25rem,calc(var(--as-bar) + env(safe-area-inset-bottom) + .75rem + var(--af-consent-h,0px) + var(--as-offset-mobile,0px)),calc(100dvh - 3.25rem))}
+@media (min-width:900px){
+  .af-assistant-fab,.af-assistant-panel{bottom:clamp(.25rem,calc(1.25rem + var(--af-consent-h,0px) + var(--as-offset-desktop,0px)),calc(100dvh - 3.25rem))}
+  .af-assistant[data-side="left"] .af-assistant-panel{left:1.25rem;right:auto}
+}
+@media (max-width:899px){
+  .af-assistant .af-assistant-panel,.af-assistant .af-assistant-panel[popover]{top:var(--as-visible-top,0px);bottom:auto;height:var(--as-visible-height,100dvh)}
+}
 @media print{.af-assistant{display:none!important}}
+
+.af-assistant-panel[popover]{margin:0;padding:0;border:0;max-height:none;max-width:100vw;width:auto;height:auto;box-sizing:border-box}
+@media (min-width:900px){.af-assistant-panel[popover]{width:24rem;height:min(36rem,calc(100vh - 2.5rem - var(--af-consent-h,0px)));border:1px solid var(--line,#ddd)}}

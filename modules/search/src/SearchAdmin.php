@@ -64,10 +64,12 @@ final class SearchAdmin
 
         return ['fields' => [
             'mode' => $mode,
+            'sector' => ['type' => 'select', 'label' => 'Shop sector', 'options' => Synonyms::SECTORS, 'rules' => 'nullable|in:beauty,fashion,food,hardware'],
             'source' => $source,
             'terms' => ['type' => 'textarea', 'label' => 'Also find', 'rules' => 'required|max:1000',
+                'default' => $id === null ? mb_substr($app->request()->str('terms'), 0, 1000, 'UTF-8') : '',
                 'hint' => 'Separated by commas. Both ways: write every word that means the same.'],
-            'lang' => ['type' => 'select', 'label' => 'Language', 'options' => $languages, 'empty' => 'All languages', 'rules' => 'nullable', 'translate' => false, 'width' => 'sm'],
+            'lang' => ['type' => 'select', 'label' => 'Language', 'options' => $languages, 'default' => $id === null && isset($languages[$app->request()->str('lang')]) ? $app->request()->str('lang') : '', 'empty' => 'All languages', 'rules' => 'nullable', 'translate' => false, 'width' => 'sm'],
         ]];
     }
 
@@ -96,6 +98,8 @@ final class SearchAdmin
         if ($errors !== []) {
             return ['_errors' => $errors];
         }
+        $values['sector'] = (string) ($values['sector'] ?? $current['sector'] ?? '');
+        if (!array_key_exists($values['sector'], Synonyms::SECTORS)) { return ['_errors' => ['sector' => t('Invalid value')]]; }
         $values['mode'] = $mode;
         $values['source'] = $mode === 'oneway' ? $source : null;
         $values['terms'] = implode(', ', $terms);

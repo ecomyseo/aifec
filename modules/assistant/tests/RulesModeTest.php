@@ -354,7 +354,7 @@ test('el modo por reglas funciona en inglés y sin tildes ni signos', function (
     assistantShop($app);
     $web = new TestClient($app);
 
-    contains('Puedo ayudarte', assistantSay($web, 'hello')['text']);
+    contains('I can help you', assistantSay($web, 'hello')['text']);
     contains('You can pay with', assistantSay($web, 'what are your payment methods?')['text'], 'a quien escribe en inglés se le contesta en inglés');
     contains('returns policy', assistantSay($web, 'return policy')['text'], 'y sigue en inglés con un mensaje corto');
     same('Your cart is empty.', assistantSay($web, 'show my cart')['text']);
