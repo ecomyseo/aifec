@@ -130,7 +130,7 @@ final class Answer
             'image2' => (string) (isset($item['image2']) ? $item['image2'] : ''),
             'options' => $options,
             'price' => (string) $item['price'],
-            'price_cents' => (int) (isset($item['price_cents']) ? $item['price_cents'] : 0),
+            'price_cents' => isset($item['price_cents']) ? (int) $item['price_cents'] : null,
             'compare_price' => isset($item['compare_price']) && $item['compare_price'] !== null ? (string) $item['compare_price'] : null,
             'from' => !empty($item['from']),
             'availability' => (string) (isset($availability['label']) ? $availability['label'] : ''),

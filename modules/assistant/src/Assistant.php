@@ -468,6 +468,9 @@ final class Assistant
         }
         if (!$busy && !$confirmed) {
             $guide = MerchantGuide::answer($this->app, $message, $state, $lang, $page);
+            if ($guide === null && $this->app->has('catalog')) {
+                $guide = ProductQuestion::comparison($this->app, $message, $state);
+            }
             if ($guide !== null) {
                 $this->save($conversationId, $messageId, $message, $state, $guide, $turn, array_column($guide->cards, 'id'), $lang);
                 return $this->finish($guide, $lang, $state)->toArray();

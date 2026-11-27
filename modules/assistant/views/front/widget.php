@@ -36,6 +36,9 @@ $name = $assistant->name();
      data-af-assistant-confirm-url="<?= e($url->route('assistant.confirm')) ?>"
 <?php endif; ?>
      data-t-confirm="<?= e(t('Confirm order')) ?>"
+     data-t-discount-label="<?= e(t('Discount')) ?>"
+     data-t-items="<?= e(t('Cart items')) ?>"
+     data-t-recovery="<?= e(t('The reply could not be verified. Check your cart before repeating a purchase action, or try your question again.')) ?>"
      data-t-summary="<?= e(t('Your order')) ?>"
      data-t-total="<?= e(t('Total')) ?>"
      data-t-shipping="<?= e(t('Delivery method')) ?>"

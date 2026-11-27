@@ -382,7 +382,7 @@ final class RuleBrain
         }
 
         if (preg_match(self::RE_COMPARE, $n) === 1 && count($this->stateCards()) >= 2) {
-            $this->compare();
+            $this->compare($n);
 
             return;
         }
@@ -555,7 +555,22 @@ final class RuleBrain
             $text = t('Showing results for «{q}», the closest to what you typed:', ['q' => (string) $result['corrected']]);
         }
         $this->say($text);
-        $this->runner->presentSearch(Answer::MAX_CARDS);
+        // Cuando hay varias fichas del artículo pedido por nombre, muestra esas fichas
+        // juntas. Las búsquedas amplias conservan la selección habitual del catálogo.
+        $term = self::norm($query);
+        $named = [];
+        if ($term !== '' && strpos($term, ' ') === false) {
+            foreach ($items as $item) {
+                if (in_array($term, explode(' ', self::norm($item['name'])), true)) {
+                    $named[] = (int) $item['id'];
+                }
+            }
+        }
+        if (count($named) >= 2 && count($named) < count($items)) {
+            $this->runner->run('show_products', ['ids' => array_slice($named, 0, Answer::MAX_CARDS)]);
+        } else {
+            $this->runner->presentSearch(Answer::MAX_CARDS);
+        }
         $this->soldOut();
         $this->chips(['add', 'shipping', 'cart']);
         $this->refineChips();
@@ -682,12 +697,17 @@ final class RuleBrain
      *
      * @return string[]
      */
-    private static function comparison(array $result): array
+    public static function comparison(array $result): array
     {
         $lines = [];
         $names = [];
         foreach (isset($result['products']) && is_array($result['products']) ? $result['products'] : [] as $row) {
             $lines[] = '• ' . (string) $row['name'] . ' — ' . (string) $row['price'] . ((string) $row['availability'] !== '' ? ' (' . (string) $row['availability'] . ')' : '');
+            if (!empty($row['description'])) {
+                $lines[] = t('The page for {name} says: {detail}', ['name' => $row['name'], 'detail' => $row['description']]);
+            } else {
+                $lines[] = t('The page for {name} does not list a description.', ['name' => $row['name']]);
+            }
             if (isset($row['per_unit'])) { $lines[] = $row['per_unit']; }
             if (isset($row['pack_saving'])) { $lines[] = $row['pack_saving']; }
             $names[(int) $row['id']] = (string) $row['name'];
@@ -695,11 +715,15 @@ final class RuleBrain
         foreach (isset($result['differences']) && is_array($result['differences']) ? $result['differences'] : [] as $difference) {
             $parts = [];
             foreach (is_array($difference['values']) ? $difference['values'] : [] as $value) {
-                $parts[] = (isset($names[(int) $value['id']]) ? $names[(int) $value['id']] : '') . ': ' . (string) $value['value'];
+                $parts[] = (isset($names[(int) $value['id']]) ? $names[(int) $value['id']] : '') . ': ' . ($value['value'] === '-' ? t('Not specified on this page') : (string) $value['value']);
             }
             $lines[] = (string) $difference['name'] . ' — ' . implode('; ', $parts);
         }
 
+        if (!empty($result['price_difference'])) { $lines[] = $result['price_difference']; }
+        if (empty($result['differences'])) {
+            $lines[] = t('Which feature matters to you? I can check whether the shop lists it.');
+        }
         return $lines;
     }
 
@@ -950,10 +974,17 @@ final class RuleBrain
     }
 
     /** Compara los productos que se acaban de enseñar (hasta tres) con los datos de la ficha: precio, existencias y en qué se diferencian. */
-    private function compare(): void
+    private function compare(string $question): void
     {
+        $cards = $this->stateCards();
+        $firstTwo = preg_match('/(?:dos primer|primer[oa]s? dos|first two)/', $question);
+        if (count($cards) > 2 && !$firstTwo) {
+            $this->say(t('Which two products do you mean? Write both names as they appear on their product pages.'));
+            $this->answer->remember['comparison_names'] = true;
+            return;
+        }
         $ids = [];
-        foreach (array_slice($this->stateCards(), 0, 3) as $card) {
+        foreach (array_slice($cards, 0, 2) as $card) {
             $ids[] = (int) $card['id'];
         }
         $result = $this->runner->run('compare_products', ['ids' => $ids]);
@@ -1067,6 +1098,10 @@ final class RuleBrain
 
             return;
         }
+        $this->answer->actions[] = [
+            'type' => 'cart_summary', 'lines' => $lines, 'total' => $result['total'],
+            'shipping' => $result['shipping'] ?? null, 'discount' => $result['discount'] ?? null,
+        ];
         $text = [t('In your cart:')];
         foreach ($lines as $line) {
             $text[] = (int) $line['qty'] . ' × ' . (string) $line['name'] . ' — ' . (string) $line['total'];

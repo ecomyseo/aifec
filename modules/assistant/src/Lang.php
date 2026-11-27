@@ -24,6 +24,9 @@ final class Lang
     public const LABELS = [
         'confirm' => 'Confirm order',
         'summary' => 'Your order',
+        'items' => 'Cart items',
+        'discount-label' => 'Discount',
+        'recovery' => 'The reply could not be verified. Check your cart before repeating a purchase action, or try your question again.',
         'total' => 'Total',
         'shipping' => 'Delivery method',
         'payment' => 'Payment method',

@@ -13,6 +13,16 @@ declare(strict_types=1);
  * Catálogo castellano del asistente de la tienda. La clave es la cadena inglesa tal como está en el código; no se toca.
  */
 return [
+    'Which two products do you mean? Write both names as they appear on their product pages.' => '¿Qué dos productos quieres comparar? Escribe sus nombres tal como aparecen en las fichas.',
+    'The page for {name} says: {detail}' => 'La ficha de {name} indica lo siguiente: {detail}',
+    'The page for {name} does not list a description.' => 'La ficha de {name} no incluye una descripción.',
+    'Not specified on this page' => 'Sin especificar en esta ficha',
+    'Which feature matters to you? I can check whether the shop lists it.' => '¿Qué característica te interesa? Puedo comprobar si la tienda la indica.',
+    '{lower} costs {amount} less than {higher}.' => '{lower} cuesta {amount} menos que {higher}.',
+    'From {price}' => 'Desde {price}',
+    'Price on request' => 'Precio bajo consulta',
+    'Cart items' => 'Artículos del carrito',
+    'The reply could not be verified. Check your cart before repeating a purchase action, or try your question again.' => 'No he podido comprobar la respuesta. Revisa el carrito antes de repetir una compra o vuelve a enviar tu pregunta.',
     'More information' => 'Más información',
     'Share this summary with the team' => 'Compartir este resumen con el equipo',
     'Check the team’s reply' => 'Consultar la respuesta del equipo',

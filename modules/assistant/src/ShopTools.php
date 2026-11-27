@@ -67,7 +67,7 @@ final class ShopTools
                 'writes' => false,
             ],
             'compare_products' => [
-                'description' => 'Compare 2 to 4 products side by side: for each one its price, availability, summary and key attributes, plus the attributes in which they differ. Use it when the customer asks to compare products or which one to choose, and state only what its fields say (price, stock and the listed differences), never adjectives of your own.',
+                'description' => 'Compare 2 to 4 products side by side: for each one its price, availability, published descriptions, brand, formats and variant options, plus the attributes in which they differ. Use it when the customer asks to compare products or which one to choose, and state only what its fields say (including descriptions and documented differences). Identify missing information instead of assuming it is absent.',
                 'schema' => $object([
                     'ids' => ['type' => 'array', 'minItems' => 2, 'maxItems' => 4, 'items' => ['type' => 'integer', 'minimum' => 1]],
                 ], ['ids']),
@@ -991,6 +991,11 @@ final class ShopTools
                     }
                 }
             }
+            if ($card['brand'] !== '') { $data[t('Brand')] = $card['brand']; }
+            foreach ($this->variantParts($p)['options'] as $option) {
+                $values = array_merge($option['values'], $option['sold_out']);
+                if ($values) { $data[$option['name']] = implode(', ', $values); }
+            }
             $facts[$id] = $data;
             $unit = [];
             if (!empty($p['pack_units']) && empty($card['from']) && !empty($p['availability']['show_price'])) {
@@ -1010,14 +1015,19 @@ final class ShopTools
                     }
                 }
             }
+            $showPrice = !empty($p['availability']['show_price']);
+            $priceLabel = !empty($card['from']) ? t('From {price}', ['price' => $card['price']]) : $card['price'];
             $rows[] = [
                 'id' => $id,
                 'name' => $card['name'],
-                'price' => $card['price'],
-                'price_cents' => $card['price_cents'],
+                'price' => $showPrice ? $priceLabel : t('Price on request'),
+                'price_cents' => $showPrice ? $card['price_cents'] : null,
                 'available' => (string) $card['availability']['status'] !== 'out_of_stock',
                 'availability' => $card['availability']['label'],
                 'summary' => self::plain((string) (isset($p['summary']) ? $p['summary'] : ''), 160),
+                'fixed_price' => $showPrice && empty($card['from']),
+                'currency' => $card['currency'],
+                'description' => self::plain(trim((string) ($p['summary'] ?? '') . ' ' . (string) ($p['description'] ?? '')), 320),
                 'attributes' => array_slice($data, 0, 6, true),
             ] + $unit;
         }
@@ -1044,14 +1054,22 @@ final class ShopTools
                 break;
             }
         }
-        $cheapest = $rows[0];
+        $cheapest = null;
         foreach ($rows as $row) {
-            if ($row['price_cents'] < $cheapest['price_cents']) {
+            if ($row['price_cents'] !== null && ($cheapest === null || $row['price_cents'] < $cheapest['price_cents'])) {
                 $cheapest = $row;
             }
         }
 
-        return ['products' => $rows, 'differences' => $differences, 'cheapest_id' => $cheapest['id']];
+        $result = ['products' => $rows, 'differences' => $differences, 'cheapest_id' => $cheapest['id'] ?? null];
+        if (count($rows) === 2 && $rows[0]['fixed_price'] && $rows[1]['fixed_price'] && $rows[0]['currency'] === $rows[1]['currency']) {
+            $delta = abs($rows[0]['price_cents'] - $rows[1]['price_cents']);
+            if ($delta > 0) {
+                $other = $rows[$cheapest['id'] === $rows[0]['id'] ? 1 : 0];
+                $result['price_difference'] = t('{lower} costs {amount} less than {higher}.', ['lower' => $cheapest['name'], 'amount' => $this->fmt($delta, $cheapest['currency']), 'higher' => $other['name']]);
+            }
+        }
+        return $result;
     }
 
     /**
@@ -1802,8 +1820,8 @@ final class ShopTools
             // Lo que se puede elegir y comprar ahora mismo (tallas, colores…): la tarjeta lo enseña y el modelo lo sabe.
             // («options», en los resultados de una búsqueda, son solo los nombres de las opciones: por eso esta clave es otra.)
             'option_values' => self::cardOptions($c),
-            'price' => $this->fmt($amount, $currency),
-            'price_cents' => $amount,
+            'price' => !empty($price['hidden']) ? t('Price on request') : $this->fmt($amount, $currency),
+            'price_cents' => !empty($price['hidden']) ? null : $amount,
             'currency' => $currency,
             'compare_price' => $compare !== null ? $this->fmt($compare, $currency) : null,
             'compare_price_cents' => $compare,

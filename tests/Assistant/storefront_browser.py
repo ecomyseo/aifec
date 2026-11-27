@@ -70,6 +70,11 @@ with tempfile.TemporaryDirectory(prefix="aifec-ui-") as temp:
             opener.click()
             field = page.locator("#af-assistant-input")
             field.wait_for()
+            consent = page.locator('[data-af-consent] [data-act="reject"]:visible').first
+            if consent.is_visible():
+                assert panel.get_attribute("aria-modal") == "false"
+                consent.click()
+                page.locator('#af-assistant-panel[aria-modal="true"]').wait_for()
             chips = page.locator("[data-af-assistant-chips] [data-af-assistant-chip]")
             try:
                 chips.first.wait_for()

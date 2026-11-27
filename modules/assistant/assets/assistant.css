@@ -80,7 +80,7 @@ html.af-assistant-lock{overflow:hidden}
   .af-assistant[data-side="left"] .af-assistant-panel{left:1.25rem;right:auto}
 }
 @media (max-width:899px){
-  .af-assistant .af-assistant-panel,.af-assistant .af-assistant-panel[popover]{top:var(--as-visible-top,0px);bottom:auto;height:var(--as-visible-height,100dvh)}
+  .af-assistant .af-assistant-panel,.af-assistant .af-assistant-panel[popover]{top:var(--as-visible-top,0px);bottom:auto;height:calc(var(--as-visible-height,100dvh) - var(--af-consent-h,0px))}
 }
 @media print{.af-assistant{display:none!important}}
 

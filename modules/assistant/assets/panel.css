@@ -8,7 +8,7 @@
 @media(min-width:900px){.af-assistant[data-design=compact]:not([data-layout]) .af-assistant-panel{max-width:22rem}}
 .af-assistant-swatch{display:inline-block;width:.85em;height:.85em;margin-inline-end:.2em;border:1px solid currentColor;border-radius:50%}
 @media (min-width:900px){
-  .af-assistant[data-layout=large] .af-assistant-panel{inset:0;margin:auto;width:min(64rem,90vw);height:min(52rem,86dvh)}
+  .af-assistant[data-layout=large] .af-assistant-panel{inset:0 0 var(--af-consent-h,0px);margin:auto;width:min(64rem,90vw);height:min(52rem,86dvh,calc(100dvh - var(--af-consent-h,0px)))}
   .af-assistant[data-layout=side] .af-assistant-panel{inset:0 0 0 auto;height:100dvh;width:min(30rem,40vw);border-radius:0}
   .af-assistant[data-layout=side][data-side=left] .af-assistant-panel{inset:0 auto 0 0}
   html.af-chat-docked body{margin-inline-end:min(30rem,40vw)}
@@ -24,6 +24,13 @@ body[data-af-chat-window] [data-af-layout],body[data-af-chat-window] a[data-af-c
 .af-assistant-menu[open] button{display:block;min-height:44px;width:100%;max-width:72vw;text-align:start;padding:.5rem .8rem;background:var(--surface,#fff);color:inherit;border:1px solid var(--line,#ddd);cursor:pointer}
 .af-assistant-order{display:grid;gap:.35rem;align-self:stretch;padding:.75rem;border:1px solid var(--line,#ddd);border-radius:var(--radius,10px);background:var(--surface,#fff)}
 .af-assistant-order-title{font-weight:700}
+.af-assistant-order-lines{display:grid;gap:.35rem;max-block-size:25vh;max-block-size:25dvh;min-block-size:0;overflow:auto;overscroll-behavior:contain}
+.af-assistant-panel .af-assistant-chips{flex:0 0 auto;max-block-size:max(44px,18vh);max-block-size:max(44px,18dvh);overflow:auto;overscroll-behavior:contain}
+.af-assistant-panel .af-assistant-log{flex:1 1 0}
+.af-assistant-log>*{flex-shrink:0}
+.af-assistant-panel [hidden]{display:none!important}
+.af-assistant-order-lines:focus-visible{outline:2px solid currentColor;outline-offset:-2px}
+.af-assistant-survey:not([hidden]){overflow-y:auto;overscroll-behavior:contain}
 .af-assistant-order-row{display:flex;justify-content:space-between;gap:.75rem;overflow-wrap:anywhere}
 .af-assistant-order-amount{flex:none;font-weight:600;text-align:right}
 .af-assistant-order-row.is-total{padding-top:.35rem;border-top:1px solid var(--line,#ddd);font-weight:700}

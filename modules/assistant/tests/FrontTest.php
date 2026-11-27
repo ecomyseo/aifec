@@ -113,11 +113,11 @@ test('el guion no lleva cadenas visibles: cada texto que pinta llega en un atrib
     $body = (new TestClient($app))->get('/')->body;
     $js = assistantAsset('assistant.js');
 
-    preg_match_all("/text\\('([a-z]+)'\\)/", $js, $used);
+    preg_match_all("/text\\('([a-z-]+)'\\)/", $js, $used);
     $names = array_values(array_unique($used[1]));
     sort($names);
     // «invoice» y «taxid» (P093): la tarjeta del resumen dice a quién se factura («Factura a: Berg Studio SL · NIF …»).
-    same(['accept', 'add', 'busy', 'checkout', 'confirm', 'deliver', 'discount', 'error', 'featured', 'from', 'invoice', 'options', 'pay', 'payment', 'rating', 'retry', 'shipping', 'subscriptions', 'summary', 'taxid', 'terms', 'total', 'view', 'vieworder'], $names, 'los textos que usa el guion');
+    same(['accept', 'add', 'busy', 'checkout', 'confirm', 'deliver', 'discount', 'discount-label', 'error', 'featured', 'from', 'invoice', 'items', 'options', 'pay', 'payment', 'rating', 'recovery', 'remove-pref', 'retry', 'shipping', 'subscriptions', 'summary', 'taxid', 'terms', 'total', 'view', 'vieworder'], $names, 'los textos que usa el guion');
     foreach ($names as $name) {
         check(preg_match('/data-t-' . $name . '="[^"]+"/', $body) === 1, 'el HTML trae data-t-' . $name);
     }
