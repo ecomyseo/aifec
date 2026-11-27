@@ -75,6 +75,13 @@ final class Lang
     public static function detect(string $message, string $shop, ?\Aifec\Kernel\I18n $i18n = null): ?string
     {
         $n = RuleBrain::norm($message);
+        // La pregunta tiene idioma propio aunque el nombre comercial esté escrito en el otro idioma.
+        if (preg_match('/^(?:do you (?:have|sell)|where can i find|i am looking for|show me)\s+/', $n)) {
+            return 'en';
+        }
+        if (preg_match('/^(?:busco|muestrame|me ensenas|estoy buscando)\s+/', $n)) {
+            return 'es';
+        }
         $n = preg_replace('/\S*@\S*/', ' ', $n);
         $words = $n === null || trim($n) === '' ? [] : preg_split('/[\s]+/', trim($n));
         $words = is_array($words) ? $words : [];

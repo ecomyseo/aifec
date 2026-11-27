@@ -1,3 +1,7 @@
+# AIFEC 1.4.1
+
+El botón «Más información» respeta el idioma de la conversación al mostrar un producto buscado por su título completo.
+
 # AIFEC 1.4.0
 
 El asistente de compras incorpora consultas sobre fichas y destinos, búsqueda guiada, cupones autorizados por la tienda, relevo humano con consentimiento y evaluación reproducible con el catálogo de cada sitio. El panel muestra las consultas sin resultados, las valoraciones, los costes medidos y los ingresos asistidos por moneda. La conversación admite vistas de móvil y escritorio, consulta por cuenta y un reinicio independiente del carrito.

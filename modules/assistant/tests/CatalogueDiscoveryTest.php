@@ -43,6 +43,7 @@ test('un título literal que habla de transporte o pedidos se busca sin abrir un
         $r = assistantSay($web, $prefix . $name . '?');
         same([$id], array_column($r['cards'], 'id'));
         contains($name, $r['text']);
+        same([$prefix === 'Busco ' ? 'Más información' : 'More information'], $r['suggestions']);
     }
     same([], assistantCartLines($app, $web));
 });

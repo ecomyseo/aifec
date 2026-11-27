@@ -13,6 +13,7 @@ declare(strict_types=1);
  * Catálogo castellano del asistente de la tienda. La clave es la cadena inglesa tal como está en el código; no se toca.
  */
 return [
+    'More information' => 'Más información',
     'Share this summary with the team' => 'Compartir este resumen con el equipo',
     'Check the team’s reply' => 'Consultar la respuesta del equipo',
     'I would rather continue here' => 'Prefiero continuar aquí',
